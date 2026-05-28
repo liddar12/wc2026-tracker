@@ -1,0 +1,31 @@
+[build]
+  command = "node scripts/write-runtime-config.mjs"
+  publish = "."
+
+[[redirects]]
+  from = "/join/*"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/app/*"
+  to = "/app/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/data/*"
+  to = "/data/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/icons/*"
+  to = "/icons/:splat"
+  status = 200
+  force = false
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

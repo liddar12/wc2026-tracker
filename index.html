@@ -12,6 +12,24 @@
 <meta name="format-detection" content="telephone=no">
 <meta name="theme-color" content="#1F4E78" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
+<base id="app-base" href="/">
+<script>
+(function setBaseHref() {
+  const parts = location.pathname.split('/').filter(Boolean);
+  const last = parts[parts.length - 1];
+  if (last && /\.[a-z0-9]+$/i.test(last)) parts.pop();
+  const joinIndex = parts.indexOf('join');
+  const prefix = joinIndex === -1 ? parts : parts.slice(0, joinIndex);
+  const basePath = prefix.length ? '/' + prefix.join('/') + '/' : '/';
+  const base = document.getElementById('app-base');
+  if (base) base.href = basePath;
+})();
+(function markJoinRoute() {
+  if (location.pathname.split('/').filter(Boolean).includes('join')) {
+    document.documentElement.classList.add('wc26-join-route');
+  }
+})();
+</script>
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
@@ -47,6 +65,7 @@
   <span class="muted">v5-kalshi · WC26</span>
 </footer>
 
+<script src="app/preview-config.js"></script>
 <script type="module" src="app/main.js"></script>
 <script>
 if ('serviceWorker' in navigator) {

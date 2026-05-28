@@ -86,3 +86,35 @@ All scrapers in `scripts/`:
   scripts (`compute_fatigue.py`, `compute_xg.py`) are pure-stdlib and always
   succeed. A new `pre_kickoff_update.yml` workflow runs every 10 min and
   gates to "is there a match starting in the next 90 min".
+
+## Auth + private groups (feature branch)
+
+This branch adds optional Supabase-backed competition features while preserving
+the existing local-only experience when Supabase is not configured.
+
+- Username/password authentication via Supabase Auth.
+- Private groups with human-shareable codes (`word-word-1234`).
+- Join by code in app or by magic URL (`/join/<code>`).
+- One bracket submission per user per group (`group_id,user_id` PK).
+- Tournament lock windows:
+  - lock at first group-stage kickoff,
+  - unlock after group stage ends,
+  - lock again at first R32 kickoff.
+
+### Supabase setup
+
+1. Run SQL in `supabase/migrations/20260527_auth_groups_brackets.sql`.
+2. In Supabase Auth settings, disable email confirmation for MVP login flow.
+3. Provide Supabase browser config using either:
+   - Netlify build env vars (recommended for previews):
+     - `WC26_SUPABASE_URL`
+     - `WC26_SUPABASE_ANON_KEY`
+     - The build runs `node scripts/write-runtime-config.mjs` and writes `app/preview-config.js`.
+   - Or browser localStorage fallback:
+     - `wc26.supabase.url`
+     - `wc26.supabase.anonKey`
+
+### Netlify preview-safe routing
+
+`netlify.toml` adds SPA redirects for `/join/*` and client routes so the
+feature can be tested on preview deploys without touching the live domain.
