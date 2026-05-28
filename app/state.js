@@ -1,0 +1,155 @@
+/* state.js — central state store with localStorage persistence.
+ *
+ * Mutating helpers fire a `state:change` event on `window` for subscribers.
+ */
+
+const LS_PICKS = 'wc26.picks';
+const LS_PREFS = 'wc26.prefs';
+const LS_WATCHLIST = 'wc26.watchlist';
+
+const state = {
+  data: null,            // populated by data-loader
+  route: { view: 'matchups', params: {} },
+  picks: loadPicks(),
+  prefs: loadPrefs()
+};
+
+function loadPicks() {
+  try {
+    const raw = localStorage.getItem(LS_PICKS);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
+    return {};
+  }
+}
+
+function persistPicks() {
+  try { localStorage.setItem(LS_PICKS, JSON.stringify(state.picks)); } catch {}
+}
+
+function loadPrefs() {
+  try {
+    const raw = localStorage.getItem(LS_PREFS);
+    return raw ? JSON.parse(raw) : { theme: 'auto', defaultGroup: 'D' };
+  } catch {
+    return { theme: 'auto', defaultGroup: 'D' };
+  }
+}
+
+function persistPrefs() {
+  try { localStorage.setItem(LS_PREFS, JSON.stringify(state.prefs)); } catch {}
+}
+
+function emit() {
+  window.dispatchEvent(new CustomEvent('state:change'));
+}
+
+export function getState() { return state; }
+
+export function setData(data) {
+  state.data = data;
+  emit();
+}
+
+export function setRoute(view, params = {}) {
+  state.route = { view, params };
+  // Sync to hash for back/forward navigation
+  const hash = buildHash(view, params);
+  if (location.hash !== hash) location.hash = hash;
+  emit();
+}
+
+export function parseHash(hash) {
+  const trimmed = (hash || '').replace(/^#\/?/, '');
+  if (!trimmed) return { view: 'matchups', params: {} };
+  const [view, ...rest] = trimmed.split('/');
+  const params = {};
+  for (let i = 0; i < rest.length; i += 2) {
+    if (rest[i]) params[rest[i]] = decodeURIComponent(rest[i + 1] || '');
+  }
+  return { view: view || 'matchups', params };
+}
+
+function buildHash(view, params) {
+  const parts = [view];
+  for (const [k, v] of Object.entries(params)) {
+    if (v == null) continue;
+    parts.push(k, encodeURIComponent(String(v)));
+  }
+  return '#/' + parts.join('/');
+}
+
+/* Picks */
+
+export function makePickKey(match) {
+  return `${match.team_a}__vs__${match.team_b}`;
+}
+
+export function setPick(match, choice) {
+  const key = makePickKey(match);
+  state.picks[key] = {
+    team_a: match.team_a,
+    team_b: match.team_b,
+    choice,        // 'team_a' | 'draw' | 'team_b'
+    model_pick: match.predicted_winner,
+    model_confidence: match.win_confidence_pct,
+    picked_at: new Date().toISOString()
+  };
+  persistPicks();
+  emit();
+}
+
+export function getPick(match) {
+  return state.picks[makePickKey(match)] || null;
+}
+
+export function clearPick(match) {
+  delete state.picks[makePickKey(match)];
+  persistPicks();
+  emit();
+}
+
+export function allPicks() {
+  return Object.entries(state.picks).map(([key, p]) => ({ key, ...p }));
+}
+
+/* Prefs */
+
+export function setPref(key, value) {
+  state.prefs[key] = value;
+  persistPrefs();
+  emit();
+}
+
+/* Watchlist */
+
+function loadWatchlist() {
+  try {
+    const raw = localStorage.getItem(LS_WATCHLIST);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function persistWatchlist(list) {
+  try { localStorage.setItem(LS_WATCHLIST, JSON.stringify(list)); } catch {}
+}
+
+export function watchlistKeys() {
+  return loadWatchlist();
+}
+
+export function isWatchlisted(match) {
+  const key = makePickKey(match);
+  return loadWatchlist().includes(key);
+}
+
+export function toggleWatchlist(match) {
+  const key = makePickKey(match);
+  let list = loadWatchlist();
+  if (list.includes(key)) list = list.filter((k) => k !== key);
+  else list = [...list, key];
+  persistWatchlist(list);
+  emit();
+}

@@ -1,0 +1,1970 @@
+{
+  "Mexico": {
+    "name": "Mexico",
+    "group": "A",
+    "fifa_rank": 15,
+    "espn_rank": 24,
+    "elo_raw": 1810,
+    "tmv_musd": 175,
+    "composite": 73.7,
+    "sub_ratings": {
+      "mine": 67.2,
+      "elo_scaled": 69.0,
+      "tmv_scaled": 74.2,
+      "qual_scaled": 66.0
+    },
+    "boosts": {
+      "continental": 2.25,
+      "host": 1.25
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 60.2,
+      "mid": 69.9,
+      "fwd": 70.3
+    },
+    "coach": {
+      "name": "Javier Aguirre",
+      "nationality": "Mexico",
+      "experience": 85
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 18,
+      "ga": 9
+    },
+    "contender_tier": 3,
+    "is_host": true,
+    "continental_champion": true,
+    "power_rank": 20
+  },
+  "Korea Republic": {
+    "name": "Korea Republic",
+    "group": "A",
+    "fifa_rank": 22,
+    "espn_rank": 30,
+    "elo_raw": 1775,
+    "tmv_musd": 220,
+    "composite": 72.4,
+    "sub_ratings": {
+      "mine": 67.9,
+      "elo_scaled": 66.7,
+      "tmv_scaled": 76.3,
+      "qual_scaled": 70.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 53.6,
+      "def": 62.7,
+      "mid": 78.7,
+      "fwd": 67.0
+    },
+    "coach": {
+      "name": "Hong Myung-bo",
+      "nationality": "Korea Republic",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 1,
+      "l": 2,
+      "gf": 21,
+      "ga": 8
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 22
+  },
+  "South Africa": {
+    "name": "South Africa",
+    "group": "A",
+    "fifa_rank": 52,
+    "espn_rank": 45,
+    "elo_raw": 1720,
+    "tmv_musd": 50,
+    "composite": 60.3,
+    "sub_ratings": {
+      "mine": 59.0,
+      "elo_scaled": 63.0,
+      "tmv_scaled": 63.1,
+      "qual_scaled": 55.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 53.6,
+      "def": 56.6,
+      "mid": 60.3,
+      "fwd": 65.4
+    },
+    "coach": {
+      "name": "Hugo Broos",
+      "nationality": "Belgium",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 4,
+      "d": 3,
+      "l": 3,
+      "gf": 12,
+      "ga": 11
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 41
+  },
+  "Czechia": {
+    "name": "Czechia",
+    "group": "A",
+    "fifa_rank": 40,
+    "espn_rank": 28,
+    "elo_raw": 1810,
+    "tmv_musd": 220,
+    "composite": 69.7,
+    "sub_ratings": {
+      "mine": 66.0,
+      "elo_scaled": 69.0,
+      "tmv_scaled": 76.3,
+      "qual_scaled": 62.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 71.6,
+      "def": 59.7,
+      "mid": 63.6,
+      "fwd": 72.8
+    },
+    "coach": {
+      "name": "Miroslav Koubek",
+      "nationality": "Czechia",
+      "experience": 55
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 17,
+      "ga": 11
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 28
+  },
+  "Canada": {
+    "name": "Canada",
+    "group": "B",
+    "fifa_rank": 45,
+    "espn_rank": 29,
+    "elo_raw": 1785,
+    "tmv_musd": 175,
+    "composite": 69.9,
+    "sub_ratings": {
+      "mine": 70.6,
+      "elo_scaled": 67.3,
+      "tmv_scaled": 74.2,
+      "qual_scaled": 59.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 1.25
+    },
+    "position_ratings": {
+      "gk": 62.7,
+      "def": 70.3,
+      "mid": 68.8,
+      "fwd": 78.8
+    },
+    "coach": {
+      "name": "Jesse Marsch",
+      "nationality": "USA",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 2,
+      "l": 3,
+      "gf": 16,
+      "ga": 12
+    },
+    "contender_tier": 3,
+    "is_host": true,
+    "continental_champion": false,
+    "power_rank": 27
+  },
+  "Switzerland": {
+    "name": "Switzerland",
+    "group": "B",
+    "fifa_rank": 17,
+    "espn_rank": 17,
+    "elo_raw": 1897,
+    "tmv_musd": 420,
+    "composite": 76.6,
+    "sub_ratings": {
+      "mine": 72.6,
+      "elo_scaled": 74.8,
+      "tmv_scaled": 82.0,
+      "qual_scaled": 71.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 73.9,
+      "def": 68.6,
+      "mid": 70.7,
+      "fwd": 72.9
+    },
+    "coach": {
+      "name": "Murat Yakin",
+      "nationality": "Switzerland",
+      "experience": 75
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 20,
+      "ga": 8
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 13
+  },
+  "Qatar": {
+    "name": "Qatar",
+    "group": "B",
+    "fifa_rank": 50,
+    "espn_rank": 48,
+    "elo_raw": 1620,
+    "tmv_musd": 40,
+    "composite": 59.5,
+    "sub_ratings": {
+      "mine": 60.3,
+      "elo_scaled": 56.3,
+      "tmv_scaled": 61.2,
+      "qual_scaled": 50
+    },
+    "boosts": {
+      "continental": 2.25,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 60.5,
+      "def": 58.9,
+      "mid": 58.0,
+      "fwd": 67.3
+    },
+    "coach": {
+      "name": "Julen Lopetegui",
+      "nationality": "Spain",
+      "experience": 85
+    },
+    "qualifying_form": {
+      "w": 3,
+      "d": 3,
+      "l": 4,
+      "gf": 10,
+      "ga": 16
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 44
+  },
+  "Bosnia and Herzegovina": {
+    "name": "Bosnia and Herzegovina",
+    "group": "B",
+    "fifa_rank": 57,
+    "espn_rank": 36,
+    "elo_raw": 1770,
+    "tmv_musd": 175,
+    "composite": 68.7,
+    "sub_ratings": {
+      "mine": 61.6,
+      "elo_scaled": 66.3,
+      "tmv_scaled": 74.2,
+      "qual_scaled": 64.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 63.6,
+      "mid": 59.5,
+      "fwd": 67.0
+    },
+    "coach": {
+      "name": "Sergej Barbarez",
+      "nationality": "Bosnia and Herzegovina",
+      "experience": 50
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 18,
+      "ga": 11
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 32
+  },
+  "Brazil": {
+    "name": "Brazil",
+    "group": "C",
+    "fifa_rank": 6,
+    "espn_rank": 4,
+    "elo_raw": 1979,
+    "tmv_musd": 1100,
+    "composite": 78.6,
+    "sub_ratings": {
+      "mine": 77.7,
+      "elo_scaled": 80.3,
+      "tmv_scaled": 90.5,
+      "qual_scaled": 60.6
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 70.8,
+      "def": 71.3,
+      "mid": 73.6,
+      "fwd": 80.6
+    },
+    "coach": {
+      "name": "Carlo Ancelotti",
+      "nationality": "Italy",
+      "experience": 99
+    },
+    "qualifying_form": {
+      "w": 9,
+      "d": 4,
+      "l": 5,
+      "gf": 24,
+      "ga": 15
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 11
+  },
+  "Morocco": {
+    "name": "Morocco",
+    "group": "C",
+    "fifa_rank": 12,
+    "espn_rank": 13,
+    "elo_raw": 1860,
+    "tmv_musd": 320,
+    "composite": 79.7,
+    "sub_ratings": {
+      "mine": 73.2,
+      "elo_scaled": 72.3,
+      "tmv_scaled": 79.6,
+      "qual_scaled": 78.0
+    },
+    "boosts": {
+      "continental": 2.25,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 72.4,
+      "mid": 76.7,
+      "fwd": 71.4
+    },
+    "coach": {
+      "name": "Mohamed Ouahbi",
+      "nationality": "Morocco",
+      "experience": 55
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 2,
+      "l": 0,
+      "gf": 22,
+      "ga": 4
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 9
+  },
+  "Scotland": {
+    "name": "Scotland",
+    "group": "C",
+    "fifa_rank": 42,
+    "espn_rank": 26,
+    "elo_raw": 1800,
+    "tmv_musd": 180,
+    "composite": 70.4,
+    "sub_ratings": {
+      "mine": 69.7,
+      "elo_scaled": 68.3,
+      "tmv_scaled": 74.5,
+      "qual_scaled": 65.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 69.1,
+      "def": 70.3,
+      "mid": 78.6,
+      "fwd": 63.6
+    },
+    "coach": {
+      "name": "Steve Clarke",
+      "nationality": "Scotland",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 18,
+      "ga": 10
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 26
+  },
+  "Haiti": {
+    "name": "Haiti",
+    "group": "C",
+    "fifa_rank": 92,
+    "espn_rank": 42,
+    "elo_raw": 1680,
+    "tmv_musd": 55,
+    "composite": 59.1,
+    "sub_ratings": {
+      "mine": 59.2,
+      "elo_scaled": 60.3,
+      "tmv_scaled": 64.0,
+      "qual_scaled": 51.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 58.9,
+      "mid": 56.6,
+      "fwd": 66.6
+    },
+    "coach": {
+      "name": "Sebastien Migne",
+      "nationality": "France",
+      "experience": 50
+    },
+    "qualifying_form": {
+      "w": 4,
+      "d": 2,
+      "l": 4,
+      "gf": 10,
+      "ga": 14
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 45
+  },
+  "USA": {
+    "name": "USA",
+    "group": "D",
+    "fifa_rank": 16,
+    "espn_rank": 22,
+    "elo_raw": 1800,
+    "tmv_musd": 380,
+    "composite": 76.1,
+    "sub_ratings": {
+      "mine": 74.5,
+      "elo_scaled": 68.3,
+      "tmv_scaled": 81.1,
+      "qual_scaled": 65.3
+    },
+    "boosts": {
+      "continental": 0.75,
+      "host": 1.25
+    },
+    "position_ratings": {
+      "gk": 61.2,
+      "def": 68.0,
+      "mid": 78.9,
+      "fwd": 76.0
+    },
+    "coach": {
+      "name": "Mauricio Pochettino",
+      "nationality": "Argentina",
+      "experience": 88
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 18,
+      "ga": 10
+    },
+    "contender_tier": 2,
+    "is_host": true,
+    "continental_champion": true,
+    "power_rank": 16
+  },
+  "Australia": {
+    "name": "Australia",
+    "group": "D",
+    "fifa_rank": 24,
+    "espn_rank": 32,
+    "elo_raw": 1770,
+    "tmv_musd": 95,
+    "composite": 66.2,
+    "sub_ratings": {
+      "mine": 59.9,
+      "elo_scaled": 66.3,
+      "tmv_scaled": 68.8,
+      "qual_scaled": 65.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 64.7,
+      "def": 56.9,
+      "mid": 60.1,
+      "fwd": 61.0
+    },
+    "coach": {
+      "name": "Tony Popovic",
+      "nationality": "Australia",
+      "experience": 60
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 18,
+      "ga": 10
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 36
+  },
+  "Paraguay": {
+    "name": "Paraguay",
+    "group": "D",
+    "fifa_rank": 43,
+    "espn_rank": 27,
+    "elo_raw": 1790,
+    "tmv_musd": 90,
+    "composite": 64.3,
+    "sub_ratings": {
+      "mine": 65.0,
+      "elo_scaled": 67.7,
+      "tmv_scaled": 68.4,
+      "qual_scaled": 56.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 58.1,
+      "def": 61.1,
+      "mid": 70.3,
+      "fwd": 69.2
+    },
+    "coach": {
+      "name": "Gustavo Alfaro",
+      "nationality": "Argentina",
+      "experience": 75
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 7,
+      "l": 4,
+      "gf": 18,
+      "ga": 15
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 37
+  },
+  "Turkiye": {
+    "name": "Turkiye",
+    "group": "D",
+    "fifa_rank": 29,
+    "espn_rank": 12,
+    "elo_raw": 1880,
+    "tmv_musd": 350,
+    "composite": 74.0,
+    "sub_ratings": {
+      "mine": 72.6,
+      "elo_scaled": 73.7,
+      "tmv_scaled": 80.4,
+      "qual_scaled": 65.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 73.9,
+      "def": 69.5,
+      "mid": 78.9,
+      "fwd": 69.1
+    },
+    "coach": {
+      "name": "Vincenzo Montella",
+      "nationality": "Italy",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 20,
+      "ga": 12
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 18
+  },
+  "Germany": {
+    "name": "Germany",
+    "group": "E",
+    "fifa_rank": 10,
+    "espn_rank": 8,
+    "elo_raw": 1910,
+    "tmv_musd": 896,
+    "composite": 81.7,
+    "sub_ratings": {
+      "mine": 81.0,
+      "elo_scaled": 75.7,
+      "tmv_scaled": 88.7,
+      "qual_scaled": 73.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 64.6,
+      "def": 74.5,
+      "mid": 82.6,
+      "fwd": 81.4
+    },
+    "coach": {
+      "name": "Julian Nagelsmann",
+      "nationality": "Germany",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 24,
+      "ga": 8
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 7
+  },
+  "Ecuador": {
+    "name": "Ecuador",
+    "group": "E",
+    "fifa_rank": 27,
+    "espn_rank": 16,
+    "elo_raw": 1933,
+    "tmv_musd": 230,
+    "composite": 69.7,
+    "sub_ratings": {
+      "mine": 67.5,
+      "elo_scaled": 77.2,
+      "tmv_scaled": 76.7,
+      "qual_scaled": 58.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 53.6,
+      "def": 70.0,
+      "mid": 68.4,
+      "fwd": 68.8
+    },
+    "coach": {
+      "name": "Sebastian Beccacece",
+      "nationality": "Argentina",
+      "experience": 55
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 5,
+      "l": 5,
+      "gf": 18,
+      "ga": 13
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 29
+  },
+  "Cote d'Ivoire": {
+    "name": "Cote d'Ivoire",
+    "group": "E",
+    "fifa_rank": 41,
+    "espn_rank": 19,
+    "elo_raw": 1830,
+    "tmv_musd": 290,
+    "composite": 72.6,
+    "sub_ratings": {
+      "mine": 68.8,
+      "elo_scaled": 70.3,
+      "tmv_scaled": 78.7,
+      "qual_scaled": 66.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 61.2,
+      "def": 68.6,
+      "mid": 70.1,
+      "fwd": 73.6
+    },
+    "coach": {
+      "name": "Emerse Fae",
+      "nationality": "Cote d'Ivoire",
+      "experience": 65
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 17,
+      "ga": 8
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 21
+  },
+  "Curacao": {
+    "name": "Curacao",
+    "group": "E",
+    "fifa_rank": 63,
+    "espn_rank": 47,
+    "elo_raw": 1660,
+    "tmv_musd": 32,
+    "composite": 58.7,
+    "sub_ratings": {
+      "mine": 57.9,
+      "elo_scaled": 59.0,
+      "tmv_scaled": 59.2,
+      "qual_scaled": 58.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 53.6,
+      "def": 59.1,
+      "mid": 59.6,
+      "fwd": 59.7
+    },
+    "coach": {
+      "name": "Fred Rutten",
+      "nationality": "Netherlands",
+      "experience": 60
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 2,
+      "l": 3,
+      "gf": 14,
+      "ga": 12
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 46
+  },
+  "Netherlands": {
+    "name": "Netherlands",
+    "group": "F",
+    "fifa_rank": 7,
+    "espn_rank": 6,
+    "elo_raw": 1959,
+    "tmv_musd": 880,
+    "composite": 82.8,
+    "sub_ratings": {
+      "mine": 78.4,
+      "elo_scaled": 78.9,
+      "tmv_scaled": 88.6,
+      "qual_scaled": 77.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 69.4,
+      "def": 72.0,
+      "mid": 78.7,
+      "fwd": 77.6
+    },
+    "coach": {
+      "name": "Ronald Koeman",
+      "nationality": "Netherlands",
+      "experience": 90
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 1,
+      "l": 1,
+      "gf": 26,
+      "ga": 7
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 6
+  },
+  "Japan": {
+    "name": "Japan",
+    "group": "F",
+    "fifa_rank": 19,
+    "espn_rank": 20,
+    "elo_raw": 1879,
+    "tmv_musd": 280,
+    "composite": 77.9,
+    "sub_ratings": {
+      "mine": 73.6,
+      "elo_scaled": 73.6,
+      "tmv_scaled": 78.4,
+      "qual_scaled": 80.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 59.4,
+      "def": 69.7,
+      "mid": 74.6,
+      "fwd": 76.4
+    },
+    "coach": {
+      "name": "Hajime Moriyasu",
+      "nationality": "Japan",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 2,
+      "l": 0,
+      "gf": 28,
+      "ga": 6
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 12
+  },
+  "Tunisia": {
+    "name": "Tunisia",
+    "group": "F",
+    "fifa_rank": 36,
+    "espn_rank": 40,
+    "elo_raw": 1745,
+    "tmv_musd": 95,
+    "composite": 66.4,
+    "sub_ratings": {
+      "mine": 63.4,
+      "elo_scaled": 64.7,
+      "tmv_scaled": 68.8,
+      "qual_scaled": 64.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 53.6,
+      "def": 60.6,
+      "mid": 66.3,
+      "fwd": 66.5
+    },
+    "coach": {
+      "name": "Sabri Lamouchi",
+      "nationality": "France",
+      "experience": 65
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 15,
+      "ga": 8
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 35
+  },
+  "Sweden": {
+    "name": "Sweden",
+    "group": "F",
+    "fifa_rank": 28,
+    "espn_rank": 21,
+    "elo_raw": 1815,
+    "tmv_musd": 320,
+    "composite": 71.7,
+    "sub_ratings": {
+      "mine": 71.8,
+      "elo_scaled": 69.3,
+      "tmv_scaled": 79.6,
+      "qual_scaled": 60.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 71.1,
+      "mid": 66.8,
+      "fwd": 82.9
+    },
+    "coach": {
+      "name": "Graham Potter",
+      "nationality": "England",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 16,
+      "ga": 12
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 23
+  },
+  "Belgium": {
+    "name": "Belgium",
+    "group": "G",
+    "fifa_rank": 8,
+    "espn_rank": 10,
+    "elo_raw": 1849,
+    "tmv_musd": 620,
+    "composite": 78.7,
+    "sub_ratings": {
+      "mine": 77.0,
+      "elo_scaled": 71.6,
+      "tmv_scaled": 85.5,
+      "qual_scaled": 71.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 69.6,
+      "def": 69.2,
+      "mid": 74.8,
+      "fwd": 79.5
+    },
+    "coach": {
+      "name": "Rudi Garcia",
+      "nationality": "France",
+      "experience": 75
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 22,
+      "ga": 9
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 10
+  },
+  "Iran": {
+    "name": "Iran",
+    "group": "G",
+    "fifa_rank": 21,
+    "espn_rank": 38,
+    "elo_raw": 1770,
+    "tmv_musd": 70,
+    "composite": 67.9,
+    "sub_ratings": {
+      "mine": 64.3,
+      "elo_scaled": 66.3,
+      "tmv_scaled": 66.1,
+      "qual_scaled": 73.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 56.3,
+      "def": 56.9,
+      "mid": 66.9,
+      "fwd": 71.8
+    },
+    "coach": {
+      "name": "Amir Ghalenoei",
+      "nationality": "Iran",
+      "experience": 60
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 22,
+      "ga": 7
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 33
+  },
+  "Egypt": {
+    "name": "Egypt",
+    "group": "G",
+    "fifa_rank": 38,
+    "espn_rank": 33,
+    "elo_raw": 1780,
+    "tmv_musd": 110,
+    "composite": 68.9,
+    "sub_ratings": {
+      "mine": 63.9,
+      "elo_scaled": 67.0,
+      "tmv_scaled": 70.1,
+      "qual_scaled": 70.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 52.0,
+      "def": 56.3,
+      "mid": 60.0,
+      "fwd": 79.2
+    },
+    "coach": {
+      "name": "Hossam Hassan",
+      "nationality": "Egypt",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 18,
+      "ga": 7
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 31
+  },
+  "New Zealand": {
+    "name": "New Zealand",
+    "group": "G",
+    "fifa_rank": 89,
+    "espn_rank": 41,
+    "elo_raw": 1690,
+    "tmv_musd": 38,
+    "composite": 59.9,
+    "sub_ratings": {
+      "mine": 59.9,
+      "elo_scaled": 61.0,
+      "tmv_scaled": 60.7,
+      "qual_scaled": 58.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 57.3,
+      "mid": 62.9,
+      "fwd": 64.2
+    },
+    "coach": {
+      "name": "Darren Bazeley",
+      "nationality": "England",
+      "experience": 50
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 2,
+      "l": 3,
+      "gf": 14,
+      "ga": 12
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 42
+  },
+  "Spain": {
+    "name": "Spain",
+    "group": "H",
+    "fifa_rank": 1,
+    "espn_rank": 2,
+    "elo_raw": 2171,
+    "tmv_musd": 1010,
+    "composite": 88.2,
+    "sub_ratings": {
+      "mine": 83.0,
+      "elo_scaled": 93.1,
+      "tmv_scaled": 89.8,
+      "qual_scaled": 76.7
+    },
+    "boosts": {
+      "continental": 3.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 73.9,
+      "def": 73.9,
+      "mid": 83.6,
+      "fwd": 84.5
+    },
+    "coach": {
+      "name": "Luis de la Fuente",
+      "nationality": "Spain",
+      "experience": 90
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 2,
+      "l": 0,
+      "gf": 22,
+      "ga": 6
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 2
+  },
+  "Cabo Verde": {
+    "name": "Cabo Verde",
+    "group": "H",
+    "fifa_rank": 61,
+    "espn_rank": 46,
+    "elo_raw": 1705,
+    "tmv_musd": 60,
+    "composite": 62.3,
+    "sub_ratings": {
+      "mine": 58.7,
+      "elo_scaled": 62.0,
+      "tmv_scaled": 64.8,
+      "qual_scaled": 60.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 60.4,
+      "mid": 59.1,
+      "fwd": 61.1
+    },
+    "coach": {
+      "name": "Bubista",
+      "nationality": "Cabo Verde",
+      "experience": 50
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 12,
+      "ga": 8
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 39
+  },
+  "Uruguay": {
+    "name": "Uruguay",
+    "group": "H",
+    "fifa_rank": 14,
+    "espn_rank": 15,
+    "elo_raw": 1890,
+    "tmv_musd": 340,
+    "composite": 71.6,
+    "sub_ratings": {
+      "mine": 72.3,
+      "elo_scaled": 74.3,
+      "tmv_scaled": 80.1,
+      "qual_scaled": 57.4
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 68.6,
+      "def": 71.6,
+      "mid": 77.1,
+      "fwd": 64.5
+    },
+    "coach": {
+      "name": "Marcelo Bielsa",
+      "nationality": "Argentina",
+      "experience": 95
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 4,
+      "l": 6,
+      "gf": 20,
+      "ga": 15
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 24
+  },
+  "Saudi Arabia": {
+    "name": "Saudi Arabia",
+    "group": "H",
+    "fifa_rank": 44,
+    "espn_rank": 43,
+    "elo_raw": 1700,
+    "tmv_musd": 35,
+    "composite": 60.6,
+    "sub_ratings": {
+      "mine": 62.8,
+      "elo_scaled": 61.7,
+      "tmv_scaled": 60.0,
+      "qual_scaled": 60.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 59.4,
+      "def": 61.9,
+      "mid": 63.6,
+      "fwd": 67.3
+    },
+    "coach": {
+      "name": "Georgios Donis",
+      "nationality": "Greece",
+      "experience": 55
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 14,
+      "ga": 11
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 40
+  },
+  "France": {
+    "name": "France",
+    "group": "I",
+    "fifa_rank": 3,
+    "espn_rank": 1,
+    "elo_raw": 2063,
+    "tmv_musd": 1570,
+    "composite": 86.2,
+    "sub_ratings": {
+      "mine": 81.1,
+      "elo_scaled": 85.9,
+      "tmv_scaled": 93.7,
+      "qual_scaled": 77.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 76.2,
+      "def": 75.6,
+      "mid": 75.0,
+      "fwd": 84.3
+    },
+    "coach": {
+      "name": "Didier Deschamps",
+      "nationality": "France",
+      "experience": 99
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 1,
+      "l": 1,
+      "gf": 26,
+      "ga": 7
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 3
+  },
+  "Senegal": {
+    "name": "Senegal",
+    "group": "I",
+    "fifa_rank": 18,
+    "espn_rank": 11,
+    "elo_raw": 1869,
+    "tmv_musd": 310,
+    "composite": 76.3,
+    "sub_ratings": {
+      "mine": 71.0,
+      "elo_scaled": 72.9,
+      "tmv_scaled": 79.3,
+      "qual_scaled": 68.0
+    },
+    "boosts": {
+      "continental": 2.25,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 64.6,
+      "def": 67.5,
+      "mid": 67.4,
+      "fwd": 75.2
+    },
+    "coach": {
+      "name": "Pape Thiaw",
+      "nationality": "Senegal",
+      "experience": 55
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 2,
+      "l": 2,
+      "gf": 20,
+      "ga": 8
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 15
+  },
+  "Norway": {
+    "name": "Norway",
+    "group": "I",
+    "fifa_rank": 30,
+    "espn_rank": 9,
+    "elo_raw": 1922,
+    "tmv_musd": 584,
+    "composite": 81.2,
+    "sub_ratings": {
+      "mine": 73.5,
+      "elo_scaled": 76.5,
+      "tmv_scaled": 84.9,
+      "qual_scaled": 81.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 58.6,
+      "def": 67.8,
+      "mid": 75.9,
+      "fwd": 81.8
+    },
+    "coach": {
+      "name": "Stale Solbakken",
+      "nationality": "Norway",
+      "experience": 65
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 1,
+      "l": 1,
+      "gf": 30,
+      "ga": 6
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 8
+  },
+  "Iraq": {
+    "name": "Iraq",
+    "group": "I",
+    "fifa_rank": 49,
+    "espn_rank": 44,
+    "elo_raw": 1680,
+    "tmv_musd": 22,
+    "composite": 58.1,
+    "sub_ratings": {
+      "mine": 60.8,
+      "elo_scaled": 60.3,
+      "tmv_scaled": 55.9,
+      "qual_scaled": 59.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 58.1,
+      "def": 58.6,
+      "mid": 62.3,
+      "fwd": 65.7
+    },
+    "coach": {
+      "name": "Graham Arnold",
+      "nationality": "Australia",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 12,
+      "ga": 10
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 48
+  },
+  "Argentina": {
+    "name": "Argentina",
+    "group": "J",
+    "fifa_rank": 2,
+    "espn_rank": 7,
+    "elo_raw": 2113,
+    "tmv_musd": 950,
+    "composite": 84.3,
+    "sub_ratings": {
+      "mine": 80.0,
+      "elo_scaled": 89.2,
+      "tmv_scaled": 89.2,
+      "qual_scaled": 67.4
+    },
+    "boosts": {
+      "continental": 3.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 64.4,
+      "def": 70.9,
+      "mid": 79.8,
+      "fwd": 84.6
+    },
+    "coach": {
+      "name": "Lionel Scaloni",
+      "nationality": "Argentina",
+      "experience": 99
+    },
+    "qualifying_form": {
+      "w": 12,
+      "d": 2,
+      "l": 4,
+      "gf": 31,
+      "ga": 14
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 5
+  },
+  "Algeria": {
+    "name": "Algeria",
+    "group": "J",
+    "fifa_rank": 31,
+    "espn_rank": 25,
+    "elo_raw": 1790,
+    "tmv_musd": 165,
+    "composite": 71.3,
+    "sub_ratings": {
+      "mine": 68.6,
+      "elo_scaled": 67.7,
+      "tmv_scaled": 73.7,
+      "qual_scaled": 70.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 61.2,
+      "def": 63.0,
+      "mid": 74.5,
+      "fwd": 70.8
+    },
+    "coach": {
+      "name": "Vladimir Petkovic",
+      "nationality": "Bosnia and Herzegovina",
+      "experience": 85
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 2,
+      "l": 1,
+      "gf": 18,
+      "ga": 7
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 25
+  },
+  "Austria": {
+    "name": "Austria",
+    "group": "J",
+    "fifa_rank": 23,
+    "espn_rank": 23,
+    "elo_raw": 1820,
+    "tmv_musd": 410,
+    "composite": 75.1,
+    "sub_ratings": {
+      "mine": 69.1,
+      "elo_scaled": 69.7,
+      "tmv_scaled": 81.8,
+      "qual_scaled": 70.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 61.2,
+      "def": 67.6,
+      "mid": 79.9,
+      "fwd": 62.6
+    },
+    "coach": {
+      "name": "Ralf Rangnick",
+      "nationality": "Germany",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 1,
+      "l": 2,
+      "gf": 22,
+      "ga": 10
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 17
+  },
+  "Jordan": {
+    "name": "Jordan",
+    "group": "J",
+    "fifa_rank": 54,
+    "espn_rank": 39,
+    "elo_raw": 1745,
+    "tmv_musd": 16,
+    "composite": 58.2,
+    "sub_ratings": {
+      "mine": 61.4,
+      "elo_scaled": 64.7,
+      "tmv_scaled": 53.0,
+      "qual_scaled": 59.7
+    },
+    "boosts": {
+      "continental": 0.75,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 56.9,
+      "mid": 59.8,
+      "fwd": 72.7
+    },
+    "coach": {
+      "name": "Jamal Sellami",
+      "nationality": "Morocco",
+      "experience": 50
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 2,
+      "l": 3,
+      "gf": 16,
+      "ga": 12
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 47
+  },
+  "Portugal": {
+    "name": "Portugal",
+    "group": "K",
+    "fifa_rank": 5,
+    "espn_rank": 5,
+    "elo_raw": 1976,
+    "tmv_musd": 850,
+    "composite": 84.8,
+    "sub_ratings": {
+      "mine": 81.6,
+      "elo_scaled": 80.1,
+      "tmv_scaled": 88.3,
+      "qual_scaled": 82.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 69.1,
+      "def": 73.4,
+      "mid": 82.2,
+      "fwd": 83.4
+    },
+    "coach": {
+      "name": "Carlos Queiroz",
+      "nationality": "Portugal",
+      "experience": 90
+    },
+    "qualifying_form": {
+      "w": 9,
+      "d": 1,
+      "l": 0,
+      "gf": 28,
+      "ga": 6
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 4
+  },
+  "DR Congo": {
+    "name": "DR Congo",
+    "group": "K",
+    "fifa_rank": 56,
+    "espn_rank": 31,
+    "elo_raw": 1760,
+    "tmv_musd": 145,
+    "composite": 67.1,
+    "sub_ratings": {
+      "mine": 63.3,
+      "elo_scaled": 65.7,
+      "tmv_scaled": 72.6,
+      "qual_scaled": 61.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 60.9,
+      "mid": 62.6,
+      "fwd": 72.3
+    },
+    "coach": {
+      "name": "Sebastien Desabre",
+      "nationality": "France",
+      "experience": 65
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 15,
+      "ga": 10
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 34
+  },
+  "Uzbekistan": {
+    "name": "Uzbekistan",
+    "group": "K",
+    "fifa_rank": 53,
+    "espn_rank": 34,
+    "elo_raw": 1735,
+    "tmv_musd": 80,
+    "composite": 64.0,
+    "sub_ratings": {
+      "mine": 61.0,
+      "elo_scaled": 64.0,
+      "tmv_scaled": 67.3,
+      "qual_scaled": 60.7
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 54.6,
+      "def": 58.3,
+      "mid": 65.7,
+      "fwd": 64.3
+    },
+    "coach": {
+      "name": "Fabio Cannavaro",
+      "nationality": "Italy",
+      "experience": 80
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 15,
+      "ga": 11
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 38
+  },
+  "Colombia": {
+    "name": "Colombia",
+    "group": "K",
+    "fifa_rank": 13,
+    "espn_rank": 14,
+    "elo_raw": 1998,
+    "tmv_musd": 360,
+    "composite": 73.8,
+    "sub_ratings": {
+      "mine": 71.9,
+      "elo_scaled": 81.5,
+      "tmv_scaled": 80.6,
+      "qual_scaled": 56.9
+    },
+    "boosts": {
+      "continental": 1.5,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 55.7,
+      "def": 69.1,
+      "mid": 67.6,
+      "fwd": 79.2
+    },
+    "coach": {
+      "name": "Nestor Lorenzo",
+      "nationality": "Argentina",
+      "experience": 70
+    },
+    "qualifying_form": {
+      "w": 7,
+      "d": 6,
+      "l": 5,
+      "gf": 22,
+      "ga": 17
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 19
+  },
+  "England": {
+    "name": "England",
+    "group": "L",
+    "fifa_rank": 4,
+    "espn_rank": 3,
+    "elo_raw": 2042,
+    "tmv_musd": 1870,
+    "composite": 88.8,
+    "sub_ratings": {
+      "mine": 81.1,
+      "elo_scaled": 84.5,
+      "tmv_scaled": 95.2,
+      "qual_scaled": 79.3
+    },
+    "boosts": {
+      "continental": 1.5,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 69.6,
+      "def": 73.3,
+      "mid": 79.1,
+      "fwd": 84.6
+    },
+    "coach": {
+      "name": "Thomas Tuchel",
+      "nationality": "Germany",
+      "experience": 90
+    },
+    "qualifying_form": {
+      "w": 8,
+      "d": 2,
+      "l": 0,
+      "gf": 25,
+      "ga": 5
+    },
+    "contender_tier": 1,
+    "is_host": false,
+    "continental_champion": true,
+    "power_rank": 1
+  },
+  "Croatia": {
+    "name": "Croatia",
+    "group": "L",
+    "fifa_rank": 9,
+    "espn_rank": 18,
+    "elo_raw": 1933,
+    "tmv_musd": 480,
+    "composite": 76.6,
+    "sub_ratings": {
+      "mine": 73.2,
+      "elo_scaled": 77.2,
+      "tmv_scaled": 83.2,
+      "qual_scaled": 68.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 67.2,
+      "def": 70.9,
+      "mid": 77.8,
+      "fwd": 63.0
+    },
+    "coach": {
+      "name": "Zlatko Dalic",
+      "nationality": "Croatia",
+      "experience": 95
+    },
+    "qualifying_form": {
+      "w": 6,
+      "d": 3,
+      "l": 1,
+      "gf": 18,
+      "ga": 7
+    },
+    "contender_tier": 2,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 14
+  },
+  "Ghana": {
+    "name": "Ghana",
+    "group": "L",
+    "fifa_rank": 58,
+    "espn_rank": 35,
+    "elo_raw": 1755,
+    "tmv_musd": 255,
+    "composite": 69.7,
+    "sub_ratings": {
+      "mine": 65.4,
+      "elo_scaled": 65.3,
+      "tmv_scaled": 77.6,
+      "qual_scaled": 61.3
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 58.1,
+      "def": 65.0,
+      "mid": 68.3,
+      "fwd": 68.6
+    },
+    "coach": {
+      "name": "Otto Addo",
+      "nationality": "Ghana",
+      "experience": 60
+    },
+    "qualifying_form": {
+      "w": 5,
+      "d": 3,
+      "l": 2,
+      "gf": 14,
+      "ga": 9
+    },
+    "contender_tier": 3,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 30
+  },
+  "Panama": {
+    "name": "Panama",
+    "group": "L",
+    "fifa_rank": 34,
+    "espn_rank": 37,
+    "elo_raw": 1715,
+    "tmv_musd": 45,
+    "composite": 59.9,
+    "sub_ratings": {
+      "mine": 61.0,
+      "elo_scaled": 62.7,
+      "tmv_scaled": 62.2,
+      "qual_scaled": 55.0
+    },
+    "boosts": {
+      "continental": 0.0,
+      "host": 0.0
+    },
+    "position_ratings": {
+      "gk": 50.4,
+      "def": 60.9,
+      "mid": 64.7,
+      "fwd": 61.0
+    },
+    "coach": {
+      "name": "Thomas Christiansen",
+      "nationality": "Denmark",
+      "experience": 65
+    },
+    "qualifying_form": {
+      "w": 4,
+      "d": 3,
+      "l": 3,
+      "gf": 12,
+      "ga": 12
+    },
+    "contender_tier": 4,
+    "is_host": false,
+    "continental_champion": false,
+    "power_rank": 43
+  }
+}

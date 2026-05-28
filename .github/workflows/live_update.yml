@@ -1,0 +1,87 @@
+name: Live Tournament Update
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'   # Every 2 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: live-update
+  cancel-in-progress: true
+
+jobs:
+  update-results:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Gate to tournament window (2026-06-11 .. 2026-07-20)
+        id: gate
+        run: |
+          today=$(date -u +%Y-%m-%d)
+          start="2026-06-11"
+          end="2026-07-20"
+          if [[ "$today" < "$start" || "$today" > "$end" ]]; then
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              echo "manual run: proceeding even though $today is outside tournament window"
+              echo "go=1" >> "$GITHUB_OUTPUT"
+            else
+              echo "skipping: $today is outside tournament window"
+              echo "go=0" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.go == '1'
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        if: steps.gate.outputs.go == '1'
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        if: steps.gate.outputs.go == '1'
+        run: pip install -r scripts/requirements.txt
+
+      - name: Fetch live results
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/update_results.py
+        continue-on-error: true
+      - name: Scrape top scorers (live)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_scorers.py
+        continue-on-error: true
+      - name: Scrape referees (assignments may change live)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_referees.py
+        continue-on-error: true
+
+      - name: Recompute composite + probabilities
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/rebuild_composite.py
+      - name: Recompute xG
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/compute_xg.py
+      - name: Scrape Kalshi markets
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_kalshi.py
+        continue-on-error: true
+
+      - name: Validate refreshed data
+        if: steps.gate.outputs.go == '1'
+        run: python3 scripts/validate_data.py
+
+      - name: Commit and push
+        if: steps.gate.outputs.go == '1'
+        run: |
+          git config user.name "wc26-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes; nothing to commit."
+          else
+            git commit -m "chore: live results update"
+            git push
+          fi

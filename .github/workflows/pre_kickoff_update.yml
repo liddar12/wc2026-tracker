@@ -1,0 +1,86 @@
+name: Pre-Kickoff Update
+
+# Runs every 10 minutes and gates to "is there a match starting in the next
+# 90 minutes". When the gate passes, we pull starting XIs + the latest
+# referee assignment so the matchup-detail view is fresh when fans open it
+# right before kickoff.
+
+on:
+  schedule:
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pre-kickoff-update
+  cancel-in-progress: true
+
+jobs:
+  prekickoff:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: "Gate: any kickoff in the next 90 min?"
+        id: gate
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          from datetime import datetime, timedelta, timezone
+          path = "data/schedule_full.json"
+          try:
+              schedule = json.load(open(path))
+          except Exception as e:
+              print("pre-kickoff: cannot read schedule:", e, file=sys.stderr)
+              with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+                  f.write("go=0\n")
+              sys.exit(0)
+          now = datetime.now(timezone.utc)
+          in_window = False
+          for row in schedule:
+              k = row.get("kickoff_utc")
+              if not k:
+                  continue
+              try:
+                  ts = datetime.fromisoformat(k.replace("Z", "+00:00"))
+              except ValueError:
+                  continue
+              if now - timedelta(minutes=10) <= ts <= now + timedelta(minutes=90):
+                  in_window = True
+                  print("pre-kickoff:", row.get("match_id"), "kicks off at", ts.isoformat())
+                  break
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"go={'1' if in_window else '0'}\n")
+          PY
+      - name: Install deps
+        if: steps.gate.outputs.go == '1'
+        run: pip install -r scripts/requirements.txt
+      - name: Scrape lineups
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_lineups.py
+        continue-on-error: true
+      - name: Scrape referees
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_referees.py
+        continue-on-error: true
+      - name: Validate
+        if: steps.gate.outputs.go == '1'
+        run: python3 scripts/validate_data.py
+      - name: Commit and push
+        if: steps.gate.outputs.go == '1'
+        run: |
+          git config user.name "wc26-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes; nothing to commit."
+          else
+            git commit -m "chore: pre-kickoff refresh (lineups + refs)"
+            git push
+          fi

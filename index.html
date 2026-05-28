@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>WC26 Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="description" content="2026 FIFA World Cup matchup-level predictions, picks, and bracket tracker.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="WC26">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+<meta name="theme-color" content="#1F4E78" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="app/styles.css">
+</head>
+<body>
+<header class="app-header sticky-header" id="app-header">
+  <button class="back-btn" id="back-btn" type="button" aria-label="Back" hidden>&larr;</button>
+  <h1 class="app-title" id="app-title">WC26</h1>
+  <div class="header-actions">
+    <button class="search-btn" id="search-btn" type="button" aria-label="Search">&#128269;</button>
+    <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme">&#9788;</button>
+  </div>
+</header>
+
+<nav class="tab-bar" id="tab-bar" role="tablist" aria-label="Primary">
+  <button type="button" role="tab" data-route="matchups" class="tab is-active">Matches</button>
+  <button type="button" role="tab" data-route="schedule" class="tab">Schedule</button>
+  <button type="button" role="tab" data-route="venues" class="tab" aria-label="Venues map" title="Venues map">Venues</button>
+  <button type="button" role="tab" data-route="groups" class="tab">Groups</button>
+  <button type="button" role="tab" data-route="bracket" class="tab">Bracket</button>
+  <button type="button" role="tab" data-route="picks" class="tab">My Picks</button>
+</nav>
+
+<main id="view" class="view scroll-area" aria-live="polite">
+  <p class="loading">Loading data…</p>
+</main>
+
+<footer class="app-footer">
+  <span id="data-version" class="muted">—</span>
+  <span class="muted">·</span>
+  <span class="muted">v5-kalshi · WC26</span>
+</footer>
+
+<script type="module" src="app/main.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

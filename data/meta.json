@@ -1,0 +1,28 @@
+{
+  "tournament": "FIFA World Cup 2026",
+  "hosts": [
+    "USA",
+    "Canada",
+    "Mexico"
+  ],
+  "dates": "11 June \u2013 19 July 2026",
+  "format": "48 teams \u00b7 12 groups of 4 \u00b7 Top 2 + 8 best 3rd-place to Round of 32",
+  "data_version": "2026-05-27T16:03:47.709393",
+  "model_version": "v4-optimized",
+  "model_weights": {
+    "mine": 0.15,
+    "elo": 0.1,
+    "tmv": 0.45,
+    "qual": 0.3,
+    "cont_mult": 1.5,
+    "host_mult": 0.5
+  },
+  "model_accuracy_2022_backtest": {
+    "top_4": "1/4 (25%)",
+    "top_8": "6/8 (75%)",
+    "top_20": "18/20 (90%)",
+    "group_advancement": "13/16 (81%)",
+    "spearman_all_32": 0.66,
+    "spearman_vs_espn_2026": 0.941
+  }
+}

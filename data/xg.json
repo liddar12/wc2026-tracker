@@ -1,0 +1,662 @@
+{
+  "Mexico__vs__Korea Republic": {
+    "team_a": "Mexico",
+    "team_b": "Korea Republic",
+    "team_a_xg": 1.51,
+    "team_b_xg": 1.39,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Mexico__vs__South Africa": {
+    "team_a": "Mexico",
+    "team_b": "South Africa",
+    "team_a_xg": 2.05,
+    "team_b_xg": 0.85,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Mexico__vs__Czechia": {
+    "team_a": "Mexico",
+    "team_b": "Czechia",
+    "team_a_xg": 1.63,
+    "team_b_xg": 1.27,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Korea Republic__vs__South Africa": {
+    "team_a": "Korea Republic",
+    "team_b": "South Africa",
+    "team_a_xg": 1.99,
+    "team_b_xg": 0.91,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Korea Republic__vs__Czechia": {
+    "team_a": "Korea Republic",
+    "team_b": "Czechia",
+    "team_a_xg": 1.57,
+    "team_b_xg": 1.33,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "South Africa__vs__Czechia": {
+    "team_a": "South Africa",
+    "team_b": "Czechia",
+    "team_a_xg": 1.03,
+    "team_b_xg": 1.87,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Canada__vs__Switzerland": {
+    "team_a": "Canada",
+    "team_b": "Switzerland",
+    "team_a_xg": 1.15,
+    "team_b_xg": 1.75,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Canada__vs__Qatar": {
+    "team_a": "Canada",
+    "team_b": "Qatar",
+    "team_a_xg": 1.92,
+    "team_b_xg": 0.98,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Canada__vs__Bosnia and Herzegovina": {
+    "team_a": "Canada",
+    "team_b": "Bosnia and Herzegovina",
+    "team_a_xg": 1.5,
+    "team_b_xg": 1.4,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Switzerland__vs__Qatar": {
+    "team_a": "Switzerland",
+    "team_b": "Qatar",
+    "team_a_xg": 2.22,
+    "team_b_xg": 0.68,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Switzerland__vs__Bosnia and Herzegovina": {
+    "team_a": "Switzerland",
+    "team_b": "Bosnia and Herzegovina",
+    "team_a_xg": 1.81,
+    "team_b_xg": 1.09,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Qatar__vs__Bosnia and Herzegovina": {
+    "team_a": "Qatar",
+    "team_b": "Bosnia and Herzegovina",
+    "team_a_xg": 1.04,
+    "team_b_xg": 1.86,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Brazil__vs__Morocco": {
+    "team_a": "Brazil",
+    "team_b": "Morocco",
+    "team_a_xg": 1.4,
+    "team_b_xg": 1.5,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Brazil__vs__Scotland": {
+    "team_a": "Brazil",
+    "team_b": "Scotland",
+    "team_a_xg": 1.82,
+    "team_b_xg": 1.08,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Brazil__vs__Haiti": {
+    "team_a": "Brazil",
+    "team_b": "Haiti",
+    "team_a_xg": 2.33,
+    "team_b_xg": 0.57,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Morocco__vs__Scotland": {
+    "team_a": "Morocco",
+    "team_b": "Scotland",
+    "team_a_xg": 1.87,
+    "team_b_xg": 1.03,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Morocco__vs__Haiti": {
+    "team_a": "Morocco",
+    "team_b": "Haiti",
+    "team_a_xg": 2.38,
+    "team_b_xg": 0.52,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Scotland__vs__Haiti": {
+    "team_a": "Scotland",
+    "team_b": "Haiti",
+    "team_a_xg": 1.96,
+    "team_b_xg": 0.94,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "USA__vs__Australia": {
+    "team_a": "USA",
+    "team_b": "Australia",
+    "team_a_xg": 1.9,
+    "team_b_xg": 1.0,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "USA__vs__Paraguay": {
+    "team_a": "USA",
+    "team_b": "Paraguay",
+    "team_a_xg": 1.98,
+    "team_b_xg": 0.92,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "USA__vs__Turkiye": {
+    "team_a": "USA",
+    "team_b": "Turkiye",
+    "team_a_xg": 1.54,
+    "team_b_xg": 1.36,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Australia__vs__Paraguay": {
+    "team_a": "Australia",
+    "team_b": "Paraguay",
+    "team_a_xg": 1.54,
+    "team_b_xg": 1.36,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Australia__vs__Turkiye": {
+    "team_a": "Australia",
+    "team_b": "Turkiye",
+    "team_a_xg": 1.1,
+    "team_b_xg": 1.8,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Paraguay__vs__Turkiye": {
+    "team_a": "Paraguay",
+    "team_b": "Turkiye",
+    "team_a_xg": 1.01,
+    "team_b_xg": 1.89,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Germany__vs__Ecuador": {
+    "team_a": "Germany",
+    "team_b": "Ecuador",
+    "team_a_xg": 1.99,
+    "team_b_xg": 0.91,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Germany__vs__Cote d'Ivoire": {
+    "team_a": "Germany",
+    "team_b": "Cote d'Ivoire",
+    "team_a_xg": 1.86,
+    "team_b_xg": 1.04,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Germany__vs__Curacao": {
+    "team_a": "Germany",
+    "team_b": "Curacao",
+    "team_a_xg": 2.48,
+    "team_b_xg": 0.42,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Ecuador__vs__Cote d'Ivoire": {
+    "team_a": "Ecuador",
+    "team_b": "Cote d'Ivoire",
+    "team_a_xg": 1.32,
+    "team_b_xg": 1.58,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Ecuador__vs__Curacao": {
+    "team_a": "Ecuador",
+    "team_b": "Curacao",
+    "team_a_xg": 1.94,
+    "team_b_xg": 0.95,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Cote d'Ivoire__vs__Curacao": {
+    "team_a": "Cote d'Ivoire",
+    "team_b": "Curacao",
+    "team_a_xg": 2.08,
+    "team_b_xg": 0.82,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Netherlands__vs__Japan": {
+    "team_a": "Netherlands",
+    "team_b": "Japan",
+    "team_a_xg": 1.67,
+    "team_b_xg": 1.23,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Netherlands__vs__Tunisia": {
+    "team_a": "Netherlands",
+    "team_b": "Tunisia",
+    "team_a_xg": 2.19,
+    "team_b_xg": 0.71,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Netherlands__vs__Sweden": {
+    "team_a": "Netherlands",
+    "team_b": "Sweden",
+    "team_a_xg": 1.95,
+    "team_b_xg": 0.95,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Japan__vs__Tunisia": {
+    "team_a": "Japan",
+    "team_b": "Tunisia",
+    "team_a_xg": 1.97,
+    "team_b_xg": 0.93,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Japan__vs__Sweden": {
+    "team_a": "Japan",
+    "team_b": "Sweden",
+    "team_a_xg": 1.73,
+    "team_b_xg": 1.17,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Tunisia__vs__Sweden": {
+    "team_a": "Tunisia",
+    "team_b": "Sweden",
+    "team_a_xg": 1.21,
+    "team_b_xg": 1.69,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Belgium__vs__Iran": {
+    "team_a": "Belgium",
+    "team_b": "Iran",
+    "team_a_xg": 1.94,
+    "team_b_xg": 0.96,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Belgium__vs__Egypt": {
+    "team_a": "Belgium",
+    "team_b": "Egypt",
+    "team_a_xg": 1.89,
+    "team_b_xg": 1.01,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Belgium__vs__New Zealand": {
+    "team_a": "Belgium",
+    "team_b": "New Zealand",
+    "team_a_xg": 2.3,
+    "team_b_xg": 0.6,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Iran__vs__Egypt": {
+    "team_a": "Iran",
+    "team_b": "Egypt",
+    "team_a_xg": 1.41,
+    "team_b_xg": 1.49,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Iran__vs__New Zealand": {
+    "team_a": "Iran",
+    "team_b": "New Zealand",
+    "team_a_xg": 1.81,
+    "team_b_xg": 1.09,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Egypt__vs__New Zealand": {
+    "team_a": "Egypt",
+    "team_b": "New Zealand",
+    "team_a_xg": 1.86,
+    "team_b_xg": 1.04,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Spain__vs__Cabo Verde": {
+    "team_a": "Spain",
+    "team_b": "Cabo Verde",
+    "team_a_xg": 2.62,
+    "team_b_xg": 0.28,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Spain__vs__Uruguay": {
+    "team_a": "Spain",
+    "team_b": "Uruguay",
+    "team_a_xg": 2.2,
+    "team_b_xg": 0.7,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Spain__vs__Saudi Arabia": {
+    "team_a": "Spain",
+    "team_b": "Saudi Arabia",
+    "team_a_xg": 2.69,
+    "team_b_xg": 0.21,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Cabo Verde__vs__Uruguay": {
+    "team_a": "Cabo Verde",
+    "team_b": "Uruguay",
+    "team_a_xg": 1.03,
+    "team_b_xg": 1.87,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Cabo Verde__vs__Saudi Arabia": {
+    "team_a": "Cabo Verde",
+    "team_b": "Saudi Arabia",
+    "team_a_xg": 1.53,
+    "team_b_xg": 1.37,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Uruguay__vs__Saudi Arabia": {
+    "team_a": "Uruguay",
+    "team_b": "Saudi Arabia",
+    "team_a_xg": 1.94,
+    "team_b_xg": 0.96,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "France__vs__Senegal": {
+    "team_a": "France",
+    "team_b": "Senegal",
+    "team_a_xg": 1.9,
+    "team_b_xg": 1.0,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "France__vs__Norway": {
+    "team_a": "France",
+    "team_b": "Norway",
+    "team_a_xg": 1.67,
+    "team_b_xg": 1.23,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "France__vs__Iraq": {
+    "team_a": "France",
+    "team_b": "Iraq",
+    "team_a_xg": 2.71,
+    "team_b_xg": 0.2,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Senegal__vs__Norway": {
+    "team_a": "Senegal",
+    "team_b": "Norway",
+    "team_a_xg": 1.23,
+    "team_b_xg": 1.67,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Senegal__vs__Iraq": {
+    "team_a": "Senegal",
+    "team_b": "Iraq",
+    "team_a_xg": 2.27,
+    "team_b_xg": 0.63,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Norway__vs__Iraq": {
+    "team_a": "Norway",
+    "team_b": "Iraq",
+    "team_a_xg": 2.49,
+    "team_b_xg": 0.41,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Argentina__vs__Algeria": {
+    "team_a": "Argentina",
+    "team_b": "Algeria",
+    "team_a_xg": 2.04,
+    "team_b_xg": 0.86,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Argentina__vs__Austria": {
+    "team_a": "Argentina",
+    "team_b": "Austria",
+    "team_a_xg": 1.86,
+    "team_b_xg": 1.04,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Argentina__vs__Jordan": {
+    "team_a": "Argentina",
+    "team_b": "Jordan",
+    "team_a_xg": 2.62,
+    "team_b_xg": 0.28,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Algeria__vs__Austria": {
+    "team_a": "Algeria",
+    "team_b": "Austria",
+    "team_a_xg": 1.28,
+    "team_b_xg": 1.62,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Algeria__vs__Jordan": {
+    "team_a": "Algeria",
+    "team_b": "Jordan",
+    "team_a_xg": 2.04,
+    "team_b_xg": 0.86,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Austria__vs__Jordan": {
+    "team_a": "Austria",
+    "team_b": "Jordan",
+    "team_a_xg": 2.21,
+    "team_b_xg": 0.69,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Portugal__vs__DR Congo": {
+    "team_a": "Portugal",
+    "team_b": "DR Congo",
+    "team_a_xg": 2.25,
+    "team_b_xg": 0.65,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Portugal__vs__Uzbekistan": {
+    "team_a": "Portugal",
+    "team_b": "Uzbekistan",
+    "team_a_xg": 2.39,
+    "team_b_xg": 0.51,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Portugal__vs__Colombia": {
+    "team_a": "Portugal",
+    "team_b": "Colombia",
+    "team_a_xg": 1.94,
+    "team_b_xg": 0.95,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "DR Congo__vs__Uzbekistan": {
+    "team_a": "DR Congo",
+    "team_b": "Uzbekistan",
+    "team_a_xg": 1.59,
+    "team_b_xg": 1.31,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "DR Congo__vs__Colombia": {
+    "team_a": "DR Congo",
+    "team_b": "Colombia",
+    "team_a_xg": 1.15,
+    "team_b_xg": 1.75,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Uzbekistan__vs__Colombia": {
+    "team_a": "Uzbekistan",
+    "team_b": "Colombia",
+    "team_a_xg": 1.01,
+    "team_b_xg": 1.89,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "England__vs__Croatia": {
+    "team_a": "England",
+    "team_b": "Croatia",
+    "team_a_xg": 2.0,
+    "team_b_xg": 0.9,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "England__vs__Ghana": {
+    "team_a": "England",
+    "team_b": "Ghana",
+    "team_a_xg": 2.31,
+    "team_b_xg": 0.59,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "England__vs__Panama": {
+    "team_a": "England",
+    "team_b": "Panama",
+    "team_a_xg": 2.75,
+    "team_b_xg": 0.2,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Croatia__vs__Ghana": {
+    "team_a": "Croatia",
+    "team_b": "Ghana",
+    "team_a_xg": 1.76,
+    "team_b_xg": 1.14,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Croatia__vs__Panama": {
+    "team_a": "Croatia",
+    "team_b": "Panama",
+    "team_a_xg": 2.2,
+    "team_b_xg": 0.7,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "Ghana__vs__Panama": {
+    "team_a": "Ghana",
+    "team_b": "Panama",
+    "team_a_xg": 1.89,
+    "team_b_xg": 1.01,
+    "formula_version": "v1",
+    "used_form_a": false,
+    "used_form_b": false
+  },
+  "__meta__": {
+    "formula_version": "v1",
+    "base_xg": 1.45,
+    "gap_coef": 0.045,
+    "form_neutral": 7.5,
+    "form_coef": 0.04,
+    "clamp": [
+      0.2,
+      4.5
+    ],
+    "computed_at": "2026-05-27T18:28:15+00:00"
+  }
+}

@@ -1,0 +1,88 @@
+name: Daily Data Update
+
+on:
+  schedule:
+    - cron: '0 6 * * *'     # 06:00 UTC daily, all year
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-update
+  cancel-in-progress: false
+
+jobs:
+  update-data:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r scripts/requirements.txt
+
+      # ---- Phase 1 scrapers (composite + roster + ratings) ----
+      - name: Scrape Elo
+        run: python scripts/update_elo.py
+        continue-on-error: true
+      - name: Scrape ESPN
+        run: python scripts/update_espn.py
+        continue-on-error: true
+      - name: Scrape Transfermarkt (Mondays only)
+        run: |
+          if [ "$(date -u +%u)" = "1" ] || [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            python scripts/update_tmv.py
+          else
+            echo "Skipping Transfermarkt — not Monday."
+          fi
+        continue-on-error: true
+      - name: Scrape squad / injury news
+        run: python scripts/update_squads.py
+        continue-on-error: true
+
+      # ---- Phase 2 scrapers (schedule + referees + h2h + form + weather) ----
+      - name: Scrape FIFA schedule
+        run: python scripts/scrape_schedule.py
+        continue-on-error: true
+      - name: Scrape referees
+        run: python scripts/scrape_referees.py
+        continue-on-error: true
+      - name: Scrape head-to-head history
+        run: python scripts/scrape_h2h.py
+        continue-on-error: true
+      - name: Scrape recent form
+        run: python scripts/scrape_form.py
+        continue-on-error: true
+      - name: Scrape weather (Open-Meteo)
+        run: python scripts/scrape_weather.py
+        continue-on-error: true
+
+      # ---- Composite + analytics rebuild (must succeed) ----
+      - name: Recompute composite + probabilities
+        run: python scripts/rebuild_composite.py
+      - name: Compute fatigue + travel
+        run: python scripts/compute_fatigue.py
+      - name: Compute model xG
+        run: python scripts/compute_xg.py
+      - name: Scrape Kalshi markets
+        run: python scripts/scrape_kalshi.py
+        continue-on-error: true
+
+      - name: Validate refreshed data
+        run: python3 scripts/validate_data.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "wc26-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes; nothing to commit."
+          else
+            git commit -m "chore: daily data refresh"
+            git push
+          fi
