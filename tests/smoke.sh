@@ -29,7 +29,7 @@ cleanup() {
 trap cleanup EXIT
 
 start_local() {
-  for port in 8801 8802 8803 8804 8805 8806; do
+  for port in $(seq 8801 8899); do
     if ! lsof -ti:"$port" >/dev/null 2>&1; then
       (cd "$DOCROOT" && python3 -m http.server "$port" >/dev/null 2>&1) &
       SERVER_PID=$!

@@ -15,6 +15,8 @@ import { renderWinnerView } from './views/winner-view.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
+import { initCompetition, getCompetitionState } from './competition.js';
+import { extractJoinCodeFromPath } from './competition-rules.js';
 
 const TITLES = {
   matchups: 'Matches',
@@ -128,8 +130,29 @@ if (initial.view === 'matchups' && !initial.params.group && !initial.params.watc
 }
 getState().route = initial;
 
+function shouldOpenPicksForJoin() {
+  const comp = getCompetitionState();
+  if (comp.activeCode || comp.invalidJoinCode) return true;
+  return Boolean(extractJoinCodeFromPath(location.pathname));
+}
+
 loadData()
-  .then((data) => setData(data))
+  .then(async (data) => {
+    setData(data);
+    await initCompetition(data);
+    if (shouldOpenPicksForJoin()) {
+      setRoute('picks', {});
+      return;
+    }
+    const synced = parseHash(location.hash);
+    const current = getState().route;
+    if (
+      current.view !== synced.view ||
+      JSON.stringify(current.params || {}) !== JSON.stringify(synced.params || {})
+    ) {
+      setRoute(synced.view, synced.params);
+    }
+  })
   .catch((err) => {
     const root = document.getElementById('view');
     root.innerHTML = `<p class="loading">Failed to load data. <br><span class="muted">${escapeHtml(err.message)}</span></p>`;
