@@ -233,6 +233,48 @@ assert.equal(scoreBracket([
   { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' }
 ], weightedFixture), 1, 'flat scoreBracket returns +1 per correct pick');
 
+// BKT-bug-fix: a knockout-stage pen-shootout winner (regulation tie) must
+// still score points when the user picked the team that won on penalties.
+const penFixture = {
+  actualResults: {
+    round_of_16: {
+      Alpha__vs__Beta: { score_a: 1, score_b: 1, winner: 'Alpha' } // pens to Alpha
+    }
+  }
+};
+const penPick = scoreBracketWeighted([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' }
+], penFixture);
+assert.equal(penPick.score, 2, 'pen-shootout winner should score R16=2pts via rec.winner');
+const penWrong = scoreBracketWeighted([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_b' }
+], penFixture);
+assert.equal(penWrong.score, 0, 'picking the pen-shootout loser should not score');
+
+// Score with stringified numeric scores (some scrapers ship strings) should still resolve.
+const stringScoreFixture = {
+  actualResults: {
+    round_of_32: { Alpha__vs__Beta: { score_a: '2', score_b: '1' } }
+  }
+};
+const stringScored = scoreBracketWeighted([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' }
+], stringScoreFixture);
+assert.equal(stringScored.score, 1, 'stringified scores should coerce to numbers');
+
+// lastRoundCorrect should be the deepest stage with a correct pick, regardless of pick order.
+const deepFixture = {
+  actualResults: {
+    round_of_32: { Alpha__vs__Beta: { score_a: 1, score_b: 0 } },
+    final: { Alpha__vs__Zulu: { score_a: 2, score_b: 0 } }
+  }
+};
+const deepResult = scoreBracketWeighted([
+  { team_a: 'Alpha', team_b: 'Zulu', choice: 'team_a' }, // Final pick first
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' }  // R32 pick second
+], deepFixture);
+assert.equal(deepResult.lastRoundCorrect, 'Final', 'deepest correct round wins regardless of pick order');
+
 // Tie-breakers
 const sorted = [
   { username: 'a', score: 30, lastRoundCorrect: 'SF', championCorrect: false, updatedAt: '2026-07-01T10:00:00Z' },

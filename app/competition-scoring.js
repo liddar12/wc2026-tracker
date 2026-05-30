@@ -50,10 +50,11 @@ export function scoreBracket(picks, data) {
 //   lastRoundCorrect, championCorrect }. The extra fields support tie-breakers.
 export function scoreBracketWeighted(picks, data) {
   const tierMap = actualResultsToTierMap(data);
-  const tiers = Object.values(tierMap);
   const cleanPicks = normalizeBracketPicks(picks);
 
   const breakdown = { R32: 0, R16: 0, QF: 0, SF: 0, Final: 0, championBonus: 0 };
+  const ROUND_DEPTH = { R32: 1, R16: 2, QF: 3, SF: 4, Final: 5 };
+  let deepestRoundIdx = 0;
   let lastRoundCorrect = null;
   let championCorrect = false;
 
@@ -65,7 +66,8 @@ export function scoreBracketWeighted(picks, data) {
     const round = STAGE_TO_ROUND[stage];
     if (!round) continue; // group_stage / third_place: not scored
     breakdown[round] += WEIGHTED_ROUND_POINTS[round] || 0;
-    lastRoundCorrect = round;
+    const idx = ROUND_DEPTH[round] || 0;
+    if (idx > deepestRoundIdx) { deepestRoundIdx = idx; lastRoundCorrect = round; }
     if (round === 'Final') {
       championCorrect = true;
       breakdown.championBonus += CHAMPION_BONUS;
@@ -82,11 +84,18 @@ function findActualOutcomeWithStage(tierMap, aTeam, bTeam) {
     const key2 = `${bTeam}__vs__${aTeam}`;
     const rec = tier[key1] || tier[key2];
     if (!rec) continue;
-    const a = rec.score_a ?? rec.team_a_score;
-    const b = rec.score_b ?? rec.team_b_score;
+    const a = Number(rec.score_a ?? rec.team_a_score);
+    const b = Number(rec.score_b ?? rec.team_b_score);
     if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
     const flipped = !!tier[key2];
-    if (a === b) return { outcome: 'draw', stage };
+    // Knockout rounds: regulation tie is broken by penalties; trust rec.winner
+    // when present, so a correct pen-shootout pick scores points instead of
+    // being treated as a draw (which knockout submissions reject).
+    if (a === b) {
+      if (rec.winner === aTeam) return { outcome: 'team_a', stage };
+      if (rec.winner === bTeam) return { outcome: 'team_b', stage };
+      return { outcome: 'draw', stage };
+    }
     if (flipped) return { outcome: a > b ? 'team_b' : 'team_a', stage };
     return { outcome: a > b ? 'team_a' : 'team_b', stage };
   }
