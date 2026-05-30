@@ -42,7 +42,23 @@ EXPECTED_VENUE_COUNT = 16
 EXPECTED_FULL_SCHEDULE = 104
 PROBABILITY_TOLERANCE = 1.0  # % — probabilities sum to within this of 100
 VALID_POSITIONS = {"GK", "DEF", "MID", "FWD"}
-VALID_STAGES = {"group", "r32", "r16", "qf", "sf", "third_place", "final"}
+VALID_STAGES = {
+    # Legacy short stage names (group_matchups.json, older schedule_full.json).
+    "group", "r32", "r16", "qf", "sf", "third_place", "final",
+    # New long stage names used since the PDF rebuild — must stay aligned with
+    # the keys in actual_results.json (group_stage, round_of_32, round_of_16,
+    # quarterfinals, semifinals, third_place, final).
+    "group_stage", "round_of_32", "round_of_16", "quarterfinals", "semifinals",
+}
+# Knockout slot placeholders used in schedule_full.json for matches whose
+# participants depend on earlier rounds: "1A"/"2B" (group winner/runner-up),
+# "3 ABCDF" (best third-place from a set of groups), "W74" (winner of match 74),
+# "L101" (loser of match 101). These are NOT real team names so must skip the
+# teams.json lookup.
+import re as _re
+_KO_SLOT_RE = _re.compile(r"^(\d[A-L]|3 [A-L]{2,6}|W\d{1,3}|L\d{1,3})$")
+def _is_knockout_slot(name: str) -> bool:
+    return isinstance(name, str) and bool(_KO_SLOT_RE.match(name))
 ACTUAL_RESULT_STAGES = (
     "group_stage",
     "round_of_32",
@@ -344,7 +360,12 @@ class Validator:
                 self.err(f"{label}: venue_id {vid!r} not in venues.json")
             for side in ("team_a", "team_b"):
                 t = row.get(side)
-                if t and team_names and t not in team_names:
+                if not t:
+                    continue
+                # Skip teams.json lookup for knockout-slot placeholders.
+                if _is_knockout_slot(t):
+                    continue
+                if team_names and t not in team_names:
                     self.err(f"{label}: {side} {t!r} not in teams.json")
             br = row.get("broadcast")
             if not isinstance(br, dict) or "us" not in br:
