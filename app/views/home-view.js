@@ -11,6 +11,7 @@ import {
   setAuthPanelMode,
   fetchLeaderboard
 } from '../competition.js';
+import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
 
 const OPENING_KEY = 'opening_match';
 
@@ -50,6 +51,7 @@ export function renderHome(root, data) {
   }
   root.appendChild(renderHero(data));
   root.appendChild(renderAuthSlot(data));
+  root.appendChild(renderFavoriteTeamSection(data));
   root.appendChild(renderTodaySection(data));
   const movers = renderMoversSection(data);
   if (movers) root.appendChild(movers);
@@ -113,15 +115,22 @@ function renderCountdownShell(opening) {
 
 function pickFreshestTimestamp(data) {
   // Check every plausible "last updated" field across the JSON feeds and
-  // return the most recent one as an ISO string. Falls back to meta.data_version.
+  // return the most recent one as an ISO string. Different scrapers use
+  // different conventions: kalshi/markets uses top-level updated_at, most
+  // others use __meta__.updated_at, meta.json uses data_version. Read both
+  // shapes for each feed so nothing's silently ignored.
+  const pickTwo = (obj) => [obj?.updated_at, obj?.__meta__?.updated_at];
   const candidates = [
     data?.meta?.data_version,
-    data?.markets?.updated_at,
+    ...pickTwo(data?.markets),
     data?.actualResults?.last_updated,
-    data?.injuries?.updated_at,
-    data?.weather?.updated_at,
-    data?.lineups?.updated_at,
-    data?.scorers?.updated_at,
+    ...pickTwo(data?.injuries),
+    ...pickTwo(data?.weather),
+    ...pickTwo(data?.lineups),
+    ...pickTwo(data?.scorers),
+    ...pickTwo(data?.h2h),
+    ...pickTwo(data?.form),
+    ...pickTwo(data?.referees),
   ].filter(Boolean);
   if (!candidates.length) return null;
   let best = candidates[0];
@@ -264,6 +273,105 @@ async function renderActiveLeaderboard(wrap, data) {
     </ol>
   `;
   wrap.appendChild(ol);
+}
+
+function renderFavoriteTeamSection(data) {
+  const comp = getCompetitionState();
+  // Gate the picker behind being signed in — guests can still get this later.
+  const requireAuth = isSupabaseConfigured() && !comp.user;
+  const fav = getFavoriteTeam();
+  const grp = favoriteTeamGroup(data);
+  const wrap = document.createElement('section');
+  wrap.className = 'home-section';
+
+  if (requireAuth && !fav) {
+    // Don't render the picker for guests — keeps the home page tighter.
+    return document.createDocumentFragment();
+  }
+
+  if (!fav) {
+    wrap.innerHTML = `
+      <div class="home-card home-card-favorite">
+        <h2 class="home-card-title">Pick your favorite team</h2>
+        <p class="muted" style="margin: 0 0 8px;">When set, Matches and Groups default to this team's group.</p>
+        <button class="pick-btn" id="fav-open">Choose team →</button>
+      </div>
+    `;
+    wrap.querySelector('#fav-open').addEventListener('click', () => openTeamPicker(wrap, data));
+    return wrap;
+  }
+
+  wrap.innerHTML = `
+    <div class="home-card home-card-favorite">
+      <h2 class="home-card-title">Your team</h2>
+      <div class="fav-current">
+        <span class="fav-flag" aria-hidden="true">${flagFor(fav)}</span>
+        <div class="fav-meta">
+          <div class="fav-name">${escapeHtml(fav)}</div>
+          <div class="muted" style="font-size: 12px;">${grp ? `Group ${escapeHtml(grp)}` : 'Not in tournament groups'}</div>
+        </div>
+        <div class="fav-actions">
+          ${grp ? `<button class="pick-btn pick-btn-secondary" data-jump-group="${escapeHtml(grp)}">View group →</button>` : ''}
+          <button class="pick-btn pick-btn-secondary" id="fav-change">Change</button>
+          <button class="pick-btn pick-btn-secondary" id="fav-clear">Clear</button>
+        </div>
+      </div>
+    </div>
+  `;
+  wrap.addEventListener('click', (e) => {
+    const jump = e.target.closest('[data-jump-group]');
+    if (jump) {
+      setRoute('group', { group: jump.dataset.jumpGroup });
+      return;
+    }
+    if (e.target.closest('#fav-change')) {
+      openTeamPicker(wrap, data);
+      return;
+    }
+    if (e.target.closest('#fav-clear')) {
+      setFavoriteTeam(null);
+    }
+  });
+  return wrap;
+}
+
+function openTeamPicker(wrap, data) {
+  const teams = allTeamNames(data);
+  if (!teams.length) return;
+  // Reuse the same card slot — render a search + grid.
+  const card = wrap.querySelector('.home-card-favorite') || wrap;
+  card.innerHTML = `
+    <h2 class="home-card-title">Pick your favorite team</h2>
+    <input id="fav-search" class="auth-input" placeholder="Search teams…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+    <div class="fav-grid" id="fav-grid" role="listbox" aria-label="Teams"></div>
+    <div style="display:flex; justify-content: flex-end; margin-top: 8px;">
+      <button class="pick-btn pick-btn-secondary" id="fav-cancel">Cancel</button>
+    </div>
+  `;
+  const grid = card.querySelector('#fav-grid');
+  const search = card.querySelector('#fav-search');
+  const render = (q) => {
+    const needle = String(q || '').trim().toLowerCase();
+    const filtered = needle ? teams.filter((t) => t.toLowerCase().includes(needle)) : teams;
+    grid.innerHTML = filtered.map((t) => `
+      <button type="button" class="fav-team-chip" data-team="${escapeHtml(t)}" role="option">
+        <span class="fav-flag" aria-hidden="true">${flagFor(t)}</span>
+        <span>${escapeHtml(t)}</span>
+      </button>
+    `).join('');
+  };
+  render('');
+  search.addEventListener('input', (e) => render(e.target.value));
+  grid.addEventListener('click', (e) => {
+    const b = e.target.closest('[data-team]');
+    if (!b) return;
+    setFavoriteTeam(b.dataset.team);
+  });
+  card.querySelector('#fav-cancel').addEventListener('click', () => {
+    // Re-render to whatever the current favorite state shows.
+    window.dispatchEvent(new CustomEvent('state:change'));
+  });
+  search.focus();
 }
 
 function renderTodaySection(data) {

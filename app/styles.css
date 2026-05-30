@@ -114,17 +114,58 @@ body {
   justify-self: end;
 }
 
-/* Tab bar — sticky just below the header. */
-.tab-bar {
+/* Tab bar — sticky just below the header.
+ * Wrapped in a positioned container so we can paint scroll chevrons
+ * on top via ::before / ::after pseudo-elements without flexbox math
+ * issues inside the tab-bar itself. */
+.tab-bar-wrap {
   position: sticky;
   top: calc(52px + max(8px, var(--safe-top)));
   z-index: 19;
-  display: flex;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+}
+.tab-bar-wrap::before,
+.tab-bar-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 28px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 150ms ease;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.tab-bar-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--surface) 30%, transparent);
+  justify-content: flex-start;
+  padding-left: 6px;
+  content: '‹';
+}
+.tab-bar-wrap::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--surface) 30%, transparent);
+  justify-content: flex-end;
+  padding-right: 6px;
+  content: '›';
+}
+.tab-bar-wrap.has-overflow-left::before { opacity: 1; }
+.tab-bar-wrap.has-overflow-right::after { opacity: 1; }
+
+.tab-bar {
+  display: flex;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
 }
+.tab-bar::-webkit-scrollbar { display: none; }
 .tab-bar .tab {
   flex: 1 0 auto;
   min-height: 44px;
@@ -1335,6 +1376,53 @@ body.search-open { overflow: hidden; }
   flex-wrap: wrap;
 }
 .home-card-cta .pick-btn { flex: 1 1 140px; }
+
+/* Favorite team picker card */
+.home-card-favorite { }
+.fav-current {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+.fav-flag { font-size: 28px; line-height: 1; }
+.fav-meta { min-width: 0; }
+.fav-name { font-weight: 700; font-size: 16px; }
+.fav-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.fav-actions .pick-btn { padding: 8px 10px; min-height: 36px; font-size: 13px; flex: 0 0 auto; }
+.fav-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 6px;
+  margin-top: 10px;
+  max-height: 320px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.fav-team-chip {
+  appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  min-height: 44px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 500;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.fav-team-chip:active { transform: scale(0.98); }
+.fav-team-chip .fav-flag { font-size: 18px; }
 
 .home-card-leaderboard .home-leaderboard {
   list-style: none;

@@ -22,6 +22,7 @@ import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
 import { initCompetition, getCompetitionState } from './competition.js';
 import { extractJoinCodeFromPath } from './competition-rules.js';
+import { defaultGroup } from './favorites.js';
 
 const TITLES = {
   home: 'WC26',
@@ -120,11 +121,13 @@ function bindNav() {
   for (const tab of document.querySelectorAll('.tab-bar .tab')) {
     tab.addEventListener('click', () => {
       const r = tab.dataset.route;
+      const data = getState().data;
+      const grp = defaultGroup(data);
       if (r === 'home') setRoute('home', {});
-      else if (r === 'matchups') setRoute('matchups', { group: 'D' });
+      else if (r === 'matchups') setRoute('matchups', { group: grp });
       else if (r === 'schedule') setRoute('schedule', {});
       else if (r === 'venues') setRoute('venues', {});
-      else if (r === 'groups') setRoute('group', { group: 'D' });
+      else if (r === 'groups') setRoute('group', { group: grp });
       else if (r === 'brackets') setRoute('brackets', {});
       else if (r === 'my-brackets') setRoute('my-brackets', {});
       else if (r === 'pools') setRoute('pools', {});
@@ -146,6 +149,25 @@ window.addEventListener('state:change', () => {
 initTheme(document.getElementById('theme-btn'));
 bindNav();
 initPullToRefresh(pulseFooterUpdated);
+initTabBarScrollHints();
+
+function initTabBarScrollHints() {
+  const wrap = document.getElementById('tab-bar-wrap');
+  const bar = document.getElementById('tab-bar');
+  if (!wrap || !bar) return;
+  const update = () => {
+    const left = bar.scrollLeft;
+    const max = bar.scrollWidth - bar.clientWidth;
+    wrap.classList.toggle('has-overflow-left', left > 4);
+    wrap.classList.toggle('has-overflow-right', left < max - 4);
+  };
+  update();
+  bar.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  // Re-check after the initial DOM settles (font load, etc.).
+  requestAnimationFrame(update);
+  setTimeout(update, 250);
+}
 
 const initial = parseHash(location.hash);
 // Default to home when no specific route requested
@@ -153,9 +175,27 @@ if (!location.hash || location.hash === '#' || location.hash === '#/') {
   initial.view = 'home';
   initial.params = {};
 } else if (initial.view === 'matchups' && !initial.params.group && !initial.params.watchlist) {
-  initial.params.group = 'D';
+  // Use favorite team's group as the default landing group when set; data may
+  // not be loaded yet on first run, so fall back to 'D'.
+  initial.params.group = defaultGroup(getState().data) || 'D';
 }
 getState().route = initial;
+
+// Re-render the current view whenever the favorite changes — keeps Matches /
+// Groups defaulting tabs in sync without a manual reload.
+window.addEventListener('favorite:change', () => {
+  const state = getState();
+  if (!state.data) return;
+  // If we're sitting on a default-group view, swap the group to the new favorite.
+  if (state.route.view === 'matchups' && state.route.params.group) {
+    setRoute('matchups', { group: defaultGroup(state.data) });
+  } else if ((state.route.view === 'group' || state.route.view === 'groups') && state.route.params.group) {
+    setRoute('group', { group: defaultGroup(state.data) });
+  } else {
+    // Otherwise just repaint so the home picker reflects the new value.
+    window.dispatchEvent(new CustomEvent('state:change'));
+  }
+});
 
 function shouldOpenPicksForJoin() {
   const comp = getCompetitionState();
