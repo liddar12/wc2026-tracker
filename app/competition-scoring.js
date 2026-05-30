@@ -18,6 +18,14 @@ export function scoreBracket(picks, data) {
   return score;
 }
 
+/**
+ * Knockout brackets advance a single team — a draw is not a valid outcome.
+ * Strips draw picks (and all invalid/duplicate picks) for submission.
+ */
+export function normalizeKnockoutPicks(picks) {
+  return normalizeBracketPicks(picks).filter((pick) => pick.choice !== 'draw');
+}
+
 export function normalizeBracketPicks(picks) {
   if (!Array.isArray(picks)) return [];
   const seen = new Set();

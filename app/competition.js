@@ -2,12 +2,14 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { allPicks } from './state.js';
 import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFromPath } from './competition-rules.js';
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
-import { normalizeBracketPicks, scoreBracket } from './competition-scoring.js';
+import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket } from './competition-scoring.js';
 
 const LS_GROUP = 'wc26.competition.group';
 const LS_GUEST_MODE = 'wc26.competition.guestMode';
 const LS_AUTH_DISMISSED = 'wc26.competition.authDismissed';
 const LS_AUTH_PANEL = 'wc26.competition.authPanel';
+const LS_BRACKET_DRAFTS = 'wc26.competition.bracketDrafts';
+const LS_ACTIVE_DRAFT = 'wc26.competition.activeDraft';
 const WORDS = ['silver', 'otter', 'falcon', 'cedar', 'lunar', 'atlas', 'harbor', 'summit', 'cobalt', 'aurora'];
 
 const state = {
@@ -23,6 +25,8 @@ const state = {
   guestMode: loadGuestMode(),
   authDismissed: loadAuthDismissed(),
   authPanel: loadAuthPanel(),
+  bracketDrafts: loadBracketDrafts(),
+  activeDraftId: loadActiveDraftId(),
   authSubscription: null,
   hadJoinLanding: false
 };
@@ -166,16 +170,32 @@ export async function signOut() {
   persistAuthDismissed();
 }
 
-export async function createPrivateGroup(name) {
+export async function createPrivateGroup(name, passphraseInput) {
   if (!state.client || !state.user) throw new Error('Login required');
   try {
     const code = generateGroupCode();
-    const { data: group, error } = await state.client
-      .from('groups')
-      .insert({ name, code, created_by: state.user.id })
-      .select('*')
-      .single();
-    if (error) throw error;
+    const passphrase = normalizeGroupPassphrase(passphraseInput);
+    const { data: group, error } = await state.client.rpc('create_private_group', {
+      p_name: String(name || '').trim(),
+      p_code: code,
+      p_passphrase: passphrase
+    });
+    if (error || !group) {
+      const fallback = await state.client
+        .from('groups')
+        .insert({ name, code, created_by: state.user.id })
+        .select('*')
+        .single();
+      if (fallback.error) throw fallback.error;
+      const { error: membershipError } = await state.client
+        .from('group_members')
+        .insert({ group_id: fallback.data.id, user_id: state.user.id });
+      if (membershipError) throw membershipError;
+      await loadProfileAndGroups();
+      setActiveGroup(fallback.data.id);
+      state.joinNotice = 'Group created, but secure passphrase RPC is missing on this preview. Apply latest migration.';
+      return fallback.data;
+    }
     const { error: membershipError } = await state.client
       .from('group_members')
       .insert({ group_id: group.id, user_id: state.user.id });
@@ -189,7 +209,11 @@ export async function createPrivateGroup(name) {
   }
 }
 
-export async function joinGroupByCode(code, options = {}) {
+export async function joinGroupByCode(code, passphrase = '', options = {}) {
+  if (passphrase && typeof passphrase === 'object') {
+    options = passphrase;
+    passphrase = '';
+  }
   if (!state.client || !state.user) {
     const pendingCode = String(code || '').trim().toLowerCase();
     state.activeCode = pendingCode;
@@ -201,7 +225,10 @@ export async function joinGroupByCode(code, options = {}) {
   const normalized = String(code || '').trim().toLowerCase();
   if (!isValidJoinCode(normalized)) throw new Error('Code format must look like silver-otter-4821');
   try {
-    const { data: group, error } = await state.client.rpc('join_group_by_code', { p_code: normalized });
+    const { data: group, error } = await state.client.rpc('join_group_by_code', {
+      p_code: normalized,
+      p_passphrase: String(passphrase || '')
+    });
     if (error) throw error;
     if (!group) throw new Error('Invalid code');
     state.activeCode = null;
@@ -279,8 +306,11 @@ export function consumeJoinLanding() {
 export async function saveBracketForActiveGroup(data) {
   if (!state.client || !state.user || !state.activeGroup) throw new Error('Select a group first');
   if (state.lockState.bracketLocked) throw new Error(`Bracket locked (${state.lockState.phase})`);
-  const picks = normalizeBracketPicks(allPicks());
+  const picks = normalizeKnockoutPicks(resolveSelectedDraftPicks());
+  if (!picks.length) throw new Error('Add at least one knockout pick (draws are not valid) before submitting a bracket.');
   const score = scoreBracket(picks, data);
+  // Upsert (not insert) so a player can edit and re-submit their one bracket
+  // while the bracket is unlocked; PK (group_id,user_id) keeps it one-per-group.
   const { error } = await state.client.from('group_brackets').upsert({
     group_id: state.activeGroup.id,
     user_id: state.user.id,
@@ -288,8 +318,44 @@ export async function saveBracketForActiveGroup(data) {
     score,
     updated_at: new Date().toISOString()
   }, { onConflict: 'group_id,user_id' });
-  if (error) throw error;
+  if (error) throw toCompetitionError(error, 'submitBracket');
   return score;
+}
+
+export function listBracketDrafts() {
+  return [{ id: 'local', name: 'Local default bracket', picks: normalizeBracketPicks(allPicks()) }, ...state.bracketDrafts];
+}
+
+export function getActiveDraftId() {
+  return state.activeDraftId || 'local';
+}
+
+export function setActiveDraft(id) {
+  const next = String(id || 'local');
+  state.activeDraftId = next;
+  try { localStorage.setItem(LS_ACTIVE_DRAFT, next); } catch {}
+}
+
+export function createBracketDraft(name) {
+  const trimmed = String(name || '').trim();
+  if (trimmed.length < 2) throw new Error('Bracket name must be at least 2 characters.');
+  const draft = {
+    id: crypto.randomUUID(),
+    name: trimmed,
+    picks: normalizeBracketPicks(allPicks()),
+    created_at: new Date().toISOString()
+  };
+  state.bracketDrafts = [draft, ...state.bracketDrafts];
+  persistBracketDrafts();
+  setActiveDraft(draft.id);
+  return draft;
+}
+
+function resolveSelectedDraftPicks() {
+  const id = getActiveDraftId();
+  if (id === 'local') return allPicks();
+  const draft = state.bracketDrafts.find((entry) => entry.id === id);
+  return draft?.picks || allPicks();
 }
 
 export async function fetchLeaderboard(data) {
@@ -387,6 +453,37 @@ function assertPassword(password) {
   }
 }
 
+function normalizeGroupPassphrase(value) {
+  const passphrase = String(value || '').trim();
+  if (!passphrase) throw new Error('Passphrase is required.');
+  if (passphrase.length < 8) throw new Error('Passphrase must be at least 8 characters.');
+  return passphrase;
+}
+
+function loadBracketDrafts() {
+  try {
+    const raw = localStorage.getItem(LS_BRACKET_DRAFTS);
+    const parsed = raw ? JSON.parse(raw) : [];
+    return Array.isArray(parsed) ? parsed.filter((entry) => entry && entry.id && entry.name) : [];
+  } catch {
+    return [];
+  }
+}
+
+function persistBracketDrafts() {
+  try {
+    localStorage.setItem(LS_BRACKET_DRAFTS, JSON.stringify(state.bracketDrafts));
+  } catch {}
+}
+
+function loadActiveDraftId() {
+  try {
+    return localStorage.getItem(LS_ACTIVE_DRAFT) || 'local';
+  } catch {
+    return 'local';
+  }
+}
+
 function wireAuthSubscription() {
   if (!state.client || state.authSubscription) return;
   const { data } = state.client.auth.onAuthStateChange(async (_event, session) => {
@@ -423,6 +520,15 @@ function toCompetitionError(error, context) {
   const message = String(error?.message || '').trim();
   if (/invalid code/i.test(message)) {
     return new Error('Join code not found. Check the invite and try again.');
+  }
+  if (/passphrase required/i.test(message)) {
+    return new Error('Group passphrase is required to join.');
+  }
+  if (/invalid passphrase/i.test(message)) {
+    return new Error('Passphrase is incorrect. Ask the group owner for the latest passphrase.');
+  }
+  if (/duplicate key value|unique constraint|group_brackets_pkey/i.test(message)) {
+    return new Error('You already submitted one bracket to this group.');
   }
   if (/row-level security|permission denied|not allowed|forbidden|not authorized/i.test(message)) {
     if (context === 'joinGroup') {
