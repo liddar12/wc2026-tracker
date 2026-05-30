@@ -2,7 +2,16 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { isValidJoinCode, deriveLockState, computeBasePath, extractJoinCodeFromPath, buildPostJoinPath } from '../app/competition-rules.js';
 import { normalizeSignInIdentifier } from '../app/competition-auth.js';
-import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket } from '../app/competition-scoring.js';
+import {
+  normalizeBracketPicks,
+  normalizeKnockoutPicks,
+  scoreBracket,
+  scoreBracketWeighted,
+  compareLeaderboardEntries,
+  WEIGHTED_ROUND_POINTS,
+  CHAMPION_BONUS,
+  MAX_WEIGHTED_SCORE
+} from '../app/competition-scoring.js';
 
 assert.equal(isValidJoinCode('silver-otter-4821'), true, 'valid join code should pass');
 assert.equal(isValidJoinCode('Silver-Otter-4821'), true, 'mixed case should normalize');
@@ -171,5 +180,67 @@ assert.match(
   passphraseMigrationSql,
   /if crypt\(trim\(p_passphrase\), v_group\.passphrase_hash\) <> v_group\.passphrase_hash then/i
 );
+
+// BKT-008 / BKT-009 / BKT-022: weighted scoring + tie-breakers.
+assert.equal(WEIGHTED_ROUND_POINTS.R32, 1);
+assert.equal(WEIGHTED_ROUND_POINTS.R16, 2);
+assert.equal(WEIGHTED_ROUND_POINTS.QF, 4);
+assert.equal(WEIGHTED_ROUND_POINTS.SF, 8);
+assert.equal(WEIGHTED_ROUND_POINTS.Final, 16);
+assert.equal(CHAMPION_BONUS, 16);
+assert.equal(MAX_WEIGHTED_SCORE, 96, 'max weighted score should sum to 96');
+
+const weightedFixture = {
+  actualResults: {
+    round_of_32: {
+      Alpha__vs__Beta:    { score_a: 2, score_b: 1 }, // Alpha advances
+      Gamma__vs__Delta:   { score_a: 0, score_b: 3 }  // Delta advances
+    },
+    round_of_16: {
+      Alpha__vs__Delta: { score_a: 3, score_b: 1 } // Alpha advances
+    },
+    quarterfinals: {
+      Alpha__vs__Echo: { score_a: 2, score_b: 0 } // Alpha advances
+    },
+    semifinals: {
+      Alpha__vs__Foxtrot: { score_a: 1, score_b: 0 } // Alpha advances
+    },
+    final: {
+      Alpha__vs__Golf: { score_a: 1, score_b: 0 } // Alpha wins (champion)
+    }
+  }
+};
+
+const allCorrect = scoreBracketWeighted([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' },
+  { team_a: 'Gamma', team_b: 'Delta', choice: 'team_b' },
+  { team_a: 'Alpha', team_b: 'Delta', choice: 'team_a' },
+  { team_a: 'Alpha', team_b: 'Echo', choice: 'team_a' },
+  { team_a: 'Alpha', team_b: 'Foxtrot', choice: 'team_a' },
+  { team_a: 'Alpha', team_b: 'Golf', choice: 'team_a' }
+], weightedFixture);
+// R32 right twice = 2pts; R16 right = 2pts; QF right = 4pts; SF right = 8pts;
+// Final right = 16pts + champion bonus 16pts = 32pts. Total = 2+2+4+8+32 = 48pts.
+assert.equal(allCorrect.score, 48);
+assert.equal(allCorrect.lastRoundCorrect, 'Final');
+assert.equal(allCorrect.championCorrect, true);
+assert.equal(allCorrect.breakdown.R32, 2);
+assert.equal(allCorrect.breakdown.Final, 16);
+assert.equal(allCorrect.breakdown.championBonus, 16);
+
+// scoreBracket (flat legacy scorer) returns +1 per correct pick — unchanged.
+assert.equal(scoreBracket([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' }
+], weightedFixture), 1, 'flat scoreBracket returns +1 per correct pick');
+
+// Tie-breakers
+const sorted = [
+  { username: 'a', score: 30, lastRoundCorrect: 'SF', championCorrect: false, updatedAt: '2026-07-01T10:00:00Z' },
+  { username: 'b', score: 30, lastRoundCorrect: 'Final', championCorrect: true,  updatedAt: '2026-07-01T11:00:00Z' },
+  { username: 'c', score: 30, lastRoundCorrect: 'Final', championCorrect: true,  updatedAt: '2026-07-01T09:00:00Z' }
+].sort(compareLeaderboardEntries);
+assert.equal(sorted[0].username, 'c', 'champion-correct + earliest submit wins ties');
+assert.equal(sorted[1].username, 'b');
+assert.equal(sorted[2].username, 'a');
 
 console.log('competition tests: OK');

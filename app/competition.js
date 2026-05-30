@@ -2,7 +2,7 @@ import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
 import { allPicks } from './state.js';
 import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFromPath } from './competition-rules.js';
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
-import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket } from './competition-scoring.js';
+import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket, scoreBracketWeighted, compareLeaderboardEntries } from './competition-scoring.js';
 
 const LS_GROUP = 'wc26.competition.group';
 const LS_GUEST_MODE = 'wc26.competition.guestMode';
@@ -308,7 +308,7 @@ export async function saveBracketForActiveGroup(data) {
   if (state.lockState.bracketLocked) throw new Error(`Bracket locked (${state.lockState.phase})`);
   const picks = normalizeKnockoutPicks(resolveSelectedDraftPicks());
   if (!picks.length) throw new Error('Add at least one knockout pick (draws are not valid) before submitting a bracket.');
-  const score = scoreBracket(picks, data);
+  const score = scoreBracketWeighted(picks, data).score;
   // Upsert (not insert) so a player can edit and re-submit their one bracket
   // while the bracket is unlocked; PK (group_id,user_id) keeps it one-per-group.
   const { error } = await state.client.from('group_brackets').upsert({
@@ -371,13 +371,19 @@ export async function fetchLeaderboard(data) {
     const { data: profiles } = await state.client.from('profiles').select('user_id,username').in('user_id', ids);
     namesById = Object.fromEntries((profiles || []).map((p) => [p.user_id, p.username]));
   }
-  return (rows || [])
-    .map((r) => ({
+  const entries = (rows || []).map((r) => {
+    const weighted = scoreBracketWeighted(r.picks || [], data);
+    return {
       username: namesById[r.user_id] || 'Player',
-      score: scoreBracket(r.picks || [], data),
-      updatedAt: r.updated_at || null
-    }))
-    .sort((a, b) => b.score - a.score || String(a.username).localeCompare(String(b.username)));
+      score: weighted.score,
+      breakdown: weighted.breakdown,
+      lastRoundCorrect: weighted.lastRoundCorrect,
+      championCorrect: weighted.championCorrect,
+      updatedAt: r.updated_at || null,
+    };
+  });
+  entries.sort(compareLeaderboardEntries);
+  return entries;
 }
 
 export function getJoinUrls() {

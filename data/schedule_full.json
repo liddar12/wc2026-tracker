@@ -1,11 +1,12 @@
 [
   {
     "match_id": "Mexico__vs__South Africa",
+    "match_number": 1,
     "stage": "group",
-    "group": "A",
     "team_a": "Mexico",
     "team_b": "South Africa",
-    "kickoff_utc": "2026-06-11T16:00:00Z",
+    "kickoff_utc": "2026-06-11T19:00:00Z",
+    "kickoff_local_et": "2026-06-11T15:00-04:00",
     "venue_id": "azteca",
     "broadcast": {
       "us": {
@@ -13,143 +14,35 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "A"
   },
   {
-    "match_id": "Mexico__vs__Korea Republic",
+    "match_id": "Korea Republic__vs__Czech Republic",
+    "match_number": 2,
     "stage": "group",
-    "group": "A",
-    "team_a": "Mexico",
-    "team_b": "Korea Republic",
-    "kickoff_utc": "2026-06-11T19:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "USA__vs__Paraguay",
-    "stage": "group",
-    "group": "D",
-    "team_a": "USA",
-    "team_b": "Paraguay",
-    "kickoff_utc": "2026-06-12T16:00:00Z",
-    "venue_id": "sofi",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Mexico__vs__Czechia",
-    "stage": "group",
-    "group": "A",
-    "team_a": "Mexico",
-    "team_b": "Czechia",
-    "kickoff_utc": "2026-06-12T19:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Korea Republic__vs__South Africa",
-    "stage": "group",
-    "group": "A",
     "team_a": "Korea Republic",
-    "team_b": "South Africa",
-    "kickoff_utc": "2026-06-13T16:00:00Z",
-    "venue_id": "bmo_field",
+    "team_b": "Czech Republic",
+    "kickoff_utc": "2026-06-12T02:00:00Z",
+    "kickoff_local_et": "2026-06-11T22:00-04:00",
+    "venue_id": null,
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Korea Republic__vs__Czechia",
-    "stage": "group",
-    "group": "A",
-    "team_a": "Korea Republic",
-    "team_b": "Czechia",
-    "kickoff_utc": "2026-06-13T19:00:00Z",
-    "venue_id": "metlife",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "South Africa__vs__Czechia",
-    "stage": "group",
-    "group": "A",
-    "team_a": "South Africa",
-    "team_b": "Czechia",
-    "kickoff_utc": "2026-06-13T22:00:00Z",
-    "venue_id": "gillette",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Canada__vs__Switzerland",
-    "stage": "group",
-    "group": "B",
-    "team_a": "Canada",
-    "team_b": "Switzerland",
-    "kickoff_utc": "2026-06-14T01:00:00Z",
-    "venue_id": "lincoln",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Canada__vs__Qatar",
-    "stage": "group",
-    "group": "B",
-    "team_a": "Canada",
-    "team_b": "Qatar",
-    "kickoff_utc": "2026-06-14T16:00:00Z",
-    "venue_id": "mercedes",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "A"
   },
   {
     "match_id": "Canada__vs__Bosnia and Herzegovina",
+    "match_number": 3,
     "stage": "group",
-    "group": "B",
     "team_a": "Canada",
     "team_b": "Bosnia and Herzegovina",
-    "kickoff_utc": "2026-06-14T19:00:00Z",
+    "kickoff_utc": "2026-06-11T19:00:00Z",
+    "kickoff_local_et": "2026-06-11T15:00-04:00",
     "venue_id": "hardrock",
     "broadcast": {
       "us": {
@@ -157,95 +50,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "B"
   },
   {
-    "match_id": "Switzerland__vs__Qatar",
+    "match_id": "USA__vs__Paraguay",
+    "match_number": 4,
     "stage": "group",
-    "group": "B",
-    "team_a": "Switzerland",
-    "team_b": "Qatar",
-    "kickoff_utc": "2026-06-14T22:00:00Z",
-    "venue_id": "arrowhead",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Switzerland__vs__Bosnia and Herzegovina",
-    "stage": "group",
-    "group": "B",
-    "team_a": "Switzerland",
-    "team_b": "Bosnia and Herzegovina",
-    "kickoff_utc": "2026-06-15T01:00:00Z",
-    "venue_id": "att",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Qatar__vs__Bosnia and Herzegovina",
-    "stage": "group",
-    "group": "B",
-    "team_a": "Qatar",
-    "team_b": "Bosnia and Herzegovina",
-    "kickoff_utc": "2026-06-15T16:00:00Z",
-    "venue_id": "nrg",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Brazil__vs__Morocco",
-    "stage": "group",
-    "group": "C",
-    "team_a": "Brazil",
-    "team_b": "Morocco",
-    "kickoff_utc": "2026-06-15T19:00:00Z",
-    "venue_id": "lumen",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Brazil__vs__Scotland",
-    "stage": "group",
-    "group": "C",
-    "team_a": "Brazil",
-    "team_b": "Scotland",
-    "kickoff_utc": "2026-06-15T22:00:00Z",
-    "venue_id": "levis",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Brazil__vs__Haiti",
-    "stage": "group",
-    "group": "C",
-    "team_a": "Brazil",
-    "team_b": "Haiti",
-    "kickoff_utc": "2026-06-16T01:00:00Z",
+    "team_a": "USA",
+    "team_b": "Paraguay",
+    "kickoff_utc": "2026-06-12T01:00:00Z",
+    "kickoff_local_et": "2026-06-11T21:00-04:00",
     "venue_id": "sofi",
     "broadcast": {
       "us": {
@@ -253,47 +68,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "D"
   },
   {
-    "match_id": "Morocco__vs__Scotland",
+    "match_id": "Haiti__vs__Scotland",
+    "match_number": 5,
     "stage": "group",
-    "group": "C",
-    "team_a": "Morocco",
+    "team_a": "Haiti",
     "team_b": "Scotland",
-    "kickoff_utc": "2026-06-16T16:00:00Z",
-    "venue_id": "azteca",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Morocco__vs__Haiti",
-    "stage": "group",
-    "group": "C",
-    "team_a": "Morocco",
-    "team_b": "Haiti",
-    "kickoff_utc": "2026-06-16T19:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Scotland__vs__Haiti",
-    "stage": "group",
-    "group": "C",
-    "team_a": "Scotland",
-    "team_b": "Haiti",
-    "kickoff_utc": "2026-06-16T22:00:00Z",
+    "kickoff_utc": "2026-06-13T01:00:00Z",
+    "kickoff_local_et": "2026-06-12T21:00-04:00",
     "venue_id": "bbva",
     "broadcast": {
       "us": {
@@ -301,63 +86,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "USA__vs__Australia",
-    "stage": "group",
-    "group": "D",
-    "team_a": "USA",
-    "team_b": "Australia",
-    "kickoff_utc": "2026-06-17T01:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "USA__vs__Turkiye",
-    "stage": "group",
-    "group": "D",
-    "team_a": "USA",
-    "team_b": "Turkiye",
-    "kickoff_utc": "2026-06-17T16:00:00Z",
-    "venue_id": "bmo_field",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Australia__vs__Paraguay",
-    "stage": "group",
-    "group": "D",
-    "team_a": "Australia",
-    "team_b": "Paraguay",
-    "kickoff_utc": "2026-06-17T19:00:00Z",
-    "venue_id": "metlife",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "C"
   },
   {
     "match_id": "Australia__vs__Turkiye",
+    "match_number": 6,
     "stage": "group",
-    "group": "D",
     "team_a": "Australia",
     "team_b": "Turkiye",
-    "kickoff_utc": "2026-06-17T22:00:00Z",
+    "kickoff_utc": "2026-06-12T04:00:00Z",
+    "kickoff_local_et": "2026-06-12T00:00-04:00",
     "venue_id": "gillette",
     "broadcast": {
       "us": {
@@ -365,63 +104,71 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "D"
   },
   {
-    "match_id": "Paraguay__vs__Turkiye",
+    "match_id": "Brazil__vs__Morocco",
+    "match_number": 7,
     "stage": "group",
-    "group": "D",
-    "team_a": "Paraguay",
-    "team_b": "Turkiye",
-    "kickoff_utc": "2026-06-18T01:00:00Z",
-    "venue_id": "lincoln",
+    "team_a": "Brazil",
+    "team_b": "Morocco",
+    "kickoff_utc": "2026-06-12T22:00:00Z",
+    "kickoff_local_et": "2026-06-12T18:00-04:00",
+    "venue_id": "lumen",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "C"
   },
   {
-    "match_id": "Germany__vs__Ecuador",
+    "match_id": "Qatar__vs__Switzerland",
+    "match_number": 8,
     "stage": "group",
-    "group": "E",
-    "team_a": "Germany",
+    "team_a": "Qatar",
+    "team_b": "Switzerland",
+    "kickoff_utc": "2026-06-12T19:00:00Z",
+    "kickoff_local_et": "2026-06-12T15:00-04:00",
+    "venue_id": "arrowhead",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "B"
+  },
+  {
+    "match_id": "Cote d'Ivoire__vs__Ecuador",
+    "match_number": 9,
+    "stage": "group",
+    "team_a": "Cote d'Ivoire",
     "team_b": "Ecuador",
-    "kickoff_utc": "2026-06-18T16:00:00Z",
-    "venue_id": "mercedes",
+    "kickoff_utc": "2026-06-13T23:00:00Z",
+    "kickoff_local_et": "2026-06-13T19:00-04:00",
+    "venue_id": "att",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Germany__vs__Cote d'Ivoire",
-    "stage": "group",
-    "group": "E",
-    "team_a": "Germany",
-    "team_b": "Cote d'Ivoire",
-    "kickoff_utc": "2026-06-18T19:00:00Z",
-    "venue_id": "hardrock",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "E"
   },
   {
     "match_id": "Germany__vs__Curacao",
+    "match_number": 10,
     "stage": "group",
-    "group": "E",
     "team_a": "Germany",
     "team_b": "Curacao",
-    "kickoff_utc": "2026-06-18T22:00:00Z",
+    "kickoff_utc": "2026-06-13T17:00:00Z",
+    "kickoff_local_et": "2026-06-13T13:00-04:00",
     "venue_id": "arrowhead",
     "broadcast": {
       "us": {
@@ -429,63 +176,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Ecuador__vs__Cote d'Ivoire",
-    "stage": "group",
-    "group": "E",
-    "team_a": "Ecuador",
-    "team_b": "Cote d'Ivoire",
-    "kickoff_utc": "2026-06-19T01:00:00Z",
-    "venue_id": "att",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Ecuador__vs__Curacao",
-    "stage": "group",
-    "group": "E",
-    "team_a": "Ecuador",
-    "team_b": "Curacao",
-    "kickoff_utc": "2026-06-19T16:00:00Z",
-    "venue_id": "nrg",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Cote d'Ivoire__vs__Curacao",
-    "stage": "group",
-    "group": "E",
-    "team_a": "Cote d'Ivoire",
-    "team_b": "Curacao",
-    "kickoff_utc": "2026-06-19T19:00:00Z",
-    "venue_id": "lumen",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "E"
   },
   {
     "match_id": "Netherlands__vs__Japan",
+    "match_number": 11,
     "stage": "group",
-    "group": "F",
     "team_a": "Netherlands",
     "team_b": "Japan",
-    "kickoff_utc": "2026-06-19T22:00:00Z",
+    "kickoff_utc": "2026-06-13T20:00:00Z",
+    "kickoff_local_et": "2026-06-13T16:00-04:00",
     "venue_id": "levis",
     "broadcast": {
       "us": {
@@ -493,79 +194,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "F"
   },
   {
-    "match_id": "Netherlands__vs__Tunisia",
+    "match_id": "Sweden__vs__Tunisia",
+    "match_number": 12,
     "stage": "group",
-    "group": "F",
-    "team_a": "Netherlands",
+    "team_a": "Sweden",
     "team_b": "Tunisia",
-    "kickoff_utc": "2026-06-20T01:00:00Z",
-    "venue_id": "sofi",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Netherlands__vs__Sweden",
-    "stage": "group",
-    "group": "F",
-    "team_a": "Netherlands",
-    "team_b": "Sweden",
-    "kickoff_utc": "2026-06-20T16:00:00Z",
-    "venue_id": "azteca",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Japan__vs__Tunisia",
-    "stage": "group",
-    "group": "F",
-    "team_a": "Japan",
-    "team_b": "Tunisia",
-    "kickoff_utc": "2026-06-20T19:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Japan__vs__Sweden",
-    "stage": "group",
-    "group": "F",
-    "team_a": "Japan",
-    "team_b": "Sweden",
-    "kickoff_utc": "2026-06-20T22:00:00Z",
-    "venue_id": "bbva",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Tunisia__vs__Sweden",
-    "stage": "group",
-    "group": "F",
-    "team_a": "Tunisia",
-    "team_b": "Sweden",
-    "kickoff_utc": "2026-06-21T01:00:00Z",
+    "kickoff_utc": "2026-06-14T02:00:00Z",
+    "kickoff_local_et": "2026-06-13T22:00-04:00",
     "venue_id": "bc_place",
     "broadcast": {
       "us": {
@@ -573,79 +212,53 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "F"
   },
   {
-    "match_id": "Belgium__vs__Iran",
+    "match_id": "Saudi Arabia__vs__Uruguay",
+    "match_number": 13,
     "stage": "group",
-    "group": "G",
-    "team_a": "Belgium",
-    "team_b": "Iran",
-    "kickoff_utc": "2026-06-21T16:00:00Z",
-    "venue_id": "bmo_field",
+    "team_a": "Saudi Arabia",
+    "team_b": "Uruguay",
+    "kickoff_utc": "2026-06-14T22:00:00Z",
+    "kickoff_local_et": "2026-06-14T18:00-04:00",
+    "venue_id": "sofi",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "H"
   },
   {
-    "match_id": "Belgium__vs__Egypt",
+    "match_id": "Spain__vs__Cape Verde",
+    "match_number": 14,
     "stage": "group",
-    "group": "G",
-    "team_a": "Belgium",
-    "team_b": "Egypt",
-    "kickoff_utc": "2026-06-21T19:00:00Z",
-    "venue_id": "metlife",
+    "team_a": "Spain",
+    "team_b": "Cape Verde",
+    "kickoff_utc": "2026-06-14T16:00:00Z",
+    "kickoff_local_et": "2026-06-14T12:00-04:00",
+    "venue_id": null,
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Belgium__vs__New Zealand",
-    "stage": "group",
-    "group": "G",
-    "team_a": "Belgium",
-    "team_b": "New Zealand",
-    "kickoff_utc": "2026-06-21T22:00:00Z",
-    "venue_id": "gillette",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Iran__vs__Egypt",
-    "stage": "group",
-    "group": "G",
-    "team_a": "Iran",
-    "team_b": "Egypt",
-    "kickoff_utc": "2026-06-22T01:00:00Z",
-    "venue_id": "lincoln",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "H"
   },
   {
     "match_id": "Iran__vs__New Zealand",
+    "match_number": 15,
     "stage": "group",
-    "group": "G",
     "team_a": "Iran",
     "team_b": "New Zealand",
-    "kickoff_utc": "2026-06-22T16:00:00Z",
+    "kickoff_utc": "2026-06-15T01:00:00Z",
+    "kickoff_local_et": "2026-06-14T21:00-04:00",
     "venue_id": "mercedes",
     "broadcast": {
       "us": {
@@ -653,127 +266,35 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "G"
   },
   {
-    "match_id": "Egypt__vs__New Zealand",
+    "match_id": "Belgium__vs__Egypt",
+    "match_number": 16,
     "stage": "group",
-    "group": "G",
-    "team_a": "Egypt",
-    "team_b": "New Zealand",
-    "kickoff_utc": "2026-06-22T19:00:00Z",
-    "venue_id": "hardrock",
+    "team_a": "Belgium",
+    "team_b": "Egypt",
+    "kickoff_utc": "2026-06-14T19:00:00Z",
+    "kickoff_local_et": "2026-06-14T15:00-04:00",
+    "venue_id": "metlife",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Spain__vs__Cabo Verde",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Spain",
-    "team_b": "Cabo Verde",
-    "kickoff_utc": "2026-06-22T22:00:00Z",
-    "venue_id": "arrowhead",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Spain__vs__Uruguay",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Spain",
-    "team_b": "Uruguay",
-    "kickoff_utc": "2026-06-23T01:00:00Z",
-    "venue_id": "att",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Spain__vs__Saudi Arabia",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Spain",
-    "team_b": "Saudi Arabia",
-    "kickoff_utc": "2026-06-23T16:00:00Z",
-    "venue_id": "nrg",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Cabo Verde__vs__Uruguay",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Cabo Verde",
-    "team_b": "Uruguay",
-    "kickoff_utc": "2026-06-23T19:00:00Z",
-    "venue_id": "lumen",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Cabo Verde__vs__Saudi Arabia",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Cabo Verde",
-    "team_b": "Saudi Arabia",
-    "kickoff_utc": "2026-06-23T22:00:00Z",
-    "venue_id": "levis",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Uruguay__vs__Saudi Arabia",
-    "stage": "group",
-    "group": "H",
-    "team_a": "Uruguay",
-    "team_b": "Saudi Arabia",
-    "kickoff_utc": "2026-06-24T01:00:00Z",
-    "venue_id": "sofi",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "G"
   },
   {
     "match_id": "France__vs__Senegal",
+    "match_number": 17,
     "stage": "group",
-    "group": "I",
     "team_a": "France",
     "team_b": "Senegal",
-    "kickoff_utc": "2026-06-24T16:00:00Z",
+    "kickoff_utc": "2026-06-15T19:00:00Z",
+    "kickoff_local_et": "2026-06-15T15:00-04:00",
     "venue_id": "azteca",
     "broadcast": {
       "us": {
@@ -781,79 +302,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "I"
   },
   {
-    "match_id": "France__vs__Norway",
+    "match_id": "Iraq__vs__Norway",
+    "match_number": 18,
     "stage": "group",
-    "group": "I",
-    "team_a": "France",
+    "team_a": "Iraq",
     "team_b": "Norway",
-    "kickoff_utc": "2026-06-24T19:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "France__vs__Iraq",
-    "stage": "group",
-    "group": "I",
-    "team_a": "France",
-    "team_b": "Iraq",
-    "kickoff_utc": "2026-06-24T22:00:00Z",
-    "venue_id": "bbva",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Senegal__vs__Norway",
-    "stage": "group",
-    "group": "I",
-    "team_a": "Senegal",
-    "team_b": "Norway",
-    "kickoff_utc": "2026-06-25T01:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Senegal__vs__Iraq",
-    "stage": "group",
-    "group": "I",
-    "team_a": "Senegal",
-    "team_b": "Iraq",
-    "kickoff_utc": "2026-06-25T16:00:00Z",
-    "venue_id": "bmo_field",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Norway__vs__Iraq",
-    "stage": "group",
-    "group": "I",
-    "team_a": "Norway",
-    "team_b": "Iraq",
-    "kickoff_utc": "2026-06-25T19:00:00Z",
+    "kickoff_utc": "2026-06-15T22:00:00Z",
+    "kickoff_local_et": "2026-06-15T18:00-04:00",
     "venue_id": "metlife",
     "broadcast": {
       "us": {
@@ -861,15 +320,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "I"
   },
   {
     "match_id": "Argentina__vs__Algeria",
+    "match_number": 19,
     "stage": "group",
-    "group": "J",
     "team_a": "Argentina",
     "team_b": "Algeria",
-    "kickoff_utc": "2026-06-25T22:00:00Z",
+    "kickoff_utc": "2026-06-16T01:00:00Z",
+    "kickoff_local_et": "2026-06-15T21:00-04:00",
     "venue_id": "gillette",
     "broadcast": {
       "us": {
@@ -877,79 +338,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Argentina__vs__Austria",
-    "stage": "group",
-    "group": "J",
-    "team_a": "Argentina",
-    "team_b": "Austria",
-    "kickoff_utc": "2026-06-26T01:00:00Z",
-    "venue_id": "lincoln",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Argentina__vs__Jordan",
-    "stage": "group",
-    "group": "J",
-    "team_a": "Argentina",
-    "team_b": "Jordan",
-    "kickoff_utc": "2026-06-26T16:00:00Z",
-    "venue_id": "mercedes",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Algeria__vs__Austria",
-    "stage": "group",
-    "group": "J",
-    "team_a": "Algeria",
-    "team_b": "Austria",
-    "kickoff_utc": "2026-06-26T19:00:00Z",
-    "venue_id": "hardrock",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Algeria__vs__Jordan",
-    "stage": "group",
-    "group": "J",
-    "team_a": "Algeria",
-    "team_b": "Jordan",
-    "kickoff_utc": "2026-06-26T22:00:00Z",
-    "venue_id": "arrowhead",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "J"
   },
   {
     "match_id": "Austria__vs__Jordan",
+    "match_number": 20,
     "stage": "group",
-    "group": "J",
     "team_a": "Austria",
     "team_b": "Jordan",
-    "kickoff_utc": "2026-06-27T01:00:00Z",
+    "kickoff_utc": "2026-06-15T04:00:00Z",
+    "kickoff_local_et": "2026-06-15T00:00-04:00",
     "venue_id": "att",
     "broadcast": {
       "us": {
@@ -957,191 +356,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
-  },
-  {
-    "match_id": "Portugal__vs__DR Congo",
-    "stage": "group",
-    "group": "K",
-    "team_a": "Portugal",
-    "team_b": "DR Congo",
-    "kickoff_utc": "2026-06-27T16:00:00Z",
-    "venue_id": "nrg",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Portugal__vs__Uzbekistan",
-    "stage": "group",
-    "group": "K",
-    "team_a": "Portugal",
-    "team_b": "Uzbekistan",
-    "kickoff_utc": "2026-06-27T19:00:00Z",
-    "venue_id": "lumen",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Portugal__vs__Colombia",
-    "stage": "group",
-    "group": "K",
-    "team_a": "Portugal",
-    "team_b": "Colombia",
-    "kickoff_utc": "2026-06-27T22:00:00Z",
-    "venue_id": "levis",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "DR Congo__vs__Uzbekistan",
-    "stage": "group",
-    "group": "K",
-    "team_a": "DR Congo",
-    "team_b": "Uzbekistan",
-    "kickoff_utc": "2026-06-28T01:00:00Z",
-    "venue_id": "sofi",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "DR Congo__vs__Colombia",
-    "stage": "group",
-    "group": "K",
-    "team_a": "DR Congo",
-    "team_b": "Colombia",
-    "kickoff_utc": "2026-06-27T16:00:00Z",
-    "venue_id": "azteca",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Uzbekistan__vs__Colombia",
-    "stage": "group",
-    "group": "K",
-    "team_a": "Uzbekistan",
-    "team_b": "Colombia",
-    "kickoff_utc": "2026-06-27T19:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "England__vs__Croatia",
-    "stage": "group",
-    "group": "L",
-    "team_a": "England",
-    "team_b": "Croatia",
-    "kickoff_utc": "2026-06-27T22:00:00Z",
-    "venue_id": "bbva",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "England__vs__Ghana",
-    "stage": "group",
-    "group": "L",
-    "team_a": "England",
-    "team_b": "Ghana",
-    "kickoff_utc": "2026-06-28T01:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "England__vs__Panama",
-    "stage": "group",
-    "group": "L",
-    "team_a": "England",
-    "team_b": "Panama",
-    "kickoff_utc": "2026-06-27T16:00:00Z",
-    "venue_id": "bmo_field",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Croatia__vs__Ghana",
-    "stage": "group",
-    "group": "L",
-    "team_a": "Croatia",
-    "team_b": "Ghana",
-    "kickoff_utc": "2026-06-27T19:00:00Z",
-    "venue_id": "metlife",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "Croatia__vs__Panama",
-    "stage": "group",
-    "group": "L",
-    "team_a": "Croatia",
-    "team_b": "Panama",
-    "kickoff_utc": "2026-06-27T22:00:00Z",
-    "venue_id": "gillette",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
+    },
+    "group": "J"
   },
   {
     "match_id": "Ghana__vs__Panama",
+    "match_number": 21,
     "stage": "group",
-    "group": "L",
     "team_a": "Ghana",
     "team_b": "Panama",
-    "kickoff_utc": "2026-06-28T01:00:00Z",
+    "kickoff_utc": "2026-06-16T23:00:00Z",
+    "kickoff_local_et": "2026-06-16T19:00-04:00",
     "venue_id": "lincoln",
     "broadcast": {
       "us": {
@@ -1149,47 +374,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "L"
   },
   {
-    "match_id": "r32__01",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-28T20:00:00Z",
-    "venue_id": "azteca",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__02",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-28T23:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__03",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-28T20:00:00Z",
+    "match_id": "England__vs__Croatia",
+    "match_number": 22,
+    "stage": "group",
+    "team_a": "England",
+    "team_b": "Croatia",
+    "kickoff_utc": "2026-06-16T20:00:00Z",
+    "kickoff_local_et": "2026-06-16T16:00-04:00",
     "venue_id": "bbva",
     "broadcast": {
       "us": {
@@ -1197,159 +392,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "L"
   },
   {
-    "match_id": "r32__04",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-28T23:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__05",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-29T20:00:00Z",
-    "venue_id": "bmo_field",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__06",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-29T23:00:00Z",
-    "venue_id": "metlife",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__07",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-29T20:00:00Z",
-    "venue_id": "gillette",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__08",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-29T23:00:00Z",
-    "venue_id": "lincoln",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__09",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-30T20:00:00Z",
-    "venue_id": "mercedes",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__10",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-30T23:00:00Z",
-    "venue_id": "hardrock",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__11",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-30T20:00:00Z",
-    "venue_id": "arrowhead",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__12",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-06-30T23:00:00Z",
-    "venue_id": "att",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r32__13",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-01T20:00:00Z",
+    "match_id": "Portugal__vs__DR Congo",
+    "match_number": 23,
+    "stage": "group",
+    "team_a": "Portugal",
+    "team_b": "DR Congo",
+    "kickoff_utc": "2026-06-16T17:00:00Z",
+    "kickoff_local_et": "2026-06-16T13:00-04:00",
     "venue_id": "nrg",
     "broadcast": {
       "us": {
@@ -1357,47 +410,107 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "K"
   },
   {
-    "match_id": "r32__14",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-01T23:00:00Z",
-    "venue_id": "lumen",
+    "match_id": "Uzbekistan__vs__Colombia",
+    "match_number": 24,
+    "stage": "group",
+    "team_a": "Uzbekistan",
+    "team_b": "Colombia",
+    "kickoff_utc": "2026-06-17T02:00:00Z",
+    "kickoff_local_et": "2026-06-16T22:00-04:00",
+    "venue_id": "akron",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "K"
   },
   {
-    "match_id": "r32__15",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-01T20:00:00Z",
-    "venue_id": "levis",
+    "match_id": "Czech Republic__vs__South Africa",
+    "match_number": 25,
+    "stage": "group",
+    "team_a": "Czech Republic",
+    "team_b": "South Africa",
+    "kickoff_utc": "2026-06-17T16:00:00Z",
+    "kickoff_local_et": "2026-06-17T12:00-04:00",
+    "venue_id": null,
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "A"
   },
   {
-    "match_id": "r32__16",
-    "stage": "r32",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-01T23:00:00Z",
+    "match_id": "Switzerland__vs__Bosnia and Herzegovina",
+    "match_number": 26,
+    "stage": "group",
+    "team_a": "Switzerland",
+    "team_b": "Bosnia and Herzegovina",
+    "kickoff_utc": "2026-06-17T19:00:00Z",
+    "kickoff_local_et": "2026-06-17T15:00-04:00",
+    "venue_id": "att",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "B"
+  },
+  {
+    "match_id": "Canada__vs__Qatar",
+    "match_number": 27,
+    "stage": "group",
+    "team_a": "Canada",
+    "team_b": "Qatar",
+    "kickoff_utc": "2026-06-17T22:00:00Z",
+    "kickoff_local_et": "2026-06-17T18:00-04:00",
+    "venue_id": "mercedes",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "B"
+  },
+  {
+    "match_id": "Mexico__vs__Korea Republic",
+    "match_number": 28,
+    "stage": "group",
+    "team_a": "Mexico",
+    "team_b": "Korea Republic",
+    "kickoff_utc": "2026-06-18T01:00:00Z",
+    "kickoff_local_et": "2026-06-17T21:00-04:00",
+    "venue_id": "akron",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "A"
+  },
+  {
+    "match_id": "Brazil__vs__Haiti",
+    "match_number": 29,
+    "stage": "group",
+    "team_a": "Brazil",
+    "team_b": "Haiti",
+    "kickoff_utc": "2026-06-19T00:30:00Z",
+    "kickoff_local_et": "2026-06-18T20:30-04:00",
     "venue_id": "sofi",
     "broadcast": {
       "us": {
@@ -1405,15 +518,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "C"
   },
   {
-    "match_id": "r16__01",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-04T20:00:00Z",
+    "match_id": "Scotland__vs__Morocco",
+    "match_number": 30,
+    "stage": "group",
+    "team_a": "Scotland",
+    "team_b": "Morocco",
+    "kickoff_utc": "2026-06-18T22:00:00Z",
+    "kickoff_local_et": "2026-06-18T18:00-04:00",
     "venue_id": "azteca",
     "broadcast": {
       "us": {
@@ -1421,111 +536,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "C"
   },
   {
-    "match_id": "r16__02",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-04T23:00:00Z",
-    "venue_id": "akron",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__03",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-04T20:00:00Z",
-    "venue_id": "bbva",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__04",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-04T23:00:00Z",
-    "venue_id": "bc_place",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__05",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-05T20:00:00Z",
-    "venue_id": "bmo_field",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__06",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-05T23:00:00Z",
-    "venue_id": "metlife",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__07",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-05T20:00:00Z",
-    "venue_id": "gillette",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "r16__08",
-    "stage": "r16",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-05T23:00:00Z",
+    "match_id": "Turkiye__vs__Paraguay",
+    "match_number": 31,
+    "stage": "group",
+    "team_a": "Turkiye",
+    "team_b": "Paraguay",
+    "kickoff_utc": "2026-06-19T03:00:00Z",
+    "kickoff_local_et": "2026-06-18T23:00-04:00",
     "venue_id": "lincoln",
     "broadcast": {
       "us": {
@@ -1533,31 +554,35 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "D"
   },
   {
-    "match_id": "qf__01",
-    "stage": "qf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-09T20:00:00Z",
-    "venue_id": "mercedes",
+    "match_id": "USA__vs__Australia",
+    "match_number": 32,
+    "stage": "group",
+    "team_a": "USA",
+    "team_b": "Australia",
+    "kickoff_utc": "2026-06-18T19:00:00Z",
+    "kickoff_local_et": "2026-06-18T15:00-04:00",
+    "venue_id": "bc_place",
     "broadcast": {
       "us": {
         "english_channel": null,
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "D"
   },
   {
-    "match_id": "qf__02",
-    "stage": "qf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-09T23:00:00Z",
+    "match_id": "Germany__vs__Cote d'Ivoire",
+    "match_number": 33,
+    "stage": "group",
+    "team_a": "Germany",
+    "team_b": "Cote d'Ivoire",
+    "kickoff_utc": "2026-06-19T20:00:00Z",
+    "kickoff_local_et": "2026-06-19T16:00-04:00",
     "venue_id": "hardrock",
     "broadcast": {
       "us": {
@@ -1565,47 +590,17 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "E"
   },
   {
-    "match_id": "qf__03",
-    "stage": "qf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-10T20:00:00Z",
-    "venue_id": "arrowhead",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "qf__04",
-    "stage": "qf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-10T23:00:00Z",
-    "venue_id": "att",
-    "broadcast": {
-      "us": {
-        "english_channel": null,
-        "spanish_channel": null,
-        "stream_url": null
-      }
-    }
-  },
-  {
-    "match_id": "sf__01",
-    "stage": "sf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-14T20:00:00Z",
+    "match_id": "Ecuador__vs__Curacao",
+    "match_number": 34,
+    "stage": "group",
+    "team_a": "Ecuador",
+    "team_b": "Curacao",
+    "kickoff_utc": "2026-06-20T00:00:00Z",
+    "kickoff_local_et": "2026-06-19T20:00-04:00",
     "venue_id": "nrg",
     "broadcast": {
       "us": {
@@ -1613,15 +608,233 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "E"
   },
   {
-    "match_id": "sf__02",
-    "stage": "sf",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-15T23:00:00Z",
+    "match_id": "Netherlands__vs__Sweden",
+    "match_number": 35,
+    "stage": "group",
+    "team_a": "Netherlands",
+    "team_b": "Sweden",
+    "kickoff_utc": "2026-06-19T17:00:00Z",
+    "kickoff_local_et": "2026-06-19T13:00-04:00",
+    "venue_id": "azteca",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "F"
+  },
+  {
+    "match_id": "Tunisia__vs__Japan",
+    "match_number": 36,
+    "stage": "group",
+    "team_a": "Tunisia",
+    "team_b": "Japan",
+    "kickoff_utc": "2026-06-19T04:00:00Z",
+    "kickoff_local_et": "2026-06-19T00:00-04:00",
+    "venue_id": "akron",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "F"
+  },
+  {
+    "match_id": "Uruguay__vs__Cape Verde",
+    "match_number": 37,
+    "stage": "group",
+    "team_a": "Uruguay",
+    "team_b": "Cape Verde",
+    "kickoff_utc": "2026-06-20T22:00:00Z",
+    "kickoff_local_et": "2026-06-20T18:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "H"
+  },
+  {
+    "match_id": "Spain__vs__Saudi Arabia",
+    "match_number": 38,
+    "stage": "group",
+    "team_a": "Spain",
+    "team_b": "Saudi Arabia",
+    "kickoff_utc": "2026-06-20T16:00:00Z",
+    "kickoff_local_et": "2026-06-20T12:00-04:00",
+    "venue_id": "nrg",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "H"
+  },
+  {
+    "match_id": "Belgium__vs__Iran",
+    "match_number": 39,
+    "stage": "group",
+    "team_a": "Belgium",
+    "team_b": "Iran",
+    "kickoff_utc": "2026-06-20T19:00:00Z",
+    "kickoff_local_et": "2026-06-20T15:00-04:00",
+    "venue_id": "bmo_field",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "G"
+  },
+  {
+    "match_id": "New Zealand__vs__Egypt",
+    "match_number": 40,
+    "stage": "group",
+    "team_a": "New Zealand",
+    "team_b": "Egypt",
+    "kickoff_utc": "2026-06-21T01:00:00Z",
+    "kickoff_local_et": "2026-06-20T21:00-04:00",
+    "venue_id": "hardrock",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "G"
+  },
+  {
+    "match_id": "Norway__vs__Senegal",
+    "match_number": 41,
+    "stage": "group",
+    "team_a": "Norway",
+    "team_b": "Senegal",
+    "kickoff_utc": "2026-06-22T00:00:00Z",
+    "kickoff_local_et": "2026-06-21T20:00-04:00",
+    "venue_id": "bc_place",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "I"
+  },
+  {
+    "match_id": "France__vs__Iraq",
+    "match_number": 42,
+    "stage": "group",
+    "team_a": "France",
+    "team_b": "Iraq",
+    "kickoff_utc": "2026-06-21T21:00:00Z",
+    "kickoff_local_et": "2026-06-21T17:00-04:00",
+    "venue_id": "bbva",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "I"
+  },
+  {
+    "match_id": "Argentina__vs__Austria",
+    "match_number": 43,
+    "stage": "group",
+    "team_a": "Argentina",
+    "team_b": "Austria",
+    "kickoff_utc": "2026-06-21T17:00:00Z",
+    "kickoff_local_et": "2026-06-21T13:00-04:00",
+    "venue_id": "lincoln",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "J"
+  },
+  {
+    "match_id": "Jordan__vs__Algeria",
+    "match_number": 44,
+    "stage": "group",
+    "team_a": "Jordan",
+    "team_b": "Algeria",
+    "kickoff_utc": "2026-06-22T03:00:00Z",
+    "kickoff_local_et": "2026-06-21T23:00-04:00",
+    "venue_id": "arrowhead",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "J"
+  },
+  {
+    "match_id": "England__vs__Ghana",
+    "match_number": 45,
+    "stage": "group",
+    "team_a": "England",
+    "team_b": "Ghana",
+    "kickoff_utc": "2026-06-22T20:00:00Z",
+    "kickoff_local_et": "2026-06-22T16:00-04:00",
+    "venue_id": "bc_place",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "L"
+  },
+  {
+    "match_id": "Panama__vs__Croatia",
+    "match_number": 46,
+    "stage": "group",
+    "team_a": "Panama",
+    "team_b": "Croatia",
+    "kickoff_utc": "2026-06-22T23:00:00Z",
+    "kickoff_local_et": "2026-06-22T19:00-04:00",
+    "venue_id": "gillette",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "L"
+  },
+  {
+    "match_id": "Portugal__vs__Uzbekistan",
+    "match_number": 47,
+    "stage": "group",
+    "team_a": "Portugal",
+    "team_b": "Uzbekistan",
+    "kickoff_utc": "2026-06-22T17:00:00Z",
+    "kickoff_local_et": "2026-06-22T13:00-04:00",
     "venue_id": "lumen",
     "broadcast": {
       "us": {
@@ -1629,16 +842,468 @@
         "spanish_channel": null,
         "stream_url": null
       }
-    }
+    },
+    "group": "K"
   },
   {
-    "match_id": "third_place__01",
-    "stage": "third_place",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
-    "kickoff_utc": "2026-07-18T20:00:00Z",
+    "match_id": "Colombia__vs__DR Congo",
+    "match_number": 48,
+    "stage": "group",
+    "team_a": "Colombia",
+    "team_b": "DR Congo",
+    "kickoff_utc": "2026-06-23T02:00:00Z",
+    "kickoff_local_et": "2026-06-22T22:00-04:00",
+    "venue_id": "azteca",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "K"
+  },
+  {
+    "match_id": "Scotland__vs__Brazil",
+    "match_number": 49,
+    "stage": "group",
+    "team_a": "Scotland",
+    "team_b": "Brazil",
+    "kickoff_utc": "2026-06-23T22:00:00Z",
+    "kickoff_local_et": "2026-06-23T18:00-04:00",
+    "venue_id": "levis",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "C"
+  },
+  {
+    "match_id": "Morocco__vs__Haiti",
+    "match_number": 50,
+    "stage": "group",
+    "team_a": "Morocco",
+    "team_b": "Haiti",
+    "kickoff_utc": "2026-06-23T22:00:00Z",
+    "kickoff_local_et": "2026-06-23T18:00-04:00",
+    "venue_id": "akron",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "C"
+  },
+  {
+    "match_id": "Switzerland__vs__Canada",
+    "match_number": 51,
+    "stage": "group",
+    "team_a": "Switzerland",
+    "team_b": "Canada",
+    "kickoff_utc": "2026-06-23T19:00:00Z",
+    "kickoff_local_et": "2026-06-23T15:00-04:00",
+    "venue_id": "lincoln",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "B"
+  },
+  {
+    "match_id": "Bosnia and Herzegovina__vs__Qatar",
+    "match_number": 52,
+    "stage": "group",
+    "team_a": "Bosnia and Herzegovina",
+    "team_b": "Qatar",
+    "kickoff_utc": "2026-06-23T19:00:00Z",
+    "kickoff_local_et": "2026-06-23T15:00-04:00",
+    "venue_id": "nrg",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "B"
+  },
+  {
+    "match_id": "Czech Republic__vs__Mexico",
+    "match_number": 53,
+    "stage": "group",
+    "team_a": "Czech Republic",
+    "team_b": "Mexico",
+    "kickoff_utc": "2026-06-24T01:00:00Z",
+    "kickoff_local_et": "2026-06-23T21:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "A"
+  },
+  {
+    "match_id": "South Africa__vs__Korea Republic",
+    "match_number": 54,
+    "stage": "group",
+    "team_a": "South Africa",
+    "team_b": "Korea Republic",
+    "kickoff_utc": "2026-06-24T01:00:00Z",
+    "kickoff_local_et": "2026-06-23T21:00-04:00",
+    "venue_id": "bmo_field",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "A"
+  },
+  {
+    "match_id": "Curacao__vs__Cote d'Ivoire",
+    "match_number": 55,
+    "stage": "group",
+    "team_a": "Curacao",
+    "team_b": "Cote d'Ivoire",
+    "kickoff_utc": "2026-06-24T20:00:00Z",
+    "kickoff_local_et": "2026-06-24T16:00-04:00",
+    "venue_id": "lumen",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "E"
+  },
+  {
+    "match_id": "Ecuador__vs__Germany",
+    "match_number": 56,
+    "stage": "group",
+    "team_a": "Ecuador",
+    "team_b": "Germany",
+    "kickoff_utc": "2026-06-24T20:00:00Z",
+    "kickoff_local_et": "2026-06-24T16:00-04:00",
+    "venue_id": "mercedes",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "E"
+  },
+  {
+    "match_id": "Japan__vs__Sweden",
+    "match_number": 57,
+    "stage": "group",
+    "team_a": "Japan",
+    "team_b": "Sweden",
+    "kickoff_utc": "2026-06-24T23:00:00Z",
+    "kickoff_local_et": "2026-06-24T19:00-04:00",
+    "venue_id": "bbva",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "F"
+  },
+  {
+    "match_id": "Tunisia__vs__Netherlands",
+    "match_number": 58,
+    "stage": "group",
+    "team_a": "Tunisia",
+    "team_b": "Netherlands",
+    "kickoff_utc": "2026-06-24T23:00:00Z",
+    "kickoff_local_et": "2026-06-24T19:00-04:00",
+    "venue_id": "sofi",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "F"
+  },
+  {
+    "match_id": "Turkiye__vs__USA",
+    "match_number": 59,
+    "stage": "group",
+    "team_a": "Turkiye",
+    "team_b": "USA",
+    "kickoff_utc": "2026-06-25T02:00:00Z",
+    "kickoff_local_et": "2026-06-24T22:00-04:00",
+    "venue_id": "bmo_field",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "D"
+  },
+  {
+    "match_id": "Paraguay__vs__Australia",
+    "match_number": 60,
+    "stage": "group",
+    "team_a": "Paraguay",
+    "team_b": "Australia",
+    "kickoff_utc": "2026-06-25T02:00:00Z",
+    "kickoff_local_et": "2026-06-24T22:00-04:00",
+    "venue_id": "metlife",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "D"
+  },
+  {
+    "match_id": "Norway__vs__France",
+    "match_number": 61,
+    "stage": "group",
+    "team_a": "Norway",
+    "team_b": "France",
+    "kickoff_utc": "2026-06-25T19:00:00Z",
+    "kickoff_local_et": "2026-06-25T15:00-04:00",
+    "venue_id": "akron",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "I"
+  },
+  {
+    "match_id": "Senegal__vs__Iraq",
+    "match_number": 62,
+    "stage": "group",
+    "team_a": "Senegal",
+    "team_b": "Iraq",
+    "kickoff_utc": "2026-06-25T19:00:00Z",
+    "kickoff_local_et": "2026-06-25T15:00-04:00",
+    "venue_id": "bmo_field",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "I"
+  },
+  {
+    "match_id": "Egypt__vs__Iran",
+    "match_number": 63,
+    "stage": "group",
+    "team_a": "Egypt",
+    "team_b": "Iran",
+    "kickoff_utc": "2026-06-26T03:00:00Z",
+    "kickoff_local_et": "2026-06-25T23:00-04:00",
+    "venue_id": "lincoln",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "G"
+  },
+  {
+    "match_id": "New Zealand__vs__Belgium",
+    "match_number": 64,
+    "stage": "group",
+    "team_a": "New Zealand",
+    "team_b": "Belgium",
+    "kickoff_utc": "2026-06-26T03:00:00Z",
+    "kickoff_local_et": "2026-06-25T23:00-04:00",
+    "venue_id": "gillette",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "G"
+  },
+  {
+    "match_id": "Cape Verde__vs__Saudi Arabia",
+    "match_number": 65,
+    "stage": "group",
+    "team_a": "Cape Verde",
+    "team_b": "Saudi Arabia",
+    "kickoff_utc": "2026-06-26T00:00:00Z",
+    "kickoff_local_et": "2026-06-25T20:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "H"
+  },
+  {
+    "match_id": "Uruguay__vs__Spain",
+    "match_number": 66,
+    "stage": "group",
+    "team_a": "Uruguay",
+    "team_b": "Spain",
+    "kickoff_utc": "2026-06-26T00:00:00Z",
+    "kickoff_local_et": "2026-06-25T20:00-04:00",
     "venue_id": "att",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "H"
+  },
+  {
+    "match_id": "Panama__vs__England",
+    "match_number": 67,
+    "stage": "group",
+    "team_a": "Panama",
+    "team_b": "England",
+    "kickoff_utc": "2026-06-26T21:00:00Z",
+    "kickoff_local_et": "2026-06-26T17:00-04:00",
+    "venue_id": "bmo_field",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "L"
+  },
+  {
+    "match_id": "Croatia__vs__Ghana",
+    "match_number": 68,
+    "stage": "group",
+    "team_a": "Croatia",
+    "team_b": "Ghana",
+    "kickoff_utc": "2026-06-26T21:00:00Z",
+    "kickoff_local_et": "2026-06-26T17:00-04:00",
+    "venue_id": "metlife",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "L"
+  },
+  {
+    "match_id": "Algeria__vs__Austria",
+    "match_number": 69,
+    "stage": "group",
+    "team_a": "Algeria",
+    "team_b": "Austria",
+    "kickoff_utc": "2026-06-27T02:00:00Z",
+    "kickoff_local_et": "2026-06-26T22:00-04:00",
+    "venue_id": "hardrock",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "J"
+  },
+  {
+    "match_id": "Jordan__vs__Argentina",
+    "match_number": 70,
+    "stage": "group",
+    "team_a": "Jordan",
+    "team_b": "Argentina",
+    "kickoff_utc": "2026-06-27T02:00:00Z",
+    "kickoff_local_et": "2026-06-26T22:00-04:00",
+    "venue_id": "mercedes",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "J"
+  },
+  {
+    "match_id": "Colombia__vs__Portugal",
+    "match_number": 71,
+    "stage": "group",
+    "team_a": "Colombia",
+    "team_b": "Portugal",
+    "kickoff_utc": "2026-06-26T23:30:00Z",
+    "kickoff_local_et": "2026-06-26T19:30-04:00",
+    "venue_id": "levis",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "K"
+  },
+  {
+    "match_id": "DR Congo__vs__Uzbekistan",
+    "match_number": 72,
+    "stage": "group",
+    "team_a": "DR Congo",
+    "team_b": "Uzbekistan",
+    "kickoff_utc": "2026-06-26T23:30:00Z",
+    "kickoff_local_et": "2026-06-26T19:30-04:00",
+    "venue_id": "sofi",
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    },
+    "group": "K"
+  },
+  {
+    "match_id": "M073__2A__vs__2B",
+    "match_number": 73,
+    "stage": "round_of_32",
+    "team_a": "2A",
+    "team_b": "2B",
+    "kickoff_utc": "2026-06-27T19:00:00Z",
+    "kickoff_local_et": "2026-06-27T15:00-04:00",
+    "venue_id": null,
     "broadcast": {
       "us": {
         "english_channel": null,
@@ -1648,13 +1313,524 @@
     }
   },
   {
-    "match_id": "final__01",
+    "match_id": "M074__1E__vs__3_ABCDF",
+    "match_number": 74,
+    "stage": "round_of_32",
+    "team_a": "1E",
+    "team_b": "3 ABCDF",
+    "kickoff_utc": "2026-06-28T20:30:00Z",
+    "kickoff_local_et": "2026-06-28T16:30-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M075__1F__vs__2C",
+    "match_number": 75,
+    "stage": "round_of_32",
+    "team_a": "1F",
+    "team_b": "2C",
+    "kickoff_utc": "2026-06-29T01:00:00Z",
+    "kickoff_local_et": "2026-06-28T21:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M076__1C__vs__2F",
+    "match_number": 76,
+    "stage": "round_of_32",
+    "team_a": "1C",
+    "team_b": "2F",
+    "kickoff_utc": "2026-06-28T17:00:00Z",
+    "kickoff_local_et": "2026-06-28T13:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M077__1I__vs__3_CDFGH",
+    "match_number": 77,
+    "stage": "round_of_32",
+    "team_a": "1I",
+    "team_b": "3 CDFGH",
+    "kickoff_utc": "2026-06-29T21:00:00Z",
+    "kickoff_local_et": "2026-06-29T17:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M078__2E__vs__2I",
+    "match_number": 78,
+    "stage": "round_of_32",
+    "team_a": "2E",
+    "team_b": "2I",
+    "kickoff_utc": "2026-06-29T17:00:00Z",
+    "kickoff_local_et": "2026-06-29T13:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M079__1A__vs__3_CEFHI",
+    "match_number": 79,
+    "stage": "round_of_32",
+    "team_a": "1A",
+    "team_b": "3 CEFHI",
+    "kickoff_utc": "2026-06-30T01:00:00Z",
+    "kickoff_local_et": "2026-06-29T21:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M080__1L__vs__3_EHIJK",
+    "match_number": 80,
+    "stage": "round_of_32",
+    "team_a": "1L",
+    "team_b": "3 EHIJK",
+    "kickoff_utc": "2026-06-30T16:00:00Z",
+    "kickoff_local_et": "2026-06-30T12:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M081__1D__vs__3_BEFIJ",
+    "match_number": 81,
+    "stage": "round_of_32",
+    "team_a": "1D",
+    "team_b": "3 BEFIJ",
+    "kickoff_utc": "2026-07-01T00:00:00Z",
+    "kickoff_local_et": "2026-06-30T20:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M082__1G__vs__3_AEHIJ",
+    "match_number": 82,
+    "stage": "round_of_32",
+    "team_a": "1G",
+    "team_b": "3 AEHIJ",
+    "kickoff_utc": "2026-06-30T20:00:00Z",
+    "kickoff_local_et": "2026-06-30T16:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M083__2K__vs__2L",
+    "match_number": 83,
+    "stage": "round_of_32",
+    "team_a": "2K",
+    "team_b": "2L",
+    "kickoff_utc": "2026-07-01T23:00:00Z",
+    "kickoff_local_et": "2026-07-01T19:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M084__1H__vs__2J",
+    "match_number": 84,
+    "stage": "round_of_32",
+    "team_a": "1H",
+    "team_b": "2J",
+    "kickoff_utc": "2026-07-01T19:00:00Z",
+    "kickoff_local_et": "2026-07-01T15:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M085__1B__vs__3_EFGIJ",
+    "match_number": 85,
+    "stage": "round_of_32",
+    "team_a": "1B",
+    "team_b": "3 EFGIJ",
+    "kickoff_utc": "2026-07-02T03:00:00Z",
+    "kickoff_local_et": "2026-07-01T23:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M086__1J__vs__2H",
+    "match_number": 86,
+    "stage": "round_of_32",
+    "team_a": "1J",
+    "team_b": "2H",
+    "kickoff_utc": "2026-07-02T22:00:00Z",
+    "kickoff_local_et": "2026-07-02T18:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M087__1K__vs__3_DEIJL",
+    "match_number": 87,
+    "stage": "round_of_32",
+    "team_a": "1K",
+    "team_b": "3 DEIJL",
+    "kickoff_utc": "2026-07-03T01:30:00Z",
+    "kickoff_local_et": "2026-07-02T21:30-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M088__2D__vs__2G",
+    "match_number": 88,
+    "stage": "round_of_32",
+    "team_a": "2D",
+    "team_b": "2G",
+    "kickoff_utc": "2026-07-02T18:00:00Z",
+    "kickoff_local_et": "2026-07-02T14:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M089__W74__vs__W77",
+    "match_number": 89,
+    "stage": "round_of_16",
+    "team_a": "W74",
+    "team_b": "W77",
+    "kickoff_utc": "2026-07-03T21:00:00Z",
+    "kickoff_local_et": "2026-07-03T17:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M090__W73__vs__W75",
+    "match_number": 90,
+    "stage": "round_of_16",
+    "team_a": "W73",
+    "team_b": "W75",
+    "kickoff_utc": "2026-07-03T17:00:00Z",
+    "kickoff_local_et": "2026-07-03T13:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M091__W76__vs__W78",
+    "match_number": 91,
+    "stage": "round_of_16",
+    "team_a": "W76",
+    "team_b": "W78",
+    "kickoff_utc": "2026-07-04T20:00:00Z",
+    "kickoff_local_et": "2026-07-04T16:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M092__W79__vs__W80",
+    "match_number": 92,
+    "stage": "round_of_16",
+    "team_a": "W79",
+    "team_b": "W80",
+    "kickoff_utc": "2026-07-05T00:00:00Z",
+    "kickoff_local_et": "2026-07-04T20:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M093__W83__vs__W84",
+    "match_number": 93,
+    "stage": "round_of_16",
+    "team_a": "W83",
+    "team_b": "W84",
+    "kickoff_utc": "2026-07-05T19:00:00Z",
+    "kickoff_local_et": "2026-07-05T15:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M094__W81__vs__W82",
+    "match_number": 94,
+    "stage": "round_of_16",
+    "team_a": "W81",
+    "team_b": "W82",
+    "kickoff_utc": "2026-07-06T00:00:00Z",
+    "kickoff_local_et": "2026-07-05T20:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M095__W86__vs__W88",
+    "match_number": 95,
+    "stage": "round_of_16",
+    "team_a": "W86",
+    "team_b": "W88",
+    "kickoff_utc": "2026-07-06T16:00:00Z",
+    "kickoff_local_et": "2026-07-06T12:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M096__W85__vs__W87",
+    "match_number": 96,
+    "stage": "round_of_16",
+    "team_a": "W85",
+    "team_b": "W87",
+    "kickoff_utc": "2026-07-06T20:00:00Z",
+    "kickoff_local_et": "2026-07-06T16:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M097__W89__vs__W90",
+    "match_number": 97,
+    "stage": "quarterfinals",
+    "team_a": "W89",
+    "team_b": "W90",
+    "kickoff_utc": "2026-07-08T20:00:00Z",
+    "kickoff_local_et": "2026-07-08T16:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M098__W93__vs__W94",
+    "match_number": 98,
+    "stage": "quarterfinals",
+    "team_a": "W93",
+    "team_b": "W94",
+    "kickoff_utc": "2026-07-09T19:00:00Z",
+    "kickoff_local_et": "2026-07-09T15:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M099__W91__vs__W92",
+    "match_number": 99,
+    "stage": "quarterfinals",
+    "team_a": "W91",
+    "team_b": "W92",
+    "kickoff_utc": "2026-07-10T21:00:00Z",
+    "kickoff_local_et": "2026-07-10T17:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M100__W95__vs__W96",
+    "match_number": 100,
+    "stage": "quarterfinals",
+    "team_a": "W95",
+    "team_b": "W96",
+    "kickoff_utc": "2026-07-11T01:00:00Z",
+    "kickoff_local_et": "2026-07-10T21:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M101__W97__vs__W98",
+    "match_number": 101,
+    "stage": "semifinals",
+    "team_a": "W97",
+    "team_b": "W98",
+    "kickoff_utc": "2026-07-13T19:00:00Z",
+    "kickoff_local_et": "2026-07-13T15:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M102__W99__vs__W100",
+    "match_number": 102,
+    "stage": "semifinals",
+    "team_a": "W99",
+    "team_b": "W100",
+    "kickoff_utc": "2026-07-14T19:00:00Z",
+    "kickoff_local_et": "2026-07-14T15:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M103__L101__vs__L102",
+    "match_number": 103,
+    "stage": "third_place",
+    "team_a": "L101",
+    "team_b": "L102",
+    "kickoff_utc": "2026-07-17T21:00:00Z",
+    "kickoff_local_et": "2026-07-17T17:00-04:00",
+    "venue_id": null,
+    "broadcast": {
+      "us": {
+        "english_channel": null,
+        "spanish_channel": null,
+        "stream_url": null
+      }
+    }
+  },
+  {
+    "match_id": "M104__W101__vs__W102",
+    "match_number": 104,
     "stage": "final",
-    "group": null,
-    "team_a": null,
-    "team_b": null,
+    "team_a": "W101",
+    "team_b": "W102",
     "kickoff_utc": "2026-07-19T19:00:00Z",
-    "venue_id": "metlife",
+    "kickoff_local_et": "2026-07-19T15:00-04:00",
+    "venue_id": null,
     "broadcast": {
       "us": {
         "english_channel": null,

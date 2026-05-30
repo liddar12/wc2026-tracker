@@ -41,7 +41,8 @@ export function deriveLockState(schedule, nowMs = Date.now()) {
   const groupStarts = schedule.filter((m) => m.stage === 'group').map((m) => Date.parse(m.kickoff_utc)).filter(Number.isFinite);
   const groupLastKickoff = groupStarts.length ? Math.max(...groupStarts) : null;
   const groupEnds = Number.isFinite(groupLastKickoff) ? groupLastKickoff + (2 * 60 * 60 * 1000) : null;
-  const r32Starts = schedule.filter((m) => m.stage === 'r32').map((m) => Date.parse(m.kickoff_utc)).filter(Number.isFinite);
+  // Accept both 'r32' (legacy) and 'round_of_32' (current PDF-driven schema).
+  const r32Starts = schedule.filter((m) => m.stage === 'r32' || m.stage === 'round_of_32').map((m) => Date.parse(m.kickoff_utc)).filter(Number.isFinite);
   const firstGroup = groupStarts.length ? Math.min(...groupStarts) : null;
   const firstR32 = r32Starts.length ? Math.min(...r32Starts) : null;
   const duringGroupStage = firstGroup && nowMs >= firstGroup && (!groupEnds || nowMs <= groupEnds);
