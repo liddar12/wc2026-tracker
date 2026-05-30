@@ -96,6 +96,9 @@ export function setPick(match, choice) {
     picked_at: new Date().toISOString()
   };
   persistPicks();
+  if (window.dispatchEvent) {
+    window.dispatchEvent(new CustomEvent('competition:picks-updated', { detail: { picks: state.picks } }));
+  }
   emit();
 }
 
@@ -106,11 +109,20 @@ export function getPick(match) {
 export function clearPick(match) {
   delete state.picks[makePickKey(match)];
   persistPicks();
+  if (window.dispatchEvent) {
+    window.dispatchEvent(new CustomEvent('competition:picks-updated', { detail: { picks: state.picks } }));
+  }
   emit();
 }
 
 export function allPicks() {
   return Object.entries(state.picks).map(([key, p]) => ({ key, ...p }));
+}
+
+export function replaceAllPicks(nextPicks) {
+  state.picks = nextPicks && typeof nextPicks === 'object' ? nextPicks : {};
+  persistPicks();
+  emit();
 }
 
 /* Prefs */

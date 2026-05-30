@@ -29,7 +29,7 @@ cleanup() {
 trap cleanup EXIT
 
 start_local() {
-  for port in 8801 8802 8803 8804 8805 8806; do
+  for port in $(seq 8801 8899); do
     if ! lsof -ti:"$port" >/dev/null 2>&1; then
       (cd "$DOCROOT" && python3 -m http.server "$port" >/dev/null 2>&1) &
       SERVER_PID=$!
@@ -133,6 +133,7 @@ check_json_shape "/data/h2h.json"            "assert isinstance(data, dict), typ
 check_json_shape "/data/form.json"           "assert isinstance(data, dict), type(data).__name__"        "data/form.json"
 check_json_shape "/data/scorers.json"        "assert isinstance(data, dict), type(data).__name__"        "data/scorers.json"
 check_json_shape "/data/weather.json"        "assert isinstance(data, dict), type(data).__name__"        "data/weather.json"
+check_json_shape "/data/injuries.json"       "assert isinstance(data, dict) and isinstance(data.get('by_team', {}), dict), type(data).__name__" "data/injuries.json"
 check_json_shape "/data/fatigue.json"        "assert isinstance(data, dict) and len(data) >= 70, len(data)" "data/fatigue.json"
 check_json_shape "/data/xg.json"             "assert isinstance(data, dict) and len(data) >= 70, len(data)" "data/xg.json"
 check_json_shape "/data/markets.json" \

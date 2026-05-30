@@ -2,6 +2,14 @@
 node_modules/
 *.log
 .env
+.env.local
+.env.*.local
 __pycache__/
 *.pyc
 .venv/
+
+# Generated Supabase preview config (use Netlify env + write-runtime-config.mjs)
+app/preview-config.js
+
+# Local Netlify folder
+.netlify

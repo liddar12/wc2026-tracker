@@ -10,7 +10,7 @@
  *   loadData() -> {
  *     meta, teams, players, groupMatchups, schedule, actualResults,
  *     venues, scheduleFull, lineups, referees, matchReferees,
- *     h2h, form, scorers, weather, fatigue, xg
+ *     h2h, form, scorers, weather, fatigue, xg, markets, injuries
  *   }
  */
 
@@ -36,7 +36,8 @@ const OPTIONAL_FILES = [
   { file: 'weather.json',        fallback: {} },
   { file: 'fatigue.json',        fallback: {} },
   { file: 'xg.json',             fallback: {} },
-  { file: 'markets.json',        fallback: {} }
+  { file: 'markets.json',        fallback: {} },
+  { file: 'injuries.json',       fallback: {} }
 ];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
@@ -141,6 +142,7 @@ function fileToKey(file) {
     case 'fatigue.json':         return 'fatigue';
     case 'xg.json':              return 'xg';
     case 'markets.json':         return 'markets';
+    case 'injuries.json':        return 'injuries';
     default: return file.replace('.json', '');
   }
 }

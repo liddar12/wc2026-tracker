@@ -1,0 +1,75 @@
+name: Frequent Data Refresh
+
+# Refreshes the volatile, fan-facing datasets — player ratings/injuries, team
+# ratings, and power rankings — far more often than the once-a-day
+# daily_update.yml job.
+#
+# Cadence: cron '17 * * * *' fires once per hour (at :17 to dodge the
+# top-of-the-hour scheduling congestion GitHub is prone to dropping) =>
+# 24 runs/day, comfortably above the >=20/day target.
+#
+# IMPORTANT: GitHub Actions only runs `schedule:` triggers from the default
+# branch (main). On this feature branch the file is inert — it does nothing
+# until merged to main. workflow_dispatch lets you trial it manually from any
+# branch once it lands.
+
+on:
+  schedule:
+    - cron: '17 * * * *'   # hourly at :17 UTC => 24 runs/day
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: frequent-update
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r scripts/requirements.txt
+
+      # ---- Team + power-ranking inputs (best-effort; never fail the build) ----
+      - name: Scrape Elo ratings
+        run: python scripts/update_elo.py
+        continue-on-error: true
+      - name: Scrape ESPN / FIFA power rankings
+        run: python scripts/update_espn.py
+        continue-on-error: true
+
+      # ---- Player + injury data ----
+      - name: Scrape squad / injury news (inline player flags)
+        run: python scripts/update_squads.py
+        continue-on-error: true
+      - name: Build dedicated injuries feed
+        run: python scripts/scrape_injuries.py
+        continue-on-error: true
+
+      # ---- Recompute composite + power_rank from refreshed inputs ----
+      - name: Recompute composite + power rankings
+        run: python scripts/rebuild_composite.py
+        continue-on-error: true
+
+      - name: Validate refreshed data
+        run: python3 scripts/validate_data.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "wc26-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes; nothing to commit."
+          else
+            git commit -m "chore: frequent data refresh (players/injuries/teams/power-rank)"
+            git push
+          fi

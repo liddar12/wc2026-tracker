@@ -384,6 +384,73 @@ body {
   border-color: var(--primary);
 }
 .pick-btn:active { transform: scale(0.98); }
+.pick-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.auth-card {
+  display: grid;
+  gap: 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px;
+}
+.auth-grid {
+  display: grid;
+  gap: 8px;
+}
+.auth-input {
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 10px 12px;
+  font-size: 16px;
+}
+.auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.auth-actions-stack {
+  flex-direction: column;
+}
+.auth-actions-stack .pick-btn {
+  width: 100%;
+}
+.pick-btn-secondary {
+  background: transparent;
+  color: var(--text);
+  border-color: var(--border);
+}
+.auth-join-note {
+  margin: 0;
+}
+.auth-join-note code,
+.auth-join-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.95em;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+}
+.wc26-join-route .competition-section .auth-card {
+  border-color: color-mix(in srgb, var(--primary) 45%, var(--border));
+  box-shadow: 0 4px 20px color-mix(in srgb, var(--primary) 12%, transparent);
+}
+.wc26-join-route #app-title::after {
+  content: ' · Invite';
+  font-size: 0.72em;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+.competition-section {
+  margin-top: 0;
+}
 
 /* Lists & sections */
 .section { margin: 18px 0; }
