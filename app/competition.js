@@ -100,7 +100,7 @@ async function loadProfileAndGroups() {
 
   const { data: memberships } = await state.client
     .from('group_members')
-    .select('group_id, groups:groups!inner(id,name,code,created_by)')
+    .select('group_id, groups:groups!inner(id,name,code,created_by,visibility)')
     .eq('user_id', state.user.id);
   state.groups = (memberships || []).map((m) => m.groups);
   const desiredGroup = localStorage.getItem(LS_GROUP);
@@ -170,50 +170,59 @@ export async function signOut() {
   persistAuthDismissed();
 }
 
-export async function createPrivateGroup(name, passphraseInput) {
+// New: create a pool (public or private). No passphrase. Server-side
+// `create_pool` RPC generates the join code and inserts membership atomically.
+export async function createPool(name, visibility = 'private') {
   if (!state.client || !state.user) throw new Error('Login required');
+  const trimmed = String(name || '').trim();
+  if (trimmed.length < 2) throw new Error('Pool name must be at least 2 characters.');
+  if (trimmed.length > 80) throw new Error('Pool name must be at most 80 characters.');
+  const vis = visibility === 'public' ? 'public' : 'private';
   try {
-    const code = generateGroupCode();
-    const passphrase = normalizeGroupPassphrase(passphraseInput);
-    const { data: group, error } = await state.client.rpc('create_private_group', {
-      p_name: String(name || '').trim(),
-      p_code: code,
-      p_passphrase: passphrase
+    const { data: group, error } = await state.client.rpc('create_pool', {
+      p_name: trimmed,
+      p_visibility: vis,
     });
-    if (error || !group) {
-      const fallback = await state.client
-        .from('groups')
-        .insert({ name, code, created_by: state.user.id })
-        .select('*')
-        .single();
-      if (fallback.error) throw fallback.error;
-      const { error: membershipError } = await state.client
-        .from('group_members')
-        .insert({ group_id: fallback.data.id, user_id: state.user.id });
-      if (membershipError) throw membershipError;
-      await loadProfileAndGroups();
-      setActiveGroup(fallback.data.id);
-      state.joinNotice = 'Group created, but secure passphrase RPC is missing on this preview. Apply latest migration.';
-      return fallback.data;
-    }
-    const { error: membershipError } = await state.client
-      .from('group_members')
-      .insert({ group_id: group.id, user_id: state.user.id });
-    if (membershipError) throw membershipError;
+    if (error) throw error;
+    if (!group) throw new Error('Pool creation failed (no row returned).');
     await loadProfileAndGroups();
     setActiveGroup(group.id);
-    state.joinNotice = `Group "${group.name}" created. Share code ${group.code}.`;
+    state.joinNotice = `Pool "${group.name}" created${vis === 'public' ? ' (public)' : ' (private)'}. Share code ${group.code}.`;
     return group;
   } catch (error) {
     throw toCompetitionError(error, 'createGroup');
   }
 }
 
-export async function joinGroupByCode(code, passphrase = '', options = {}) {
-  if (passphrase && typeof passphrase === 'object') {
-    options = passphrase;
-    passphrase = '';
+// Backwards-compat shim. Older client code calls createPrivateGroup(name, passphrase);
+// the passphrase is now ignored.
+export async function createPrivateGroup(name, _passphraseIgnored) {
+  return createPool(name, 'private');
+}
+
+// New: join by exact name. Only matches private pools (public pools may share
+// names). Case-insensitive.
+export async function joinPoolByName(name) {
+  if (!state.client || !state.user) throw new Error('Login required');
+  const trimmed = String(name || '').trim();
+  if (trimmed.length < 2) throw new Error('Enter the pool name.');
+  try {
+    const { data: group, error } = await state.client.rpc('join_pool_by_name', {
+      p_name: trimmed,
+    });
+    if (error) throw error;
+    if (!group) throw new Error('No pool by that name.');
+    await loadProfileAndGroups();
+    setActiveGroup(group.id);
+    state.joinNotice = `Joined "${group.name}".`;
+    return group;
+  } catch (error) {
+    throw toCompetitionError(error, 'joinGroup');
   }
+}
+
+// New: join a pool by its join code (public or private). No passphrase.
+export async function joinPoolByCode(code, options = {}) {
   if (!state.client || !state.user) {
     const pendingCode = String(code || '').trim().toLowerCase();
     state.activeCode = pendingCode;
@@ -225,9 +234,8 @@ export async function joinGroupByCode(code, passphrase = '', options = {}) {
   const normalized = String(code || '').trim().toLowerCase();
   if (!isValidJoinCode(normalized)) throw new Error('Code format must look like silver-otter-4821');
   try {
-    const { data: group, error } = await state.client.rpc('join_group_by_code', {
+    const { data: group, error } = await state.client.rpc('join_pool_by_code', {
       p_code: normalized,
-      p_passphrase: String(passphrase || '')
     });
     if (error) throw error;
     if (!group) throw new Error('Invalid code');
@@ -235,16 +243,54 @@ export async function joinGroupByCode(code, passphrase = '', options = {}) {
     await loadProfileAndGroups();
     const hasMembership = state.groups.some((entry) => entry.id === group.id);
     if (!hasMembership) {
-      throw new Error('Join request accepted, but group access is still syncing. Try again in a few seconds.');
+      throw new Error('Join request accepted, but pool access is still syncing. Try again in a few seconds.');
     }
     setActiveGroup(group.id);
-    state.joinNotice = `Joined group "${group.name}".`;
+    state.joinNotice = `Joined "${group.name}".`;
     return group;
   } catch (error) {
     const mapped = toCompetitionError(error, 'joinGroup');
     state.joinNotice = mapped.message;
     if (options.silent) return null;
     throw mapped;
+  }
+}
+
+// Backwards-compat shim. Older client code calls joinGroupByCode(code, passphrase).
+export async function joinGroupByCode(code, _passphraseIgnored = '', options = {}) {
+  // Allow the historical 2-arg overload where second arg was options object.
+  if (_passphraseIgnored && typeof _passphraseIgnored === 'object') {
+    options = _passphraseIgnored;
+  }
+  return joinPoolByCode(code, options);
+}
+
+// New: list publicly discoverable pools. Anon can read these (RLS allows).
+export async function fetchPublicPools(limit = 100) {
+  if (!state.client) return [];
+  try {
+    const { data, error } = await state.client
+      .from('groups')
+      .select('id,name,code,visibility,created_at,created_by')
+      .eq('visibility', 'public')
+      .order('created_at', { ascending: false })
+      .limit(limit);
+    if (error) throw error;
+    // Pull member counts in parallel — best-effort, RLS may hide private rows.
+    const ids = (data || []).map((g) => g.id);
+    let countByGroup = {};
+    if (ids.length) {
+      const { data: members } = await state.client
+        .from('group_members')
+        .select('group_id')
+        .in('group_id', ids);
+      for (const row of members || []) {
+        countByGroup[row.group_id] = (countByGroup[row.group_id] || 0) + 1;
+      }
+    }
+    return (data || []).map((g) => ({ ...g, member_count: countByGroup[g.id] || 0 }));
+  } catch {
+    return [];
   }
 }
 
@@ -457,13 +503,6 @@ function assertPassword(password) {
   if (password.length < 8) {
     throw new Error('Password must be at least 8 characters.');
   }
-}
-
-function normalizeGroupPassphrase(value) {
-  const passphrase = String(value || '').trim();
-  if (!passphrase) throw new Error('Passphrase is required.');
-  if (passphrase.length < 8) throw new Error('Passphrase must be at least 8 characters.');
-  return passphrase;
 }
 
 function loadBracketDrafts() {

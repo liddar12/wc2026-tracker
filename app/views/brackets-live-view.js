@@ -7,6 +7,7 @@
 */
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
+import { renderBracketView } from './bracket-view.js';
 
 const STAGE_LABELS = {
   round_of_32: 'Round of 32',
@@ -21,26 +22,45 @@ const STAGE_ORDER = [
   'round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final'
 ];
 
-export function renderBracketsLiveView(root, data) {
+export function renderBracketsLiveView(root, data, params) {
   root.innerHTML = '';
+  if (!data) {
+    const p = document.createElement('p');
+    p.className = 'loading';
+    p.textContent = 'Loading bracket…';
+    root.appendChild(p);
+    return;
+  }
 
+  // Sub-tab toggle: Live ↔ Projected. Both modes live under the same #/brackets
+  // route so we never end up trapped on one side.
+  const mode = params?.mode === 'projected' ? 'projected' : 'live';
   const sub = document.createElement('div');
   sub.className = 'brackets-tabs';
   sub.innerHTML = `
-    <button type="button" class="is-active" data-sub="live">Live</button>
-    <button type="button" data-sub="legacy">Projected (model)</button>
+    <button type="button" class="${mode === 'live' ? 'is-active' : ''}" data-mode="live">Live (actual)</button>
+    <button type="button" class="${mode === 'projected' ? 'is-active' : ''}" data-mode="projected">Projected (model)</button>
   `;
   sub.addEventListener('click', (e) => {
-    const t = e.target.closest('button[data-sub]');
+    const t = e.target.closest('button[data-mode]');
     if (!t) return;
-    sub.querySelectorAll('button').forEach((b) => b.classList.toggle('is-active', b === t));
-    if (t.dataset.sub === 'legacy') {
-      setRoute('bracket', {});
-    }
+    const next = t.dataset.mode;
+    if (next === mode) return; // no-op
+    // Toggle by updating the URL params so refresh / back-button keeps the
+    // user's last view, and so the toggle is fully symmetric.
+    setRoute('brackets', next === 'projected' ? { mode: 'projected' } : {});
   });
   root.appendChild(sub);
 
-  const updated = (data.actualResults?.last_updated) || data.meta?.data_version;
+  if (mode === 'projected') {
+    // Delegate to the legacy SVG bracket view for the projected/model rendering.
+    const wrap = document.createElement('div');
+    root.appendChild(wrap);
+    renderBracketView(wrap, data);
+    return;
+  }
+
+  const updated = data?.actualResults?.last_updated || data?.meta?.data_version;
   const intro = document.createElement('div');
   intro.className = 'home-card';
   intro.style.marginBottom = '12px';

@@ -13,8 +13,8 @@ import {
   getAuthPanelMode,
   isAuthDismissed,
   isSupabaseConfigured,
-  createPrivateGroup,
-  joinGroupByCode,
+  joinPoolByCode,
+  joinPoolByName,
   setActiveGroup,
   saveBracketForActiveGroup,
   fetchLeaderboard,
@@ -199,13 +199,17 @@ async function paintCompetition(section, data) {
         <button class="pick-btn" id="comp-go-create">Create Group</button>
       </div>
       <div style="display:grid; gap:8px; margin:10px 0;">
-        <label class="muted">Your groups</label>
-        <select id="comp-group-select" class="auth-input"><option value="">Choose group</option>${groups}</select>
+        <label class="muted">Your pools</label>
+        <select id="comp-group-select" class="auth-input"><option value="">Choose pool</option>${groups}</select>
         <div class="auth-grid">
-          <input id="comp-join-code" class="auth-input" placeholder="Join code (silver-otter-4821)" aria-label="Join code">
-          <input id="comp-join-passphrase" class="auth-input" placeholder="Group passphrase" type="password" aria-label="Group passphrase">
+          <input id="comp-join-code" class="auth-input" placeholder="Join by code (silver-otter-4821)" aria-label="Join by code">
           <button class="pick-btn" id="comp-join-group">Join by Code</button>
         </div>
+        <div class="auth-grid">
+          <input id="comp-join-name" class="auth-input" placeholder="Join private pool by exact name" aria-label="Join by exact name">
+          <button class="pick-btn pick-btn-secondary" id="comp-join-name-btn">Join by Name</button>
+        </div>
+        <p class="muted" style="font-size:12px; margin:0;">More options on the <a href="#/pools">Pools tab</a>.</p>
       </div>
       ${code ? `<p class="muted">Code: <code>${escapeHtml(code)}</code> · URL: <a href="${escapeHtml(path)}">${escapeHtml(path)}</a></p>` : '<p class="muted">Select a group to share code + URL.</p>'}
       ${comp.joinNotice ? `<p class="muted auth-join-note">${escapeHtml(comp.joinNotice)}</p>` : ''}
@@ -247,23 +251,36 @@ async function paintCompetition(section, data) {
       setMessage(section, err.message || 'Could not switch group', true);
     }
   });
-  section.querySelector('#comp-go-create').addEventListener('click', () => paintCreateGroup(section, data));
+  section.querySelector('#comp-go-create').addEventListener('click', () => setRoute('create-group', {}));
   section.querySelector('#comp-join-group').addEventListener('click', async () => {
     const joinBtn = section.querySelector('#comp-join-group');
     const codeInput = section.querySelector('#comp-join-code').value.trim();
-    const passphrase = section.querySelector('#comp-join-passphrase').value;
     setButtonBusy(joinBtn, true);
     try {
       setMessage(section, '');
       if (!codeInput) throw new Error('Enter a join code');
       if (!isValidJoinCode(codeInput)) throw new Error('Code format must look like silver-otter-4821');
-      if (!String(passphrase || '').trim()) throw new Error('Passphrase is required to join this private group.');
-      await joinGroupByCode(codeInput, passphrase);
+      await joinPoolByCode(codeInput);
       await paintCompetition(section, data);
     } catch (err) {
-      setMessage(section, err.message || 'Could not join group. Verify the code and try again.', true);
+      setMessage(section, err.message || 'Could not join pool. Verify the code and try again.', true);
     } finally {
       setButtonBusy(joinBtn, false);
+    }
+  });
+  section.querySelector('#comp-join-name-btn').addEventListener('click', async () => {
+    const btn = section.querySelector('#comp-join-name-btn');
+    const nameInput = section.querySelector('#comp-join-name').value.trim();
+    setButtonBusy(btn, true);
+    try {
+      setMessage(section, '');
+      if (!nameInput) throw new Error('Type the exact pool name.');
+      await joinPoolByName(nameInput);
+      await paintCompetition(section, data);
+    } catch (err) {
+      setMessage(section, err.message || 'Could not join pool. Check the name spelling.', true);
+    } finally {
+      setButtonBusy(btn, false);
     }
   });
   section.querySelector('#comp-draft-select').addEventListener('change', (e) => {

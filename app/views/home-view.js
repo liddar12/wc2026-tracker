@@ -16,6 +16,13 @@ const OPENING_KEY = 'opening_match';
 
 export function renderHome(root, data) {
   root.innerHTML = '';
+  if (!data) {
+    const p = document.createElement('p');
+    p.className = 'loading';
+    p.textContent = 'Loading…';
+    root.appendChild(p);
+    return;
+  }
   root.appendChild(renderHero(data));
   root.appendChild(renderAuthSlot(data));
   root.appendChild(renderTodaySection(data));
@@ -100,10 +107,10 @@ function renderAuthSlot(data) {
     wrap.innerHTML = `
       <div class="home-card home-card-auth">
         <h2 class="home-card-title">Signed in</h2>
-        <p class="muted">${escapeHtml(comp.profile?.username || comp.user.email || 'You')} · ${groupCount} group${groupCount === 1 ? '' : 's'} · Active: ${escapeHtml(activeName)}</p>
+        <p class="muted">${escapeHtml(comp.profile?.username || comp.user.email || 'You')} · ${groupCount} pool${groupCount === 1 ? '' : 's'} · Active: ${escapeHtml(activeName)}</p>
         <div class="home-card-cta">
           <button class="pick-btn" data-go="my-brackets">My Brackets →</button>
-          <button class="pick-btn pick-btn-secondary" data-go="brackets">Live Bracket →</button>
+          <button class="pick-btn pick-btn-secondary" data-go="pools">Manage pools →</button>
         </div>
       </div>
     `;
@@ -112,10 +119,13 @@ function renderAuthSlot(data) {
     wrap.innerHTML = `
       <div class="home-card home-card-auth">
         <h2 class="home-card-title">Join a pool or play solo</h2>
-        <p class="muted">Sign in to create or join private group brackets. Or continue anonymously to track picks locally.</p>
+        <p class="muted">Sign in to create or join bracket pools (public or private). Or continue anonymously to track picks locally.</p>
         <div class="home-card-cta">
           <button class="pick-btn" data-go-signin>Sign In / Sign Up</button>
           <button class="pick-btn pick-btn-secondary" data-go-guest>Continue Anonymously</button>
+        </div>
+        <div class="home-card-cta" style="margin-top: 6px;">
+          <button class="pick-btn pick-btn-secondary" data-go="pools">Browse public pools →</button>
         </div>
       </div>
     `;

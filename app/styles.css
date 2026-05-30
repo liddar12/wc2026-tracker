@@ -1475,6 +1475,100 @@ body.search-open { overflow: hidden; }
   margin: 12px 0;
 }
 
+.cg-radio {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 10px;
+  padding: 12px;
+  margin-top: 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.cg-radio input { margin-top: 4px; transform: scale(1.2); accent-color: var(--primary); }
+.cg-radio:has(input:checked) {
+  border-color: var(--primary);
+  background: color-mix(in srgb, var(--primary) 8%, var(--surface));
+}
+
+/* ============================================================
+   Pools tab (discovery + join-by-name + my pools)
+   ============================================================ */
+.pools-hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.pools-hero h2 { margin: 0 0 4px; font-size: 18px; }
+.pools-hero p.muted { margin: 0 0 12px; }
+
+.pools-join-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px;
+  margin-top: 10px;
+}
+.pools-tabs {
+  display: flex;
+  gap: 4px;
+  margin: 14px 0 10px;
+  border-bottom: 1px solid var(--border);
+}
+.pools-tabs button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  color: var(--text-muted);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pools-tabs button.is-active {
+  color: var(--text);
+  border-bottom-color: var(--primary);
+}
+
+.pools-list { display: grid; gap: 8px; }
+.pool-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  align-items: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 56px;
+}
+.pool-card .pool-name { font-weight: 600; font-size: 15px; }
+.pool-card .pool-meta { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+.pool-badge {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+.pool-badge.is-public { background: color-mix(in srgb, var(--good) 18%, var(--surface)); color: var(--good); }
+.pool-badge.is-private { background: color-mix(in srgb, var(--primary) 18%, var(--surface)); color: var(--primary); }
+.pool-badge.is-joined { background: color-mix(in srgb, var(--warn) 18%, var(--surface)); color: var(--warn); }
+
+.pools-empty {
+  text-align: center;
+  padding: 32px 16px;
+  color: var(--text-muted);
+}
+
 /* ============================================================
    Brackets (live) + My Brackets (builder)
    ============================================================ */

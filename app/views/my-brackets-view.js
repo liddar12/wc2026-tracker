@@ -18,6 +18,13 @@ const LS_KEY_PREFIX = 'wc26.mybrackets.';
 const ROUND_LABELS = ['R32', 'R16', 'QF', 'SF', 'Final'];
 
 export function renderMyBracketsView(root, data) {
+  if (!data) {
+    root.innerHTML = '<p class="loading">Loading bracket builder…</p>';
+    return;
+  }
+  // Capture scroll position so re-renders triggered by tap-to-pick don't yank
+  // the user back to the top of the page.
+  const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
   root.innerHTML = '';
 
   const comp = getCompetitionState();
@@ -67,6 +74,12 @@ export function renderMyBracketsView(root, data) {
   const proj = renderProjection(rounds, data);
   root.appendChild(proj);
 
+  // Restore scroll position after the DOM rebuild so picking doesn't yank
+  // the user back to the top.
+  if (scrollY > 0) {
+    requestAnimationFrame(() => window.scrollTo({ top: scrollY, behavior: 'instant' }));
+  }
+
   // Submit bar
   root.appendChild(renderSubmitBar(comp, totalPicks, totalSlots, async (msgEl, btn) => {
     btn.disabled = true;
@@ -91,13 +104,14 @@ function renderHeader(comp) {
   const groups = comp.groups || [];
   const activeId = comp.activeGroup?.id || '';
   const groupOptions = groups.length
-    ? `<select id="mb-group-select" class="auth-input"><option value="">Local (not submitted to group)</option>${groups.map((g) => `<option value="${escapeHtml(g.id)}" ${activeId === g.id ? 'selected' : ''}>${escapeHtml(g.name)}</option>`).join('')}</select>`
-    : '<p class="muted">No groups yet. <a href="#/create-group">Create a group</a> to compete with friends.</p>';
+    ? `<select id="mb-group-select" class="auth-input"><option value="">Local (not submitted to a pool)</option>${groups.map((g) => `<option value="${escapeHtml(g.id)}" ${activeId === g.id ? 'selected' : ''}>${escapeHtml(g.name)}</option>`).join('')}</select>`
+    : '<p class="muted">No pools yet. <a href="#/pools">Browse public pools</a> or <a href="#/create-group">create your own</a>.</p>';
   wrap.innerHTML = `
     <div class="home-card">
       <h2 class="home-card-title">Build & submit bracket</h2>
       <label for="mb-group-select" class="muted" style="font-size:12px;">Submitting to</label>
       ${groupOptions}
+      <p class="muted" style="font-size:12px; margin: 8px 0 0;">Manage pools on the <a href="#/pools">Pools tab</a>.</p>
     </div>
   `;
   wrap.addEventListener('change', (e) => {
@@ -361,11 +375,17 @@ function pushPicksToLocalState(picks) {
     const LS_PICKS = 'wc26.picks';
     const raw = localStorage.getItem(LS_PICKS);
     const existing = raw ? JSON.parse(raw) : {};
+    const now = new Date().toISOString();
     for (const p of picks) {
       const k = `${p.team_a}__vs__${p.team_b}`;
+      const prior = existing[k];
+      // Only stamp a new picked_at if the choice changed (or didn't exist).
+      // Preserve the original timestamp so leaderboard tie-breakers based on
+      // earliest submit stay accurate.
+      const choiceChanged = !prior || prior.choice !== p.choice;
       existing[k] = {
         team_a: p.team_a, team_b: p.team_b, choice: p.choice,
-        picked_at: new Date().toISOString(),
+        picked_at: choiceChanged ? now : (prior?.picked_at || now),
       };
     }
     localStorage.setItem(LS_PICKS, JSON.stringify(existing));
@@ -374,10 +394,14 @@ function pushPicksToLocalState(picks) {
 
 function bracketToPickArray(bracket) {
   // Convert {picks: {matchNumber: {team, team_a, team_b}}} -> [{team_a, team_b, choice}, ...]
+  // Legacy: some saved entries were stored as plain strings (just the picked
+  // team name). Those can't be submitted since we don't know the matchup; skip.
   const out = [];
   if (!bracket.picks) return out;
   for (const entry of Object.values(bracket.picks)) {
-    if (!entry || typeof entry !== 'object') continue;
+    if (!entry) continue;
+    if (typeof entry === 'string') continue; // legacy shape — wait for re-pick
+    if (typeof entry !== 'object') continue;
     const { team, team_a, team_b } = entry;
     if (!team || !team_a || !team_b) continue;
     const choice = team === team_a ? 'team_a' : team === team_b ? 'team_b' : null;
