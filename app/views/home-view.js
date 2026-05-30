@@ -381,14 +381,14 @@ function openTeamPicker(wrap, data) {
 function renderTodaySection(data) {
   const wrap = document.createElement('section');
   wrap.className = 'home-section';
-  // Bucket by the viewer's LOCAL calendar day — matching the Schedule tab.
-  // Slicing kickoff_utc (UTC) would file a 9pm-local kickoff under the next
-  // day, so a team would appear under "Today" when it actually played the
-  // night before (or vice-versa). ~1/3 of WC26 fixtures cross the date line.
-  const todayIso = toLocalDateISO(new Date());
+  // Bucket by the match's UTC calendar day — the canonical FIFA "match day",
+  // matching the Schedule tab. (Kickoff times are still rendered in the
+  // viewer's local zone.) Bucketing by device-local day would scatter a single
+  // tournament day across two dates in US timezones.
+  const todayIso = new Date().toISOString().slice(0, 10);
   const scheduleFull = data.scheduleFull || [];
   const todays = scheduleFull
-    .filter((m) => m.kickoff_utc && toLocalDateISO(new Date(m.kickoff_utc)) === todayIso)
+    .filter((m) => (m.kickoff_utc || '').slice(0, 10) === todayIso)
     .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)));
   const upcoming = todays.length
     ? todays
@@ -555,15 +555,6 @@ function renderQuickLinks() {
     if (t) setRoute(t.dataset.go, {});
   });
   return wrap;
-}
-
-function toLocalDateISO(d) {
-  // YYYY-MM-DD in the viewer's local timezone (not UTC).
-  if (Number.isNaN(d?.getTime?.())) return '';
-  const y = d.getFullYear();
-  const m = String(d.getMonth() + 1).padStart(2, '0');
-  const day = String(d.getDate()).padStart(2, '0');
-  return `${y}-${m}-${day}`;
 }
 
 function escapeHtml(s) {
