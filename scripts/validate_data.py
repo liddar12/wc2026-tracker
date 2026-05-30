@@ -446,6 +446,7 @@ class Validator:
             "form.json",
             "scorers.json",
             "weather.json",
+            "injuries.json",
         ):
             self.check_dict_or_empty(name)
         self.check_xg()
