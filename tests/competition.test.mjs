@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { isValidJoinCode, deriveLockState, computeBasePath, extractJoinCodeFromPath, buildPostJoinPath } from '../app/competition-rules.js';
 import { normalizeSignInIdentifier } from '../app/competition-auth.js';
-import { normalizeBracketPicks, scoreBracket } from '../app/competition-scoring.js';
+import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket } from '../app/competition-scoring.js';
 
 assert.equal(isValidJoinCode('silver-otter-4821'), true, 'valid join code should pass');
 assert.equal(isValidJoinCode('Silver-Otter-4821'), true, 'mixed case should normalize');
@@ -101,6 +101,49 @@ const score = scoreBracket([
 });
 assert.equal(score, 2, 'duplicate picks must not inflate bracket score');
 
+// BKT-021: knockout submissions must reject choice='draw' (draws are not valid
+// outcomes in a knockout bracket) while still stripping invalid/duplicate picks.
+const knockoutPicks = normalizeKnockoutPicks([
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' },
+  { team_a: 'Gamma', team_b: 'Delta', choice: 'draw' },
+  { team_a: 'Beta', team_b: 'Alpha', choice: 'team_b' },
+  { team_a: 'Eta', team_b: 'Theta', choice: 'team_b' }
+]);
+assert.deepEqual(knockoutPicks, [
+  { team_a: 'Alpha', team_b: 'Beta', choice: 'team_a' },
+  { team_a: 'Eta', team_b: 'Theta', choice: 'team_b' }
+], 'knockout picks must drop draws and de-duplicated pairs');
+assert.equal(
+  normalizeKnockoutPicks([{ team_a: 'Gamma', team_b: 'Delta', choice: 'draw' }]).length,
+  0,
+  'a draw-only bracket has no submittable knockout picks'
+);
+// normalizeBracketPicks (used for scoring) must still keep draws unchanged.
+assert.equal(
+  normalizeBracketPicks([{ team_a: 'Gamma', team_b: 'Delta', choice: 'draw' }]).length,
+  1,
+  'scoring normalizer must preserve draws'
+);
+
+// BKT-004: bracket submit must upsert on (group_id,user_id), not insert-only,
+// so a player can edit and re-submit their bracket while it is unlocked.
+const competitionSrc = readFileSync(new URL('../app/competition.js', import.meta.url), 'utf8');
+assert.match(
+  competitionSrc,
+  /from\('group_brackets'\)\s*\.upsert\(/,
+  'saveBracketForActiveGroup must upsert into group_brackets (not insert-only)'
+);
+assert.match(
+  competitionSrc,
+  /onConflict:\s*'group_id,user_id'/,
+  'group_brackets upsert must target the (group_id,user_id) primary key'
+);
+assert.match(
+  competitionSrc,
+  /normalizeKnockoutPicks\(resolveSelectedDraftPicks\(\)\)/,
+  'submit path must normalize via the knockout normalizer that rejects draws'
+);
+
 const migrationSql = readFileSync(new URL('../supabase/migrations/20260527_auth_groups_brackets.sql', import.meta.url), 'utf8');
 assert.match(
   migrationSql,
@@ -109,6 +152,24 @@ assert.match(
 assert.match(
   migrationSql,
   /create policy "group_brackets_update_self"[\s\S]+exists\s*\([\s\S]+public\.group_members gm[\s\S]+gm\.group_id = group_brackets\.group_id and gm\.user_id = auth\.uid\(\)/i
+);
+
+const passphraseMigrationSql = readFileSync(new URL('../supabase/migrations/20260528_group_passphrase_secure_flow.sql', import.meta.url), 'utf8');
+assert.match(
+  passphraseMigrationSql,
+  /create or replace function public\.create_private_group\(p_name text, p_code text, p_passphrase text\)/i
+);
+assert.match(
+  passphraseMigrationSql,
+  /crypt\(trim\(p_passphrase\), gen_salt\('bf'\)\)/i
+);
+assert.match(
+  passphraseMigrationSql,
+  /create or replace function public\.join_group_by_code\(p_code text, p_passphrase text default null\)/i
+);
+assert.match(
+  passphraseMigrationSql,
+  /if crypt\(trim\(p_passphrase\), v_group\.passphrase_hash\) <> v_group\.passphrase_hash then/i
 );
 
 console.log('competition tests: OK');

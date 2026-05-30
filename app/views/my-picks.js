@@ -18,7 +18,11 @@ import {
   setActiveGroup,
   saveBracketForActiveGroup,
   fetchLeaderboard,
-  getJoinUrls
+  getJoinUrls,
+  listBracketDrafts,
+  getActiveDraftId,
+  setActiveDraft,
+  createBracketDraft
 } from '../competition.js';
 import { renderAuthPanel, renderGuestBanner } from '../competition-auth-panel.js';
 import { isValidJoinCode } from '../competition-rules.js';
@@ -171,9 +175,17 @@ async function paintCompetition(section, data) {
     : 'Bracket open';
   const rows = await fetchLeaderboard(data);
   const { code, path } = getJoinUrls();
+  const drafts = listBracketDrafts();
+  const activeDraftId = getActiveDraftId();
   const groups = comp.groups
     .map((g) => `<option value="${escapeHtml(g.id)}" ${comp.activeGroup?.id === g.id ? 'selected' : ''}>${escapeHtml(g.name)}</option>`)
     .join('');
+  const draftOptions = drafts
+    .map((d) => `<option value="${escapeHtml(d.id)}" ${d.id === activeDraftId ? 'selected' : ''}>${escapeHtml(d.name)}</option>`)
+    .join('');
+  const activeDraft = drafts.find((d) => d.id === activeDraftId) || drafts[0] || null;
+  const activeDraftPickCount = Array.isArray(activeDraft?.picks) ? activeDraft.picks.length : 0;
+  const canSubmitBracket = !comp.lockState.bracketLocked && Boolean(comp.activeGroup) && activeDraftPickCount > 0;
   const leaderboard = rows.length
     ? `<ol style="padding-left:20px;">${rows.map((r) => `<li>${escapeHtml(r.username)} · ${r.score} pts</li>`).join('')}</ol>`
     : '<p class="muted">No submissions yet.</p>';
@@ -184,22 +196,29 @@ async function paintCompetition(section, data) {
       <p class="muted">${escapeHtml(joinState)} · Signed in as ${escapeHtml(comp.profile?.username || comp.user.email || 'user')}</p>
       <div class="auth-actions">
         <button class="pick-btn" id="comp-signout">Sign Out</button>
-        <button class="pick-btn" id="comp-save" ${comp.lockState.bracketLocked ? 'disabled' : ''}>Save My Bracket to Group</button>
+        <button class="pick-btn" id="comp-go-create">Create Group</button>
       </div>
       <div style="display:grid; gap:8px; margin:10px 0;">
         <label class="muted">Your groups</label>
         <select id="comp-group-select" class="auth-input"><option value="">Choose group</option>${groups}</select>
         <div class="auth-grid">
-          <input id="comp-new-group" class="auth-input" placeholder="New private group name" aria-label="New private group name">
-          <button class="pick-btn" id="comp-create-group">Create Group</button>
-        </div>
-        <div class="auth-grid">
           <input id="comp-join-code" class="auth-input" placeholder="Join code (silver-otter-4821)" aria-label="Join code">
+          <input id="comp-join-passphrase" class="auth-input" placeholder="Group passphrase" type="password" aria-label="Group passphrase">
           <button class="pick-btn" id="comp-join-group">Join by Code</button>
         </div>
       </div>
       ${code ? `<p class="muted">Code: <code>${escapeHtml(code)}</code> · URL: <a href="${escapeHtml(path)}">${escapeHtml(path)}</a></p>` : '<p class="muted">Select a group to share code + URL.</p>'}
       ${comp.joinNotice ? `<p class="muted auth-join-note">${escapeHtml(comp.joinNotice)}</p>` : ''}
+      <h3 style="margin-top:12px;">My Brackets</h3>
+      <div class="auth-grid">
+        <select id="comp-draft-select" class="auth-input">${draftOptions}</select>
+        <div class="auth-grid" style="grid-template-columns: 1fr auto;">
+          <input id="comp-new-draft" class="auth-input" placeholder="Bracket name for this group">
+          <button class="pick-btn" id="comp-create-draft">Create</button>
+        </div>
+        <p class="muted">Selected bracket has ${activeDraftPickCount} pick${activeDraftPickCount === 1 ? '' : 's'}.</p>
+        <button class="pick-btn" id="comp-submit-group" ${canSubmitBracket ? '' : 'disabled'}>Submit Selected Bracket to Group</button>
+      </div>
       <h3 style="margin-top:12px;">Leaderboard</h3>
       ${leaderboard}
       <p class="muted" id="comp-msg" role="status" aria-live="polite" style="margin-top:8px;"></p>
@@ -228,30 +247,18 @@ async function paintCompetition(section, data) {
       setMessage(section, err.message || 'Could not switch group', true);
     }
   });
-  section.querySelector('#comp-create-group').addEventListener('click', async () => {
-    const createBtn = section.querySelector('#comp-create-group');
-    const name = section.querySelector('#comp-new-group').value.trim();
-    setButtonBusy(createBtn, true);
-    try {
-      setMessage(section, '');
-      if (!name) throw new Error('Enter a group name');
-      await createPrivateGroup(name);
-      await paintCompetition(section, data);
-    } catch (err) {
-      setMessage(section, err.message || 'Could not create group. Please try again.', true);
-    } finally {
-      setButtonBusy(createBtn, false);
-    }
-  });
+  section.querySelector('#comp-go-create').addEventListener('click', () => paintCreateGroup(section, data));
   section.querySelector('#comp-join-group').addEventListener('click', async () => {
     const joinBtn = section.querySelector('#comp-join-group');
     const codeInput = section.querySelector('#comp-join-code').value.trim();
+    const passphrase = section.querySelector('#comp-join-passphrase').value;
     setButtonBusy(joinBtn, true);
     try {
       setMessage(section, '');
       if (!codeInput) throw new Error('Enter a join code');
       if (!isValidJoinCode(codeInput)) throw new Error('Code format must look like silver-otter-4821');
-      await joinGroupByCode(codeInput);
+      if (!String(passphrase || '').trim()) throw new Error('Passphrase is required to join this private group.');
+      await joinGroupByCode(codeInput, passphrase);
       await paintCompetition(section, data);
     } catch (err) {
       setMessage(section, err.message || 'Could not join group. Verify the code and try again.', true);
@@ -259,20 +266,198 @@ async function paintCompetition(section, data) {
       setButtonBusy(joinBtn, false);
     }
   });
-  section.querySelector('#comp-save').addEventListener('click', async () => {
-    const saveBtn = section.querySelector('#comp-save');
-    setButtonBusy(saveBtn, true);
+  section.querySelector('#comp-draft-select').addEventListener('change', (e) => {
+    setActiveDraft(e.target.value);
+  });
+  section.querySelector('#comp-create-draft').addEventListener('click', async () => {
+    const createBtn = section.querySelector('#comp-create-draft');
+    const name = section.querySelector('#comp-new-draft').value;
+    setButtonBusy(createBtn, true);
+    try {
+      setMessage(section, '');
+      createBracketDraft(name);
+      await paintCompetition(section, data);
+      setMessage(section, 'Bracket draft created from your current local picks.');
+    } catch (err) {
+      setMessage(section, err.message || 'Could not create bracket draft.', true);
+    } finally {
+      setButtonBusy(createBtn, false);
+    }
+  });
+  section.querySelector('#comp-submit-group').addEventListener('click', async () => {
+    const submitBtn = section.querySelector('#comp-submit-group');
+    setButtonBusy(submitBtn, true);
     try {
       setMessage(section, '');
       const score = await saveBracketForActiveGroup(data);
-      setMessage(section, `Bracket saved. Current score: ${score}`);
+      setMessage(section, `Bracket saved to group. Current score: ${score}. You can edit and re-submit until lock.`);
       await paintCompetition(section, data);
     } catch (err) {
-      setMessage(section, err.message || 'Could not save bracket. Check group access and try again.', true);
+      const message = String(err?.message || '');
+      if (/duplicate|unique|group_brackets_pkey/i.test(message)) {
+        setMessage(section, 'You already submitted one bracket to this group. One submission per user is enforced.', true);
+      } else {
+        setMessage(section, message || 'Could not submit bracket. Check group access and try again.', true);
+      }
     } finally {
-      setButtonBusy(saveBtn, false);
+      setButtonBusy(submitBtn, false);
     }
   });
+}
+
+function paintCreateGroup(section, data) {
+  section.innerHTML = `
+    <h2>Group Competition (Beta)</h2>
+    <div class="auth-card">
+      <h3 style="margin:0;">Create Private Group</h3>
+      <p class="muted">Step 1 of 3: Create your group before bracket submission.</p>
+      <input id="comp-group-name" class="auth-input" placeholder="Group name" aria-label="Group name" required>
+      <input id="comp-group-passphrase" class="auth-input" placeholder="Passphrase (8+ characters)" type="password" aria-label="Passphrase" required>
+      <p class="muted" id="comp-group-validation" role="status" aria-live="polite"></p>
+      <div class="auth-actions">
+        <button class="pick-btn" id="comp-create-submit" disabled>Create Group</button>
+        <button class="pick-btn pick-btn-secondary" id="comp-create-cancel" type="button">Back</button>
+      </div>
+      <p class="muted" id="comp-msg" role="status" aria-live="polite"></p>
+    </div>
+  `;
+  const nameEl = section.querySelector('#comp-group-name');
+  const passEl = section.querySelector('#comp-group-passphrase');
+  const createBtn = section.querySelector('#comp-create-submit');
+  const validation = section.querySelector('#comp-group-validation');
+  const refreshValidity = () => {
+    const name = nameEl.value.trim();
+    const pass = passEl.value.trim();
+    if (!name && !pass) {
+      validation.textContent = 'Group name and passphrase are required.';
+      createBtn.disabled = true;
+      return;
+    }
+    if (!name) {
+      validation.textContent = 'Enter a group name.';
+      createBtn.disabled = true;
+      return;
+    }
+    if (!pass) {
+      validation.textContent = 'Enter a passphrase.';
+      createBtn.disabled = true;
+      return;
+    }
+    if (pass.length < 8) {
+      validation.textContent = 'Passphrase must be at least 8 characters.';
+      createBtn.disabled = true;
+      return;
+    }
+    validation.textContent = '';
+    createBtn.disabled = false;
+  };
+  nameEl.addEventListener('input', refreshValidity);
+  passEl.addEventListener('input', refreshValidity);
+  refreshValidity();
+  section.querySelector('#comp-create-cancel').addEventListener('click', () => paintCompetition(section, data));
+  createBtn.addEventListener('click', async () => {
+    setButtonBusy(createBtn, true);
+    try {
+      setMessage(section, '');
+      const group = await createPrivateGroup(nameEl.value, passEl.value);
+      paintGroupCreated(section, data, group);
+    } catch (err) {
+      setMessage(section, err.message || 'Could not create group. Please try again.', true);
+    } finally {
+      setButtonBusy(createBtn, false);
+    }
+  });
+}
+
+function paintGroupCreated(section, data, group) {
+  const joinUrl = `${location.origin}/join/${encodeURIComponent(group.code)}`;
+  const drafts = listBracketDrafts();
+  const activeDraftId = getActiveDraftId();
+  const draftOptions = drafts
+    .map((d) => `<option value="${escapeHtml(d.id)}" ${d.id === activeDraftId ? 'selected' : ''}>${escapeHtml(d.name)}</option>`)
+    .join('');
+  const selectedDraft = drafts.find((d) => d.id === activeDraftId) || drafts[0] || null;
+  const pickCount = Array.isArray(selectedDraft?.picks) ? selectedDraft.picks.length : 0;
+  const comp = getCompetitionState();
+  const canSubmitNow = !comp.lockState.bracketLocked && pickCount > 0;
+  section.innerHTML = `
+    <h2>Group Competition (Beta)</h2>
+    <div class="auth-card">
+      <h3 style="margin:0;">Group Created</h3>
+      <p class="muted">Step 2 of 3 complete. Share these details with your group.</p>
+      <p><strong>Group code:</strong> <code>${escapeHtml(group.code)}</code></p>
+      <p><strong>Join URL:</strong> <a href="${escapeHtml(joinUrl)}">${escapeHtml(joinUrl)}</a></p>
+      <h3 style="margin:8px 0 0;">Step 3 of 3: Submit your bracket</h3>
+      <p class="muted">Use your Local default bracket (based on current My Picks) or create one for this group.</p>
+      <div class="auth-grid">
+        <select id="comp-created-draft-select" class="auth-input">${draftOptions}</select>
+        <div class="auth-grid" style="grid-template-columns: 1fr auto;">
+          <input id="comp-created-new-draft" class="auth-input" placeholder="Bracket name for this group">
+          <button class="pick-btn" id="comp-created-create-draft">Create</button>
+        </div>
+        <p class="muted" id="comp-created-draft-count">Selected bracket has ${pickCount} pick${pickCount === 1 ? '' : 's'}.</p>
+      </div>
+      <div class="auth-actions">
+        <button class="pick-btn" id="comp-created-submit" ${canSubmitNow ? '' : 'disabled'}>Submit Selected Bracket to Group</button>
+        <button class="pick-btn" id="comp-continue-bracket">Continue to Bracket Setup</button>
+      </div>
+      <p class="muted" id="comp-msg" role="status" aria-live="polite"></p>
+    </div>
+  `;
+  const updateCreatedState = () => {
+    const currentDrafts = listBracketDrafts();
+    const selectedId = getActiveDraftId();
+    const selected = currentDrafts.find((d) => d.id === selectedId) || currentDrafts[0] || null;
+    const selectedCount = Array.isArray(selected?.picks) ? selected.picks.length : 0;
+    const countEl = section.querySelector('#comp-created-draft-count');
+    if (countEl) {
+      countEl.textContent = `Selected bracket has ${selectedCount} pick${selectedCount === 1 ? '' : 's'}.`;
+    }
+    const submitBtn = section.querySelector('#comp-created-submit');
+    if (submitBtn) {
+      submitBtn.disabled = getCompetitionState().lockState.bracketLocked || selectedCount === 0;
+    }
+  };
+  section.querySelector('#comp-created-draft-select')?.addEventListener('change', (e) => {
+    setActiveDraft(e.target.value);
+    updateCreatedState();
+  });
+  section.querySelector('#comp-created-create-draft')?.addEventListener('click', async () => {
+    const createBtn = section.querySelector('#comp-created-create-draft');
+    const name = section.querySelector('#comp-created-new-draft')?.value || '';
+    setButtonBusy(createBtn, true);
+    try {
+      setMessage(section, '');
+      createBracketDraft(name);
+      paintGroupCreated(section, data, group);
+      setMessage(section, 'Bracket draft created from your current local picks.');
+    } catch (err) {
+      setMessage(section, err.message || 'Could not create bracket draft.', true);
+    } finally {
+      setButtonBusy(createBtn, false);
+    }
+  });
+  section.querySelector('#comp-created-submit')?.addEventListener('click', async () => {
+    const submitBtn = section.querySelector('#comp-created-submit');
+    setButtonBusy(submitBtn, true);
+    try {
+      setMessage(section, '');
+      const score = await saveBracketForActiveGroup(data);
+      setMessage(section, `Bracket saved to ${group.name}. Current score: ${score}. You can edit and re-submit until lock.`);
+      await paintCompetition(section, data);
+    } catch (err) {
+      const message = String(err?.message || '');
+      if (/duplicate|unique|group_brackets_pkey/i.test(message)) {
+        setMessage(section, 'You already submitted one bracket to this group. One submission per user is enforced.', true);
+      } else {
+        setMessage(section, message || 'Could not submit bracket. Check group access and try again.', true);
+      }
+    } finally {
+      setButtonBusy(submitBtn, false);
+    }
+  });
+  updateCreatedState();
+  section.querySelector('#comp-continue-bracket').addEventListener('click', () => paintCompetition(section, data));
 }
 
 function prettyModel(m) {

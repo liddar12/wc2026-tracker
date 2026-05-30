@@ -384,6 +384,10 @@ body {
   border-color: var(--primary);
 }
 .pick-btn:active { transform: scale(0.98); }
+.pick-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
 .auth-card {
   display: grid;
   gap: 10px;
