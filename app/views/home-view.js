@@ -14,7 +14,32 @@ import {
 
 const OPENING_KEY = 'opening_match';
 
+// Module-level interval so successive renderHome() calls cancel the previous
+// ticker. Without this, route changes or pull-to-refresh would leak intervals.
+let countdownIntervalId = null;
+function stopCountdown() {
+  if (countdownIntervalId != null) {
+    clearInterval(countdownIntervalId);
+    countdownIntervalId = null;
+  }
+}
+// Stop the ticker whenever the user navigates away from home. Bound once at
+// module load — state:change fires for every route change.
+if (typeof window !== 'undefined' && !window.__wc26HomeCountdownBound) {
+  window.__wc26HomeCountdownBound = true;
+  window.addEventListener('state:change', () => {
+    const view = window.location.hash.replace(/^#\/?/, '').split('/')[0] || 'home';
+    if (view !== 'home') stopCountdown();
+  });
+  // Also pause when the tab is hidden — saves battery and avoids drift on
+  // throttled background timers.
+  document.addEventListener?.('visibilitychange', () => {
+    if (document.hidden) stopCountdown();
+  });
+}
+
 export function renderHome(root, data) {
+  stopCountdown();
   root.innerHTML = '';
   if (!data) {
     const p = document.createElement('p');
@@ -42,7 +67,6 @@ function renderHero(data) {
     (m) => m.match_number === 1 || (m.team_a === 'Mexico' && m.team_b === 'South Africa')
   );
   const openingDate = openingMatch?.kickoff_utc || (opening?.date ? `${opening.date}T19:00:00Z` : null);
-  const cd = openingDate ? countdown(openingDate) : null;
 
   wrap.innerHTML = `
     <div class="home-hero-top">
@@ -50,40 +74,75 @@ function renderHero(data) {
       <div class="home-hero-title">${escapeHtml(meta.dates || '11 June – 19 July 2026')}</div>
       <div class="home-hero-sub">${escapeHtml(meta.hosts?.join(' · ') || 'USA · Canada · Mexico')}</div>
     </div>
-    ${cd ? renderCountdown(cd, opening) : ''}
+    ${openingDate ? renderCountdownShell(opening) : ''}
     <div class="home-hero-updated">
       <span class="home-hero-dot" aria-hidden="true"></span>
       Data updated <strong>${escapeHtml(formatLastUpdated(meta.data_version))}</strong>
       ${meta.data_version ? `<span class="muted"> · ${escapeHtml(meta.data_version.replace('T',' ').replace('+00:00','Z'))}</span>` : ''}
     </div>
   `;
+
+  if (openingDate) {
+    startCountdownTicker(wrap, openingDate);
+  }
   return wrap;
 }
 
-function renderCountdown(cd, opening) {
+function renderCountdownShell(opening) {
   const matchTitle = opening?.match || 'Opening match';
   const venue = opening?.venue ? ` · ${escapeHtml(opening.venue)}` : '';
+  // Numbers populated by startCountdownTicker — initial values are placeholders.
   return `
-    <div class="home-countdown" role="timer" aria-label="Time until opening match">
-      <div class="home-countdown-label">Kicks off in</div>
+    <div class="home-countdown" role="timer" aria-label="Time until opening match" aria-live="off">
+      <div class="home-countdown-label" data-cd="label">Kicks off in</div>
       <div class="home-countdown-cells">
-        <div class="cd-cell"><div class="cd-num">${cd.days}</div><div class="cd-lbl">days</div></div>
-        <div class="cd-cell"><div class="cd-num">${cd.hours}</div><div class="cd-lbl">hrs</div></div>
-        <div class="cd-cell"><div class="cd-num">${cd.minutes}</div><div class="cd-lbl">min</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="d">—</div><div class="cd-lbl">days</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="h">—</div><div class="cd-lbl">hrs</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="m">—</div><div class="cd-lbl">min</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="s">—</div><div class="cd-lbl">sec</div></div>
       </div>
       <div class="home-countdown-game muted">${escapeHtml(matchTitle)}${venue}</div>
     </div>
   `;
 }
 
-function countdown(iso) {
+function computeCountdown(iso) {
   const target = new Date(iso).getTime();
   const now = Date.now();
-  let diff = Math.max(0, target - now);
-  const days = Math.floor(diff / 86400000); diff -= days * 86400000;
-  const hours = Math.floor(diff / 3600000); diff -= hours * 3600000;
-  const minutes = Math.floor(diff / 60000);
-  return { days, hours, minutes, started: target <= now };
+  const diffMs = target - now;
+  const elapsed = diffMs <= 0;
+  let abs = Math.abs(diffMs);
+  const days = Math.floor(abs / 86400000); abs -= days * 86400000;
+  const hours = Math.floor(abs / 3600000); abs -= hours * 3600000;
+  const minutes = Math.floor(abs / 60000); abs -= minutes * 60000;
+  const seconds = Math.floor(abs / 1000);
+  return { days, hours, minutes, seconds, elapsed };
+}
+
+function startCountdownTicker(wrap, openingIso) {
+  const label = wrap.querySelector('[data-cd="label"]');
+  const dEl = wrap.querySelector('[data-cd="d"]');
+  const hEl = wrap.querySelector('[data-cd="h"]');
+  const mEl = wrap.querySelector('[data-cd="m"]');
+  const sEl = wrap.querySelector('[data-cd="s"]');
+  if (!label || !dEl || !hEl || !mEl || !sEl) return;
+
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const tick = () => {
+    const cd = computeCountdown(openingIso);
+    if (cd.elapsed) {
+      label.textContent = 'Tournament started';
+    } else {
+      label.textContent = 'Kicks off in';
+    }
+    // Days uncapped (no zero-pad for readability); time units zero-padded.
+    dEl.textContent = String(cd.days);
+    hEl.textContent = pad2(cd.hours);
+    mEl.textContent = pad2(cd.minutes);
+    sEl.textContent = pad2(cd.seconds);
+  };
+  tick();
+  countdownIntervalId = setInterval(tick, 1000);
 }
 
 function renderAuthSlot(data) {
