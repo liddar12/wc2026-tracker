@@ -13,6 +13,7 @@ import {
   isSupabaseConfigured,
 } from '../competition.js';
 import { scoreBracketWeighted, WEIGHTED_ROUND_POINTS, MAX_WEIGHTED_SCORE } from '../competition-scoring.js';
+import { normalizeGroupPredictions } from '../group-scoring.js';
 
 const LS_KEY_PREFIX = 'wc26.mybrackets.';
 const ROUND_LABELS = ['R32', 'R16', 'QF', 'SF', 'Final'];
@@ -133,20 +134,74 @@ function renderProgressBar(done, total) {
 }
 
 function buildR32Seeding(data, bracket) {
-  // Use the schedule_full knockout matches as the structural template.
-  // Resolve slots from the live brackets module would be heavier; instead we
-  // accept slot placeholders ("1A", "2B", "3 ABCDF") AND give the user a fallback
-  // tap-to-pick that lets them choose from the candidate teams in those slots
-  // pre-group-stage so they can preview a guess.
+  // R32 slot placeholders ("1A","2B","3 ABCDF") get resolved using the user's
+  // group_predictions when available. Falls back to the projected order if
+  // none submitted, so the bracket is always populated with real team names.
   const sf = data.scheduleFull || [];
   const r32 = sf.filter((m) => m.stage === 'round_of_32').sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
   if (r32.length !== 16) return [];
+
+  const userPicks = normalizeGroupPredictions(loadUserGroupPicks());
   return r32.map((m) => ({
     match_number: m.match_number,
-    team_a: m.team_a,
-    team_b: m.team_b,
+    team_a: resolveSlotFromUserPicks(m.team_a, userPicks, data),
+    team_b: resolveSlotFromUserPicks(m.team_b, userPicks, data),
     kickoff_utc: m.kickoff_utc,
   }));
+}
+
+function loadUserGroupPicks() {
+  // Same draft-key convention as group-picker-view. Prefer the bracket's
+  // active pool draft if available; fall back to local.
+  const comp = getCompetitionState();
+  try {
+    const key = comp?.activeGroup?.id
+      ? `wc26.grouppicks.${comp.activeGroup.id}`
+      : 'wc26.grouppicks.local';
+    const raw = localStorage.getItem(key);
+    if (raw) return JSON.parse(raw);
+    const localRaw = localStorage.getItem('wc26.grouppicks.local');
+    return localRaw ? JSON.parse(localRaw) : {};
+  } catch { return {}; }
+}
+
+function resolveSlotFromUserPicks(slot, userPicks, data) {
+  if (!slot || typeof slot !== 'string') return slot;
+
+  // "1A" / "2B" → user's nth-place pick for group A/B
+  const grp = slot.match(/^(\d)([A-L])$/);
+  if (grp) {
+    const place = parseInt(grp[1], 10);
+    const letter = grp[2];
+    const order = userPicks.groups?.[letter];
+    if (Array.isArray(order) && order[place - 1]) return order[place - 1];
+    return slot; // keep placeholder if no pick
+  }
+
+  // "3 ABCDF" → match the first of the user's best_thirds that belongs to
+  // one of the listed groups (per FIFA's R32 seeding rules).
+  const third = slot.match(/^3 ([A-L]+)$/);
+  if (third) {
+    const allowedGroups = new Set(third[1].split(''));
+    const bestThirds = userPicks.best_thirds || [];
+    for (const team of bestThirds) {
+      const teamGroup = findTeamGroup(team, data);
+      if (teamGroup && allowedGroups.has(teamGroup)) {
+        return team;
+      }
+    }
+    return slot;
+  }
+
+  return slot;
+}
+
+function findTeamGroup(team, data) {
+  const gm = data?.groupMatchups || {};
+  for (const [letter, info] of Object.entries(gm)) {
+    if ((info.teams || []).includes(team)) return letter;
+  }
+  return null;
 }
 
 function computeRounds(r32, bracket) {

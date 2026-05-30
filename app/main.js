@@ -17,6 +17,7 @@ import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
+import { renderGroupPickerView } from './views/group-picker-view.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -35,6 +36,7 @@ const TITLES = {
   'my-brackets': 'My Brackets',
   'create-group': 'New Pool',
   pools: 'Pools',
+  'group-picks': 'Group Picks',
   picks: 'My Picks',
   team: 'Team',
   schedule: 'Schedule',
@@ -52,6 +54,9 @@ function renderView() {
     return;
   }
   root.innerHTML = '';
+  // Reset opt-in design attributes each render; views that want them re-apply
+  // in their own render function (e.g. home-view sets data-redesign="v2").
+  root.removeAttribute('data-redesign');
   const { view, params } = state.route;
 
   const backBtn = document.getElementById('back-btn');
@@ -71,6 +76,7 @@ function renderView() {
     'my-brackets': 'my-brackets',
     'create-group': 'pools',
     pools: 'pools',
+    'group-picks': 'group-picks',
     picks: 'picks',
     winner: 'matchups'
   };
@@ -92,6 +98,7 @@ function renderView() {
     case 'my-brackets':  renderMyBracketsView(root, state.data, params); break;
     case 'create-group': renderCreateGroupWizard(root, state.data, params); break;
     case 'pools':        renderPoolsView(root, state.data, params); break;
+    case 'group-picks':  renderGroupPickerView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;
     case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'schedule':     renderScheduleView(root, state.data, params); break;
@@ -131,6 +138,7 @@ function bindNav() {
       else if (r === 'brackets') setRoute('brackets', {});
       else if (r === 'my-brackets') setRoute('my-brackets', {});
       else if (r === 'pools') setRoute('pools', {});
+      else if (r === 'group-picks') setRoute('group-picks', {});
       else if (r === 'picks') setRoute('picks', {});
     });
   }

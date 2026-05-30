@@ -1,4 +1,12 @@
-/* WC26 Tracker — iOS-optimized base styles, light + dark via CSS variables. */
+/* WC26 Tracker — iOS-optimized base styles, light + dark via CSS variables.
+   Two layers:
+   - Legacy tokens (default): #1F4E78 navy palette. Used until v2 is rolled out
+     tab-by-tab.
+   - v2 tokens (opt-in via data-redesign="v2" on a container): WC26 teal +
+     coral palette with Apple HIG Clarity/Deference/Depth. See PLAN_UI_REFRESH.md. */
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600;700&display=swap');
+
 :root {
   --safe-top: env(safe-area-inset-top);
   --safe-bottom: env(safe-area-inset-bottom);
@@ -1661,6 +1669,70 @@ body.search-open { overflow: hidden; }
 }
 
 /* ============================================================
+   Group Picker (drag-to-reorder)
+   ============================================================ */
+.gp-group { margin-bottom: 10px; }
+.gp-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+.gp-row {
+  display: grid;
+  grid-template-columns: 48px 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 52px;
+  font-size: 14px;
+  touch-action: pan-y;
+}
+.gp-row.is-1st { border-left: 4px solid #ffb600; }
+.gp-row.is-2nd { border-left: 4px solid #9ca3af; }
+.gp-row.is-3rd { border-left: 4px solid #b45309; }
+.gp-row.is-4th { opacity: 0.7; }
+
+.gp-position { font-weight: 700; font-size: 12px; color: var(--text-muted); letter-spacing: 0.3px; }
+.gp-flag { font-size: 22px; }
+.gp-name { font-weight: 600; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gp-handle {
+  font-size: 18px;
+  color: var(--text-muted);
+  cursor: grab;
+  padding: 0 4px;
+  user-select: none;
+}
+.gp-handle:active { cursor: grabbing; }
+.gp-ghost { opacity: 0.4; background: var(--surface-2); }
+
+.gp-thirds {
+  display: grid;
+  gap: 6px;
+}
+.gp-third {
+  display: grid;
+  grid-template-columns: 22px 28px 1fr auto;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.gp-third input { accent-color: var(--primary); transform: scale(1.2); }
+.gp-third.is-chosen {
+  background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+  border-color: var(--primary);
+}
+
+/* ============================================================
    Brackets (live) + My Brackets (builder)
    ============================================================ */
 .brackets-tabs {
@@ -1774,6 +1846,11 @@ body.search-open { overflow: hidden; }
   opacity: 0.55;
   text-decoration: line-through;
 }
+.bb-slot.is-projected {
+  border-color: var(--primary);
+  border-style: dashed;
+  background: color-mix(in srgb, var(--primary) 10%, var(--surface));
+}
 
 .bb-points {
   font-size: 11px;
@@ -1810,4 +1887,156 @@ body.search-open { overflow: hidden; }
   padding: 10px 12px;
   margin-bottom: 12px;
   font-size: 13px;
+}
+
+/* ============================================================
+   v2 Design Tokens — opt-in via [data-redesign="v2"]
+   Per PLAN_UI_REFRESH.md. WC26 deep teal + warm coral, Apple HIG
+   Clarity/Deference/Depth. Mobile-first. Dark mode parity.
+   ============================================================ */
+[data-redesign="v2"] {
+  --wc-teal-50:   #ECFEFF;
+  --wc-teal-100:  #CFFAFE;
+  --wc-teal-200:  #A5F3FC;
+  --wc-teal-500:  #06B6D4;
+  --wc-teal-700:  #0E7490;
+  --wc-teal-900:  #164E63;
+
+  --wc-coral-100: #FFE4E6;
+  --wc-coral-400: #FB7185;
+  --wc-coral-500: #F43F5E;
+  --wc-coral-600: #E11D48;
+
+  --wc-ink:       #0F1115;
+  --wc-mute:      #5B6776;
+  --wc-bg:        #F5F8FA;
+  --wc-surface:   #FFFFFF;
+  --wc-surface-2: #EEF2F4;
+  --wc-border:    #DEE5EA;
+
+  /* Re-bind semantic tokens inside the v2 scope */
+  --bg:          var(--wc-bg);
+  --surface:     var(--wc-surface);
+  --surface-2:   var(--wc-surface-2);
+  --text:        var(--wc-ink);
+  --text-muted:  var(--wc-mute);
+  --border:      var(--wc-border);
+  --primary:     var(--wc-teal-700);
+  --primary-ink: #FFFFFF;
+  --accent:      var(--skin-accent, var(--wc-coral-500));
+  --shadow:      0 1px 2px rgba(15, 17, 21, 0.05), 0 4px 12px rgba(15, 17, 21, 0.06);
+
+  --depth-sm:  0 1px 2px rgba(15, 17, 21, 0.06);
+  --depth-md:  0 4px 16px rgba(15, 17, 21, 0.08);
+  --depth-lg:  0 12px 28px rgba(15, 17, 21, 0.14);
+
+  --font-display: 'Barlow Condensed', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body:    'Barlow', -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+
+  --t-display:   2.25rem;
+  --t-h1:        1.5rem;
+  --t-h2:        1.125rem;
+  --t-eyebrow:   0.6875rem;
+  --t-body:      1rem;
+  --t-body-sm:   0.875rem;
+  --t-caption:   0.75rem;
+
+  --weight-display: 800;
+  --weight-bold:    700;
+  --weight-semi:    600;
+  --weight-body:    400;
+
+  --tracking-display: -0.01em;
+  --tracking-eyebrow:  0.06em;
+
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px;
+  --space-4: 16px; --space-5: 20px; --space-6: 24px;
+  --space-8: 32px; --space-12: 48px;
+
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-pill: 999px;
+
+  --motion-fast:    160ms;
+  --motion-base:    220ms;
+  --motion-slow:    320ms;
+  --ease-out:       cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  font-family: var(--font-body);
+}
+:root[data-theme='dark'] [data-redesign="v2"],
+[data-redesign="v2"][data-theme='dark'] {
+  --wc-bg:       #0B1014;
+  --wc-surface:  #14191E;
+  --wc-surface-2:#1B2128;
+  --wc-ink:      #F0F4F7;
+  --wc-mute:     #94A3AE;
+  --wc-border:   #232A33;
+  --primary:     #22D3EE;
+  --primary-ink: #0B1014;
+  --accent:      var(--skin-accent, #FB7185);
+  --shadow:      none;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-redesign="v2"] {
+    --motion-fast: 0ms;
+    --motion-base: 0ms;
+    --motion-slow: 0ms;
+  }
+}
+
+[data-redesign="v2"] .h-display,
+[data-redesign="v2"] h1,
+[data-redesign="v2"] .home-hero-title {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+}
+[data-redesign="v2"] .home-hero-eyebrow,
+[data-redesign="v2"] .home-card-title {
+  font-family: var(--font-body);
+  font-size: var(--t-eyebrow);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+[data-redesign="v2"] .cd-num {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+}
+
+/* Subtle v2 chrome refinements */
+[data-redesign="v2"] .home-card {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--depth-sm);
+}
+[data-redesign="v2"] .pick-btn {
+  border-radius: var(--radius-md);
+  transition: transform var(--motion-fast) var(--ease-spring),
+              background-color var(--motion-fast) var(--ease-out);
+}
+[data-redesign="v2"] .pick-btn:not(.pick-btn-secondary):not(:disabled) {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #FFFFFF;
+}
+[data-redesign="v2"] .pick-btn:active { transform: scale(0.97); }
+
+/* Tab bar v2: pill underline for active tab */
+[data-redesign="v2"] .tab-bar .tab.is-active {
+  border-bottom-color: transparent;
+  position: relative;
+}
+[data-redesign="v2"] .tab-bar .tab.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--accent);
 }

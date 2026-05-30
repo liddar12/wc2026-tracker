@@ -163,7 +163,7 @@ assert.match(
   /create policy "group_brackets_update_self"[\s\S]+exists\s*\([\s\S]+public\.group_members gm[\s\S]+gm\.group_id = group_brackets\.group_id and gm\.user_id = auth\.uid\(\)/i
 );
 
-const passphraseMigrationSql = readFileSync(new URL('../supabase/migrations/20260528_group_passphrase_secure_flow.sql', import.meta.url), 'utf8');
+const passphraseMigrationSql = readFileSync(new URL('../supabase/migrations/20260528020000_group_passphrase_secure_flow.sql', import.meta.url), 'utf8');
 assert.match(
   passphraseMigrationSql,
   /create or replace function public\.create_private_group\(p_name text, p_code text, p_passphrase text\)/i
@@ -284,5 +284,65 @@ const sorted = [
 assert.equal(sorted[0].username, 'c', 'champion-correct + earliest submit wins ties');
 assert.equal(sorted[1].username, 'b');
 assert.equal(sorted[2].username, 'a');
+
+// Group-finish picker scoring (B-spec).
+const { normalizeGroupPredictions, scoreGroupPredictions, GROUP_POINTS, MAX_GROUP_SCORE } =
+  await import('../app/group-scoring.js');
+
+assert.equal(MAX_GROUP_SCORE, 12 * 3 + 12 * 2 + 8 * 1, 'max group score 84');
+
+// Fixture: real group-stage results for group A only
+const groupFixture = {
+  groupMatchups: {
+    A: {
+      teams: ['Mexico', 'Czechia', 'Korea Republic', 'South Africa'],
+      matches: [
+        { team_a: 'Mexico', team_b: 'Korea Republic', expected_points: { team_a: 1.5, team_b: 1.2 } },
+        { team_a: 'Mexico', team_b: 'South Africa',   expected_points: { team_a: 2.0, team_b: 0.5 } },
+        { team_a: 'Mexico', team_b: 'Czechia',        expected_points: { team_a: 1.4, team_b: 1.3 } },
+        { team_a: 'Czechia', team_b: 'Korea Republic',expected_points: { team_a: 1.3, team_b: 1.4 } },
+        { team_a: 'Czechia', team_b: 'South Africa',  expected_points: { team_a: 2.1, team_b: 0.6 } },
+        { team_a: 'Korea Republic', team_b: 'South Africa', expected_points: { team_a: 2.0, team_b: 0.8 } },
+      ],
+    },
+  },
+  actualResults: {
+    group_stage: {
+      'Mexico__vs__Korea Republic':  { score_a: 2, score_b: 0 },
+      'Mexico__vs__South Africa':    { score_a: 3, score_b: 1 },
+      'Mexico__vs__Czechia':         { score_a: 1, score_b: 1 },
+      'Czechia__vs__Korea Republic': { score_a: 2, score_b: 1 },
+      'Czechia__vs__South Africa':   { score_a: 4, score_b: 0 },
+      'Korea Republic__vs__South Africa': { score_a: 2, score_b: 1 },
+    },
+  },
+};
+// Mexico: 3+3+1 = 7pt, Czechia: 1+3+3 = 7pt (tied; tiebreak GD: MEX=4, CZE=5 -> CZE 1st)
+// Actual standings: Czechia 7pt GD+5, Mexico 7pt GD+4, Korea 3pt, South Africa 0pt
+
+const perfect = scoreGroupPredictions({
+  A: ['Czechia', 'Mexico', 'Korea Republic', 'South Africa'],
+  best_thirds: ['Korea Republic'],
+}, groupFixture);
+assert.equal(perfect.breakdown.first, 3, 'correct 1st = 3pt');
+assert.equal(perfect.breakdown.second, 2, 'correct 2nd = 2pt');
+assert.equal(perfect.breakdown.thirds, 1, 'correct best-3rd = 1pt');
+assert.equal(perfect.score, 6);
+
+const wrong = scoreGroupPredictions({
+  A: ['Mexico', 'Czechia', 'Korea Republic', 'South Africa'],
+  best_thirds: ['South Africa'],
+}, groupFixture);
+assert.equal(wrong.breakdown.first, 0, 'wrong 1st = 0pt');
+assert.equal(wrong.breakdown.second, 0, 'wrong 2nd = 0pt');
+assert.equal(wrong.breakdown.thirds, 0, 'wrong best-3rd = 0pt');
+
+const partial = normalizeGroupPredictions({
+  A: ['Czechia', 'Mexico', 'Korea Republic', 'South Africa'],
+  Z: ['nope'],          // invalid group letter
+  best_thirds: ['x', 'y'],
+});
+assert.deepEqual(Object.keys(partial.groups), ['A']);
+assert.equal(partial.best_thirds.length, 2);
 
 console.log('competition tests: OK');

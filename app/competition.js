@@ -3,6 +3,7 @@ import { allPicks } from './state.js';
 import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFromPath } from './competition-rules.js';
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
 import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket, scoreBracketWeighted, compareLeaderboardEntries } from './competition-scoring.js';
+import { scoreGroupPredictions, normalizeGroupPredictions } from './group-scoring.js';
 
 const LS_GROUP = 'wc26.competition.group';
 const LS_GUEST_MODE = 'wc26.competition.guestMode';
@@ -366,6 +367,37 @@ export async function saveBracketForActiveGroup(data) {
   }, { onConflict: 'group_id,user_id' });
   if (error) throw toCompetitionError(error, 'submitBracket');
   return score;
+}
+
+// Upsert group_predictions for the active pool.
+export async function saveGroupPredictionsForActiveGroup(picks, data) {
+  if (!state.client || !state.user || !state.activeGroup) throw new Error('Select a pool first');
+  if (state.lockState.bracketLocked) throw new Error(`Bracket locked (${state.lockState.phase})`);
+  const normalized = normalizeGroupPredictions(picks);
+  const stored = { ...normalized.groups, best_thirds: normalized.best_thirds };
+  const score = scoreGroupPredictions(stored, data).score;
+  const { error } = await state.client.from('group_predictions').upsert({
+    group_id: state.activeGroup.id,
+    user_id: state.user.id,
+    picks: stored,
+    score,
+    updated_at: new Date().toISOString(),
+  }, { onConflict: 'group_id,user_id' });
+  if (error) throw toCompetitionError(error, 'submitGroupPicks');
+  return score;
+}
+
+// Fetch the current user's group_predictions for the active pool (or null).
+export async function fetchMyGroupPredictions() {
+  if (!state.client || !state.user || !state.activeGroup) return null;
+  const { data, error } = await state.client
+    .from('group_predictions')
+    .select('picks,score,updated_at')
+    .eq('group_id', state.activeGroup.id)
+    .eq('user_id', state.user.id)
+    .maybeSingle();
+  if (error) return null;
+  return data;
 }
 
 export function listBracketDrafts() {

@@ -42,6 +42,10 @@ if (typeof window !== 'undefined' && !window.__wc26HomeCountdownBound) {
 export function renderHome(root, data) {
   stopCountdown();
   root.innerHTML = '';
+  // Opt this view into the v2 design tokens (WC26 teal + coral, Barlow display
+  // type, Apple HIG depth). Other tabs stay on the legacy theme until rolled
+  // out per PLAN_UI_REFRESH.md.
+  root.setAttribute('data-redesign', 'v2');
   if (!data) {
     const p = document.createElement('p');
     p.className = 'loading';

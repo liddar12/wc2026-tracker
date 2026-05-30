@@ -8,19 +8,7 @@
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { renderBracketView } from './bracket-view.js';
-
-const STAGE_LABELS = {
-  round_of_32: 'Round of 32',
-  round_of_16: 'Round of 16',
-  quarterfinals: 'Quarter-finals',
-  semifinals: 'Semi-finals',
-  third_place: 'Bronze final',
-  final: 'Final',
-};
-
-const STAGE_ORDER = [
-  'round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final'
-];
+import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder } from '../bracket-resolver.js';
 
 export function renderBracketsLiveView(root, data, params) {
   root.innerHTML = '';
@@ -81,139 +69,13 @@ export function renderBracketsLiveView(root, data, params) {
   }
 
   // Resolve slot placeholders (e.g., "1A", "W74") using actual results + earlier match winners.
-  const resolved = resolveSlots(knockouts, data);
+  resolveSlots(knockouts, data);
 
   for (const stage of STAGE_ORDER) {
-    const matches = resolved.filter((m) => m.stage === stage);
+    const matches = knockouts.filter((m) => m.stage === stage);
     if (!matches.length) continue;
     root.appendChild(renderStage(stage, matches, data));
   }
-}
-
-function resolveSlots(knockouts, data) {
-  const byNumber = new Map(knockouts.map((m) => [m.match_number, m]));
-  const winners = new Map(); // match_number -> resolved winner team name
-  const losers = new Map();
-
-  // Tier order: R32 first, etc.
-  for (const m of knockouts) {
-    const resolvedA = resolveSlot(m.team_a, data, winners, losers);
-    const resolvedB = resolveSlot(m.team_b, data, winners, losers);
-    m.resolved_team_a = resolvedA;
-    m.resolved_team_b = resolvedB;
-    const actual = lookupActual(data, m.stage, resolvedA, resolvedB);
-    m.actual = actual;
-    if (actual && actual.winner) {
-      winners.set(m.match_number, actual.winner);
-      const loser = actual.winner === resolvedA ? resolvedB : actual.winner === resolvedB ? resolvedA : null;
-      if (loser) losers.set(m.match_number, loser);
-    }
-  }
-  return knockouts;
-}
-
-function resolveSlot(slot, data, winners, losers) {
-  if (!slot || typeof slot !== 'string') return null;
-  // Already a real team name (no slot pattern)
-  if (!/^\d[A-L]$/.test(slot) && !/^3 [A-L]+$/.test(slot) && !/^W\d+$/.test(slot) && !/^L\d+$/.test(slot)) {
-    return slot; // assume team name
-  }
-  // 1A / 2B = winner / runner-up of group A/B (post-group stage)
-  const grpMatch = slot.match(/^(\d)([A-L])$/);
-  if (grpMatch) {
-    return resolveGroupSlot(data, parseInt(grpMatch[1], 10), grpMatch[2]);
-  }
-  // "3 ABCDF" = best 3rd-placed team from one of A,B,C,D,F
-  const thirdMatch = slot.match(/^3 ([A-L]+)$/);
-  if (thirdMatch) {
-    return resolveThirdSlot(data, thirdMatch[1]);
-  }
-  // W74 = winner of match 74
-  const winMatch = slot.match(/^W(\d+)$/);
-  if (winMatch) {
-    return winners.get(parseInt(winMatch[1], 10)) || slot;
-  }
-  // L101 = loser of match 101 (used for bronze final)
-  const loseMatch = slot.match(/^L(\d+)$/);
-  if (loseMatch) {
-    return losers.get(parseInt(loseMatch[1], 10)) || slot;
-  }
-  return slot;
-}
-
-function resolveGroupSlot(data, place, group) {
-  const standings = computeGroupStandings(data, group);
-  if (!standings) return `${place}${group}`;
-  const team = standings[place - 1];
-  return team?.team || `${place}${group}`;
-}
-
-function resolveThirdSlot(data, letters) {
-  // Best 3rd-place across these groups
-  const candidates = [];
-  for (const g of letters) {
-    const s = computeGroupStandings(data, g);
-    if (s && s[2]) candidates.push({ ...s[2], group: g });
-  }
-  if (!candidates.length) return `3 ${letters}`;
-  candidates.sort((a, b) => (b.points || 0) - (a.points || 0) || (b.gd || 0) - (a.gd || 0) || (b.gf || 0) - (a.gf || 0));
-  return candidates[0]?.team || `3 ${letters}`;
-}
-
-function computeGroupStandings(data, group) {
-  // Use actual group stage results when available; otherwise leave unresolved
-  const gs = data?.actualResults?.group_stage || {};
-  const gm = data?.groupMatchups?.[group];
-  if (!gm) return null;
-  const teams = gm.teams || [];
-  // Initialize standings
-  const tbl = Object.fromEntries(teams.map((t) => [t, { team: t, points: 0, gf: 0, ga: 0, gd: 0, played: 0 }]));
-  let played = 0;
-  for (const m of (gm.matches || [])) {
-    const key1 = `${m.team_a}__vs__${m.team_b}`;
-    const key2 = `${m.team_b}__vs__${m.team_a}`;
-    const rec = gs[key1] || gs[key2];
-    if (!rec) continue;
-    const a = rec.score_a ?? rec.team_a_score;
-    const b = rec.score_b ?? rec.team_b_score;
-    if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
-    const flipped = !!gs[key2];
-    const teamA = flipped ? m.team_b : m.team_a;
-    const teamB = flipped ? m.team_a : m.team_b;
-    if (!tbl[teamA] || !tbl[teamB]) continue;
-    tbl[teamA].played++; tbl[teamB].played++;
-    tbl[teamA].gf += a; tbl[teamA].ga += b;
-    tbl[teamB].gf += b; tbl[teamB].ga += a;
-    tbl[teamA].gd = tbl[teamA].gf - tbl[teamA].ga;
-    tbl[teamB].gd = tbl[teamB].gf - tbl[teamB].ga;
-    if (a > b) tbl[teamA].points += 3;
-    else if (a < b) tbl[teamB].points += 3;
-    else { tbl[teamA].points += 1; tbl[teamB].points += 1; }
-    played++;
-  }
-  if (played < (gm.matches || []).length) return null; // group not complete
-  return Object.values(tbl).sort((x, y) => y.points - x.points || y.gd - x.gd || y.gf - x.gf || x.team.localeCompare(y.team));
-}
-
-function lookupActual(data, stage, a, b) {
-  if (!a || !b) return null;
-  const tier = data?.actualResults?.[stage];
-  if (!tier) return null;
-  const rec = tier[`${a}__vs__${b}`] || tier[`${b}__vs__${a}`];
-  if (!rec) return null;
-  const sa = rec.score_a ?? rec.team_a_score;
-  const sb = rec.score_b ?? rec.team_b_score;
-  if (!Number.isFinite(sa) || !Number.isFinite(sb)) return null;
-  const flipped = !!tier[`${b}__vs__${a}`];
-  const score_a = flipped ? sb : sa;
-  const score_b = flipped ? sa : sb;
-  let winner = null;
-  if (score_a > score_b) winner = a;
-  else if (score_b > score_a) winner = b;
-  // Knockout penalty resolution: if rec.winner specified explicitly, trust it
-  if (rec.winner && rec.winner === a) winner = a;
-  else if (rec.winner && rec.winner === b) winner = b;
-  return { score_a, score_b, winner, kickoff_utc: rec.kickoff_utc };
 }
 
 function renderStage(stage, matches, data) {
@@ -266,11 +128,6 @@ function renderStage(stage, matches, data) {
     section.appendChild(stampRow);
   }
   return section;
-}
-
-function isSlotPlaceholder(s) {
-  if (typeof s !== 'string') return true;
-  return /^\d[A-L]$/.test(s) || /^3 [A-L]+$/.test(s) || /^W\d+$/.test(s) || /^L\d+$/.test(s);
 }
 
 function venueLabel(data, vid) {
