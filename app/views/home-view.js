@@ -68,6 +68,11 @@ function renderHero(data) {
   );
   const openingDate = openingMatch?.kickoff_utc || (opening?.date ? `${opening.date}T19:00:00Z` : null);
 
+  // Defensive: meta.data_version is only bumped by some cron jobs, but other
+  // data files carry their own timestamps that may be fresher. Show the most
+  // recent one so users see the truest "last refresh" time.
+  const freshestIso = pickFreshestTimestamp(data);
+
   wrap.innerHTML = `
     <div class="home-hero-top">
       <div class="home-hero-eyebrow">FIFA World Cup 2026</div>
@@ -77,8 +82,8 @@ function renderHero(data) {
     ${openingDate ? renderCountdownShell(opening) : ''}
     <div class="home-hero-updated">
       <span class="home-hero-dot" aria-hidden="true"></span>
-      Data updated <strong>${escapeHtml(formatLastUpdated(meta.data_version))}</strong>
-      ${meta.data_version ? `<span class="muted"> · ${escapeHtml(meta.data_version.replace('T',' ').replace('+00:00','Z'))}</span>` : ''}
+      Data updated <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
+      ${freshestIso ? `<span class="muted"> · ${escapeHtml(prettyIso(freshestIso))}</span>` : ''}
     </div>
   `;
 
@@ -104,6 +109,41 @@ function renderCountdownShell(opening) {
       <div class="home-countdown-game muted">${escapeHtml(matchTitle)}${venue}</div>
     </div>
   `;
+}
+
+function pickFreshestTimestamp(data) {
+  // Check every plausible "last updated" field across the JSON feeds and
+  // return the most recent one as an ISO string. Falls back to meta.data_version.
+  const candidates = [
+    data?.meta?.data_version,
+    data?.markets?.updated_at,
+    data?.actualResults?.last_updated,
+    data?.injuries?.updated_at,
+    data?.weather?.updated_at,
+    data?.lineups?.updated_at,
+    data?.scorers?.updated_at,
+  ].filter(Boolean);
+  if (!candidates.length) return null;
+  let best = candidates[0];
+  let bestMs = Date.parse(best) || 0;
+  for (const iso of candidates) {
+    const ms = Date.parse(iso) || 0;
+    if (ms > bestMs) { bestMs = ms; best = iso; }
+  }
+  return best;
+}
+
+function prettyIso(iso) {
+  // Normalize "...+00:00" / "...Z" / "...T..." into "YYYY-MM-DD HH:MM Z".
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (isNaN(d)) return iso;
+  const yyyy = d.getUTCFullYear();
+  const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
+  const dd = String(d.getUTCDate()).padStart(2, '0');
+  const hh = String(d.getUTCHours()).padStart(2, '0');
+  const mi = String(d.getUTCMinutes()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd} ${hh}:${mi}Z`;
 }
 
 function computeCountdown(iso) {

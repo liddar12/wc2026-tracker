@@ -54,10 +54,33 @@ jobs:
         run: python scripts/scrape_injuries.py
         continue-on-error: true
 
+      # ---- Volatile market + venue data (Kalshi, weather, lineups) ----
+      - name: Scrape Kalshi tournament-winner markets
+        run: python scripts/scrape_kalshi.py
+        continue-on-error: true
+      - name: Scrape venue weather forecast
+        run: python scripts/scrape_weather.py
+        continue-on-error: true
+      - name: Scrape projected lineups
+        run: python scripts/scrape_lineups.py
+        continue-on-error: true
+
       # ---- Recompute composite + power_rank from refreshed inputs ----
       - name: Recompute composite + power rankings
         run: python scripts/rebuild_composite.py
         continue-on-error: true
+
+      # ---- Bump meta.data_version so the homepage "Data updated" stamp moves ----
+      - name: Bump meta.data_version
+        run: |
+          python3 - <<'PYEOF'
+          import json, datetime, pathlib
+          p = pathlib.Path('data/meta.json')
+          m = json.loads(p.read_text())
+          m['data_version'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
+          p.write_text(json.dumps(m, indent=2) + '\n')
+          print('meta.data_version ->', m['data_version'])
+          PYEOF
 
       - name: Validate refreshed data
         run: python3 scripts/validate_data.py
@@ -70,6 +93,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes; nothing to commit."
           else
-            git commit -m "chore: frequent data refresh (players/injuries/teams/power-rank)"
+            git commit -m "chore: frequent data refresh (players/injuries/teams/power-rank/kalshi/weather/lineups)"
             git push
           fi
