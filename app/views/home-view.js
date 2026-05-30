@@ -381,10 +381,14 @@ function openTeamPicker(wrap, data) {
 function renderTodaySection(data) {
   const wrap = document.createElement('section');
   wrap.className = 'home-section';
-  const todayIso = new Date().toISOString().slice(0, 10);
+  // Bucket by the viewer's LOCAL calendar day — matching the Schedule tab.
+  // Slicing kickoff_utc (UTC) would file a 9pm-local kickoff under the next
+  // day, so a team would appear under "Today" when it actually played the
+  // night before (or vice-versa). ~1/3 of WC26 fixtures cross the date line.
+  const todayIso = toLocalDateISO(new Date());
   const scheduleFull = data.scheduleFull || [];
   const todays = scheduleFull
-    .filter((m) => (m.kickoff_utc || '').slice(0, 10) === todayIso)
+    .filter((m) => m.kickoff_utc && toLocalDateISO(new Date(m.kickoff_utc)) === todayIso)
     .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)));
   const upcoming = todays.length
     ? todays
@@ -401,7 +405,7 @@ function renderTodaySection(data) {
     <div class="home-card">
       <h2 class="home-card-title">${heading}</h2>
       <div class="home-match-list">
-        ${upcoming.slice(0, 6).map((m) => homeMatchRow(m)).join('')}
+        ${upcoming.slice(0, 6).map((m) => homeMatchRow(m, getFavoriteTeam())).join('')}
       </div>
       <div class="home-card-cta">
         <button class="pick-btn pick-btn-secondary" data-go="schedule">Full schedule →</button>
@@ -422,17 +426,18 @@ function renderTodaySection(data) {
   return wrap;
 }
 
-function homeMatchRow(m) {
+function homeMatchRow(m, fav) {
   const t = new Date(m.kickoff_utc);
   const time = isNaN(t) ? 'TBA' : t.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   const isPlaceholder = typeof m.team_a === 'string' && /^[A-L]\d|\dW|\dL|W\d|L\d|^3\s|^\dW|^\dL|^1[A-L]|^2[A-L]|^3 /.test(m.team_a);
   const fa = isPlaceholder ? '·' : flagFor(m.team_a);
   const fb = isPlaceholder ? '·' : flagFor(m.team_b);
   const clickable = !isPlaceholder;
+  const isFav = !!fav && !isPlaceholder && (m.team_a === fav || m.team_b === fav);
   return `
-    <div class="home-match-row" ${clickable ? `data-mid="${escapeHtml(m.match_id)}" data-team-a="${escapeHtml(m.team_a)}" data-team-b="${escapeHtml(m.team_b)}" tabindex="0" role="button"` : ''}>
+    <div class="home-match-row${isFav ? ' is-fav' : ''}" ${clickable ? `data-mid="${escapeHtml(m.match_id)}" data-team-a="${escapeHtml(m.team_a)}" data-team-b="${escapeHtml(m.team_b)}" tabindex="0" role="button"` : ''}>
       <div class="hmr-time">${escapeHtml(time)}</div>
-      <div class="hmr-teams">${fa} <strong>${escapeHtml(m.team_a)}</strong> vs <strong>${escapeHtml(m.team_b)}</strong> ${fb}</div>
+      <div class="hmr-teams">${fa} <strong>${escapeHtml(m.team_a)}</strong> vs <strong>${escapeHtml(m.team_b)}</strong> ${fb}${isFav ? ' <span class="fav-badge" aria-label="Your team" title="Your team">★</span>' : ''}</div>
       <div class="hmr-stage muted">${escapeHtml(prettyStage(m))}</div>
     </div>
   `;
@@ -550,6 +555,15 @@ function renderQuickLinks() {
     if (t) setRoute(t.dataset.go, {});
   });
   return wrap;
+}
+
+function toLocalDateISO(d) {
+  // YYYY-MM-DD in the viewer's local timezone (not UTC).
+  if (Number.isNaN(d?.getTime?.())) return '';
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${y}-${m}-${day}`;
 }
 
 function escapeHtml(s) {

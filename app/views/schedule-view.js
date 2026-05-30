@@ -9,6 +9,7 @@
  */
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
+import { getFavoriteTeam } from '../favorites.js';
 
 export function renderScheduleView(root, data, params) {
   const schedule = Array.isArray(data.scheduleFull) ? data.scheduleFull : [];
@@ -23,11 +24,27 @@ export function renderScheduleView(root, data, params) {
     return;
   }
 
+  const fav = getFavoriteTeam();
+  const isFavMatch = (row) => !!fav && (row.team_a === fav || row.team_b === fav);
+  // "My matches" filter — only meaningful when a favorite is set AND that team
+  // actually appears in the (named) fixtures. Knockout slots are placeholders
+  // (e.g. "W101"), so the favorite only matches its group-stage rows for now.
+  const favDates = new Set();
+  for (const row of schedule) {
+    if (isFavMatch(row) && row?.kickoff_utc) {
+      const d = toLocalDateISO(row.kickoff_utc);
+      if (d) favDates.add(d);
+    }
+  }
+  const mineAvailable = favDates.size > 0;
+  const mineOnly = mineAvailable && params.mine === '1';
+
   // Group by date in the user's local timezone so a 9pm Wed kickoff doesn't
   // get hidden under Thursday's pill when UTC happens to roll the calendar.
   const byDate = new Map();
   for (const row of schedule) {
     if (!row?.kickoff_utc) continue;
+    if (mineOnly && !isFavMatch(row)) continue;
     const localDate = toLocalDateISO(row.kickoff_utc);
     if (!localDate) continue;
     if (!byDate.has(localDate)) byDate.set(localDate, []);
@@ -44,6 +61,22 @@ export function renderScheduleView(root, data, params) {
       : (dates.find((d) => d >= todayISO) || dates[0]);
   }
 
+  // "My matches" toolbar — only rendered when a favorite is set and plays.
+  if (mineAvailable) {
+    const toolbar = document.createElement('div');
+    toolbar.className = 'sched-toolbar';
+    toolbar.innerHTML = `
+      <button type="button" class="watch-filter sched-mine ${mineOnly ? 'is-active' : ''}" aria-pressed="${mineOnly}">
+        <span class="flag" aria-hidden="true">${flagFor(fav)}</span> ${mineOnly ? 'Showing' : 'My matches'}: ${escapeHtml(fav)}
+      </button>
+    `;
+    toolbar.querySelector('.sched-mine').addEventListener('click', () => {
+      // Toggle the filter; drop the date so we re-anchor on the next relevant day.
+      setRoute('schedule', mineOnly ? {} : { mine: '1' });
+    });
+    root.appendChild(toolbar);
+  }
+
   // Day picker strip
   const picker = document.createElement('div');
   picker.className = 'day-picker scroll-area';
@@ -53,14 +86,16 @@ export function renderScheduleView(root, data, params) {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.role = 'tab';
-    btn.className = 'day-pill' + (d === active ? ' is-active' : '');
+    const playsToday = favDates.has(d);
+    btn.className = 'day-pill' + (d === active ? ' is-active' : '') + (playsToday ? ' has-fav' : '');
     btn.dataset.date = d;
     const [y, m, day] = d.split('-').map(Number);
     const dateObj = new Date(y, m - 1, day);
     const dow = dateObj.toLocaleDateString(undefined, { weekday: 'short' });
     const md = dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
-    btn.innerHTML = `<span class="dow">${escapeHtml(dow)}</span><span class="md">${escapeHtml(md)}</span><span class="cnt">${byDate.get(d).length}</span>`;
-    btn.addEventListener('click', () => setRoute('schedule', { date: d }));
+    const favDot = playsToday ? '<span class="fav-dot" aria-label="Your team plays" title="Your team plays">★</span>' : '';
+    btn.innerHTML = `<span class="dow">${escapeHtml(dow)}</span><span class="md">${escapeHtml(md)}</span><span class="cnt">${byDate.get(d).length}</span>${favDot}`;
+    btn.addEventListener('click', () => setRoute('schedule', mineOnly ? { date: d, mine: '1' } : { date: d }));
     picker.appendChild(btn);
   }
   root.appendChild(picker);
@@ -92,14 +127,16 @@ export function renderScheduleView(root, data, params) {
   );
 
   for (const m of matches) {
-    list.appendChild(scheduleCard(m, venueById));
+    list.appendChild(scheduleCard(m, venueById, fav));
   }
   root.appendChild(list);
 }
 
-function scheduleCard(match, venueById) {
+function scheduleCard(match, venueById, fav) {
   const card = document.createElement('a');
   card.className = 'schedule-card';
+  const isFav = !!fav && (match.team_a === fav || match.team_b === fav);
+  if (isFav) card.classList.add('is-fav');
   const isGroup = match.stage === 'group' && match.team_a && match.team_b;
   if (isGroup) {
     card.href = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
@@ -118,14 +155,15 @@ function scheduleCard(match, venueById) {
 
   const aTeam = match.team_a || 'TBA';
   const bTeam = match.team_b || 'TBA';
+  const favBadge = '<span class="fav-badge" aria-label="Your team" title="Your team">★</span>';
   card.innerHTML = `
     <div class="sched-time">
       <div class="time">${escapeHtml(kickoff.time)}</div>
       <div class="muted tz">${escapeHtml(kickoff.tz)}</div>
     </div>
     <div class="sched-teams">
-      <div class="line"><span class="flag" aria-hidden="true">${flagFor(aTeam)}</span>${escapeHtml(aTeam)}</div>
-      <div class="line"><span class="flag" aria-hidden="true">${flagFor(bTeam)}</span>${escapeHtml(bTeam)}</div>
+      <div class="line${fav && aTeam === fav ? ' is-fav-team' : ''}"><span class="flag" aria-hidden="true">${flagFor(aTeam)}</span>${escapeHtml(aTeam)}${fav && aTeam === fav ? favBadge : ''}</div>
+      <div class="line${fav && bTeam === fav ? ' is-fav-team' : ''}"><span class="flag" aria-hidden="true">${flagFor(bTeam)}</span>${escapeHtml(bTeam)}${fav && bTeam === fav ? favBadge : ''}</div>
     </div>
     <div class="sched-meta">
       <div class="stage">${escapeHtml(stageLabel)}</div>
