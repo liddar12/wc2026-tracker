@@ -32,28 +32,30 @@ export function renderScheduleView(root, data, params) {
   const favDates = new Set();
   for (const row of schedule) {
     if (isFavMatch(row) && row?.kickoff_utc) {
-      const d = toLocalDateISO(row.kickoff_utc);
+      const d = utcDateISO(row.kickoff_utc);
       if (d) favDates.add(d);
     }
   }
   const mineAvailable = favDates.size > 0;
   const mineOnly = mineAvailable && params.mine === '1';
 
-  // Group by date in the user's local timezone so a 9pm Wed kickoff doesn't
-  // get hidden under Thursday's pill when UTC happens to roll the calendar.
+  // Group by the match's UTC calendar date — the canonical FIFA "match day".
+  // We deliberately do NOT bucket by the viewer's local day: in US timezones a
+  // 19:00/02:00 UTC opener split would scatter a single tournament day across
+  // two pills (e.g. an 8pm-Central kickoff sliding back onto the prior date).
+  // Kickoff *times* are still shown in the viewer's local zone on each card.
   const byDate = new Map();
   for (const row of schedule) {
     if (!row?.kickoff_utc) continue;
     if (mineOnly && !isFavMatch(row)) continue;
-    const localDate = toLocalDateISO(row.kickoff_utc);
-    if (!localDate) continue;
-    if (!byDate.has(localDate)) byDate.set(localDate, []);
-    byDate.get(localDate).push(row);
+    const dayKey = utcDateISO(row.kickoff_utc);
+    if (!dayKey) continue;
+    if (!byDate.has(dayKey)) byDate.set(dayKey, []);
+    byDate.get(dayKey).push(row);
   }
   const dates = [...byDate.keys()].sort();
 
-  const today = new Date();
-  const todayISO = formatLocalDateISO(today);
+  const todayISO = new Date().toISOString().slice(0, 10);
   let active = params.date;
   if (!active || !byDate.has(active)) {
     active = byDate.has(todayISO)
@@ -147,6 +149,11 @@ function scheduleCard(match, venueById, fav) {
 
   const venue = venueById.get(match.venue_id);
   const kickoff = formatKickoffLocal(match.kickoff_utc, venue?.timezone);
+  // Days are bucketed by UTC date, but kickoff times are shown in the viewer's
+  // local zone. When those disagree (e.g. a 02:00 UTC kickoff that's the night
+  // before locally), surface the local date so the time isn't misread.
+  const localDayHint = (utcDateISO(match.kickoff_utc) !== toLocalDateISO(match.kickoff_utc))
+    ? shortLocalDate(match.kickoff_utc) : '';
   const broadcast = match.broadcast?.us || {};
   const channelLabel = broadcast.english_channel || broadcast.spanish_channel || 'Channel TBA';
   const stageLabel = match.stage === 'group'
@@ -160,6 +167,7 @@ function scheduleCard(match, venueById, fav) {
     <div class="sched-time">
       <div class="time">${escapeHtml(kickoff.time)}</div>
       <div class="muted tz">${escapeHtml(kickoff.tz)}</div>
+      ${localDayHint ? `<div class="muted sched-localday">${escapeHtml(localDayHint)}</div>` : ''}
     </div>
     <div class="sched-teams">
       <div class="line${fav && aTeam === fav ? ' is-fav-team' : ''}"><span class="flag" aria-hidden="true">${flagFor(aTeam)}</span>${escapeHtml(aTeam)}${fav && aTeam === fav ? favBadge : ''}</div>
@@ -200,6 +208,22 @@ function formatKickoffLocal(iso, _tz) {
   }
 }
 
+function utcDateISO(iso) {
+  // YYYY-MM-DD of the kickoff in UTC — the canonical tournament "match day".
+  try {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return null;
+    return d.toISOString().slice(0, 10);
+  } catch { return null; }
+}
+function shortLocalDate(iso) {
+  // e.g. "Thu, Jun 11" in the viewer's local zone.
+  try {
+    const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return '';
+    return d.toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric' });
+  } catch { return ''; }
+}
 function toLocalDateISO(iso) {
   try {
     const d = new Date(iso);

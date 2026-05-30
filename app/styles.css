@@ -731,6 +731,11 @@ a.team-link { color: inherit; text-decoration: none; }
   box-shadow: inset 0 0 0 1px var(--primary);
 }
 .schedule-card .sched-teams .line.is-fav-team { font-weight: 800; }
+.schedule-card .sched-time .sched-localday {
+  font-size: 10px;
+  margin-top: 2px;
+  white-space: nowrap;
+}
 .fav-badge {
   color: var(--accent, #ff6b5e);
   font-size: 12px;
