@@ -2793,3 +2793,32 @@ html.wc-reduce-motion *::after {
   font-variant-numeric: tabular-nums;
 }
 .fav-kalshi-delta { font-weight: 700; font-size: 13px; }
+
+/* ===== Phase 4F: View Transitions API polish =====
+   When the browser supports it (Safari 18+ / Chrome 111+), smooth transitions
+   between views. Falls back to instant change otherwise. */
+@supports (view-transition-name: none) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 240ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  ::view-transition-old(root) {
+    animation-name: vt-old-fade;
+  }
+  ::view-transition-new(root) {
+    animation-name: vt-new-fade;
+  }
+}
+@keyframes vt-old-fade {
+  to { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes vt-new-fade {
+  from { opacity: 0; transform: translateY(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) { animation: none !important; }
+}
+html.wc-reduce-motion ::view-transition-old(root),
+html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; }

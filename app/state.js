@@ -56,7 +56,14 @@ export function setRoute(view, params = {}) {
   // Sync to hash for back/forward navigation
   const hash = buildHash(view, params);
   if (location.hash !== hash) location.hash = hash;
-  emit();
+  // Use the View Transitions API when available for smooth route-change
+  // animations. Falls back to plain emit() if the browser doesn't support it.
+  if (typeof document !== 'undefined' && typeof document.startViewTransition === 'function'
+      && !document.documentElement.classList.contains('wc-reduce-motion')) {
+    document.startViewTransition(() => { emit(); });
+  } else {
+    emit();
+  }
 }
 
 export function parseHash(hash) {
