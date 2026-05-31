@@ -2857,3 +2857,63 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
   color: var(--primary);
   font-variant-numeric: tabular-nums;
 }
+
+/* Group picker: per-team signal chips (power rank, projected pts, Kalshi) */
+.gp-row {
+  grid-template-columns: 48px 28px minmax(0, 1fr) auto auto;
+}
+.gp-signals {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+  justify-content: flex-end;
+}
+.gp-sig {
+  display: inline-flex;
+  align-items: baseline;
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.gp-sig em { font-style: normal; font-weight: 600; opacity: 0.9; margin-left: 2px; }
+.gp-sig-rank {
+  background: color-mix(in srgb, var(--primary) 14%, var(--surface));
+  color: var(--primary);
+  border: 1px solid color-mix(in srgb, var(--primary) 28%, var(--border));
+}
+.gp-sig-pts {
+  background: color-mix(in srgb, var(--warn, #b6831f) 14%, var(--surface));
+  color: var(--warn, #b6831f);
+  border: 1px solid color-mix(in srgb, var(--warn, #b6831f) 28%, var(--border));
+}
+.gp-sig-kal {
+  background: color-mix(in srgb, var(--accent, #F43F5E) 12%, var(--surface));
+  color: var(--accent, #F43F5E);
+  border: 1px solid color-mix(in srgb, var(--accent, #F43F5E) 24%, var(--border));
+}
+.gp-sig-kal.delta-up   { color: var(--good, #2f7d32); }
+.gp-sig-kal.delta-down { color: var(--bad,  #c9252d); }
+.gp-signal-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+@media (max-width: 419px) {
+  .gp-row { grid-template-columns: 36px 24px minmax(0, 1fr) auto; }
+  .gp-row .gp-handle { grid-column: 4; }
+  .gp-signals {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    padding-left: 60px;
+    margin-top: 2px;
+  }
+  .gp-sig { font-size: 10px; padding: 1px 6px; }
+}

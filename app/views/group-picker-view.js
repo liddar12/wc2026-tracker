@@ -3,7 +3,7 @@
    Persists per-pool in localStorage; submission to Supabase comes in B2. */
 
 import Sortable from 'https://esm.sh/sortablejs@1.15.2';
-import { setRoute } from '../state.js';
+import { setRoute, getState } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import {
   getCompetitionState,
@@ -12,6 +12,33 @@ import {
   saveGroupPredictionsForActiveGroup,
 } from '../competition.js';
 import { normalizeGroupPredictions, MAX_GROUP_SCORE, GROUP_POINTS } from '../group-scoring.js';
+
+// Build per-team signal lookup: power_rank from teams.json, projected group
+// points from group_matchups.json, Kalshi tournament-winner % from markets.json.
+// Re-computed each render so a new Kalshi refresh shows up on the next view.
+function teamSignalsFor(data) {
+  const teams = data?.teams || {};
+  const markets = data?.markets?.tournament_winner || [];
+  const groupMatchups = data?.groupMatchups || {};
+  const kalshiByTeam = {};
+  for (const row of markets) {
+    if (row?.team) kalshiByTeam[row.team] = row;
+  }
+  const projectedPointsByTeam = {};
+  for (const [letter, info] of Object.entries(groupMatchups)) {
+    for (const m of (info.matches || [])) {
+      const ep = m.expected_points || {};
+      projectedPointsByTeam[m.team_a] = (projectedPointsByTeam[m.team_a] || 0) + (ep.team_a || 0);
+      projectedPointsByTeam[m.team_b] = (projectedPointsByTeam[m.team_b] || 0) + (ep.team_b || 0);
+    }
+  }
+  return {
+    powerRank: (team) => teams[team]?.power_rank ?? null,
+    projectedPts: (team) => projectedPointsByTeam[team] ?? null,
+    kalshi: (team) => kalshiByTeam[team] || null,
+    marketsUpdatedAt: data?.markets?.updated_at || null,
+  };
+}
 
 const LS_KEY_PREFIX = 'wc26.grouppicks.';
 const GROUPS = ['A','B','C','D','E','F','G','H','I','J','K','L'];
@@ -25,6 +52,7 @@ export function renderGroupPickerView(root, data) {
   const comp = getCompetitionState();
   const key = currentDraftKey(comp);
   const picks = normalizeGroupPredictions(loadPicks(key));
+  const signals = teamSignalsFor(data);
 
   // Header
   root.appendChild(renderHeader(comp));
@@ -36,14 +64,22 @@ export function renderGroupPickerView(root, data) {
     root.appendChild(lock);
   }
 
-  // Intro card
+  // Intro card — explains scoring + the three signal chips on each team row
   const intro = document.createElement('div');
   intro.className = 'home-card';
   intro.style.marginBottom = '12px';
+  const kalUpdated = signals.marketsUpdatedAt
+    ? `<span class="muted" style="font-size:11px;"> · Kalshi ${escapeHtml(formatRel(signals.marketsUpdatedAt))}</span>`
+    : '';
   intro.innerHTML = `
     <h2 class="home-card-title">Predict the group stage</h2>
     <p class="muted" style="margin:0 0 6px;">Drag teams to set 1st → 4th in each of the 12 groups. Then pick the 8 best 3rd-place teams that advance to the Round of 32.</p>
-    <p class="muted" style="margin:0;">Scoring: <strong>1st = ${GROUP_POINTS.first}pt</strong> · <strong>2nd = ${GROUP_POINTS.second}pt</strong> · <strong>correct best-3rd = ${GROUP_POINTS.third}pt</strong> · max <strong>${MAX_GROUP_SCORE}</strong> pts.</p>
+    <p class="muted" style="margin:0 0 8px;">Scoring: <strong>1st = ${GROUP_POINTS.first}pt</strong> · <strong>2nd = ${GROUP_POINTS.second}pt</strong> · <strong>correct best-3rd = ${GROUP_POINTS.third}pt</strong> · max <strong>${MAX_GROUP_SCORE}</strong> pts.</p>
+    <div class="gp-signal-legend">
+      <span class="gp-sig gp-sig-rank">#N</span> <span class="muted">power rank (global)</span>
+      <span class="gp-sig gp-sig-pts">X.Xp</span> <span class="muted">projected group points</span>
+      <span class="gp-sig gp-sig-kal">X.X%</span> <span class="muted">Kalshi tournament-winner odds${kalUpdated}</span>
+    </div>
   `;
   root.appendChild(intro);
 
@@ -54,7 +90,7 @@ export function renderGroupPickerView(root, data) {
     const currentOrder = (picks.groups[g] && picks.groups[g].length === 4)
       ? picks.groups[g]
       : projectedOrder(gm);
-    root.appendChild(renderGroupCard(g, currentOrder, picks, key, () => renderGroupPickerView(root, data), comp));
+    root.appendChild(renderGroupCard(g, currentOrder, picks, key, () => renderGroupPickerView(root, data), comp, signals));
   }
 
   // Best-thirds selector
@@ -96,14 +132,14 @@ function renderHeader(comp) {
   return wrap;
 }
 
-function renderGroupCard(letter, order, picks, key, onChange, comp) {
+function renderGroupCard(letter, order, picks, key, onChange, comp, signals) {
   const section = document.createElement('section');
   section.className = 'bb-round gp-group';
   const locked = !!comp.lockState?.bracketLocked;
   section.innerHTML = `
-    <h3>Group ${letter} <span class="bb-round-meta muted">Drag to reorder</span></h3>
+    <h3>Group ${letter} <span class="bb-round-meta muted">Drag to reorder · rank · proj pts · Kalshi</span></h3>
     <ol class="gp-list" id="gp-list-${letter}" data-group="${letter}">
-      ${order.map((t, i) => gpRow(t, i, locked)).join('')}
+      ${order.map((t, i) => gpRow(t, i, locked, signals)).join('')}
     </ol>
   `;
   const list = section.querySelector('.gp-list');
@@ -211,13 +247,20 @@ function clearR32PicksForActivePool(comp) {
   } catch {}
 }
 
-function gpRow(team, idx, locked) {
+function gpRow(team, idx, locked, signals) {
   const cls = idx === 0 ? 'is-1st' : idx === 1 ? 'is-2nd' : idx === 2 ? 'is-3rd' : 'is-4th';
+  const rank = signals?.powerRank?.(team);
+  const pts = signals?.projectedPts?.(team);
+  const kal = signals?.kalshi?.(team);
+  const rankChip = rank ? `<span class="gp-sig gp-sig-rank" title="Composite power rank (1 = best)">#${rank}</span>` : '';
+  const ptsChip = (pts != null) ? `<span class="gp-sig gp-sig-pts" title="Projected group-stage points (sum across 3 matches)">${pts.toFixed(1)}p</span>` : '';
+  const kalChip = kal ? `<span class="gp-sig gp-sig-kal ${kal.delta_24h_pp >= 0 ? 'delta-up' : 'delta-down'}" title="Kalshi tournament-winner probability (whole tournament, not just group). 24h delta in parens.">${(kal.prob_pct).toFixed(1)}%${typeof kal.delta_24h_pp === 'number' && kal.delta_24h_pp !== 0 ? ` <em>(${kal.delta_24h_pp >= 0 ? '+' : ''}${kal.delta_24h_pp.toFixed(1)})</em>` : ''}</span>` : '';
   return `
     <li class="gp-row ${cls}" data-team="${escapeHtml(team)}">
       <span class="gp-position">${positionLabel(idx)}</span>
       <span class="gp-flag">${flagFor(team)}</span>
       <span class="gp-name">${escapeHtml(team)}</span>
+      <span class="gp-signals">${rankChip}${ptsChip}${kalChip}</span>
       ${locked ? '' : '<span class="gp-handle" aria-hidden="true">⋮⋮</span>'}
     </li>
   `;
@@ -341,6 +384,20 @@ function loadPicks(key) {
 
 function persistPicks(key, picks) {
   try { localStorage.setItem(key, JSON.stringify(picks)); } catch {}
+}
+
+function formatRel(iso) {
+  if (!iso) return '';
+  try {
+    const ms = Date.now() - Date.parse(iso);
+    if (!Number.isFinite(ms)) return '';
+    const mins = Math.floor(ms / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hrs = Math.floor(mins / 60);
+    if (hrs < 24) return `${hrs}h ago`;
+    return `${Math.floor(hrs / 24)}d ago`;
+  } catch { return ''; }
 }
 
 function escapeHtml(s) {
