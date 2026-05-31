@@ -16,6 +16,7 @@ import {
 } from '../competition.js';
 import { scoreBracketWeighted, WEIGHTED_ROUND_POINTS, MAX_WEIGHTED_SCORE } from '../competition-scoring.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
+import { buildAutofill, mergeAutofillIntoBracket, FILL_SOURCES } from '../bracket-autofill.js';
 
 const LS_KEY_PREFIX = 'wc26.mybrackets.';
 const ROUND_LABELS = ['R32', 'R16', 'QF', 'SF', 'Final'];
@@ -133,6 +134,18 @@ function renderHeader(comp) {
       <label for="mb-group-select" class="muted" style="font-size:12px;">Submitting to</label>
       ${groupOptions}
       <p class="muted" style="font-size:12px; margin: 8px 0 0;">Manage pools on the <a href="#/pools">Pools tab</a>.</p>
+
+      <h3 style="margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);">Auto-fill empty slots</h3>
+      <div class="mb-autofill-grid">
+        <button class="pick-btn pick-btn-secondary" data-autofill="model">Use Model</button>
+        <button class="pick-btn pick-btn-secondary" data-autofill="kalshi">Use Kalshi</button>
+        <button class="pick-btn pick-btn-secondary" data-autofill="hybrid">50/50 Hybrid</button>
+        <button class="pick-btn pick-btn-secondary" data-autofill="consensus">Public Consensus</button>
+      </div>
+      <label class="mb-autofill-overwrite muted">
+        <input type="checkbox" id="mb-autofill-overwrite"> Overwrite my current picks
+      </label>
+      <p id="mb-autofill-msg" class="muted" style="font-size:12px; margin: 6px 0 0;" role="status" aria-live="polite"></p>
     </div>
   `;
   wrap.addEventListener('change', (e) => {
@@ -140,7 +153,81 @@ function renderHeader(comp) {
       setActiveGroup(e.target.value);
     }
   });
+  wrap.querySelectorAll('[data-autofill]').forEach((btn) => {
+    btn.addEventListener('click', async (e) => {
+      const source = e.currentTarget.dataset.autofill;
+      const overwrite = !!wrap.querySelector('#mb-autofill-overwrite')?.checked;
+      const msg = wrap.querySelector('#mb-autofill-msg');
+      msg.textContent = 'Filling…';
+      try {
+        await runAutofill(source, overwrite);
+        msg.textContent = `Filled with ${FILL_SOURCES[source]?.label || source}. Tap any slot to override.`;
+      } catch (err) {
+        msg.textContent = err.message || 'Auto-fill failed.';
+      }
+    });
+  });
   return wrap;
+}
+
+async function runAutofill(source, overwrite) {
+  // Pull current data from the global state (avoids passing it through every callsite)
+  const { getState } = await import('../state.js');
+  const data = getState()?.data;
+  if (!data) throw new Error('Data not loaded yet.');
+
+  let consensusMap = null;
+  if (source === 'consensus') {
+    consensusMap = await fetchConsensusMap();
+    if (!consensusMap) {
+      throw new Error('Public consensus unavailable. Falls back to model.');
+    }
+  }
+
+  const autofill = buildAutofill(data, source, { consensusMap });
+  if (!autofill.length) throw new Error('No matches to fill yet.');
+
+  // Persist into the active pool's localStorage draft
+  const comp = (await import('../competition.js')).getCompetitionState();
+  const draftKey = comp?.activeGroup?.id
+    ? `wc26.mybrackets.${comp.activeGroup.id}`
+    : 'wc26.mybrackets.local';
+  const raw = localStorage.getItem(draftKey);
+  const bracket = raw ? JSON.parse(raw) : { picks: {} };
+  bracket.picks = mergeAutofillIntoBracket(autofill, bracket.picks || {}, overwrite);
+  localStorage.setItem(draftKey, JSON.stringify(bracket));
+  // Trigger view re-render
+  window.dispatchEvent(new CustomEvent('state:change'));
+}
+
+async function fetchConsensusMap() {
+  // Aggregate picks across all PUBLIC pools' group_brackets.
+  try {
+    const { getCompetitionState } = await import('../competition.js');
+    const state = getCompetitionState();
+    if (!state?.client) return null;
+    const { data: pools } = await state.client
+      .from('groups')
+      .select('id')
+      .eq('visibility', 'public');
+    if (!pools?.length) return {};
+    const poolIds = pools.map((p) => p.id);
+    const { data: brackets } = await state.client
+      .from('group_brackets')
+      .select('picks')
+      .in('group_id', poolIds);
+    if (!brackets) return {};
+    const counts = {};
+    for (const row of brackets) {
+      for (const pick of (row.picks || [])) {
+        if (!pick?.team_a || !pick?.team_b) continue;
+        const team = pick.choice === 'team_a' ? pick.team_a : pick.choice === 'team_b' ? pick.team_b : null;
+        if (!team) continue;
+        counts[team] = (counts[team] || 0) + 1;
+      }
+    }
+    return counts;
+  } catch { return null; }
 }
 
 function renderProgressBar(done, total) {

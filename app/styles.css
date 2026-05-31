@@ -2993,3 +2993,18 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
 @media (prefers-reduced-motion: reduce) {
   .lcard-score-num.is-bumped { animation: none; }
 }
+
+/* A3: bracket auto-fill */
+.mb-autofill-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.mb-autofill-overwrite {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.mb-autofill-overwrite input { transform: scale(1.1); accent-color: var(--primary); }
