@@ -8,6 +8,7 @@
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { statusPill } from '../components/status-pill.js';
+import { openMatchSheet } from '../components/match-sheet.js';
 import { renderBracketView } from './bracket-view.js';
 import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder, computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
 import { getFavoriteTeam } from '../favorites.js';
@@ -24,29 +25,33 @@ export function renderBracketsLiveView(root, data, params) {
 
   // Sub-tab toggle: Live ↔ Projected. Both modes live under the same #/brackets
   // route so we never end up trapped on one side.
-  const mode = params?.mode === 'projected' ? 'projected' : 'live';
+  const mode = params?.mode === 'projected' ? 'projected'
+            : params?.mode === 'compare'   ? 'compare'
+            : 'live';
   const sub = document.createElement('div');
   sub.className = 'brackets-tabs';
   sub.innerHTML = `
-    <button type="button" class="${mode === 'live' ? 'is-active' : ''}" data-mode="live">Live (actual)</button>
-    <button type="button" class="${mode === 'projected' ? 'is-active' : ''}" data-mode="projected">Projected (model)</button>
+    <button type="button" class="${mode === 'live' ? 'is-active' : ''}" data-mode="live">Live</button>
+    <button type="button" class="${mode === 'projected' ? 'is-active' : ''}" data-mode="projected">Projected</button>
+    <button type="button" class="${mode === 'compare' ? 'is-active' : ''}" data-mode="compare">Compare</button>
   `;
   sub.addEventListener('click', (e) => {
     const t = e.target.closest('button[data-mode]');
     if (!t) return;
     const next = t.dataset.mode;
-    if (next === mode) return; // no-op
-    // Toggle by updating the URL params so refresh / back-button keeps the
-    // user's last view, and so the toggle is fully symmetric.
-    setRoute('brackets', next === 'projected' ? { mode: 'projected' } : {});
+    if (next === mode) return;
+    setRoute('brackets', next === 'live' ? {} : { mode: next });
   });
   root.appendChild(sub);
 
   if (mode === 'projected') {
-    // Delegate to the legacy SVG bracket view for the projected/model rendering.
     const wrap = document.createElement('div');
     root.appendChild(wrap);
     renderBracketView(wrap, data);
+    return;
+  }
+  if (mode === 'compare') {
+    renderCompareView(root, data);
     return;
   }
 
@@ -222,8 +227,10 @@ function renderStage(stage, matches, data) {
       if (isPlaceholderA || isPlaceholderB) btn.disabled = true;
       btn.addEventListener('click', () => {
         if (isPlaceholderA || isPlaceholderB) return;
-        location.hash = `#/matchup/team_a/${encodeURIComponent(a)}/team_b/${encodeURIComponent(b)}`;
+        openMatchSheet(data, { teamA: a, teamB: b });
       });
+      // Long-press → quick actions
+      attachLongPress(btn, () => openQuickActions(a, b, btn));
     });
     section.appendChild(wrap);
     section.appendChild(stampRow);
@@ -250,11 +257,165 @@ function intervalLabel(iso) {
   } catch { return ''; }
 }
 
+function renderCompareView(root, data) {
+  // Side-by-side: my pick vs model pick per matchup, with actual on top
+  // when present.
+  const intro = document.createElement('div');
+  intro.className = 'home-card';
+  intro.style.marginBottom = '12px';
+  intro.innerHTML = `
+    <h2 class="home-card-title">My picks vs Model</h2>
+    <p class="muted" style="margin:0;">For each knockout match: your bracket pick (filled chip), the model's projection (outline chip), and the actual winner (green outline) once played.</p>
+  `;
+  root.appendChild(intro);
+
+  const scheduleFull = data.scheduleFull || [];
+  const knockouts = scheduleFull
+    .filter((m) => STAGE_ORDER.includes(m.stage))
+    .sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
+  if (!knockouts.length) {
+    root.appendChild(emptyCard("Knockout bracket isn't loaded yet."));
+    return;
+  }
+  // Resolve slots, with model winners chained through downstream rounds so
+  // the model column shows team names all the way to the Champion.
+  resolveSlots(knockouts, data, {
+    winnerResolver: ({ team_a, team_b }) => {
+      const ca = data?.teams?.[team_a]?.composite;
+      const cb = data?.teams?.[team_b]?.composite;
+      if (typeof ca !== 'number' || typeof cb !== 'number') return team_a;
+      return ca >= cb ? team_a : team_b;
+    },
+  });
+
+  // Pull user picks from localStorage for the active pool / local draft.
+  const comp = (typeof window !== 'undefined' && window.__wc26CompState) || null;
+  let bracket = { picks: {} };
+  try {
+    const key = comp?.activeGroup?.id
+      ? `wc26.mybrackets.${comp.activeGroup.id}`
+      : 'wc26.mybrackets.local';
+    const raw = localStorage.getItem(key);
+    if (raw) bracket = JSON.parse(raw);
+  } catch {}
+
+  for (const stage of STAGE_ORDER) {
+    const matches = knockouts.filter((m) => m.stage === stage);
+    if (!matches.length) continue;
+    const section = document.createElement('section');
+    section.className = 'bb-round';
+    section.innerHTML = `<h3>${escapeHtml(STAGE_LABELS[stage] || stage)}</h3>`;
+    for (const m of matches) {
+      const a = m.resolved_team_a;
+      const b = m.resolved_team_b;
+      const actualWinner = m.actual?.winner || null;
+      const modelWinner = m.projected_winner || null;
+      const userPick = bracket.picks?.[String(m.match_number)]?.team || null;
+      const row = document.createElement('div');
+      row.className = 'bb-compare-row';
+      row.innerHTML = `
+        <div class="bb-compare-pair">${escapeHtml(a || 'TBD')} <span class="muted">vs</span> ${escapeHtml(b || 'TBD')}</div>
+        <div class="bb-compare-chips">
+          <span class="bb-chip bb-chip-mine ${userPick ? 'is-set' : ''}">${escapeHtml(userPick || '—')}</span>
+          <span class="bb-chip bb-chip-model">${escapeHtml(modelWinner || '—')}</span>
+          ${actualWinner ? `<span class="bb-chip bb-chip-actual">${escapeHtml(actualWinner)}</span>` : ''}
+        </div>
+        ${userPick && modelWinner && userPick !== modelWinner
+          ? `<div class="bb-compare-flag">Diverges from model</div>`
+          : ''}
+      `;
+      section.appendChild(row);
+    }
+    root.appendChild(section);
+  }
+}
+
 function emptyCard(text) {
   const div = document.createElement('div');
   div.className = 'bb-empty';
   div.textContent = text;
   return div;
+}
+
+// Long-press helper — fires onLong if the user holds for >=550ms without
+// moving significantly. Cancelled by drag/scroll.
+function attachLongPress(el, onLong) {
+  let timer = null;
+  let startX = 0, startY = 0;
+  const start = (e) => {
+    const t = e.touches ? e.touches[0] : e;
+    startX = t.clientX; startY = t.clientY;
+    cancel();
+    timer = setTimeout(() => { timer = null; try { onLong(); } catch {} }, 550);
+  };
+  const move = (e) => {
+    if (!timer) return;
+    const t = e.touches ? e.touches[0] : e;
+    if (Math.hypot(t.clientX - startX, t.clientY - startY) > 10) cancel();
+  };
+  const cancel = () => { if (timer) { clearTimeout(timer); timer = null; } };
+  el.addEventListener('touchstart', start, { passive: true });
+  el.addEventListener('touchmove', move, { passive: true });
+  el.addEventListener('touchend', cancel);
+  el.addEventListener('touchcancel', cancel);
+  el.addEventListener('mousedown', start);
+  el.addEventListener('mousemove', move);
+  el.addEventListener('mouseup', cancel);
+  el.addEventListener('mouseleave', cancel);
+}
+
+function openQuickActions(teamA, teamB, anchor) {
+  // Minimal action sheet — bottom slide-up with favorite/share/pick options.
+  const existing = document.querySelector('.wc-actions');
+  if (existing) existing.remove();
+  const sheet = document.createElement('div');
+  sheet.className = 'wc-actions';
+  sheet.innerHTML = `
+    <button type="button" class="wc-actions-btn" data-act="fav-a">⭐ Favorite ${escapeHtml(teamA)}</button>
+    <button type="button" class="wc-actions-btn" data-act="fav-b">⭐ Favorite ${escapeHtml(teamB)}</button>
+    <button type="button" class="wc-actions-btn" data-act="share">↗ Share matchup</button>
+    <button type="button" class="wc-actions-btn" data-act="pick-mine">📝 Pick this in My Brackets</button>
+    <button type="button" class="wc-actions-btn wc-actions-cancel" data-act="cancel">Cancel</button>
+  `;
+  document.body.appendChild(sheet);
+  requestAnimationFrame(() => sheet.classList.add('is-open'));
+  sheet.addEventListener('click', async (e) => {
+    const btn = e.target.closest('[data-act]');
+    if (!btn) return;
+    const act = btn.dataset.act;
+    sheet.classList.remove('is-open');
+    setTimeout(() => sheet.remove(), 250);
+    if (act === 'cancel') return;
+    if (act === 'fav-a' || act === 'fav-b') {
+      const team = act === 'fav-a' ? teamA : teamB;
+      const { setFavoriteTeam } = await import('../favorites.js');
+      setFavoriteTeam(team);
+      return;
+    }
+    if (act === 'share') {
+      const text = `${teamA} vs ${teamB} — WC26 Tracker`;
+      const url = `${location.origin}/#/matchup/team_a/${encodeURIComponent(teamA)}/team_b/${encodeURIComponent(teamB)}`;
+      try {
+        if (navigator.share) await navigator.share({ title: text, url });
+        else await navigator.clipboard.writeText(url);
+      } catch {}
+      return;
+    }
+    if (act === 'pick-mine') {
+      // Navigate to My Brackets so the user can pick this matchup.
+      location.hash = '#/my-brackets';
+      return;
+    }
+  });
+  // Dismiss on outside tap
+  setTimeout(() => {
+    document.addEventListener('click', function once(e) {
+      if (sheet.contains(e.target)) return;
+      sheet.classList.remove('is-open');
+      setTimeout(() => sheet.remove(), 250);
+      document.removeEventListener('click', once);
+    });
+  }, 100);
 }
 
 function escapeHtml(s) {
