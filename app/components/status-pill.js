@@ -45,6 +45,8 @@ function clampMinute(elapsedMin) {
 function pill(label, cls) {
   const span = document.createElement('span');
   span.className = `status-pill ${cls}`;
+  span.setAttribute('data-testid', 'status-pill');
+  span.setAttribute('data-status', cls.replace('is-', ''));
   span.textContent = label;
   return span;
 }

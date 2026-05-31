@@ -174,57 +174,36 @@ async function paintCompetition(section, data) {
     ? `Bracket lock: ${comp.lockState.phase}`
     : 'Bracket open';
   const rows = await fetchLeaderboard(data);
-  const { code, path } = getJoinUrls();
-  const drafts = listBracketDrafts();
-  const activeDraftId = getActiveDraftId();
-  const groups = comp.groups
-    .map((g) => `<option value="${escapeHtml(g.id)}" ${comp.activeGroup?.id === g.id ? 'selected' : ''}>${escapeHtml(g.name)}</option>`)
-    .join('');
-  const draftOptions = drafts
-    .map((d) => `<option value="${escapeHtml(d.id)}" ${d.id === activeDraftId ? 'selected' : ''}>${escapeHtml(d.name)}</option>`)
-    .join('');
-  const activeDraft = drafts.find((d) => d.id === activeDraftId) || drafts[0] || null;
-  const activeDraftPickCount = Array.isArray(activeDraft?.picks) ? activeDraft.picks.length : 0;
-  const canSubmitBracket = !comp.lockState.bracketLocked && Boolean(comp.activeGroup) && activeDraftPickCount > 0;
+  const activeName = comp.activeGroup?.name || null;
   const leaderboard = rows.length
-    ? `<ol style="padding-left:20px;">${rows.map((r) => `<li>${escapeHtml(r.username)} · ${r.score} pts</li>`).join('')}</ol>`
-    : '<p class="muted">No submissions yet.</p>';
+    ? `<ol class="my-picks-leaderboard">${rows.slice(0, 8).map((r) => `<li><span class="lb-name">${escapeHtml(r.username)}</span><span class="lb-score">${r.score} pts</span></li>`).join('')}</ol>`
+    : '<p class="muted">No submissions to this pool yet.</p>';
 
+  // Slimmed panel: pool management moved to /#/pools, bracket building/submitting
+  // moved to /#/my-brackets. This card surfaces signed-in status + active
+  // pool leaderboard preview + quick links.
   section.innerHTML = `
-    <h2>Group Competition (Beta)</h2>
-    <div class="auth-card">
-      <p class="muted">${escapeHtml(joinState)} · Signed in as ${escapeHtml(comp.profile?.username || comp.user.email || 'user')}</p>
-      <div class="auth-actions">
-        <button class="pick-btn" id="comp-signout">Sign Out</button>
-        <button class="pick-btn" id="comp-go-create">Create Group</button>
-      </div>
-      <div style="display:grid; gap:8px; margin:10px 0;">
-        <label class="muted">Your pools</label>
-        <select id="comp-group-select" class="auth-input"><option value="">Choose pool</option>${groups}</select>
-        <div class="auth-grid">
-          <input id="comp-join-code" class="auth-input" placeholder="Join by code (silver-otter-4821)" aria-label="Join by code">
-          <button class="pick-btn" id="comp-join-group">Join by Code</button>
+    <div class="auth-card my-picks-status">
+      <div class="my-picks-status-row">
+        <div>
+          <h2 style="margin:0 0 4px; font-size: 16px;">Signed in as ${escapeHtml(comp.profile?.username || comp.user.email || 'user')}</h2>
+          <p class="muted" style="margin: 0; font-size: 12px;">${escapeHtml(joinState)} · ${comp.groups.length} pool${comp.groups.length === 1 ? '' : 's'}${activeName ? ` · Active: ${escapeHtml(activeName)}` : ''}</p>
         </div>
-        <div class="auth-grid">
-          <input id="comp-join-name" class="auth-input" placeholder="Join private pool by exact name" aria-label="Join by exact name">
-          <button class="pick-btn pick-btn-secondary" id="comp-join-name-btn">Join by Name</button>
-        </div>
-        <p class="muted" style="font-size:12px; margin:0;">More options on the <a href="#/pools">Pools tab</a>.</p>
+        <button class="pick-btn pick-btn-secondary" id="comp-signout" style="flex: 0 0 auto;">Sign out</button>
       </div>
-      ${code ? `<p class="muted">Code: <code>${escapeHtml(code)}</code> · URL: <a href="${escapeHtml(path)}">${escapeHtml(path)}</a></p>` : '<p class="muted">Select a group to share code + URL.</p>'}
-      ${comp.joinNotice ? `<p class="muted auth-join-note">${escapeHtml(comp.joinNotice)}</p>` : ''}
-      <h3 style="margin-top:12px;">My Brackets</h3>
-      <div class="auth-grid">
-        <select id="comp-draft-select" class="auth-input">${draftOptions}</select>
-        <div class="auth-grid" style="grid-template-columns: 1fr auto;">
-          <input id="comp-new-draft" class="auth-input" placeholder="Bracket name for this group">
-          <button class="pick-btn" id="comp-create-draft">Create</button>
-        </div>
-        <p class="muted">Selected bracket has ${activeDraftPickCount} pick${activeDraftPickCount === 1 ? '' : 's'}.</p>
-        <button class="pick-btn" id="comp-submit-group" ${canSubmitBracket ? '' : 'disabled'}>Submit Selected Bracket to Group</button>
+
+      <div class="my-picks-cta-grid">
+        <a class="pick-btn" href="#/pools">Pools →</a>
+        <a class="pick-btn" href="#/my-brackets">My Brackets →</a>
+        <a class="pick-btn pick-btn-secondary" href="#/group-picks">Group Picks →</a>
+        <a class="pick-btn pick-btn-secondary" href="#/settings">Settings →</a>
       </div>
-      <h3 style="margin-top:12px;">Leaderboard</h3>
-      ${leaderboard}
+
+      ${activeName ? `
+        <h3 style="margin: 14px 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);">${escapeHtml(activeName)} leaderboard</h3>
+        ${leaderboard}
+      ` : '<p class="muted" style="margin-top: 14px;">Pick an active pool from <a href="#/pools">Pools</a> to see its leaderboard here.</p>'}
+
       <p class="muted" id="comp-msg" role="status" aria-live="polite" style="margin-top:8px;"></p>
     </div>
   `;
@@ -240,84 +219,6 @@ async function paintCompetition(section, data) {
       setMessage(section, err.message || 'Could not sign out', true);
     } finally {
       setButtonBusy(signOutBtn, false);
-    }
-  });
-  section.querySelector('#comp-group-select').addEventListener('change', async (e) => {
-    try {
-      setMessage(section, '');
-      setActiveGroup(e.target.value);
-      await paintCompetition(section, data);
-    } catch (err) {
-      setMessage(section, err.message || 'Could not switch group', true);
-    }
-  });
-  section.querySelector('#comp-go-create').addEventListener('click', () => setRoute('create-group', {}));
-  section.querySelector('#comp-join-group').addEventListener('click', async () => {
-    const joinBtn = section.querySelector('#comp-join-group');
-    const codeInput = section.querySelector('#comp-join-code').value.trim();
-    setButtonBusy(joinBtn, true);
-    try {
-      setMessage(section, '');
-      if (!codeInput) throw new Error('Enter a join code');
-      if (!isValidJoinCode(codeInput)) throw new Error('Code format must look like silver-otter-4821');
-      await joinPoolByCode(codeInput);
-      await paintCompetition(section, data);
-    } catch (err) {
-      setMessage(section, err.message || 'Could not join pool. Verify the code and try again.', true);
-    } finally {
-      setButtonBusy(joinBtn, false);
-    }
-  });
-  section.querySelector('#comp-join-name-btn').addEventListener('click', async () => {
-    const btn = section.querySelector('#comp-join-name-btn');
-    const nameInput = section.querySelector('#comp-join-name').value.trim();
-    setButtonBusy(btn, true);
-    try {
-      setMessage(section, '');
-      if (!nameInput) throw new Error('Type the exact pool name.');
-      await joinPoolByName(nameInput);
-      await paintCompetition(section, data);
-    } catch (err) {
-      setMessage(section, err.message || 'Could not join pool. Check the name spelling.', true);
-    } finally {
-      setButtonBusy(btn, false);
-    }
-  });
-  section.querySelector('#comp-draft-select').addEventListener('change', (e) => {
-    setActiveDraft(e.target.value);
-  });
-  section.querySelector('#comp-create-draft').addEventListener('click', async () => {
-    const createBtn = section.querySelector('#comp-create-draft');
-    const name = section.querySelector('#comp-new-draft').value;
-    setButtonBusy(createBtn, true);
-    try {
-      setMessage(section, '');
-      createBracketDraft(name);
-      await paintCompetition(section, data);
-      setMessage(section, 'Bracket draft created from your current local picks.');
-    } catch (err) {
-      setMessage(section, err.message || 'Could not create bracket draft.', true);
-    } finally {
-      setButtonBusy(createBtn, false);
-    }
-  });
-  section.querySelector('#comp-submit-group').addEventListener('click', async () => {
-    const submitBtn = section.querySelector('#comp-submit-group');
-    setButtonBusy(submitBtn, true);
-    try {
-      setMessage(section, '');
-      const score = await saveBracketForActiveGroup(data);
-      setMessage(section, `Bracket saved to group. Current score: ${score}. You can edit and re-submit until lock.`);
-      await paintCompetition(section, data);
-    } catch (err) {
-      const message = String(err?.message || '');
-      if (/duplicate|unique|group_brackets_pkey/i.test(message)) {
-        setMessage(section, 'You already submitted one bracket to this group. One submission per user is enforced.', true);
-      } else {
-        setMessage(section, message || 'Could not submit bracket. Check group access and try again.', true);
-      }
-    } finally {
-      setButtonBusy(submitBtn, false);
     }
   });
 }

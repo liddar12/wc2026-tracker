@@ -51,7 +51,7 @@
 </header>
 
 <div class="tab-bar-wrap" id="tab-bar-wrap">
-<nav class="tab-bar" id="tab-bar" role="tablist" aria-label="Primary">
+<nav class="tab-bar" id="tab-bar" role="tablist" aria-label="Primary" data-testid="tab-bar">
   <button type="button" role="tab" data-route="home" class="tab is-active">Home</button>
   <button type="button" role="tab" data-route="matchups" class="tab">Matches</button>
   <button type="button" role="tab" data-route="schedule" class="tab">Schedule</button>
@@ -65,7 +65,7 @@
 </nav>
 </div>
 
-<main id="view" class="view scroll-area" aria-live="polite">
+<main id="view" class="view scroll-area" aria-live="polite" data-testid="view-root">
   <p class="loading">Loading data…</p>
 </main>
 

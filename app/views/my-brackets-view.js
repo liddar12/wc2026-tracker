@@ -11,6 +11,8 @@ import {
   setActiveGroup,
   fetchLeaderboard,
   isSupabaseConfigured,
+  fetchMyGroupPredictions,
+  getCachedGroupPredictions,
 } from '../competition.js';
 import { scoreBracketWeighted, WEIGHTED_ROUND_POINTS, MAX_WEIGHTED_SCORE } from '../competition-scoring.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
@@ -31,6 +33,19 @@ export function renderMyBracketsView(root, data) {
   const comp = getCompetitionState();
   if (!isSupabaseConfigured()) {
     root.appendChild(notice("This build has no cloud login. You can still build a bracket locally — picks save to this device."));
+  }
+
+  // Fire-and-forget: pull this user's group_predictions for the active pool
+  // into the in-memory cache. The first render reads from localStorage; once
+  // this resolves, a state:change will trigger a re-render using the server
+  // picks. Cross-device R32 auto-seed without making the view async.
+  if (comp?.user && comp?.activeGroup?.id && !getCachedGroupPredictions()) {
+    fetchMyGroupPredictions().then((rec) => {
+      if (rec?.picks) {
+        // Force a re-render so the R32 seeding picks up the freshly cached picks.
+        try { window.dispatchEvent(new CustomEvent('state:change')); } catch {}
+      }
+    }).catch(() => {});
   }
 
   // Top: group selector + draft selector
@@ -151,9 +166,15 @@ function buildR32Seeding(data, bracket) {
 }
 
 function loadUserGroupPicks() {
-  // Same draft-key convention as group-picker-view. Prefer the bracket's
-  // active pool draft if available; fall back to local.
+  // Resolution order for R32 seeding (cross-device for signed-in users):
+  //   1. Server-cached group_predictions for active pool (fetched async on render)
+  //   2. localStorage draft for active pool
+  //   3. localStorage local draft
   const comp = getCompetitionState();
+  // 1. Server cache
+  const cached = getCachedGroupPredictions();
+  if (cached) return cached;
+  // 2 + 3. localStorage fallbacks
   try {
     const key = comp?.activeGroup?.id
       ? `wc26.grouppicks.${comp.activeGroup.id}`

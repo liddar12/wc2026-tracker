@@ -18,6 +18,10 @@ export function largeMatchCard(match, opts = {}) {
   const card = document.createElement('article');
   card.className = 'lcard' + (isFavorite ? ' is-fav' : '');
   card.setAttribute('data-mode', mode);
+  card.setAttribute('data-testid', 'large-match-card');
+  if (match.team_a) card.setAttribute('data-team-a', match.team_a);
+  if (match.team_b) card.setAttribute('data-team-b', match.team_b);
+  if (isFavorite) card.setAttribute('data-favorite', 'true');
   if (onTap) {
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');

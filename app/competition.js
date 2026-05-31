@@ -4,6 +4,7 @@ import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFro
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
 import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket, scoreBracketWeighted, compareLeaderboardEntries } from './competition-scoring.js';
 import { scoreGroupPredictions, normalizeGroupPredictions } from './group-scoring.js';
+import { pullServerFavoriteIfAuthed } from './favorites.js';
 
 const LS_GROUP = 'wc26.competition.group';
 const LS_GUEST_MODE = 'wc26.competition.guestMode';
@@ -94,7 +95,7 @@ async function loadProfileAndGroups() {
   if (!state.client || !state.user) return;
   const { data: profile } = await state.client
     .from('profiles')
-    .select('user_id,username')
+    .select('user_id,username,favorite_team')
     .eq('user_id', state.user.id)
     .maybeSingle();
   state.profile = profile || null;
@@ -106,6 +107,10 @@ async function loadProfileAndGroups() {
   state.groups = (memberships || []).map((m) => m.groups);
   const desiredGroup = localStorage.getItem(LS_GROUP);
   state.activeGroup = state.groups.find((g) => g.id === desiredGroup) || state.groups[0] || null;
+
+  // Sync favorite team from server (server wins for signed-in users so the
+  // favorite follows them across devices).
+  await pullServerFavoriteIfAuthed();
 }
 
 export async function signUp(identifier, password) {
@@ -391,6 +396,9 @@ export async function saveGroupPredictionsForActiveGroup(picks, data) {
 }
 
 // Fetch the current user's group_predictions for the active pool (or null).
+// Also caches the picks on state.cachedGroupPredictions keyed by group_id so
+// synchronous callers (my-brackets-view R32 seeding) can read the server-stored
+// picks without making the view async.
 export async function fetchMyGroupPredictions() {
   if (!state.client || !state.user || !state.activeGroup) return null;
   const { data, error } = await state.client
@@ -400,7 +408,18 @@ export async function fetchMyGroupPredictions() {
     .eq('user_id', state.user.id)
     .maybeSingle();
   if (error) return null;
+  if (!state.cachedGroupPredictions) state.cachedGroupPredictions = {};
+  if (data?.picks) {
+    state.cachedGroupPredictions[state.activeGroup.id] = data.picks;
+  }
   return data;
+}
+
+// Read-only cache accessor for sync callers. Returns the most recent server-
+// fetched group_predictions for the active pool, or null if not yet fetched.
+export function getCachedGroupPredictions() {
+  if (!state.activeGroup?.id) return null;
+  return state.cachedGroupPredictions?.[state.activeGroup.id] || null;
 }
 
 export function listBracketDrafts() {

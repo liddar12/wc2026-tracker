@@ -139,6 +139,12 @@ check_json_shape "/data/xg.json"             "assert isinstance(data, dict) and 
 check_json_shape "/data/markets.json" \
   "assert data.get('source')=='kalshi' and isinstance(data.get('tournament_winner'), list) and len(data['tournament_winner'])>=40, len(data.get('tournament_winner',[]))" \
   "data/markets.json"
+check_json_shape "/data/team_colors.json" \
+  "assert isinstance(data, dict) and len(data) >= 40 and all('primary' in v for v in data.values()), len(data)" \
+  "data/team_colors.json"
+check_json_shape "/data/schedule_source.json" \
+  "assert isinstance(data.get('matches'), list) and len(data['matches']) == 104, len(data.get('matches',[]))" \
+  "data/schedule_source.json"
 
 echo "smoke: manifest shape"
 check_json_shape "/manifest.json" \

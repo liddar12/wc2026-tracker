@@ -73,12 +73,12 @@ function renderStage(stage, matches, data) {
     const wrap = document.createElement('div');
     wrap.className = 'bb-pair' + (aIsFav || bIsFav ? ' has-fav' : '');
     wrap.innerHTML = `
-      <button class="bb-slot ${aPicked ? 'is-projected' : ''} ${aIsFav ? 'is-fav-slot' : ''}" ${isPlaceholderA ? 'disabled' : ''}>
+      <button class="bb-slot ${aPicked ? 'is-projected' : ''} ${aIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(a || '')}" data-match="${m.match_number}" ${isPlaceholderA ? 'disabled' : ''}>
         <span class="bb-slot-flag">${fa}</span>
         <span>${escapeHtml(a || 'TBD')}</span>
       </button>
       <div class="bb-pair-vs">vs</div>
-      <button class="bb-slot ${bPicked ? 'is-projected' : ''} ${bIsFav ? 'is-fav-slot' : ''}" ${isPlaceholderB ? 'disabled' : ''}>
+      <button class="bb-slot ${bPicked ? 'is-projected' : ''} ${bIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(b || '')}" data-match="${m.match_number}" ${isPlaceholderB ? 'disabled' : ''}>
         <span class="bb-slot-flag">${fb}</span>
         <span>${escapeHtml(b || 'TBD')}</span>
       </button>

@@ -16,6 +16,10 @@ export function matchupCard(match, data) {
   const a = document.createElement('a');
   a.className = 'matchup-card' + (isFav ? ' is-fav-card' : '');
   a.href = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
+  a.setAttribute('data-testid', 'matchup-card');
+  a.setAttribute('data-team-a', match.team_a);
+  a.setAttribute('data-team-b', match.team_b);
+  if (isFav) a.setAttribute('data-favorite', 'true');
 
   const predLabel = predictionLabel(match);
   const predClass = predictionClass(match);

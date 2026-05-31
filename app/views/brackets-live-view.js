@@ -202,12 +202,12 @@ function renderStage(stage, matches, data) {
       ? `data-team-a="${escapeHtml(a)}" data-team-b="${escapeHtml(b)}"`
       : '';
     wrap.innerHTML = `
-      <button class="bb-slot ${winnerIsA ? 'is-actual-win' : actual && winnerIsB ? 'is-busted' : ''} ${aIsFav ? 'is-fav-slot' : ''}" ${onTap}>
+      <button class="bb-slot ${winnerIsA ? 'is-actual-win' : actual && winnerIsB ? 'is-busted' : ''} ${aIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(a || '')}" data-match="${m.match_number}" ${onTap}>
         <span class="bb-slot-flag">${fa}</span>
         <span>${escapeHtml(a || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_a}</span>` : ''}</span>
       </button>
       <div class="bb-pair-vs">vs</div>
-      <button class="bb-slot ${winnerIsB ? 'is-actual-win' : actual && winnerIsA ? 'is-busted' : ''} ${bIsFav ? 'is-fav-slot' : ''}" ${onTap}>
+      <button class="bb-slot ${winnerIsB ? 'is-actual-win' : actual && winnerIsA ? 'is-busted' : ''} ${bIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(b || '')}" data-match="${m.match_number}" ${onTap}>
         <span class="bb-slot-flag">${fb}</span>
         <span>${escapeHtml(b || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_b}</span>` : ''}</span>
       </button>
