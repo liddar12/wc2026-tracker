@@ -97,7 +97,11 @@ function renderView() {
   };
   const activeTab = tabMap[view];
   for (const t of document.querySelectorAll('.tab-bar .tab')) {
-    t.classList.toggle('is-active', t.dataset.route === activeTab);
+    const isActive = t.dataset.route === activeTab;
+    t.classList.toggle('is-active', isActive);
+    if (isActive) t.setAttribute('aria-current', 'page');
+    else t.removeAttribute('aria-current');
+    t.setAttribute('aria-selected', isActive ? 'true' : 'false');
   }
 
   // Update the text portion of the title only; the FIFA logo img sibling stays.

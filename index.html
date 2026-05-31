@@ -37,7 +37,7 @@
 <link rel="stylesheet" href="app/styles.css">
 </head>
 <body>
-<header class="app-header sticky-header" id="app-header">
+<header class="app-header sticky-header" id="app-header" role="banner">
   <button class="back-btn" id="back-btn" type="button" aria-label="Back" hidden>&larr;</button>
   <h1 class="app-title" id="app-title">
     <img class="app-logo" src="assets/wc26/logo-100.webp" alt="" aria-hidden="true" width="48" height="22" loading="eager" decoding="async">
@@ -65,12 +65,13 @@
 </nav>
 </div>
 
-<main id="view" class="view scroll-area" aria-live="polite" data-testid="view-root">
+<a href="#view" class="skip-link">Skip to main content</a>
+<main id="view" class="view scroll-area" role="main" aria-live="polite" aria-label="Main content" tabindex="-1" data-testid="view-root">
   <p class="loading">Loading data…</p>
 </main>
 
-<footer class="app-footer">
-  <span id="data-version" class="muted">—</span>
+<footer class="app-footer" role="contentinfo">
+  <span id="data-version" class="muted" aria-label="Data last updated">—</span>
   <span class="muted">·</span>
   <span class="muted">v5-kalshi · WC26</span>
 </footer>

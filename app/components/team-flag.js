@@ -90,6 +90,13 @@ function isoToEmoji(code) {
 }
 
 export function flagFor(team) {
+  // Wrapped so screen readers skip the emoji and read only the
+  // adjacent team name. Callsites that need a raw emoji use rawFlagFor().
+  const e = isoToEmoji(ISO[team] || ISO[team?.trim()] || '');
+  return `<span class="flag" aria-hidden="true">${e}</span>`;
+}
+
+export function rawFlagFor(team) {
   return isoToEmoji(ISO[team] || ISO[team?.trim()] || '');
 }
 
@@ -97,6 +104,6 @@ export function flagSpan(team) {
   const span = document.createElement('span');
   span.className = 'flag';
   span.setAttribute('aria-hidden', 'true');
-  span.textContent = flagFor(team);
+  span.textContent = rawFlagFor(team);
   return span;
 }
