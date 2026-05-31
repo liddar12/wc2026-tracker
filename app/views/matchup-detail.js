@@ -25,6 +25,7 @@ import { travelRestSection } from '../components/travel-rest.js';
 import { xgSection } from '../components/xg.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
+import { hybridProb } from '../hybrid-model.js';
 
 export function renderMatchupDetail(root, data, params) {
   const match = findMatch(data.groupMatchups, params.team_a, params.team_b);
@@ -102,6 +103,7 @@ export function renderMatchupDetail(root, data, params) {
   const modelCol = document.createElement('div');
   modelCol.className = 'model-col';
   modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
+  modelCol.appendChild(hybridPill(match, data.markets));
 
   const compSec = document.createElement('div');
   compSec.className = 'section model-section';
@@ -231,3 +233,24 @@ function findMatch(groupMatchups, a, b) {
 }
 
 function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+function hybridPill(match, markets) {
+  const wrap = document.createElement('div');
+  wrap.className = 'hybrid-pill';
+  const hp = hybridProb(match, markets);
+  if (!hp) {
+    wrap.hidden = true;
+    return wrap;
+  }
+  const sideLabel = hp.side === 'team_a' ? match.team_a
+    : hp.side === 'team_b' ? match.team_b
+    : 'Draw';
+  const sourceLabel = hp.source === 'hybrid' ? 'model + market (50/50)' : 'model only';
+  wrap.innerHTML = `
+    <span class="hybrid-pill-label">Hybrid pick</span>
+    <strong>${escapeHtml(sideLabel)}</strong>
+    <span class="hybrid-pill-pct">${hp.prob_pct}%</span>
+    <span class="muted hybrid-pill-src">${escapeHtml(sourceLabel)}</span>
+  `;
+  return wrap;
+}

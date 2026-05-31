@@ -3034,3 +3034,20 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
 .injury-row.injury-sev-low  { border-left-color: var(--good, #2f7d32); }
 .injury-player { font-weight: 600; }
 .injury-meta { font-size: 11px; line-height: 1.4; }
+
+/* E1: hybrid model pill (matchup-detail) */
+.hybrid-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 8px 0 0;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent, #007aff) 12%, transparent), transparent);
+  border: 1px solid color-mix(in srgb, var(--accent, #007aff) 30%, transparent);
+  border-radius: 10px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.hybrid-pill-label { font-weight: 600; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+.hybrid-pill-pct { font-weight: 700; color: var(--accent, #007aff); }
+.hybrid-pill-src { margin-left: auto; font-size: 11px; }

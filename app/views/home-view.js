@@ -13,6 +13,7 @@ import {
   fetchLeaderboard
 } from '../competition.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
+import { topMovers as eloTopMovers } from '../live-elo.js';
 
 const OPENING_KEY = 'opening_match';
 
@@ -62,6 +63,8 @@ export function renderHome(root, data) {
   root.appendChild(renderTodaySection(data));
   const movers = renderMoversSection(data);
   if (movers) root.appendChild(movers);
+  const eloMovers = renderEloMoversSection(data);
+  if (eloMovers) root.appendChild(eloMovers);
   root.appendChild(renderRecentSection(data));
   root.appendChild(renderQuickLinks());
 }
@@ -655,6 +658,28 @@ function renderMoversSection(data) {
           </a>`).join('')}
       </div>
       <p class="muted kalshi-attr">Tournament winner markets via <a href="https://kalshi.com" target="_blank" rel="noopener">Kalshi</a></p>
+    </div>
+  `;
+  return wrap;
+}
+
+function renderEloMoversSection(data) {
+  const movers = eloTopMovers(data, 8).filter((m) => m.delta !== 0);
+  if (!movers.length) return null;
+  const wrap = document.createElement('section');
+  wrap.className = 'home-section';
+  wrap.innerHTML = `
+    <div class="home-card">
+      <h2 class="home-card-title">Live Elo movers <span class="muted home-card-meta">tournament impact</span></h2>
+      <div class="movers-strip">
+        ${movers.map((m) => `
+          <a class="mover-chip" href="#/team/name/${encodeURIComponent(m.name)}">
+            <span class="mover-team">${flagFor(m.name)} ${escapeHtml(m.name)}</span>
+            <span class="mover-prob">${m.currentElo}</span>
+            <span class="mover-delta ${m.delta >= 0 ? 'delta-up' : 'delta-down'}">${m.delta >= 0 ? '+' : ''}${m.delta}</span>
+          </a>`).join('')}
+      </div>
+      <p class="muted" style="font-size: 11px; margin: 6px 0 0;">Elo recomputed from completed match results in this tournament.</p>
     </div>
   `;
   return wrap;
