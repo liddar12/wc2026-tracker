@@ -277,10 +277,13 @@ export async function fetchPublicPools(limit = 100) {
       .order('created_at', { ascending: false })
       .limit(limit);
     if (error) throw error;
-    // Pull member counts in parallel — best-effort, RLS may hide private rows.
+    // Pull member counts only when the viewer is authenticated. Anon users
+    // can't read group_members (RLS gates it to authenticated + is-member),
+    // so for guests we skip the call entirely — otherwise it 401s and
+    // shows a noisy error in the console.
     const ids = (data || []).map((g) => g.id);
     let countByGroup = {};
-    if (ids.length) {
+    if (ids.length && state.user) {
       const { data: members } = await state.client
         .from('group_members')
         .select('group_id')

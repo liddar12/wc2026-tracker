@@ -12,6 +12,7 @@ import { openMatchSheet } from '../components/match-sheet.js';
 import { renderBracketView } from './bracket-view.js';
 import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder, computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
 import { getFavoriteTeam } from '../favorites.js';
+import { getCompetitionState } from '../competition.js';
 
 export function renderBracketsLiveView(root, data, params) {
   root.innerHTML = '';
@@ -289,7 +290,9 @@ function renderCompareView(root, data) {
   });
 
   // Pull user picks from localStorage for the active pool / local draft.
-  const comp = (typeof window !== 'undefined' && window.__wc26CompState) || null;
+  // (Was using a never-set window global; switch to the actual competition
+  // state import.)
+  const comp = (typeof getCompetitionState === 'function') ? getCompetitionState() : null;
   let bracket = { picks: {} };
   try {
     const key = comp?.activeGroup?.id
