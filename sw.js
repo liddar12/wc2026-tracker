@@ -11,7 +11,7 @@
  * any cache that doesn't match the current VERSION prefix so stale shell
  * assets are evicted automatically.
  */
-const VERSION = 'wc26-v6';
+const VERSION = 'wc26-v7';
 const SHELL_CACHE = `${VERSION}-shell`;
 const DATA_CACHE = `${VERSION}-data`;
 
@@ -64,7 +64,10 @@ const SHELL_ASSETS = [
   'app/components/xg.js',
   'icons/icon-192.png',
   'icons/icon-512.png',
-  'icons/icon-maskable.png'
+  'icons/icon-maskable.png',
+  'icons/apple-touch-icon.png',
+  'icons/favicon-32.png',
+  'assets/wc26/trionda-header-64.webp'
 ];
 
 self.addEventListener('install', (event) => {

@@ -2241,10 +2241,11 @@ body.search-open { overflow: hidden; }
 
 /* FIFA logo in header (replaces "WC26" text) */
 .app-header .app-logo {
-  height: 24px;
-  width: auto;
+  height: 26px;
+  width: 26px;
   display: block;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.2));
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
+  background: transparent;
 }
 
 /* Title with FIFA logo + text */
@@ -2255,10 +2256,12 @@ body.search-open { overflow: hidden; }
   justify-content: center;
 }
 .app-logo {
-  height: 22px;
-  width: auto;
+  height: 26px;
+  width: 26px;
   display: block;
   flex: 0 0 auto;
+  background: transparent;
+  object-fit: contain;
 }
 .app-title-text {
   font-size: 16px;
