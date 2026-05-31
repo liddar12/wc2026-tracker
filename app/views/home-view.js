@@ -85,17 +85,74 @@ function renderHero(data) {
       <div class="home-hero-sub">${escapeHtml(meta.hosts?.join(' · ') || 'USA · Canada · Mexico')}</div>
     </div>
     ${openingDate ? renderCountdownShell(opening) : ''}
-    <div class="home-hero-updated">
+    <button class="home-hero-updated" id="home-updated-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
       <span class="home-hero-dot" aria-hidden="true"></span>
       Data updated <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
       ${freshestIso ? `<span class="muted"> · ${escapeHtml(prettyIso(freshestIso))}</span>` : ''}
-    </div>
+      <span class="home-hero-info" aria-hidden="true">ⓘ</span>
+    </button>
+    <div class="home-hero-freshness" id="home-freshness-popover" hidden role="dialog" aria-label="Per-feed freshness"></div>
   `;
+
+  // Per-feed freshness popover wiring
+  const updatedBtn = wrap.querySelector('#home-updated-btn');
+  const popover = wrap.querySelector('#home-freshness-popover');
+  if (updatedBtn && popover) {
+    updatedBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = !popover.hidden;
+      if (open) {
+        popover.hidden = true;
+        updatedBtn.setAttribute('aria-expanded', 'false');
+      } else {
+        popover.innerHTML = renderFreshnessPopover(data);
+        popover.hidden = false;
+        updatedBtn.setAttribute('aria-expanded', 'true');
+      }
+    });
+    // Click-outside dismisses
+    document.addEventListener('click', (e) => {
+      if (popover.hidden) return;
+      if (!popover.contains(e.target) && !updatedBtn.contains(e.target)) {
+        popover.hidden = true;
+        updatedBtn.setAttribute('aria-expanded', 'false');
+      }
+    }, { once: false });
+  }
 
   if (openingDate) {
     startCountdownTicker(wrap, openingDate);
   }
   return wrap;
+}
+
+function renderFreshnessPopover(data) {
+  const feeds = [
+    { key: 'schedule',  label: 'Schedule',       iso: data?.meta?.data_version || data?.scheduleFull?.__meta__?.updated_at },
+    { key: 'kalshi',    label: 'Kalshi markets', iso: data?.markets?.updated_at },
+    { key: 'weather',   label: 'Weather',        iso: data?.weather?.__meta__?.updated_at || data?.weather?.updated_at },
+    { key: 'lineups',   label: 'Lineups',        iso: data?.lineups?.__meta__?.updated_at || data?.lineups?.updated_at },
+    { key: 'injuries',  label: 'Injuries',       iso: data?.injuries?.__meta__?.updated_at || data?.injuries?.updated_at },
+    { key: 'h2h',       label: 'Head-to-head',   iso: data?.h2h?.__meta__?.updated_at || data?.h2h?.updated_at },
+    { key: 'form',      label: 'Form',           iso: data?.form?.__meta__?.updated_at || data?.form?.updated_at },
+    { key: 'scorers',   label: 'Scorers',        iso: data?.scorers?.__meta__?.updated_at || data?.scorers?.updated_at },
+    { key: 'referees',  label: 'Referees',       iso: data?.referees?.__meta__?.updated_at || data?.referees?.updated_at },
+    { key: 'kits',      label: 'Team colors',    iso: data?.teamColors?.__meta__?.updated_at },
+    { key: 'actual',    label: 'Match results',  iso: data?.actualResults?.last_updated },
+  ];
+  const rows = feeds.map((f) => `
+    <li class="freshness-row">
+      <span class="freshness-label">${escapeHtml(f.label)}</span>
+      <span class="freshness-time">${f.iso ? escapeHtml(formatLastUpdated(f.iso)) : '<span class="muted">never</span>'}</span>
+    </li>
+  `).join('');
+  return `
+    <div class="freshness-card">
+      <h3>Data freshness</h3>
+      <ul class="freshness-list">${rows}</ul>
+      <p class="muted" style="font-size:11px; margin:8px 0 0;">Updates hourly from openfootball, Kalshi, Wikipedia, and FIFA. Tap to refresh.</p>
+    </div>
+  `;
 }
 
 function renderCountdownShell(opening) {

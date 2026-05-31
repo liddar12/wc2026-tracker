@@ -2267,3 +2267,108 @@ body.search-open { overflow: hidden; }
   scroll-snap-type: y proximity;
 }
 .lcard-stack .lcard { scroll-snap-align: start; margin-bottom: 0; }
+
+/* Per-feed freshness popover */
+button.home-hero-updated {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+  -webkit-tap-highlight-color: transparent;
+  padding: 0;
+}
+.home-hero-info {
+  margin-left: auto;
+  opacity: 0.7;
+  font-size: 14px;
+}
+.home-hero-freshness {
+  position: relative;
+  margin-top: 8px;
+  z-index: 5;
+}
+.home-hero-freshness[hidden] { display: none; }
+.freshness-card {
+  background: var(--surface, #fff);
+  color: var(--text, #0f1115);
+  border: 1px solid var(--border, #dee5ea);
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-shadow: 0 12px 28px rgba(15,17,21,0.15);
+}
+.freshness-card h3 {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted, #5b6776);
+  margin: 0 0 8px;
+}
+.freshness-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.freshness-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.freshness-label { color: var(--text); }
+.freshness-time { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+
+/* Update toast (slide-in from top) */
+.wc-toast {
+  position: fixed;
+  top: max(12px, var(--safe-top));
+  left: 50%;
+  transform: translate(-50%, -120%);
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms ease;
+  z-index: 200;
+  background: var(--surface, #14191e);
+  color: var(--text, #f0f4f7);
+  border: 1px solid var(--border, #232a33);
+  border-radius: 999px;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  max-width: calc(100vw - 32px);
+  opacity: 0;
+}
+.wc-toast.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+.wc-toast-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex: 0 0 auto;
+  animation: pulse-live 1.4s ease-in-out infinite;
+}
+.wc-toast-body strong { font-weight: 700; }
+.wc-toast-close {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--text-muted);
+  font-size: 18px;
+  line-height: 1;
+  padding: 4px 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+@media (prefers-reduced-motion: reduce) {
+  .wc-toast { transition: opacity 0ms; }
+  .wc-toast-dot { animation: none; }
+}

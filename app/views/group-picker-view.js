@@ -107,6 +107,7 @@ function renderGroupCard(letter, order, picks, key, onChange, comp) {
     </ol>
   `;
   const list = section.querySelector('.gp-list');
+  const oldOrderSnapshot = [...order];   // captured before any drag
   if (!locked) {
     Sortable.create(list, {
       animation: 180,
@@ -116,22 +117,98 @@ function renderGroupCard(letter, order, picks, key, onChange, comp) {
       ghostClass: 'gp-ghost',
       onEnd: () => {
         const newOrder = Array.from(list.querySelectorAll('[data-team]')).map((el) => el.dataset.team);
-        picks.groups[letter] = newOrder;
-        persistPicks(key, picks);
-        // Refresh only the position badges (avoid full re-render to keep the
-        // drag interaction smooth).
-        Array.from(list.querySelectorAll('.gp-row')).forEach((row, idx) => {
-          const badge = row.querySelector('.gp-position');
-          if (badge) badge.textContent = positionLabel(idx);
-          row.classList.toggle('is-1st', idx === 0);
-          row.classList.toggle('is-2nd', idx === 1);
-          row.classList.toggle('is-3rd', idx === 2);
-          row.classList.toggle('is-4th', idx === 3);
-        });
+        const prevOrder = picks.groups[letter] || oldOrderSnapshot;
+        // Slots 0 and 1 feed R32 seeding ("1A" / "2A"). If neither moved,
+        // no cascade — silent update.
+        const qualifyingChanged = prevOrder[0] !== newOrder[0] || prevOrder[1] !== newOrder[1];
+        const r32Count = qualifyingChanged ? countR32PicksForActivePool(comp) : 0;
+
+        const apply = () => {
+          picks.groups[letter] = newOrder;
+          persistPicks(key, picks);
+          if (qualifyingChanged && r32Count > 0) clearR32PicksForActivePool(comp);
+          // Refresh position badges in place
+          Array.from(list.querySelectorAll('.gp-row')).forEach((row, idx) => {
+            const badge = row.querySelector('.gp-position');
+            if (badge) badge.textContent = positionLabel(idx);
+            row.classList.toggle('is-1st', idx === 0);
+            row.classList.toggle('is-2nd', idx === 1);
+            row.classList.toggle('is-3rd', idx === 2);
+            row.classList.toggle('is-4th', idx === 3);
+          });
+        };
+
+        if (qualifyingChanged && r32Count > 0) {
+          const msg = `This changes who advances from Group ${letter}. ${r32Count} of your R32 pick${r32Count === 1 ? '' : 's'} may no longer match — they will be cleared. Continue?`;
+          if (!confirm(msg)) {
+            // Revert the visual reorder
+            revertOrder(list, prevOrder);
+            return;
+          }
+        }
+        apply();
       },
     });
   }
   return section;
+}
+
+function revertOrder(list, order) {
+  // Reorder DOM children to match the given team-name sequence.
+  const byTeam = {};
+  Array.from(list.children).forEach((el) => {
+    const t = el.dataset.team;
+    if (t) byTeam[t] = el;
+  });
+  for (const team of order) {
+    const el = byTeam[team];
+    if (el) list.appendChild(el);
+  }
+  // Re-stamp position classes/badges
+  Array.from(list.querySelectorAll('.gp-row')).forEach((row, idx) => {
+    const badge = row.querySelector('.gp-position');
+    if (badge) badge.textContent = positionLabel(idx);
+    row.classList.toggle('is-1st', idx === 0);
+    row.classList.toggle('is-2nd', idx === 1);
+    row.classList.toggle('is-3rd', idx === 2);
+    row.classList.toggle('is-4th', idx === 3);
+  });
+}
+
+function countR32PicksForActivePool(comp) {
+  const bracketKey = comp.activeGroup?.id
+    ? `wc26.mybrackets.${comp.activeGroup.id}`
+    : 'wc26.mybrackets.local';
+  try {
+    const raw = localStorage.getItem(bracketKey);
+    if (!raw) return 0;
+    const bracket = JSON.parse(raw);
+    if (!bracket?.picks || typeof bracket.picks !== 'object') return 0;
+    return Object.keys(bracket.picks).filter((n) => {
+      const num = Number(n);
+      return Number.isFinite(num) && num >= 73 && num <= 88;
+    }).length;
+  } catch { return 0; }
+}
+
+function clearR32PicksForActivePool(comp) {
+  const bracketKey = comp.activeGroup?.id
+    ? `wc26.mybrackets.${comp.activeGroup.id}`
+    : 'wc26.mybrackets.local';
+  try {
+    const raw = localStorage.getItem(bracketKey);
+    if (!raw) return;
+    const bracket = JSON.parse(raw);
+    if (!bracket?.picks) return;
+    // Clear R32 + all downstream rounds since their feeders moved.
+    for (const n of Object.keys(bracket.picks)) {
+      const num = Number(n);
+      if (Number.isFinite(num) && num >= 73 && num <= 104) {
+        delete bracket.picks[n];
+      }
+    }
+    localStorage.setItem(bracketKey, JSON.stringify(bracket));
+  } catch {}
 }
 
 function gpRow(team, idx, locked) {

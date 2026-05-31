@@ -19,6 +19,7 @@ import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
 import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
+import { showUpdateToastIfNew } from './update-toast.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -215,6 +216,8 @@ function shouldOpenPicksForJoin() {
 loadData()
   .then(async (data) => {
     setData(data);
+    // Toast user when data is newer than their last visit
+    showUpdateToastIfNew(data);
     await initCompetition(data);
     if (shouldOpenPicksForJoin()) {
       setRoute('picks', {});

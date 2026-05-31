@@ -64,6 +64,12 @@ export function renderMatchupDetail(root, data, params) {
   header.appendChild(groupLine);
   root.appendChild(header);
 
+  // When + where + how to watch — pulled up under the group label per UX
+  // request. Was previously buried below model + composite + picks; users
+  // wanted it adjacent to the team names so kickoff/venue is the first
+  // thing they see after the matchup.
+  root.appendChild(whenWhereWatch(match, data.scheduleFull, data.venues));
+
   // Model + Market grid
   const grid = document.createElement('div');
   grid.className = 'match-prediction-grid';
@@ -112,7 +118,7 @@ export function renderMatchupDetail(root, data, params) {
   root.appendChild(picks);
 
   // Phase-2 sections (each renders gracefully when its data is missing).
-  root.appendChild(whenWhereWatch(match, data.scheduleFull, data.venues));
+  // whenWhereWatch moved to the top of the page (right under the group label).
   root.appendChild(lineupsSection(match, data.lineups));
   root.appendChild(refereeSection(match, data));
   root.appendChild(h2hSection(match, data.h2h));
