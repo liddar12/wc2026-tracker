@@ -55,6 +55,8 @@ export function renderHome(root, data) {
   root.appendChild(renderHero(data));
   root.appendChild(renderAuthSlot(data));
   root.appendChild(renderFavoriteTeamSection(data));
+  const favKalshi = renderFavKalshiCard(data);
+  if (favKalshi) root.appendChild(favKalshi);
   root.appendChild(renderTodaySection(data));
   const movers = renderMoversSection(data);
   if (movers) root.appendChild(movers);
@@ -531,6 +533,30 @@ function prettyStage(m) {
     third_place: '3rd',
     final: 'Final',
   }[m.stage] || m.stage || '';
+}
+
+function renderFavKalshiCard(data) {
+  const fav = getFavoriteTeam();
+  if (!fav) return null;
+  const markets = data?.markets;
+  const rows = Array.isArray(markets?.tournament_winner) ? markets.tournament_winner : [];
+  const me = rows.find((r) => r.team === fav);
+  if (!me) return null;
+  const card = document.createElement('section');
+  card.className = 'home-card home-card-fav-kalshi';
+  card.style.marginBottom = '12px';
+  const delta = typeof me.delta_24h_pp === 'number' ? me.delta_24h_pp : 0;
+  const deltaCls = delta > 0 ? 'delta-up' : delta < 0 ? 'delta-down' : '';
+  card.innerHTML = `
+    <h2 class="home-card-title">Your team on Kalshi <span class="muted home-card-meta">winner market</span></h2>
+    <div class="fav-kalshi-row">
+      <div class="fav-kalshi-team">${flagFor(fav)} <strong>${escapeHtml(fav)}</strong></div>
+      <div class="fav-kalshi-prob">${typeof me.prob_pct === 'number' ? me.prob_pct.toFixed(1) : '—'}%</div>
+      <div class="fav-kalshi-delta ${deltaCls}">${delta >= 0 ? '+' : ''}${delta.toFixed(1)}pp <span class="muted" style="font-size:11px;">24h</span></div>
+    </div>
+    <p class="muted kalshi-attr">Tournament-winner odds via <a href="https://kalshi.com" target="_blank" rel="noopener">Kalshi</a></p>
+  `;
+  return card;
 }
 
 function renderMoversSection(data) {

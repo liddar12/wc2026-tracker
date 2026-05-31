@@ -20,6 +20,7 @@ import { renderPoolsView } from './views/pools-view.js';
 import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
+import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -40,6 +41,7 @@ const TITLES = {
   pools: 'Pools',
   'group-picks': 'Group Picks',
   picks: 'My Picks',
+  settings: 'Settings',
   team: 'Team',
   schedule: 'Schedule',
   venues: 'Venues',
@@ -59,7 +61,7 @@ function renderView() {
   const { view, params } = state.route;
 
   const backBtn = document.getElementById('back-btn');
-  const showBack = ['matchup', 'team', 'group', 'venue', 'winner', 'create-group'].includes(view);
+  const showBack = ['matchup', 'team', 'group', 'venue', 'winner', 'create-group', 'settings'].includes(view);
   backBtn.hidden = !showBack;
 
   const tabMap = {
@@ -100,6 +102,7 @@ function renderView() {
     case 'create-group': renderCreateGroupWizard(root, state.data, params); break;
     case 'pools':        renderPoolsView(root, state.data, params); break;
     case 'group-picks':  renderGroupPickerView(root, state.data, params); break;
+    case 'settings':     renderSettingsView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;
     case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'schedule':     renderScheduleView(root, state.data, params); break;
@@ -158,6 +161,9 @@ window.addEventListener('state:change', () => {
 initTheme(document.getElementById('theme-btn'));
 bindNav();
 initTeamSkin();
+initSettingsPrefs();
+// Wire the gear icon in the header to navigate to /#/settings
+document.getElementById('settings-btn')?.addEventListener('click', () => setRoute('settings', {}));
 initPullToRefresh(pulseFooterUpdated);
 initTabBarScrollHints();
 

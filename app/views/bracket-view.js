@@ -3,6 +3,8 @@
    model's composite gap instead of actual results. Used as the "Projected"
    sub-mode of #/brackets. */
 import { flagFor } from '../components/team-flag.js';
+import { getFavoriteTeam } from '../favorites.js';
+import { openMatchSheet } from '../components/match-sheet.js';
 import {
   STAGE_LABELS, STAGE_ORDER,
   resolveSlots, projectWinner, isSlotPlaceholder,
@@ -56,6 +58,7 @@ function renderStage(stage, matches, data) {
   section.innerHTML = `
     <h3>${escapeHtml(STAGE_LABELS[stage] || stage)} <span class="bb-round-meta muted">${projected}/${matches.length} projected</span></h3>
   `;
+  const fav = getFavoriteTeam();
   for (const m of matches) {
     const a = m.resolved_team_a;
     const b = m.resolved_team_b;
@@ -65,15 +68,17 @@ function renderStage(stage, matches, data) {
     const isPlaceholderB = isSlotPlaceholder(b);
     const fa = isPlaceholderA ? '·' : flagFor(a);
     const fb = isPlaceholderB ? '·' : flagFor(b);
+    const aIsFav = fav && a === fav;
+    const bIsFav = fav && b === fav;
     const wrap = document.createElement('div');
-    wrap.className = 'bb-pair';
+    wrap.className = 'bb-pair' + (aIsFav || bIsFav ? ' has-fav' : '');
     wrap.innerHTML = `
-      <button class="bb-slot ${aPicked ? 'is-projected' : ''}" ${isPlaceholderA ? 'disabled' : ''}>
+      <button class="bb-slot ${aPicked ? 'is-projected' : ''} ${aIsFav ? 'is-fav-slot' : ''}" ${isPlaceholderA ? 'disabled' : ''}>
         <span class="bb-slot-flag">${fa}</span>
         <span>${escapeHtml(a || 'TBD')}</span>
       </button>
       <div class="bb-pair-vs">vs</div>
-      <button class="bb-slot ${bPicked ? 'is-projected' : ''}" ${isPlaceholderB ? 'disabled' : ''}>
+      <button class="bb-slot ${bPicked ? 'is-projected' : ''} ${bIsFav ? 'is-fav-slot' : ''}" ${isPlaceholderB ? 'disabled' : ''}>
         <span class="bb-slot-flag">${fb}</span>
         <span>${escapeHtml(b || 'TBD')}</span>
       </button>
@@ -89,7 +94,7 @@ function renderStage(stage, matches, data) {
       if (isPlaceholderA || isPlaceholderB) btn.disabled = true;
       btn.addEventListener('click', () => {
         if (isPlaceholderA || isPlaceholderB) return;
-        location.hash = `#/matchup/team_a/${encodeURIComponent(a)}/team_b/${encodeURIComponent(b)}`;
+        openMatchSheet(data, { teamA: a, teamB: b });
       });
     });
     section.appendChild(wrap);
