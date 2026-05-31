@@ -13,3 +13,6 @@ app/preview-config.js
 
 # Local Netlify folder
 .netlify
+.agents/
+.cursor/
+.npm-cache/
