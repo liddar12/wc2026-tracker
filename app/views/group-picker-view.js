@@ -12,6 +12,7 @@ import {
   saveGroupPredictionsForActiveGroup,
 } from '../competition.js';
 import { normalizeGroupPredictions, MAX_GROUP_SCORE, GROUP_POINTS } from '../group-scoring.js';
+import { groupProbabilities } from '../group-monte-carlo.js';
 
 // Build per-team signal lookup: power_rank from teams.json, projected group
 // points from group_matchups.json, Kalshi tournament-winner % from markets.json.
@@ -32,10 +33,24 @@ function teamSignalsFor(data) {
       projectedPointsByTeam[m.team_b] = (projectedPointsByTeam[m.team_b] || 0) + (ep.team_b || 0);
     }
   }
+  // Per-group Monte Carlo probability cache, populated on demand
+  const groupProbsCache = {};
+  const teamGroup = (team) => {
+    for (const [letter, info] of Object.entries(groupMatchups)) {
+      if ((info.teams || []).includes(team)) return letter;
+    }
+    return null;
+  };
   return {
     powerRank: (team) => teams[team]?.power_rank ?? null,
     projectedPts: (team) => projectedPointsByTeam[team] ?? null,
     kalshi: (team) => kalshiByTeam[team] || null,
+    monteCarlo: (team) => {
+      const g = teamGroup(team);
+      if (!g) return null;
+      if (!groupProbsCache[g]) groupProbsCache[g] = groupProbabilities(data, g);
+      return groupProbsCache[g]?.[team] || null;
+    },
     marketsUpdatedAt: data?.markets?.updated_at || null,
   };
 }
@@ -76,9 +91,10 @@ export function renderGroupPickerView(root, data) {
     <p class="muted" style="margin:0 0 6px;">Drag teams to set 1st → 4th in each of the 12 groups. Then pick the 8 best 3rd-place teams that advance to the Round of 32.</p>
     <p class="muted" style="margin:0 0 8px;">Scoring: <strong>1st = ${GROUP_POINTS.first}pt</strong> · <strong>2nd = ${GROUP_POINTS.second}pt</strong> · <strong>correct best-3rd = ${GROUP_POINTS.third}pt</strong> · max <strong>${MAX_GROUP_SCORE}</strong> pts.</p>
     <div class="gp-signal-legend">
-      <span class="gp-sig gp-sig-rank">#N</span> <span class="muted">power rank (global)</span>
-      <span class="gp-sig gp-sig-pts">X.Xp</span> <span class="muted">projected group points</span>
-      <span class="gp-sig gp-sig-kal">X.X%</span> <span class="muted">Kalshi tournament-winner odds${kalUpdated}</span>
+      <span class="gp-sig gp-sig-rank">#N</span> <span class="muted">power rank</span>
+      <span class="gp-sig gp-sig-mc">P% / Q%</span> <span class="muted">P(1st) / P(R32) from Monte Carlo</span>
+      <span class="gp-sig gp-sig-pts">X.Xp</span> <span class="muted">projected pts</span>
+      <span class="gp-sig gp-sig-kal">X.X%</span> <span class="muted">Kalshi WC winner${kalUpdated}</span>
     </div>
   `;
   root.appendChild(intro);
@@ -252,15 +268,17 @@ function gpRow(team, idx, locked, signals) {
   const rank = signals?.powerRank?.(team);
   const pts = signals?.projectedPts?.(team);
   const kal = signals?.kalshi?.(team);
-  const rankChip = rank ? `<span class="gp-sig gp-sig-rank" title="Composite power rank (1 = best)">#${rank}</span>` : '';
+  const mc = signals?.monteCarlo?.(team);
+  const rankChip = rank ? `<span class="gp-sig gp-sig-rank" title="Composite power rank (1 = best globally)">#${rank}</span>` : '';
   const ptsChip = (pts != null) ? `<span class="gp-sig gp-sig-pts" title="Projected group-stage points (sum across 3 matches)">${pts.toFixed(1)}p</span>` : '';
+  const mcChip = mc ? `<span class="gp-sig gp-sig-mc" title="Monte Carlo simulation (${5000} runs) of group-finish probability. P(1st) | P(advance to R32)">${(mc.p1 * 100).toFixed(0)}% / ${(mc.pAdvance * 100).toFixed(0)}%</span>` : '';
   const kalChip = kal ? `<span class="gp-sig gp-sig-kal ${kal.delta_24h_pp >= 0 ? 'delta-up' : 'delta-down'}" title="Kalshi tournament-winner probability (whole tournament, not just group). 24h delta in parens.">${(kal.prob_pct).toFixed(1)}%${typeof kal.delta_24h_pp === 'number' && kal.delta_24h_pp !== 0 ? ` <em>(${kal.delta_24h_pp >= 0 ? '+' : ''}${kal.delta_24h_pp.toFixed(1)})</em>` : ''}</span>` : '';
   return `
     <li class="gp-row ${cls}" data-team="${escapeHtml(team)}">
       <span class="gp-position">${positionLabel(idx)}</span>
       <span class="gp-flag">${flagFor(team)}</span>
       <span class="gp-name">${escapeHtml(team)}</span>
-      <span class="gp-signals">${rankChip}${ptsChip}${kalChip}</span>
+      <span class="gp-signals">${rankChip}${mcChip}${ptsChip}${kalChip}</span>
       ${locked ? '' : '<span class="gp-handle" aria-hidden="true">⋮⋮</span>'}
     </li>
   `;

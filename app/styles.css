@@ -3008,3 +3008,11 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
   margin-top: 8px;
 }
 .mb-autofill-overwrite input { transform: scale(1.1); accent-color: var(--primary); }
+
+/* E2: Monte Carlo chip */
+.gp-sig-mc {
+  background: color-mix(in srgb, #06B6D4 14%, var(--surface));
+  color: #0E7490;
+  border: 1px solid color-mix(in srgb, #06B6D4 28%, var(--border));
+}
+:root[data-theme='dark'] .gp-sig-mc { color: #22D3EE; }
