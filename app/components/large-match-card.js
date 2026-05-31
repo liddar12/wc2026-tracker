@@ -10,10 +10,13 @@ export function largeMatchCard(match, opts = {}) {
     mode = inferMode(match),   // 'upcoming' | 'live' | 'final'
     actual = null,             // { score_a, score_b, minute? }
     onTap = null,              // optional click handler
+    favorite = null,           // favorite team name; adds ⭐ eyebrow tag + accent border
+    extraMeta = null,          // optional string appended to .lcard-meta (e.g. broadcast channel)
   } = opts;
+  const isFavorite = favorite && (match.team_a === favorite || match.team_b === favorite);
 
   const card = document.createElement('article');
-  card.className = 'lcard';
+  card.className = 'lcard' + (isFavorite ? ' is-fav' : '');
   card.setAttribute('data-mode', mode);
   if (onTap) {
     card.setAttribute('role', 'button');
@@ -40,6 +43,10 @@ export function largeMatchCard(match, opts = {}) {
       ? `${kickoffEyebrow(kickoff)} · ${escapeHtml(stage)}`
       : `TBD · ${escapeHtml(stage)}`;
   }
+  // Favorite team tag at the very start of the eyebrow
+  if (isFavorite) {
+    eyebrow = `<span class="lcard-fav-tag">⭐ YOUR TEAM</span> · ${eyebrow}`;
+  }
 
   // Score line (only for live + final)
   const scoreRow = (mode === 'live' || mode === 'final') && actual && Number.isFinite(actual.score_a)
@@ -65,6 +72,7 @@ export function largeMatchCard(match, opts = {}) {
       </div>
       <div class="lcard-meta muted">
         ${venue ? `<span>${escapeHtml(venue)}</span>` : ''}
+        ${extraMeta ? `<span>${escapeHtml(extraMeta)}</span>` : ''}
       </div>
     </div>
   `;

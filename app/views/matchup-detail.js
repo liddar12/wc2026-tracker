@@ -36,13 +36,37 @@ export function renderMatchupDetail(root, data, params) {
   const teamA = data.teams[match.team_a];
   const teamB = data.teams[match.team_b];
 
-  // Header
+  // Header — wraps a team-color gradient banner (Apple Sports style) above
+  // the team names + group line.
   const header = document.createElement('div');
-  header.className = 'match-detail-header';
+  header.className = 'match-detail-header lcard';
+  header.style.padding = '0';
+  header.style.margin = '0 0 14px';
+
+  const banner = document.createElement('div');
+  banner.className = 'lcard-banner';
+  banner.dataset.teamA = match.team_a || '';
+  banner.dataset.teamB = match.team_b || '';
+  header.appendChild(banner);
+  // Apply team-color gradient asynchronously
+  (async () => {
+    try {
+      const { getTeamColors } = await import('../team-skin.js');
+      const [ca, cb] = await Promise.all([getTeamColors(match.team_a), getTeamColors(match.team_b)]);
+      const a = (ca && ca.primary) || 'var(--primary)';
+      const b = (cb && cb.primary) || 'var(--accent)';
+      banner.style.background = `linear-gradient(135deg, ${a} 0%, ${a} 45%, ${b} 55%, ${b} 100%)`;
+    } catch {}
+  })();
+
+  const bodyWrap = document.createElement('div');
+  bodyWrap.className = 'lcard-body';
+  bodyWrap.style.marginTop = '-32px';
+
   const starRow = document.createElement('div');
   starRow.className = 'detail-star-row';
   starRow.appendChild(watchlistStar(match));
-  header.appendChild(starRow);
+  bodyWrap.appendChild(starRow);
   const teamsRow = document.createElement('div');
   teamsRow.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;';
   teamsRow.innerHTML = `
@@ -56,12 +80,13 @@ export function renderMatchupDetail(root, data, params) {
       <span class="flag" aria-hidden="true" style="font-size:32px;">${flagFor(match.team_b)}</span>
     </a>
   `;
-  header.appendChild(teamsRow);
+  bodyWrap.appendChild(teamsRow);
   const groupLine = document.createElement('div');
   groupLine.className = 'muted';
   groupLine.style.fontSize = '12px';
   groupLine.textContent = `Group ${match.group || teamA?.group || '?'}`;
-  header.appendChild(groupLine);
+  bodyWrap.appendChild(groupLine);
+  header.appendChild(bodyWrap);
   root.appendChild(header);
 
   // When + where + how to watch — pulled up under the group label per UX

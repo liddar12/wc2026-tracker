@@ -2372,3 +2372,24 @@ button.home-hero-updated {
   .wc-toast { transition: opacity 0ms; }
   .wc-toast-dot { animation: none; }
 }
+
+/* Favorite team highlight on large cards */
+.lcard.is-fav {
+  outline: 2px solid var(--accent, #F43F5E);
+  outline-offset: -1px;
+}
+.lcard-fav-tag {
+  background: color-mix(in srgb, var(--accent, #F43F5E) 18%, transparent);
+  color: var(--accent, #F43F5E);
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* Favorite team highlight on compact matchup-card */
+.matchup-card.is-fav-card {
+  border-color: var(--accent, #F43F5E);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent, #F43F5E) 30%, transparent);
+}

@@ -5,13 +5,16 @@ import { sparklineSvg } from './sparkline.js';
 import { divergenceLine } from './model-market-divergence.js';
 import { watchlistStar } from './watchlist-star.js';
 import { sparklineForMatch, recordModelConfidence } from '../markets.js';
+import { getFavoriteTeam } from '../favorites.js';
 
 export function matchupCard(match, data) {
   recordModelConfidence(match);
   const markets = data?.markets;
+  const fav = getFavoriteTeam();
+  const isFav = !!fav && (match.team_a === fav || match.team_b === fav);
 
   const a = document.createElement('a');
-  a.className = 'matchup-card';
+  a.className = 'matchup-card' + (isFav ? ' is-fav-card' : '');
   a.href = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
 
   const predLabel = predictionLabel(match);

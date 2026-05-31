@@ -9,6 +9,7 @@
  */
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
+import { largeMatchCard } from '../components/large-match-card.js';
 import { getFavoriteTeam } from '../favorites.js';
 
 export function renderScheduleView(root, data, params) {
@@ -121,17 +122,36 @@ export function renderScheduleView(root, data, params) {
   heading.style.cssText = 'margin: 12px 0 8px; font-size: 16px;';
   root.appendChild(heading);
 
-  // Match list
+  // Match list — large cards (Apple Sports style) per Phase 4B + Q2 auto-density.
+  // Schedule's day-view typically has 2-8 matches per day, so large cards work well.
   const list = document.createElement('div');
-  list.className = 'schedule-list';
+  list.className = 'lcard-stack';
   const matches = (byDate.get(active) || []).slice().sort((a, b) =>
     String(a.kickoff_utc).localeCompare(String(b.kickoff_utc))
   );
 
   for (const m of matches) {
-    list.appendChild(scheduleCard(m, venueById, fav));
+    const venue = venueById.get(m.venue_id);
+    const broadcast = m.broadcast?.us || {};
+    const channelLabel = broadcast.english_channel || broadcast.spanish_channel || null;
+    const enriched = { ...m, venue_label: venue ? `${venue.name}, ${venue.city}` : (m.venue_id || '') };
+    const card = largeMatchCard(enriched, {
+      favorite: fav,
+      extraMeta: channelLabel,
+      onTap: (mm) => {
+        if (!isSlotPlaceholder(mm.team_a) && !isSlotPlaceholder(mm.team_b)) {
+          location.hash = `#/matchup/team_a/${encodeURIComponent(mm.team_a)}/team_b/${encodeURIComponent(mm.team_b)}`;
+        }
+      },
+    });
+    list.appendChild(card);
   }
   root.appendChild(list);
+}
+
+function isSlotPlaceholder(s) {
+  if (typeof s !== 'string') return true;
+  return /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/.test(s);
 }
 
 function scheduleCard(match, venueById, fav) {
