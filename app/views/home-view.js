@@ -741,6 +741,10 @@ function renderQuickLinks() {
         <button class="home-link" data-go="groups"><span class="home-link-emoji" aria-hidden="true">🅰️</span><span>Groups</span></button>
         <button class="home-link" data-go="brackets"><span class="home-link-emoji" aria-hidden="true">🏆</span><span>Brackets</span></button>
         <button class="home-link" data-go="my-brackets"><span class="home-link-emoji" aria-hidden="true">📝</span><span>My Brackets</span></button>
+        <button class="home-link" data-go="hot-picks"><span class="home-link-emoji" aria-hidden="true">🔥</span><span>Hot Picks</span></button>
+        <button class="home-link" data-go="backtest"><span class="home-link-emoji" aria-hidden="true">📊</span><span>Backtest</span></button>
+        <button class="home-link" data-go="leaderboard"><span class="home-link-emoji" aria-hidden="true">🏅</span><span>Leaderboard</span></button>
+        <button class="home-link" data-go="injuries"><span class="home-link-emoji" aria-hidden="true">🩹</span><span>Injuries</span></button>
       </div>
     </div>
   `;

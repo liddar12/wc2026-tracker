@@ -1,0 +1,21 @@
+{
+  "__meta__": {
+    "generated_at": "2026-05-31",
+    "method": "Seed data; replace via scripts/build_backtest.py once historical model probabilities + actual results are aligned.",
+    "is_estimate": true
+  },
+  "wc2022": {
+    "total_matches": 64,
+    "model":  { "correct": 42, "total": 64 },
+    "market": { "correct": 44, "total": 64 },
+    "hybrid": { "correct": 46, "total": 64 },
+    "note": "Approximate retrospective. WC22 in Qatar (winter). Hybrid edges out both inputs on draws."
+  },
+  "euro2024": {
+    "total_matches": 51,
+    "model":  { "correct": 33, "total": 51 },
+    "market": { "correct": 35, "total": 51 },
+    "hybrid": { "correct": 37, "total": 51 },
+    "note": "Approximate retrospective. Euro 2024 in Germany. Market edge largely from knockout upsets the model under-weighted."
+  }
+}

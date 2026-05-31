@@ -3134,3 +3134,59 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
 }
 .shared-pick-num { font-size: 11px; font-weight: 600; }
 .shared-pick-winner { color: var(--accent); }
+
+/* C3: hot picks layout */
+.hot-strip { display: flex; flex-wrap: wrap; gap: 6px; }
+.hot-divisive { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.hot-divisive li {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+}
+.hot-divisive li > span:first-child { text-align: right; }
+.hot-divisive li > span:last-child { text-align: left; }
+
+/* E4: backtest grid */
+.backtest-grid { display: grid; gap: 8px; }
+.backtest-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 120px;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+.backtest-label { font-weight: 600; }
+.backtest-bar {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.backtest-fill {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--good)));
+  border-radius: 4px;
+}
+.backtest-pct { text-align: right; font-variant-numeric: tabular-nums; }
+
+/* E5: accuracy leaderboard */
+.accuracy-board { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.accuracy-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 28px 100px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.accuracy-rank { font-weight: 700; color: var(--accent); text-align: center; }
+.accuracy-pct { text-align: right; font-variant-numeric: tabular-nums; }

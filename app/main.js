@@ -23,6 +23,9 @@ import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
 import { renderInjuriesView } from './views/injuries-view.js';
 import { renderSharedBracketView } from './views/shared-bracket-view.js';
+import { renderHotPicksView } from './views/hot-picks-view.js';
+import { renderBacktestView } from './views/backtest-view.js';
+import { renderAccuracyScoreboardView } from './views/accuracy-scoreboard-view.js';
 import { maybeShowInstallPrompt } from './install-prompt.js';
 import { initCountdownBadge } from './countdown-badge.js';
 import { showConfetti } from './confetti.js';
@@ -48,6 +51,9 @@ const TITLES = {
   'group-picks': 'Group Picks',
   injuries: 'Injuries',
   shared: 'Shared bracket',
+  'hot-picks': 'Hot Picks',
+  backtest: 'Backtest',
+  leaderboard: 'Leaderboard',
   picks: 'My Picks',
   settings: 'Settings',
   team: 'Team',
@@ -113,6 +119,9 @@ function renderView() {
     case 'settings':     renderSettingsView(root, state.data, params); break;
     case 'injuries':     renderInjuriesView(root, state.data, params); break;
     case 'shared':       renderSharedBracketView(root, state.data, params); break;
+    case 'hot-picks':    renderHotPicksView(root, state.data, params); break;
+    case 'backtest':     renderBacktestView(root, state.data, params); break;
+    case 'leaderboard':  renderAccuracyScoreboardView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;
     case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'schedule':     renderScheduleView(root, state.data, params); break;
