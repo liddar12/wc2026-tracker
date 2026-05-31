@@ -54,6 +54,11 @@ jobs:
         run: python scripts/scrape_injuries.py
         continue-on-error: true
 
+      # ---- Schedule (mjwebmaster open feed, no API key) ----
+      - name: Refresh tournament schedule from open feed
+        run: python scripts/scrape_schedule.py
+        continue-on-error: true
+
       # ---- Volatile market + venue data (Kalshi, weather, lineups) ----
       - name: Scrape Kalshi tournament-winner markets
         run: python scripts/scrape_kalshi.py

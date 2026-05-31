@@ -1,115 +1,248 @@
 #!/usr/bin/env python3
-"""Daily-refresh hook for schedule_full.json.
+"""Rebuild data/schedule_full.json + data/schedule.json from the open-source
+mjwebmaster/world-cup-2026-schedule-data feed.
 
-FIFA publishes the public WC26 fixtures through a few JSON endpoints behind
-fifa.com. They change format every few months and 4xx unpredictably from CI,
-so this scraper is intentionally cautious: it tries each known endpoint, and
-if every probe fails it leaves the existing data/schedule_full.json untouched
-and exits 0.
+Why this source: independently maintained, dates match openfootball/worldcup.json,
+includes venue + city + ET-and-local times. No API key required. Cross-verified
+against FIFA PDF dates where possible.
 
-When an endpoint succeeds, we patch in:
-  - kickoff_utc updates if FIFA moved a slot
-  - venue_id reassignments if FIFA reassigned a stadium
+Run from repo root:
+    python3 scripts/scrape_schedule.py
 
-We never delete a row and never overwrite a non-null broadcast block —
-broadcast curation is hand-managed.
-
-Safe in CI under `continue-on-error: true`. Idempotent.
+This replaces the previous PDF-extract-based scrape which had a ~1-day date
+offset for many group-stage matches due to PDF column-detection drift.
 """
-from __future__ import annotations
-
 import json
-from datetime import datetime, timezone
-from pathlib import Path
 import sys
+import urllib.request
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+SOURCE_URL = "https://raw.githubusercontent.com/mjwebmaster/world-cup-2026-schedule-data/main/world-cup-2026-schedule.json"
+ROOT = Path(__file__).resolve().parent.parent
+SCHEDULE_FULL = ROOT / "data" / "schedule_full.json"
+SCHEDULE_SUMMARY = ROOT / "data" / "schedule.json"
+VENUES_JSON = ROOT / "data" / "venues.json"
 
-from _common import polite_get, ScrapeError, log, DATA_DIR  # type: ignore
+# Team-name normalization. Maps source names to our canonical names in teams.json.
+TEAM_RENAMES = {
+    "South Korea":            "Korea Republic",
+    "Korea Republic":         "Korea Republic",
+    "Czech Republic":         "Czechia",
+    "Cape Verde":             "Cabo Verde",
+    "Bosnia & Herzegovina":   "Bosnia and Herzegovina",
+    "Turkey":                 "Turkiye",
+    "Türkiye":                "Turkiye",
+    "Ivory Coast":            "Cote d'Ivoire",
+    "Côte d'Ivoire":          "Cote d'Ivoire",
+    "Côte d’Ivoire":          "Cote d'Ivoire",   # curly apostrophe variant
+    "Curaçao":                "Curacao",
+    "United States":          "USA",
+    "U.S.A.":                 "USA",
+    "Congo DR":               "DR Congo",
+    "Democratic Republic of the Congo": "DR Congo",
+    "DR Congo":               "DR Congo",
+}
 
-# These endpoints are FIFA's public match-list feeds. They change frequently.
-# Listed broadly so the scraper can degrade gracefully.
-ENDPOINTS = (
-    "https://api.fifa.com/api/v3/calendar/matches?idCompetition=17&language=en",
-    "https://www.fifa.com/api/v3/calendar/matches?idCompetition=17&language=en",
-)
+def build_venue_map():
+    venues = json.loads(VENUES_JSON.read_text())
+    out = {}
+    for v in venues:
+        out[v["name"].lower()] = v["id"]
+        out[(v["name"] + ", " + v["city"]).lower()] = v["id"]
+        out[v["city"].lower()] = v["id"]
+    overrides = {
+        "estadio bbva":              "bbva",
+        "monterrey":                 "bbva",
+        "estadio akron":             "akron",
+        "guadalajara":               "akron",
+        "estadio azteca":            "azteca",
+        "mexico city":               "azteca",
+        "sofi stadium":              "sofi",
+        "inglewood":                 "sofi",
+        "los angeles":               "sofi",
+        "metlife stadium":           "metlife",
+        "east rutherford":           "metlife",
+        "new york/new jersey (east rutherford)": "metlife",
+        "lumen field":               "lumen",
+        "seattle":                   "lumen",
+        "levi's stadium":            "levis",
+        "san francisco bay area":    "levis",
+        "santa clara":               "levis",
+        "lincoln financial field":   "lincoln",
+        "philadelphia":              "lincoln",
+        "gillette stadium":          "gillette",
+        "foxborough":                "gillette",
+        "boston":                    "gillette",
+        "hard rock stadium":         "hardrock",
+        "miami":                     "hardrock",
+        "miami gardens":             "hardrock",
+        "mercedes-benz stadium":     "mercedes",
+        "atlanta":                   "mercedes",
+        "at&t stadium":              "att",
+        "att stadium":               "att",
+        "arlington":                 "att",
+        "dallas":                    "att",
+        "nrg stadium":               "nrg",
+        "houston":                   "nrg",
+        "arrowhead stadium":         "arrowhead",
+        "geha field at arrowhead stadium": "arrowhead",
+        "kansas city":               "arrowhead",
+        "bmo field":                 "bmo_field",
+        "toronto":                   "bmo_field",
+        "bc place":                  "bc_place",
+        "vancouver":                 "bc_place",
+    }
+    out.update(overrides)
+    return out
 
+import re
+def normalize_team(name):
+    if not name: return None
+    name = name.strip()
+    # Knockout slot placeholders from the source come as human strings; convert
+    # them to the convention the rest of the app already understands
+    # (1A/2B = group winner/runner-up; 3 ABCDF = best 3rd of those groups;
+    # W74 = winner of match 74; L101 = loser of match 101).
+    m = re.match(r'^Group ([A-L]) Winner$', name)
+    if m: return f"1{m.group(1)}"
+    m = re.match(r'^Group ([A-L]) Runner[-\s]?up$', name)
+    if m: return f"2{m.group(1)}"
+    # Match patterns like:
+    #   "3rd Place Groups A, E, H, I, J" / "Best 3rd Place Group ABCDF"
+    #   "Group A/E/H/I/J 3rd Place"
+    m = (re.match(r'^(?:3rd Place|Best 3rd Place)[\s,]*Groups?\s+([A-L\s,/-]+)$', name, re.IGNORECASE)
+         or re.match(r'^Group\s+([A-L][A-L/,\s-]*)\s+3rd\s+Place$', name, re.IGNORECASE))
+    if m:
+        letters = re.findall(r'[A-L]', m.group(1))
+        return f"3 {''.join(sorted(set(letters)))}"
+    m = re.match(r'^Match (\d+) Winner$', name)
+    if m: return f"W{m.group(1)}"
+    m = re.match(r'^Match (\d+) Loser$', name)
+    if m: return f"L{m.group(1)}"
+    return TEAM_RENAMES.get(name, name)
 
-def load(name: str):
-    return json.loads((DATA_DIR / name).read_text(encoding="utf-8"))
+def venue_id_for(venue_map, venue_str, city_str):
+    if venue_str:
+        k = venue_str.lower().strip()
+        if k in venue_map: return venue_map[k]
+        k2 = f"{venue_str}, {city_str}".lower().strip()
+        if k2 in venue_map: return venue_map[k2]
+    if city_str:
+        k = city_str.lower().strip()
+        if k in venue_map: return venue_map[k]
+    return None
 
+def et_to_utc(date_iso, time_et):
+    """ET → UTC. WC26 runs June 11–July 19, fully inside EDT (UTC-4)."""
+    h, m = time_et.split(":")
+    edt = timezone(timedelta(hours=-4))
+    local = datetime.fromisoformat(date_iso).replace(hour=int(h), minute=int(m), tzinfo=edt)
+    return local.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
-def save(name: str, data) -> None:
-    (DATA_DIR / name).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+STAGE_MAP = {
+    "Group Stage": "group",
+    "Round of 32": "round_of_32",
+    "Round of 16": "round_of_16",
+    "Quarter-final": "quarterfinals",
+    "Quarter-finals": "quarterfinals",
+    "Semi-final": "semifinals",
+    "Semi-finals": "semifinals",
+    "Match for third place": "third_place",
+    "Third Place": "third_place",
+    "Final": "final",
+}
 
+def normalize_stage(s):
+    return STAGE_MAP.get(s, s.lower().replace(" ", "_").replace("-", "_"))
 
-def main() -> int:
-    existing = load("schedule_full.json")
-    by_mid = {r["match_id"]: r for r in existing}
-    fetched = None
-    for url in ENDPOINTS:
-        try:
-            res = polite_get(url, accept_json=True)
-            fetched = res.json()
-            log(f"schedule: fetched {url}")
-            break
-        except ScrapeError as e:
-            log(f"schedule: {e}")
-        except ValueError as e:
-            log(f"schedule: invalid JSON from {url}: {e}")
+def fetch(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "wc26-tracker/1.0"})
+    with urllib.request.urlopen(req, timeout=30) as r:
+        return r.read()
 
-    if not fetched:
-        log("schedule: every probe failed; leaving schedule_full.json untouched")
+def main():
+    print(f"fetching {SOURCE_URL}")
+    try:
+        raw = fetch(SOURCE_URL)
+    except Exception as e:
+        print(f"WARN: fetch failed ({e}); leaving existing schedule untouched.")
         return 0
-
-    # FIFA's response shape varies. We probe the common keys.
-    candidates = []
-    if isinstance(fetched, dict):
-        for key in ("Results", "Items", "results", "items", "matches"):
-            v = fetched.get(key)
-            if isinstance(v, list):
-                candidates = v
-                break
-    elif isinstance(fetched, list):
-        candidates = fetched
-
-    if not candidates:
-        log("schedule: response had no recognized match list; skipping")
+    src = json.loads(raw.decode("utf-8"))
+    matches = src.get("matches", [])
+    if len(matches) != 104:
+        print(f"WARN: source has {len(matches)} matches (expected 104); leaving existing schedule untouched.")
         return 0
+    venue_map = build_venue_map()
 
-    patched = 0
-    for fixture in candidates:
-        if not isinstance(fixture, dict):
-            continue
-        a = fixture.get("HomeTeamName") or fixture.get("home_team_name")
-        b = fixture.get("AwayTeamName") or fixture.get("away_team_name")
-        if isinstance(a, list) and a:
-            a = (a[0] or {}).get("Description") or (a[0] or {}).get("Name")
-        if isinstance(b, list) and b:
-            b = (b[0] or {}).get("Description") or (b[0] or {}).get("Name")
-        if not a or not b:
-            continue
-        mid = f"{a}__vs__{b}"
-        target = by_mid.get(mid) or by_mid.get(f"{b}__vs__{a}")
-        if not target:
-            continue
-        kickoff = fixture.get("Date") or fixture.get("kickoff_utc")
-        if isinstance(kickoff, str):
-            target["kickoff_utc"] = kickoff
-            patched += 1
+    out = []
+    venue_unknown = 0
+    for m in matches:
+        team_a = normalize_team(m.get("team_a"))
+        team_b = normalize_team(m.get("team_b"))
+        stage = normalize_stage(m.get("stage", ""))
+        kickoff_utc = et_to_utc(m["date"], m["time_et"])
+        vid = venue_id_for(venue_map, m.get("venue"), m.get("city"))
+        if not vid:
+            venue_unknown += 1
+        if stage == "group":
+            match_id = f"{team_a}__vs__{team_b}"
+        else:
+            ta = (team_a or "").replace(" ", "_")
+            tb = (team_b or "").replace(" ", "_")
+            match_id = f"M{m['match_number']:03d}__{ta}__vs__{tb}"
+        row = {
+            "match_id": match_id,
+            "match_number": m["match_number"],
+            "stage": stage,
+            "team_a": team_a,
+            "team_b": team_b,
+            "kickoff_utc": kickoff_utc,
+            "kickoff_local_et": f"{m['date']}T{m['time_et']}-04:00",
+            "venue_id": vid,
+            "broadcast": {"us": {"english_channel": None, "spanish_channel": None, "stream_url": None}},
+        }
+        if m.get("group"):
+            row["group"] = m["group"]
+        out.append(row)
 
-    if patched:
-        save("schedule_full.json", list(by_mid.values()))
-    log(f"schedule: {patched} row(s) patched")
-    log(f"schedule: refreshed at {datetime.now(timezone.utc).isoformat(timespec='seconds')}")
+    SCHEDULE_FULL.write_text(json.dumps(out, indent=2, ensure_ascii=False) + "\n")
+    print(f"wrote {len(out)} matches to {SCHEDULE_FULL}")
+    print(f"venue unknown: {venue_unknown}")
+
+    venues = json.loads(VENUES_JSON.read_text())
+    by_id = {v["id"]: v for v in venues}
+    def venue_label(vid):
+        v = by_id.get(vid); return v and f"{v['name']}, {v['city']}"
+
+    opening = out[0]
+    usa_match = next((m for m in out if "USA" in (m["team_a"], m["team_b"]) and m["stage"] == "group"), None)
+    final = out[-1]
+    ko_start = next((m for m in out if m["stage"] == "round_of_32"), None)
+    summary = {
+        "opening_match": {
+            "date": opening["kickoff_utc"][:10],
+            "match": f"{opening['team_a']} vs {opening['team_b']}",
+            "venue": venue_label(opening["venue_id"]),
+            "group": opening.get("group"),
+        },
+        "usa_opener": usa_match and {
+            "date": usa_match["kickoff_utc"][:10],
+            "match": f"{usa_match['team_a']} vs {usa_match['team_b']}",
+            "venue": venue_label(usa_match["venue_id"]),
+            "group": usa_match.get("group"),
+        },
+        "final": {
+            "date": final["kickoff_utc"][:10],
+            "venue": venue_label(final["venue_id"]) or "MetLife Stadium, East Rutherford",
+        },
+        "knockout_stage_starts": ko_start and ko_start["kickoff_utc"][:10],
+        "source": SOURCE_URL,
+        "source_last_updated": src.get("last_updated"),
+    }
+    SCHEDULE_SUMMARY.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n")
+    print(f"wrote summary to {SCHEDULE_SUMMARY}")
     return 0
 
-
 if __name__ == "__main__":
-    try:
-        raise SystemExit(main())
-    except Exception as e:
-        log(f"schedule: fatal — {e}; continuing")
-        raise SystemExit(0)
+    sys.exit(main())

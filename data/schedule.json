@@ -6,14 +6,16 @@
     "group": "A"
   },
   "usa_opener": {
-    "date": "2026-06-12",
+    "date": "2026-06-13",
     "match": "USA vs Paraguay",
     "venue": "SoFi Stadium, Inglewood",
     "group": "D"
   },
   "final": {
     "date": "2026-07-19",
-    "venue": "MetLife Stadium, East Rutherford, NJ"
+    "venue": "MetLife Stadium, East Rutherford"
   },
-  "knockout_stage_starts": "2026-06-27"
+  "knockout_stage_starts": "2026-06-28",
+  "source": "https://raw.githubusercontent.com/mjwebmaster/world-cup-2026-schedule-data/main/world-cup-2026-schedule.json",
+  "source_last_updated": "2026-05-25"
 }
