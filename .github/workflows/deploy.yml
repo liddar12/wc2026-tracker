@@ -1,40 +1,40 @@
-name: Deploy to GitHub Pages
+name: CI checks
+# Was previously "Deploy to GitHub Pages" — site is now hosted on Netlify
+# with auto-CD from main, so the Pages deploy was redundant and was failing
+# every push (Pages not enabled on this repo). Repurposed as a CI gate that
+# runs validate_data + smoke + tests on every push so we still catch data
+# regressions before Netlify auto-deploys.
 
 on:
   push:
+    branches: [main]
+  pull_request:
     branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
-  group: pages
-  cancel-in-progress: false
+  group: ci-checks
+  cancel-in-progress: true
 
 jobs:
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - name: Install Python deps
+        run: pip install -r scripts/requirements.txt
       - name: Validate data
         run: python3 scripts/validate_data.py
-      - name: Smoke test (local server)
+      - name: Smoke test (static shape checks)
         run: bash tests/smoke.sh
-      - uses: actions/configure-pages@v5
-      - name: Upload site as Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - uses: actions/setup-node@v4
         with:
-          # Exclude scripts/, .github/, and Python artifacts from the deployed site.
-          path: .
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
+          node-version: '20'
+      - name: Competition tests
+        run: node tests/competition.test.mjs
