@@ -1,0 +1,5323 @@
+{
+  "tournament": {
+    "name": "2026 FIFA World Cup",
+    "official_name": "FIFA World Cup 26",
+    "hosts": [
+      "Canada",
+      "Mexico",
+      "United States"
+    ],
+    "teams": 48,
+    "total_matches": 104,
+    "start_date": "2026-06-11",
+    "end_date": "2026-07-19",
+    "host_cities": 16,
+    "opening_match": "Mexico vs South Africa — Estadio Azteca, Mexico City (Match 1)",
+    "final": "MetLife Stadium, East Rutherford, New Jersey (Match 104)",
+    "format": "12 groups of 4. Top 2 of each group + 8 best 3rd-placed teams advance to Round of 32."
+  },
+  "round_structure": [
+    {
+      "round": "Group stage — Matchday 1",
+      "dates": "June 11–17, 2026"
+    },
+    {
+      "round": "Group stage — Matchday 2",
+      "dates": "June 18–23, 2026"
+    },
+    {
+      "round": "Group stage — Matchday 3",
+      "dates": "June 24–27, 2026"
+    },
+    {
+      "round": "Round of 32",
+      "dates": "June 28 – July 3, 2026"
+    },
+    {
+      "round": "Round of 16",
+      "dates": "July 4–7, 2026"
+    },
+    {
+      "round": "Quarter-finals",
+      "dates": "July 9–11, 2026"
+    },
+    {
+      "round": "Semi-finals",
+      "dates": "July 14–15, 2026"
+    },
+    {
+      "round": "Bronze final",
+      "dates": "July 18, 2026"
+    },
+    {
+      "round": "Final",
+      "dates": "July 19, 2026"
+    }
+  ],
+  "data_provenance": {
+    "primary_source": "Official FIFA Match Schedule PDF v17, dated 10 April 2026 (user-provided) — dates, ET kickoff times, match numbers, groups",
+    "cross_checked": [
+      "Wikipedia '2026 FIFA World Cup' (teams, venues, match numbers)",
+      "ESPN FIFA World Cup schedule (venues, ET times)"
+    ],
+    "time_basis": "FIFA publishes ALL kickoff times in Eastern Time (ET). This file provides ET (official), venue-local time, US Central/Chicago time, and UTC for every match.",
+    "chicago_note": "Chicago is Central Time (CDT, UTC-5) during the tournament — exactly 1 hour behind ET.",
+    "caveat": "Group-stage team assignments reflect the official Dec 2025 draw. Knockout matchups use FIFA bracket placeholders until teams qualify. Schedule marked 'subject to change' by FIFA."
+  },
+  "host_cities_and_venues": [
+    {
+      "stadium": "Estadio Azteca",
+      "tournament_alt_name": "Estadio Banorte (tournament name)",
+      "city": "Mexico City",
+      "country": "Mexico",
+      "capacity": 83264,
+      "iana_timezone": "America/Mexico_City",
+      "utc_offset_during_tournament": "-0600"
+    },
+    {
+      "stadium": "Estadio Akron",
+      "tournament_alt_name": "Estadio Guadalajara (tournament name)",
+      "city": "Zapopan (Guadalajara)",
+      "country": "Mexico",
+      "capacity": 48071,
+      "iana_timezone": "America/Mexico_City",
+      "utc_offset_during_tournament": "-0600"
+    },
+    {
+      "stadium": "Estadio BBVA",
+      "tournament_alt_name": "Estadio Monterrey (tournament name)",
+      "city": "Guadalupe (Monterrey)",
+      "country": "Mexico",
+      "capacity": 53500,
+      "iana_timezone": "America/Monterrey",
+      "utc_offset_during_tournament": "-0600"
+    },
+    {
+      "stadium": "BMO Field",
+      "tournament_alt_name": "Toronto Stadium (tournament name)",
+      "city": "Toronto",
+      "country": "Canada",
+      "capacity": 45736,
+      "iana_timezone": "America/Toronto",
+      "utc_offset_during_tournament": "-0400"
+    },
+    {
+      "stadium": "BC Place",
+      "tournament_alt_name": "Vancouver Stadium (tournament name)",
+      "city": "Vancouver",
+      "country": "Canada",
+      "capacity": 54500,
+      "iana_timezone": "America/Vancouver",
+      "utc_offset_during_tournament": "-0700"
+    },
+    {
+      "stadium": "SoFi Stadium",
+      "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+      "city": "Inglewood",
+      "country": "USA",
+      "capacity": 70240,
+      "iana_timezone": "America/Los_Angeles",
+      "utc_offset_during_tournament": "-0700"
+    },
+    {
+      "stadium": "Levi's Stadium",
+      "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+      "city": "Santa Clara",
+      "country": "USA",
+      "capacity": 68500,
+      "iana_timezone": "America/Los_Angeles",
+      "utc_offset_during_tournament": "-0700"
+    },
+    {
+      "stadium": "Lumen Field",
+      "tournament_alt_name": "Seattle Stadium (tournament name)",
+      "city": "Seattle",
+      "country": "USA",
+      "capacity": 68740,
+      "iana_timezone": "America/Los_Angeles",
+      "utc_offset_during_tournament": "-0700"
+    },
+    {
+      "stadium": "NRG Stadium",
+      "tournament_alt_name": "Houston Stadium (tournament name)",
+      "city": "Houston",
+      "country": "USA",
+      "capacity": 72220,
+      "iana_timezone": "America/Chicago",
+      "utc_offset_during_tournament": "-0500"
+    },
+    {
+      "stadium": "AT&T Stadium",
+      "tournament_alt_name": "Dallas Stadium (tournament name)",
+      "city": "Arlington",
+      "country": "USA",
+      "capacity": 80000,
+      "iana_timezone": "America/Chicago",
+      "utc_offset_during_tournament": "-0500"
+    },
+    {
+      "stadium": "Arrowhead Stadium",
+      "tournament_alt_name": "Kansas City Stadium (tournament name)",
+      "city": "Kansas City",
+      "country": "USA",
+      "capacity": 76416,
+      "iana_timezone": "America/Chicago",
+      "utc_offset_during_tournament": "-0500"
+    },
+    {
+      "stadium": "Mercedes-Benz Stadium",
+      "tournament_alt_name": "Atlanta Stadium (tournament name)",
+      "city": "Atlanta",
+      "country": "USA",
+      "capacity": 71000,
+      "iana_timezone": "America/New_York",
+      "utc_offset_during_tournament": "-0400"
+    },
+    {
+      "stadium": "Gillette Stadium",
+      "tournament_alt_name": "Boston Stadium (tournament name)",
+      "city": "Foxborough",
+      "country": "USA",
+      "capacity": 65878,
+      "iana_timezone": "America/New_York",
+      "utc_offset_during_tournament": "-0400"
+    },
+    {
+      "stadium": "MetLife Stadium",
+      "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+      "city": "East Rutherford",
+      "country": "USA",
+      "capacity": 82500,
+      "iana_timezone": "America/New_York",
+      "utc_offset_during_tournament": "-0400"
+    },
+    {
+      "stadium": "Lincoln Financial Field",
+      "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+      "city": "Philadelphia",
+      "country": "USA",
+      "capacity": 69596,
+      "iana_timezone": "America/New_York",
+      "utc_offset_during_tournament": "-0400"
+    },
+    {
+      "stadium": "Hard Rock Stadium",
+      "tournament_alt_name": "Miami Stadium (tournament name)",
+      "city": "Miami Gardens",
+      "country": "USA",
+      "capacity": 65326,
+      "iana_timezone": "America/New_York",
+      "utc_offset_during_tournament": "-0400"
+    }
+  ],
+  "matches": [
+    {
+      "match_number": 1,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Mexico",
+        "away": "South Africa",
+        "label": "Mexico vs South Africa",
+        "home_alt": "Mexico",
+        "away_alt": "South Africa",
+        "label_alt": "Mexico vs South Africa"
+      },
+      "venue": {
+        "stadium": "Estadio Azteca",
+        "tournament_alt_name": "Estadio Banorte (tournament name)",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "capacity": 83264,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-11 15:00",
+        "date": "2026-06-11",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-11T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-11 13:00",
+        "time": "13:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-11T13:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-11 14:00",
+        "date": "2026-06-11",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-11T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-11 19:00",
+        "iso8601": "2026-06-11T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 2,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "South Korea",
+        "away": "Czechia",
+        "label": "South Korea vs Czechia",
+        "home_alt": "South Korea",
+        "away_alt": "Czech Republic",
+        "label_alt": "South Korea vs Czech Republic"
+      },
+      "venue": {
+        "stadium": "Estadio Akron",
+        "tournament_alt_name": "Estadio Guadalajara (tournament name)",
+        "city": "Zapopan (Guadalajara)",
+        "country": "Mexico",
+        "capacity": 48071,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-11 22:00",
+        "date": "2026-06-11",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-11T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-11 20:00",
+        "time": "20:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-11T20:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-11 21:00",
+        "date": "2026-06-11",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-11T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-12 02:00",
+        "iso8601": "2026-06-12T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 3,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Canada",
+        "away": "Bosnia and Herzegovina",
+        "label": "Canada vs Bosnia and Herzegovina",
+        "home_alt": "Canada",
+        "away_alt": "Bosnia and Herzegovina",
+        "label_alt": "Canada vs Bosnia and Herzegovina"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-12 15:00",
+        "date": "2026-06-12",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-12T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-12 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-12T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-12 14:00",
+        "date": "2026-06-12",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-12T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-12 19:00",
+        "iso8601": "2026-06-12T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 4,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "United States",
+        "away": "Paraguay",
+        "label": "United States vs Paraguay",
+        "home_alt": "United States",
+        "away_alt": "Paraguay",
+        "label_alt": "United States vs Paraguay"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-12 21:00",
+        "date": "2026-06-12",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-12T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-12 18:00",
+        "time": "18:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-12T18:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-12 20:00",
+        "date": "2026-06-12",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-12T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-13 01:00",
+        "iso8601": "2026-06-13T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 6,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Australia",
+        "away": "Türkiye",
+        "label": "Australia vs Türkiye",
+        "home_alt": "Australia",
+        "away_alt": "Turkey",
+        "label_alt": "Australia vs Turkey"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-13 00:00",
+        "date": "2026-06-13",
+        "time": "00:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T00:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-12 21:00",
+        "time": "21:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-12T21:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-12 23:00",
+        "date": "2026-06-12",
+        "time": "23:00",
+        "time_12h": "11:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-12T23:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-13 04:00",
+        "iso8601": "2026-06-13T04:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 8,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Qatar",
+        "away": "Switzerland",
+        "label": "Qatar vs Switzerland",
+        "home_alt": "Qatar",
+        "away_alt": "Switzerland",
+        "label_alt": "Qatar vs Switzerland"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-13 15:00",
+        "date": "2026-06-13",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-13 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-13T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-13 14:00",
+        "date": "2026-06-13",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-13T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-13 19:00",
+        "iso8601": "2026-06-13T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 7,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Brazil",
+        "away": "Morocco",
+        "label": "Brazil vs Morocco",
+        "home_alt": "Brazil",
+        "away_alt": "Morocco",
+        "label_alt": "Brazil vs Morocco"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-13 18:00",
+        "date": "2026-06-13",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-13 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-13 17:00",
+        "date": "2026-06-13",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-13T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-13 22:00",
+        "iso8601": "2026-06-13T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 5,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Haiti",
+        "away": "Scotland",
+        "label": "Haiti vs Scotland",
+        "home_alt": "Haiti",
+        "away_alt": "Scotland",
+        "label_alt": "Haiti vs Scotland"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-13 21:00",
+        "date": "2026-06-13",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-13 21:00",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-13T21:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-13 20:00",
+        "date": "2026-06-13",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-13T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-14 01:00",
+        "iso8601": "2026-06-14T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 10,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Germany",
+        "away": "Curaçao",
+        "label": "Germany vs Curaçao",
+        "home_alt": "Germany",
+        "away_alt": "Curacao",
+        "label_alt": "Germany vs Curacao"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-14 13:00",
+        "date": "2026-06-14",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-14T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-14 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-14 12:00",
+        "date": "2026-06-14",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-14 17:00",
+        "iso8601": "2026-06-14T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 11,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Netherlands",
+        "away": "Japan",
+        "label": "Netherlands vs Japan",
+        "home_alt": "Netherlands",
+        "away_alt": "Japan",
+        "label_alt": "Netherlands vs Japan"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-14 16:00",
+        "date": "2026-06-14",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-14T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-14 15:00",
+        "time": "15:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T15:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-14 15:00",
+        "date": "2026-06-14",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-14 20:00",
+        "iso8601": "2026-06-14T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 9,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Côte d’Ivoire",
+        "away": "Ecuador",
+        "label": "Côte d’Ivoire vs Ecuador",
+        "home_alt": "Ivory Coast",
+        "away_alt": "Ecuador",
+        "label_alt": "Ivory Coast vs Ecuador"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-14 19:00",
+        "date": "2026-06-14",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-14T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-14 19:00",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-14T19:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-14 18:00",
+        "date": "2026-06-14",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-14 23:00",
+        "iso8601": "2026-06-14T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 12,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Sweden",
+        "away": "Tunisia",
+        "label": "Sweden vs Tunisia",
+        "home_alt": "Sweden",
+        "away_alt": "Tunisia",
+        "label_alt": "Sweden vs Tunisia"
+      },
+      "venue": {
+        "stadium": "Estadio BBVA",
+        "tournament_alt_name": "Estadio Monterrey (tournament name)",
+        "city": "Guadalupe (Monterrey)",
+        "country": "Mexico",
+        "capacity": 53500,
+        "iana_timezone": "America/Monterrey"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-14 22:00",
+        "date": "2026-06-14",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-14T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-14 20:00",
+        "time": "20:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-14T20:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-14 21:00",
+        "date": "2026-06-14",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-14T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-15 02:00",
+        "iso8601": "2026-06-15T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 14,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Spain",
+        "away": "Cabo Verde",
+        "label": "Spain vs Cabo Verde",
+        "home_alt": "Spain",
+        "away_alt": "Cape Verde",
+        "label_alt": "Spain vs Cape Verde"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-15 12:00",
+        "date": "2026-06-15",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T12:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-15 12:00",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T12:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-15 11:00",
+        "date": "2026-06-15",
+        "time": "11:00",
+        "time_12h": "11:00 AM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-15T11:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-15 16:00",
+        "iso8601": "2026-06-15T16:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 16,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Belgium",
+        "away": "Egypt",
+        "label": "Belgium vs Egypt",
+        "home_alt": "Belgium",
+        "away_alt": "Egypt",
+        "label_alt": "Belgium vs Egypt"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-15 15:00",
+        "date": "2026-06-15",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-15 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-15T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-15 14:00",
+        "date": "2026-06-15",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-15T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-15 19:00",
+        "iso8601": "2026-06-15T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 13,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Saudi Arabia",
+        "away": "Uruguay",
+        "label": "Saudi Arabia vs Uruguay",
+        "home_alt": "Saudi Arabia",
+        "away_alt": "Uruguay",
+        "label_alt": "Saudi Arabia vs Uruguay"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-15 18:00",
+        "date": "2026-06-15",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-15 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-15 17:00",
+        "date": "2026-06-15",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-15T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-15 22:00",
+        "iso8601": "2026-06-15T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 15,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "IR Iran",
+        "away": "New Zealand",
+        "label": "IR Iran vs New Zealand",
+        "home_alt": "Iran",
+        "away_alt": "New Zealand",
+        "label_alt": "Iran vs New Zealand"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-15 21:00",
+        "date": "2026-06-15",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-15T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-15 18:00",
+        "time": "18:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-15T18:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-15 20:00",
+        "date": "2026-06-15",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-15T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-16 01:00",
+        "iso8601": "2026-06-16T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 20,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Austria",
+        "away": "Jordan",
+        "label": "Austria vs Jordan",
+        "home_alt": "Austria",
+        "away_alt": "Jordan",
+        "label_alt": "Austria vs Jordan"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-16 00:00",
+        "date": "2026-06-16",
+        "time": "00:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T00:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-15 21:00",
+        "time": "21:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-15T21:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-15 23:00",
+        "date": "2026-06-15",
+        "time": "23:00",
+        "time_12h": "11:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-15T23:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-16 04:00",
+        "iso8601": "2026-06-16T04:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 17,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "France",
+        "away": "Senegal",
+        "label": "France vs Senegal",
+        "home_alt": "France",
+        "away_alt": "Senegal",
+        "label_alt": "France vs Senegal"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-16 15:00",
+        "date": "2026-06-16",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-16 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-16 14:00",
+        "date": "2026-06-16",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-16T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-16 19:00",
+        "iso8601": "2026-06-16T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 18,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Iraq",
+        "away": "Norway",
+        "label": "Iraq vs Norway",
+        "home_alt": "Iraq",
+        "away_alt": "Norway",
+        "label_alt": "Iraq vs Norway"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-16 18:00",
+        "date": "2026-06-16",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-16 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-16 17:00",
+        "date": "2026-06-16",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-16T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-16 22:00",
+        "iso8601": "2026-06-16T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 19,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Argentina",
+        "away": "Algeria",
+        "label": "Argentina vs Algeria",
+        "home_alt": "Argentina",
+        "away_alt": "Algeria",
+        "label_alt": "Argentina vs Algeria"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-16 21:00",
+        "date": "2026-06-16",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-16T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-16 20:00",
+        "time": "20:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-16T20:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-16 20:00",
+        "date": "2026-06-16",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-16T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-17 01:00",
+        "iso8601": "2026-06-17T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 23,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Portugal",
+        "away": "Congo DR",
+        "label": "Portugal vs Congo DR",
+        "home_alt": "Portugal",
+        "away_alt": "DR Congo",
+        "label_alt": "Portugal vs DR Congo"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-17 13:00",
+        "date": "2026-06-17",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-17T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-17 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-17 12:00",
+        "date": "2026-06-17",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-17 17:00",
+        "iso8601": "2026-06-17T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 22,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "England",
+        "away": "Croatia",
+        "label": "England vs Croatia",
+        "home_alt": "England",
+        "away_alt": "Croatia",
+        "label_alt": "England vs Croatia"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-17 16:00",
+        "date": "2026-06-17",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-17T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-17 15:00",
+        "time": "15:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T15:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-17 15:00",
+        "date": "2026-06-17",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-17 20:00",
+        "iso8601": "2026-06-17T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 21,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Ghana",
+        "away": "Panama",
+        "label": "Ghana vs Panama",
+        "home_alt": "Ghana",
+        "away_alt": "Panama",
+        "label_alt": "Ghana vs Panama"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-17 19:00",
+        "date": "2026-06-17",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-17T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-17 19:00",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-17T19:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-17 18:00",
+        "date": "2026-06-17",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-17 23:00",
+        "iso8601": "2026-06-17T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 24,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 1",
+      "teams": {
+        "home": "Uzbekistan",
+        "away": "Colombia",
+        "label": "Uzbekistan vs Colombia",
+        "home_alt": "Uzbekistan",
+        "away_alt": "Colombia",
+        "label_alt": "Uzbekistan vs Colombia"
+      },
+      "venue": {
+        "stadium": "Estadio Azteca",
+        "tournament_alt_name": "Estadio Banorte (tournament name)",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "capacity": 83264,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-17 22:00",
+        "date": "2026-06-17",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-17T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-17 20:00",
+        "time": "20:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-17T20:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-17 21:00",
+        "date": "2026-06-17",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-17T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-18 02:00",
+        "iso8601": "2026-06-18T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 25,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Czechia",
+        "away": "South Africa",
+        "label": "Czechia vs South Africa",
+        "home_alt": "Czech Republic",
+        "away_alt": "South Africa",
+        "label_alt": "Czech Republic vs South Africa"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-18 12:00",
+        "date": "2026-06-18",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-18T12:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-18 12:00",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-18T12:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-18 11:00",
+        "date": "2026-06-18",
+        "time": "11:00",
+        "time_12h": "11:00 AM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-18T11:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-18 16:00",
+        "iso8601": "2026-06-18T16:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 26,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Switzerland",
+        "away": "Bosnia and Herzegovina",
+        "label": "Switzerland vs Bosnia and Herzegovina",
+        "home_alt": "Switzerland",
+        "away_alt": "Bosnia and Herzegovina",
+        "label_alt": "Switzerland vs Bosnia and Herzegovina"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-18 15:00",
+        "date": "2026-06-18",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-18T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-18 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-18T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-18 14:00",
+        "date": "2026-06-18",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-18T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-18 19:00",
+        "iso8601": "2026-06-18T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 27,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Canada",
+        "away": "Qatar",
+        "label": "Canada vs Qatar",
+        "home_alt": "Canada",
+        "away_alt": "Qatar",
+        "label_alt": "Canada vs Qatar"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-18 18:00",
+        "date": "2026-06-18",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-18T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-18 15:00",
+        "time": "15:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-18T15:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-18 17:00",
+        "date": "2026-06-18",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-18T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-18 22:00",
+        "iso8601": "2026-06-18T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 28,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Mexico",
+        "away": "South Korea",
+        "label": "Mexico vs South Korea",
+        "home_alt": "Mexico",
+        "away_alt": "South Korea",
+        "label_alt": "Mexico vs South Korea"
+      },
+      "venue": {
+        "stadium": "Estadio Akron",
+        "tournament_alt_name": "Estadio Guadalajara (tournament name)",
+        "city": "Zapopan (Guadalajara)",
+        "country": "Mexico",
+        "capacity": 48071,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-18 21:00",
+        "date": "2026-06-18",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-18T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-18 19:00",
+        "time": "19:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-18T19:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-18 20:00",
+        "date": "2026-06-18",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-18T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-19 01:00",
+        "iso8601": "2026-06-19T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 32,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "United States",
+        "away": "Australia",
+        "label": "United States vs Australia",
+        "home_alt": "United States",
+        "away_alt": "Australia",
+        "label_alt": "United States vs Australia"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-19 15:00",
+        "date": "2026-06-19",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-19 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-19T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-19 14:00",
+        "date": "2026-06-19",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-19T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-19 19:00",
+        "iso8601": "2026-06-19T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 30,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Scotland",
+        "away": "Morocco",
+        "label": "Scotland vs Morocco",
+        "home_alt": "Scotland",
+        "away_alt": "Morocco",
+        "label_alt": "Scotland vs Morocco"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-19 18:00",
+        "date": "2026-06-19",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-19 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-19 17:00",
+        "date": "2026-06-19",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-19T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-19 22:00",
+        "iso8601": "2026-06-19T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 29,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Brazil",
+        "away": "Haiti",
+        "label": "Brazil vs Haiti",
+        "home_alt": "Brazil",
+        "away_alt": "Haiti",
+        "label_alt": "Brazil vs Haiti"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-19 20:30",
+        "date": "2026-06-19",
+        "time": "20:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T20:30:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-19 20:30",
+        "time": "20:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T20:30:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-19 19:30",
+        "date": "2026-06-19",
+        "time": "19:30",
+        "time_12h": "7:30 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-19T19:30:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-20 00:30",
+        "iso8601": "2026-06-20T00:30:00+00:00"
+      }
+    },
+    {
+      "match_number": 31,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Türkiye",
+        "away": "Paraguay",
+        "label": "Türkiye vs Paraguay",
+        "home_alt": "Turkey",
+        "away_alt": "Paraguay",
+        "label_alt": "Turkey vs Paraguay"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-19 23:00",
+        "date": "2026-06-19",
+        "time": "23:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-19T23:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-19 20:00",
+        "time": "20:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-19T20:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-19 22:00",
+        "date": "2026-06-19",
+        "time": "22:00",
+        "time_12h": "10:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-19T22:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-20 03:00",
+        "iso8601": "2026-06-20T03:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 36,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Tunisia",
+        "away": "Japan",
+        "label": "Tunisia vs Japan",
+        "home_alt": "Tunisia",
+        "away_alt": "Japan",
+        "label_alt": "Tunisia vs Japan"
+      },
+      "venue": {
+        "stadium": "Estadio BBVA",
+        "tournament_alt_name": "Estadio Monterrey (tournament name)",
+        "city": "Guadalupe (Monterrey)",
+        "country": "Mexico",
+        "capacity": 53500,
+        "iana_timezone": "America/Monterrey"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-20 00:00",
+        "date": "2026-06-20",
+        "time": "00:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-20T00:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-19 22:00",
+        "time": "22:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-19T22:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-19 23:00",
+        "date": "2026-06-19",
+        "time": "23:00",
+        "time_12h": "11:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-19T23:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-20 04:00",
+        "iso8601": "2026-06-20T04:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 35,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Netherlands",
+        "away": "Sweden",
+        "label": "Netherlands vs Sweden",
+        "home_alt": "Netherlands",
+        "away_alt": "Sweden",
+        "label_alt": "Netherlands vs Sweden"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-20 13:00",
+        "date": "2026-06-20",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-20T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-20 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-20T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-20 12:00",
+        "date": "2026-06-20",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-20T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-20 17:00",
+        "iso8601": "2026-06-20T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 33,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Germany",
+        "away": "Côte d’Ivoire",
+        "label": "Germany vs Côte d’Ivoire",
+        "home_alt": "Germany",
+        "away_alt": "Ivory Coast",
+        "label_alt": "Germany vs Ivory Coast"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-20 16:00",
+        "date": "2026-06-20",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-20T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-20 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-20T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-20 15:00",
+        "date": "2026-06-20",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-20T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-20 20:00",
+        "iso8601": "2026-06-20T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 34,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Ecuador",
+        "away": "Curaçao",
+        "label": "Ecuador vs Curaçao",
+        "home_alt": "Ecuador",
+        "away_alt": "Curacao",
+        "label_alt": "Ecuador vs Curacao"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-20 20:00",
+        "date": "2026-06-20",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-20T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-20 19:00",
+        "time": "19:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-20T19:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-20 19:00",
+        "date": "2026-06-20",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-20T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-21 00:00",
+        "iso8601": "2026-06-21T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 38,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Spain",
+        "away": "Saudi Arabia",
+        "label": "Spain vs Saudi Arabia",
+        "home_alt": "Spain",
+        "away_alt": "Saudi Arabia",
+        "label_alt": "Spain vs Saudi Arabia"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-21 12:00",
+        "date": "2026-06-21",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T12:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-21 12:00",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T12:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-21 11:00",
+        "date": "2026-06-21",
+        "time": "11:00",
+        "time_12h": "11:00 AM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-21T11:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-21 16:00",
+        "iso8601": "2026-06-21T16:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 39,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Belgium",
+        "away": "IR Iran",
+        "label": "Belgium vs IR Iran",
+        "home_alt": "Belgium",
+        "away_alt": "Iran",
+        "label_alt": "Belgium vs Iran"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-21 15:00",
+        "date": "2026-06-21",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-21 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-21T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-21 14:00",
+        "date": "2026-06-21",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-21T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-21 19:00",
+        "iso8601": "2026-06-21T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 37,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Uruguay",
+        "away": "Cabo Verde",
+        "label": "Uruguay vs Cabo Verde",
+        "home_alt": "Uruguay",
+        "away_alt": "Cape Verde",
+        "label_alt": "Uruguay vs Cape Verde"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-21 18:00",
+        "date": "2026-06-21",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-21 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-21 17:00",
+        "date": "2026-06-21",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-21T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-21 22:00",
+        "iso8601": "2026-06-21T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 40,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "New Zealand",
+        "away": "Egypt",
+        "label": "New Zealand vs Egypt",
+        "home_alt": "New Zealand",
+        "away_alt": "Egypt",
+        "label_alt": "New Zealand vs Egypt"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-21 21:00",
+        "date": "2026-06-21",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-21T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-21 18:00",
+        "time": "18:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-21T18:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-21 20:00",
+        "date": "2026-06-21",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-21T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-22 01:00",
+        "iso8601": "2026-06-22T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 43,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Argentina",
+        "away": "Austria",
+        "label": "Argentina vs Austria",
+        "home_alt": "Argentina",
+        "away_alt": "Austria",
+        "label_alt": "Argentina vs Austria"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-22 13:00",
+        "date": "2026-06-22",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-22 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-22T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-22 12:00",
+        "date": "2026-06-22",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-22T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-22 17:00",
+        "iso8601": "2026-06-22T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 42,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "France",
+        "away": "Iraq",
+        "label": "France vs Iraq",
+        "home_alt": "France",
+        "away_alt": "Iraq",
+        "label_alt": "France vs Iraq"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-22 17:00",
+        "date": "2026-06-22",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-22 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-22 16:00",
+        "date": "2026-06-22",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-22T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-22 21:00",
+        "iso8601": "2026-06-22T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 41,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Norway",
+        "away": "Senegal",
+        "label": "Norway vs Senegal",
+        "home_alt": "Norway",
+        "away_alt": "Senegal",
+        "label_alt": "Norway vs Senegal"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-22 20:00",
+        "date": "2026-06-22",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-22 20:00",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T20:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-22 19:00",
+        "date": "2026-06-22",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-22T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-23 00:00",
+        "iso8601": "2026-06-23T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 44,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Jordan",
+        "away": "Algeria",
+        "label": "Jordan vs Algeria",
+        "home_alt": "Jordan",
+        "away_alt": "Algeria",
+        "label_alt": "Jordan vs Algeria"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-22 23:00",
+        "date": "2026-06-22",
+        "time": "23:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-22T23:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-22 20:00",
+        "time": "20:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-22T20:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-22 22:00",
+        "date": "2026-06-22",
+        "time": "22:00",
+        "time_12h": "10:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-22T22:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-23 03:00",
+        "iso8601": "2026-06-23T03:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 47,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Portugal",
+        "away": "Uzbekistan",
+        "label": "Portugal vs Uzbekistan",
+        "home_alt": "Portugal",
+        "away_alt": "Uzbekistan",
+        "label_alt": "Portugal vs Uzbekistan"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-23 13:00",
+        "date": "2026-06-23",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-23 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-23T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-23 12:00",
+        "date": "2026-06-23",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-23T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-23 17:00",
+        "iso8601": "2026-06-23T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 45,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "England",
+        "away": "Ghana",
+        "label": "England vs Ghana",
+        "home_alt": "England",
+        "away_alt": "Ghana",
+        "label_alt": "England vs Ghana"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-23 16:00",
+        "date": "2026-06-23",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-23 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-23 15:00",
+        "date": "2026-06-23",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-23T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-23 20:00",
+        "iso8601": "2026-06-23T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 46,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Panama",
+        "away": "Croatia",
+        "label": "Panama vs Croatia",
+        "home_alt": "Panama",
+        "away_alt": "Croatia",
+        "label_alt": "Panama vs Croatia"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-23 19:00",
+        "date": "2026-06-23",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-23 19:00",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T19:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-23 18:00",
+        "date": "2026-06-23",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-23T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-23 23:00",
+        "iso8601": "2026-06-23T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 48,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 2",
+      "teams": {
+        "home": "Colombia",
+        "away": "Congo DR",
+        "label": "Colombia vs Congo DR",
+        "home_alt": "Colombia",
+        "away_alt": "DR Congo",
+        "label_alt": "Colombia vs DR Congo"
+      },
+      "venue": {
+        "stadium": "Estadio Akron",
+        "tournament_alt_name": "Estadio Guadalajara (tournament name)",
+        "city": "Zapopan (Guadalajara)",
+        "country": "Mexico",
+        "capacity": 48071,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-23 22:00",
+        "date": "2026-06-23",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-23T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-23 20:00",
+        "time": "20:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-23T20:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-23 21:00",
+        "date": "2026-06-23",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-23T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-24 02:00",
+        "iso8601": "2026-06-24T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 51,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Switzerland",
+        "away": "Canada",
+        "label": "Switzerland vs Canada",
+        "home_alt": "Switzerland",
+        "away_alt": "Canada",
+        "label_alt": "Switzerland vs Canada"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 15:00",
+        "date": "2026-06-24",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-24T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 14:00",
+        "date": "2026-06-24",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-24 19:00",
+        "iso8601": "2026-06-24T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 52,
+      "round": "Group stage",
+      "group": "B",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Bosnia and Herzegovina",
+        "away": "Qatar",
+        "label": "Bosnia and Herzegovina vs Qatar",
+        "home_alt": "Bosnia and Herzegovina",
+        "away_alt": "Qatar",
+        "label_alt": "Bosnia and Herzegovina vs Qatar"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 15:00",
+        "date": "2026-06-24",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-24T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 14:00",
+        "date": "2026-06-24",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-24 19:00",
+        "iso8601": "2026-06-24T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 49,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Scotland",
+        "away": "Brazil",
+        "label": "Scotland vs Brazil",
+        "home_alt": "Scotland",
+        "away_alt": "Brazil",
+        "label_alt": "Scotland vs Brazil"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 18:00",
+        "date": "2026-06-24",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 17:00",
+        "date": "2026-06-24",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-24 22:00",
+        "iso8601": "2026-06-24T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 50,
+      "round": "Group stage",
+      "group": "C",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Morocco",
+        "away": "Haiti",
+        "label": "Morocco vs Haiti",
+        "home_alt": "Morocco",
+        "away_alt": "Haiti",
+        "label_alt": "Morocco vs Haiti"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 18:00",
+        "date": "2026-06-24",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 17:00",
+        "date": "2026-06-24",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-24 22:00",
+        "iso8601": "2026-06-24T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 53,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Czechia",
+        "away": "Mexico",
+        "label": "Czechia vs Mexico",
+        "home_alt": "Czech Republic",
+        "away_alt": "Mexico",
+        "label_alt": "Czech Republic vs Mexico"
+      },
+      "venue": {
+        "stadium": "Estadio Azteca",
+        "tournament_alt_name": "Estadio Banorte (tournament name)",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "capacity": 83264,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 21:00",
+        "date": "2026-06-24",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 19:00",
+        "time": "19:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-24T19:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 20:00",
+        "date": "2026-06-24",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 01:00",
+        "iso8601": "2026-06-25T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 54,
+      "round": "Group stage",
+      "group": "A",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "South Africa",
+        "away": "South Korea",
+        "label": "South Africa vs South Korea",
+        "home_alt": "South Africa",
+        "away_alt": "South Korea",
+        "label_alt": "South Africa vs South Korea"
+      },
+      "venue": {
+        "stadium": "Estadio BBVA",
+        "tournament_alt_name": "Estadio Monterrey (tournament name)",
+        "city": "Guadalupe (Monterrey)",
+        "country": "Mexico",
+        "capacity": 53500,
+        "iana_timezone": "America/Monterrey"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-24 21:00",
+        "date": "2026-06-24",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-24T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-24 19:00",
+        "time": "19:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-24T19:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-24 20:00",
+        "date": "2026-06-24",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-24T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 01:00",
+        "iso8601": "2026-06-25T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 55,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Curaçao",
+        "away": "Côte d’Ivoire",
+        "label": "Curaçao vs Côte d’Ivoire",
+        "home_alt": "Curacao",
+        "away_alt": "Ivory Coast",
+        "label_alt": "Curacao vs Ivory Coast"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 16:00",
+        "date": "2026-06-25",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 15:00",
+        "date": "2026-06-25",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 20:00",
+        "iso8601": "2026-06-25T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 56,
+      "round": "Group stage",
+      "group": "E",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Ecuador",
+        "away": "Germany",
+        "label": "Ecuador vs Germany",
+        "home_alt": "Ecuador",
+        "away_alt": "Germany",
+        "label_alt": "Ecuador vs Germany"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 16:00",
+        "date": "2026-06-25",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 15:00",
+        "date": "2026-06-25",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 20:00",
+        "iso8601": "2026-06-25T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 57,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Japan",
+        "away": "Sweden",
+        "label": "Japan vs Sweden",
+        "home_alt": "Japan",
+        "away_alt": "Sweden",
+        "label_alt": "Japan vs Sweden"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 19:00",
+        "date": "2026-06-25",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 18:00",
+        "time": "18:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T18:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 18:00",
+        "date": "2026-06-25",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 23:00",
+        "iso8601": "2026-06-25T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 58,
+      "round": "Group stage",
+      "group": "F",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Tunisia",
+        "away": "Netherlands",
+        "label": "Tunisia vs Netherlands",
+        "home_alt": "Tunisia",
+        "away_alt": "Netherlands",
+        "label_alt": "Tunisia vs Netherlands"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 19:00",
+        "date": "2026-06-25",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 18:00",
+        "time": "18:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T18:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 18:00",
+        "date": "2026-06-25",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-25 23:00",
+        "iso8601": "2026-06-25T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 59,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Türkiye",
+        "away": "United States",
+        "label": "Türkiye vs United States",
+        "home_alt": "Turkey",
+        "away_alt": "United States",
+        "label_alt": "Turkey vs United States"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 22:00",
+        "date": "2026-06-25",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 19:00",
+        "time": "19:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-25T19:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 21:00",
+        "date": "2026-06-25",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-26 02:00",
+        "iso8601": "2026-06-26T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 60,
+      "round": "Group stage",
+      "group": "D",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Paraguay",
+        "away": "Australia",
+        "label": "Paraguay vs Australia",
+        "home_alt": "Paraguay",
+        "away_alt": "Australia",
+        "label_alt": "Paraguay vs Australia"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-25 22:00",
+        "date": "2026-06-25",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-25T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-25 19:00",
+        "time": "19:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-25T19:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-25 21:00",
+        "date": "2026-06-25",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-25T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-26 02:00",
+        "iso8601": "2026-06-26T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 61,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Norway",
+        "away": "France",
+        "label": "Norway vs France",
+        "home_alt": "Norway",
+        "away_alt": "France",
+        "label_alt": "Norway vs France"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 15:00",
+        "date": "2026-06-26",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 14:00",
+        "date": "2026-06-26",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-26 19:00",
+        "iso8601": "2026-06-26T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 62,
+      "round": "Group stage",
+      "group": "I",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Senegal",
+        "away": "Iraq",
+        "label": "Senegal vs Iraq",
+        "home_alt": "Senegal",
+        "away_alt": "Iraq",
+        "label_alt": "Senegal vs Iraq"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 15:00",
+        "date": "2026-06-26",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 14:00",
+        "date": "2026-06-26",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-26 19:00",
+        "iso8601": "2026-06-26T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 65,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Cabo Verde",
+        "away": "Saudi Arabia",
+        "label": "Cabo Verde vs Saudi Arabia",
+        "home_alt": "Cape Verde",
+        "away_alt": "Saudi Arabia",
+        "label_alt": "Cape Verde vs Saudi Arabia"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 20:00",
+        "date": "2026-06-26",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 19:00",
+        "time": "19:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T19:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 19:00",
+        "date": "2026-06-26",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 00:00",
+        "iso8601": "2026-06-27T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 66,
+      "round": "Group stage",
+      "group": "H",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Uruguay",
+        "away": "Spain",
+        "label": "Uruguay vs Spain",
+        "home_alt": "Uruguay",
+        "away_alt": "Spain",
+        "label_alt": "Uruguay vs Spain"
+      },
+      "venue": {
+        "stadium": "Estadio Akron",
+        "tournament_alt_name": "Estadio Guadalajara (tournament name)",
+        "city": "Zapopan (Guadalajara)",
+        "country": "Mexico",
+        "capacity": 48071,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 20:00",
+        "date": "2026-06-26",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 18:00",
+        "time": "18:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-26T18:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 19:00",
+        "date": "2026-06-26",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 00:00",
+        "iso8601": "2026-06-27T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 63,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Egypt",
+        "away": "IR Iran",
+        "label": "Egypt vs IR Iran",
+        "home_alt": "Egypt",
+        "away_alt": "Iran",
+        "label_alt": "Egypt vs Iran"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 23:00",
+        "date": "2026-06-26",
+        "time": "23:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T23:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 20:00",
+        "time": "20:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-26T20:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 22:00",
+        "date": "2026-06-26",
+        "time": "22:00",
+        "time_12h": "10:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T22:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 03:00",
+        "iso8601": "2026-06-27T03:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 64,
+      "round": "Group stage",
+      "group": "G",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "New Zealand",
+        "away": "Belgium",
+        "label": "New Zealand vs Belgium",
+        "home_alt": "New Zealand",
+        "away_alt": "Belgium",
+        "label_alt": "New Zealand vs Belgium"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-26 23:00",
+        "date": "2026-06-26",
+        "time": "23:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-26T23:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-26 20:00",
+        "time": "20:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-26T20:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-26 22:00",
+        "date": "2026-06-26",
+        "time": "22:00",
+        "time_12h": "10:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-26T22:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 03:00",
+        "iso8601": "2026-06-27T03:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 67,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Panama",
+        "away": "England",
+        "label": "Panama vs England",
+        "home_alt": "Panama",
+        "away_alt": "England",
+        "label_alt": "Panama vs England"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 17:00",
+        "date": "2026-06-27",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 16:00",
+        "date": "2026-06-27",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 21:00",
+        "iso8601": "2026-06-27T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 68,
+      "round": "Group stage",
+      "group": "L",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Croatia",
+        "away": "Ghana",
+        "label": "Croatia vs Ghana",
+        "home_alt": "Croatia",
+        "away_alt": "Ghana",
+        "label_alt": "Croatia vs Ghana"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 17:00",
+        "date": "2026-06-27",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 16:00",
+        "date": "2026-06-27",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 21:00",
+        "iso8601": "2026-06-27T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 71,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Colombia",
+        "away": "Portugal",
+        "label": "Colombia vs Portugal",
+        "home_alt": "Colombia",
+        "away_alt": "Portugal",
+        "label_alt": "Colombia vs Portugal"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 19:30",
+        "date": "2026-06-27",
+        "time": "19:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T19:30:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 19:30",
+        "time": "19:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T19:30:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 18:30",
+        "date": "2026-06-27",
+        "time": "18:30",
+        "time_12h": "6:30 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T18:30:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 23:30",
+        "iso8601": "2026-06-27T23:30:00+00:00"
+      }
+    },
+    {
+      "match_number": 72,
+      "round": "Group stage",
+      "group": "K",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Congo DR",
+        "away": "Uzbekistan",
+        "label": "Congo DR vs Uzbekistan",
+        "home_alt": "DR Congo",
+        "away_alt": "Uzbekistan",
+        "label_alt": "DR Congo vs Uzbekistan"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 19:30",
+        "date": "2026-06-27",
+        "time": "19:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T19:30:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 19:30",
+        "time": "19:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T19:30:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 18:30",
+        "date": "2026-06-27",
+        "time": "18:30",
+        "time_12h": "6:30 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T18:30:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-27 23:30",
+        "iso8601": "2026-06-27T23:30:00+00:00"
+      }
+    },
+    {
+      "match_number": 69,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Algeria",
+        "away": "Austria",
+        "label": "Algeria vs Austria",
+        "home_alt": "Algeria",
+        "away_alt": "Austria",
+        "label_alt": "Algeria vs Austria"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 22:00",
+        "date": "2026-06-27",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 21:00",
+        "time": "21:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T21:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 21:00",
+        "date": "2026-06-27",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-28 02:00",
+        "iso8601": "2026-06-28T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 70,
+      "round": "Group stage",
+      "group": "J",
+      "matchday": "Matchday 3",
+      "teams": {
+        "home": "Jordan",
+        "away": "Argentina",
+        "label": "Jordan vs Argentina",
+        "home_alt": "Jordan",
+        "away_alt": "Argentina",
+        "label_alt": "Jordan vs Argentina"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-27 22:00",
+        "date": "2026-06-27",
+        "time": "22:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-27T22:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-27 21:00",
+        "time": "21:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T21:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-27 21:00",
+        "date": "2026-06-27",
+        "time": "21:00",
+        "time_12h": "9:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-27T21:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-28 02:00",
+        "iso8601": "2026-06-28T02:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 73,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Runner-up Group A",
+        "away": "Runner-up Group B",
+        "label": "Runner-up Group A vs Runner-up Group B",
+        "home_alt": "Runner-up Group A",
+        "away_alt": "Runner-up Group B",
+        "label_alt": "Runner-up Group A vs Runner-up Group B"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-28 15:00",
+        "date": "2026-06-28",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-28T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-28 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-06-28T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-28 14:00",
+        "date": "2026-06-28",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-28T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-28 19:00",
+        "iso8601": "2026-06-28T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 76,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group C",
+        "away": "Runner-up Group F",
+        "label": "Winner Group C vs Runner-up Group F",
+        "home_alt": "Winner Group C",
+        "away_alt": "Runner-up Group F",
+        "label_alt": "Winner Group C vs Runner-up Group F"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-29 13:00",
+        "date": "2026-06-29",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-29T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-29 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-29T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-29 12:00",
+        "date": "2026-06-29",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-29T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-29 17:00",
+        "iso8601": "2026-06-29T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 74,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group E",
+        "away": "3rd Group A/B/C/D/F",
+        "label": "Winner Group E vs 3rd Group A/B/C/D/F",
+        "home_alt": "Winner Group E",
+        "away_alt": "3rd Group A/B/C/D/F",
+        "label_alt": "Winner Group E vs 3rd Group A/B/C/D/F"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-29 16:30",
+        "date": "2026-06-29",
+        "time": "16:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-29T16:30:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-29 16:30",
+        "time": "16:30",
+        "timezone": "EDT",
+        "iso8601": "2026-06-29T16:30:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-29 15:30",
+        "date": "2026-06-29",
+        "time": "15:30",
+        "time_12h": "3:30 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-29T15:30:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-29 20:30",
+        "iso8601": "2026-06-29T20:30:00+00:00"
+      }
+    },
+    {
+      "match_number": 75,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group F",
+        "away": "Runner-up Group C",
+        "label": "Winner Group F vs Runner-up Group C",
+        "home_alt": "Winner Group F",
+        "away_alt": "Runner-up Group C",
+        "label_alt": "Winner Group F vs Runner-up Group C"
+      },
+      "venue": {
+        "stadium": "Estadio BBVA",
+        "tournament_alt_name": "Estadio Monterrey (tournament name)",
+        "city": "Guadalupe (Monterrey)",
+        "country": "Mexico",
+        "capacity": 53500,
+        "iana_timezone": "America/Monterrey"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-29 21:00",
+        "date": "2026-06-29",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-29T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-29 19:00",
+        "time": "19:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-29T19:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-29 20:00",
+        "date": "2026-06-29",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-29T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-30 01:00",
+        "iso8601": "2026-06-30T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 78,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Runner-up Group E",
+        "away": "Runner-up Group I",
+        "label": "Runner-up Group E vs Runner-up Group I",
+        "home_alt": "Runner-up Group E",
+        "away_alt": "Runner-up Group I",
+        "label_alt": "Runner-up Group E vs Runner-up Group I"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-30 13:00",
+        "date": "2026-06-30",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-30T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-30 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-06-30T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-30 12:00",
+        "date": "2026-06-30",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-30T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-30 17:00",
+        "iso8601": "2026-06-30T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 77,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group I",
+        "away": "3rd Group C/D/F/G/H",
+        "label": "Winner Group I vs 3rd Group C/D/F/G/H",
+        "home_alt": "Winner Group I",
+        "away_alt": "3rd Group C/D/F/G/H",
+        "label_alt": "Winner Group I vs 3rd Group C/D/F/G/H"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-30 17:00",
+        "date": "2026-06-30",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-30T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-30 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-30T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-30 16:00",
+        "date": "2026-06-30",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-30T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-06-30 21:00",
+        "iso8601": "2026-06-30T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 79,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group A",
+        "away": "3rd Group C/E/F/H/I",
+        "label": "Winner Group A vs 3rd Group C/E/F/H/I",
+        "home_alt": "Winner Group A",
+        "away_alt": "3rd Group C/E/F/H/I",
+        "label_alt": "Winner Group A vs 3rd Group C/E/F/H/I"
+      },
+      "venue": {
+        "stadium": "Estadio Azteca",
+        "tournament_alt_name": "Estadio Banorte (tournament name)",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "capacity": 83264,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-06-30 21:00",
+        "date": "2026-06-30",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-06-30T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-06-30 19:00",
+        "time": "19:00",
+        "timezone": "CST",
+        "iso8601": "2026-06-30T19:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-06-30 20:00",
+        "date": "2026-06-30",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-06-30T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-01 01:00",
+        "iso8601": "2026-07-01T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 80,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group L",
+        "away": "3rd Group E/H/I/J/K",
+        "label": "Winner Group L vs 3rd Group E/H/I/J/K",
+        "home_alt": "Winner Group L",
+        "away_alt": "3rd Group E/H/I/J/K",
+        "label_alt": "Winner Group L vs 3rd Group E/H/I/J/K"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-01 12:00",
+        "date": "2026-07-01",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-01T12:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-01 12:00",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-01T12:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-01 11:00",
+        "date": "2026-07-01",
+        "time": "11:00",
+        "time_12h": "11:00 AM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-01T11:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-01 16:00",
+        "iso8601": "2026-07-01T16:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 82,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group G",
+        "away": "3rd Group A/E/H/I/J",
+        "label": "Winner Group G vs 3rd Group A/E/H/I/J",
+        "home_alt": "Winner Group G",
+        "away_alt": "3rd Group A/E/H/I/J",
+        "label_alt": "Winner Group G vs 3rd Group A/E/H/I/J"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-01 16:00",
+        "date": "2026-07-01",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-01T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-01 13:00",
+        "time": "13:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-01T13:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-01 15:00",
+        "date": "2026-07-01",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-01T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-01 20:00",
+        "iso8601": "2026-07-01T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 81,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group D",
+        "away": "3rd Group B/E/F/I/J",
+        "label": "Winner Group D vs 3rd Group B/E/F/I/J",
+        "home_alt": "Winner Group D",
+        "away_alt": "3rd Group B/E/F/I/J",
+        "label_alt": "Winner Group D vs 3rd Group B/E/F/I/J"
+      },
+      "venue": {
+        "stadium": "Levi's Stadium",
+        "tournament_alt_name": "San Francisco Bay Area Stadium (tournament name)",
+        "city": "Santa Clara",
+        "country": "USA",
+        "capacity": 68500,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-01 20:00",
+        "date": "2026-07-01",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-01T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-01 17:00",
+        "time": "17:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-01T17:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-01 19:00",
+        "date": "2026-07-01",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-01T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-02 00:00",
+        "iso8601": "2026-07-02T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 84,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group H",
+        "away": "Runner-up Group J",
+        "label": "Winner Group H vs Runner-up Group J",
+        "home_alt": "Winner Group H",
+        "away_alt": "Runner-up Group J",
+        "label_alt": "Winner Group H vs Runner-up Group J"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-02 15:00",
+        "date": "2026-07-02",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-02T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-02 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-02T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-02 14:00",
+        "date": "2026-07-02",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-02T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-02 19:00",
+        "iso8601": "2026-07-02T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 83,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Runner-up Group K",
+        "away": "Runner-up Group L",
+        "label": "Runner-up Group K vs Runner-up Group L",
+        "home_alt": "Runner-up Group K",
+        "away_alt": "Runner-up Group L",
+        "label_alt": "Runner-up Group K vs Runner-up Group L"
+      },
+      "venue": {
+        "stadium": "BMO Field",
+        "tournament_alt_name": "Toronto Stadium (tournament name)",
+        "city": "Toronto",
+        "country": "Canada",
+        "capacity": 45736,
+        "iana_timezone": "America/Toronto"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-02 19:00",
+        "date": "2026-07-02",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-02T19:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-02 19:00",
+        "time": "19:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-02T19:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-02 18:00",
+        "date": "2026-07-02",
+        "time": "18:00",
+        "time_12h": "6:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-02T18:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-02 23:00",
+        "iso8601": "2026-07-02T23:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 85,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group B",
+        "away": "3rd Group E/F/G/I/J",
+        "label": "Winner Group B vs 3rd Group E/F/G/I/J",
+        "home_alt": "Winner Group B",
+        "away_alt": "3rd Group E/F/G/I/J",
+        "label_alt": "Winner Group B vs 3rd Group E/F/G/I/J"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-02 23:00",
+        "date": "2026-07-02",
+        "time": "23:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-02T23:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-02 20:00",
+        "time": "20:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-02T20:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-02 22:00",
+        "date": "2026-07-02",
+        "time": "22:00",
+        "time_12h": "10:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-02T22:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-03 03:00",
+        "iso8601": "2026-07-03T03:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 88,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Runner-up Group D",
+        "away": "Runner-up Group G",
+        "label": "Runner-up Group D vs Runner-up Group G",
+        "home_alt": "Runner-up Group D",
+        "away_alt": "Runner-up Group G",
+        "label_alt": "Runner-up Group D vs Runner-up Group G"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-03 14:00",
+        "date": "2026-07-03",
+        "time": "14:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-03T14:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-03 13:00",
+        "time": "13:00",
+        "timezone": "CDT",
+        "iso8601": "2026-07-03T13:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-03 13:00",
+        "date": "2026-07-03",
+        "time": "13:00",
+        "time_12h": "1:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-03T13:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-03 18:00",
+        "iso8601": "2026-07-03T18:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 86,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group J",
+        "away": "Runner-up Group H",
+        "label": "Winner Group J vs Runner-up Group H",
+        "home_alt": "Winner Group J",
+        "away_alt": "Runner-up Group H",
+        "label_alt": "Winner Group J vs Runner-up Group H"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-03 18:00",
+        "date": "2026-07-03",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-03T18:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-03 18:00",
+        "time": "18:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-03T18:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-03 17:00",
+        "date": "2026-07-03",
+        "time": "17:00",
+        "time_12h": "5:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-03T17:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-03 22:00",
+        "iso8601": "2026-07-03T22:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 87,
+      "round": "Round of 32",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Group K",
+        "away": "3rd Group D/E/I/J/L",
+        "label": "Winner Group K vs 3rd Group D/E/I/J/L",
+        "home_alt": "Winner Group K",
+        "away_alt": "3rd Group D/E/I/J/L",
+        "label_alt": "Winner Group K vs 3rd Group D/E/I/J/L"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-03 21:30",
+        "date": "2026-07-03",
+        "time": "21:30",
+        "timezone": "EDT",
+        "iso8601": "2026-07-03T21:30:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-03 20:30",
+        "time": "20:30",
+        "timezone": "CDT",
+        "iso8601": "2026-07-03T20:30:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-03 20:30",
+        "date": "2026-07-03",
+        "time": "20:30",
+        "time_12h": "8:30 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-03T20:30:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-04 01:30",
+        "iso8601": "2026-07-04T01:30:00+00:00"
+      }
+    },
+    {
+      "match_number": 90,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 73",
+        "away": "Winner Match 75",
+        "label": "Winner Match 73 vs Winner Match 75",
+        "home_alt": "Winner Match 73",
+        "away_alt": "Winner Match 75",
+        "label_alt": "Winner Match 73 vs Winner Match 75"
+      },
+      "venue": {
+        "stadium": "NRG Stadium",
+        "tournament_alt_name": "Houston Stadium (tournament name)",
+        "city": "Houston",
+        "country": "USA",
+        "capacity": 72220,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-04 13:00",
+        "date": "2026-07-04",
+        "time": "13:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-04T13:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-04 12:00",
+        "time": "12:00",
+        "timezone": "CDT",
+        "iso8601": "2026-07-04T12:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-04 12:00",
+        "date": "2026-07-04",
+        "time": "12:00",
+        "time_12h": "12:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-04T12:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-04 17:00",
+        "iso8601": "2026-07-04T17:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 89,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 74",
+        "away": "Winner Match 77",
+        "label": "Winner Match 74 vs Winner Match 77",
+        "home_alt": "Winner Match 74",
+        "away_alt": "Winner Match 77",
+        "label_alt": "Winner Match 74 vs Winner Match 77"
+      },
+      "venue": {
+        "stadium": "Lincoln Financial Field",
+        "tournament_alt_name": "Philadelphia Stadium (tournament name)",
+        "city": "Philadelphia",
+        "country": "USA",
+        "capacity": 69596,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-04 17:00",
+        "date": "2026-07-04",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-04T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-04 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-04T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-04 16:00",
+        "date": "2026-07-04",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-04T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-04 21:00",
+        "iso8601": "2026-07-04T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 91,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 76",
+        "away": "Winner Match 78",
+        "label": "Winner Match 76 vs Winner Match 78",
+        "home_alt": "Winner Match 76",
+        "away_alt": "Winner Match 78",
+        "label_alt": "Winner Match 76 vs Winner Match 78"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-05 16:00",
+        "date": "2026-07-05",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-05T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-05 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-05T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-05 15:00",
+        "date": "2026-07-05",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-05T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-05 20:00",
+        "iso8601": "2026-07-05T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 92,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 79",
+        "away": "Winner Match 80",
+        "label": "Winner Match 79 vs Winner Match 80",
+        "home_alt": "Winner Match 79",
+        "away_alt": "Winner Match 80",
+        "label_alt": "Winner Match 79 vs Winner Match 80"
+      },
+      "venue": {
+        "stadium": "Estadio Azteca",
+        "tournament_alt_name": "Estadio Banorte (tournament name)",
+        "city": "Mexico City",
+        "country": "Mexico",
+        "capacity": 83264,
+        "iana_timezone": "America/Mexico_City"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-05 20:00",
+        "date": "2026-07-05",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-05T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-05 18:00",
+        "time": "18:00",
+        "timezone": "CST",
+        "iso8601": "2026-07-05T18:00:00-06:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-05 19:00",
+        "date": "2026-07-05",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-05T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-06 00:00",
+        "iso8601": "2026-07-06T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 93,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 83",
+        "away": "Winner Match 84",
+        "label": "Winner Match 83 vs Winner Match 84",
+        "home_alt": "Winner Match 83",
+        "away_alt": "Winner Match 84",
+        "label_alt": "Winner Match 83 vs Winner Match 84"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-06 15:00",
+        "date": "2026-07-06",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-06T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-06 14:00",
+        "time": "14:00",
+        "timezone": "CDT",
+        "iso8601": "2026-07-06T14:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-06 14:00",
+        "date": "2026-07-06",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-06T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-06 19:00",
+        "iso8601": "2026-07-06T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 94,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 81",
+        "away": "Winner Match 82",
+        "label": "Winner Match 81 vs Winner Match 82",
+        "home_alt": "Winner Match 81",
+        "away_alt": "Winner Match 82",
+        "label_alt": "Winner Match 81 vs Winner Match 82"
+      },
+      "venue": {
+        "stadium": "Lumen Field",
+        "tournament_alt_name": "Seattle Stadium (tournament name)",
+        "city": "Seattle",
+        "country": "USA",
+        "capacity": 68740,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-06 20:00",
+        "date": "2026-07-06",
+        "time": "20:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-06T20:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-06 17:00",
+        "time": "17:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-06T17:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-06 19:00",
+        "date": "2026-07-06",
+        "time": "19:00",
+        "time_12h": "7:00 PM",
+        "weekday": "Monday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-06T19:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-07 00:00",
+        "iso8601": "2026-07-07T00:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 95,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 86",
+        "away": "Winner Match 88",
+        "label": "Winner Match 86 vs Winner Match 88",
+        "home_alt": "Winner Match 86",
+        "away_alt": "Winner Match 88",
+        "label_alt": "Winner Match 86 vs Winner Match 88"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-07 12:00",
+        "date": "2026-07-07",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-07T12:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-07 12:00",
+        "time": "12:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-07T12:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-07 11:00",
+        "date": "2026-07-07",
+        "time": "11:00",
+        "time_12h": "11:00 AM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-07T11:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-07 16:00",
+        "iso8601": "2026-07-07T16:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 96,
+      "round": "Round of 16",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 85",
+        "away": "Winner Match 87",
+        "label": "Winner Match 85 vs Winner Match 87",
+        "home_alt": "Winner Match 85",
+        "away_alt": "Winner Match 87",
+        "label_alt": "Winner Match 85 vs Winner Match 87"
+      },
+      "venue": {
+        "stadium": "BC Place",
+        "tournament_alt_name": "Vancouver Stadium (tournament name)",
+        "city": "Vancouver",
+        "country": "Canada",
+        "capacity": 54500,
+        "iana_timezone": "America/Vancouver"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-07 16:00",
+        "date": "2026-07-07",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-07T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-07 13:00",
+        "time": "13:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-07T13:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-07 15:00",
+        "date": "2026-07-07",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-07T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-07 20:00",
+        "iso8601": "2026-07-07T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 97,
+      "round": "Quarter-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 89",
+        "away": "Winner Match 90",
+        "label": "Winner Match 89 vs Winner Match 90",
+        "home_alt": "Winner Match 89",
+        "away_alt": "Winner Match 90",
+        "label_alt": "Winner Match 89 vs Winner Match 90"
+      },
+      "venue": {
+        "stadium": "Gillette Stadium",
+        "tournament_alt_name": "Boston Stadium (tournament name)",
+        "city": "Foxborough",
+        "country": "USA",
+        "capacity": 65878,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-09 16:00",
+        "date": "2026-07-09",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-09T16:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-09 16:00",
+        "time": "16:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-09T16:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-09 15:00",
+        "date": "2026-07-09",
+        "time": "15:00",
+        "time_12h": "3:00 PM",
+        "weekday": "Thursday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-09T15:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-09 20:00",
+        "iso8601": "2026-07-09T20:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 98,
+      "round": "Quarter-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 93",
+        "away": "Winner Match 94",
+        "label": "Winner Match 93 vs Winner Match 94",
+        "home_alt": "Winner Match 93",
+        "away_alt": "Winner Match 94",
+        "label_alt": "Winner Match 93 vs Winner Match 94"
+      },
+      "venue": {
+        "stadium": "SoFi Stadium",
+        "tournament_alt_name": "Los Angeles Stadium (tournament name)",
+        "city": "Inglewood",
+        "country": "USA",
+        "capacity": 70240,
+        "iana_timezone": "America/Los_Angeles"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-10 15:00",
+        "date": "2026-07-10",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-10T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-10 12:00",
+        "time": "12:00",
+        "timezone": "PDT",
+        "iso8601": "2026-07-10T12:00:00-07:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-10 14:00",
+        "date": "2026-07-10",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Friday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-10T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-10 19:00",
+        "iso8601": "2026-07-10T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 99,
+      "round": "Quarter-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 91",
+        "away": "Winner Match 92",
+        "label": "Winner Match 91 vs Winner Match 92",
+        "home_alt": "Winner Match 91",
+        "away_alt": "Winner Match 92",
+        "label_alt": "Winner Match 91 vs Winner Match 92"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-11 17:00",
+        "date": "2026-07-11",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-11T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-11 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-11T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-11 16:00",
+        "date": "2026-07-11",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-11T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-11 21:00",
+        "iso8601": "2026-07-11T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 100,
+      "round": "Quarter-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 95",
+        "away": "Winner Match 96",
+        "label": "Winner Match 95 vs Winner Match 96",
+        "home_alt": "Winner Match 95",
+        "away_alt": "Winner Match 96",
+        "label_alt": "Winner Match 95 vs Winner Match 96"
+      },
+      "venue": {
+        "stadium": "Arrowhead Stadium",
+        "tournament_alt_name": "Kansas City Stadium (tournament name)",
+        "city": "Kansas City",
+        "country": "USA",
+        "capacity": 76416,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-11 21:00",
+        "date": "2026-07-11",
+        "time": "21:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-11T21:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-11 20:00",
+        "time": "20:00",
+        "timezone": "CDT",
+        "iso8601": "2026-07-11T20:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-11 20:00",
+        "date": "2026-07-11",
+        "time": "20:00",
+        "time_12h": "8:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-11T20:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-12 01:00",
+        "iso8601": "2026-07-12T01:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 101,
+      "round": "Semi-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 97",
+        "away": "Winner Match 98",
+        "label": "Winner Match 97 vs Winner Match 98",
+        "home_alt": "Winner Match 97",
+        "away_alt": "Winner Match 98",
+        "label_alt": "Winner Match 97 vs Winner Match 98"
+      },
+      "venue": {
+        "stadium": "AT&T Stadium",
+        "tournament_alt_name": "Dallas Stadium (tournament name)",
+        "city": "Arlington",
+        "country": "USA",
+        "capacity": 80000,
+        "iana_timezone": "America/Chicago"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-14 15:00",
+        "date": "2026-07-14",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-14T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-14 14:00",
+        "time": "14:00",
+        "timezone": "CDT",
+        "iso8601": "2026-07-14T14:00:00-05:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-14 14:00",
+        "date": "2026-07-14",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Tuesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-14T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-14 19:00",
+        "iso8601": "2026-07-14T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 102,
+      "round": "Semi-final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 99",
+        "away": "Winner Match 100",
+        "label": "Winner Match 99 vs Winner Match 100",
+        "home_alt": "Winner Match 99",
+        "away_alt": "Winner Match 100",
+        "label_alt": "Winner Match 99 vs Winner Match 100"
+      },
+      "venue": {
+        "stadium": "Mercedes-Benz Stadium",
+        "tournament_alt_name": "Atlanta Stadium (tournament name)",
+        "city": "Atlanta",
+        "country": "USA",
+        "capacity": 71000,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-15 15:00",
+        "date": "2026-07-15",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-15T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-15 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-15T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-15 14:00",
+        "date": "2026-07-15",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Wednesday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-15T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-15 19:00",
+        "iso8601": "2026-07-15T19:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 103,
+      "round": "Bronze final (3rd place)",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Loser Match 101",
+        "away": "Loser Match 102",
+        "label": "Loser Match 101 vs Loser Match 102",
+        "home_alt": "Loser Match 101",
+        "away_alt": "Loser Match 102",
+        "label_alt": "Loser Match 101 vs Loser Match 102"
+      },
+      "venue": {
+        "stadium": "Hard Rock Stadium",
+        "tournament_alt_name": "Miami Stadium (tournament name)",
+        "city": "Miami Gardens",
+        "country": "USA",
+        "capacity": 65326,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-18 17:00",
+        "date": "2026-07-18",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-18T17:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-18 17:00",
+        "time": "17:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-18T17:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-18 16:00",
+        "date": "2026-07-18",
+        "time": "16:00",
+        "time_12h": "4:00 PM",
+        "weekday": "Saturday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-18T16:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-18 21:00",
+        "iso8601": "2026-07-18T21:00:00+00:00"
+      }
+    },
+    {
+      "match_number": 104,
+      "round": "Final",
+      "group": null,
+      "matchday": null,
+      "teams": {
+        "home": "Winner Match 101",
+        "away": "Winner Match 102",
+        "label": "Winner Match 101 vs Winner Match 102",
+        "home_alt": "Winner Match 101",
+        "away_alt": "Winner Match 102",
+        "label_alt": "Winner Match 101 vs Winner Match 102"
+      },
+      "venue": {
+        "stadium": "MetLife Stadium",
+        "tournament_alt_name": "New York New Jersey Stadium (tournament name)",
+        "city": "East Rutherford",
+        "country": "USA",
+        "capacity": 82500,
+        "iana_timezone": "America/New_York"
+      },
+      "kickoff_et_official": {
+        "datetime": "2026-07-19 15:00",
+        "date": "2026-07-19",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-19T15:00:00-04:00",
+        "note": "FIFA publishes all kickoff times in Eastern Time"
+      },
+      "kickoff_local_venue": {
+        "datetime": "2026-07-19 15:00",
+        "time": "15:00",
+        "timezone": "EDT",
+        "iso8601": "2026-07-19T15:00:00-04:00"
+      },
+      "kickoff_chicago": {
+        "datetime": "2026-07-19 14:00",
+        "date": "2026-07-19",
+        "time": "14:00",
+        "time_12h": "2:00 PM",
+        "weekday": "Sunday",
+        "timezone": "CDT",
+        "iso8601": "2026-07-19T14:00:00-05:00"
+      },
+      "kickoff_utc": {
+        "datetime": "2026-07-19 19:00",
+        "iso8601": "2026-07-19T19:00:00+00:00"
+      }
+    }
+  ],
+  "team_name_alternatives": {
+    "note": "Maps official FIFA spellings (used in teams.home/away/label) to common English forms (teams.home_alt/away_alt/label_alt).",
+    "mapping": {
+      "Cabo Verde": "Cape Verde",
+      "Congo DR": "DR Congo",
+      "Curaçao": "Curacao",
+      "Czechia": "Czech Republic",
+      "Côte d’Ivoire": "Ivory Coast",
+      "IR Iran": "Iran",
+      "Türkiye": "Turkey"
+    }
+  }
+}

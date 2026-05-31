@@ -16,6 +16,16 @@
     "venue": "MetLife Stadium, East Rutherford"
   },
   "knockout_stage_starts": "2026-06-28",
-  "source": "https://raw.githubusercontent.com/mjwebmaster/world-cup-2026-schedule-data/main/world-cup-2026-schedule.json",
-  "source_last_updated": "2026-05-25"
+  "source": "schedule_source.json (FIFA PDF v17 derived)",
+  "source_provenance": {
+    "primary_source": "Official FIFA Match Schedule PDF v17, dated 10 April 2026 (user-provided) — dates, ET kickoff times, match numbers, groups",
+    "cross_checked": [
+      "Wikipedia '2026 FIFA World Cup' (teams, venues, match numbers)",
+      "ESPN FIFA World Cup schedule (venues, ET times)"
+    ],
+    "time_basis": "FIFA publishes ALL kickoff times in Eastern Time (ET). This file provides ET (official), venue-local time, US Central/Chicago time, and UTC for every match.",
+    "chicago_note": "Chicago is Central Time (CDT, UTC-5) during the tournament — exactly 1 hour behind ET.",
+    "caveat": "Group-stage team assignments reflect the official Dec 2025 draw. Knockout matchups use FIFA bracket placeholders until teams qualify. Schedule marked 'subject to change' by FIFA."
+  },
+  "source_tournament": "FIFA World Cup 26"
 }
