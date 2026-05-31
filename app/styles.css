@@ -2976,3 +2976,20 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
 /* A11: toast summary line */
 .wc-toast-body { display: inline-flex; flex-direction: column; gap: 2px; line-height: 1.25; }
 .wc-toast-summary { font-size: 11px; opacity: 0.85; }
+
+/* B7: score-reveal count-up + glow */
+.lcard-score-num {
+  display: inline-block;
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.lcard-score-num.is-bumped {
+  animation: score-bump 600ms ease-out;
+}
+@keyframes score-bump {
+  0%   { transform: scale(1); color: var(--accent, #F43F5E); }
+  35%  { transform: scale(1.35); color: var(--accent, #F43F5E); text-shadow: 0 0 12px color-mix(in srgb, var(--accent, #F43F5E) 60%, transparent); }
+  100% { transform: scale(1); color: inherit; text-shadow: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .lcard-score-num.is-bumped { animation: none; }
+}

@@ -52,9 +52,10 @@ export function largeMatchCard(match, opts = {}) {
     eyebrow = `<span class="lcard-fav-tag">⭐ YOUR TEAM</span> · ${eyebrow}`;
   }
 
-  // Score line (only for live + final)
+  // Score line (only for live + final). B7: data-prev attrs let the score-
+  // reveal animation count up from the previous value when polling refreshes.
   const scoreRow = (mode === 'live' || mode === 'final') && actual && Number.isFinite(actual.score_a)
-    ? `<div class="lcard-score">${actual.score_a} <span class="lcard-score-dash">–</span> ${actual.score_b}</div>`
+    ? `<div class="lcard-score"><span class="lcard-score-num" data-side="a" data-val="${actual.score_a}">${actual.score_a}</span> <span class="lcard-score-dash">–</span> <span class="lcard-score-num" data-side="b" data-val="${actual.score_b}">${actual.score_b}</span></div>`
     : (mode === 'upcoming' && kickoff
       ? `<div class="lcard-kickoff">${escapeHtml(formatKickoffTime(kickoff))}</div>`
       : '');
@@ -84,7 +85,35 @@ export function largeMatchCard(match, opts = {}) {
   // Apply team-color gradient asynchronously without blocking initial render
   paintBanner(card, teamA, teamB).catch(() => {});
 
+  // B7: when a score value changes between data refreshes, bump-animate
+  // the new digit. Triggered when the new render replaces the same DOM
+  // node — we compare against the previous data-prev-val attr stamped
+  // by sessionStorage.
+  applyScoreBumpFromMemory(card, match.match_id || `${teamA}__vs__${teamB}`, actual);
+
   return card;
+}
+
+const SCORE_MEMO = (typeof window !== 'undefined') ? (window.__wc26ScoreMemo ||= new Map()) : new Map();
+function applyScoreBumpFromMemory(card, key, actual) {
+  if (!actual || !Number.isFinite(actual.score_a)) return;
+  const prev = SCORE_MEMO.get(key);
+  const next = { a: actual.score_a, b: actual.score_b };
+  SCORE_MEMO.set(key, next);
+  if (!prev) return;  // first time we see this match's score
+  if (prev.a !== next.a) {
+    const el = card.querySelector('.lcard-score-num[data-side="a"]');
+    if (el) bump(el);
+  }
+  if (prev.b !== next.b) {
+    const el = card.querySelector('.lcard-score-num[data-side="b"]');
+    if (el) bump(el);
+  }
+}
+function bump(el) {
+  el.classList.remove('is-bumped');
+  void el.offsetWidth;
+  el.classList.add('is-bumped');
 }
 
 async function paintBanner(card, teamA, teamB) {

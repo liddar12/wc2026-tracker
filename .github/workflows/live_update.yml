@@ -2,7 +2,8 @@ name: Live Tournament Update
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # Every 2 hours
+    # Every 15 minutes during tournament. Inner script gates by date window.
+    - cron: '*/15 * * * *'
   workflow_dispatch:
 
 permissions:
@@ -45,7 +46,11 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: pip install -r scripts/requirements.txt
 
-      - name: Fetch live results
+      - name: Fetch live results (ESPN scoreboard)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_live_results.py
+        continue-on-error: true
+      - name: Fetch live results (legacy update_results)
         if: steps.gate.outputs.go == '1'
         run: python scripts/update_results.py
         continue-on-error: true

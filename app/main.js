@@ -23,6 +23,7 @@ import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
 import { maybeShowInstallPrompt } from './install-prompt.js';
 import { showConfetti } from './confetti.js';
+import { startLivePollerForData } from './live-poller.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -163,6 +164,12 @@ window.addEventListener('state:change', () => {
 initTheme(document.getElementById('theme-btn'));
 bindNav();
 initTeamSkin();
+// B1: when the live poller pushes fresh data, replace state.data so the
+// current view re-renders with updated scores.
+window.addEventListener('data:live-refresh', (e) => {
+  const fresh = e.detail?.data;
+  if (fresh) setData(fresh);
+});
 initSettingsPrefs();
 // Wire the gear icon in the header to navigate to /#/settings
 document.getElementById('settings-btn')?.addEventListener('click', () => setRoute('settings', {}));
@@ -230,6 +237,8 @@ loadData()
     // A7: nudge iOS Safari visitors to add to home screen (gated to once
     // every 14 days; only iOS Safari; skipped if already standalone).
     setTimeout(() => maybeShowInstallPrompt(), 2500);
+    // B1: kick off the live-score poller if we're in / near a match window.
+    startLivePollerForData(data);
     await initCompetition(data);
     if (shouldOpenPicksForJoin()) {
       setRoute('picks', {});

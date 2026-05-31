@@ -491,14 +491,19 @@ function renderTodaySection(data) {
   });
   wrap.appendChild(head);
 
-  // Favorite team's match (if any in today's list) is pinned to the top.
+  // B3 + favorite reorder: LIVE > favorite > everything else (by time).
   const fav = getFavoriteTeam();
-  const reorderedList = fav
-    ? [
-        ...upcoming.filter((m) => m.team_a === fav || m.team_b === fav),
-        ...upcoming.filter((m) => m.team_a !== fav && m.team_b !== fav),
-      ]
-    : upcoming;
+  const isLive = (m) => {
+    const k = Date.parse(m.kickoff_utc || '');
+    if (!Number.isFinite(k)) return false;
+    const now = Date.now();
+    return k <= now && k + 2 * 3600 * 1000 > now;
+  };
+  const reorderedList = [
+    ...upcoming.filter(isLive),
+    ...upcoming.filter((m) => !isLive(m) && fav && (m.team_a === fav || m.team_b === fav)),
+    ...upcoming.filter((m) => !isLive(m) && !(fav && (m.team_a === fav || m.team_b === fav))),
+  ];
 
   const list = document.createElement('div');
   list.className = 'lcard-stack';
