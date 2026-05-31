@@ -7,8 +7,10 @@
 */
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
+import { statusPill } from '../components/status-pill.js';
 import { renderBracketView } from './bracket-view.js';
-import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder } from '../bracket-resolver.js';
+import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder, computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
+import { getFavoriteTeam } from '../favorites.js';
 
 export function renderBracketsLiveView(root, data, params) {
   root.innerHTML = '';
@@ -71,11 +73,100 @@ export function renderBracketsLiveView(root, data, params) {
   // Resolve slot placeholders (e.g., "1A", "W74") using actual results + earlier match winners.
   resolveSlots(knockouts, data);
 
+  // Inline group-stage standings: tap any group letter A–L to expand a mini table.
+  root.appendChild(renderGroupStandingsStrip(data));
+
+  // "We are here" indicator — find the round that's currently in progress
+  // (or upcoming next) based on kickoffs and rendered as a divider before
+  // that round's section.
+  const currentStage = findCurrentStage(knockouts);
+
   for (const stage of STAGE_ORDER) {
     const matches = knockouts.filter((m) => m.stage === stage);
     if (!matches.length) continue;
+    if (stage === currentStage) {
+      const here = document.createElement('div');
+      here.className = 'bb-here';
+      here.innerHTML = `<span class="bb-here-dot" aria-hidden="true"></span><span class="bb-here-label">We are here</span>`;
+      root.appendChild(here);
+    }
     root.appendChild(renderStage(stage, matches, data));
   }
+}
+
+function findCurrentStage(knockouts) {
+  const now = Date.now();
+  // The current stage = the earliest stage whose latest kickoff is still in
+  // the future, OR the latest stage where matches have started but not all
+  // played (live).
+  for (const stage of STAGE_ORDER) {
+    const m = knockouts.filter((x) => x.stage === stage);
+    if (!m.length) continue;
+    const allDone = m.every((x) => x.actual);
+    if (allDone) continue;
+    return stage;
+  }
+  return null;
+}
+
+function renderGroupStandingsStrip(data) {
+  const wrap = document.createElement('section');
+  wrap.className = 'home-card';
+  wrap.style.marginBottom = '12px';
+  const letters = Object.keys(data?.groupMatchups || {}).sort();
+  if (!letters.length) {
+    wrap.innerHTML = `<h2 class="home-card-title">Group stage</h2><p class="muted">No groups yet.</p>`;
+    return wrap;
+  }
+  wrap.innerHTML = `
+    <h2 class="home-card-title">Group stage</h2>
+    <p class="muted" style="font-size:12px; margin: 0 0 8px;">Tap a letter to see standings.</p>
+    <div class="bb-group-strip" role="tablist">
+      ${letters.map((g) => `<button type="button" class="bb-group-letter" data-group="${escapeHtml(g)}">${escapeHtml(g)}</button>`).join('')}
+    </div>
+    <div class="bb-group-standings" id="bb-group-standings" hidden></div>
+  `;
+  const stripBtns = wrap.querySelectorAll('.bb-group-letter');
+  const target = wrap.querySelector('#bb-group-standings');
+  stripBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const g = btn.dataset.group;
+      const alreadyOpen = !target.hidden && target.dataset.openGroup === g;
+      stripBtns.forEach((b) => b.classList.toggle('is-active', b === btn && !alreadyOpen));
+      if (alreadyOpen) { target.hidden = true; target.dataset.openGroup = ''; return; }
+      target.dataset.openGroup = g;
+      target.hidden = false;
+      target.innerHTML = renderGroupTable(g, data);
+    });
+  });
+  return wrap;
+}
+
+function renderGroupTable(g, data) {
+  // Prefer real standings if all group matches are played; otherwise show projected.
+  const real = computeGroupStandings(data, g);
+  const projected = !real ? computeProjectedGroupOrder(data, g) : null;
+  const standings = real || projected || [];
+  const sourceLabel = real ? 'Standings' : 'Projected order';
+  if (!standings.length) {
+    return `<p class="muted">No data for Group ${escapeHtml(g)}.</p>`;
+  }
+  const rows = standings.map((r, i) => `
+    <tr class="bb-stand-row ${i < 2 ? 'is-qual' : ''}">
+      <td>${i + 1}</td>
+      <td><strong>${escapeHtml(r.team)}</strong></td>
+      <td class="num">${r.played ?? 0}</td>
+      <td class="num">${(r.points ?? 0).toFixed ? (r.points).toFixed(1) : r.points}</td>
+      <td class="num">${r.gd ?? 0}</td>
+    </tr>
+  `).join('');
+  return `
+    <div class="muted" style="font-size:11px; margin: 0 0 4px;">${escapeHtml(sourceLabel)} · Group ${escapeHtml(g)}</div>
+    <table class="bb-stand-table">
+      <thead><tr><th>#</th><th>Team</th><th class="num">P</th><th class="num">Pts</th><th class="num">GD</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
 }
 
 function renderStage(stage, matches, data) {
@@ -85,6 +176,7 @@ function renderStage(stage, matches, data) {
   section.innerHTML = `
     <h3>${escapeHtml(STAGE_LABELS[stage] || stage)} <span class="bb-round-meta muted">${totalPlayed}/${matches.length} complete</span></h3>
   `;
+  const fav = getFavoriteTeam();
   for (const m of matches) {
     const a = m.resolved_team_a;
     const b = m.resolved_team_b;
@@ -95,28 +187,37 @@ function renderStage(stage, matches, data) {
     const isPlaceholderB = isSlotPlaceholder(b);
     const fa = isPlaceholderA ? '·' : flagFor(a);
     const fb = isPlaceholderB ? '·' : flagFor(b);
-    const stamp = m.kickoff_utc ? new Date(m.kickoff_utc).toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : 'TBD';
     const venue = m.venue_id ? venueLabel(data, m.venue_id) : '';
+    const aIsFav = fav && a === fav;
+    const bIsFav = fav && b === fav;
     const wrap = document.createElement('div');
-    wrap.className = 'bb-pair';
+    wrap.className = 'bb-pair' + (aIsFav || bIsFav ? ' has-fav' : '');
     const onTap = !isPlaceholderA && !isPlaceholderB
       ? `data-team-a="${escapeHtml(a)}" data-team-b="${escapeHtml(b)}"`
       : '';
     wrap.innerHTML = `
-      <button class="bb-slot ${winnerIsA ? 'is-actual-win' : actual && winnerIsB ? 'is-busted' : ''}" ${onTap}>
+      <button class="bb-slot ${winnerIsA ? 'is-actual-win' : actual && winnerIsB ? 'is-busted' : ''} ${aIsFav ? 'is-fav-slot' : ''}" ${onTap}>
         <span class="bb-slot-flag">${fa}</span>
         <span>${escapeHtml(a || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_a}</span>` : ''}</span>
       </button>
       <div class="bb-pair-vs">vs</div>
-      <button class="bb-slot ${winnerIsB ? 'is-actual-win' : actual && winnerIsA ? 'is-busted' : ''}" ${onTap}>
+      <button class="bb-slot ${winnerIsB ? 'is-actual-win' : actual && winnerIsA ? 'is-busted' : ''} ${bIsFav ? 'is-fav-slot' : ''}" ${onTap}>
         <span class="bb-slot-flag">${fb}</span>
         <span>${escapeHtml(b || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_b}</span>` : ''}</span>
       </button>
     `;
     const stampRow = document.createElement('div');
     stampRow.className = 'muted';
-    stampRow.style.cssText = 'font-size:11px; margin: 4px 0 8px 4px; display:flex; gap:8px; flex-wrap:wrap;';
-    stampRow.innerHTML = `<span>Match #${m.match_number}</span><span>${escapeHtml(stamp)}</span>${venue ? `<span>${escapeHtml(venue)}</span>` : ''}`;
+    stampRow.style.cssText = 'font-size:11px; margin: 4px 0 8px 4px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;';
+    const meta = document.createElement('span');
+    meta.textContent = `Match #${m.match_number}`;
+    stampRow.appendChild(meta);
+    stampRow.appendChild(statusPill(m, actual));
+    if (venue) {
+      const v = document.createElement('span');
+      v.textContent = venue;
+      stampRow.appendChild(v);
+    }
     wrap.querySelectorAll('button.bb-slot').forEach((btn) => {
       if (isPlaceholderA || isPlaceholderB) btn.disabled = true;
       btn.addEventListener('click', () => {
