@@ -3113,3 +3113,24 @@ textarea:focus-visible,
 }
 html.wc-reduce-motion .wc-ball-burst { display: none; }
 .lcard-score-bumpable { position: relative; }
+
+/* A8: shared-bracket-view styles */
+.shared-picks-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+.shared-pick-row {
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  font-size: 13px;
+}
+.shared-pick-num { font-size: 11px; font-weight: 600; }
+.shared-pick-winner { color: var(--accent); }

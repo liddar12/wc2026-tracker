@@ -1,6 +1,7 @@
 /* team-detail.js — team header, position bars, roster, upcoming. */
 import { flagFor } from '../components/team-flag.js';
 import { matchupCard } from '../components/matchup-card.js';
+import { downloadIcsForTeam } from '../calendar-export.js';
 
 export function renderTeamDetail(root, data, params) {
   const teamName = params.name;
@@ -24,8 +25,23 @@ export function renderTeamDetail(root, data, params) {
         ${team.coach ? `<div class="muted" style="font-size:12px;margin-top:4px;">Coach: ${escapeHtml(team.coach.name)} (${escapeHtml(team.coach.nationality)})</div>` : ''}
       </div>
     </div>
+    <div style="margin-top:10px;">
+      <button class="pick-btn pick-btn-secondary" id="team-ics-btn" type="button" aria-label="Download ${escapeHtml(team.name)} fixtures to calendar">
+        📅 Add fixtures to calendar
+      </button>
+    </div>
   `;
   root.appendChild(head);
+  head.querySelector('#team-ics-btn')?.addEventListener('click', () => {
+    const ok = downloadIcsForTeam(data, team.name);
+    if (!ok) {
+      const t = document.createElement('div');
+      t.className = 'wc-toast-summary';
+      t.textContent = 'No upcoming fixtures yet — try after the schedule is finalized.';
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 3000);
+    }
+  });
 
   // Position bars
   const pr = team.position_ratings || {};

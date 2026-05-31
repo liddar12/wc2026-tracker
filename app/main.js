@@ -22,7 +22,9 @@ import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
 import { renderInjuriesView } from './views/injuries-view.js';
+import { renderSharedBracketView } from './views/shared-bracket-view.js';
 import { maybeShowInstallPrompt } from './install-prompt.js';
+import { initCountdownBadge } from './countdown-badge.js';
 import { showConfetti } from './confetti.js';
 import { startLivePollerForData } from './live-poller.js';
 import { viewSkeleton } from './components/skeleton.js';
@@ -45,6 +47,7 @@ const TITLES = {
   pools: 'Pools',
   'group-picks': 'Group Picks',
   injuries: 'Injuries',
+  shared: 'Shared bracket',
   picks: 'My Picks',
   settings: 'Settings',
   team: 'Team',
@@ -109,6 +112,7 @@ function renderView() {
     case 'group-picks':  renderGroupPickerView(root, state.data, params); break;
     case 'settings':     renderSettingsView(root, state.data, params); break;
     case 'injuries':     renderInjuriesView(root, state.data, params); break;
+    case 'shared':       renderSharedBracketView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;
     case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'schedule':     renderScheduleView(root, state.data, params); break;
@@ -174,6 +178,7 @@ window.addEventListener('data:live-refresh', (e) => {
   if (fresh) setData(fresh);
 });
 initSettingsPrefs();
+initCountdownBadge({ title: 'WC26 Tracker' });
 // Wire the gear icon in the header to navigate to /#/settings
 document.getElementById('settings-btn')?.addEventListener('click', () => setRoute('settings', {}));
 initPullToRefresh(pulseFooterUpdated);

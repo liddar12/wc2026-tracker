@@ -17,6 +17,7 @@ import {
 import { scoreBracketWeighted, WEIGHTED_ROUND_POINTS, MAX_WEIGHTED_SCORE } from '../competition-scoring.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
 import { buildAutofill, mergeAutofillIntoBracket, FILL_SOURCES } from '../bracket-autofill.js';
+import { createShareLink, tryShareViaNavigator } from '../share-bracket.js';
 
 const LS_KEY_PREFIX = 'wc26.mybrackets.';
 const ROUND_LABELS = ['R32', 'R16', 'QF', 'SF', 'Final'];
@@ -146,11 +147,39 @@ function renderHeader(comp) {
         <input type="checkbox" id="mb-autofill-overwrite"> Overwrite my current picks
       </label>
       <p id="mb-autofill-msg" class="muted" style="font-size:12px; margin: 6px 0 0;" role="status" aria-live="polite"></p>
+
+      <h3 style="margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);">Share your bracket</h3>
+      <button class="pick-btn pick-btn-secondary" id="mb-share-btn" type="button">Share bracket</button>
+      <p id="mb-share-msg" class="muted" style="font-size:12px; margin: 6px 0 0;" role="status" aria-live="polite"></p>
     </div>
   `;
   wrap.addEventListener('change', (e) => {
     if (e.target?.id === 'mb-group-select') {
       setActiveGroup(e.target.value);
+    }
+  });
+  wrap.querySelector('#mb-share-btn')?.addEventListener('click', async () => {
+    const msg = wrap.querySelector('#mb-share-msg');
+    msg.textContent = 'Building link…';
+    try {
+      const { getCompetitionState } = await import('../competition.js');
+      const compState = getCompetitionState();
+      const draftKey = compState?.activeGroup?.id
+        ? `wc26.mybrackets.${compState.activeGroup.id}`
+        : 'wc26.mybrackets.local';
+      const raw = localStorage.getItem(draftKey);
+      const bracket = raw ? JSON.parse(raw) : { picks: {} };
+      if (!Object.keys(bracket.picks || {}).length) {
+        msg.textContent = 'Make some picks first.';
+        return;
+      }
+      const url = await createShareLink(bracket.picks, { label: 'My WC26 Bracket' });
+      const r = await tryShareViaNavigator(url, 'My WC26 Bracket');
+      if (r === true) msg.textContent = 'Shared.';
+      else if (r === 'clipboard') msg.textContent = `Copied: ${url}`;
+      else msg.textContent = `Share link: ${url}`;
+    } catch (err) {
+      msg.textContent = err?.message || 'Share failed.';
     }
   });
   wrap.querySelectorAll('[data-autofill]').forEach((btn) => {
