@@ -229,11 +229,16 @@ function formatKickoffLocal(iso, _tz) {
 }
 
 function utcDateISO(iso) {
-  // YYYY-MM-DD of the kickoff in UTC — the canonical tournament "match day".
+  // YYYY-MM-DD of the kickoff in EASTERN TIME — FIFA's canonical "match day".
+  // (Despite the function name kept for compatibility, we bucket by ET, not
+  // UTC, so a 10 PM ET / 02:00 UTC June 11 match stays on opening day instead
+  // of sliding onto June 12.) WC26 runs fully inside EDT (UTC-4).
   try {
     const d = new Date(iso);
     if (Number.isNaN(d.getTime())) return null;
-    return d.toISOString().slice(0, 10);
+    // Shift to ET by subtracting 4 hours, then take the ISO date.
+    const et = new Date(d.getTime() - 4 * 60 * 60 * 1000);
+    return et.toISOString().slice(0, 10);
   } catch { return null; }
 }
 function shortLocalDate(iso) {

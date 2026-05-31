@@ -204,6 +204,14 @@ function pickFreshestTimestamp(data) {
   return best;
 }
 
+function etDateISO(iso) {
+  if (!iso) return null;
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return null;
+  const et = new Date(d.getTime() - 4 * 60 * 60 * 1000);
+  return et.toISOString().slice(0, 10);
+}
+
 function prettyIso(iso) {
   // Normalize "...+00:00" / "...Z" / "...T..." into "YYYY-MM-DD HH:MM Z".
   if (!iso) return '';
@@ -443,10 +451,14 @@ function renderTodaySection(data) {
   // matching the Schedule tab. (Kickoff times are still rendered in the
   // viewer's local zone.) Bucketing by device-local day would scatter a single
   // tournament day across two dates in US timezones.
-  const todayIso = new Date().toISOString().slice(0, 10);
+  // Bucket "today" by FIFA's canonical ET date (UTC-4 during the tournament),
+  // matching the Schedule tab's day pills and how FIFA/ESPN/Apple Sports
+  // group matches. A 10 PM ET June 11 kickoff stays on June 11 instead of
+  // sliding onto June 12 just because it crosses midnight in UTC.
+  const todayIso = etDateISO(new Date().toISOString());
   const scheduleFull = data.scheduleFull || [];
   const todays = scheduleFull
-    .filter((m) => (m.kickoff_utc || '').slice(0, 10) === todayIso)
+    .filter((m) => etDateISO(m.kickoff_utc) === todayIso)
     .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)));
   const upcoming = todays.length
     ? todays
