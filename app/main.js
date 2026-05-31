@@ -21,6 +21,7 @@ import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
+import { renderInjuriesView } from './views/injuries-view.js';
 import { maybeShowInstallPrompt } from './install-prompt.js';
 import { showConfetti } from './confetti.js';
 import { startLivePollerForData } from './live-poller.js';
@@ -43,6 +44,7 @@ const TITLES = {
   'create-group': 'New Pool',
   pools: 'Pools',
   'group-picks': 'Group Picks',
+  injuries: 'Injuries',
   picks: 'My Picks',
   settings: 'Settings',
   team: 'Team',
@@ -106,6 +108,7 @@ function renderView() {
     case 'pools':        renderPoolsView(root, state.data, params); break;
     case 'group-picks':  renderGroupPickerView(root, state.data, params); break;
     case 'settings':     renderSettingsView(root, state.data, params); break;
+    case 'injuries':     renderInjuriesView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;
     case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'schedule':     renderScheduleView(root, state.data, params); break;

@@ -3016,3 +3016,21 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
   border: 1px solid color-mix(in srgb, #06B6D4 28%, var(--border));
 }
 :root[data-theme='dark'] .gp-sig-mc { color: #22D3EE; }
+
+/* D10: injuries dashboard */
+.injury-team-head { display: flex; align-items: center; gap: 8px; font-size: 14px; margin: 0 0 8px; }
+.injury-list { list-style: none; padding: 0; margin: 0 0 10px; display: grid; gap: 6px; }
+.injury-row {
+  display: grid;
+  gap: 2px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: var(--surface-2);
+  border-left: 3px solid var(--text-muted);
+  font-size: 13px;
+}
+.injury-row.injury-sev-high { border-left-color: var(--bad, #c9252d); background: color-mix(in srgb, var(--bad, #c9252d) 8%, var(--surface-2)); }
+.injury-row.injury-sev-med  { border-left-color: var(--warn, #b6831f); }
+.injury-row.injury-sev-low  { border-left-color: var(--good, #2f7d32); }
+.injury-player { font-weight: 600; }
+.injury-meta { font-size: 11px; line-height: 1.4; }
