@@ -57,6 +57,8 @@ export function renderHome(root, data) {
   root.appendChild(renderFavoriteTeamSection(data));
   const favKalshi = renderFavKalshiCard(data);
   if (favKalshi) root.appendChild(favKalshi);
+  const motd = renderMatchOfTheDayChip(data);
+  if (motd) root.appendChild(motd);
   root.appendChild(renderTodaySection(data));
   const movers = renderMoversSection(data);
   if (movers) root.appendChild(movers);
@@ -545,6 +547,52 @@ function prettyStage(m) {
     third_place: '3rd',
     final: 'Final',
   }[m.stage] || m.stage || '';
+}
+
+function renderMatchOfTheDayChip(data) {
+  // Score each "today" match by upset risk × stage weight × composite-gap inverse
+  // (close games + late stage + high upset signal = high importance).
+  const todayIso = etDateISO(new Date().toISOString());
+  const candidates = (data.scheduleFull || [])
+    .filter((m) => etDateISO(m.kickoff_utc) === todayIso && m.stage === 'group');
+  if (!candidates.length) return null;
+  const stageWeight = { group: 1, round_of_32: 2, round_of_16: 3, quarterfinals: 4, semifinals: 5, third_place: 4, final: 6 };
+  const scored = candidates.map((m) => {
+    // Pull the group_matchups composite gap if available
+    const gm = data.groupMatchups?.[m.group];
+    const match = gm?.matches?.find((x) =>
+      (x.team_a === m.team_a && x.team_b === m.team_b) ||
+      (x.team_a === m.team_b && x.team_b === m.team_a));
+    if (!match) return { m, score: 0 };
+    const gap = Math.abs(match.gap || 5);
+    const closeness = 1 / (gap + 1);  // smaller gap → higher score
+    const upsetIndicators = match.upset_risk?.indicators?.length || 0;
+    const sw = stageWeight[m.stage] || 1;
+    return { m, match, score: closeness * sw * (1 + 0.4 * upsetIndicators) };
+  });
+  scored.sort((a, b) => b.score - a.score);
+  const best = scored[0];
+  if (!best || best.score === 0) return null;
+  const m = best.m;
+  const wrap = document.createElement('section');
+  wrap.className = 'home-card motd-card';
+  wrap.style.marginBottom = '12px';
+  const t = new Date(m.kickoff_utc);
+  const time = isNaN(t) ? 'TBA' : t.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const upsetLabel = best.match?.upset_risk?.indicators?.[0]?.label || 'Toss-up';
+  wrap.innerHTML = `
+    <h2 class="home-card-title">⭐ Don't miss <span class="muted home-card-meta">${escapeHtml(upsetLabel)}</span></h2>
+    <div class="motd-row">
+      <div class="motd-teams">${flagFor(m.team_a)} <strong>${escapeHtml(m.team_a)}</strong> vs <strong>${escapeHtml(m.team_b)}</strong> ${flagFor(m.team_b)}</div>
+      <div class="motd-meta muted">${escapeHtml(time)} · Group ${escapeHtml(m.group || '?')}</div>
+    </div>
+  `;
+  wrap.addEventListener('click', () => {
+    location.hash = `#/matchup/team_a/${encodeURIComponent(m.team_a)}/team_b/${encodeURIComponent(m.team_b)}`;
+  });
+  wrap.setAttribute('role', 'button');
+  wrap.setAttribute('tabindex', '0');
+  return wrap;
 }
 
 function renderFavKalshiCard(data) {

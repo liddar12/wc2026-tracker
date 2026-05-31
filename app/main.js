@@ -21,6 +21,8 @@ import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
+import { maybeShowInstallPrompt } from './install-prompt.js';
+import { showConfetti } from './confetti.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -222,8 +224,12 @@ function shouldOpenPicksForJoin() {
 loadData()
   .then(async (data) => {
     setData(data);
-    // Toast user when data is newer than their last visit
+    // Toast user when data is newer than their last visit (A11 enhanced
+    // version computes a meaningful diff below).
     showUpdateToastIfNew(data);
+    // A7: nudge iOS Safari visitors to add to home screen (gated to once
+    // every 14 days; only iOS Safari; skipped if already standalone).
+    setTimeout(() => maybeShowInstallPrompt(), 2500);
     await initCompetition(data);
     if (shouldOpenPicksForJoin()) {
       setRoute('picks', {});

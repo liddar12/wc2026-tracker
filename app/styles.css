@@ -75,7 +75,11 @@ body {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: var(--primary);
+  /* A1: Apple HIG Deference — translucent + saturate-blur. Content scrolls
+     under the chrome. Opaque fallback for browsers without backdrop-filter. */
+  background: color-mix(in srgb, var(--primary) 88%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
   color: var(--primary-ink);
   display: grid;
   grid-template-columns: 44px 1fr auto;
@@ -86,6 +90,9 @@ body {
   padding-left: max(8px, var(--safe-left));
   padding-right: max(8px, var(--safe-right));
   box-shadow: var(--shadow);
+}
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .app-header { background: var(--primary); }
 }
 
 @supports (padding: max(0px)) {
@@ -2917,3 +2924,55 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
   }
   .gp-sig { font-size: 10px; padding: 1px 6px; }
 }
+
+/* A6: Match of the day chip */
+.motd-card {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  border-left: 4px solid var(--accent, #F43F5E);
+}
+.motd-card:active { transform: scale(0.99); }
+.motd-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.motd-teams { font-size: 16px; font-weight: 600; }
+.motd-meta { font-size: 12px; }
+
+/* A7: install banner */
+.wc-install-banner {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(var(--safe-bottom, 0px) + 12px);
+  z-index: 250;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 17, 21, 0.18);
+  padding: 14px 16px;
+  transform: translateY(120%);
+  opacity: 0;
+  transition: transform 280ms cubic-bezier(0.16, 1, 0.3, 1), opacity 280ms;
+}
+.wc-install-banner.is-open { transform: translateY(0); opacity: 1; }
+.wc-install-body { display: grid; gap: 10px; }
+.wc-install-text strong { font-size: 14px; }
+.wc-install-text p { margin: 4px 0 0; font-size: 12px; }
+.wc-install-share {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 6px;
+  background: var(--surface-2);
+  font-size: 14px;
+  vertical-align: middle;
+}
+.wc-install-actions { display: flex; justify-content: flex-end; }
+@media (prefers-reduced-motion: reduce) {
+  .wc-install-banner { transition: opacity 0ms; }
+}
+
+/* A11: toast summary line */
+.wc-toast-body { display: inline-flex; flex-direction: column; gap: 2px; line-height: 1.25; }
+.wc-toast-summary { font-size: 11px; opacity: 0.85; }

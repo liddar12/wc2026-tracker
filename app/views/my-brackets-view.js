@@ -104,6 +104,11 @@ export function renderMyBracketsView(root, data) {
       msgEl.textContent = '';
       const score = await saveBracketForActiveGroup(data);
       msgEl.textContent = `Bracket saved. Current score: ${score} pts. Edit and re-submit anytime until lock.`;
+      // H5: celebrate the submit.
+      try {
+        const { showConfetti } = await import('../confetti.js');
+        showConfetti();
+      } catch {}
     } catch (err) {
       msgEl.textContent = err.message || 'Could not submit bracket.';
       msgEl.setAttribute('role', 'alert');
