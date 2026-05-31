@@ -18,6 +18,7 @@ import { renderHome } from './views/home-view.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
 import { renderGroupPickerView } from './views/group-picker-view.js';
+import { initTeamSkin } from './team-skin.js';
 import { viewSkeleton } from './components/skeleton.js';
 import { openSearch } from './components/search-overlay.js';
 import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
@@ -54,9 +55,6 @@ function renderView() {
     return;
   }
   root.innerHTML = '';
-  // Reset opt-in design attributes each render; views that want them re-apply
-  // in their own render function (e.g. home-view sets data-redesign="v2").
-  root.removeAttribute('data-redesign');
   const { view, params } = state.route;
 
   const backBtn = document.getElementById('back-btn');
@@ -85,7 +83,9 @@ function renderView() {
     t.classList.toggle('is-active', t.dataset.route === activeTab);
   }
 
-  document.getElementById('app-title').textContent = TITLES[view] || 'WC26';
+  // Update the text portion of the title only; the FIFA logo img sibling stays.
+  const titleText = document.getElementById('app-title-text');
+  if (titleText) titleText.textContent = TITLES[view] || 'WC26';
 
   switch (view) {
     case 'home':         renderHome(root, state.data, params); break;
@@ -156,6 +156,7 @@ window.addEventListener('state:change', () => {
 
 initTheme(document.getElementById('theme-btn'));
 bindNav();
+initTeamSkin();
 initPullToRefresh(pulseFooterUpdated);
 initTabBarScrollHints();
 

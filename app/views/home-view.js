@@ -3,6 +3,7 @@
    quick links to other tabs. */
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
+import { largeMatchCard } from '../components/large-match-card.js';
 import { formatLastUpdated } from '../data-loader.js';
 import {
   getCompetitionState,
@@ -42,10 +43,8 @@ if (typeof window !== 'undefined' && !window.__wc26HomeCountdownBound) {
 export function renderHome(root, data) {
   stopCountdown();
   root.innerHTML = '';
-  // Opt this view into the v2 design tokens (WC26 teal + coral, Barlow display
-  // type, Apple HIG depth). Other tabs stay on the legacy theme until rolled
-  // out per PLAN_UI_REFRESH.md.
-  root.setAttribute('data-redesign', 'v2');
+  // v2 design tokens are now applied globally on <html> per PLAN_UI_REFRESH
+  // Phase 2 rollout. No per-view opt-in needed.
   if (!data) {
     const p = document.createElement('p');
     p.className = 'loading';
@@ -401,29 +400,51 @@ function renderTodaySection(data) {
     wrap.innerHTML = `<div class="home-card"><h2 class="home-card-title">${heading}</h2><p class="muted">No upcoming matches in schedule.</p></div>`;
     return wrap;
   }
-  wrap.innerHTML = `
-    <div class="home-card">
-      <h2 class="home-card-title">${heading}</h2>
-      <div class="home-match-list">
-        ${upcoming.slice(0, 6).map((m) => homeMatchRow(m, getFavoriteTeam())).join('')}
-      </div>
-      <div class="home-card-cta">
-        <button class="pick-btn pick-btn-secondary" data-go="schedule">Full schedule →</button>
-      </div>
+
+  // Heading + CTA in a small card; the actual matches go in a vertical
+  // scroll-snap stack of large match cards (Apple Sports inspired).
+  const head = document.createElement('div');
+  head.className = 'home-card';
+  head.style.marginBottom = '12px';
+  head.innerHTML = `
+    <h2 class="home-card-title">${heading}</h2>
+    <div class="home-card-cta">
+      <button class="pick-btn pick-btn-secondary" data-go="schedule">Full schedule →</button>
     </div>
   `;
-  wrap.addEventListener('click', (e) => {
-    const card = e.target.closest('[data-mid]');
-    if (card) {
-      const ta = card.dataset.teamA;
-      const tb = card.dataset.teamB;
-      if (ta && tb) location.hash = `#/matchup/team_a/${encodeURIComponent(ta)}/team_b/${encodeURIComponent(tb)}`;
-      return;
-    }
+  head.addEventListener('click', (e) => {
     const tgt = e.target.closest('[data-go]');
     if (tgt) setRoute(tgt.dataset.go, {});
   });
+  wrap.appendChild(head);
+
+  // Favorite team's match (if any in today's list) is pinned to the top.
+  const fav = getFavoriteTeam();
+  const reorderedList = fav
+    ? [
+        ...upcoming.filter((m) => m.team_a === fav || m.team_b === fav),
+        ...upcoming.filter((m) => m.team_a !== fav && m.team_b !== fav),
+      ]
+    : upcoming;
+
+  const list = document.createElement('div');
+  list.className = 'lcard-stack';
+  for (const m of reorderedList.slice(0, 6)) {
+    list.appendChild(largeMatchCard(m, {
+      onTap: (match) => {
+        if (match.team_a && match.team_b && !isPlaceholder(match.team_a) && !isPlaceholder(match.team_b)) {
+          location.hash = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
+        }
+      },
+    }));
+  }
+  wrap.appendChild(list);
   return wrap;
+}
+
+function isPlaceholder(name) {
+  if (typeof name !== 'string') return true;
+  return /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/.test(name);
 }
 
 function homeMatchRow(m, fav) {
