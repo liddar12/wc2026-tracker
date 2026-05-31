@@ -18,14 +18,14 @@
   --surface: #ffffff;
   --surface-2: #eef1f6;
   --text: #0f172a;
-  --text-muted: #5b6776;
+  --text-muted: #525d6c;
   --border: #d8deea;
   --primary: #1F4E78;
   --primary-ink: #ffffff;
-  --accent: #c9252d;
+  --accent: #b5252c;
   --good: #2f7d32;
-  --warn: #b6831f;
-  --bad: #c9252d;
+  --warn: #946612;
+  --bad: #b5252c;
   --shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
 }
 
@@ -34,7 +34,7 @@
   --surface: #161b22;
   --surface-2: #1f2630;
   --text: #f0f3f8;
-  --text-muted: #9aa6b4;
+  --text-muted: #b0bdcc;
   --border: #2a3340;
   --primary: #4a90c2;
   --primary-ink: #0D1117;
@@ -3051,3 +3051,65 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
 .hybrid-pill-label { font-weight: 600; color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
 .hybrid-pill-pct { font-weight: 700; color: var(--accent, #007aff); }
 .hybrid-pill-src { margin-left: auto; font-size: 11px; }
+
+/* G2: WCAG AA contrast — opt-in high contrast for users who request it */
+@media (prefers-contrast: more) {
+  :root {
+    --text-muted: #2c3441;
+    --border: #6c7585;
+  }
+  :root[data-theme='dark'] {
+    --text-muted: #e0e7f1;
+    --border: #7a8597;
+  }
+  .muted { color: var(--text-muted) !important; }
+  /* Tighten button + chip outlines so they're never wash-out */
+  .pick-btn, .mover-chip, .home-card, .injury-row {
+    border-width: 1.5px !important;
+  }
+  /* Reinforce focus rings for keyboard nav */
+  *:focus-visible {
+    outline: 3px solid var(--accent) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* G2: ensure every focus state has a visible ring (keyboard nav baseline) */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent, #c9252d);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* H4: Trionda match ball animation — fires when a score updates.
+   Pure CSS sprite-less ball: gradient + spin + arc. Uses .ball-pulse class
+   added by large-match-card.js when scores change. */
+@keyframes wc-ball-arc {
+  0%   { transform: translate(-50%, -50%) scale(0)   rotate(0deg);   opacity: 0; }
+  20%  { transform: translate(-50%, -85%) scale(1.2) rotate(180deg); opacity: 1; }
+  60%  { transform: translate(-50%, -55%) scale(1.0) rotate(540deg); opacity: 1; }
+  100% { transform: translate(-50%, -45%) scale(0.6) rotate(900deg); opacity: 0; }
+}
+.wc-ball-burst {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 28px;
+  height: 28px;
+  pointer-events: none;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0%, #f1f1f1 35%, #b8b8b8 70%, #6a6a6a 100%),
+    repeating-conic-gradient(from 0deg, #1a1a1a 0deg 30deg, transparent 30deg 60deg);
+  background-blend-mode: multiply;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+  animation: wc-ball-arc 1100ms cubic-bezier(0.25, 0.55, 0.4, 1.0) forwards;
+  z-index: 5;
+}
+html.wc-reduce-motion .wc-ball-burst { display: none; }
+.lcard-score-bumpable { position: relative; }

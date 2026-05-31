@@ -114,6 +114,21 @@ function bump(el) {
   el.classList.remove('is-bumped');
   void el.offsetWidth;
   el.classList.add('is-bumped');
+  fireBallBurst(el);
+}
+
+function fireBallBurst(scoreEl) {
+  const reduce = (typeof document !== 'undefined') &&
+    (document.documentElement.classList.contains('wc-reduce-motion') ||
+     (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches));
+  if (reduce) return;
+  // The score span needs to be a positioning context so the burst is centered.
+  scoreEl.classList.add('lcard-score-bumpable');
+  const burst = document.createElement('span');
+  burst.className = 'wc-ball-burst';
+  burst.setAttribute('aria-hidden', 'true');
+  scoreEl.appendChild(burst);
+  setTimeout(() => burst.remove(), 1200);
 }
 
 async function paintBanner(card, teamA, teamB) {
