@@ -17,7 +17,8 @@ import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
-import { renderGroupPickerView } from './views/group-picker-view.js';
+// R6: standalone Group Picks retired — its logic now lives in Play Stage 1 + 2.
+// import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';
@@ -36,30 +37,30 @@ import { initPullToRefresh, pulseFooterUpdated } from './pull-to-refresh.js';
 import { initCompetition, getCompetitionState } from './competition.js';
 import { extractJoinCodeFromPath } from './competition-rules.js';
 import { defaultGroup } from './favorites.js';
+import { initToolbarAuth } from './toolbar-auth.js';
 
 const TITLES = {
   home: 'WC26',
-  matchups: 'Matches',
-  matchup: 'Matchup',
-  groups: 'Groups',
-  group: 'Group',
+  play: 'Play',
   bracket: 'Bracket',
-  brackets: 'Brackets',
-  'my-brackets': 'My Brackets',
-  'create-group': 'New Pool',
   pools: 'Pools',
-  'group-picks': 'Group Picks',
-  injuries: 'Injuries',
+  'my-brackets': 'My Brackets',
+  'my-picks': 'My Picks',
+  schedule: 'Schedule',
+  venues: 'Venues',
+  venue: 'Venue',
+  matches: 'Matches',
+  matchups: 'Matches',  // legacy alias kept routable
+  matchup: 'Matchup',
+  group: 'Group',
+  team: 'Team',
+  settings: 'Settings',
+  'create-group': 'New Pool',
   shared: 'Shared bracket',
   'hot-picks': 'Hot Picks',
   backtest: 'Backtest',
   leaderboard: 'Leaderboard',
-  picks: 'My Picks',
-  settings: 'Settings',
-  team: 'Team',
-  schedule: 'Schedule',
-  venues: 'Venues',
-  venue: 'Venue',
+  injuries: 'Injuries',
   winner: 'Winner Odds'
 };
 
@@ -80,18 +81,22 @@ function renderView() {
 
   const tabMap = {
     home: 'home',
-    matchups: 'matchups',
+    play: 'play',
+    bracket: 'bracket',
+    brackets: 'bracket',         // legacy alias
+    pools: 'pools',
+    'create-group': 'pools',
+    'my-brackets': 'my-brackets',
+    'my-picks': 'my-picks',
+    picks: 'my-picks',           // legacy alias for old wc26.picks pickers
+    matches: 'matches',
+    matchups: 'matches',
     schedule: 'schedule',
     venues: 'venues',
     venue: 'venues',
-    groups: 'groups',
-    group: 'groups',
-    bracket: 'brackets',
-    brackets: 'brackets',
-    'my-brackets': 'my-brackets',
-    'create-group': 'pools',
-    pools: 'pools',
-    'group-picks': 'group-picks',
+    group: 'play',               // legacy group view nav-highlights Play
+    groups: 'play',
+    'group-picks': 'play',       // retired Group Picks tab now lives inside Play
     picks: 'picks',
     winner: 'matchups'
   };
@@ -110,31 +115,53 @@ function renderView() {
 
   switch (view) {
     case 'home':         renderHome(root, state.data, params); break;
+    // R6 primary nav
+    case 'play':         renderPlayShim(root, state.data, params); break;
+    case 'bracket':
+    case 'brackets':     renderBracketShim(root, state.data, params); break;
+    case 'pools':        renderPoolsView(root, state.data, params); break;
+    case 'my-brackets':  renderMyBracketsView(root, state.data, params); break;
+    case 'my-picks':     renderMyPicks(root, state.data, params); break;
+    case 'matches':
     case 'matchups':     renderMatchupList(root, state.data, params); break;
     case 'matchup':      renderMatchupDetail(root, state.data, params); break;
-    case 'groups':
-    case 'group':        renderGroupView(root, state.data, params); break;
-    case 'bracket':
-    case 'brackets':     renderBracketsLiveView(root, state.data, params); break;
-    case 'my-brackets':  renderMyBracketsView(root, state.data, params); break;
+    case 'schedule':     renderScheduleView(root, state.data, params); break;
+    case 'venues':       renderVenuesView(root, state.data, params); break;
+    case 'venue':        renderVenueDetail(root, state.data, params); break;
+    // R6: standalone Group Picks retired — redirect to Play
+    case 'group-picks':  redirectToPlay(); break;
+    // Detail/utility views (kept)
+    case 'group':
+    case 'groups':       renderGroupView(root, state.data, params); break;
+    case 'team':         renderTeamDetail(root, state.data, params); break;
     case 'create-group': renderCreateGroupWizard(root, state.data, params); break;
-    case 'pools':        renderPoolsView(root, state.data, params); break;
-    case 'group-picks':  renderGroupPickerView(root, state.data, params); break;
     case 'settings':     renderSettingsView(root, state.data, params); break;
     case 'injuries':     renderInjuriesView(root, state.data, params); break;
     case 'shared':       renderSharedBracketView(root, state.data, params); break;
     case 'hot-picks':    renderHotPicksView(root, state.data, params); break;
     case 'backtest':     renderBacktestView(root, state.data, params); break;
     case 'leaderboard':  renderAccuracyScoreboardView(root, state.data, params); break;
-    case 'picks':        renderMyPicks(root, state.data, params); break;
-    case 'team':         renderTeamDetail(root, state.data, params); break;
-    case 'schedule':     renderScheduleView(root, state.data, params); break;
-    case 'venues':       renderVenuesView(root, state.data, params); break;
-    case 'venue':        renderVenueDetail(root, state.data, params); break;
+    case 'picks':        renderMyPicks(root, state.data, params); break;  // legacy alias
     case 'winner':       renderWinnerView(root, state.data, params); break;
     default:             renderHome(root, state.data, params);
   }
   window.scrollTo(0, 0);
+}
+
+// R6 stubs — full views ship in T2 and T3.
+async function renderPlayShim(root, data, params) {
+  const m = await import('./views/play-view.js').catch(() => null);
+  if (m?.renderPlayView) return m.renderPlayView(root, data, params);
+  root.innerHTML = `<div class="home-card"><h2 class="home-card-title">Play</h2><p class="muted">Funnel loading…</p></div>`;
+}
+async function renderBracketShim(root, data, params) {
+  const m = await import('./views/bracket-view-r6.js').catch(() => null);
+  if (m?.renderBracketView) return m.renderBracketView(root, data, params);
+  // Fallback to the legacy live view while the consolidated view is being wired.
+  renderBracketsLiveView(root, data, params);
+}
+function redirectToPlay() {
+  setRoute('play', { stage: '1' });
 }
 
 function updateFooter() {
@@ -157,16 +184,18 @@ function bindNav() {
       const r = tab.dataset.route;
       const data = getState().data;
       const grp = defaultGroup(data);
-      if (r === 'home') setRoute('home', {});
-      else if (r === 'matchups') setRoute('matchups', { group: grp });
-      else if (r === 'schedule') setRoute('schedule', {});
-      else if (r === 'venues') setRoute('venues', {});
-      else if (r === 'groups') setRoute('group', { group: grp });
-      else if (r === 'brackets') setRoute('brackets', {});
-      else if (r === 'my-brackets') setRoute('my-brackets', {});
-      else if (r === 'pools') setRoute('pools', {});
-      else if (r === 'group-picks') setRoute('group-picks', {});
-      else if (r === 'picks') setRoute('picks', {});
+      switch (r) {
+        case 'home':        return setRoute('home', {});
+        case 'play':        return setRoute('play', {});
+        case 'bracket':     return setRoute('bracket', {});
+        case 'pools':       return setRoute('pools', {});
+        case 'my-brackets': return setRoute('my-brackets', {});
+        case 'my-picks':    return setRoute('my-picks', {});
+        case 'matches':     return setRoute('matches', { group: grp });
+        case 'schedule':    return setRoute('schedule', {});
+        case 'venues':      return setRoute('venues', {});
+        default:            return setRoute('home', {});
+      }
     });
   }
 }
@@ -252,6 +281,7 @@ function shouldOpenPicksForJoin() {
 loadData()
   .then(async (data) => {
     setData(data);
+    initToolbarAuth(data);
     // Toast user when data is newer than their last visit (A11 enhanced
     // version computes a meaningful diff below).
     showUpdateToastIfNew(data);

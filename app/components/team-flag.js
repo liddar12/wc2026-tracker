@@ -90,9 +90,14 @@ function isoToEmoji(code) {
 }
 
 export function flagFor(team) {
-  // Wrapped so screen readers skip the emoji and read only the
-  // adjacent team name. Callsites that need a raw emoji use rawFlagFor().
-  const e = isoToEmoji(ISO[team] || ISO[team?.trim()] || '');
+  // Two layers: SVG flag-icons (preferred, loaded via flag-icons.min.css on
+  // <html class="has-flag-svg">) with the emoji codepoint as fallback.
+  // Screen readers skip both (aria-hidden); the adjacent team name is what
+  // gets read.
+  const code = ISO[team] || ISO[team?.trim()] || '';
+  const e = isoToEmoji(code);
+  const fiClass = code && code.length === 2 ? `fi fi-${code.toLowerCase()}` : '';
+  if (fiClass) return `<span class="flag ${fiClass}" aria-hidden="true">${e}</span>`;
   return `<span class="flag" aria-hidden="true">${e}</span>`;
 }
 

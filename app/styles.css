@@ -85,7 +85,11 @@ body {
   grid-template-columns: 44px 1fr auto;
   align-items: center;
   gap: 4px;
-  padding-top: max(8px, var(--safe-top));
+  /* R6 QA pass-2: keep header width inside the viewport */
+  max-width: 100vw;
+  overflow: hidden;
+  /* R6 QA: notch clearance — title needs ≥8px breathing room BELOW the safe-top */
+  padding-top: calc(var(--safe-top) + 8px);
   padding-bottom: 8px;
   padding-left: max(8px, var(--safe-left));
   padding-right: max(8px, var(--safe-right));
@@ -96,7 +100,7 @@ body {
 }
 
 @supports (padding: max(0px)) {
-  .sticky-header { padding-top: max(8px, var(--safe-top)); }
+  .sticky-header { padding-top: calc(var(--safe-top) + 8px); }
 }
 
 .app-title {
@@ -118,6 +122,7 @@ body {
   font-size: 20px;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  touch-action: manipulation;
 }
 .search-btn { font-size: 18px; }
 
@@ -127,6 +132,7 @@ body {
   display: flex;
   align-items: center;
   justify-self: end;
+  gap: 8px;                          /* R6 QA: 8px between header buttons */
 }
 
 /* Tab bar — sticky just below the header.
@@ -139,6 +145,11 @@ body {
   z-index: 19;
   background: var(--surface);
   border-bottom: 1px solid var(--border);
+  /* R6 QA pass-2: clip the inner scrollable tab-bar so children don't
+     bleed into the body width. Without this, body scrollWidth measures
+     ~50px wider than the viewport on Pixel 5. */
+  overflow: hidden;
+  max-width: 100vw;
 }
 .tab-bar-wrap::before,
 .tab-bar-wrap::after {
@@ -176,15 +187,18 @@ body {
 
 .tab-bar {
   display: flex;
+  gap: 8px;                          /* R6 QA: 8px between adjacent tabs */
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  padding: 0 8px;
 }
 .tab-bar::-webkit-scrollbar { display: none; }
 .tab-bar .tab {
   flex: 1 0 auto;
-  min-height: 44px;
-  padding: 10px 14px;
+  min-height: 48px;                  /* R6 QA: ≥44 hard floor */
+  min-width: 64px;
+  padding: 12px 14px;
   background: transparent;
   border: 0;
   border-bottom: 3px solid transparent;
@@ -194,6 +208,7 @@ body {
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
   white-space: nowrap;
+  touch-action: manipulation;
 }
 .tab-bar .tab.is-active {
   color: var(--text);
@@ -203,7 +218,17 @@ body {
 /* View shell */
 .view {
   flex: 1;
-  padding: 12px max(12px, var(--safe-left)) 16px max(12px, var(--safe-right));
+  /* R6 QA: bottom inset clears iOS home-indicator + 16px breathing room
+     so the last tappable element never sits inside the gesture zone */
+  padding: 12px max(12px, var(--safe-left))
+           calc(var(--safe-bottom) + 16px)
+           max(12px, var(--safe-right));
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+}
+@media (min-width: 1024px) {
+  .view { max-width: 840px; }
 }
 
 .scroll-area {
@@ -1031,7 +1056,13 @@ a.team-link { color: inherit; text-decoration: none; }
   color: var(--text-muted);
   cursor: pointer;
   padding: 4px;
+  min-width: 44px;                   /* R6 QA: 44pt touch target */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .watch-star.is-on { color: var(--warn); }
 
@@ -1062,7 +1093,17 @@ a.team-link { color: inherit; text-decoration: none; }
   justify-content: space-between;
   align-items: center;
 }
-.movers-link { font-size: 12px; font-weight: 500; }
+.movers-link {
+  font-size: 12px;
+  font-weight: 500;
+  min-height: 44px;                  /* R6 QA: 44pt touch target */
+  min-width: 88px;
+  padding: 8px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
 .movers-strip {
   display: flex;
   gap: 8px;
@@ -1665,7 +1706,7 @@ body.search-open { overflow: hidden; }
 }
 .pools-tabs {
   display: flex;
-  gap: 4px;
+  gap: 8px;                          /* R6 QA: ≥8px */
   margin: 14px 0 10px;
   border-bottom: 1px solid var(--border);
 }
@@ -1675,11 +1716,13 @@ body.search-open { overflow: hidden; }
   border: 0;
   border-bottom: 3px solid transparent;
   color: var(--text-muted);
-  padding: 10px 12px;
+  padding: 12px 14px;
+  min-height: 44px;                  /* R6 QA: 44pt touch target */
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 .pools-tabs button.is-active {
   color: var(--text);
@@ -2288,7 +2331,9 @@ button.home-hero-updated {
   cursor: pointer;
   text-align: left;
   -webkit-tap-highlight-color: transparent;
-  padding: 0;
+  padding: 12px 0;
+  min-height: 44px;                  /* R6 QA: 44pt touch target */
+  touch-action: manipulation;
 }
 .home-hero-info {
   margin-left: auto;
@@ -2704,8 +2749,9 @@ body.wc-sheet-open { overflow: hidden; }
   font-size: 18px;
   -webkit-tap-highlight-color: transparent;
   cursor: pointer;
+  touch-action: manipulation;
 }
-.header-actions { gap: 0; }
+/* R6 QA: 8px gap in .header-actions enforced at the canonical rule above */
 
 /* Settings page UI */
 .settings-current {
@@ -3006,11 +3052,20 @@ html.wc-reduce-motion ::view-transition-new(root) { animation: none !important; 
 .mb-autofill-overwrite {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 12px;
+  gap: 10px;                         /* R6 QA: ≥8px between checkbox and label */
+  font-size: 13px;
   margin-top: 8px;
+  min-height: 44px;                  /* R6 QA: whole label is the tap target */
+  padding: 10px 4px;
+  cursor: pointer;
+  touch-action: manipulation;
 }
-.mb-autofill-overwrite input { transform: scale(1.1); accent-color: var(--primary); }
+.mb-autofill-overwrite input {
+  width: 24px;                        /* R6 QA: bigger checkbox */
+  height: 24px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
 
 /* E2: Monte Carlo chip */
 .gp-sig-mc {
@@ -3200,12 +3255,16 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   left: -9999px;
   top: 8px;
   z-index: 9999;
-  padding: 8px 14px;
+  padding: 12px 16px;
+  min-height: 44px;                  /* R6 QA: 44pt touch target when focused */
+  display: inline-flex;
+  align-items: center;
   background: var(--accent);
   color: var(--primary-ink, #fff);
   border-radius: 6px;
   font-weight: 600;
   text-decoration: none;
+  touch-action: manipulation;
 }
 .skip-link:focus {
   left: 8px;
@@ -3220,3 +3279,556 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* R6: Toolbar auth button + popover */
+.auth-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 12px;
+  min-height: 44px;                  /* R6 QA: meets 44pt touch target */
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 22px;
+  color: var(--text);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 160px;
+  touch-action: manipulation;
+}
+.auth-toolbar-btn:hover { background: var(--surface-2); }
+.auth-toolbar-btn[data-state="signed-in"] { border-color: var(--good); }
+.auth-toolbar-btn[data-state="guest"]     { border-color: var(--accent); }
+.auth-toolbar-icon { font-size: 14px; }
+.auth-toolbar-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 92px;
+}
+.auth-toolbar-menu {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 12px;
+  max-width: 280px;
+  min-width: 220px;
+}
+.auth-menu-card .auth-menu-head {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.auth-menu-card .auth-menu-head strong {
+  font-size: 14px;
+}
+.auth-handle-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.auth-handle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  width: min(360px, 92vw);
+  box-shadow: var(--shadow);
+}
+.auth-handle-card h3 { margin: 0 0 8px; font-size: 16px; }
+.auth-handle-card .auth-input { width: 100%; }
+
+/* ============================================================================
+   R6 — Play funnel + read-only views
+   New class prefix: .pw-* (per spec §11)
+============================================================================ */
+
+/* Help card */
+.pw-help-card { padding: 12px 14px; }
+.pw-help-head {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  width: 100%;
+  min-height: 44px;                  /* R6 QA: touch target */
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+  touch-action: manipulation;
+}
+.pw-help-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.pw-help-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--primary-ink, #fff);
+  font-size: 11px;
+  font-weight: 700;
+}
+.pw-help-chevron { font-size: 14px; color: var(--text-muted); }
+.pw-help-body { margin-top: 8px; }
+.pw-help-card.is-collapsed .pw-help-body { display: none; }
+.pw-help-intro { font-size: 13px; margin: 0 0 8px; }
+.pw-help-points { margin: 0; padding-left: 20px; font-size: 12px; }
+.pw-help-points li { margin-bottom: 4px; line-height: 1.4; }
+
+/* Play header / stage strip */
+.pw-play-head { margin-bottom: 10px; }
+.pw-stage-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;                          /* R6 QA: ≥8px */
+  margin-bottom: 12px;
+}
+.pw-stage-chip {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px 8px;
+  min-height: 56px;                  /* R6 QA: comfortable touch */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  cursor: pointer;
+  color: inherit;
+  touch-action: manipulation;
+}
+.pw-stage-chip.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--primary-ink, #fff);
+}
+.pw-stage-num { font-weight: 700; font-size: 14px; }
+.pw-stage-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.4px; }
+.pw-stage-heading { font-size: 18px; margin: 0 0 4px; }
+
+/* Stage 1: group progress strip */
+.pw-group-progress { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; gap: 10px; flex-wrap: wrap; }
+.pw-group-progress-chips { display: flex; gap: 8px; flex-wrap: wrap; }  /* R6 QA: 8px */
+.pw-group-chip {
+  width: 44px;                        /* R6 QA: 44pt touch target */
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid var(--border);
+  background: var(--surface-2);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  touch-action: manipulation;
+}
+.pw-group-chip.is-current { border-color: var(--accent); color: var(--accent); }
+.pw-group-chip.is-done {
+  background: color-mix(in srgb, var(--good) 25%, var(--surface-2));
+  border-color: var(--good);
+  color: var(--good);
+}
+.pw-group-counter { font-size: 12px; }
+
+/* Stage 1: group card + team tiles */
+.pw-group-card { padding: 14px; margin-bottom: 10px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+.pw-group-title { margin: 0 0 4px; font-size: 16px; }
+.pw-team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.pw-team-tile {
+  appearance: none;
+  background: var(--surface-2);
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-height: 80px;
+  cursor: pointer;
+  color: inherit;
+  position: relative;
+}
+.pw-team-tile.is-ranked.rank-1 { border-color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--surface-2)); }
+.pw-team-tile.is-ranked.rank-2 { border-color: var(--primary, #1F4E78); background: color-mix(in srgb, var(--primary, #1F4E78) 12%, var(--surface-2)); }
+.pw-team-tile.is-ranked.rank-3 { border-color: var(--warn); background: color-mix(in srgb, var(--warn) 12%, var(--surface-2)); }
+.pw-team-tile.is-ranked.rank-4 { border-color: var(--text-muted); }
+.pw-team-flag { font-size: 22px; }
+.pw-team-name { font-size: 12px; font-weight: 600; text-align: center; }
+.pw-team-rank { font-size: 11px; font-weight: 700; padding: 2px 6px; border-radius: 10px; background: var(--accent); color: var(--primary-ink, #fff); }
+.pw-team-rank-empty { height: 14px; }
+.pw-group-actions { display: flex; gap: 8px; margin-top: 8px; }
+.pw-group-nav { display: flex; justify-content: space-between; gap: 8px; margin-top: 10px; }
+
+/* Stage 2: thirds */
+.pw-stage2 { padding: 0; }
+.pw-stage2-note { font-size: 12px; margin: 0 0 8px; }
+.pw-stage2-counter { font-weight: 700; margin: 8px 0; }
+.pw-stage2-heading { font-size: 14px; margin: 12px 0 6px; }
+.pw-cand-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.pw-cand-tile {
+  appearance: none;
+  background: var(--surface);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  cursor: pointer;
+  color: inherit;
+  position: relative;
+}
+.pw-cand-tile.is-ranked { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, var(--surface)); }
+.pw-cand-tile[disabled] { opacity: 0.45; cursor: not-allowed; }
+.pw-cand-grp { position: absolute; top: 3px; left: 6px; font-size: 10px; font-weight: 700; }
+.pw-cand-flag { font-size: 22px; }
+.pw-cand-name { font-size: 11px; }
+.pw-cand-rank {
+  position: absolute;
+  top: 3px;
+  right: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.pw-thirds-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.pw-third-li {
+  display: grid;
+  grid-template-columns: 24px 26px 1fr 24px;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: grab;
+}
+.pw-third-rank { font-weight: 700; color: var(--accent); text-align: center; }
+.pw-third-remove {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--text-muted);
+  min-width: 44px;                   /* R6 QA: 44pt touch target */
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+/* Stage 3: horizontal bracket */
+.pw-bracket-tree {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding: 8px 4px 16px;
+  scroll-snap-type: x proximity;
+}
+.pw-bracket-col {
+  flex: 0 0 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  scroll-snap-align: start;
+}
+.pw-bracket-col-head {
+  position: sticky;
+  top: 0;
+  font-size: 12px;
+  background: var(--bg);
+  margin: 0;
+  padding: 4px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+}
+.pw-bracket-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.pw-bracket-side {
+  appearance: none;
+  background: var(--surface-2);
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  align-items: center;
+  gap: 8px;                          /* R6 QA: touch spacing */
+  font-size: 12px;
+  cursor: pointer;
+  color: inherit;
+  min-height: 44px;                  /* R6 QA: 44pt touch target */
+  text-align: left;
+  touch-action: manipulation;
+}
+.pw-bracket-side.is-picked {
+  border-color: var(--good);
+  background: color-mix(in srgb, var(--good) 18%, var(--surface-2));
+}
+.pw-bracket-side[disabled] { opacity: 0.55; cursor: not-allowed; }
+.pw-bracket-name { font-weight: 600; }
+.pw-bracket-flag { font-size: 16px; line-height: 1; }
+.pw-third-place { margin-top: 12px; padding: 12px; }
+.pw-third-place-card { max-width: 360px; }
+
+.pw-stage3-banner { padding: 12px; margin-bottom: 10px; border-left: 4px solid var(--warn); }
+
+/* Submit bar */
+.pw-submit-bar {
+  position: sticky;
+  bottom: calc(var(--safe-bottom) + 8px);
+  margin-top: 12px;
+  z-index: 4;
+}
+.pw-submit-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  box-shadow: var(--shadow);
+}
+.pw-submit-checklist { font-size: 12px; }
+.pw-submit-checklist ul { margin: 0; padding-left: 16px; }
+.pw-submit-allgreen { color: var(--good); font-weight: 700; }
+.pw-submit-btn { min-width: 130px; }
+
+/* Podium modal */
+body.pw-podium-open { overflow: hidden; }
+.pw-podium-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.pw-podium-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 22px;
+  width: min(440px, 100%);
+  box-shadow: var(--shadow);
+  text-align: center;
+}
+.pw-podium-title { margin: 0 0 16px; font-size: 22px; }
+.pw-podium {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  align-items: end;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.pw-podium-slot { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.pw-podium-medal { font-size: 26px; }
+.pw-podium-flag { font-size: 28px; }
+.pw-podium-flag-1 { font-size: 36px; }
+.pw-podium-name { font-size: 12px; min-height: 16px; }
+.pw-podium-name-1 { font-size: 14px; }
+.pw-podium-block {
+  background: var(--surface-2);
+  border-radius: 10px 10px 0 0;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 12px;
+  width: 100%;
+}
+.pw-podium-block-1 {
+  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--good)));
+  color: var(--primary-ink, #fff);
+  padding: 28px 0;
+  font-size: 14px;
+}
+.pw-podium-sentence { font-size: 13px; margin: 4px 0 14px; line-height: 1.4; }
+.pw-podium-actions { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+
+@media (max-width: 420px) {
+  .pw-bracket-col { flex-basis: 170px; }
+  .pw-team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Bracket section (read-only) */
+.pw-bracket-modes { margin-bottom: 12px; }
+.pw-bracket-mode-row { display: flex; gap: 8px; margin-bottom: 8px; }  /* R6 QA: ≥8px */
+.pw-bracket-mode-btn {
+  flex: 1;
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 10px;
+  padding: 12px 8px;
+  min-height: 44px;                  /* R6 QA: touch target */
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+  touch-action: manipulation;
+}
+.pw-bracket-mode-btn.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--primary-ink, #fff);
+}
+.pw-bracket-source-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+.pw-bracket-source-row select {
+  appearance: none;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  color: inherit;
+}
+.pw-bracket-tree-ro .pw-bracket-side { cursor: default; pointer-events: none; }
+.pw-bracket-groups-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+}
+.pw-bracket-group-card {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 10px;
+}
+.pw-bracket-group-card h3 { margin: 0 0 6px; font-size: 14px; }
+.pw-bracket-standings { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }
+.pw-bracket-standings li {
+  display: grid;
+  grid-template-columns: 16px 22px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+.pw-bracket-rank { font-weight: 700; color: var(--accent); }
+.pw-bracket-pts { font-size: 10px; }
+
+/* R6 Pools: "Brackets owed" banner */
+.pw-pool-status-banner { padding: 12px 14px; border-left: 4px solid var(--accent); margin-bottom: 12px; }
+.pw-pool-owed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.pw-pool-owed-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+}
+
+/* R6 T11: flag-icons SVG upgrade.
+   When <html.has-flag-svg> is set (flag-icons CSS loaded), the .fi class
+   draws an SVG flag and we hide the underlying emoji text. Without it,
+   the emoji shows through. */
+html.has-flag-svg .flag.fi {
+  color: transparent;
+  text-shadow: none;
+  border-radius: 2px;
+  vertical-align: -0.18em;
+  width: 1.33em;
+  line-height: 1em;
+}
+/* Anywhere we previously sized emoji flags via inline style (rare), keep them
+   visible. The .flag wrapper itself is inline; .fi is the SVG layer. */
+.flag.fi { overflow: hidden; }
+
+/* R6 QA pass-1: contrast nudges on read-only bracket text used in projected mode */
+.pw-bracket-tree-ro .pw-bracket-side {
+  color: var(--text);              /* avoid muted-on-muted */
+}
+.pw-bracket-tree-ro .pw-bracket-name { color: var(--text); }
+
+/* R6 QA: ensure home-card / pw-help-card stay centered with consistent insets */
+.home-card, .pw-help-card {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* R6 QA: pull-to-refresh / overscroll safety — keep tap targets out of the
+   home-indicator zone on any sticky bottom element */
+.pw-submit-bar { padding-bottom: env(safe-area-inset-bottom); }
+
+/* R6 QA pass-2: defensive overflow guards.
+   Some legacy cards (matchup-card, schedule-card, bracket grid) used 100%
+   widths but combined with parent paddings could end up 2-4px over the
+   viewport on a 390px screen. Box-sizing was already border-box but inner
+   floated/grid items occasionally bled past. Cap every primary surface to
+   100% of its container and turn off the rare horizontal scroll bleed. */
+.matchup-card,
+.schedule-card,
+.pool-card,
+.home-card,
+.pw-help-card,
+.lcard { max-width: 100%; }
+
+html, body { overflow-x: hidden; }
+
+/* R6 QA pass-2: empty-state inline links in home-card body copy.
+   These are anchors that act as primary CTAs (e.g. "create your own",
+   "Browse public pools", "Pools tab"). Give them comfortable padding
+   so the tap area is finger-friendly without disrupting reading flow. */
+.home-card a.pw-inline-cta,
+.home-card a.pw-inline-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 4px 6px;
+  margin: -4px -6px;                 /* visually neutral; expands hit box */
+}
+
+/* R6 QA: surface centering helper for any boxed module that uses
+   `margin-left/right: auto` plus `max-width: 100%` to stay centered
+   within its parent without bleeding past the safe insets. */
+.pw-centered { margin-left: auto; margin-right: auto; max-width: 100%; }

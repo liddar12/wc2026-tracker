@@ -1,0 +1,14 @@
+{
+  "name": "wc26-tracker-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:feature": "node --test tests/feature/*.mjs",
+    "test:ux": "playwright test --config tests/playwright.config.mjs tests/ux",
+    "test:integrated": "playwright test --config tests/playwright.config.mjs tests/integrated",
+    "serve": "python3 -m http.server 8088"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.50.0"
+  }
+}

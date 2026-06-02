@@ -26,11 +26,14 @@ import {
 } from '../competition.js';
 import { renderAuthPanel, renderGuestBanner } from '../competition-auth-panel.js';
 import { isValidJoinCode } from '../competition-rules.js';
+import { helpCard, HELP_COPY } from '../components/help-card.js';
 
 let competitionSection = null;
 let competitionData = null;
 
 export function renderMyPicks(root, data) {
+  // R6: help card at the top of My Picks
+  root.appendChild(helpCard({ ...HELP_COPY.myPicks, persistKey: 'my-picks' }));
   renderCompetition(root, data);
 
   const summary = accuracySummary(data);
@@ -161,12 +164,34 @@ function authHandlers(section, data) {
 
 async function paintCompetition(section, data) {
   const comp = getCompetitionState();
-  if (!comp.user) {
-    if (comp.guestMode && isAuthDismissed()) {
-      renderGuestBanner(section, comp, authHandlers(section, data));
-      return;
-    }
-    renderAuthPanel(section, comp, authHandlers(section, data));
+  if (!comp.user && !comp.guestMode) {
+    // R6: auth UI lives in the toolbar — surface a single hint here
+    // instead of mounting the full sign-in panel inline.
+    section.innerHTML = `
+      <div class="home-card">
+        <h2 class="home-card-title">Leaderboard</h2>
+        <p class="muted" style="margin:0;">Sign in or continue as a guest from the
+          account button in the toolbar to see pool standings here.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // R6 QA: guest path renders a slim card without trying to dereference
+  // comp.user.email (which is null for guests). Bug surfaced as
+  // "Cannot read properties of null (reading 'email')" on /#/my-picks.
+  if (comp.guestMode && !comp.user) {
+    const handle = comp.guestHandle || 'Guest';
+    section.innerHTML = `
+      <div class="home-card my-picks-status">
+        <h2 style="margin:0 0 4px; font-size: 16px;">${escapeHtml(handle)} <span class="muted" style="font-weight: 400; font-size: 13px;">(guest)</span></h2>
+        <p class="muted" style="margin: 0 0 8px; font-size: 12px;">Guest picks save to this device. Sign up from the account button to keep them across devices and join private pools.</p>
+        <div class="my-picks-cta-grid">
+          <a class="pick-btn" href="#/play">Make picks →</a>
+          <a class="pick-btn pick-btn-secondary" href="#/pools">Browse pools →</a>
+        </div>
+      </div>
+    `;
     return;
   }
 

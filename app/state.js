@@ -69,10 +69,21 @@ export function setRoute(view, params = {}) {
 export function parseHash(hash) {
   const trimmed = (hash || '').replace(/^#\/?/, '');
   if (!trimmed) return { view: 'matchups', params: {} };
-  const [view, ...rest] = trimmed.split('/');
+  // R6 QA: support both path-style params (`#/bracket/mode/projected`)
+  // and query-string params (`#/bracket?mode=projected&source=hybrid`).
+  // Without this the router silently drops the query and lands on Home.
+  const [base, query = ''] = trimmed.split('?');
+  const [view, ...rest] = base.split('/');
   const params = {};
   for (let i = 0; i < rest.length; i += 2) {
     if (rest[i]) params[rest[i]] = decodeURIComponent(rest[i + 1] || '');
+  }
+  if (query) {
+    for (const pair of query.split('&')) {
+      if (!pair) continue;
+      const [k, v = ''] = pair.split('=');
+      if (k) params[decodeURIComponent(k)] = decodeURIComponent(v);
+    }
   }
   return { view: view || 'matchups', params };
 }

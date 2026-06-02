@@ -18,6 +18,7 @@ import { scoreBracketWeighted, WEIGHTED_ROUND_POINTS, MAX_WEIGHTED_SCORE } from 
 import { normalizeGroupPredictions } from '../group-scoring.js';
 import { buildAutofill, mergeAutofillIntoBracket, FILL_SOURCES } from '../bracket-autofill.js';
 import { createShareLink, tryShareViaNavigator } from '../share-bracket.js';
+import { helpCard, HELP_COPY } from '../components/help-card.js';
 
 const LS_KEY_PREFIX = 'wc26.mybrackets.';
 const ROUND_LABELS = ['R32', 'R16', 'QF', 'SF', 'Final'];
@@ -31,6 +32,8 @@ export function renderMyBracketsView(root, data) {
   // the user back to the top of the page.
   const scrollY = typeof window !== 'undefined' ? window.scrollY : 0;
   root.innerHTML = '';
+  // R6: help card at the top — spec §4 verbatim
+  root.appendChild(helpCard({ ...HELP_COPY.myBrackets, persistKey: 'my-brackets' }));
 
   const comp = getCompetitionState();
   if (!isSupabaseConfigured()) {

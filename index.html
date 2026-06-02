@@ -35,6 +35,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7/css/flag-icons.min.css" crossorigin="anonymous" onload="document.documentElement.classList.add('has-flag-svg')" onerror="document.documentElement.classList.add('has-flag-emoji-only')">
 <link rel="stylesheet" href="app/styles.css">
 </head>
 <body>
@@ -45,24 +46,28 @@
     <span class="app-title-text" id="app-title-text">WC26</span>
   </h1>
   <div class="header-actions">
+    <button class="auth-toolbar-btn" id="auth-toolbar-btn" type="button" aria-label="Account" data-testid="toolbar-account">
+      <span class="auth-toolbar-icon" aria-hidden="true">&#128100;</span>
+      <span class="auth-toolbar-label" id="auth-toolbar-label">Sign in</span>
+    </button>
     <button class="search-btn" id="search-btn" type="button" aria-label="Search">&#128269;</button>
     <button class="theme-btn" id="theme-btn" type="button" aria-label="Toggle theme">&#9788;</button>
     <button class="settings-btn" id="settings-btn" type="button" aria-label="Settings">&#9881;</button>
   </div>
 </header>
+<div class="auth-toolbar-menu" id="auth-toolbar-menu" hidden role="dialog" aria-label="Account menu" data-testid="toolbar-account-menu"></div>
 
 <div class="tab-bar-wrap" id="tab-bar-wrap">
 <nav class="tab-bar" id="tab-bar" role="tablist" aria-label="Primary" data-testid="tab-bar">
   <button type="button" role="tab" data-route="home" class="tab is-active">Home</button>
-  <button type="button" role="tab" data-route="matchups" class="tab">Matches</button>
+  <button type="button" role="tab" data-route="play" class="tab" data-testid="tab-play">Play</button>
+  <button type="button" role="tab" data-route="bracket" class="tab" data-testid="tab-bracket">Bracket</button>
+  <button type="button" role="tab" data-route="pools" class="tab" data-testid="tab-pools">Pools</button>
+  <button type="button" role="tab" data-route="my-brackets" class="tab" data-testid="tab-my-brackets">My Brackets</button>
+  <button type="button" role="tab" data-route="my-picks" class="tab" data-testid="tab-my-picks">My Picks</button>
   <button type="button" role="tab" data-route="schedule" class="tab">Schedule</button>
-  <button type="button" role="tab" data-route="venues" class="tab" aria-label="Venues map" title="Venues map">Venues</button>
-  <button type="button" role="tab" data-route="groups" class="tab">Groups</button>
-  <button type="button" role="tab" data-route="brackets" class="tab">Brackets</button>
-  <button type="button" role="tab" data-route="my-brackets" class="tab">My Brackets</button>
-  <button type="button" role="tab" data-route="group-picks" class="tab">Group Picks</button>
-  <button type="button" role="tab" data-route="pools" class="tab">Pools</button>
-  <button type="button" role="tab" data-route="picks" class="tab">My Picks</button>
+  <button type="button" role="tab" data-route="venues" class="tab">Venues</button>
+  <button type="button" role="tab" data-route="matches" class="tab">Matches</button>
 </nav>
 </div>
 
