@@ -3350,7 +3350,10 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
 ============================================================================ */
 
 /* Help card */
-.pw-help-card { padding: 12px 14px; }
+.pw-help-card {
+  padding: 12px 14px;
+  margin-bottom: 16px;                /* R7 QA: 1 pica (16px) breathing room below every instruction block */
+}
 .pw-help-head {
   appearance: none;
   background: transparent;
@@ -3832,3 +3835,12 @@ html, body { overflow-x: hidden; }
    `margin-left/right: auto` plus `max-width: 100%` to stay centered
    within its parent without bleeding past the safe insets. */
 .pw-centered { margin-left: auto; margin-right: auto; max-width: 100%; }
+
+/* R7 QA: extra pica below every Play/Bracket instruction block — the stage
+   heading, the help-card, and the muted intro paragraph all sit in a single
+   visual unit and need ~16px gap before the interactive content. */
+.pw-play-head { margin-bottom: 16px; }
+.pw-play-head .muted { margin-bottom: 0; }
+.pw-stage2-note { margin-bottom: 16px; }
+.pw-stage3-banner { margin-bottom: 16px; }
+.pw-bracket-modes { margin-bottom: 16px; }

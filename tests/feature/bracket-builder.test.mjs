@@ -181,3 +181,57 @@ test('MATCH_RANGES covers the full knockout numbering with no gaps', () => {
   assert.deepEqual(MATCH_RANGES.SF, { min: 101, max: 102 });
   assert.deepEqual(MATCH_RANGES.Final, { min: 104, max: 104 });
 });
+
+test('R7: buildR32Seeding never assigns the same best-third to multiple slots', async () => {
+  const fs = await import('node:fs');
+  const scheduleFull = JSON.parse(fs.readFileSync('data/schedule_full.json', 'utf8'));
+  const groupMatchups = JSON.parse(fs.readFileSync('data/group_matchups.json', 'utf8'));
+  const data = { scheduleFull, groupMatchups };
+  // Build a complete user pick set.
+  const userPicks = { groups: {}, best_thirds: [] };
+  for (const [letter, info] of Object.entries(data.groupMatchups)) {
+    userPicks.groups[letter] = (info.teams || []).slice(0, 4);
+    userPicks.best_thirds.push(info.teams?.[2]);
+  }
+  userPicks.best_thirds = userPicks.best_thirds.slice(0, 8);
+
+  const r32 = buildR32Seeding(data, { userPicks });
+  // Collect every team appearing in any R32 slot
+  const teamCounts = {};
+  for (const m of r32) {
+    for (const t of [m.team_a, m.team_b]) {
+      if (typeof t !== 'string') continue;
+      if (/^\d[A-L]$|^3 [A-L]+$/.test(t)) continue; // skip unresolved placeholders
+      teamCounts[t] = (teamCounts[t] || 0) + 1;
+    }
+  }
+  // No team should appear more than once across R32
+  const dupes = Object.entries(teamCounts).filter(([, n]) => n > 1);
+  assert.deepEqual(dupes, [], `Duplicate R32 assignments: ${JSON.stringify(dupes)}`);
+  // And every one of the 8 best_thirds (assuming groups are properly placed)
+  // appears at most once in R32 — at least one should appear though
+  const thirdsInR32 = userPicks.best_thirds.filter((t) => teamCounts[t]);
+  assert.ok(thirdsInR32.length > 0, 'No best_thirds appeared in R32 — placement regressed');
+});
+
+test('R7: resolveSlotFromUserPicks honors usedThirds set across multiple calls', () => {
+  const data = {
+    groupMatchups: {
+      A: { teams: ['A3'] }, B: { teams: ['B3'] }, C: { teams: ['C3'] },
+    },
+  };
+  const picks = { best_thirds: ['A3', 'B3', 'C3'] };
+  const used = new Set();
+  // Slot "3 ABC" should pick A3 (first eligible) and mark it used
+  const first = resolveSlotFromUserPicks('3 ABC', picks, data, used);
+  assert.equal(first, 'A3');
+  // Next call with same allowed set should pick B3 (A3 already used)
+  const second = resolveSlotFromUserPicks('3 ABC', picks, data, used);
+  assert.equal(second, 'B3');
+  // Third call should pick C3
+  const third = resolveSlotFromUserPicks('3 ABC', picks, data, used);
+  assert.equal(third, 'C3');
+  // Fourth call (nothing left) returns placeholder
+  const fourth = resolveSlotFromUserPicks('3 ABC', picks, data, used);
+  assert.equal(fourth, '3 ABC');
+});
