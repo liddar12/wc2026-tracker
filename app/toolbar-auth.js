@@ -56,8 +56,14 @@ export function initToolbarAuth(data) {
     positionMenu(menu, btn);
   });
 
+  // R6 QA: avoid the "outside-click hides menu mid-mount" race. When an
+  // inner button (e.g. "Sign up / Sign in") replaces the menu's innerHTML,
+  // the original click target is gone by the time this listener runs and
+  // .contains() returns false. Mark the menu as "remounting" while it
+  // rebuilds and ignore document clicks for that tick.
   document.addEventListener('click', (e) => {
     if (menu.hidden) return;
+    if (menu.dataset.remounting === '1') return;
     if (menu.contains(e.target) || btn.contains(e.target)) return;
     menu.hidden = true;
   });
@@ -113,8 +119,11 @@ function renderMenu(host, data, onChange) {
       <p class="muted" style="font-size:12px; margin: 6px 0 8px;">Your picks save to this device. Sign up to keep them across devices.</p>
       <button class="pick-btn" id="auth-menu-signin">Sign up / Sign in</button>
     `;
-    card.querySelector('#auth-menu-signin').addEventListener('click', () => {
+    card.querySelector('#auth-menu-signin').addEventListener('click', (e) => {
+      e.stopPropagation();
+      host.dataset.remounting = '1';
       mountFullAuthPanel(host, data, onChange);
+      setTimeout(() => { delete host.dataset.remounting; }, 0);
     });
   } else if (!isSupabaseConfigured()) {
     card.innerHTML = `
@@ -128,8 +137,11 @@ function renderMenu(host, data, onChange) {
       <button class="pick-btn" id="auth-menu-signin">Sign up / Sign in</button>
       <button class="pick-btn pick-btn-secondary" id="auth-menu-guest" style="margin-top: 6px;">Continue as guest</button>
     `;
-    card.querySelector('#auth-menu-signin').addEventListener('click', () => {
+    card.querySelector('#auth-menu-signin').addEventListener('click', (e) => {
+      e.stopPropagation();
+      host.dataset.remounting = '1';
       mountFullAuthPanel(host, data, onChange);
+      setTimeout(() => { delete host.dataset.remounting; }, 0);
     });
     card.querySelector('#auth-menu-guest').addEventListener('click', async () => {
       const handle = await promptHandle();
@@ -150,11 +162,17 @@ function mountFullAuthPanel(host, data, onChange) {
   // moment users tapped "Sign up / Sign in" from the toolbar menu.
   host.innerHTML = '';
   const comp = getCompetitionState();
+  // R6 QA: the auth panel template uses #comp-msg, not .auth-error-msg.
+  // The earlier shim looked for the wrong selector and silently swallowed
+  // every sign-in / sign-up error. Surface both for resilience.
   const setMessage = (msg, isErr = false) => {
-    const m = host.querySelector('.auth-error-msg');
-    if (m) {
-      m.textContent = msg || '';
-      m.dataset.kind = isErr ? 'error' : 'info';
+    for (const sel of ['#comp-msg', '.auth-error-msg']) {
+      const m = host.querySelector(sel);
+      if (m) {
+        m.textContent = msg || '';
+        m.dataset.kind = isErr ? 'error' : 'info';
+        m.style.color = isErr ? 'var(--bad, #c9252d)' : '';
+      }
     }
   };
   const handlers = {

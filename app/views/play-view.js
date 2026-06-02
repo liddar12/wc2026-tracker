@@ -405,6 +405,9 @@ function renderStage3(host, data, poolId) {
         }
         clearDownstream(draft, m.match_number);
         persistBracketDraft(poolId, draft);
+        // R6 QA: notify the sticky submit bar that picks changed; without this
+        // the "What's left" checklist + Submit-enabled state stays stale.
+        window.dispatchEvent(new CustomEvent('play:picks-changed'));
         renderStage3(host.parentElement.querySelector('.pw-stage-root') || host, data, poolId);
       });
       col.appendChild(card);
@@ -468,6 +471,7 @@ function renderThirdPlaceCard(data, poolId, draft, rounds) {
     if (pick === chosen) setThirdPlacePick(draft, null);
     else setThirdPlacePick(draft, chosen, { team_a: a, team_b: b });
     persistBracketDraft(poolId, draft);
+    window.dispatchEvent(new CustomEvent('play:picks-changed'));
     setRoute('play', { stage: '3' }); // repaint
   });
   return wrap;

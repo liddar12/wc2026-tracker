@@ -74,9 +74,13 @@ export async function initCompetition(data) {
   state.user = await resolveCurrentUser();
   if (state.user) {
     setGuestMode(false);
-    await loadProfileAndGroups();
-    await consumePendingJoinCode();
+    try { await loadProfileAndGroups(); }
+    catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
+    try { await consumePendingJoinCode(); }
+    catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
   }
+  // R6 QA: notify the toolbar of the resolved state on cold boot
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
   return state;
 }
 
@@ -132,17 +136,19 @@ export async function signUp(identifier, password) {
   if (error) throw error;
   state.user = await resolveCurrentUser();
   if (data.user) {
-    await upsertProfileUsername(data.user.id, profileUsername);
+    try { await upsertProfileUsername(data.user.id, profileUsername); }
+    catch (err) { console.warn('[auth] upsertProfileUsername soft-failed', err?.message || err); }
   }
   if (!state.user) {
     throw new Error('Account created, but session is not active. Please sign in to continue.');
   }
-  if (state.user) {
-    clearAuthDismiss();
-    setGuestMode(false);
-    await loadProfileAndGroups();
-    await consumePendingJoinCode();
-  }
+  clearAuthDismiss();
+  setGuestMode(false);
+  try { await loadProfileAndGroups(); }
+  catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
+  try { await consumePendingJoinCode(); }
+  catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
 export async function signIn(identifier, password) {
@@ -152,16 +158,27 @@ export async function signIn(identifier, password) {
   const { data, error } = await state.client.auth.signInWithPassword({ email, password });
   if (error) throw error;
   state.user = data.user || (await resolveCurrentUser());
+  // R6 QA: profile/groups bootstrap must not destroy a successful auth.
+  // The deploy-preview Supabase project is missing public.profiles +
+  // public.group_members tables, which used to throw out of ensureProfileExists
+  // and abort the entire sign-in flow. Best-effort the side calls.
   if (data.user) {
-    await ensureProfileExists(data.user.id, inferredUsername);
+    try { await ensureProfileExists(data.user.id, inferredUsername); }
+    catch (err) { console.warn('[auth] ensureProfileExists soft-failed', err?.message || err); }
   }
   if (!state.user) {
     throw new Error('Signed in response received without an active session. Try again.');
   }
   clearAuthDismiss();
   setGuestMode(false);
-  await loadProfileAndGroups();
-  await consumePendingJoinCode();
+  try { await loadProfileAndGroups(); }
+  catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
+  try { await consumePendingJoinCode(); }
+  catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
+  // R6 QA: notify the toolbar so its label flips from "Sign in" to the
+  // signed-in pill. Without this dispatch the toolbar reverts on the next
+  // navigation because syncLabel reads stale state.
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
 export async function signOut() {
@@ -171,10 +188,14 @@ export async function signOut() {
   state.profile = null;
   state.groups = [];
   state.activeGroup = null;
-  setGuestMode(true);
+  // R6 QA: a sign-out should return the user to the truly-signed-out
+  // state, not silently flip them to guest. Toolbar listens for this
+  // event to repaint the chip.
+  setGuestMode(false);
   state.authDismissed = false;
   state.authPanel = 'entry';
   persistAuthDismissed();
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
 // New: create a pool (public or private). No passphrase. Server-side
@@ -639,6 +660,13 @@ async function consumePendingJoinCode() {
 
 function toCompetitionError(error, context) {
   const message = String(error?.message || '').trim();
+  // R6 QA: don't leak raw Postgres/PostgREST errors when an RPC or table
+  // hasn't been deployed yet. Re-skin them as friendly text.
+  if (/could not find the function|could not find the table|PGRST205/i.test(message)) {
+    if (context === 'joinGroup') return new Error('Pool not found — double-check the code, or ask the host to confirm the link.');
+    if (context === 'createGroup') return new Error('Pool creation is offline right now. Try again in a moment.');
+    return new Error('That feature is offline right now. Try again in a moment.');
+  }
   if (/invalid code/i.test(message)) {
     return new Error('Join code not found. Check the invite and try again.');
   }
