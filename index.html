@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>WC26 Tracker</title>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="2026 FIFA World Cup matchup-level predictions, picks, and bracket tracker.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -39,6 +39,9 @@
 <link rel="stylesheet" href="app/styles.css">
 </head>
 <body>
+<!-- R10 a11y: skip-link is the FIRST focusable element on the page so keyboard
+     users can jump past the header + tab-bar directly to main content. -->
+<a href="#view" class="skip-link">Skip to main content</a>
 <header class="app-header sticky-header" id="app-header" role="banner">
   <button class="back-btn" id="back-btn" type="button" aria-label="Back" hidden>&larr;</button>
   <h1 class="app-title" id="app-title">
@@ -71,7 +74,6 @@
 </nav>
 </div>
 
-<a href="#view" class="skip-link">Skip to main content</a>
 <main id="view" class="view scroll-area" role="main" aria-live="polite" aria-label="Main content" tabindex="-1" data-testid="view-root">
   <p class="loading">Loading data…</p>
 </main>

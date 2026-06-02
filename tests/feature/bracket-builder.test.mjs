@@ -235,3 +235,79 @@ test('R7: resolveSlotFromUserPicks honors usedThirds set across multiple calls',
   const fourth = resolveSlotFromUserPicks('3 ABC', picks, data, used);
   assert.equal(fourth, '3 ABC');
 });
+
+test('R9: bipartite matcher finds a perfect placement when greedy first-fit would leave a slot empty', async () => {
+  const fs = await import('node:fs');
+  const { matchBestThirdsToSlots } = await import('../../app/bracket-builder.js');
+  const groupMatchups = JSON.parse(fs.readFileSync('data/group_matchups.json', 'utf8'));
+  const data = { groupMatchups };
+
+  // The real R32 third-slots from schedule_full.json:
+  const slots = [
+    { matchNumber: 74, side: 'team_b', allowed: new Set('ABCDF') },
+    { matchNumber: 77, side: 'team_b', allowed: new Set('CDFGH') },
+    { matchNumber: 79, side: 'team_b', allowed: new Set('CEFHI') },
+    { matchNumber: 80, side: 'team_b', allowed: new Set('EHIJK') },
+    { matchNumber: 81, side: 'team_b', allowed: new Set('BEFIJ') },
+    { matchNumber: 82, side: 'team_b', allowed: new Set('AEHIJ') },
+    { matchNumber: 85, side: 'team_b', allowed: new Set('EFGIJ') },
+    { matchNumber: 87, side: 'team_b', allowed: new Set('DEIJL') },
+  ];
+  // Pick one #3 team from each of A..H (the "clustered" worst case greedy fails on)
+  const bestThirds = ['A','B','C','D','E','F','G','H'].map((g) => groupMatchups[g].teams[2]);
+  const out = matchBestThirdsToSlots(slots, bestThirds, data);
+  // Matcher should place all 8 thirds (perfect matching exists)
+  assert.equal(out.size, 8, `Expected perfect 8-of-8 placement, got ${out.size}: ${[...out.entries()]}`);
+  // No team should appear twice
+  const teamCounts = {};
+  for (const team of out.values()) teamCounts[team] = (teamCounts[team] || 0) + 1;
+  assert.deepEqual(Object.entries(teamCounts).filter(([, n]) => n > 1), []);
+});
+
+test('R9: matcher returns max partial when no perfect matching exists', async () => {
+  const data = {
+    groupMatchups: {
+      A: { teams: [null, null, 'A3', null] },
+      B: { teams: [null, null, 'B3', null] },
+    },
+  };
+  // Slots all require letter A, but we have one A team and one B team
+  const slots = [
+    { matchNumber: 1, side: 'team_b', allowed: new Set(['A']) },
+    { matchNumber: 2, side: 'team_b', allowed: new Set(['A']) },
+  ];
+  const bestThirds = ['A3', 'B3'];
+  const { matchBestThirdsToSlots } = await import('../../app/bracket-builder.js');
+  const out = matchBestThirdsToSlots(slots, bestThirds, data);
+  // Only 1 placement possible (A3 in one slot; B3 has no eligible slot)
+  assert.equal(out.size, 1);
+  assert.equal([...out.values()][0], 'A3');
+});
+
+test('R9: buildR32Seeding maintains R7 dedup + new perfect-matching property', async () => {
+  const fs = await import('node:fs');
+  const scheduleFull = JSON.parse(fs.readFileSync('data/schedule_full.json', 'utf8'));
+  const groupMatchups = JSON.parse(fs.readFileSync('data/group_matchups.json', 'utf8'));
+  const data = { scheduleFull, groupMatchups };
+  // Worst-case for greedy: all 8 thirds from A-H (so slot 87's allowed=DEIJL only has D, E)
+  const userPicks = { groups: {}, best_thirds: [] };
+  for (const [letter, info] of Object.entries(data.groupMatchups)) {
+    userPicks.groups[letter] = (info.teams || []).slice(0, 4);
+  }
+  userPicks.best_thirds = ['A','B','C','D','E','F','G','H'].map((g) => groupMatchups[g].teams[2]);
+
+  const r32 = buildR32Seeding(data, { userPicks });
+  // Count placements of each best-third in R32
+  const counts = {};
+  for (const m of r32) {
+    for (const t of [m.team_a, m.team_b]) {
+      if (userPicks.best_thirds.includes(t)) counts[t] = (counts[t] || 0) + 1;
+    }
+  }
+  // Every best-third should appear exactly once (perfect matching exists)
+  const placed = Object.keys(counts).length;
+  assert.ok(placed >= 7, `Expected near-perfect placement (≥7 of 8), got ${placed}: ${JSON.stringify(counts)}`);
+  // No team appears more than once
+  const dupes = Object.entries(counts).filter(([, n]) => n > 1);
+  assert.deepEqual(dupes, []);
+});

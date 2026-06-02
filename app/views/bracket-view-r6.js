@@ -93,6 +93,16 @@ function renderLive(data) {
   `;
   const tree = document.createElement('div');
   tree.className = 'pw-bracket-tree pw-bracket-tree-ro';
+  tree.tabIndex = 0;
+  tree.setAttribute('role', 'region');
+  tree.setAttribute('aria-label', 'Bracket — use left/right arrow keys to scroll between rounds');
+  tree.addEventListener('keydown', (e) => {
+    const step = 220;
+    if (e.key === 'ArrowRight') { tree.scrollLeft += step; e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { tree.scrollLeft -= step; e.preventDefault(); }
+    else if (e.key === 'Home') { tree.scrollLeft = 0; e.preventDefault(); }
+    else if (e.key === 'End') { tree.scrollLeft = tree.scrollWidth; e.preventDefault(); }
+  });
   // Group by stage
   const byStage = new Map();
   for (const m of ko) {
@@ -187,6 +197,16 @@ function renderProjected(data, source) {
   }
   const tree = document.createElement('div');
   tree.className = 'pw-bracket-tree pw-bracket-tree-ro';
+  tree.tabIndex = 0;
+  tree.setAttribute('role', 'region');
+  tree.setAttribute('aria-label', 'Bracket — use left/right arrow keys to scroll between rounds');
+  tree.addEventListener('keydown', (e) => {
+    const step = 220;
+    if (e.key === 'ArrowRight') { tree.scrollLeft += step; e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { tree.scrollLeft -= step; e.preventDefault(); }
+    else if (e.key === 'Home') { tree.scrollLeft = 0; e.preventDefault(); }
+    else if (e.key === 'End') { tree.scrollLeft = tree.scrollWidth; e.preventDefault(); }
+  });
   for (const [stage, matches] of byStage) {
     const col = document.createElement('div');
     col.className = 'pw-bracket-col';

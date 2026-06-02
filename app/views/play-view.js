@@ -382,6 +382,19 @@ function renderStage3(host, data, poolId) {
   const tree = document.createElement('div');
   tree.className = 'pw-bracket-tree';
   tree.setAttribute('data-testid', 'play-bracket-tree');
+  // R10 a11y: keyboard users couldn't horizontally scroll the bracket tree.
+  // tabindex=0 + role=region + aria-label makes it focusable; arrow keys
+  // pan the inner scrollX.
+  tree.tabIndex = 0;
+  tree.setAttribute('role', 'region');
+  tree.setAttribute('aria-label', 'Knockout bracket — use left/right arrow keys to scroll between rounds');
+  tree.addEventListener('keydown', (e) => {
+    const step = 220;
+    if (e.key === 'ArrowRight') { tree.scrollLeft += step; e.preventDefault(); }
+    else if (e.key === 'ArrowLeft') { tree.scrollLeft -= step; e.preventDefault(); }
+    else if (e.key === 'Home') { tree.scrollLeft = 0; e.preventDefault(); }
+    else if (e.key === 'End') { tree.scrollLeft = tree.scrollWidth; e.preventDefault(); }
+  });
   for (const round of rounds) {
     const col = document.createElement('div');
     col.className = 'pw-bracket-col';
