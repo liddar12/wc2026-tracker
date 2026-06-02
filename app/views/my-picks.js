@@ -177,6 +177,24 @@ async function paintCompetition(section, data) {
     return;
   }
 
+  // R6 QA: guest path renders a slim card without trying to dereference
+  // comp.user.email (which is null for guests). Bug surfaced as
+  // "Cannot read properties of null (reading 'email')" on /#/my-picks.
+  if (comp.guestMode && !comp.user) {
+    const handle = comp.guestHandle || 'Guest';
+    section.innerHTML = `
+      <div class="home-card my-picks-status">
+        <h2 style="margin:0 0 4px; font-size: 16px;">${escapeHtml(handle)} <span class="muted" style="font-weight: 400; font-size: 13px;">(guest)</span></h2>
+        <p class="muted" style="margin: 0 0 8px; font-size: 12px;">Guest picks save to this device. Sign up from the account button to keep them across devices and join private pools.</p>
+        <div class="my-picks-cta-grid">
+          <a class="pick-btn" href="#/play">Make picks →</a>
+          <a class="pick-btn pick-btn-secondary" href="#/pools">Browse pools →</a>
+        </div>
+      </div>
+    `;
+    return;
+  }
+
   const joinState = comp.lockState.bracketLocked
     ? `Bracket lock: ${comp.lockState.phase}`
     : 'Bracket open';

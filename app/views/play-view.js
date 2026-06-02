@@ -345,6 +345,11 @@ async function initSortable(list, onChange) {
 /* -- Stage 3 --------------------------------------------------------------- */
 
 function renderStage3(host, data, poolId) {
+  // R6 QA: every re-paint must start from a clean host, otherwise the
+  // tree appends a new copy on every tap and the page balloons. Wipe
+  // before drawing.
+  host.replaceChildren();
+
   const draft = loadBracketDraft(poolId);
   const groupPicks = normalizeGroupPredictions(loadGroupPicks(poolId));
   const r32 = buildR32Seeding(data, { userPicks: groupPicks });

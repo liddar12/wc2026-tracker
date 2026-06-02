@@ -15,7 +15,13 @@ export const MAX_GROUP_SCORE = 12 * GROUP_POINTS.first + 12 * GROUP_POINTS.secon
 export function normalizeGroupPredictions(picks) {
   if (!picks || typeof picks !== 'object') return { groups: {}, best_thirds: [] };
   const groups = {};
-  for (const [g, list] of Object.entries(picks)) {
+  // R6: accept BOTH shapes — the R6 builder writes
+  //   { groups: { A: [...] }, best_thirds: [...] }
+  // while the legacy shape was flat top-level letter keys. Without this dual
+  // handling, R32 slot resolution silently fails and the entire knockout
+  // funnel can't be completed.
+  const source = (picks.groups && typeof picks.groups === 'object') ? picks.groups : picks;
+  for (const [g, list] of Object.entries(source)) {
     if (g === 'best_thirds') continue;
     if (!/^[A-L]$/.test(g)) continue;
     if (!Array.isArray(list)) continue;
