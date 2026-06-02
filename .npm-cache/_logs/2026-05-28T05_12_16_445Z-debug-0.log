@@ -1,0 +1,20 @@
+0 verbose cli /usr/local/bin/node /usr/local/lib/node_modules/npm/bin/npm-cli.js
+1 info using npm@11.9.0
+2 info using node@v24.14.0
+3 silly config load:file:/usr/local/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/jimmyliddar/.npmrc
+5 silly config load:file:/usr/local/etc/npmrc
+6 verbose title npm exec netlify-cli@17.38.1 env:list
+7 verbose argv "exec" "--yes" "--" "netlify-cli@17.38.1" "env:list"
+8 verbose logfile logs-max:10 dir:/Users/jimmyliddar/Downloads/wc2026-tracker-main/.npm-cache/_logs/2026-05-28T05_12_16_445Z-
+9 verbose logfile /Users/jimmyliddar/Downloads/wc2026-tracker-main/.npm-cache/_logs/2026-05-28T05_12_16_445Z-debug-0.log
+10 silly logfile start cleaning logs, removing 157 files
+11 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+12 verbose shrinkwrap failed to load node_modules/.package-lock.json missing from node_modules: node_modules/netlify-cli/tools/lint-rules
+13 silly logfile done cleaning log files
+14 verbose cwd /Users/jimmyliddar/Downloads/wc2026-tracker-main
+15 verbose os Darwin 25.3.0
+16 verbose node v24.14.0
+17 verbose npm  v11.9.0
+18 verbose exit 1
+19 verbose code 1
