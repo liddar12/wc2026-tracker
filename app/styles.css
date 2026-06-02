@@ -3220,3 +3220,65 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   padding: 0; margin: -1px; overflow: hidden;
   clip: rect(0,0,0,0); white-space: nowrap; border: 0;
 }
+
+/* R6: Toolbar auth button + popover */
+.auth-toolbar-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  max-width: 140px;
+}
+.auth-toolbar-btn:hover { background: var(--surface-2); }
+.auth-toolbar-btn[data-state="signed-in"] { border-color: var(--good); }
+.auth-toolbar-btn[data-state="guest"]     { border-color: var(--accent); }
+.auth-toolbar-icon { font-size: 14px; }
+.auth-toolbar-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 92px;
+}
+.auth-toolbar-menu {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  padding: 12px;
+  max-width: 280px;
+  min-width: 220px;
+}
+.auth-menu-card .auth-menu-head {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+}
+.auth-menu-card .auth-menu-head strong {
+  font-size: 14px;
+}
+.auth-handle-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 60;
+}
+.auth-handle-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px;
+  width: min(360px, 92vw);
+  box-shadow: var(--shadow);
+}
+.auth-handle-card h3 { margin: 0 0 8px; font-size: 16px; }
+.auth-handle-card .auth-input { width: 100%; }

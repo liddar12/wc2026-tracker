@@ -161,12 +161,16 @@ function authHandlers(section, data) {
 
 async function paintCompetition(section, data) {
   const comp = getCompetitionState();
-  if (!comp.user) {
-    if (comp.guestMode && isAuthDismissed()) {
-      renderGuestBanner(section, comp, authHandlers(section, data));
-      return;
-    }
-    renderAuthPanel(section, comp, authHandlers(section, data));
+  if (!comp.user && !comp.guestMode) {
+    // R6: auth UI lives in the toolbar — surface a single hint here
+    // instead of mounting the full sign-in panel inline.
+    section.innerHTML = `
+      <div class="home-card">
+        <h2 class="home-card-title">Leaderboard</h2>
+        <p class="muted" style="margin:0;">Sign in or continue as a guest from the
+          account button in the toolbar to see pool standings here.</p>
+      </div>
+    `;
     return;
   }
 

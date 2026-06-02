@@ -25,6 +25,7 @@ const state = {
   joinNotice: '',
   lockState: { isLocked: false, phase: 'open' },
   guestMode: loadGuestMode(),
+  guestHandle: loadGuestHandle(),
   authDismissed: loadAuthDismissed(),
   authPanel: loadAuthPanel(),
   bracketDrafts: loadBracketDrafts(),
@@ -525,6 +526,22 @@ function loadGuestMode() {
   } catch {
     return false;
   }
+}
+
+const LS_GUEST_HANDLE = 'wc26.competition.guestHandle';
+function loadGuestHandle() {
+  try {
+    return localStorage.getItem(LS_GUEST_HANDLE) || null;
+  } catch { return null; }
+}
+
+export function setGuestHandle(handle) {
+  state.guestHandle = (handle || '').toString().slice(0, 30) || null;
+  try {
+    if (state.guestHandle) localStorage.setItem(LS_GUEST_HANDLE, state.guestHandle);
+    else localStorage.removeItem(LS_GUEST_HANDLE);
+  } catch {}
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
 function loadAuthDismissed() {
