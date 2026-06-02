@@ -13,7 +13,9 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   webServer: {
-    command: 'python3 -m http.server 8088',
+    // Run from repo root, not tests/. Without --directory, python serves
+    // the cwd which Playwright sets to the config file's directory.
+    command: 'python3 -m http.server 8088 --directory ..',
     url: 'http://localhost:8088',
     reuseExistingServer: true,
     timeout: 15_000,
