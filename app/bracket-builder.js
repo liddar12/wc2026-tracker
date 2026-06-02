@@ -136,7 +136,26 @@ export function findTeamGroup(team, data) {
   return null;
 }
 
-/* -- R32 seeding ----------------------------------------------------------- */
+/* -- R32 seeding -----------------------------------------------------------
+ *
+ * R9 upgrade: replace the greedy first-fit best-third placement with a
+ * proper bipartite matcher. The greedy algorithm could leave a slot
+ * unplaceable even when a perfect matching existed (e.g., ranking 8 thirds
+ * whose group letters cluster into a subset that doesn't cover one slot's
+ * allowed-group set). The matcher finds a perfect placement when one
+ * exists; falls back to maximum partial matching otherwise.
+ *
+ * Algorithm: backtracking search over the 8 third-slots, in match_number
+ * order. For each slot, try each user-ranked best-third whose group is in
+ * the slot's allowed set and which hasn't been placed yet. Maintain a
+ * running best (max placements + best secondary key) so partial matchings
+ * remain useful when no perfect exists.
+ *
+ * The match-number order is preserved across both perfect and partial
+ * cases so the bracket layout stays deterministic. When two valid
+ * matchings exist, the one that places the highest-ranked thirds in the
+ * lowest-numbered slots is preferred (user's ranking → bracket layout).
+ */
 
 export function buildR32Seeding(data, opts = {}) {
   const sf = data?.scheduleFull || [];
@@ -145,16 +164,107 @@ export function buildR32Seeding(data, opts = {}) {
     .sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
   if (r32.length !== 16) return [];
   const picks = opts.userPicks ?? normalizeGroupPredictions(loadUserGroupPicks(opts.poolId));
-  // R7 QA fix: walk all 16 slots in canonical (match_number) order with a
-  // shared usedThirds set so a single best-third is never assigned to more
-  // than one R32 slot. Without this, e.g. Sweden showed up in 4 R32 matches.
-  const usedThirds = new Set();
-  return r32.map((m) => ({
-    match_number: m.match_number,
-    team_a: resolveSlotFromUserPicks(m.team_a, picks, data, usedThirds),
-    team_b: resolveSlotFromUserPicks(m.team_b, picks, data, usedThirds),
-    kickoff_utc: m.kickoff_utc,
-  }));
+
+  // First, resolve all the deterministic "1A" / "2B" slots (per-group rank).
+  // Then run a bipartite match on the "3 …" slots holistically.
+  const thirdSlots = [];      // [{ slotText, matchNumber, side, allowed: Set }]
+  for (const m of r32) {
+    for (const side of ['team_a', 'team_b']) {
+      const text = m[side];
+      const thirdMatch = typeof text === 'string' && text.match(/^3 ([A-L]+)$/);
+      if (thirdMatch) {
+        thirdSlots.push({
+          slotText: text,
+          matchNumber: m.match_number,
+          side,
+          allowed: new Set(thirdMatch[1].split('')),
+        });
+      }
+    }
+  }
+  const thirdAssignments = matchBestThirdsToSlots(thirdSlots, picks.best_thirds || [], data);
+
+  return r32.map((m) => {
+    const out = { match_number: m.match_number, kickoff_utc: m.kickoff_utc };
+    for (const side of ['team_a', 'team_b']) {
+      const text = m[side];
+      if (typeof text !== 'string') { out[side] = text; continue; }
+      // 1A / 2B style: defer to per-group resolver
+      const groupRank = text.match(/^(\d)([A-L])$/);
+      if (groupRank) {
+        out[side] = resolveSlotFromUserPicks(text, picks, data, null);
+        continue;
+      }
+      // 3 ABCD style: pull from matcher result
+      if (/^3 [A-L]+$/.test(text)) {
+        const assigned = thirdAssignments.get(`${m.match_number}:${side}`);
+        out[side] = assigned || text;
+        continue;
+      }
+      out[side] = text;
+    }
+    return out;
+  });
+}
+
+// Returns Map of `${matchNumber}:${side}` → team name.
+export function matchBestThirdsToSlots(thirdSlots, bestThirds, data) {
+  const result = new Map();
+  if (!thirdSlots.length || !bestThirds.length) return result;
+
+  // Pre-compute each slot's eligible-thirds set (in user-rank order so
+  // we naturally prefer higher-ranked picks first when multiple matchings
+  // exist).
+  const eligibility = thirdSlots.map((slot) => {
+    const out = [];
+    for (const team of bestThirds) {
+      const g = findTeamGroup(team, data);
+      if (g && slot.allowed.has(g)) out.push(team);
+    }
+    return out;
+  });
+
+  // Backtracking with branch-and-bound on placement count.
+  let bestAssignment = null;
+  let bestCount = -1;
+
+  function recurse(slotIdx, assignment, usedThirds, placedCount) {
+    // Early prune: even if every remaining slot gets a placement, we can't
+    // beat the best — abort.
+    const remainingSlots = thirdSlots.length - slotIdx;
+    if (placedCount + remainingSlots <= bestCount) return;
+    if (slotIdx === thirdSlots.length) {
+      if (placedCount > bestCount) {
+        bestCount = placedCount;
+        bestAssignment = [...assignment];
+        // Perfect matching — no need to keep searching.
+      }
+      return;
+    }
+    // Option 1: try every eligible third for this slot
+    for (const team of eligibility[slotIdx]) {
+      if (usedThirds.has(team)) continue;
+      assignment[slotIdx] = team;
+      usedThirds.add(team);
+      recurse(slotIdx + 1, assignment, usedThirds, placedCount + 1);
+      if (bestCount === thirdSlots.length) return; // found perfect
+      usedThirds.delete(team);
+      assignment[slotIdx] = null;
+    }
+    // Option 2: leave this slot unplaced (allowed for partial matchings)
+    assignment[slotIdx] = null;
+    recurse(slotIdx + 1, assignment, usedThirds, placedCount);
+  }
+
+  recurse(0, new Array(thirdSlots.length).fill(null), new Set(), 0);
+
+  if (bestAssignment) {
+    for (let i = 0; i < thirdSlots.length; i++) {
+      const team = bestAssignment[i];
+      if (team) result.set(`${thirdSlots[i].matchNumber}:${thirdSlots[i].side}`, team);
+    }
+  }
+  return result;
 }
 
 /* -- Rounds cascading from R32 + draft picks ------------------------------- */
