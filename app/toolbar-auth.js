@@ -160,6 +160,14 @@ function mountFullAuthPanel(host, data, onChange) {
   // shim passed (data, callback) which caused
   // "Cannot read properties of undefined (reading 'getPanelMode')" the
   // moment users tapped "Sign up / Sign in" from the toolbar menu.
+  //
+  // R10 QA: the inner setPanelMode('signin', true) transition also wipes
+  // innerHTML mid-event, so the outside-click handler races and closes the
+  // menu before the inputs appear. Set the remounting flag here so EVERY
+  // mount path (outer entry → panel AND inner entry → signin/signup) is
+  // protected.
+  host.dataset.remounting = '1';
+  setTimeout(() => { delete host.dataset.remounting; }, 0);
   host.innerHTML = '';
   const comp = getCompetitionState();
   // R6 QA: the auth panel template uses #comp-msg, not .auth-error-msg.
