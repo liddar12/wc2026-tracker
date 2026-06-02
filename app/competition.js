@@ -528,12 +528,17 @@ function loadGuestMode() {
   }
 }
 
-const LS_GUEST_HANDLE = 'wc26.competition.guestHandle';
+// R6 QA: declare the storage key as a local string inside the loader so it
+// is not subject to the temporal dead zone when called during state init
+// (the previous const declaration sat below state init and silently dropped
+// the seeded handle, surfacing as a "Guest" label instead of "Jimmy").
 function loadGuestHandle() {
   try {
-    return localStorage.getItem(LS_GUEST_HANDLE) || null;
+    return localStorage.getItem('wc26.competition.guestHandle') || null;
   } catch { return null; }
 }
+
+const LS_GUEST_HANDLE = 'wc26.competition.guestHandle';
 
 export function setGuestHandle(handle) {
   state.guestHandle = (handle || '').toString().slice(0, 30) || null;

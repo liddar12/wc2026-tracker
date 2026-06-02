@@ -156,8 +156,8 @@ async function promptHandle() {
     overlay.innerHTML = `
       <div class="auth-handle-card" role="dialog" aria-modal="true" aria-labelledby="auth-handle-title">
         <h3 id="auth-handle-title">Choose a name</h3>
-        <p class="muted" style="font-size:13px; margin: 0 0 10px;">This shows on the leaderboard. We'll add a number if it's taken.</p>
-        <input id="auth-handle-input" class="auth-input" type="text" maxlength="30" placeholder="e.g. Jimmy" value="${escapeHtml(last)}">
+        <label for="auth-handle-input" class="muted" style="font-size:13px; margin: 0 0 10px; display:block;">This shows on the leaderboard. We'll add a number if it's taken.</label>
+        <input id="auth-handle-input" class="auth-input" type="text" maxlength="30" placeholder="e.g. Jimmy" value="${escapeHtml(last)}" aria-label="Display name" autocomplete="nickname">
         <div style="display:flex; gap:8px; margin-top: 10px;">
           <button class="pick-btn" id="auth-handle-ok">Continue</button>
           <button class="pick-btn pick-btn-secondary" id="auth-handle-cancel">Cancel</button>
