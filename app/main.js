@@ -17,7 +17,8 @@ import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
-import { renderGroupPickerView } from './views/group-picker-view.js';
+// R6: standalone Group Picks retired — its logic now lives in Play Stage 1 + 2.
+// import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
 import { showUpdateToastIfNew } from './update-toast.js';
 import { renderSettingsView, initSettingsPrefs } from './views/settings-view.js';

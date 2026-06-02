@@ -26,11 +26,14 @@ import {
 } from '../competition.js';
 import { renderAuthPanel, renderGuestBanner } from '../competition-auth-panel.js';
 import { isValidJoinCode } from '../competition-rules.js';
+import { helpCard, HELP_COPY } from '../components/help-card.js';
 
 let competitionSection = null;
 let competitionData = null;
 
 export function renderMyPicks(root, data) {
+  // R6: help card at the top of My Picks
+  root.appendChild(helpCard({ ...HELP_COPY.myPicks, persistKey: 'my-picks' }));
   renderCompetition(root, data);
 
   const summary = accuracySummary(data);

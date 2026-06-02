@@ -3,8 +3,11 @@ import { matchupCard } from '../components/matchup-card.js';
 import { biggestMoversStrip } from '../components/biggest-movers.js';
 import { whatChangedToday } from '../components/what-changed.js';
 import { setRoute, watchlistKeys } from '../state.js';
+import { helpCard, HELP_COPY } from '../components/help-card.js';
 
 export function renderMatchupList(root, data, params) {
+  // R6: optional Matches help card at the top, explaining the layer is non-gating
+  root.appendChild(helpCard({ ...HELP_COPY.matches, persistKey: 'matches' }));
   const groups = Object.keys(data.groupMatchups).sort();
   const allTeams = Object.keys(data.teams).sort();
   const venues = Array.isArray(data.venues) ? data.venues : [];

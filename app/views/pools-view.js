@@ -14,9 +14,13 @@ import {
   joinPoolByName,
   setActiveGroup,
 } from '../competition.js';
+import { helpCard, HELP_COPY } from '../components/help-card.js';
+import { loadBracketDraft } from '../bracket-builder.js';
+import { isStage1Complete, isStage2Complete, loadGroupPicks } from '../group-picks-builder.js';
 
 export function renderPoolsView(root, data, params) {
   root.innerHTML = '';
+  root.appendChild(helpCard({ ...HELP_COPY.pools, persistKey: 'pools' }));
   const comp = getCompetitionState();
   if (!isSupabaseConfigured()) {
     root.appendChild(notice('Pools require cloud login (not configured on this build).'));
@@ -25,6 +29,33 @@ export function renderPoolsView(root, data, params) {
 
   // Hero with join inputs + create CTA
   root.appendChild(renderHero(comp));
+
+  // R6: per-pool "Finish your bracket" status flag
+  const incomplete = (comp.groups || []).filter((g) => !isCompleteBracketFor(g.id));
+  if (incomplete.length) {
+    const banner = document.createElement('section');
+    banner.className = 'home-card pw-pool-status-banner';
+    banner.setAttribute('data-testid', 'pools-finish-banner');
+    banner.innerHTML = `
+      <h2 class="home-card-title">Brackets owed</h2>
+      <p class="muted" style="font-size:12px; margin: 0 0 8px;">${incomplete.length} pool${incomplete.length === 1 ? '' : 's'} still need your entry.</p>
+      <ul class="pw-pool-owed-list">
+        ${incomplete.slice(0, 6).map((g) => `
+          <li>
+            <span>${escapeHtml(g.name)}</span>
+            <button class="pick-btn pick-btn-secondary" data-pool="${escapeHtml(g.id)}" data-testid="pool-finish-${escapeHtml(g.id)}">Finish your bracket →</button>
+          </li>
+        `).join('')}
+      </ul>
+    `;
+    banner.querySelectorAll('[data-pool]').forEach((b) => {
+      b.addEventListener('click', () => {
+        setActiveGroup(b.dataset.pool);
+        setRoute('play', { stage: '1' });
+      });
+    });
+    root.appendChild(banner);
+  }
 
   const view = params?.view === 'mine' ? 'mine' : 'discover';
   const tabs = document.createElement('div');
@@ -223,4 +254,18 @@ function notice(text) {
 
 function escapeHtml(s) {
   return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
+// R6: "is the bracket complete for this pool?" — used by the Brackets-owed banner.
+function isCompleteBracketFor(poolId) {
+  try {
+    const picks = loadGroupPicks(poolId);
+    if (!isStage1Complete(picks) || !isStage2Complete(picks)) return false;
+    const draft = loadBracketDraft(poolId);
+    if (!draft?.picks) return false;
+    // 3rd place + Final must be decided
+    if (!draft.picks['103']?.team) return false;
+    if (!draft.picks['104']?.team) return false;
+    return true;
+  } catch { return false; }
 }

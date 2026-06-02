@@ -3677,3 +3677,33 @@ body.pw-podium-open { overflow: hidden; }
 }
 .pw-bracket-rank { font-weight: 700; color: var(--accent); }
 .pw-bracket-pts { font-size: 10px; }
+
+/* R6 Pools: "Brackets owed" banner */
+.pw-pool-status-banner { padding: 12px 14px; border-left: 4px solid var(--accent); margin-bottom: 12px; }
+.pw-pool-owed-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+.pw-pool-owed-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  padding: 6px 8px;
+  background: var(--surface-2);
+  border-radius: 6px;
+}
+
+/* R6 T11: flag-icons SVG upgrade.
+   When <html.has-flag-svg> is set (flag-icons CSS loaded), the .fi class
+   draws an SVG flag and we hide the underlying emoji text. Without it,
+   the emoji shows through. */
+html.has-flag-svg .flag.fi {
+  color: transparent;
+  text-shadow: none;
+  border-radius: 2px;
+  vertical-align: -0.18em;
+  width: 1.33em;
+  line-height: 1em;
+}
+/* Anywhere we previously sized emoji flags via inline style (rare), keep them
+   visible. The .flag wrapper itself is inline; .fi is the SVG layer. */
+.flag.fi { overflow: hidden; }
