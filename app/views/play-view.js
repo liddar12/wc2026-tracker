@@ -214,18 +214,31 @@ function renderStage1(host, data, poolId, params) {
     const idx = GROUP_LETTERS.indexOf(currentLetter);
     const prev = idx > 0 ? GROUP_LETTERS[idx - 1] : null;
     const next = idx < GROUP_LETTERS.length - 1 ? GROUP_LETTERS[idx + 1] : null;
+    // R7 QA fix: on the last group ("L") the previous code rendered
+    // "Stage 1 complete →" but disabled the button (because `next` was null),
+    // so the click handler bailed before navigating. Now the next-button is
+    // always enabled if either (a) there is a next group, or (b) every group
+    // is complete and we're ready for Stage 2. Stage 2 navigation also
+    // works from any group as long as Stage 1 is complete.
+    const stage1Done = isStage1Complete(picks);
+    const isLast = !next;
+    const nextEnabled = next != null || stage1Done;
+    const nextLabel = isLast
+      ? (stage1Done ? 'Continue to Stage 2 →' : 'Finish ranking to continue →')
+      : 'Next group →';
     nav.innerHTML = `
       <button class="pick-btn pick-btn-secondary" ${prev ? '' : 'disabled'} data-go="${prev || ''}" data-testid="play-prev-group">← Prev</button>
-      <button class="pick-btn" ${next ? '' : 'disabled'} data-go="${next || ''}" data-testid="play-next-group">${next ? 'Next group →' : 'Stage 1 complete →'}</button>
+      <button class="pick-btn" ${nextEnabled ? '' : 'disabled'} data-go="${next || (stage1Done ? '__stage2__' : '')}" data-testid="play-next-group">${nextLabel}</button>
     `;
     nav.querySelectorAll('[data-go]').forEach((b) => {
       b.addEventListener('click', () => {
         if (b.disabled) return;
-        if (b.dataset.go) {
-          letter = b.dataset.go;
-          repaint();
-        } else if (b === nav.lastElementChild && !next) {
+        const go = b.dataset.go;
+        if (go === '__stage2__') {
           setRoute('play', { stage: '2' });
+        } else if (go && GROUP_LETTERS.includes(go)) {
+          letter = go;
+          repaint();
         }
       });
     });

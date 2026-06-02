@@ -78,9 +78,24 @@ function readCachedGroupPredictions() {
   return null;
 }
 
-/* -- Slot resolution ------------------------------------------------------- */
+/* -- Slot resolution -------------------------------------------------------
+ *
+ * R7 QA fix: the previous per-slot resolver returned the FIRST best-third
+ * whose group letter appeared in the slot's allowed-group string. If a
+ * single best-third's group appeared in multiple "3 ABCDEF"-style slots
+ * (which is exactly how the FIFA R32 bracket is laid out), that same team
+ * was assigned to ALL of those slots — so e.g. Sweden showed up four times
+ * in the user's R32. The fix is to track which best-thirds have been
+ * consumed and walk slots in match_number order.
+ *
+ * `resolveSlotFromUserPicks` keeps its per-slot signature for backward
+ * compatibility (used by the read-only Bracket section + autofill) but
+ * accepts an optional `usedThirds` Set to dedup across calls. For correct
+ * placement across the whole R32, callers should use
+ * `assignBestThirdsToR32` which walks all R32 third-slots holistically.
+ */
 
-export function resolveSlotFromUserPicks(slot, userPicks, data) {
+export function resolveSlotFromUserPicks(slot, userPicks, data, usedThirds = null) {
   if (!slot || typeof slot !== 'string') return slot;
 
   // "1A" / "2B" → user's nth-place pick for group A/B
@@ -93,15 +108,19 @@ export function resolveSlotFromUserPicks(slot, userPicks, data) {
     return slot;
   }
 
-  // "3 ABCDF" → match the first of user's best_thirds belonging to one of
-  // the listed groups (per FIFA's R32 seeding rules).
+  // "3 ABCDF" → match the first user best_third belonging to one of the
+  // listed groups AND not yet placed elsewhere.
   const third = slot.match(/^3 ([A-L]+)$/);
   if (third) {
     const allowedGroups = new Set(third[1].split(''));
     const bestThirds = userPicks.best_thirds || [];
     for (const team of bestThirds) {
+      if (usedThirds && usedThirds.has(team)) continue;
       const teamGroup = findTeamGroup(team, data);
-      if (teamGroup && allowedGroups.has(teamGroup)) return team;
+      if (teamGroup && allowedGroups.has(teamGroup)) {
+        if (usedThirds) usedThirds.add(team);
+        return team;
+      }
     }
     return slot;
   }
@@ -126,10 +145,14 @@ export function buildR32Seeding(data, opts = {}) {
     .sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
   if (r32.length !== 16) return [];
   const picks = opts.userPicks ?? normalizeGroupPredictions(loadUserGroupPicks(opts.poolId));
+  // R7 QA fix: walk all 16 slots in canonical (match_number) order with a
+  // shared usedThirds set so a single best-third is never assigned to more
+  // than one R32 slot. Without this, e.g. Sweden showed up in 4 R32 matches.
+  const usedThirds = new Set();
   return r32.map((m) => ({
     match_number: m.match_number,
-    team_a: resolveSlotFromUserPicks(m.team_a, picks, data),
-    team_b: resolveSlotFromUserPicks(m.team_b, picks, data),
+    team_a: resolveSlotFromUserPicks(m.team_a, picks, data, usedThirds),
+    team_b: resolveSlotFromUserPicks(m.team_b, picks, data, usedThirds),
     kickoff_utc: m.kickoff_utc,
   }));
 }
