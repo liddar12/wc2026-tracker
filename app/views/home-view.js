@@ -324,8 +324,15 @@ function renderAuthSlot(data) {
       return;
     }
     if (e.target.closest('[data-go-signin]')) {
+      // R6 QA: auth lives in the toolbar now. Open that menu instead of
+      // routing to the legacy /my-picks page.
       setAuthPanelMode('signin');
-      setRoute('picks', {});
+      const tbBtn = document.getElementById('auth-toolbar-btn');
+      if (tbBtn) {
+        tbBtn.click();
+      } else {
+        setRoute('my-picks', {});
+      }
       return;
     }
     if (e.target.closest('[data-go-guest]')) {

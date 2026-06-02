@@ -8,9 +8,13 @@ import { renderAuthPanel } from './competition-auth-panel.js';
 import {
   getCompetitionState,
   continueAsGuest,
+  signIn,
+  signUp,
   signOut,
   isSupabaseConfigured,
   setGuestHandle,
+  setAuthPanelMode,
+  getAuthPanelMode,
 } from './competition.js';
 
 const LS_LAST_HANDLE = 'wc26.competition.guestHandle';
@@ -140,12 +144,59 @@ function renderMenu(host, data, onChange) {
 }
 
 function mountFullAuthPanel(host, data, onChange) {
+  // R6 QA: renderAuthPanel expects (section, comp, handlers). The earlier
+  // shim passed (data, callback) which caused
+  // "Cannot read properties of undefined (reading 'getPanelMode')" the
+  // moment users tapped "Sign up / Sign in" from the toolbar menu.
   host.innerHTML = '';
-  const panel = renderAuthPanel(data, () => {
-    onChange();
-    host.hidden = true;
-  });
-  if (panel) host.appendChild(panel);
+  const comp = getCompetitionState();
+  const setMessage = (msg, isErr = false) => {
+    const m = host.querySelector('.auth-error-msg');
+    if (m) {
+      m.textContent = msg || '';
+      m.dataset.kind = isErr ? 'error' : 'info';
+    }
+  };
+  const handlers = {
+    getPanelMode: () => getAuthPanelMode() || 'entry',
+    setPanelMode: async (mode, repaint = false) => {
+      setAuthPanelMode(mode);
+      if (repaint) mountFullAuthPanel(host, data, onChange);
+    },
+    clearGuestDismiss: () => {},
+    onGuest: () => {
+      continueAsGuest();
+      onChange();
+      host.hidden = true;
+    },
+    onSignIn: async () => {
+      const username = host.querySelector('#comp-username')?.value?.trim();
+      const password = host.querySelector('#comp-password')?.value;
+      try {
+        setMessage('');
+        if (!isSupabaseConfigured()) throw new Error('Login is not configured on this deploy.');
+        await signIn(username, password);
+        onChange();
+        host.hidden = true;
+      } catch (err) {
+        setMessage(err?.message || 'Sign in failed', true);
+      }
+    },
+    onSignUp: async () => {
+      const username = host.querySelector('#comp-username')?.value?.trim();
+      const password = host.querySelector('#comp-password')?.value;
+      try {
+        setMessage('');
+        if (!isSupabaseConfigured()) throw new Error('Account creation is not configured on this deploy.');
+        await signUp(username, password);
+        onChange();
+        host.hidden = true;
+      } catch (err) {
+        setMessage(err?.message || 'Sign up failed', true);
+      }
+    },
+  };
+  renderAuthPanel(host, comp, handlers);
 }
 
 async function promptHandle() {
