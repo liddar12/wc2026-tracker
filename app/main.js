@@ -23,7 +23,10 @@ import { renderMatchupDetail } from './views/matchup-detail.js';
 import { renderGroupView } from './views/group-view.js';
 import { renderBracketView } from './views/bracket-view.js';
 import { renderBracketsLiveView } from './views/brackets-live-view.js';
-import { renderMyBracketsView } from './views/my-brackets-view.js';
+// R12b: retire the legacy bracket-builder view; use the read-only tree
+// + autofill + "Modify in Play" CTA that matches Play Stage 3 + Bracket
+// Live/Projected UX.
+import { renderMyBracketsView } from './views/my-brackets-view-r12.js';
 import { renderMyPicks } from './views/my-picks.js';
 import { renderTeamDetail } from './views/team-detail.js';
 import { renderScheduleView } from './views/schedule-view.js';
