@@ -128,9 +128,11 @@ function renderView() {
     t.setAttribute('aria-selected', isActive ? 'true' : 'false');
   }
 
-  // Update the text portion of the title only; the FIFA logo img sibling stays.
-  const titleText = document.getElementById('app-title-text');
-  if (titleText) titleText.textContent = TITLES[view] || 'WC26';
+  // R13: header title text was removed — the active tab's underline
+  // indicator already tells users which section they're viewing. The
+  // document.title is still set so the browser tab + iOS standalone
+  // task-switcher label stay accurate.
+  document.title = `${TITLES[view] || 'WC26'} · WC26 Tracker`;
 
   switch (view) {
     case 'home':         renderHome(root, state.data, params); break;

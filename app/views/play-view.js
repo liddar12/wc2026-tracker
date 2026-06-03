@@ -51,8 +51,10 @@ import { getCompetitionState } from '../competition.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
 import { computeGroupStandings } from '../bracket-resolver.js';
 import { renderModelPicker } from '../components/model-picker.js';
-import { getActiveModel, MODEL_LABELS } from '../lib/active-model.js';
+import { getActiveModel, MODEL_LABELS, modelToAutofillSource } from '../lib/active-model.js';
 import { teamAnalytics, rankTeamsByModel } from '../lib/team-analytics.js';
+import { shortTeamName } from '../lib/team-names.js';
+import { buildAutofill, mergeAutofillIntoBracket } from '../bracket-autofill.js';
 
 const STAGES = ['1', '2', '3'];
 
@@ -299,12 +301,19 @@ function renderStage2(host, data, poolId) {
     host.innerHTML = '';
     const candidates = listThirdsCandidates(picks);
     const ranked = picks.best_thirds || [];
+    // R13: Stage 2 model awareness — surface analytics on every candidate
+    // tile + ranked entry, plus a "Rank thirds by <model>" autofill button.
+    const activeModel = getActiveModel();
+    const modelLabel = MODEL_LABELS[activeModel] || 'Model';
 
     const wrap = document.createElement('div');
     wrap.className = 'pw-stage2';
     wrap.innerHTML = `
       <p class="muted pw-stage2-note">FIFA assigns 3rd-place R32 slots by group combination (points → goal difference → goals for → fair play → FIFA ranking). Rank your top 8 to set your Round of 32 seeding.</p>
-      <div class="pw-stage2-counter" data-testid="thirds-counter">${ranked.length}/${REQUIRED_THIRDS}</div>
+      <div class="pw-stage2-controls">
+        <div class="pw-stage2-counter" data-testid="thirds-counter">${ranked.length}/${REQUIRED_THIRDS}</div>
+        <button class="pick-btn pick-btn-secondary" data-action="rank-by-model" data-testid="rank-thirds-by-model">Rank thirds by ${escapeHtml(modelLabel)}</button>
+      </div>
       <h3 class="pw-stage2-heading">Candidates (each group's 3rd)</h3>
       <div class="pw-cand-grid" data-testid="thirds-candidates"></div>
       <h3 class="pw-stage2-heading">Your top ${REQUIRED_THIRDS} (drag to reorder)</h3>
@@ -317,10 +326,15 @@ function renderStage2(host, data, poolId) {
       tile.className = `pw-cand-tile ${rankIdx >= 0 ? 'is-ranked' : ''}`;
       tile.setAttribute('data-testid', `third-cand-${c.team.replace(/\s+/g,'-')}`);
       tile.disabled = rankIdx < 0 && ranked.length >= REQUIRED_THIRDS;
+      const a = teamAnalytics(c.team, data, activeModel);
       tile.innerHTML = `
         <span class="pw-cand-grp muted">${c.group}</span>
         <span class="pw-cand-flag" aria-hidden="true">${flagFor(c.team)}</span>
         <span class="pw-cand-name">${escapeHtml(c.team)}</span>
+        <span class="pw-team-analytics pw-cand-analytics">
+          <span class="pw-team-stat-label muted">${escapeHtml(a.primary.label)}</span>
+          <span class="pw-team-stat-value">${escapeHtml(a.primary.value)}</span>
+        </span>
         <span class="pw-cand-rank">${rankIdx >= 0 ? rankIdx + 1 : '+'}</span>
       `;
       tile.addEventListener('click', () => {
@@ -336,10 +350,15 @@ function renderStage2(host, data, poolId) {
       const li = document.createElement('li');
       li.className = 'pw-third-li';
       li.dataset.team = t;
+      const a = teamAnalytics(t, data, activeModel);
       li.innerHTML = `
         <span class="pw-third-rank">${i + 1}</span>
         <span class="pw-third-flag" aria-hidden="true">${flagFor(t)}</span>
         <span class="pw-third-name">${escapeHtml(t)}</span>
+        <span class="pw-team-analytics pw-third-analytics">
+          <span class="pw-team-stat-label muted">${escapeHtml(a.primary.label)}</span>
+          <span class="pw-team-stat-value">${escapeHtml(a.primary.value)}</span>
+        </span>
         <button type="button" class="pw-third-remove" aria-label="Remove ${escapeHtml(t)}">×</button>
       `;
       li.querySelector('.pw-third-remove').addEventListener('click', () => {
@@ -351,6 +370,22 @@ function renderStage2(host, data, poolId) {
       list.appendChild(li);
     });
     host.appendChild(wrap);
+
+    // R13: "Rank thirds by <model>" — fills best_thirds with all eligible
+    // 3rd-place candidates ranked by the active model. Overwrites any
+    // existing ranking (user can re-edit afterwards).
+    wrap.querySelector('[data-action="rank-by-model"]')?.addEventListener('click', () => {
+      const candidateTeams = listThirdsCandidates(picks).map((c) => c.team);
+      if (candidateTeams.length < REQUIRED_THIRDS) {
+        // Not enough Stage-1 thirds picked yet to rank — silent no-op.
+        return;
+      }
+      const ranked = rankTeamsByModel(candidateTeams, data, activeModel).slice(0, REQUIRED_THIRDS);
+      picks.best_thirds = ranked;
+      persistGroupPicks(poolId, picks);
+      repaint();
+      window.dispatchEvent(new CustomEvent('play:picks-changed'));
+    });
     initSortable(list, (newOrder) => {
       // Compute reorder pairs
       const cur = [...picks.best_thirds];
@@ -408,6 +443,36 @@ function renderStage3(host, data, poolId) {
   const groupPicks = normalizeGroupPredictions(loadGroupPicks(poolId));
   const r32 = buildR32Seeding(data, { userPicks: groupPicks });
   const rounds = computeRounds(r32, draft);
+  // R13: per-side analytics use the active model
+  const activeModel = getActiveModel();
+  const modelLabel = MODEL_LABELS[activeModel] || 'Model';
+
+  // R13: "Auto-fill remaining with <model>" — picks winners for every
+  // currently-resolvable knockout slot that the user hasn't already
+  // chosen. Reuses the same bracket-autofill engine My Brackets uses.
+  const autofillBar = document.createElement('div');
+  autofillBar.className = 'pw-stage3-autofill';
+  autofillBar.innerHTML = `
+    <button class="pick-btn pick-btn-secondary" data-action="autofill-remaining" data-testid="play-stage3-autofill">
+      Auto-fill remaining with ${escapeHtml(modelLabel)}
+    </button>
+    <button class="pick-btn pick-btn-secondary" data-action="autofill-all" data-testid="play-stage3-autofill-all">
+      Overwrite all with ${escapeHtml(modelLabel)}
+    </button>
+  `;
+  autofillBar.addEventListener('click', (e) => {
+    const action = e.target.closest('[data-action]')?.dataset.action;
+    if (!action) return;
+    const source = modelToAutofillSource(activeModel);
+    const af = buildAutofill(data, source, {});
+    const overwrite = action === 'autofill-all';
+    const next = mergeAutofillIntoBracket(af, draft.picks || {}, overwrite);
+    draft.picks = next;
+    persistBracketDraft(poolId, draft);
+    window.dispatchEvent(new CustomEvent('play:picks-changed'));
+    renderStage3(host, data, poolId);
+  });
+  host.appendChild(autofillBar);
 
   // Status: if user hasn't finished Stage 1+2, surface that prominently
   if (!isStage1Complete(loadGroupPicks(poolId)) || !isStage2Complete(loadGroupPicks(poolId))) {
@@ -450,14 +515,26 @@ function renderStage3(host, data, poolId) {
       const bLocked = !m.team_b || isSlotPlaceholder(m.team_b);
       const aPicked = m.pick === m.team_a;
       const bPicked = m.pick === m.team_b;
+      // R13: model analytics chip on each bracket side so the user sees
+      // who the active model thinks should advance.
+      const aAna = !aLocked ? teamAnalytics(m.team_a, data, activeModel) : null;
+      const bAna = !bLocked ? teamAnalytics(m.team_b, data, activeModel) : null;
+      const aAnaHtml = aAna
+        ? `<span class="pw-team-analytics pw-bracket-analytics"><span class="pw-team-stat-label muted">${escapeHtml(aAna.primary.label)}</span><span class="pw-team-stat-value">${escapeHtml(aAna.primary.value)}</span></span>`
+        : '';
+      const bAnaHtml = bAna
+        ? `<span class="pw-team-analytics pw-bracket-analytics"><span class="pw-team-stat-label muted">${escapeHtml(bAna.primary.label)}</span><span class="pw-team-stat-value">${escapeHtml(bAna.primary.value)}</span></span>`
+        : '';
       card.innerHTML = `
         <button type="button" class="pw-bracket-side ${aPicked ? 'is-picked' : ''}" ${aLocked ? 'disabled' : ''} data-pick="a">
           <span class="pw-bracket-flag" aria-hidden="true">${aLocked ? '·' : flagFor(m.team_a)}</span>
-          <span class="pw-bracket-name">${escapeHtml(m.team_a || 'Waiting…')}</span>
+          <span class="pw-bracket-name">${escapeHtml(shortTeamName(m.team_a || '', 12) || 'Waiting…')}</span>
+          ${aAnaHtml}
         </button>
         <button type="button" class="pw-bracket-side ${bPicked ? 'is-picked' : ''}" ${bLocked ? 'disabled' : ''} data-pick="b">
           <span class="pw-bracket-flag" aria-hidden="true">${bLocked ? '·' : flagFor(m.team_b)}</span>
-          <span class="pw-bracket-name">${escapeHtml(m.team_b || 'Waiting…')}</span>
+          <span class="pw-bracket-name">${escapeHtml(shortTeamName(m.team_b || '', 12) || 'Waiting…')}</span>
+          ${bAnaHtml}
         </button>
       `;
       card.addEventListener('click', (e) => {

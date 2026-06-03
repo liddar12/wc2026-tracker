@@ -4,6 +4,7 @@
 */
 import { flagFor } from './team-flag.js';
 import { getTeamColors } from '../team-skin.js';
+import { shortTeamName } from '../lib/team-names.js';
 
 export function largeMatchCard(match, opts = {}) {
   const {
@@ -67,11 +68,11 @@ export function largeMatchCard(match, opts = {}) {
       <div class="lcard-teams">
         <div class="lcard-team lcard-team-a">
           <span class="lcard-flag">${flagFor(teamA)}</span>
-          <span class="lcard-team-name">${escapeHtml(teamA)}</span>
+          <span class="lcard-team-name" title="${escapeHtml(teamA)}">${escapeHtml(shortTeamName(teamA))}</span>
         </div>
         ${scoreRow || '<div class="lcard-vs">vs</div>'}
         <div class="lcard-team lcard-team-b">
-          <span class="lcard-team-name">${escapeHtml(teamB)}</span>
+          <span class="lcard-team-name" title="${escapeHtml(teamB)}">${escapeHtml(shortTeamName(teamB))}</span>
           <span class="lcard-flag">${flagFor(teamB)}</span>
         </div>
       </div>
