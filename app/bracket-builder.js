@@ -36,7 +36,10 @@ export function bracketKeyForPool(poolId) {
 export function loadBracketDraft(poolId) {
   const key = bracketKeyForPool(poolId);
   try {
-    const raw = localStorage.getItem(key);
+    let raw = localStorage.getItem(key);
+    // R14: fall back to the guest "local" draft for an empty pool key so
+    // pre-sign-in / pre-join knockout picks carry into the pool.
+    if (!raw && poolId) raw = localStorage.getItem(`${LS_KEY_PREFIX}local`);
     const parsed = raw ? JSON.parse(raw) : { picks: {} };
     if (!parsed || typeof parsed !== 'object') return { picks: {} };
     if (!parsed.picks || typeof parsed.picks !== 'object') parsed.picks = {};

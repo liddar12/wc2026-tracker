@@ -34,28 +34,42 @@ const state = {
   hadJoinLanding: false
 };
 
+// R14: ensures the invite/join URL is parsed exactly once across the multiple
+// initCompetition() calls (main.js + my-picks.js + post-sign-in), so a
+// captured invite code/notice isn't wiped on re-init.
+let _joinLandingParsed = false;
+
 export function getCompetitionState() {
   return state;
 }
 
 export async function initCompetition(data) {
   state.lockState = deriveLockState(data?.scheduleFull || []);
-  state.invalidJoinCode = null;
-  state.joinNotice = '';
-  const pendingJoinCode = extractJoinCodeFromPath(location.pathname);
-  if (pendingJoinCode) {
-    state.activeCode = pendingJoinCode;
-    state.hadJoinLanding = true;
-    state.joinNotice = `Invite code ${pendingJoinCode} detected. Sign in to join this private group.`;
-    state.authDismissed = false;
-    state.authPanel = 'entry';
-    stripJoinPath();
-  } else if (location.pathname.split('/').filter(Boolean).includes('join')) {
-    const parts = location.pathname.split('/').filter(Boolean);
-    const joinIndex = parts.indexOf('join');
-    state.invalidJoinCode = decodeURIComponent(parts[joinIndex + 1] || '').toLowerCase() || '(missing)';
-    state.joinNotice = 'Invite link looks invalid. Check that the code matches word-word-1234.';
-    stripJoinPath();
+  // R14: parse the invite/join URL exactly ONCE. initCompetition is called
+  // from main.js AND again from my-picks.js / create-group-wizard after
+  // sign-in. The first call captured the code and stripped it from the URL
+  // (stripJoinPath); every later call then found no code and wiped
+  // invalidJoinCode/joinNotice — making the invite landing a dead end. Guard
+  // the path-parse + notice-reset so a captured invite survives re-init.
+  if (!_joinLandingParsed) {
+    _joinLandingParsed = true;
+    state.invalidJoinCode = null;
+    state.joinNotice = '';
+    const pendingJoinCode = extractJoinCodeFromPath(location.pathname);
+    if (pendingJoinCode) {
+      state.activeCode = pendingJoinCode;
+      state.hadJoinLanding = true;
+      state.joinNotice = `Invite code ${pendingJoinCode} detected. Sign in or continue as a guest to join this pool.`;
+      state.authDismissed = false;
+      state.authPanel = 'entry';
+      stripJoinPath();
+    } else if (location.pathname.split('/').filter(Boolean).includes('join')) {
+      const parts = location.pathname.split('/').filter(Boolean);
+      const joinIndex = parts.indexOf('join');
+      state.invalidJoinCode = decodeURIComponent(parts[joinIndex + 1] || '').toLowerCase() || '(missing)';
+      state.joinNotice = 'Invite link looks invalid. Check that the code matches word-word-1234.';
+      stripJoinPath();
+    }
   }
   if (state.client) {
     state.user = await resolveCurrentUser();
@@ -662,11 +676,23 @@ function wireAuthSubscription() {
 
 async function resolveCurrentUser() {
   if (!state.client) return null;
+  // R14: restore from the persisted session FIRST. getUser() makes a network
+  // round-trip to /auth/v1/user that fails silently on flaky connections /
+  // reloads, so the signed-in state was being lost on every refresh. getSession()
+  // reads the locally-persisted token synchronously and returns the user when a
+  // valid session exists; only fall through to getUser() if there's no session.
+  try {
+    const { data: sess } = await state.client.auth.getSession();
+    if (sess?.session?.user) return sess.session.user;
+  } catch (err) {
+    console.warn('[auth] getSession failed', err?.message || err);
+  }
   try {
     const { data, error } = await state.client.auth.getUser();
     if (error) return null;
     return data?.user || null;
-  } catch {
+  } catch (err) {
+    console.warn('[auth] getUser failed', err?.message || err);
     return null;
   }
 }

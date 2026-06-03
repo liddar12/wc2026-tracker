@@ -165,15 +165,33 @@ function authHandlers(section, data) {
 async function paintCompetition(section, data) {
   const comp = getCompetitionState();
   if (!comp.user && !comp.guestMode) {
-    // R6: auth UI lives in the toolbar — surface a single hint here
-    // instead of mounting the full sign-in panel inline.
+    // R14: if the user arrived via an invite link, surface the captured
+    // invite notice prominently with a clear path forward instead of a
+    // generic "sign in from the toolbar" hint that dead-ends the funnel.
+    const invite = comp.activeCode
+      ? `<div class="home-card pw-invite-banner" data-testid="invite-banner" style="border-left:4px solid var(--accent); margin-bottom:12px;">
+           <h2 class="home-card-title">You're invited to a pool</h2>
+           <p style="margin:0 0 10px; font-size:13px;">${escapeHtml(comp.joinNotice || `Invite code ${comp.activeCode} detected.`)}</p>
+           <button class="pick-btn" id="invite-go-auth" data-testid="invite-go-auth">Sign in or continue as guest to join →</button>
+         </div>`
+      : comp.invalidJoinCode
+        ? `<div class="home-card pw-invite-banner" style="border-left:4px solid var(--warn); margin-bottom:12px;">
+             <h2 class="home-card-title">Invite link looks invalid</h2>
+             <p class="muted" style="margin:0; font-size:13px;">${escapeHtml(comp.joinNotice || 'Check that the code matches word-word-1234.')}</p>
+           </div>`
+        : '';
     section.innerHTML = `
+      ${invite}
       <div class="home-card">
         <h2 class="home-card-title">Leaderboard</h2>
         <p class="muted" style="margin:0;">Sign in or continue as a guest from the
           account button in the toolbar to see pool standings here.</p>
       </div>
     `;
+    // Route the invite CTA straight to the toolbar account menu.
+    section.querySelector('#invite-go-auth')?.addEventListener('click', () => {
+      document.getElementById('auth-toolbar-btn')?.click();
+    });
     return;
   }
 
