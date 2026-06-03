@@ -11,6 +11,8 @@ import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
 import { computeGroupStandings, resolveSlots, STAGE_ORDER, isSlotPlaceholder } from '../bracket-resolver.js';
 import { FILL_SOURCES, buildAutofill } from '../bracket-autofill.js';
+import { renderModelPicker } from '../components/model-picker.js';
+import { getActiveModel, modelToAutofillSource } from '../lib/active-model.js';
 
 const MODE_LABELS = { live: 'Live', projected: 'Projected' };
 const SOURCE_LABELS = {
@@ -23,9 +25,20 @@ const SOURCE_LABELS = {
 export function renderBracketView(root, data, params = {}) {
   root.innerHTML = '';
   const mode = params.mode === 'projected' ? 'projected' : 'live';
-  const source = params.source && SOURCE_LABELS[params.source] ? params.source : 'model';
+  // R12b: prefer the URL param (so deep links keep working) but fall back to
+  // the user's active model from settings. The Bracket Projected source IS
+  // the model in this view.
+  const source = params.source && SOURCE_LABELS[params.source]
+    ? params.source
+    : modelToAutofillSource(getActiveModel());
 
   root.appendChild(helpCard({ ...HELP_COPY.bracket, persistKey: 'bracket' }));
+  root.appendChild(renderModelPicker({
+    onChange: (m) => {
+      // Reroute to projected mode with the new source so the URL is shareable.
+      setRoute('bracket', { mode: 'projected', source: modelToAutofillSource(m) });
+    },
+  }));
   root.appendChild(renderModeToggle(mode, source));
 
   if (mode === 'live') {

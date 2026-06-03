@@ -30,6 +30,9 @@ export function renderSettingsView(root, data) {
     root.appendChild(renderAccountCard());
   }
 
+  // --- R12b: Model & Analytics (default forecast model + backtest summary)
+  root.appendChild(renderModelSettingsCard());
+
   // --- R12: Reset app data
   root.appendChild(renderResetCard());
 
@@ -176,6 +179,75 @@ function renderAccountCard() {
   } else {
     card.querySelector('#settings-go-signin').addEventListener('click', () => setRoute('picks', {}));
   }
+  return card;
+}
+
+// R12b: Model & Analytics card — picks the default forecast model and
+// exposes a high-level explanation + backtest summary for each. The
+// per-page picker (in Play, Bracket, My Brackets) defaults to this value
+// when the user hasn't explicitly chosen one this session.
+function renderModelSettingsCard() {
+  const card = document.createElement('section');
+  card.className = 'home-card';
+  card.style.marginBottom = '12px';
+  // Async load: import the active-model lib + backtest JSON, then render.
+  card.innerHTML = `
+    <h2 class="home-card-title">Model & Analytics</h2>
+    <p class="muted" style="font-size:13px; margin: 0 0 10px;">Pick which forecast drives Play tile analytics, the Bracket Projected view, and Auto-fill suggestions. You can override per-page from the model picker at the top of each view.</p>
+    <div id="settings-model-radios">Loading…</div>
+    <details id="settings-model-explain" style="margin-top: 12px;">
+      <summary class="muted" style="font-size: 13px; cursor: pointer;">How each model works (+ backtest)</summary>
+      <div id="settings-model-explain-body" style="margin-top: 10px;"></div>
+    </details>
+  `;
+  (async () => {
+    const { MODELS, MODEL_LABELS, MODEL_DESCRIPTIONS, getDefaultModel, setDefaultModel } = await import('../lib/active-model.js');
+    const current = getDefaultModel();
+    const radios = card.querySelector('#settings-model-radios');
+    radios.innerHTML = MODELS.map((m) => `
+      <label class="settings-radio-row" style="display:flex; align-items:center; gap:10px; padding:10px 0; cursor:pointer;">
+        <input type="radio" name="settings-default-model" value="${m}" ${m === current ? 'checked' : ''} style="width:20px; height:20px;">
+        <span style="font-weight: 600;">${MODEL_LABELS[m]}</span>
+      </label>
+    `).join('');
+    radios.addEventListener('change', (e) => {
+      if (e.target.matches('input[name="settings-default-model"]')) {
+        setDefaultModel(e.target.value);
+      }
+    });
+    // Load backtest summary
+    let backtest = null;
+    try {
+      const r = await fetch('data/backtest.json', { cache: 'no-store' });
+      if (r.ok) backtest = await r.json();
+    } catch {}
+    const explainBody = card.querySelector('#settings-model-explain-body');
+    explainBody.innerHTML = MODELS.map((m) => {
+      const desc = MODEL_DESCRIPTIONS[m] || '';
+      // Map model id → backtest key (j5l→model, kalshi→market, hybrid→hybrid).
+      // Consensus has no historical backtest (it's a current-tournament aggregate).
+      const btKey = m === 'j5l' ? 'model' : m === 'kalshi' ? 'market' : m === 'hybrid' ? 'hybrid' : null;
+      const wc = btKey && backtest?.wc2022?.[btKey];
+      const eu = btKey && backtest?.euro2024?.[btKey];
+      const wcStr = wc ? `${Math.round((wc.correct / wc.total) * 100)}% (${wc.correct}/${wc.total})` : '—';
+      const euStr = eu ? `${Math.round((eu.correct / eu.total) * 100)}% (${eu.correct}/${eu.total})` : '—';
+      return `
+        <div class="settings-model-row" style="padding: 10px 0; border-top: 1px solid var(--border);">
+          <strong>${escapeHtml(MODEL_LABELS[m])}</strong>
+          <p class="muted" style="font-size:12px; margin: 4px 0 6px;">${escapeHtml(desc)}</p>
+          ${btKey ? `<p style="font-size:12px; margin:0;">
+            <span class="muted">Backtest:</span>
+            WC 2022 <strong>${wcStr}</strong>
+            · Euro 2024 <strong>${euStr}</strong>
+          </p>` : `<p style="font-size:12px; margin:0;" class="muted">No historic backtest (current-tournament aggregate)</p>`}
+        </div>
+      `;
+    }).join('');
+    if (backtest?.__meta__?.is_estimate) {
+      explainBody.insertAdjacentHTML('beforeend',
+        `<p class="muted" style="font-size:11px; margin: 10px 0 0;">Note: backtest figures are seed estimates pending the historical-probability backfill (data/backtest.json __meta__).</p>`);
+    }
+  })();
   return card;
 }
 

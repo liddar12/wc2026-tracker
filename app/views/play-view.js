@@ -50,6 +50,9 @@ import {
 import { getCompetitionState } from '../competition.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
 import { computeGroupStandings } from '../bracket-resolver.js';
+import { renderModelPicker } from '../components/model-picker.js';
+import { getActiveModel, MODEL_LABELS } from '../lib/active-model.js';
+import { teamAnalytics, rankTeamsByModel } from '../lib/team-analytics.js';
 
 const STAGES = ['1', '2', '3'];
 
@@ -64,6 +67,18 @@ export function renderPlayView(root, data, params = {}) {
 
   // Pool selector + progress chips
   root.appendChild(renderHeader(comp, poolId, stage, data));
+
+  // R12b: per-page model picker — sticky chip row that lets users flip
+  // between J5L / Kalshi / Hybrid / Consensus. Tile analytics + "Suggest
+  // from <model>" buttons listen for `model:change` and repaint.
+  root.appendChild(renderModelPicker({
+    onChange: () => {
+      // Re-route to the same page so the whole view repaints with the new
+      // active model. Simpler + correct than threading updates through
+      // every child component.
+      setRoute('play', { stage });
+    },
+  }));
 
   // R11: Quick-start CTA when group stage is complete and the user has no
   // Stage-1 picks yet. Drops them straight onto Stage 3 with the bracket
@@ -163,23 +178,30 @@ function renderStage1(host, data, poolId, params) {
       return i >= 0 ? i + 1 : null;
     }
 
+    const activeModel = getActiveModel();
+    const modelLabel = MODEL_LABELS[activeModel] || 'Model';
     card.innerHTML = `
       <h3 class="pw-group-title">Group ${letter}</h3>
       <p class="muted" style="font-size:12px; margin:0 0 12px;">Tap teams in order from 1st to 4th. Tap again to clear.</p>
       <div class="pw-team-grid">
         ${teams.map((t) => {
           const r = rankFor(t);
+          const a = teamAnalytics(t, data, activeModel);
           return `
             <button class="pw-team-tile ${r ? `is-ranked rank-${r}` : ''}" data-team="${escapeHtml(t)}" data-testid="team-tile-${letter}-${escapeHtml(t.replace(/\s+/g,'-'))}" aria-pressed="${r ? 'true' : 'false'}">
               <span class="pw-team-flag" aria-hidden="true">${flagFor(t)}</span>
               <span class="pw-team-name">${escapeHtml(t)}</span>
+              <span class="pw-team-analytics" aria-label="${escapeHtml(a.primary.label)} ${escapeHtml(a.primary.value)}">
+                <span class="pw-team-stat-label muted">${escapeHtml(a.primary.label)}</span>
+                <span class="pw-team-stat-value">${escapeHtml(a.primary.value)}</span>
+              </span>
               ${r ? `<span class="pw-team-rank">${ordinal(r)}</span>` : '<span class="pw-team-rank-empty" aria-hidden="true">·</span>'}
             </button>
           `;
         }).join('')}
       </div>
       <div class="pw-group-actions">
-        <button class="pick-btn pick-btn-secondary" data-action="suggest">Suggest from model</button>
+        <button class="pick-btn pick-btn-secondary" data-action="suggest" data-testid="suggest-from-model">Suggest from ${escapeHtml(modelLabel)}</button>
         <button class="pick-btn pick-btn-secondary" data-action="clear">Clear group</button>
       </div>
     `;
@@ -201,9 +223,17 @@ function renderStage1(host, data, poolId, params) {
     });
 
     card.querySelector('[data-action="suggest"]').addEventListener('click', () => {
-      const suggested = suggestGroupOrderFromProjected(data, letter);
+      // R12b: rank by the active model. For J5L this is identical to the
+      // projected-standings suggestion. For Kalshi / Hybrid the order
+      // reflects market or blended signals.
+      const teamsInGroup = data?.groupMatchups?.[letter]?.teams || [];
+      const suggested = rankTeamsByModel(teamsInGroup, data, activeModel);
+      const fallback = suggestGroupOrderFromProjected(data, letter);
+      // If the model can't produce a 4-team order (rare — missing analytics),
+      // fall back to projected-standings.
+      const final = suggested.length === 4 ? suggested : fallback;
       for (let i = 0; i < 4; i++) {
-        if (suggested[i]) picks = setRankForGroup(picks, letter, i + 1, suggested[i]);
+        if (final[i]) picks = setRankForGroup(picks, letter, i + 1, final[i]);
       }
       persistGroupPicks(poolId, picks);
       repaint();
