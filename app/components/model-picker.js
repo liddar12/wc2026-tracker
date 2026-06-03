@@ -4,7 +4,7 @@
    wc26.activeModel and dispatches `model:change` so other views can
    repaint without a route change. */
 
-import { MODELS, MODEL_LABELS, getActiveModel, setActiveModel } from '../lib/active-model.js';
+import { MODELS, MODEL_LABELS, MODEL_DESCRIPTIONS, getActiveModel, setActiveModel } from '../lib/active-model.js';
 
 export function renderModelPicker(opts = {}) {
   const active = opts.active || getActiveModel();
@@ -13,21 +13,27 @@ export function renderModelPicker(opts = {}) {
   wrap.setAttribute('role', 'tablist');
   wrap.setAttribute('aria-label', 'Forecast model');
   wrap.setAttribute('data-testid', 'model-picker');
+  // R14: surface a one-line explanation of the active model right under the
+  // chips — previously MODEL_DESCRIPTIONS only appeared in Settings, so the
+  // chips were opaque to first-timers ("J5L Model" means nothing cold).
   wrap.innerHTML = `
-    <div class="pw-model-picker-label muted">Model</div>
-    <div class="pw-model-picker-chips">
-      ${MODELS.map((m) => `
-        <button
-          type="button"
-          role="tab"
-          class="pw-model-chip ${m === active ? 'is-active' : ''}"
-          data-model="${m}"
-          data-testid="model-chip-${m}"
-          aria-current="${m === active ? 'page' : 'false'}"
-          aria-pressed="${m === active ? 'true' : 'false'}"
-        >${MODEL_LABELS[m]}</button>
-      `).join('')}
+    <div class="pw-model-picker-row">
+      <div class="pw-model-picker-label muted">Model</div>
+      <div class="pw-model-picker-chips">
+        ${MODELS.map((m) => `
+          <button
+            type="button"
+            role="tab"
+            class="pw-model-chip ${m === active ? 'is-active' : ''}"
+            data-model="${m}"
+            data-testid="model-chip-${m}"
+            aria-current="${m === active ? 'page' : 'false'}"
+            aria-pressed="${m === active ? 'true' : 'false'}"
+          >${MODEL_LABELS[m]}</button>
+        `).join('')}
+      </div>
     </div>
+    <p class="pw-model-picker-desc muted" data-testid="model-picker-desc">${escapeHtml(MODEL_DESCRIPTIONS[active] || '')}</p>
   `;
   wrap.addEventListener('click', (e) => {
     const btn = e.target.closest('[data-model]');
@@ -44,7 +50,13 @@ export function renderModelPicker(opts = {}) {
       chip.setAttribute('aria-current', isActive ? 'page' : 'false');
       chip.setAttribute('aria-pressed', isActive ? 'true' : 'false');
     }
+    const desc = wrap.querySelector('.pw-model-picker-desc');
+    if (desc) desc.textContent = MODEL_DESCRIPTIONS[next] || '';
     if (opts.onChange) opts.onChange(next);
   });
   return wrap;
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }

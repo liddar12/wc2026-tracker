@@ -711,9 +711,21 @@ function renderSubmitBar(data, poolId, comp) {
   }
 
   paint();
-  window.addEventListener('play:picks-changed', paint);
+  // R14: avoid a listener leak. renderSubmitBar runs on every Play render;
+  // the old code added a new window listener each time and never removed the
+  // prior ones, so picks-changed fired N stale paints into detached DOM.
+  // Keep ONE module-level listener that always calls the latest live paint.
+  _currentSubmitPaint = paint;
+  if (!_submitPaintBound) {
+    _submitPaintBound = true;
+    window.addEventListener('play:picks-changed', () => {
+      if (typeof _currentSubmitPaint === 'function') _currentSubmitPaint();
+    });
+  }
   return wrap;
 }
+let _currentSubmitPaint = null;
+let _submitPaintBound = false;
 
 async function submitBracket(data, poolId) {
   // R14: the previous implementation (a) called

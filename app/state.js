@@ -9,7 +9,7 @@ const LS_WATCHLIST = 'wc26.watchlist';
 
 const state = {
   data: null,            // populated by data-loader
-  route: { view: 'matchups', params: {} },
+  route: { view: 'home', params: {} },
   picks: loadPicks(),
   prefs: loadPrefs()
 };
@@ -68,7 +68,10 @@ export function setRoute(view, params = {}) {
 
 export function parseHash(hash) {
   const trimmed = (hash || '').replace(/^#\/?/, '');
-  if (!trimmed) return { view: 'matchups', params: {} };
+  // R14: empty hash defaults to Home (the nav's first tab + the intended
+  // landing), not the optional Matches view. Previously the app showed
+  // Matches content while the nav highlighted Home — a confusing mismatch.
+  if (!trimmed) return { view: 'home', params: {} };
   // R6 QA: support both path-style params (`#/bracket/mode/projected`)
   // and query-string params (`#/bracket?mode=projected&source=hybrid`).
   // Without this the router silently drops the query and lands on Home.
@@ -85,7 +88,7 @@ export function parseHash(hash) {
       if (k) params[decodeURIComponent(k)] = decodeURIComponent(v);
     }
   }
-  return { view: view || 'matchups', params };
+  return { view: view || 'home', params };
 }
 
 function buildHash(view, params) {
