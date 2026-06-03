@@ -390,10 +390,13 @@ export function consumeJoinLanding() {
   return landing;
 }
 
-export async function saveBracketForActiveGroup(data) {
+export async function saveBracketForActiveGroup(data, explicitPicks) {
   if (!state.client || !state.user || !state.activeGroup) throw new Error('Select a group first');
   if (state.lockState.bracketLocked) throw new Error(`Bracket locked (${state.lockState.phase})`);
-  const picks = normalizeKnockoutPicks(resolveSelectedDraftPicks());
+  // R14: callers (the Play funnel) now pass the funnel draft's pick array
+  // explicitly. The old resolveSelectedDraftPicks() path read the unrelated
+  // wc26.picks store and is kept only as a fallback for any legacy caller.
+  const picks = normalizeKnockoutPicks(explicitPicks || resolveSelectedDraftPicks());
   if (!picks.length) throw new Error('Add at least one knockout pick (draws are not valid) before submitting a bracket.');
   const score = scoreBracketWeighted(picks, data).score;
   // Upsert (not insert) so a player can edit and re-submit their one bracket

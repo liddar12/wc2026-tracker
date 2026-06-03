@@ -46,6 +46,7 @@ import {
   ROUND_LABELS,
   ROUND_POINTS,
   isSlotPlaceholder,
+  bracketToPickArray,
 } from '../bracket-builder.js';
 import { getCompetitionState } from '../competition.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
@@ -715,13 +716,55 @@ function renderSubmitBar(data, poolId, comp) {
 }
 
 async function submitBracket(data, poolId) {
-  // Lazy import so node tests don't pull supabase.
+  // R14: the previous implementation (a) called
+  // saveGroupPredictionsForActiveGroup() with NO args — zeroing the group
+  // score every submit — and (b) saveBracketForActiveGroup() read the
+  // unrelated wc26.picks store, NOT this funnel's draft, and (c) swallowed
+  // every error to console.warn while the podium fired confetti regardless.
+  // Net effect: funnel brackets were never actually submitted, yet users saw
+  // a celebration. This rebuilds the path to submit the real funnel draft,
+  // pass real args, and PROPAGATE errors so the podium can surface them.
   const comp = await import('../competition.js');
-  // Save group picks first (so server can pick them up before scoring the bracket)
-  try { await comp.saveGroupPredictionsForActiveGroup(); } catch (err) { console.warn('[play] group save failed', err); }
-  try { await comp.saveBracketForActiveGroup(data); } catch (err) { console.warn('[play] bracket save failed', err); }
-  // Confetti runs from the podium modal. Notify other views.
+  const state = comp.getCompetitionState();
+
+  // The funnel draft + group picks (already persisted in localStorage).
+  const draft = loadBracketDraft(poolId);
+  const groupPicks = loadGroupPicks(poolId);
+  const pickArray = bracketToPickArray(draft);
+
+  // Guest or signed-out: the bracket is already saved on this device. Be
+  // honest — do NOT pretend it reached a leaderboard.
+  if (!state.user) {
+    return {
+      ok: true,
+      scope: 'local',
+      message: state.guestMode
+        ? 'Saved on this device. Sign up (account button, top-right) to compete on a leaderboard.'
+        : 'Saved on this device. Sign in to submit to a pool leaderboard.',
+    };
+  }
+  // Signed in but not in a pool: still local-only until they join/create one.
+  if (!state.activeGroup) {
+    return {
+      ok: true,
+      scope: 'local',
+      message: 'Saved. Join or create a pool (Pools tab) to compete on a leaderboard.',
+    };
+  }
+
+  // Signed in + active pool: persist to the server. Errors propagate to the
+  // podium's onSubmit handler (modal stays open, shows the message).
+  const groupScore = await comp.saveGroupPredictionsForActiveGroup(groupPicks, data);
+  const bracketScore = await comp.saveBracketForActiveGroup(data, pickArray);
   window.dispatchEvent(new CustomEvent('play:submitted', { detail: { poolId } }));
+  return {
+    ok: true,
+    scope: 'pool',
+    pool: state.activeGroup.name,
+    groupScore,
+    bracketScore,
+    message: `Submitted to ${state.activeGroup.name}. View it in My Brackets.`,
+  };
 }
 
 /* -- Utilities ------------------------------------------------------------- */

@@ -4034,3 +4034,14 @@ html, body { overflow-x: hidden; }
   /* widen the side to fit name + analytics. The grid was 22px (flag) + 1fr (name) */
   grid-template-columns: 22px 1fr auto !important;
 }
+
+/* R14: podium submit status (success/error/pending) */
+.pw-podium-status {
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.pw-podium-status[data-kind="success"] { color: var(--good, #2f7d32); }
+.pw-podium-status[data-kind="error"] { color: var(--bad, #c9252d); }
+.pw-podium-status[data-kind="pending"] { color: var(--text-muted); }

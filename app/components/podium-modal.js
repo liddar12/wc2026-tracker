@@ -42,6 +42,7 @@ export function openPodiumModal({ first, second, third, label, onSubmit, picks }
       </div>
       <p class="pw-podium-sentence">${escapeHtml(sentence)}</p>
       ${label ? `<p class="muted" style="margin: 4px 0 0; font-size: 12px;">${escapeHtml(label)}</p>` : ''}
+      <p class="pw-podium-status" id="pw-podium-status" role="status" aria-live="polite" hidden></p>
       <div class="pw-podium-actions">
         ${onSubmit ? `<button type="button" class="pick-btn" data-action="submit" data-testid="podium-submit">Submit</button>` : ''}
         <button type="button" class="pick-btn pick-btn-secondary" data-action="share" data-testid="podium-share">Share</button>
@@ -73,6 +74,20 @@ export function openPodiumModal({ first, second, third, label, onSubmit, picks }
   }
   overlay.addEventListener('keydown', onKey);
 
+  const statusEl = overlay.querySelector('#pw-podium-status');
+  function setStatus(msg, kind) {
+    if (!statusEl) return;
+    statusEl.textContent = msg || '';
+    statusEl.hidden = !msg;
+    statusEl.dataset.kind = kind || '';
+  }
+
+  function fireConfetti() {
+    import('../confetti.js').then(({ showConfetti }) => {
+      try { showConfetti({ duration: 2200 }); } catch {}
+    }).catch(() => {});
+  }
+
   overlay.addEventListener('click', async (e) => {
     if (e.target === overlay) { close(); return; }
     const btn = e.target.closest('[data-action]');
@@ -80,27 +95,48 @@ export function openPodiumModal({ first, second, third, label, onSubmit, picks }
     const action = btn.dataset.action;
     if (action === 'close') return close();
     if (action === 'submit' && onSubmit) {
+      // R14: only celebrate on a CONFIRMED submit. Errors keep the modal
+      // open with an inline message instead of faking success.
       btn.disabled = true;
-      try { await onSubmit(); } finally { btn.disabled = false; }
-      close();
+      setStatus('Submitting…', 'pending');
+      try {
+        const res = await onSubmit();
+        fireConfetti();
+        const msg = (res && res.message) || 'Submitted.';
+        setStatus(msg, 'success');
+        // Swap the actions to a post-submit state.
+        const actions = overlay.querySelector('.pw-podium-actions');
+        if (actions) {
+          actions.innerHTML = `
+            <a class="pick-btn" href="#/my-brackets" data-action="close" data-testid="podium-view-brackets">View My Brackets</a>
+            <button type="button" class="pick-btn pick-btn-secondary" data-action="share" data-testid="podium-share">Share</button>
+            <button type="button" class="pick-btn pick-btn-secondary" data-action="close" data-testid="podium-close">Done</button>
+          `;
+        }
+      } catch (err) {
+        btn.disabled = false;
+        setStatus(err?.message || 'Submit failed — try again.', 'error');
+      }
       return;
     }
     if (action === 'share') {
       try {
         const url = picks ? await createShareLink(picks, { label: label || 'My WC26 Bracket' }) : location.href;
-        await tryShareViaNavigator(url, 'My WC26 Bracket');
+        const r = await tryShareViaNavigator(url, 'My WC26 Bracket');
+        if (r === 'clipboard') setStatus('Share link copied to clipboard.', 'success');
       } catch (err) {
         console.warn('[podium] share failed', err);
+        setStatus('Could not generate a share link.', 'error');
       }
     }
   });
 
   document.body.classList.add('pw-podium-open');
 
-  // Confetti on appear (respects prefers-reduced-motion)
-  import('../confetti.js').then(({ showConfetti }) => {
-    try { showConfetti({ duration: 2200 }); } catch {}
-  }).catch(() => {});
+  // R14: when this modal is a pure reveal (no submit action — e.g. viewing an
+  // already-submitted bracket), celebrate on open. When it gates a submit,
+  // hold the confetti until the submit actually succeeds.
+  if (!onSubmit) fireConfetti();
 
   return { close };
 }

@@ -468,5 +468,31 @@ export function knockoutWhatsLeft(rounds, draft) {
   return out;
 }
 
+/* -- Submit conversion (R14) -----------------------------------------------
+ * Convert the funnel draft shape
+ *   { picks: { "<matchNumber>": { team, team_a, team_b } } }
+ * into the array shape competition-scoring + group_brackets expect:
+ *   [{ team_a, team_b, choice }]  where choice is 'team_a' | 'team_b'.
+ *
+ * This is the converter the submit hot path needs. Before R14, the Play
+ * funnel called saveBracketForActiveGroup() which read the UNRELATED
+ * wc26.picks store (the per-match Matches layer) via allPicks(), so funnel
+ * brackets were never actually submitted. Extracting the converter here
+ * (pure, node-testable) lets the submit path read the real funnel draft.
+ */
+export function bracketToPickArray(draft) {
+  const out = [];
+  if (!draft || !draft.picks) return out;
+  for (const entry of Object.values(draft.picks)) {
+    if (!entry || typeof entry !== 'object') continue; // skip legacy string entries
+    const { team, team_a, team_b } = entry;
+    if (!team || !team_a || !team_b) continue;
+    const choice = team === team_a ? 'team_a' : team === team_b ? 'team_b' : null;
+    if (!choice) continue;
+    out.push({ team_a, team_b, choice });
+  }
+  return out;
+}
+
 /* -- Re-export for the lock state surface (kept here for convenience) ------ */
 export { isSlotPlaceholder };
