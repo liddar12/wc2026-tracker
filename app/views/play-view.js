@@ -779,11 +779,12 @@ function renderSubmitBar(data, poolId, comp) {
         first: champion,
         second: runnerUp,
         third,
-        label: comp?.activeGroup?.name ? `Submitting to ${comp.activeGroup.name} + Everyone` : 'Submitting to Everyone',
+        label: comp?.activeGroup?.name ? `Submitting to ${comp.activeGroup.name}` : 'Submitting your bracket',
         picks: draft.picks,
-        onSubmit: async () => {
-          await submitBracket(data, poolId);
-        },
+        // R14: RETURN the submit result so the podium shows the real status
+        // message (e.g. guest "Saved on this device" vs pool success) instead
+        // of a generic "Submitted." Errors propagate so the modal stays open.
+        onSubmit: () => submitBracket(data, poolId),
       });
     });
   }
