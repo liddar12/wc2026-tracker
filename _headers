@@ -6,3 +6,20 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+
+# R14: tiered caching. Filenames are unhashed, so the SW (network-first for
+# navigations) guarantees freshness while these let the browser/CDN reuse
+# bytes between visits.
+# App code/CSS: short cache + background revalidate.
+/app/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+/styles.css
+  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+# Data feeds: always revalidate (cron updates them; meta.json gates freshness).
+/data/*
+  Cache-Control: public, max-age=0, must-revalidate
+# Static art that never changes content under the same name: long immutable.
+/icons/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable

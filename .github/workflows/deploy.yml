@@ -38,3 +38,23 @@ jobs:
           node-version: '20'
       - name: Competition tests
         run: node tests/competition.test.mjs
+      # R14: the CI gate previously ran ONLY tests/competition.test.mjs, so 7
+      # feature suites + the UX/integrated Playwright suites never gated the
+      # auto-deploy. Run the full feature suite here; the browser suites run
+      # in a separate job below.
+      - name: Feature test suite
+        run: node --test tests/feature/*.mjs
+
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install Playwright + Chromium
+        run: |
+          npm ci || npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+      - name: UX + integrated suites
+        run: npx playwright test --config tests/playwright.config.mjs tests/ux tests/integrated

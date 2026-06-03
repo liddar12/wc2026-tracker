@@ -68,6 +68,12 @@ export function renderPlayView(root, data, params = {}) {
   // Help card
   root.appendChild(helpCard({ ...HELP_COPY.play, persistKey: 'play' }));
 
+  // R14: surface the tournament lock phase. The gap window (group stage done,
+  // R32 not yet started) was invisible — users couldn't tell their knockout
+  // picks were open or when they'd lock.
+  const lockBanner = renderLockBanner(comp);
+  if (lockBanner) root.appendChild(lockBanner);
+
   // Pool selector + progress chips
   root.appendChild(renderHeader(comp, poolId, stage, data));
 
@@ -107,12 +113,49 @@ export function renderPlayView(root, data, params = {}) {
   root.appendChild(renderSubmitBar(data, poolId, comp));
 }
 
+/* -- Lock-phase banner (R14) ----------------------------------------------- */
+
+function renderLockBanner(comp) {
+  const phase = comp?.lockState?.phase;
+  if (!phase || phase === 'pre-tournament' || phase === 'open') return null;
+  const banners = {
+    'group-stage-live': {
+      color: 'var(--warn)',
+      title: 'Group stage in progress',
+      text: 'Group-order picks are locked while matches are being played. Your knockout bracket reopens the moment the group stage ends.',
+    },
+    'between-group-and-r32': {
+      color: 'var(--good)',
+      title: 'Knockout picks are open',
+      text: 'The group stage is over and your Round of 32 is seeded from the real results. Finish your knockout bracket before the Round of 32 kicks off — picks lock at the first R32 match.',
+    },
+    'r32-live': {
+      color: 'var(--bad)',
+      title: 'Bracket locked',
+      text: 'The knockout rounds have started, so brackets are locked for the rest of the tournament. You can still review your picks here.',
+    },
+  };
+  const b = banners[phase];
+  if (!b) return null;
+  const el = document.createElement('section');
+  el.className = 'home-card pw-lock-banner';
+  el.setAttribute('data-testid', `lock-banner-${phase}`);
+  el.style.borderLeft = `4px solid ${b.color}`;
+  el.style.marginBottom = '16px';
+  el.innerHTML = `
+    <h2 class="home-card-title">${escapeHtml(b.title)}</h2>
+    <p class="muted" style="margin:0; font-size:13px;">${escapeHtml(b.text)}</p>
+  `;
+  return el;
+}
+
 /* -- Header ---------------------------------------------------------------- */
 
 function renderHeader(comp, poolId, stage, data) {
   const wrap = document.createElement('section');
   wrap.className = 'pw-play-head';
   const stageLabel = stage === '1' ? 'Group standings' : stage === '2' ? 'Best 3rd-place teams' : 'Knockout bracket';
+  const modelLabel = MODEL_LABELS[getActiveModel()] || 'Model';
   wrap.innerHTML = `
     <div class="pw-stage-strip" role="tablist" aria-label="Play stages">
       ${STAGES.map((s) => `
@@ -123,12 +166,47 @@ function renderHeader(comp, poolId, stage, data) {
       `).join('')}
     </div>
     <h2 class="pw-stage-heading">Stage ${stage} · ${stageLabel}</h2>
-    <p class="muted" style="font-size:12px; margin:0;">Active pool: <strong>${escapeHtml(comp?.activeGroup?.name || 'Local (not in a pool)')}</strong> · Everyone pool is always included.</p>
+    <p class="muted" style="font-size:12px; margin:0 0 10px;">Active pool: <strong>${escapeHtml(comp?.activeGroup?.name || 'Local (not in a pool)')}</strong></p>
+    <button class="pick-btn pick-btn-secondary" data-action="fill-all" data-testid="play-fill-whole" style="width:100%;">⚡ Fill my whole bracket from ${escapeHtml(modelLabel)}</button>
   `;
   wrap.querySelectorAll('[data-stage]').forEach((b) => {
     b.addEventListener('click', () => setRoute('play', { stage: b.dataset.stage }));
   });
+  // R14: one-tap "fill everything" — produces an immediately-submittable
+  // draft from the active model across all three stages; the user can tweak
+  // afterwards. Eliminates the 60+ taps needed to fill a bracket by hand.
+  wrap.querySelector('[data-action="fill-all"]').addEventListener('click', () => {
+    fillWholeBracketFromModel(data, poolId, getActiveModel());
+    setRoute('play', { stage });
+  });
   return wrap;
+}
+
+function fillWholeBracketFromModel(data, poolId, model) {
+  // Stage 1: rank each group by the model.
+  let picks = loadGroupPicks(poolId);
+  if (!picks.groups) picks = emptyPicks();
+  for (const letter of GROUP_LETTERS) {
+    const teams = data?.groupMatchups?.[letter]?.teams || [];
+    if (teams.length < 4) continue;
+    const ranked = rankTeamsByModel(teams, data, model);
+    for (let i = 0; i < 4; i++) {
+      if (ranked[i]) picks = setRankForGroup(picks, letter, i + 1, ranked[i]);
+    }
+  }
+  // Stage 2: rank all twelve 3rd-place teams by the model, keep the top 8.
+  const thirds = GROUP_LETTERS
+    .map((l) => picks.groups[l]?.[2])
+    .filter(Boolean);
+  const rankedThirds = rankTeamsByModel(thirds, data, model).slice(0, REQUIRED_THIRDS);
+  picks.best_thirds = rankedThirds;
+  persistGroupPicks(poolId, picks);
+  // Stage 3: autofill the full knockout from the model.
+  const draft = loadBracketDraft(poolId);
+  const af = buildAutofill(data, modelToAutofillSource(model), {});
+  draft.picks = mergeAutofillIntoBracket(af, draft.picks || {}, true);
+  persistBracketDraft(poolId, draft);
+  window.dispatchEvent(new CustomEvent('play:picks-changed'));
 }
 
 /* -- Stage 1 --------------------------------------------------------------- */
