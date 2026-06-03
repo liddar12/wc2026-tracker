@@ -180,6 +180,11 @@ export async function signIn(identifier, password) {
   catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
   try { await consumePendingJoinCode(); }
   catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
+  // R11: bring any guest-mode drafts forward under the new identity.
+  if (state.user?.id) {
+    const m = migrateGuestDraftsToUser(state.user.id);
+    if (m.migrated.length) console.info('[auth] migrated guest drafts on signIn', m.migrated);
+  }
   // R6 QA: notify the toolbar so its label flips from "Sign in" to the
   // signed-in pill. Without this dispatch the toolbar reverts on the next
   // navigation because syncLabel reads stale state.
