@@ -53,7 +53,7 @@ export function renderMyBracketsView(root, data, params = {}) {
   const draft = loadBracketDraft(activePoolId);
   const picks = normalizeGroupPredictions(loadGroupPicks(activePoolId));
   const r32 = buildR32Seeding(data, { userPicks: picks });
-  const rounds = computeRounds(r32, draft);
+  const rounds = computeRounds(r32, draft, data);
 
   if (!r32.length) {
     const empty = document.createElement('section');

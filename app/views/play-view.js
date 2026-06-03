@@ -443,7 +443,7 @@ function renderStage3(host, data, poolId) {
   const draft = loadBracketDraft(poolId);
   const groupPicks = normalizeGroupPredictions(loadGroupPicks(poolId));
   const r32 = buildR32Seeding(data, { userPicks: groupPicks });
-  const rounds = computeRounds(r32, draft);
+  const rounds = computeRounds(r32, draft, data);
   // R13: per-side analytics use the active model
   const activeModel = getActiveModel();
   const modelLabel = MODEL_LABELS[activeModel] || 'Model';
@@ -634,7 +634,7 @@ function renderSubmitBar(data, poolId, comp) {
     const draft = loadBracketDraft(poolId);
     const groupPicks = normalizeGroupPredictions(picks);
     const r32 = buildR32Seeding(data, { userPicks: groupPicks });
-    const rounds = computeRounds(r32, draft);
+    const rounds = computeRounds(r32, draft, data);
 
     // R11: the bracket is submittable when every knockout slot is decided,
     // regardless of whether Stage 1+2 were predicted by the user.
