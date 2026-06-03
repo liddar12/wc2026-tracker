@@ -3872,3 +3872,11 @@ html, body { overflow-x: hidden; }
   outline-offset: 2px;
   border-radius: 12px;
 }
+
+/* R11: Late-joiner Quick-Start CTA */
+.pw-late-joiner-cta {
+  border-left: 4px solid var(--good);
+  margin-bottom: 16px;
+}
+.pw-late-joiner-cta .home-card-title { font-size: 16px; }
+.pw-submit-info { list-style: none; padding: 0; margin: 6px 0 0; }

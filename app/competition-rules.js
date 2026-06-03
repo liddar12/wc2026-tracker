@@ -34,6 +34,29 @@ export function buildPostJoinPath(pathname = '/', hash = '') {
   return `${computeBasePath(pathname)}${safeHash}`;
 }
 
+/**
+ * R11: per-match lock. A given match is locked once its kickoff_utc has
+ * passed; picks for that match can no longer be edited. This replaces the
+ * old per-stage lock which gated the entire group stage as a unit (~17
+ * days) and prevented users from updating predictions for matches that
+ * hadn't started yet.
+ */
+export function isMatchLocked(match, nowMs = Date.now()) {
+  if (!match?.kickoff_utc) return false;
+  const k = Date.parse(match.kickoff_utc);
+  return Number.isFinite(k) && nowMs >= k;
+}
+
+/** R11: convenience — is the very first match of a given stage locked? */
+export function stageStarted(schedule, stageName, nowMs = Date.now()) {
+  const starts = (schedule || [])
+    .filter((m) => m.stage === stageName)
+    .map((m) => Date.parse(m.kickoff_utc))
+    .filter(Number.isFinite);
+  if (!starts.length) return false;
+  return nowMs >= Math.min(...starts);
+}
+
 export function deriveLockState(schedule, nowMs = Date.now()) {
   if (!Array.isArray(schedule) || !schedule.length) {
     return { isLocked: false, groupsLocked: false, bracketLocked: false, phase: 'pre-tournament' };

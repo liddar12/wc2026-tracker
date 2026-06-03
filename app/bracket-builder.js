@@ -10,7 +10,7 @@
    consuming views. */
 
 import { normalizeGroupPredictions } from './group-scoring.js';
-import { isSlotPlaceholder } from './bracket-resolver.js';
+import { isSlotPlaceholder, computeGroupStandings } from './bracket-resolver.js';
 // Note: getCachedGroupPredictions is loaded lazily so this module stays
 // import-safe in node (competition.js pulls supabase via esm.sh).
 
@@ -157,6 +157,55 @@ export function findTeamGroup(team, data) {
  * lowest-numbered slots is preferred (user's ranking → bracket layout).
  */
 
+/**
+ * R11: effective group order honors actual results when a group is fully
+ * played; otherwise falls back to user predictions. Returns null if neither
+ * source has data, so callers can decide whether to leave a placeholder.
+ */
+export function effectiveGroupOrder(data, picks, letter) {
+  // 1. Actual results win when available (the group is complete).
+  const actualStandings = computeGroupStandings(data, letter);
+  if (Array.isArray(actualStandings) && actualStandings.length >= 4 && actualStandings.every((r) => r?.team)) {
+    return actualStandings.slice(0, 4).map((r) => r.team);
+  }
+  // 2. Otherwise user prediction (fully-ranked group only).
+  const userOrder = picks?.groups?.[letter];
+  if (Array.isArray(userOrder) && userOrder.length === 4 && userOrder.every((t) => typeof t === 'string' && t.trim())) {
+    return userOrder.slice(0, 4);
+  }
+  // 3. Neither — placeholder will stand.
+  return null;
+}
+
+/**
+ * R11: effective best-thirds list. If every group is complete in actuals,
+ * compute the FIFA top-8 thirds (sort all twelve 3rd-place teams by group
+ * standings rank — points / GD / GF / fair-play / FIFA ranking). Otherwise
+ * fall back to user picks.
+ */
+export function effectiveBestThirds(data, picks) {
+  const allGroups = Object.keys(data?.groupMatchups || {});
+  const actualThirds = [];
+  for (const letter of allGroups) {
+    const standings = computeGroupStandings(data, letter);
+    if (!Array.isArray(standings) || standings.length < 3) {
+      // At least one group still in progress → fall back to user picks.
+      return Array.isArray(picks?.best_thirds) ? picks.best_thirds.slice(0, 8) : [];
+    }
+    const third = standings[2];
+    if (third?.team) {
+      actualThirds.push({ team: third.team, group: letter, points: third.points || 0, gd: third.gd || 0, gf: third.gf || 0 });
+    }
+  }
+  if (actualThirds.length < 8) {
+    // Not enough completed groups for an actual-derived top-8.
+    return Array.isArray(picks?.best_thirds) ? picks.best_thirds.slice(0, 8) : [];
+  }
+  // Pick the 8 best thirds by FIFA tiebreakers (points > gd > gf > name).
+  actualThirds.sort((a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf || a.team.localeCompare(b.team));
+  return actualThirds.slice(0, 8).map((r) => r.team);
+}
+
 export function buildR32Seeding(data, opts = {}) {
   const sf = data?.scheduleFull || [];
   const r32 = sf
@@ -165,9 +214,20 @@ export function buildR32Seeding(data, opts = {}) {
   if (r32.length !== 16) return [];
   const picks = opts.userPicks ?? normalizeGroupPredictions(loadUserGroupPicks(opts.poolId));
 
-  // First, resolve all the deterministic "1A" / "2B" slots (per-group rank).
-  // Then run a bipartite match on the "3 …" slots holistically.
-  const thirdSlots = [];      // [{ slotText, matchNumber, side, allowed: Set }]
+  // R11: derive effective group orders + best-thirds with the actual-results
+  // fallback baked in. Caller of buildR32Seeding therefore gets a bracket
+  // that's resolvable as soon as group stage results land, even if the user
+  // never predicted Stage 1+2.
+  const effectiveGroups = {};
+  for (const letter of Object.keys(data?.groupMatchups || {})) {
+    const order = effectiveGroupOrder(data, picks, letter);
+    if (order) effectiveGroups[letter] = order;
+  }
+  const effectiveThirds = effectiveBestThirds(data, picks);
+  const effectivePicks = { groups: effectiveGroups, best_thirds: effectiveThirds };
+
+  // Collect the "3 …" slots and bipartite-match them in one pass.
+  const thirdSlots = [];
   for (const m of r32) {
     for (const side of ['team_a', 'team_b']) {
       const text = m[side];
@@ -182,17 +242,17 @@ export function buildR32Seeding(data, opts = {}) {
       }
     }
   }
-  const thirdAssignments = matchBestThirdsToSlots(thirdSlots, picks.best_thirds || [], data);
+  const thirdAssignments = matchBestThirdsToSlots(thirdSlots, effectivePicks.best_thirds || [], data);
 
   return r32.map((m) => {
     const out = { match_number: m.match_number, kickoff_utc: m.kickoff_utc };
     for (const side of ['team_a', 'team_b']) {
       const text = m[side];
       if (typeof text !== 'string') { out[side] = text; continue; }
-      // 1A / 2B style: defer to per-group resolver
+      // 1A / 2B style: defer to per-group resolver against effective picks
       const groupRank = text.match(/^(\d)([A-L])$/);
       if (groupRank) {
-        out[side] = resolveSlotFromUserPicks(text, picks, data, null);
+        out[side] = resolveSlotFromUserPicks(text, effectivePicks, data, null);
         continue;
       }
       // 3 ABCD style: pull from matcher result

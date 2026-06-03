@@ -49,6 +49,7 @@ import {
 } from '../bracket-builder.js';
 import { getCompetitionState } from '../competition.js';
 import { normalizeGroupPredictions } from '../group-scoring.js';
+import { computeGroupStandings } from '../bracket-resolver.js';
 
 const STAGES = ['1', '2', '3'];
 
@@ -63,6 +64,16 @@ export function renderPlayView(root, data, params = {}) {
 
   // Pool selector + progress chips
   root.appendChild(renderHeader(comp, poolId, stage, data));
+
+  // R11: Quick-start CTA when group stage is complete and the user has no
+  // Stage-1 picks yet. Drops them straight onto Stage 3 with the bracket
+  // pre-seeded from actual results.
+  if (stage === '1' && groupStageIsComplete(data)) {
+    const hasStage1 = isStage1Complete(loadGroupPicks(poolId));
+    if (!hasStage1) {
+      root.appendChild(renderLateJoinerCta(data, poolId));
+    }
+  }
 
   // Stage container
   const stageRoot = document.createElement('section');
@@ -517,31 +528,58 @@ function renderSubmitBar(data, poolId, comp) {
     const r32 = buildR32Seeding(data, { userPicks: groupPicks });
     const rounds = computeRounds(r32, draft);
 
+    // R11: the bracket is submittable when every knockout slot is decided,
+    // regardless of whether Stage 1+2 were predicted by the user.
+    // buildR32Seeding now resolves slots from actual results when available,
+    // so late-joiners who skip Stages 1+2 still get a fillable R32.
+    //
+    // Stage 1+2 status remains surfaced as INFO so users see scoring
+    // opportunities (predict correctly = +3/+2/+1 per group) — but it
+    // doesn't gate submit.
     const s1 = stage1WhatsLeft(picks);
     const s2 = stage2WhatsLeft(picks);
     const koLeft = knockoutWhatsLeft(rounds, draft);
-    const left = [];
-    if (s1) left.push(s1);
-    if (s2) left.push(s2);
-    for (const l of koLeft) left.push(`Stage 3: ${l}`);
+    // Verify R32 actually has 16 real teams (not still showing 1A/2B/3 ABCDF)
+    const r32Placeholders = rounds[0].matches.filter(
+      (m) => (!m.team_a || /^\d[A-L]$|^3 [A-L]+$/.test(m.team_a)) ||
+             (!m.team_b || /^\d[A-L]$|^3 [A-L]+$/.test(m.team_b))
+    ).length;
+
+    const blockers = [];
+    if (r32Placeholders > 0) {
+      // Bracket isn't fully resolvable yet — surface the missing inputs.
+      if (s1) blockers.push(s1);
+      if (s2) blockers.push(s2);
+    }
+    for (const l of koLeft) blockers.push(`Stage 3: ${l}`);
+
+    const info = [];
+    if (r32Placeholders === 0) {
+      // Bracket is resolvable; treat Stage 1+2 status as advisory.
+      if (s1) info.push(`${s1} (predictions are optional once group results land)`);
+      if (s2) info.push(`${s2} (predictions are optional once group results land)`);
+    }
 
     return {
-      left,
-      canSubmit: left.length === 0,
+      blockers,
+      info,
+      canSubmit: blockers.length === 0,
       rounds,
       draft,
     };
   }
 
   function paint() {
-    const { left, canSubmit, rounds, draft } = compute();
+    const { blockers, info, canSubmit, rounds, draft } = compute();
     const locked = comp?.lockState?.bracketLocked;
+    const allGreen = blockers.length === 0;
     wrap.innerHTML = `
       <div class="pw-submit-card">
         <div class="pw-submit-checklist" aria-live="polite">
-          <strong style="display:block; margin-bottom: 6px;">What's left</strong>
-          ${left.length === 0 ? '<span class="pw-submit-allgreen">All set — ready to submit.</span>' :
-            `<ul>${left.slice(0, 6).map((l) => `<li>${escapeHtml(l)}</li>`).join('')}${left.length > 6 ? `<li class="muted">+${left.length - 6} more</li>` : ''}</ul>`}
+          <strong style="display:block; margin-bottom: 6px;">${allGreen ? 'Ready' : "What's left"}</strong>
+          ${allGreen
+            ? `<span class="pw-submit-allgreen">All set — ready to submit.</span>${info.length ? `<ul class="pw-submit-info">${info.slice(0,3).map((l) => `<li class="muted" style="font-size:11px;">${escapeHtml(l)}</li>`).join('')}</ul>` : ''}`
+            : `<ul>${blockers.slice(0, 6).map((l) => `<li>${escapeHtml(l)}</li>`).join('')}${blockers.length > 6 ? `<li class="muted">+${blockers.length - 6} more</li>` : ''}</ul>`}
         </div>
         <button class="pick-btn pw-submit-btn" id="pw-submit-btn" ${canSubmit && !locked ? '' : 'disabled'} data-testid="play-submit">${locked ? 'Bracket locked' : (canSubmit ? 'Submit bracket' : 'Submit')}</button>
       </div>
@@ -592,6 +630,49 @@ function firstIncompleteGroup(picks) {
 function nextEmptyPlace(order) {
   for (let i = 0; i < 4; i++) if (!order[i]) return i + 1;
   return null;
+}
+
+// R11: tell whether the group stage is fully played, so the late-joiner
+// CTA only appears when the bracket can actually be auto-seeded.
+function groupStageIsComplete(data) {
+  const letters = Object.keys(data?.groupMatchups || {});
+  if (!letters.length) return false;
+  for (const l of letters) {
+    const s = computeGroupStandings(data, l);
+    if (!Array.isArray(s) || s.length < 4) return false;
+  }
+  return true;
+}
+
+function renderLateJoinerCta(data, poolId) {
+  const card = document.createElement('section');
+  card.className = 'home-card pw-late-joiner-cta';
+  card.setAttribute('data-testid', 'late-joiner-cta');
+  card.innerHTML = `
+    <h2 class="home-card-title">Group stage is over — skip straight to the bracket</h2>
+    <p class="muted" style="font-size: 13px; margin: 0 0 12px;">
+      Your Round of 32 is auto-filled from the real results. Just pick winners through to the Final.
+    </p>
+    <div style="display:flex; gap:8px; flex-wrap: wrap;">
+      <button class="pick-btn" data-action="quick-start">Start your bracket →</button>
+      <button class="pick-btn pick-btn-secondary" data-action="predict-anyway">Predict groups anyway</button>
+    </div>
+  `;
+  card.querySelector('[data-action="quick-start"]').addEventListener('click', () => {
+    setRoute('play', { stage: '3' });
+  });
+  card.querySelector('[data-action="predict-anyway"]').addEventListener('click', () => {
+    // Dismiss the CTA by storing a flag; user already on Stage 1, just hide
+    try { localStorage.setItem('wc26.lateJoinerCtaDismissed', '1'); } catch {}
+    card.remove();
+  });
+  // Honor dismissal
+  try {
+    if (localStorage.getItem('wc26.lateJoinerCtaDismissed') === '1') {
+      card.hidden = true;
+    }
+  } catch {}
+  return card;
 }
 
 function ordinal(n) {
