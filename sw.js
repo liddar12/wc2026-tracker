@@ -11,7 +11,7 @@
  * any cache that doesn't match the current VERSION prefix so stale shell
  * assets are evicted automatically.
  */
-const VERSION = 'wc26-v10';
+const VERSION = 'wc26-v11';
 const SHELL_CACHE = `${VERSION}-shell`;
 const DATA_CACHE = `${VERSION}-data`;
 

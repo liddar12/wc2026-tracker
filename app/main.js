@@ -1,4 +1,20 @@
 /* main.js — entry point, router, view loop. */
+import { purgeLegacyState } from './lib/version-purge.js';
+// R12: legacy-state purge runs BEFORE any module that reads localStorage so
+// stale keys from prior deploys don't shadow the current build. The
+// bundled Supabase URL is looked up from preview-config (see index.html
+// loads app/preview-config.js); if it's not set, the URL-matching pass
+// is skipped and only the orphan-key purge runs.
+try {
+  const bundledSupabaseUrl = (typeof window !== 'undefined' && window.__WC26_CONFIG__?.supabaseUrl) || null;
+  const r = purgeLegacyState({ bundledSupabaseUrl });
+  if (r.ranMigration && r.removed.length) {
+    console.info('[r12] purged legacy state', r.removed, 'from', r.fromVersion, '→', r.toVersion);
+  }
+} catch (err) {
+  console.warn('[r12] legacy-state purge failed', err?.message || err);
+}
+
 import { loadData, formatLastUpdated } from './data-loader.js';
 import { getState, setData, setRoute, parseHash } from './state.js';
 import { initTheme } from './theme.js';
@@ -175,7 +191,10 @@ function bindNav() {
   document.getElementById('back-btn').addEventListener('click', () => {
     history.back();
   });
-  document.getElementById('search-btn').addEventListener('click', () => {
+  // R12: search button was removed from the header per the user's UX
+  // simplification. Defensively guard in case a stale cached shell
+  // still has the markup.
+  document.getElementById('search-btn')?.addEventListener('click', () => {
     const state = getState();
     if (state.data) openSearch(state.data);
   });
@@ -210,6 +229,9 @@ window.addEventListener('state:change', () => {
   updateFooter();
 });
 
+// R12: theme button was removed from the header. initTheme still runs so
+// the stored wc26.theme preference is applied at boot; the user toggles
+// it from Settings now.
 initTheme(document.getElementById('theme-btn'));
 bindNav();
 initTeamSkin();

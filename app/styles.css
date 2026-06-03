@@ -84,7 +84,7 @@ body {
   display: grid;
   grid-template-columns: 44px 1fr auto;
   align-items: center;
-  gap: 4px;
+  gap: 8px;                            /* R12: 8px gap matches header-actions */
   /* R6 QA pass-2: keep header width inside the viewport */
   max-width: 100vw;
   overflow: hidden;
@@ -3880,3 +3880,16 @@ html, body { overflow-x: hidden; }
 }
 .pw-late-joiner-cta .home-card-title { font-size: 16px; }
 .pw-submit-info { list-style: none; padding: 0; margin: 6px 0 0; }
+
+/* R12: iOS header layout — on top-level routes the back-btn is `hidden` so
+   we collapse column 1 to give the title room. The grid then becomes
+   `1fr auto`. Title sits flush at the left padding; account chip + settings
+   sit flush at the right padding. */
+.app-header:has(.back-btn[hidden]) {
+  grid-template-columns: 1fr auto;
+}
+.app-header:has(.back-btn[hidden]) .back-btn {
+  display: none;
+}
+/* When the back-btn IS visible we still need it at 44px, gap 8 */
+.app-header .back-btn { min-width: 44px; }

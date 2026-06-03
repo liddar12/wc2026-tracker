@@ -99,7 +99,7 @@ function renderHeader(comp, poolId, stage, data) {
     <div class="pw-stage-strip" role="tablist" aria-label="Play stages">
       ${STAGES.map((s) => `
         <button role="tab" class="pw-stage-chip ${s === stage ? 'is-active' : ''}" data-stage="${s}" aria-current="${s === stage ? 'page' : 'false'}" data-testid="stage-chip-${s}">
-          <span class="pw-stage-num">${s}</span>
+          <span class="pw-stage-num">Stage ${s}</span>
           <span class="pw-stage-label">${s === '1' ? 'Groups' : s === '2' ? '3rd places' : 'Knockout'}</span>
         </button>
       `).join('')}

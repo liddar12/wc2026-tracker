@@ -30,6 +30,9 @@ export function renderSettingsView(root, data) {
     root.appendChild(renderAccountCard());
   }
 
+  // --- R12: Reset app data
+  root.appendChild(renderResetCard());
+
   // Back to Home
   const back = document.createElement('div');
   back.className = 'home-card-cta';
@@ -173,6 +176,35 @@ function renderAccountCard() {
   } else {
     card.querySelector('#settings-go-signin').addEventListener('click', () => setRoute('picks', {}));
   }
+  return card;
+}
+
+// R12: "Reset app data" — wipes every wc26.* + sb-* key, then reloads the
+// page. Used as an escape hatch when stale localStorage from a prior deploy
+// is causing login/log-off/pool-create issues that don't repro in private
+// browsing.
+function renderResetCard() {
+  const card = document.createElement('section');
+  card.className = 'home-card';
+  card.style.marginBottom = '12px';
+  card.innerHTML = `
+    <h2 class="home-card-title">Reset app data</h2>
+    <p class="muted" style="margin:0 0 10px; font-size:13px;">Clears every local pick, draft, preference, and auth session in this browser. Use this only if you're seeing strange behavior that doesn't go away on sign out.</p>
+    <button class="pick-btn pick-btn-secondary" id="settings-reset-btn" data-testid="settings-reset">Reset everything</button>
+    <p id="settings-reset-status" class="muted" style="margin: 10px 0 0; font-size:12px;" aria-live="polite"></p>
+  `;
+  card.querySelector('#settings-reset-btn').addEventListener('click', async () => {
+    const status = card.querySelector('#settings-reset-status');
+    if (!confirm('This will clear all your picks, drafts, and sign-in state in this browser. Continue?')) return;
+    try {
+      const { fullReset } = await import('../lib/version-purge.js');
+      const r = fullReset();
+      status.textContent = `Cleared ${r.removed.length} keys. Reloading…`;
+      setTimeout(() => location.reload(), 500);
+    } catch (err) {
+      status.textContent = `Reset failed: ${err?.message || err}`;
+    }
+  });
   return card;
 }
 
