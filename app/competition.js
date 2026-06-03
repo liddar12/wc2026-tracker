@@ -148,6 +148,11 @@ export async function signUp(identifier, password) {
   catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
   try { await consumePendingJoinCode(); }
   catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
+  // R11: bring any guest-mode drafts forward under the new identity.
+  if (state.user?.id) {
+    const m = migrateGuestDraftsToUser(state.user.id);
+    if (m.migrated.length) console.info('[auth] migrated guest drafts', m.migrated);
+  }
   window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
@@ -175,6 +180,11 @@ export async function signIn(identifier, password) {
   catch (err) { console.warn('[auth] loadProfileAndGroups soft-failed', err?.message || err); }
   try { await consumePendingJoinCode(); }
   catch (err) { console.warn('[auth] consumePendingJoinCode soft-failed', err?.message || err); }
+  // R11: bring any guest-mode drafts forward under the new identity.
+  if (state.user?.id) {
+    const m = migrateGuestDraftsToUser(state.user.id);
+    if (m.migrated.length) console.info('[auth] migrated guest drafts on signIn', m.migrated);
+  }
   // R6 QA: notify the toolbar so its label flips from "Sign in" to the
   // signed-in pill. Without this dispatch the toolbar reverts on the next
   // navigation because syncLabel reads stale state.
@@ -540,6 +550,11 @@ async function upsertProfileUsername(userId, username) {
     .upsert({ user_id: userId, username }, { onConflict: 'user_id' });
   if (error) throw error;
 }
+
+// R11: migrateGuestDraftsToUser lives in app/lib/draft-migration.js so the
+// node test runner can import it without pulling Supabase via esm.sh.
+import { migrateGuestDraftsToUser as _migrate } from './lib/draft-migration.js';
+export const migrateGuestDraftsToUser = _migrate;
 
 function loadGuestMode() {
   try {
