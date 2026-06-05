@@ -49,9 +49,10 @@ function describe(payload) {
   const pickCount = meta.pick_count ?? Object.keys(picks).length;
   // The champion is the pick on the final (match 104) when present.
   const champ = picks?.['104']?.team || picks?.['104']?.choice || null;
+  const picksLabel = `${pickCount} ${pickCount === 1 ? 'pick' : 'picks'}`;
   const desc = champ
-    ? `${pickCount} picks · ${champ} to lift the trophy. Build yours for the 2026 FIFA World Cup.`
-    : `${pickCount} picks for the 2026 FIFA World Cup. Build your own bracket and compare.`;
+    ? `${picksLabel} · ${champ} to lift the trophy. Build yours for the 2026 FIFA World Cup.`
+    : `${picksLabel} for the 2026 FIFA World Cup. Build your own bracket and compare.`;
   return { title: `${label} — WC26 Tracker`, desc };
 }
 
