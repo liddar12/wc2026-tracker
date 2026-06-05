@@ -229,7 +229,7 @@ function renderModelSettingsCard() {
       const desc = MODEL_DESCRIPTIONS[m] || '';
       // Map model id → backtest key (j5l→model, kalshi→market, hybrid→hybrid).
       // Consensus has no historical backtest (it's a current-tournament aggregate).
-      const btKey = m === 'j5l' ? 'model' : m === 'kalshi' ? 'market' : m === 'hybrid' ? 'hybrid' : null;
+      const btKey = m === 'j5l' ? 'model' : m === 'dt' ? 'dt' : m === 'kalshi' ? 'market' : m === 'hybrid' ? 'hybrid' : null;
       const wc = btKey && backtest?.wc2022?.[btKey];
       const eu = btKey && backtest?.euro2024?.[btKey];
       const wcStr = wc ? `${Math.round((wc.correct / wc.total) * 100)}% (${wc.correct}/${wc.total})` : '—';

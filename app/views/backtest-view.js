@@ -44,6 +44,7 @@ export async function renderBacktestView(root) {
       <h3 style="margin: 0 0 8px;">${label}</h3>
       <div class="backtest-grid">
         ${renderRow('Model only', r.model)}
+        ${renderRow('DT Model', r.dt)}
         ${renderRow('Market only', r.market)}
         ${renderRow('Hybrid 50/50', r.hybrid)}
       </div>

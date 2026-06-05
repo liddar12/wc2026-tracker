@@ -11,10 +11,11 @@
      'consensus' → most-picked across public-pool brackets
 */
 
-export const MODELS = ['j5l', 'kalshi', 'hybrid', 'consensus'];
+export const MODELS = ['j5l', 'dt', 'kalshi', 'hybrid', 'consensus'];
 
 export const MODEL_LABELS = {
   j5l: 'J5L Model',
+  dt: 'DT Model',
   kalshi: 'Kalshi Market',
   hybrid: 'Hybrid 50/50',
   consensus: 'Public Consensus',
@@ -22,6 +23,10 @@ export const MODEL_LABELS = {
 
 export const MODEL_DESCRIPTIONS = {
   j5l: 'My composite power ranking: 0.15·mine + 0.10·elo + 0.45·TMV + 0.30·qual + host multiplier.',
+  // R16: DT sits under the J5L family. Honest framing — it is Elo-anchored
+  // today (the player-talent + coaching layer is pending the FBref scrape per
+  // the DT pipeline README), Monte-Carlo'd into title odds.
+  dt: 'Player-talent + coaching forecast, Elo-anchored, Monte-Carlo title odds (20k sims). Talent layer pending — currently an Elo-anchored prior.',
   kalshi: 'Live tournament-winner odds from Kalshi prediction markets.',
   hybrid: '50/50 blend of the J5L model and Kalshi market. Tends to smooth out outliers in either source.',
   consensus: 'The most-picked team at each slot across every public-pool bracket.',
@@ -31,6 +36,7 @@ export const MODEL_DESCRIPTIONS = {
 // same models. Map J5L → 'model' there.
 export const MODEL_TO_AUTOFILL_SOURCE = {
   j5l: 'model',
+  dt: 'dt',
   kalshi: 'kalshi',
   hybrid: 'hybrid',
   consensus: 'consensus',
