@@ -62,7 +62,12 @@ export async function loadSharedBracket(tokenOrInline) {
 
 function buildShareUrl({ token, inline }) {
   const base = `${location.origin}${location.pathname}`;
-  if (token) return `${base}#/shared/token/${encodeURIComponent(token)}`;
+  // R15b (#8): token links use a real path (/s/<token>) so the Netlify
+  // share-card function can serve OG/Twitter previews — URL fragments never
+  // reach the server. The function bounces humans on to #/shared/token/<token>,
+  // which the SPA router already handles. Inline links have no server lookup,
+  // so they stay in the hash.
+  if (token) return `${location.origin}/s/${encodeURIComponent(token)}`;
   if (inline) return `${base}#/shared/inline/${inline}`;
   return base;
 }

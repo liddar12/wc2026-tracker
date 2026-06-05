@@ -496,7 +496,8 @@ function renderStage2(host, data, poolId) {
 async function initSortable(list, onChange) {
   if (!list || !list.children.length) return;
   try {
-    const mod = await import('https://esm.sh/sortablejs@1.15.2');
+    // R15b (#40): vendored locally instead of esm.sh (pinned sortablejs 1.15.2).
+    const mod = await import('../../vendor/sortablejs.js');
     const Sortable = mod.default || mod.Sortable;
     Sortable.create(list, {
       animation: 150,

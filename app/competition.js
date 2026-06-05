@@ -1,4 +1,8 @@
-import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
+// R15b (#40): vendored locally instead of esm.sh — the data layer (auth, pools,
+// leaderboard) is on the critical path; a CDN outage shouldn't dark the app, and
+// vendoring keeps the PWA installable/offline-consistent. Regenerate with
+// `node scripts/vendor-deps.mjs` (see vendor/README.md). Pinned: supabase-js 2.107.0.
+import { createClient } from '../vendor/supabase-js.js';
 import { allPicks } from './state.js';
 import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFromPath } from './competition-rules.js';
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
