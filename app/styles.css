@@ -1573,6 +1573,11 @@ body.search-open { overflow: hidden; }
 .pw-standings-pts { flex: 0 0 auto; text-align: right; font-variant-numeric: tabular-nums; }
 .pw-standings-split { display: block; font-size: 11px; font-weight: 400; }
 
+/* R19: Golden Boot odds — factor chips under each contender. */
+[data-testid="gb-odds-list"] .pw-standings-name { white-space: normal; overflow: visible; }
+.gb-factors { display: flex; flex-wrap: wrap; gap: 8px; font-size: 10px; margin-top: 3px; }
+.gb-factors span { white-space: nowrap; }
+
 .home-match-list { display: grid; gap: 8px; }
 .home-match-row {
   display: grid;
