@@ -54,7 +54,10 @@ jobs:
           node-version: '20'
       - name: Install Playwright + Chromium
         run: |
-          npm ci || npm install --no-audit --no-fund
+          # No package-lock is committed (it's gitignored), so use npm install.
+          npm install --no-audit --no-fund
           npx playwright install --with-deps chromium
       - name: UX + integrated suites
+        # The config's testIgnore excludes the ad-hoc qa-*.spec.mjs audit specs;
+        # this runs the maintained regression suite (nav/play/bracket) + integrated.
         run: npx playwright test --config tests/playwright.config.mjs tests/ux tests/integrated
