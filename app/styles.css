@@ -29,6 +29,11 @@
   --good: #2f7d32;
   --warn: #946612;
   --bad: #b5252c;
+  /* R17 (#5b): a picked/selected team reads green ("locked in"), consistently
+     across pick buttons, bracket slots, and the bracket tree. green-700 +
+     white = AA (~5.5:1). */
+  --picked: #15803D;
+  --picked-ink: #ffffff;
   --shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
 }
 
@@ -45,6 +50,9 @@
   --good: #56c168;
   --warn: #e0b75d;
   --bad: #e35a61;
+  /* R17 (#5b): picked/selected = green-700 + white (AA on dark too). */
+  --picked: #15803D;
+  --picked-ink: #ffffff;
   --shadow: 0 2px 14px rgba(0, 0, 0, 0.5);
 }
 
@@ -464,9 +472,9 @@ body {
   cursor: pointer;
 }
 .pick-btn.is-picked {
-  background: var(--primary);
-  color: var(--primary-ink);
-  border-color: var(--primary);
+  background: var(--picked);
+  color: var(--picked-ink);
+  border-color: var(--picked);
 }
 .pick-btn:active { transform: scale(0.98); }
 .pick-btn:disabled {
@@ -1932,9 +1940,9 @@ body.search-open { overflow: hidden; }
 .bb-slot:disabled { opacity: 0.55; cursor: default; }
 .bb-slot .bb-slot-flag { font-size: 20px; }
 .bb-slot.is-picked {
-  background: var(--primary);
-  color: var(--primary-ink);
-  border-color: var(--primary);
+  background: var(--picked);
+  color: var(--picked-ink);
+  border-color: var(--picked);
 }
 .bb-slot.is-actual-win {
   background: color-mix(in srgb, var(--good) 18%, var(--surface));
@@ -3670,8 +3678,8 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   touch-action: manipulation;
 }
 .pw-bracket-side.is-picked {
-  border-color: var(--good);
-  background: color-mix(in srgb, var(--good) 18%, var(--surface-2));
+  border-color: var(--picked);
+  background: color-mix(in srgb, var(--picked) 18%, var(--surface-2));
 }
 .pw-bracket-side[disabled] { opacity: 0.55; cursor: not-allowed; }
 .pw-bracket-name { font-weight: 600; }

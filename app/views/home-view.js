@@ -9,7 +9,8 @@ import {
   getCompetitionState,
   isSupabaseConfigured,
   continueAsGuest,
-  fetchLeaderboard
+  fetchLeaderboard,
+  EVERYONE_GROUP_ID
 } from '../competition.js';
 import { openAuth } from '../auth-modal.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
@@ -348,11 +349,13 @@ async function renderActiveLeaderboard(wrap, data) {
   const top = rows.slice(0, 5);
   const ol = document.createElement('div');
   ol.className = 'home-card home-card-leaderboard';
+  const isEveryone = getCompetitionState().activeGroup?.id === EVERYONE_GROUP_ID;
   ol.innerHTML = `
     <h2 class="home-card-title">Active group leaderboard</h2>
     <ol class="home-leaderboard">
       ${top.map((r, i) => `<li><span class="lb-rank">${i + 1}</span> <span class="lb-name">${escapeHtml(r.username)}</span> <span class="lb-score">${r.score} pts</span></li>`).join('')}
     </ol>
+    ${isEveryone ? '<p class="muted" style="margin: 8px 0 0; font-size: 11px;">Scores update as matches are played.</p>' : ''}
   `;
   wrap.appendChild(ol);
 }
