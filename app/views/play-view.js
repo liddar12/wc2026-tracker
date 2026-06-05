@@ -11,6 +11,7 @@ import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
 import { openPodiumModal } from '../components/podium-modal.js';
+import { markAnonSubmitted } from '../lib/version-purge.js';
 import {
   emptyPicks,
   loadGroupPicks,
@@ -827,6 +828,10 @@ async function submitBracket(data, poolId) {
   // Guest or signed-out: the bracket is already saved on this device. Be
   // honest — do NOT pretend it reached a leaderboard.
   if (!state.user) {
+    // R16 (Phase 3): an anon who reaches submit has completed stages 1-3 (the
+    // submit button is gated on completeness). Mark the session so its local
+    // drafts expire on the next boot (the bracket stays viewable this session).
+    markAnonSubmitted();
     return {
       ok: true,
       scope: 'local',

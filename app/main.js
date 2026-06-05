@@ -1,5 +1,5 @@
 /* main.js — entry point, router, view loop. */
-import { purgeLegacyState } from './lib/version-purge.js';
+import { purgeLegacyState, expireAnonCache } from './lib/version-purge.js';
 // R12: legacy-state purge runs BEFORE any module that reads localStorage so
 // stale keys from prior deploys don't shadow the current build. The
 // bundled Supabase URL is looked up from preview-config (see index.html
@@ -13,6 +13,17 @@ try {
   }
 } catch (err) {
   console.warn('[r12] legacy-state purge failed', err?.message || err);
+}
+
+// R16 (Phase 3): expire anonymous-session drafts (90-min TTL, or after a prior
+// stage-3 submit). No-op for signed-in users. Runs at boot alongside the purge.
+try {
+  const r = expireAnonCache();
+  if (r.expired && r.removed.length) {
+    console.info('[r16] expired anon cache', r.removed, `(${r.reason})`);
+  }
+} catch (err) {
+  console.warn('[r16] anon-cache expiry failed', err?.message || err);
 }
 
 import { loadData, formatLastUpdated } from './data-loader.js';
