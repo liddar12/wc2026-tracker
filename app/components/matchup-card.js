@@ -1,4 +1,5 @@
 /* matchup-card.js — anchored card linking to matchup-detail. */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
 import { hasHighSeverity } from './upset-badge.js';
 import { sparklineSvg } from './sparkline.js';
@@ -83,6 +84,3 @@ function predictionClass(match) {
   return '';
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

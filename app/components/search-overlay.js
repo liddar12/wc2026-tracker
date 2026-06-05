@@ -1,4 +1,5 @@
 /* search-overlay.js — client-side global search. */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from './team-flag.js';
 
@@ -137,6 +138,3 @@ function parseHref(href) {
   return { view: view || 'matchups', params };
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

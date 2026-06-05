@@ -1,3 +1,4 @@
+import { escapeHtml, escapeAttr } from '../lib/escape.js';
 /* form.js — last-5 W/D/L pills for both teams. */
 
 export function formSection(match, form) {
@@ -31,7 +32,3 @@ function side(team, entries) {
   return col;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function escapeAttr(s) { return escapeHtml(s); }

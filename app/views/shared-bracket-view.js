@@ -2,6 +2,7 @@
    token (Supabase RPC) or inline base64 payload. Lets the visitor preview
    then "Copy to my brackets" or jump straight to making their own. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { loadSharedBracket } from '../share-bracket.js';
 import { flagFor } from '../components/team-flag.js';
 import { setRoute } from '../state.js';
@@ -76,6 +77,3 @@ function formatDate(iso) {
   try { return new Date(iso).toLocaleDateString(); } catch { return iso; }
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

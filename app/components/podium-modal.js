@@ -2,6 +2,7 @@
    Shown when a complete bracket is opened from Play submit, My Brackets
    entry view, the shared-bracket page, or the resolved Live bracket. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
 import { createShareLink, tryShareViaNavigator } from '../share-bracket.js';
 
@@ -141,6 +142,3 @@ export function openPodiumModal({ first, second, third, label, onSubmit, picks }
   return { close };
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

@@ -4,6 +4,7 @@
    - Always-visible "Join by code" and "Join by name" boxes (private pools).
    - "Create pool" CTA → /#/create-group wizard.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { isValidJoinCode } from '../competition-rules.js';
 import {
@@ -250,10 +251,6 @@ function notice(text) {
   div.className = 'bb-locked-banner';
   div.textContent = text;
   return div;
-}
-
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 // R6: "is the bracket complete for this pool?" — used by the Brackets-owed banner.

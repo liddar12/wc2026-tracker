@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* handle-prompt.js — R16: the "choose a display name" centered overlay,
    extracted from toolbar-auth.js so both the toolbar and the new auth modal
    (auth-modal.js) can reuse it without an import cycle. */
@@ -38,6 +39,3 @@ export function promptHandle() {
   });
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

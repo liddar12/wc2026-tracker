@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* weather.js — kickoff-day forecast for the venue. */
 
 const WEATHER_DESC = {
@@ -49,6 +50,3 @@ function emptyLine(text) {
   return p;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

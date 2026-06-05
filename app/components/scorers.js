@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* scorers.js — top-3 scorers per team in the tournament. */
 
 export function scorersSection(match, scorers) {
@@ -29,6 +30,3 @@ function side(team, players) {
   return col;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

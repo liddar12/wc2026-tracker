@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* lineups.js — collapsible Lineups section. Open if data present, TBA otherwise. */
 
 export function lineupsSection(match, lineups) {
@@ -52,6 +53,3 @@ function sideBlock(teamName, side) {
   return col;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

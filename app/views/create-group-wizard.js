@@ -6,6 +6,7 @@
    No passphrases. Public pools appear on the discoverable Pools list.
    Private pools are name-joinable (exact, case-insensitive) or via magic link.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import {
   getCompetitionState,
@@ -255,6 +256,3 @@ function renderCelebrationStep(card, ctx) {
   card.querySelector('#cg-done').addEventListener('click', () => setRoute('home', {}));
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

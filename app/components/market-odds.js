@@ -1,4 +1,5 @@
 /* market-odds.js — Kalshi block for matchup detail (match bar or winner fallback). */
+import { escapeHtml } from '../lib/escape.js';
 import { getMatchOutcome, winnerByTeam, kalshiAttribution } from '../markets.js';
 import { marketBar } from './market-bar.js';
 import { divergenceLine } from './model-market-divergence.js';
@@ -75,6 +76,3 @@ function winnerCard(team, row) {
   return card;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

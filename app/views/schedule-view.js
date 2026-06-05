@@ -7,6 +7,7 @@
  * Layout:   horizontal scrollable day-picker strip + list of matches on the
  *           selected day with venue + local-time kickoff + broadcast tag.
  */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard } from '../components/large-match-card.js';
@@ -264,6 +265,3 @@ function formatLocalDateISO(d) {
   return `${y}-${m}-${day}`;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

@@ -2,6 +2,7 @@
    Shows the most-picked winner at each tournament stage based on all
    public-pool group_brackets rows. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { getCompetitionState } from '../competition.js';
 import { flagFor } from '../components/team-flag.js';
 
@@ -146,6 +147,3 @@ function aggregate(rows, data) {
   return { byStage, divisive, totalBrackets };
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

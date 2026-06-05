@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* help-card.js — R6 T10: collapsible "How it works" card used at the top of
    every primary section. State persists in localStorage so repeat visits are
    quiet, but a fresh device sees the help expanded on first view. */
@@ -46,10 +47,6 @@ function readCollapsed(key) {
 }
 function writeCollapsed(key, collapsed) {
   try { localStorage.setItem(LS_PREFIX + key, collapsed ? '1' : '0'); } catch {}
-}
-
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 /* -- Pre-baked help copy from spec §4 (verbatim) --------------------------- */

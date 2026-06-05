@@ -1,4 +1,5 @@
 /* team-detail.js — team header, position bars, roster, upcoming. */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { matchupCard } from '../components/matchup-card.js';
 import { downloadIcsForTeam } from '../calendar-export.js';
@@ -109,4 +110,3 @@ export function renderTeamDetail(root, data, params) {
   }
 }
 
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }

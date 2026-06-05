@@ -3,6 +3,7 @@
    slots auto-populate. Picks are stored in a dedicated localStorage draft keyed
    by group (or "local" default). Submit upserts to Supabase group_brackets.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import {
@@ -631,6 +632,3 @@ function notice(text) {
   return div;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

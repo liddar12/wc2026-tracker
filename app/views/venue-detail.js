@@ -1,4 +1,5 @@
 /* venue-detail.js — single venue header + list of matches there. */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 
 export function renderVenueDetail(root, data, params) {
@@ -89,6 +90,3 @@ function formatCap(n) {
   return n.toLocaleString();
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

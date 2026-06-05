@@ -1,4 +1,5 @@
 /* my-picks.js — show all user picks vs actual, summary, export. */
+import { escapeHtml } from '../lib/escape.js';
 import { accuracySummary } from '../predictions.js';
 import { allPicks, setRoute } from '../state.js';
 import {
@@ -454,4 +455,3 @@ function setButtonBusy(button, busy) {
   button.setAttribute('aria-busy', busy ? 'true' : 'false');
 }
 
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }

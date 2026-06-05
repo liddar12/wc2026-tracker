@@ -2,6 +2,7 @@
  *
  * Route: #/venues
  */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { BASEMAP_SVG, VIEWBOX, project } from '../components/venues-map.svg.js';
 
@@ -96,6 +97,3 @@ function formatCap(n) {
   return (n / 1000).toFixed(0) + 'k';
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

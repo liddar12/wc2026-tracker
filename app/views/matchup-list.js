@@ -1,4 +1,5 @@
 /* matchup-list.js — default landing, scoped to Group D unless filtered. */
+import { escapeHtml, escapeAttr } from '../lib/escape.js';
 import { matchupCard } from '../components/matchup-card.js';
 import { biggestMoversStrip } from '../components/biggest-movers.js';
 import { whatChangedToday } from '../components/what-changed.js';
@@ -140,5 +141,3 @@ function countAll(data) {
   return n;
 }
 
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-function escapeAttr(s) { return escapeHtml(s); }

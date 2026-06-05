@@ -1,3 +1,4 @@
+import { escapeHtml } from './lib/escape.js';
 /* competition-auth-panel.js — auth entry / sign-in / sign-up UI for competition. */
 
 const PANEL_ENTRY = 'entry';
@@ -116,6 +117,3 @@ function authShell(inner) {
   return `<div class="auth-card">${inner}</div>`;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

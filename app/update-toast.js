@@ -2,6 +2,7 @@
    has changed since the user's last visit. Auto-dismisses in 4s; tap
    to dismiss early. */
 
+import { escapeHtml } from './lib/escape.js';
 import { formatLastUpdated } from './data-loader.js';
 
 const LS_KEY = 'wc26.lastSeenDataVersion';
@@ -118,6 +119,3 @@ function spawnToast(versionIso, summary) {
   setTimeout(dismiss, 4500);
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

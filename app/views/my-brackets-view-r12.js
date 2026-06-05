@@ -12,6 +12,7 @@
      stay accessible from a single "Auto-fill" section that mirrors the
      Play Stage 3 surface for power users. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
@@ -197,6 +198,3 @@ function renderModifyCta(comp, activePoolId) {
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

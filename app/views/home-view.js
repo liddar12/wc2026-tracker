@@ -1,6 +1,7 @@
 /* home-view.js — dashboard hub. Hero with countdown, last-updated stamp,
    today's matches, recent results, auth/group preview, Kalshi top movers,
    quick links to other tabs. */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard } from '../components/large-match-card.js';
@@ -796,6 +797,3 @@ function renderQuickLinks() {
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

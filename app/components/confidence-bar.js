@@ -1,4 +1,5 @@
 /* confidence-bar.js — render a tri-segment probability bar for a match. */
+import { escapeHtml } from '../lib/escape.js';
 import { tipButton } from './tooltip.js';
 
 export function confidenceBar(match, { title = 'Model prediction', showTip = true } = {}) {
@@ -43,6 +44,3 @@ export function confidenceBar(match, { title = 'Model prediction', showTip = tru
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

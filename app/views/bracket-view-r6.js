@@ -6,6 +6,7 @@
 
    No picking happens here — Play is the only write surface. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
@@ -271,6 +272,3 @@ function stageLabel(stage) {
   }[stage] || stage;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
