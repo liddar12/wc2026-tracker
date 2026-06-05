@@ -849,13 +849,20 @@ async function submitBracket(data, poolId) {
   const groupScore = await comp.saveGroupPredictionsForActiveGroup(groupPicks, data);
   const bracketScore = await comp.saveBracketForActiveGroup(data, pickArray);
   window.dispatchEvent(new CustomEvent('play:submitted', { detail: { poolId } }));
+  // R16 (Phase 2): the leaderboard total is group (max 84) + knockout (max 96).
+  // Surface both components when there's a score to show (pre-tournament both
+  // are 0, so keep the message clean then).
+  const total = (groupScore || 0) + (bracketScore || 0);
   return {
     ok: true,
     scope: 'pool',
     pool: state.activeGroup.name,
     groupScore,
     bracketScore,
-    message: `Submitted to ${state.activeGroup.name}. View it in My Brackets.`,
+    total,
+    message: total > 0
+      ? `Submitted to ${state.activeGroup.name} — ${total} pts (group ${groupScore} + knockout ${bracketScore}). View it in My Brackets.`
+      : `Submitted to ${state.activeGroup.name}. View it in My Brackets.`,
   };
 }
 

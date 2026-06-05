@@ -8,6 +8,7 @@ import { deriveLockState, isValidJoinCode, buildPostJoinPath, extractJoinCodeFro
 import { normalizeUsername, normalizeSignInIdentifier, usernameToAuthEmail } from './competition-auth.js';
 import { normalizeBracketPicks, normalizeKnockoutPicks, scoreBracket, scoreBracketWeighted, compareLeaderboardEntries } from './competition-scoring.js';
 import { scoreGroupPredictions, normalizeGroupPredictions } from './group-scoring.js';
+import { combineLeaderboardEntries } from './leaderboard-core.js';
 import { pullServerFavoriteIfAuthed } from './favorites.js';
 
 const LS_GROUP = 'wc26.competition.group';
@@ -518,30 +519,23 @@ function resolveSelectedDraftPicks() {
 
 export async function fetchLeaderboard(data) {
   if (!state.client || !state.activeGroup) return [];
-  const { data: rows, error } = await state.client
-    .from('group_brackets')
-    .select('user_id,picks,score,updated_at')
-    .eq('group_id', state.activeGroup.id);
-  if (error) throw error;
-  const ids = [...new Set((rows || []).map((r) => r.user_id).filter(Boolean))];
+  const gid = state.activeGroup.id;
+  const [bracketsRes, predictionsRes] = await Promise.all([
+    state.client.from('group_brackets').select('user_id,picks,updated_at').eq('group_id', gid),
+    state.client.from('group_predictions').select('user_id,picks,updated_at').eq('group_id', gid),
+  ]);
+  if (bracketsRes.error) throw bracketsRes.error;
+  if (predictionsRes.error) throw predictionsRes.error;
+  const brackets = bracketsRes.data || [];
+  const predictions = predictionsRes.data || [];
+
+  const ids = [...new Set([...brackets, ...predictions].map((r) => r.user_id).filter(Boolean))];
   let namesById = {};
   if (ids.length) {
     const { data: profiles } = await state.client.from('profiles').select('user_id,username').in('user_id', ids);
     namesById = Object.fromEntries((profiles || []).map((p) => [p.user_id, p.username]));
   }
-  const entries = (rows || []).map((r) => {
-    const weighted = scoreBracketWeighted(r.picks || [], data);
-    return {
-      username: namesById[r.user_id] || 'Player',
-      score: weighted.score,
-      breakdown: weighted.breakdown,
-      lastRoundCorrect: weighted.lastRoundCorrect,
-      championCorrect: weighted.championCorrect,
-      updatedAt: r.updated_at || null,
-    };
-  });
-  entries.sort(compareLeaderboardEntries);
-  return entries;
+  return combineLeaderboardEntries(brackets, predictions, namesById, data);
 }
 
 export function getJoinUrls() {
