@@ -2,6 +2,18 @@
   command = "node scripts/write-runtime-config.mjs"
   publish = "."
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+# R15b (#8): server-rendered OG/Twitter card for shared brackets.
+# Must come BEFORE the SPA catch-all. The token is passed as a query param so
+# the v2 function can read it (the rewrite target path would otherwise drop it).
+[[redirects]]
+  from = "/s/*"
+  to = "/.netlify/functions/share-card?token=:splat"
+  status = 200
+
 [[redirects]]
   from = "/join/*"
   to = "/index.html"

@@ -11,7 +11,7 @@
  * any cache that doesn't match the current VERSION prefix so stale shell
  * assets are evicted automatically.
  */
-const VERSION = 'wc26-v14';
+const VERSION = 'wc26-v15';
 const SHELL_CACHE = `${VERSION}-shell`;
 const DATA_CACHE = `${VERSION}-data`;
 
@@ -67,7 +67,11 @@ const SHELL_ASSETS = [
   'icons/icon-maskable.png',
   'icons/apple-touch-icon.png',
   'icons/favicon-32.png',
-  'assets/wc26/trionda-header-64.webp'
+  'assets/wc26/trionda-header-64.webp',
+  // R15b (#40): vendored supabase-js is on the critical data-layer path — precache
+  // so the first offline load has it. sortablejs is dynamically imported on Play
+  // Stage 2 only, so networkFirst caches it on use (no need to precache).
+  'vendor/supabase-js.js'
 ];
 
 self.addEventListener('install', (event) => {
