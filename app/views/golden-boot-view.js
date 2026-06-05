@@ -1,14 +1,14 @@
 /* golden-boot-view.js — R19: the Golden Boot tracker.
  *   - Live top-scorer leaderboard (goals) during the tournament.
  *   - Golden Boot odds (chance %) from the model, with the factor breakdown.
- *   - Recomputes on data:live-refresh.
+ *   - Live updates: main.js already re-renders the active view on
+ *     data:live-refresh, so fresh goals/odds flow through automatically — no
+ *     view-local listener needed.
  * Reached from Home → "Jump to" → #/golden-boot. */
 import { setRoute } from '../state.js';
 import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { goldenBootProjections } from '../lib/golden-boot.js';
-
-let _refreshBound = null;
 
 export function renderGoldenBootView(root, data, params = {}) {
   if (!data) { root.innerHTML = '<p class="loading">Loading…</p>'; return; }
@@ -21,14 +21,6 @@ export function renderGoldenBootView(root, data, params = {}) {
   if (live.length) root.appendChild(liveCard(live));
   root.appendChild(oddsCard(contenders));
   root.appendChild(howCard());
-
-  // Recompute when fresh data arrives (live goals / odds move).
-  if (!_refreshBound) {
-    _refreshBound = () => { if (location.hash.includes('golden-boot')) renderGoldenBootView(document.getElementById('view'), window.__WC26_DATA__ || data, params); };
-    window.addEventListener('data:live-refresh', (e) => {
-      const fresh = e.detail?.data; if (fresh) window.__WC26_DATA__ = fresh; _refreshBound();
-    });
-  }
 }
 
 function header() {
