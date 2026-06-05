@@ -1,0 +1,68 @@
+<!doctype html>
+<!-- R17: source template for the static OG share card. Rendered to
+     assets/og/share-card.png by scripts/build-og-card.mjs (Playwright @ 1200×630).
+     Edit here, then re-run the build script. Do not hand-edit the PNG. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; }
+  body {
+    font-family: 'Barlow Condensed', 'Barlow', -apple-system, system-ui, sans-serif;
+    background:
+      radial-gradient(1200px 600px at 78% 18%, rgba(225,29,72,0.28), transparent 60%),
+      linear-gradient(135deg, #0D1117 0%, #161b22 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 72px 80px;
+    overflow: hidden;
+    position: relative;
+  }
+  /* rose accent rail */
+  body::before {
+    content: '';
+    position: absolute; left: 0; top: 0; bottom: 0; width: 14px;
+    background: linear-gradient(180deg, #E11D48, #b5252c);
+  }
+  .left { max-width: 660px; }
+  .eyebrow {
+    font-family: 'Barlow', sans-serif;
+    text-transform: uppercase; letter-spacing: 6px;
+    font-size: 26px; font-weight: 700; color: #e35a61; margin-bottom: 14px;
+  }
+  .title {
+    font-size: 132px; font-weight: 800; line-height: 0.92;
+    letter-spacing: -1px; text-transform: uppercase;
+  }
+  .title .accent { color: #fb6f76; }
+  .sub {
+    font-family: 'Barlow', sans-serif;
+    font-size: 34px; font-weight: 600; color: #c9d1d9; margin-top: 22px;
+  }
+  .tag {
+    font-family: 'Barlow', sans-serif;
+    font-size: 22px; font-weight: 500; color: #8b949e; margin-top: 10px;
+    letter-spacing: 0.3px;
+  }
+  .right { display: flex; align-items: center; justify-content: center; }
+  .ball {
+    width: 360px; height: 360px; object-fit: contain;
+    filter: drop-shadow(0 24px 60px rgba(0,0,0,0.55));
+  }
+</style>
+</head>
+<body>
+  <div class="left">
+    <div class="eyebrow">2026 FIFA World Cup</div>
+    <div class="title">WC26<br><span class="accent">Bracket</span></div>
+    <div class="sub">Predict every match. Build your bracket.</div>
+    <div class="tag">worldcup2026.j5lagenticstrategy.com</div>
+  </div>
+  <div class="right">
+    <img class="ball" src="../assets/wc26/trionda-ball.webp" alt="">
+  </div>
+</body>
+</html>
