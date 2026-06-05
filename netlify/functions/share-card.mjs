@@ -66,7 +66,9 @@ export default async (req) => {
     url.pathname.replace(/^\/s\//, '').replace(/\/+$/, '')
   );
   const appUrl = `${origin}/#/shared/token/${encodeURIComponent(token)}`;
-  const ogImage = `${origin}/icons/icon-512.png`; // TODO: branded 1200×630 card
+  // R17: branded 1200×630 card (built by scripts/build-og-card.mjs). The title
+  // + description below stay dynamic (champion + pick count).
+  const ogImage = `${origin}/assets/og/share-card.jpg`;
 
   const payload = token ? await fetchSnapshot(token) : null;
   const { title, desc } = payload
@@ -85,11 +87,16 @@ export default async (req) => {
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(desc)}">
 <meta property="og:image" content="${esc(ogImage)}">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="WC26 Bracket — 2026 FIFA World Cup predictions">
 <meta property="og:url" content="${esc(`${origin}/s/${token}`)}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(title)}">
 <meta name="twitter:description" content="${esc(desc)}">
 <meta name="twitter:image" content="${esc(ogImage)}">
+<meta name="twitter:image:alt" content="WC26 Bracket — 2026 FIFA World Cup predictions">
 <link rel="canonical" href="${esc(appUrl)}">
 <meta http-equiv="refresh" content="0; url=${esc(appUrl)}">
 <script>location.replace(${JSON.stringify(appUrl)});</script>
