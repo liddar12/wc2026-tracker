@@ -62,8 +62,8 @@ export const HELP_COPY = {
       "Stage 1 — set each group's finishing order, 1st to 4th.",
       'Stage 2 — rank the 8 best third-place teams. Order sets your Round of 32.',
       'Stage 3 — tap winners through to the Final and the 3rd-place game.',
-      "You can't submit until all three stages are complete.",
-      'Every entry also joins the Everyone pool. Join a private pool to compete with friends.',
+      'Scoring — group picks: 1st +3, 2nd +2, each correct best-third +1. Knockout: R32 +1, R16 +2, QF +4, SF +8, Final +16, plus +16 if you nail the champion.',
+      'Once the group stage finishes you can start straight at the knockouts — your Round of 32 fills in from the real results.',
     ],
   },
   bracket: {
@@ -98,11 +98,11 @@ export const HELP_COPY = {
   },
   myPicks: {
     title: 'How My Picks work',
-    intro: 'The leaderboard — how every player and every model is doing in your pool.',
+    intro: 'The leaderboard — where every player stands in your pool.',
     points: [
-      'Pick a pool to see its full standings (Everyone by default).',
-      'Models compete too — see how your bracket stacks up against the forecasts.',
-      'Signed in? Your all-games accuracy (from Matches) shows next to your bracket rank.',
+      'Pick a pool to see its full standings.',
+      'Total score = group picks (1st +3, 2nd +2, best-third +1) plus your weighted knockout bracket (R32 +1 → Final +16, champion +16).',
+      'Ties break by deepest correct round, then a correct champion, then who submitted first.',
     ],
   },
   matches: {

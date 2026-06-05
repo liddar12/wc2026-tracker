@@ -2,6 +2,11 @@ import { defineConfig, devices } from '@playwright/test';
 
 export default defineConfig({
   testDir: '.',
+  // R14: the qa-*.spec.mjs files are ad-hoc audit scripts (they write findings
+  // to a hardcoded local jobs path and target the live/preview site), NOT the
+  // maintained regression suite. Exclude them from glob runs / CI; run them
+  // explicitly by filename when doing an audit.
+  testIgnore: ['**/qa-*.spec.mjs'],
   fullyParallel: false,
   workers: 1,
   retries: 0,

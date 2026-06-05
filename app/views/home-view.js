@@ -14,6 +14,8 @@ import {
 } from '../competition.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
 import { topMovers as eloTopMovers } from '../live-elo.js';
+import { loadGroupPicks, isStage1Complete, isStage2Complete } from '../group-picks-builder.js';
+import { loadBracketDraft } from '../bracket-builder.js';
 
 const OPENING_KEY = 'opening_match';
 
@@ -54,6 +56,9 @@ export function renderHome(root, data) {
     return;
   }
   root.appendChild(renderHero(data));
+  // R14: primary "Make your prediction" CTA — Home had no path into the Play
+  // funnel (the core action), and the Quick Links grid omitted Play entirely.
+  root.appendChild(renderPlayCta());
   root.appendChild(renderAuthSlot(data));
   root.appendChild(renderFavoriteTeamSection(data));
   const favKalshi = renderFavKalshiCard(data);
@@ -735,6 +740,36 @@ function renderRecentSection(data) {
   return wrap;
 }
 
+function renderPlayCta() {
+  const wrap = document.createElement('section');
+  wrap.className = 'home-section';
+  // Progress-aware: reflect how far the user is through the funnel.
+  let headline = 'Make your World Cup prediction';
+  let sub = 'Three stages: rank the groups, pick the best thirds, play the knockouts.';
+  try {
+    const picks = loadGroupPicks(null);
+    const draft = loadBracketDraft(null);
+    const s1 = isStage1Complete(picks);
+    const s2 = isStage2Complete(picks);
+    const hasKo = draft && draft.picks && Object.keys(draft.picks).length > 0;
+    if (s1 && s2 && hasKo) { headline = 'Finish & submit your bracket'; sub = "You're on the knockouts — lock it in."; }
+    else if (s1 && s2) { headline = 'Continue to the knockout bracket'; sub = 'Stages 1 & 2 done — play it out to a champion.'; }
+    else if (s1) { headline = 'Continue your prediction'; sub = 'Groups ranked — rank the 8 best third-place teams next.'; }
+    else if (picks && picks.groups && Object.values(picks.groups).some((g) => g && g.some(Boolean))) {
+      headline = 'Continue your prediction'; sub = "Pick up where you left off in the group stage.";
+    }
+  } catch {}
+  wrap.innerHTML = `
+    <div class="home-card pw-play-cta" data-testid="home-play-cta" style="border-left:4px solid var(--accent);">
+      <h2 class="home-card-title">${escapeHtml(headline)}</h2>
+      <p class="muted" style="margin:0 0 12px; font-size:13px;">${escapeHtml(sub)}</p>
+      <button class="pick-btn" id="home-play-cta-btn" data-testid="home-play-cta-btn">Play →</button>
+    </div>
+  `;
+  wrap.querySelector('#home-play-cta-btn').addEventListener('click', () => setRoute('play', { stage: '1' }));
+  return wrap;
+}
+
 function renderQuickLinks() {
   const wrap = document.createElement('section');
   wrap.className = 'home-section';
@@ -742,6 +777,7 @@ function renderQuickLinks() {
     <div class="home-card">
       <h2 class="home-card-title">Jump to</h2>
       <div class="home-grid">
+        <button class="home-link" data-go="play"><span class="home-link-emoji" aria-hidden="true">⚽️</span><span>Play</span></button>
         <button class="home-link" data-go="matchups"><span class="home-link-emoji" aria-hidden="true">⚽</span><span>Matches</span></button>
         <button class="home-link" data-go="schedule"><span class="home-link-emoji" aria-hidden="true">📅</span><span>Schedule</span></button>
         <button class="home-link" data-go="venues"><span class="home-link-emoji" aria-hidden="true">📍</span><span>Venues</span></button>

@@ -36,7 +36,10 @@ export function bracketKeyForPool(poolId) {
 export function loadBracketDraft(poolId) {
   const key = bracketKeyForPool(poolId);
   try {
-    const raw = localStorage.getItem(key);
+    let raw = localStorage.getItem(key);
+    // R14: fall back to the guest "local" draft for an empty pool key so
+    // pre-sign-in / pre-join knockout picks carry into the pool.
+    if (!raw && poolId) raw = localStorage.getItem(`${LS_KEY_PREFIX}local`);
     const parsed = raw ? JSON.parse(raw) : { picks: {} };
     if (!parsed || typeof parsed !== 'object') return { picks: {} };
     if (!parsed.picks || typeof parsed.picks !== 'object') parsed.picks = {};
@@ -359,11 +362,69 @@ export function nextRoundMatchNumber(roundIndex, pairIndex) {
   return r.base + pairIndex;
 }
 
-export function computeRounds(r32, draft) {
-  const rounds = [{
+/**
+ * R14: parse the REAL knockout feed graph from data.scheduleFull. Each
+ * downstream KO match references its feeders as "W<n>" team slots
+ * (e.g. R16 M89 = W74 vs W77). The pre-R14 computeRounds paired winners by
+ * array index (73+74, 75+76, …), which is structurally wrong — M89 actually
+ * feeds from R32 matches 74 and 77. Because scoring keys on
+ * `team_a__vs__team_b`, the wrong pairing meant R16+ picks could never match
+ * real results. Returns null if the schedule can't be fully parsed (callers
+ * then fall back to the legacy pairing).
+ */
+export function buildKnockoutFeeds(data) {
+  const sf = data?.scheduleFull || [];
+  const STAGE_LABEL = { round_of_16: 'R16', quarterfinals: 'QF', semifinals: 'SF', final: 'Final' };
+  const byRound = { R16: [], QF: [], SF: [], Final: [] };
+  const parseW = (slot) => {
+    const m = typeof slot === 'string' && slot.match(/^W(\d+)$/);
+    return m ? parseInt(m[1], 10) : null;
+  };
+  for (const m of sf) {
+    const label = STAGE_LABEL[m.stage];
+    if (!label) continue;
+    byRound[label].push({ match_number: m.match_number, feedA: parseW(m.team_a), feedB: parseW(m.team_b) });
+  }
+  for (const k of Object.keys(byRound)) byRound[k].sort((x, y) => (x.match_number || 0) - (y.match_number || 0));
+  const all = [...byRound.R16, ...byRound.QF, ...byRound.SF, ...byRound.Final];
+  const complete = byRound.R16.length === 8 && byRound.QF.length === 4 && byRound.SF.length === 2 && byRound.Final.length === 1
+    && all.every((e) => e.feedA != null && e.feedB != null);
+  return complete ? byRound : null;
+}
+
+export function computeRounds(r32, draft, data) {
+  const r32Round = {
     key: 'R32',
     matches: r32.map((m) => ({ ...m, pick: getPickFor(draft, m.match_number) })),
-  }];
+  };
+  const rounds = [r32Round];
+
+  // R14: prefer the real feed graph when the schedule is available.
+  const feeds = data ? buildKnockoutFeeds(data) : null;
+  if (feeds) {
+    const pickByMatch = {};
+    for (const m of r32Round.matches) pickByMatch[m.match_number] = m.pick;
+    for (const label of ['R16', 'QF', 'SF', 'Final']) {
+      const matches = feeds[label].map((f) => {
+        const pick = getPickFor(draft, f.match_number);
+        const m = {
+          match_number: f.match_number,
+          team_a: pickByMatch[f.feedA] || null,
+          team_b: pickByMatch[f.feedB] || null,
+          kickoff_utc: null,
+          pick,
+          feeds_from: [f.feedA, f.feedB],
+        };
+        return m;
+      });
+      for (const m of matches) pickByMatch[m.match_number] = m.pick;
+      rounds.push({ key: label, matches });
+    }
+    return rounds;
+  }
+
+  // Legacy fallback (no schedule passed): index-pairing. Structurally wrong
+  // for real scoring but preserved so data-less callers/tests don't break.
   for (let r = 1; r < ROUND_LABELS.length; r++) {
     const prev = rounds[r - 1];
     const matches = [];
@@ -451,6 +512,14 @@ export function clearDownstream(draft, fromMatchNumber) {
       if (draft.picks?.[String(mn)]) delete draft.picks[String(mn)];
     }
   }
+  // R14: the 3rd-place game (match #103) is fed by the two SEMIFINAL LOSERS.
+  // Any change at SF or earlier can invalidate who those losers are, so the
+  // 3rd-place pick must be cleared too. The range loop above never touched
+  // 103 (it's not in MATCH_RANGES), leaving a stale/invalid 3rd-place pick.
+  const sfIdx = order.indexOf('SF');
+  if (startIdx <= sfIdx && draft.picks?.['103']) {
+    delete draft.picks['103'];
+  }
 }
 
 /* -- What's-left hint for the funnel submit bar ---------------------------- */
@@ -465,6 +534,32 @@ export function knockoutWhatsLeft(rounds, draft) {
   }
   // 3rd-place game tracked separately
   if (!getPickFor(draft, 103)) out.push('3rd-place game: not decided');
+  return out;
+}
+
+/* -- Submit conversion (R14) -----------------------------------------------
+ * Convert the funnel draft shape
+ *   { picks: { "<matchNumber>": { team, team_a, team_b } } }
+ * into the array shape competition-scoring + group_brackets expect:
+ *   [{ team_a, team_b, choice }]  where choice is 'team_a' | 'team_b'.
+ *
+ * This is the converter the submit hot path needs. Before R14, the Play
+ * funnel called saveBracketForActiveGroup() which read the UNRELATED
+ * wc26.picks store (the per-match Matches layer) via allPicks(), so funnel
+ * brackets were never actually submitted. Extracting the converter here
+ * (pure, node-testable) lets the submit path read the real funnel draft.
+ */
+export function bracketToPickArray(draft) {
+  const out = [];
+  if (!draft || !draft.picks) return out;
+  for (const entry of Object.values(draft.picks)) {
+    if (!entry || typeof entry !== 'object') continue; // skip legacy string entries
+    const { team, team_a, team_b } = entry;
+    if (!team || !team_a || !team_b) continue;
+    const choice = team === team_a ? 'team_a' : team === team_b ? 'team_b' : null;
+    if (!choice) continue;
+    out.push({ team_a, team_b, choice });
+  }
   return out;
 }
 

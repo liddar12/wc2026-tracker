@@ -5,7 +5,10 @@
    - v2 tokens (opt-in via data-redesign="v2" on a container): WC26 teal +
      coral palette with Apple HIG Clarity/Deference/Depth. See PLAN_UI_REFRESH.md. */
 
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600;700&display=swap');
+/* R14: the Google Fonts @import was render-blocking (styles.css had to load +
+   parse before the font CSS was even discovered). Moved to a <link> +
+   preconnect in index.html <head> so the preload scanner fetches the font
+   CSS in parallel. */
 
 :root {
   --safe-top: env(safe-area-inset-top);
@@ -2019,6 +2022,9 @@ body.search-open { overflow: hidden; }
   --primary:     var(--wc-teal-700);
   --primary-ink: #FFFFFF;
   --accent:      var(--skin-accent, var(--wc-coral-500));
+  /* R14: darker coral for text-bearing fills (white-on-accent needs ≥4.5:1).
+     coral-600 ≈ #E11D48 gives ~4.7:1 with white. */
+  --accent-strong: #E11D48;
   --shadow:      0 1px 2px rgba(15, 17, 21, 0.05), 0 4px 12px rgba(15, 17, 21, 0.06);
 
   --depth-sm:  0 1px 2px rgba(15, 17, 21, 0.06);
@@ -2114,9 +2120,12 @@ body.search-open { overflow: hidden; }
               background-color var(--motion-fast) var(--ease-out);
 }
 [data-redesign="v2"] .pick-btn:not(.pick-btn-secondary):not(:disabled) {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #FFFFFF;
+  /* R14: was white-on-coral (3.67:1 light / 2.69:1 dark — both fail WCAG AA).
+     Use --primary-ink (flips to dark in dark mode) and a darkened coral fill
+     in light mode for ≥4.5:1. */
+  background: var(--accent-strong, var(--accent));
+  border-color: var(--accent-strong, var(--accent));
+  color: var(--primary-ink, #fff);
 }
 [data-redesign="v2"] .pick-btn:active { transform: scale(0.97); }
 
@@ -3686,8 +3695,9 @@ body.pw-podium-open { overflow: hidden; }
   width: 100%;
 }
 .pw-podium-block-1 {
-  background: linear-gradient(180deg, var(--accent), color-mix(in srgb, var(--accent) 60%, var(--good)));
-  color: var(--primary-ink, #fff);
+  /* R14: darken the coral so white text clears WCAG AA on the 1st-place block */
+  background: linear-gradient(180deg, var(--accent-strong, var(--accent)), color-mix(in srgb, var(--accent-strong, var(--accent)) 60%, var(--good)));
+  color: #fff;
   padding: 28px 0;
   font-size: 14px;
 }
@@ -3897,9 +3907,10 @@ html, body { overflow-x: hidden; }
 
 /* R12b: Model picker — sticky chip row above Play / Bracket / My Brackets */
 .pw-model-picker {
+  /* R14: column so the model description line sits under the chip row */
   display: flex;
-  align-items: center;
-  gap: 10px;
+  flex-direction: column;
+  gap: 8px;
   padding: 10px 12px;
   margin-bottom: 16px;
   background: var(--surface-2);
@@ -3908,6 +3919,16 @@ html, body { overflow-x: hidden; }
   position: sticky;
   top: 0;
   z-index: 5;
+}
+.pw-model-picker-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pw-model-picker-desc {
+  font-size: 12px;
+  margin: 0;
+  line-height: 1.4;
 }
 .pw-model-picker-label {
   font-size: 11px;
@@ -4034,3 +4055,14 @@ html, body { overflow-x: hidden; }
   /* widen the side to fit name + analytics. The grid was 22px (flag) + 1fr (name) */
   grid-template-columns: 22px 1fr auto !important;
 }
+
+/* R14: podium submit status (success/error/pending) */
+.pw-podium-status {
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+}
+.pw-podium-status[data-kind="success"] { color: var(--good, #2f7d32); }
+.pw-podium-status[data-kind="error"] { color: var(--bad, #c9252d); }
+.pw-podium-status[data-kind="pending"] { color: var(--text-muted); }

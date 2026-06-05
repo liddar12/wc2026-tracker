@@ -149,8 +149,8 @@ assert.match(
 );
 assert.match(
   competitionSrc,
-  /normalizeKnockoutPicks\(resolveSelectedDraftPicks\(\)\)/,
-  'submit path must normalize via the knockout normalizer that rejects draws'
+  /normalizeKnockoutPicks\(explicitPicks \|\| resolveSelectedDraftPicks\(\)\)/,
+  'submit path must normalize via the knockout normalizer (R14: accepts the funnel draft via explicitPicks, falls back to resolveSelectedDraftPicks)'
 );
 
 const migrationSql = readFileSync(new URL('../supabase/migrations/20260527_auth_groups_brackets.sql', import.meta.url), 'utf8');

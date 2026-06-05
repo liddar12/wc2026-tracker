@@ -36,6 +36,11 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
 <link rel="manifest" href="manifest.json">
+<!-- R14: fonts moved out of the CSS @import (render-blocking waterfall) to a
+     preconnected <link> so the preload scanner fetches them in parallel. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800&family=Barlow:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icons@7/css/flag-icons.min.css" crossorigin="anonymous" onload="document.documentElement.classList.add('has-flag-svg')" onerror="document.documentElement.classList.add('has-flag-emoji-only')">
 <link rel="stylesheet" href="app/styles.css">
 </head>

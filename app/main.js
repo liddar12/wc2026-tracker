@@ -116,8 +116,9 @@ function renderView() {
     group: 'play',               // legacy group view nav-highlights Play
     groups: 'play',
     'group-picks': 'play',       // retired Group Picks tab now lives inside Play
-    picks: 'picks',
-    winner: 'matchups'
+    // R14: removed duplicate `picks: 'picks'` key — it shadowed the correct
+    // `picks: 'my-picks'` above and highlighted a tab that no longer exists.
+    winner: 'matches'
   };
   const activeTab = tabMap[view];
   for (const t of document.querySelectorAll('.tab-bar .tab')) {

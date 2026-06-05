@@ -21,7 +21,12 @@ export function groupPicksKey(poolId) {
 
 export function loadGroupPicks(poolId) {
   try {
-    const raw = localStorage.getItem(groupPicksKey(poolId));
+    let raw = localStorage.getItem(groupPicksKey(poolId));
+    // R14: when a signed-in user operates inside a pool whose key is empty,
+    // fall back to the guest "local" draft. This carries pre-sign-in / pre-join
+    // picks into the pool instead of silently dropping them (the old
+    // user-<uid> migration wrote keys no reader ever checked).
+    if (!raw && poolId) raw = localStorage.getItem(`${LS_KEY_PREFIX}local`);
     if (!raw) return emptyPicks();
     return mergeEmpty(JSON.parse(raw));
   } catch { return emptyPicks(); }
