@@ -517,9 +517,35 @@ function resolveSelectedDraftPicks() {
   return draft?.picks || allPicks();
 }
 
-export async function fetchLeaderboard(data) {
+// R16 Phase 4: the seeded global pool. At scale it must NOT be ranked by the
+// client (unbounded fetch + per-device recompute), so it uses the paginated
+// server RPC. Normal pools keep the client recompute (correct + live without
+// depending on the server scorer).
+export const EVERYONE_GROUP_ID = '00000000-0000-0000-0000-0000000e1e7e';
+
+export async function fetchLeaderboard(data, opts = {}) {
   if (!state.client || !state.activeGroup) return [];
   const gid = state.activeGroup.id;
+
+  // Everyone pool → server-ranked paginated RPC (scales). Falls back to the
+  // client recompute below if the RPC isn't deployed / errors.
+  if (gid === EVERYONE_GROUP_ID) {
+    try {
+      const { data: rows, error } = await state.client.rpc('leaderboard', {
+        p_group_id: gid, p_limit: opts.limit ?? 50, p_offset: opts.offset ?? 0,
+      });
+      if (!error && Array.isArray(rows)) {
+        return rows.map((r) => ({
+          username: r.username || 'Player',
+          score: r.total,
+          groupScore: r.group_score,
+          knockoutScore: r.knockout_score,
+          rank: r.rank,
+        }));
+      }
+    } catch { /* fall through to client recompute */ }
+  }
+
   const [bracketsRes, predictionsRes] = await Promise.all([
     state.client.from('group_brackets').select('user_id,picks,updated_at').eq('group_id', gid),
     state.client.from('group_predictions').select('user_id,picks,updated_at').eq('group_id', gid),
