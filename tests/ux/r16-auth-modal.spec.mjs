@@ -48,6 +48,10 @@ test.describe('R16 auth modal', () => {
 
     await page.locator(ACCOUNT).click();
     await expect(modal).toBeVisible();
+    // ui-ux §2: close button must meet the 44×44 touch-target minimum.
+    const box = await modal.locator('.auth-modal-close').boundingBox();
+    expect(box.width, 'close button width ≥44').toBeGreaterThanOrEqual(44);
+    expect(box.height, 'close button height ≥44').toBeGreaterThanOrEqual(44);
     await modal.locator('.auth-modal-close').click();
     await expect(modal).toHaveCount(0);
   });

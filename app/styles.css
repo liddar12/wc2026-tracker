@@ -3383,20 +3383,29 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
 .auth-modal-card .auth-input { width: 100%; }
 .auth-modal-close {
   position: absolute;
-  top: 8px;
-  right: 10px;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: transparent;
   border: 0;
   font-size: 24px;
   line-height: 1;
   color: var(--text-muted);
   cursor: pointer;
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
+  /* ui-ux §2 touch-target-size: meet the 44×44 minimum. */
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   z-index: 1;
+  touch-action: manipulation;
 }
 .auth-modal-close:hover { background: var(--surface-2, rgba(127,127,127,0.12)); color: var(--text); }
+/* ui-ux §1 focus-states: visible focus ring for keyboard users. */
+.auth-modal-close:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Keep the panel heading clear of the absolutely-positioned close button. */
+.auth-modal-card .auth-card h2 { padding-right: 36px; }
 
 /* ============================================================================
    R6 — Play funnel + read-only views
