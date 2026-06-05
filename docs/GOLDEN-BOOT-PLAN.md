@@ -87,8 +87,10 @@ ties and "chasing" dynamics far better than a static ranking. ~50–100 contende
 - **Odds are model-derived** (no market to anchor) — the backtest is what earns trust; until it's run on real history, label boot% as a model estimate.
 - **Knockout opponents are projected** (probability-weighted), so deep-run contenders' odds carry more uncertainty — surfaced in the UI.
 
-## 8. Confirm before build (recommendations in **bold**)
-1. **Odds engine:** runtime seeded Monte-Carlo in `golden-boot.js` (**recommended**) vs. an offline pipeline → `golden_boot.json`.
-2. **Factor depth now:** ship with all repo-available factors + a flagged penalty/set-piece **heuristic** (**recommended**) vs. wait to source real set-piece data first.
-3. **Backtest:** scaffold the harness now + validate when history is sourced (**recommended**) vs. defer.
-4. **Live cadence:** recompute on each data refresh / `data:live-refresh` (**recommended**) vs. daily snapshot vs. projections-only.
+## 8. Decisions — LOCKED
+1. **Odds engine:** runtime **seeded Monte-Carlo** in `golden-boot.js` (deterministic, unit-testable, live).
+2. **Factor depth:** all repo-available factors now + a **flagged penalty/set-piece heuristic** (clearly labeled estimate; enrich later).
+3. **Backtest:** **scaffold the harness now** + runnable self-test; plug in WC14/18/22 + Euro16/20/24 + Copa21/24 history to publish accuracy.
+4. **Live cadence:** **recompute on each data refresh** (`data:live-refresh`); pre-tournament shows projections.
+
+Build order (each behind 100% QA, shipped via PR): (1) `golden-boot.js` model core + tests → (2) `golden-boot-view.js` + Jump-to tile + route + Playwright → (3) backtest harness + self-test. Ready to build on your go.
