@@ -55,5 +55,8 @@ export function combineLeaderboardEntries(brackets, predictions, namesById, data
     };
   });
   entries.sort(cmp);
+  // Assign place (1-based) after sorting so every entry carries its rank — the
+  // RPC path already returns rank; this gives the client-combine path parity.
+  entries.forEach((e, i) => { e.rank = i + 1; });
   return entries;
 }
