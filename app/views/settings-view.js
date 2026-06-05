@@ -10,6 +10,7 @@ import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames } from '../favorites.js';
 import { getCompetitionState, signOut, isSupabaseConfigured } from '../competition.js';
+import { openAuth } from '../auth-modal.js';
 
 const LS_REDUCE_MOTION = 'wc26.prefs.reduceMotion';
 
@@ -168,16 +169,18 @@ function renderAccountCard() {
       <p class="muted" style="font-size:13px; margin:0 0 10px;">Signed in as <strong>${escapeHtml(comp.profile?.username || user.email || 'user')}</strong></p>
       <button class="pick-btn pick-btn-secondary" id="settings-signout">Sign out</button>
     ` : `
-      <p class="muted" style="font-size:13px; margin:0 0 10px;">Not signed in. Sign in from My Picks to create or join pools.</p>
+      <p class="muted" style="font-size:13px; margin:0 0 10px;">Not signed in. Sign in to create or join pools.</p>
       <button class="pick-btn" id="settings-go-signin">Sign in</button>
     `}
   `;
   if (user) {
     card.querySelector('#settings-signout').addEventListener('click', async () => {
-      try { await signOut(); setRoute('home', {}); } catch {}
+      try { await signOut(); } catch {} // competition:state-change repaints the view
     });
   } else {
-    card.querySelector('#settings-go-signin').addEventListener('click', () => setRoute('picks', {}));
+    // R16: open the auth lightbox in place instead of dumping the user on the
+    // My Picks page (the old dead-end behavior).
+    card.querySelector('#settings-go-signin').addEventListener('click', () => openAuth('signin'));
   }
   return card;
 }

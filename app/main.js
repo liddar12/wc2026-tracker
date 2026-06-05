@@ -235,6 +235,16 @@ window.addEventListener('state:change', () => {
   updateFooter();
 });
 
+// R16: auth/competition state changes (sign in / sign up / sign out / guest /
+// active-pool change) fire `competition:state-change`. Previously the only
+// listener was the toolbar label, so the CURRENT VIEW never repainted on
+// logout — it stayed showing "Signed in as…" until a manual reload. Bridge it
+// to renderView() so every entry point's sign-in/out updates the view too.
+window.addEventListener('competition:state-change', () => {
+  renderView();
+  updateFooter();
+});
+
 // R12: theme button was removed from the header. initTheme still runs so
 // the stored wc26.theme preference is applied at boot; the user toggles
 // it from Settings now.

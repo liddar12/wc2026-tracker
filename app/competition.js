@@ -400,6 +400,11 @@ export function continueAsGuest() {
   state.authPanel = 'entry';
   persistAuthDismissed();
   window.dispatchEvent(new CustomEvent('competition:guest-continued'));
+  // R16: guest mode IS an auth state change — fire the canonical event so the
+  // toolbar label AND the current view repaint (same path as sign in/out).
+  // Previously only `guest-continued` fired, so callers had to manually repaint
+  // and the view went stale otherwise.
+  window.dispatchEvent(new CustomEvent('competition:state-change'));
 }
 
 export function consumeJoinLanding() {

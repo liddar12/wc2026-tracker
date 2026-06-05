@@ -1,23 +1,18 @@
-/* toolbar-auth.js — R6: account/guest state lives in the global toolbar,
-   not inside any content view. Mounts the existing renderAuthPanel into
-   a popover anchored to the toolbar account button.
+/* toolbar-auth.js — R16: the toolbar account button is now a thin launcher.
+   Signed-out / guest users tap it and get the single centered auth lightbox
+   (auth-modal.js, openAuth). Signed-in users get a small account popover with
+   Sign out. The pre-R16 in-dropdown auth form (and its remount/outside-click
+   race patches) is gone — the modal owns the form. */
 
-   The pre-R6 mount inside my-picks.js is removed. */
-
-import { renderAuthPanel } from './competition-auth-panel.js';
 import {
   getCompetitionState,
   continueAsGuest,
-  signIn,
-  signUp,
   signOut,
   isSupabaseConfigured,
   setGuestHandle,
-  setAuthPanelMode,
-  getAuthPanelMode,
 } from './competition.js';
-
-const LS_LAST_HANDLE = 'wc26.competition.guestHandle';
+import { openAuth } from './auth-modal.js';
+import { promptHandle } from './components/handle-prompt.js';
 
 export function initToolbarAuth(data) {
   const btn = document.getElementById('auth-toolbar-btn');
@@ -47,23 +42,21 @@ export function initToolbarAuth(data) {
 
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
-    if (!menu.hidden) {
+    const s = getCompetitionState();
+    // Signed-in → small account popover (Sign out). Everyone else → the modal.
+    if (s?.user) {
+      if (!menu.hidden) { menu.hidden = true; return; }
+      renderAccountMenu(menu, syncLabel);
+      menu.hidden = false;
+      positionMenu(menu, btn);
+    } else {
       menu.hidden = true;
-      return;
+      openAuth('entry');
     }
-    renderMenu(menu, data, syncLabel);
-    menu.hidden = false;
-    positionMenu(menu, btn);
   });
 
-  // R6 QA: avoid the "outside-click hides menu mid-mount" race. When an
-  // inner button (e.g. "Sign up / Sign in") replaces the menu's innerHTML,
-  // the original click target is gone by the time this listener runs and
-  // .contains() returns false. Mark the menu as "remounting" while it
-  // rebuilds and ignore document clicks for that tick.
   document.addEventListener('click', (e) => {
     if (menu.hidden) return;
-    if (menu.dataset.remounting === '1') return;
     if (menu.contains(e.target) || btn.contains(e.target)) return;
     menu.hidden = true;
   });
@@ -91,172 +84,34 @@ function positionMenu(menu, btn) {
   menu.style.zIndex = '50';
 }
 
-function renderMenu(host, data, onChange) {
+function renderAccountMenu(host, onChange) {
   host.innerHTML = '';
   const s = getCompetitionState();
   const card = document.createElement('div');
   card.className = 'auth-menu-card';
-
-  if (s?.user) {
-    card.innerHTML = `
-      <div class="auth-menu-head">
-        <strong>${escapeHtml(s.user.email || 'Signed in')}</strong>
-        <span class="muted">Account</span>
-      </div>
-      <button class="pick-btn pick-btn-secondary" id="auth-menu-signout">Sign out</button>
-    `;
-    card.querySelector('#auth-menu-signout').addEventListener('click', async () => {
-      await signOut();
-      onChange();
-      host.hidden = true;
-    });
-  } else if (s?.guestMode) {
-    card.innerHTML = `
-      <div class="auth-menu-head">
-        <strong>${escapeHtml(s.guestHandle || 'Guest')}</strong>
-        <span class="muted">Anonymous</span>
-      </div>
-      <p class="muted" style="font-size:12px; margin: 6px 0 8px;">Your picks save to this device. Sign up to keep them across devices.</p>
-      <button class="pick-btn" id="auth-menu-signin">Sign up / Sign in</button>
-    `;
-    card.querySelector('#auth-menu-signin').addEventListener('click', (e) => {
-      e.stopPropagation();
-      host.dataset.remounting = '1';
-      mountFullAuthPanel(host, data, onChange);
-      setTimeout(() => { delete host.dataset.remounting; }, 0);
-    });
-  } else if (!isSupabaseConfigured()) {
-    card.innerHTML = `
-      <div class="auth-menu-head"><strong>Offline mode</strong></div>
-      <p class="muted" style="font-size:12px; margin: 6px 0 0;">Supabase isn't configured — your picks save locally.</p>
-    `;
-  } else {
-    card.innerHTML = `
-      <div class="auth-menu-head"><strong>Not signed in</strong></div>
-      <p class="muted" style="font-size:12px; margin: 6px 0 8px;">Submit as a guest, or sign in for cross-device entries.</p>
-      <button class="pick-btn" id="auth-menu-signin">Sign up / Sign in</button>
-      <button class="pick-btn pick-btn-secondary" id="auth-menu-guest" style="margin-top: 6px;">Continue as guest</button>
-    `;
-    card.querySelector('#auth-menu-signin').addEventListener('click', (e) => {
-      e.stopPropagation();
-      host.dataset.remounting = '1';
-      mountFullAuthPanel(host, data, onChange);
-      setTimeout(() => { delete host.dataset.remounting; }, 0);
-    });
-    card.querySelector('#auth-menu-guest').addEventListener('click', async () => {
-      const handle = await promptHandle();
-      if (!handle) return;
-      setGuestHandle(handle);
-      continueAsGuest();
-      onChange();
-      host.hidden = true;
-    });
-  }
+  card.innerHTML = `
+    <div class="auth-menu-head">
+      <strong>${escapeHtml(s.user?.email || 'Signed in')}</strong>
+      <span class="muted">Account</span>
+    </div>
+    <button class="pick-btn pick-btn-secondary" id="auth-menu-signout" data-testid="auth-menu-signout">Sign out</button>
+  `;
+  card.querySelector('#auth-menu-signout').addEventListener('click', async () => {
+    await signOut();      // fires competition:state-change → main.js repaints the view
+    onChange();           // refresh the toolbar label
+    host.hidden = true;
+  });
   host.appendChild(card);
 }
 
-function mountFullAuthPanel(host, data, onChange) {
-  // R6 QA: renderAuthPanel expects (section, comp, handlers). The earlier
-  // shim passed (data, callback) which caused
-  // "Cannot read properties of undefined (reading 'getPanelMode')" the
-  // moment users tapped "Sign up / Sign in" from the toolbar menu.
-  //
-  // R10 QA: the inner setPanelMode('signin', true) transition also wipes
-  // innerHTML mid-event, so the outside-click handler races and closes the
-  // menu before the inputs appear. Set the remounting flag here so EVERY
-  // mount path (outer entry → panel AND inner entry → signin/signup) is
-  // protected.
-  host.dataset.remounting = '1';
-  setTimeout(() => { delete host.dataset.remounting; }, 0);
-  host.innerHTML = '';
-  const comp = getCompetitionState();
-  // R6 QA: the auth panel template uses #comp-msg, not .auth-error-msg.
-  // The earlier shim looked for the wrong selector and silently swallowed
-  // every sign-in / sign-up error. Surface both for resilience.
-  const setMessage = (msg, isErr = false) => {
-    for (const sel of ['#comp-msg', '.auth-error-msg']) {
-      const m = host.querySelector(sel);
-      if (m) {
-        m.textContent = msg || '';
-        m.dataset.kind = isErr ? 'error' : 'info';
-        m.style.color = isErr ? 'var(--bad, #c9252d)' : '';
-      }
-    }
-  };
-  const handlers = {
-    getPanelMode: () => getAuthPanelMode() || 'entry',
-    setPanelMode: async (mode, repaint = false) => {
-      setAuthPanelMode(mode);
-      if (repaint) mountFullAuthPanel(host, data, onChange);
-    },
-    clearGuestDismiss: () => {},
-    onGuest: () => {
-      continueAsGuest();
-      onChange();
-      host.hidden = true;
-    },
-    onSignIn: async () => {
-      const username = host.querySelector('#comp-username')?.value?.trim();
-      const password = host.querySelector('#comp-password')?.value;
-      try {
-        setMessage('');
-        if (!isSupabaseConfigured()) throw new Error('Login is not configured on this deploy.');
-        await signIn(username, password);
-        onChange();
-        host.hidden = true;
-      } catch (err) {
-        setMessage(err?.message || 'Sign in failed', true);
-      }
-    },
-    onSignUp: async () => {
-      const username = host.querySelector('#comp-username')?.value?.trim();
-      const password = host.querySelector('#comp-password')?.value;
-      try {
-        setMessage('');
-        if (!isSupabaseConfigured()) throw new Error('Account creation is not configured on this deploy.');
-        await signUp(username, password);
-        onChange();
-        host.hidden = true;
-      } catch (err) {
-        setMessage(err?.message || 'Sign up failed', true);
-      }
-    },
-  };
-  renderAuthPanel(host, comp, handlers);
-}
-
-async function promptHandle() {
-  const last = (() => { try { return localStorage.getItem(LS_LAST_HANDLE) || ''; } catch { return ''; } })();
-  return new Promise((resolve) => {
-    const overlay = document.createElement('div');
-    overlay.className = 'auth-handle-overlay';
-    overlay.innerHTML = `
-      <div class="auth-handle-card" role="dialog" aria-modal="true" aria-labelledby="auth-handle-title">
-        <h3 id="auth-handle-title">Choose a name</h3>
-        <label for="auth-handle-input" class="muted" style="font-size:13px; margin: 0 0 10px; display:block;">This shows on the leaderboard. We'll add a number if it's taken.</label>
-        <input id="auth-handle-input" class="auth-input" type="text" maxlength="30" placeholder="e.g. Jimmy" value="${escapeHtml(last)}" aria-label="Display name" autocomplete="nickname">
-        <div style="display:flex; gap:8px; margin-top: 10px;">
-          <button class="pick-btn" id="auth-handle-ok">Continue</button>
-          <button class="pick-btn pick-btn-secondary" id="auth-handle-cancel">Cancel</button>
-        </div>
-      </div>
-    `;
-    document.body.appendChild(overlay);
-    const input = overlay.querySelector('#auth-handle-input');
-    input.focus();
-    input.select();
-    function close(val) { overlay.remove(); resolve(val); }
-    overlay.querySelector('#auth-handle-ok').addEventListener('click', () => {
-      const v = (input.value || '').trim();
-      close(v || null);
-    });
-    overlay.querySelector('#auth-handle-cancel').addEventListener('click', () => close(null));
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) close(null); });
-    document.addEventListener('keydown', function onKey(e) {
-      if (e.key === 'Escape') { close(null); document.removeEventListener('keydown', onKey); }
-      if (e.key === 'Enter') { overlay.querySelector('#auth-handle-ok').click(); document.removeEventListener('keydown', onKey); }
-    });
-  });
+// Exposed for callers that want the guest path with a name prompt (e.g. a
+// "Continue as guest" affordance). The auth modal also offers this inline.
+export async function startGuest() {
+  const handle = await promptHandle();
+  if (!handle) return false;
+  setGuestHandle(handle);
+  continueAsGuest();
+  return true;
 }
 
 function escapeHtml(s) {
