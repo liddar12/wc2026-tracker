@@ -524,8 +524,10 @@ function resolveSelectedDraftPicks() {
 export const EVERYONE_GROUP_ID = '00000000-0000-0000-0000-0000000e1e7e';
 
 export async function fetchLeaderboard(data, opts = {}) {
-  if (!state.client || !state.activeGroup) return [];
-  const gid = state.activeGroup.id;
+  // R18: an explicit groupId lets the Pool Standings view show any pool's
+  // standings, not just the active one. Defaults to the active group.
+  const gid = opts.groupId || state.activeGroup?.id;
+  if (!state.client || !gid) return [];
 
   // Everyone pool → server-ranked paginated RPC (scales). Falls back to the
   // client recompute below if the RPC isn't deployed / errors.

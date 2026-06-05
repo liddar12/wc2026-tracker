@@ -48,6 +48,7 @@ import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
+import { renderPoolStandingsView } from './views/pool-standings-view.js';
 // R6: standalone Group Picks retired — its logic now lives in Play Stage 1 + 2.
 // import { renderGroupPickerView } from './views/group-picker-view.js';
 import { initTeamSkin } from './team-skin.js';
@@ -116,6 +117,7 @@ function renderView() {
     bracket: 'bracket',
     brackets: 'bracket',         // legacy alias
     pools: 'pools',
+    standings: 'pools',
     'create-group': 'pools',
     'my-brackets': 'my-brackets',
     'my-picks': 'my-picks',
@@ -154,6 +156,7 @@ function renderView() {
     case 'bracket':
     case 'brackets':     renderBracketShim(root, state.data, params); break;
     case 'pools':        renderPoolsView(root, state.data, params); break;
+    case 'standings':    renderPoolStandingsView(root, state.data, params); break;
     case 'my-brackets':  renderMyBracketsView(root, state.data, params); break;
     case 'my-picks':     renderMyPicks(root, state.data, params); break;
     case 'matches':

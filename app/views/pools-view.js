@@ -174,27 +174,14 @@ function renderDiscoverList(wrap, pools, comp) {
   for (const p of pools) {
     wrap.appendChild(renderPoolCard(p, { joined: myIds.has(p.id), kind: 'public' }));
   }
-  wrap.addEventListener('click', async (e) => {
-    const card = e.target.closest('[data-pool-code]');
+  wrap.addEventListener('click', (e) => {
+    const card = e.target.closest('[data-pool-id]');
     if (!card) return;
-    const code = card.dataset.poolCode;
-    const id = card.dataset.poolId;
-    if (myIds.has(id)) {
-      // already a member — set as active and route to my-brackets
-      setActiveGroup(id);
-      setRoute('my-brackets', {});
-      return;
-    }
-    try {
-      await joinPoolByCode(code);
-      setRoute('pools', { view: 'mine' });
-    } catch (err) {
-      const msg = document.createElement('p');
-      msg.className = 'muted';
-      msg.style.cssText = 'color: var(--bad); margin: 8px 0;';
-      msg.textContent = err.message || 'Could not join.';
-      card.appendChild(msg);
-    }
+    // R18: tapping a pool opens its STANDINGS (place · player · points). The
+    // standings view shows the ranked list for members, or a "join to view"
+    // CTA for non-members (RLS blocks reading non-member standings). Pass the
+    // code so the standings view can offer one-tap join.
+    setRoute('standings', { id: card.dataset.poolId, code: card.dataset.poolCode });
   });
 }
 
@@ -211,8 +198,9 @@ function renderMyPools(wrap, comp) {
   wrap.addEventListener('click', (e) => {
     const card = e.target.closest('[data-pool-id]');
     if (!card) return;
-    setActiveGroup(card.dataset.poolId);
-    setRoute('my-brackets', {});
+    // R18: open the pool's standings (was → my-brackets, which showed YOUR
+    // bracket, not the ranked list).
+    setRoute('standings', { id: card.dataset.poolId });
   });
 }
 

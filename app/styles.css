@@ -1554,6 +1554,25 @@ body.search-open { overflow: hidden; }
 .home-leaderboard .lb-name { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .home-leaderboard .lb-score { font-weight: 700; color: var(--primary); }
 
+/* R18: Pool Standings view (place · player · points). */
+.pw-standings { list-style: none; margin: 0; padding: 0; }
+.pw-standings-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 6px; border-bottom: 1px solid var(--border);
+}
+.pw-standings-row:last-child { border-bottom: 0; }
+.pw-standings-row.is-me {
+  background: color-mix(in srgb, var(--picked) 12%, var(--surface));
+  border-radius: 8px; border-bottom-color: transparent;
+}
+.pw-standings-place {
+  flex: 0 0 30px; text-align: center; font-weight: 700;
+  color: var(--text-muted); font-variant-numeric: tabular-nums;
+}
+.pw-standings-name { flex: 1 1 auto; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.pw-standings-pts { flex: 0 0 auto; text-align: right; font-variant-numeric: tabular-nums; }
+.pw-standings-split { display: block; font-size: 11px; font-weight: 400; }
+
 .home-match-list { display: grid; gap: 8px; }
 .home-match-row {
   display: grid;
