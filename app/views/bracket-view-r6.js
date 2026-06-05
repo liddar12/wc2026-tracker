@@ -17,6 +17,7 @@ import { getActiveModel, modelToAutofillSource } from '../lib/active-model.js';
 const MODE_LABELS = { live: 'Live', projected: 'Projected' };
 const SOURCE_LABELS = {
   model: 'Model composite',
+  dt: 'DT Model',
   kalshi: 'Kalshi market',
   hybrid: 'Hybrid 50/50',
   consensus: 'Public consensus',

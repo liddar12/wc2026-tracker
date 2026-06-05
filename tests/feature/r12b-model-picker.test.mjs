@@ -23,8 +23,8 @@ function mockStorage(seed = {}) {
   };
 }
 
-test('R12b: MODELS list contains exactly the 4 documented models', () => {
-  assert.deepEqual(MODELS, ['j5l', 'kalshi', 'hybrid', 'consensus']);
+test('R12b/R16: MODELS list contains the documented models incl. DT', () => {
+  assert.deepEqual(MODELS, ['j5l', 'dt', 'kalshi', 'hybrid', 'consensus']);
   for (const m of MODELS) {
     assert.ok(MODEL_LABELS[m], `missing label for ${m}`);
     assert.ok(MODEL_TO_AUTOFILL_SOURCE[m], `missing autofill mapping for ${m}`);
@@ -55,6 +55,7 @@ test('R12b: setDefaultModel + getActiveModel chain', () => {
 
 test('R12b: modelToAutofillSource maps to bracket-autofill ids', () => {
   assert.equal(modelToAutofillSource('j5l'), 'model');
+  assert.equal(modelToAutofillSource('dt'), 'dt');
   assert.equal(modelToAutofillSource('kalshi'), 'kalshi');
   assert.equal(modelToAutofillSource('hybrid'), 'hybrid');
   assert.equal(modelToAutofillSource('consensus'), 'consensus');

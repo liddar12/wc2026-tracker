@@ -142,6 +142,7 @@ function renderHeader(comp) {
       <h3 style="margin: 14px 0 6px; font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);">Auto-fill empty slots</h3>
       <div class="mb-autofill-grid">
         <button class="pick-btn pick-btn-secondary" data-autofill="model">Use Model</button>
+        <button class="pick-btn pick-btn-secondary" data-autofill="dt">Use DT</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="kalshi">Use Kalshi</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="hybrid">50/50 Hybrid</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="consensus">Public Consensus</button>

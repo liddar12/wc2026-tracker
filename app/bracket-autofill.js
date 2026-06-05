@@ -11,9 +11,11 @@ import {
   STAGE_ORDER, resolveSlots, isSlotPlaceholder,
   computeProjectedGroupOrder, computeGroupStandings,
 } from './bracket-resolver.js';
+import { dtWinner } from './lib/dt-model.js';
 
 export const FILL_SOURCES = {
   model:     { label: 'Model',     description: 'My composite power ranking (mine + elo + tmv + qual)' },
+  dt:        { label: 'DT',        description: 'DT Model rating (player-talent + coaching, Elo-anchored)' },
   kalshi:    { label: 'Kalshi',    description: 'Kalshi tournament-winner probability per team' },
   hybrid:    { label: '50/50',     description: 'Average of model composite and Kalshi (normalized)' },
   consensus: { label: 'Consensus', description: 'Most-picked team across all public pools' },
@@ -48,6 +50,8 @@ function makeWinnerFn(data, source, consensusMap) {
     if (r?.team && typeof r.prob_pct === 'number') kalshiByTeam[r.team] = r.prob_pct;
   }
   switch (source) {
+    case 'dt':
+      return (a, b) => dtWinner(data, a, b);
     case 'kalshi':
       return (a, b) => {
         const pa = kalshiByTeam[a] || 0;

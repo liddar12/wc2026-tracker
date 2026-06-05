@@ -4,6 +4,7 @@
    UI tile rendering doesn't have to fork by model. */
 
 import { getActiveModel } from './active-model.js';
+import { dtRatingsByTeam } from './dt-model.js';
 
 /**
  * teamAnalytics(team, data, model?) → {
@@ -29,6 +30,11 @@ export function teamAnalytics(team, data, model) {
   const winnerRow = (data?.markets?.tournament_winner || []).find((r) => r?.team === team);
   const kalshiPct = winnerRow?.prob_pct ?? null;
 
+  // DT Model: rating (0-100) + Monte-Carlo title probability
+  const dtRec = dtRatingsByTeam(data)[team] || null;
+  const dtRating = dtRec && dtRec.rating > 0 ? dtRec.rating : null;
+  const dtTitlePct = dtRec && dtRec.title_prob > 0 ? dtRec.title_prob * 100 : null;
+
   // Hybrid: simple normalize-and-mean
   let hybridPct = null;
   if (composite != null && kalshiPct != null) {
@@ -39,6 +45,12 @@ export function teamAnalytics(team, data, model) {
   let primary;
   let secondary = [];
   switch (model) {
+    case 'dt': {
+      primary = { label: 'DT', value: dtRating != null ? dtRating.toFixed(1) : '—', hint: 'DT rating' };
+      if (dtTitlePct != null) secondary.push({ label: 'Title', value: `${dtTitlePct.toFixed(1)}%` });
+      if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
+      break;
+    }
     case 'kalshi': {
       primary = { label: 'Kalshi', value: kalshiPct != null ? `${kalshiPct.toFixed(1)}%` : '—', hint: 'win odds' };
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
@@ -65,7 +77,7 @@ export function teamAnalytics(team, data, model) {
       break;
     }
   }
-  return { primary, secondary, model, composite, kalshiPct, powerRank, fifaRank };
+  return { primary, secondary, model, composite, kalshiPct, powerRank, fifaRank, dtRating, dtTitlePct };
 }
 
 /**
@@ -78,6 +90,7 @@ export function rankTeamsByModel(teams, data, model) {
     const a = teamAnalytics(t, data, model);
     let score = 0;
     if (model === 'kalshi') score = a.kalshiPct ?? a.composite ?? 0;
+    else if (model === 'dt') score = a.dtRating ?? a.composite ?? 0;
     else if (model === 'hybrid') {
       score = a.composite != null && a.kalshiPct != null ? (a.composite + a.kalshiPct) / 2 : (a.composite ?? a.kalshiPct ?? 0);
     } else {
