@@ -4,6 +4,7 @@
    wc26.activeModel and dispatches `model:change` so other views can
    repaint without a route change. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { MODELS, MODEL_LABELS, MODEL_DESCRIPTIONS, getActiveModel, setActiveModel } from '../lib/active-model.js';
 
 export function renderModelPicker(opts = {}) {
@@ -57,6 +58,3 @@ export function renderModelPicker(opts = {}) {
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

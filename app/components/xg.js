@@ -1,4 +1,5 @@
 /* xg.js — model xG section for the matchup-detail view. */
+import { escapeHtml } from '../lib/escape.js';
 import { sectionHeading } from './tooltip.js';
 
 export function xgSection(match, xg) {
@@ -36,6 +37,3 @@ export function xgSection(match, xg) {
   return sec;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

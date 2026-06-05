@@ -1,4 +1,5 @@
 /* winner-view.js — tournament winner ladder from Kalshi odds. */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { sparklineSvg } from '../components/sparkline.js';
 import { kalshiAttribution } from '../markets.js';
@@ -49,6 +50,3 @@ function winnerRow(row, rank) {
   return a;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

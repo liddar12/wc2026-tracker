@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* biggest-movers.js — horizontal scroll strip for top market movers. */
 
 export function biggestMoversStrip(markets) {
@@ -32,6 +33,3 @@ export function biggestMoversStrip(markets) {
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

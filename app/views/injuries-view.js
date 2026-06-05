@@ -1,6 +1,7 @@
 /* injuries-view.js — D10: tournament-wide injury dashboard.
    Reads data/injuries.json, groups by team, surfaces severity color codes.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { setRoute } from '../state.js';
 
@@ -80,6 +81,3 @@ function formatRel(iso) {
   } catch { return ''; }
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

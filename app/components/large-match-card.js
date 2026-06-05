@@ -2,6 +2,7 @@
    One card per match, ~240–280px tall, big tabular score numbers in the
    display font, team-color gradient banner. Modes: upcoming / live / final.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
 import { getTeamColors } from '../team-skin.js';
 import { shortTeamName } from '../lib/team-names.js';
@@ -184,6 +185,3 @@ function formatKickoffTime(date) {
   return date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

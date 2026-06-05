@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* travel-rest.js — days_since_last_match + km flown per team. */
 
 export function travelRestSection(match, fatigue) {
@@ -46,6 +47,3 @@ function col(team, b) {
   return c;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

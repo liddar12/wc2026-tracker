@@ -1,4 +1,5 @@
 /* main.js — entry point, router, view loop. */
+import { escapeHtml } from './lib/escape.js';
 import { purgeLegacyState, expireAnonCache } from './lib/version-purge.js';
 // R12: legacy-state purge runs BEFORE any module that reads localStorage so
 // stale keys from prior deploys don't shadow the current build. The
@@ -358,6 +359,3 @@ loadData()
     root.innerHTML = `<p class="loading">Failed to load data. <br><span class="muted">${escapeHtml(err.message)}</span></p>`;
   });
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

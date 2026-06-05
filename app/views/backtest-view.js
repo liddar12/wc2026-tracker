@@ -1,3 +1,4 @@
+import { escapeHtml } from '../lib/escape.js';
 /* backtest-view.js — E4: backtest panel.
    Loads data/backtest.json (built by scripts/build_backtest.py from 2022 WC +
    Euro 2024 results) and shows accuracy of model vs market vs hybrid. */
@@ -66,6 +67,3 @@ function renderRow(label, scores) {
   `;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

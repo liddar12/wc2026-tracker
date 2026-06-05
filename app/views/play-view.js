@@ -7,6 +7,7 @@
    Persistence reuses existing localStorage keys verbatim
    (wc26.grouppicks.<id> and wc26.mybrackets.<id>) — no new schema. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
@@ -935,6 +936,3 @@ function ordinal(n) {
   return n + (s[(v - 20) % 10] || s[v] || s[0]);
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

@@ -1,4 +1,5 @@
 /* referee.js — Referee section with name, nationality, confederation and bias indicators. */
+import { escapeHtml } from '../lib/escape.js';
 import { teamHistory, confederationLean, buildTeamConfedLookup } from '../ref-bias.js';
 
 export function refereeSection(match, data) {
@@ -94,6 +95,3 @@ function formatStd(z) {
   return `${sign}${Math.abs(z).toFixed(1)} std`;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

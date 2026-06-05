@@ -2,6 +2,7 @@
    Aggregates each profile's pick history across all pools and ranks them
    by group-stage accuracy + bracket points where available. */
 
+import { escapeHtml } from '../lib/escape.js';
 import { getCompetitionState } from '../competition.js';
 import { flagFor } from '../components/team-flag.js';
 
@@ -74,6 +75,3 @@ async function fetchLeaderboard(client, data) {
     .sort((a, b) => b.accuracy_pct - a.accuracy_pct || b.total - a.total);
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

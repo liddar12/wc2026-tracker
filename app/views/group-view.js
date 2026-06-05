@@ -1,4 +1,5 @@
 /* group-view.js — standings + 6 cards for a single group, with group switcher. */
+import { escapeHtml } from '../lib/escape.js';
 import { matchupCard } from '../components/matchup-card.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
@@ -92,4 +93,3 @@ function computeStandings(info) {
 }
 
 function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }

@@ -1,3 +1,4 @@
+import { escapeHtml, escapeAttr } from '../lib/escape.js';
 /* when-where-watch.js — section for kickoff local time + venue + US broadcast. */
 
 export function whenWhereWatch(match, scheduleFull, venues) {
@@ -45,7 +46,3 @@ function formatLocal(iso) {
   }
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}
-function escapeAttr(s) { return escapeHtml(s); }

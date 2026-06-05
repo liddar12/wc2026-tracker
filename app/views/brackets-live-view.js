@@ -5,6 +5,7 @@
    labels. During tournament: completed matches show score + winner; future
    rounds show resolved teams once their qualifying match completes.
 */
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { statusPill } from '../components/status-pill.js';
@@ -421,6 +422,3 @@ function openQuickActions(teamA, teamB, anchor) {
   }, 100);
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

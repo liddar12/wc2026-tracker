@@ -2,6 +2,7 @@
    Same structural renderer as brackets-live-view but winners come from the
    model's composite gap instead of actual results. Used as the "Projected"
    sub-mode of #/brackets. */
+import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { getFavoriteTeam } from '../favorites.js';
 import { openMatchSheet } from '../components/match-sheet.js';
@@ -103,6 +104,3 @@ function renderStage(stage, matches, data) {
   return section;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

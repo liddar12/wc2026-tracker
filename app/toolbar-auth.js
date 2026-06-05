@@ -4,6 +4,7 @@
    Sign out. The pre-R16 in-dropdown auth form (and its remount/outside-click
    race patches) is gone — the modal owns the form. */
 
+import { escapeHtml } from './lib/escape.js';
 import {
   getCompetitionState,
   continueAsGuest,
@@ -114,6 +115,3 @@ export async function startGuest() {
   return true;
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}

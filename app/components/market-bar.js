@@ -1,4 +1,5 @@
 /* market-bar.js — Kalshi tri-segment bar for matchup detail. */
+import { escapeHtml } from '../lib/escape.js';
 import { getMatchOutcome } from '../markets.js';
 import { tipButton } from './tooltip.js';
 
@@ -48,6 +49,3 @@ export function marketBar(match, markets) {
   return wrap;
 }
 
-function escapeHtml(s) {
-  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-}

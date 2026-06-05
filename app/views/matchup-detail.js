@@ -8,6 +8,7 @@
  *   5. Lineups, referee, H2H, form, scorers, weather, travel, xG
  *   6. Final result (when present)
  */
+import { escapeHtml } from '../lib/escape.js';
 import { confidenceBar } from '../components/confidence-bar.js';
 import { marketOddsSection } from '../components/market-odds.js';
 import { watchlistStar } from '../components/watchlist-star.js';
@@ -231,8 +232,6 @@ function findMatch(groupMatchups, a, b) {
   }
   return null;
 }
-
-function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function hybridPill(match, markets) {
   const wrap = document.createElement('div');

@@ -6,6 +6,7 @@
    - Account section (when signed in): username, sign out
 */
 
+import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames } from '../favorites.js';
@@ -293,6 +294,3 @@ export function initSettingsPrefs() {
   } catch {}
 }
 
-function escapeHtml(s) {
-  return String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-}
