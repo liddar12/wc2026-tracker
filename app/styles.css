@@ -3341,7 +3341,9 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 60;
+  /* R16: must sit ABOVE the auth modal (z-index 70) — the "choose a name"
+     prompt is launched from inside the modal's Continue-as-Guest button. */
+  z-index: 80;
 }
 .auth-handle-card {
   background: var(--surface);
@@ -3353,6 +3355,48 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
 }
 .auth-handle-card h3 { margin: 0 0 8px; font-size: 16px; }
 .auth-handle-card .auth-input { width: 100%; }
+
+/* R16: the single canonical auth lightbox (auth-modal.js). Centered overlay,
+   reuses the .auth-card panel rendered by renderAuthPanel. */
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 70;
+  padding: 16px;
+}
+.auth-modal-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  width: min(420px, 94vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow);
+  padding: 8px;
+}
+.auth-modal-card .auth-card { border: 0; box-shadow: none; background: transparent; }
+.auth-modal-card .auth-input { width: 100%; }
+.auth-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: 0;
+  font-size: 24px;
+  line-height: 1;
+  color: var(--text-muted);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  z-index: 1;
+}
+.auth-modal-close:hover { background: var(--surface-2, rgba(127,127,127,0.12)); color: var(--text); }
 
 /* ============================================================================
    R6 — Play funnel + read-only views

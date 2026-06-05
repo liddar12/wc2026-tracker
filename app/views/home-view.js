@@ -9,9 +9,9 @@ import {
   getCompetitionState,
   isSupabaseConfigured,
   continueAsGuest,
-  setAuthPanelMode,
   fetchLeaderboard
 } from '../competition.js';
+import { openAuth } from '../auth-modal.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
 import { topMovers as eloTopMovers } from '../live-elo.js';
 import { loadGroupPicks, isStage1Complete, isStage2Complete } from '../group-picks-builder.js';
@@ -329,15 +329,10 @@ function renderAuthSlot(data) {
       return;
     }
     if (e.target.closest('[data-go-signin]')) {
-      // R6 QA: auth lives in the toolbar now. Open that menu instead of
-      // routing to the legacy /my-picks page.
-      setAuthPanelMode('signin');
-      const tbBtn = document.getElementById('auth-toolbar-btn');
-      if (tbBtn) {
-        tbBtn.click();
-      } else {
-        setRoute('my-picks', {});
-      }
+      // R16: open the auth lightbox directly on the sign-in form. (The old
+      // path set a panel mode then clicked the toolbar button, but the menu
+      // ignored the mode and dead-ended on the generic entry screen.)
+      openAuth('signin');
       return;
     }
     if (e.target.closest('[data-go-guest]')) {

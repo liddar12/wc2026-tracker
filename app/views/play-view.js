@@ -11,6 +11,7 @@ import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
 import { openPodiumModal } from '../components/podium-modal.js';
+import { markAnonSubmitted } from '../lib/version-purge.js';
 import {
   emptyPicks,
   loadGroupPicks,
@@ -827,6 +828,10 @@ async function submitBracket(data, poolId) {
   // Guest or signed-out: the bracket is already saved on this device. Be
   // honest — do NOT pretend it reached a leaderboard.
   if (!state.user) {
+    // R16 (Phase 3): an anon who reaches submit has completed stages 1-3 (the
+    // submit button is gated on completeness). Mark the session so its local
+    // drafts expire on the next boot (the bracket stays viewable this session).
+    markAnonSubmitted();
     return {
       ok: true,
       scope: 'local',
@@ -849,13 +854,20 @@ async function submitBracket(data, poolId) {
   const groupScore = await comp.saveGroupPredictionsForActiveGroup(groupPicks, data);
   const bracketScore = await comp.saveBracketForActiveGroup(data, pickArray);
   window.dispatchEvent(new CustomEvent('play:submitted', { detail: { poolId } }));
+  // R16 (Phase 2): the leaderboard total is group (max 84) + knockout (max 96).
+  // Surface both components when there's a score to show (pre-tournament both
+  // are 0, so keep the message clean then).
+  const total = (groupScore || 0) + (bracketScore || 0);
   return {
     ok: true,
     scope: 'pool',
     pool: state.activeGroup.name,
     groupScore,
     bracketScore,
-    message: `Submitted to ${state.activeGroup.name}. View it in My Brackets.`,
+    total,
+    message: total > 0
+      ? `Submitted to ${state.activeGroup.name} — ${total} pts (group ${groupScore} + knockout ${bracketScore}). View it in My Brackets.`
+      : `Submitted to ${state.activeGroup.name}. View it in My Brackets.`,
   };
 }
 

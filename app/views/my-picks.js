@@ -25,6 +25,7 @@ import {
   createBracketDraft
 } from '../competition.js';
 import { renderAuthPanel, renderGuestBanner } from '../competition-auth-panel.js';
+import { openAuth } from '../auth-modal.js';
 import { isValidJoinCode } from '../competition-rules.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
 
@@ -188,10 +189,9 @@ async function paintCompetition(section, data) {
           account button in the toolbar to see pool standings here.</p>
       </div>
     `;
-    // Route the invite CTA straight to the toolbar account menu.
-    section.querySelector('#invite-go-auth')?.addEventListener('click', () => {
-      document.getElementById('auth-toolbar-btn')?.click();
-    });
+    // R16: open the auth lightbox directly (was a brittle synthetic click on
+    // the toolbar button).
+    section.querySelector('#invite-go-auth')?.addEventListener('click', () => openAuth('entry'));
     return;
   }
 
