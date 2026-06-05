@@ -18,6 +18,7 @@ import {
   setActiveGroup,
   saveBracketForActiveGroup,
   fetchLeaderboard,
+  EVERYONE_GROUP_ID,
   getJoinUrls,
   listBracketDrafts,
   getActiveDraftId,
@@ -245,6 +246,7 @@ async function paintCompetition(section, data) {
       ${activeName ? `
         <h3 style="margin: 14px 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);">${escapeHtml(activeName)} leaderboard</h3>
         ${leaderboard}
+        ${comp.activeGroup?.id === EVERYONE_GROUP_ID ? '<p class="muted" style="margin: 8px 0 0; font-size: 11px;">Scores update as matches are played.</p>' : ''}
       ` : '<p class="muted" style="margin-top: 14px;">Pick an active pool from <a href="#/pools">Pools</a> to see its leaderboard here.</p>'}
 
       <p class="muted" id="comp-msg" role="status" aria-live="polite" style="margin-top:8px;"></p>
