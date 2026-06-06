@@ -691,22 +691,32 @@ function loadActiveDraftId() {
 
 function wireAuthSubscription() {
   if (!state.client || state.authSubscription) return;
-  const { data } = state.client.auth.onAuthStateChange(async (_event, session) => {
+  // R20.1 (TRUE root cause of the header/PWA bug): this callback runs while
+  // GoTrue holds its internal auth lock. It MUST be synchronous and MUST NOT
+  // call other Supabase methods. The previous version was `async` and awaited
+  // loadProfileAndGroups(), whose .from().select() needs the SAME lock →
+  // DEADLOCK. That hung resolveCurrentUser()'s getSession() on reload, so the
+  // state-change that repaints the header never fired → "Sign in" shown while
+  // actually logged in, intermittently + differently across desktop/iOS/PWA
+  // (lock timing varies by engine). Fix: update state + repaint SYNCHRONOUSLY
+  // here; defer the DB work to setTimeout(0) so it runs AFTER the lock releases.
+  const { data } = state.client.auth.onAuthStateChange((_event, session) => {
     state.user = session?.user || null;
     if (state.user) {
       setGuestMode(false);
-      try { await loadProfileAndGroups(); }
-      catch (err) { console.warn('[auth] loadProfileAndGroups (onAuthStateChange) soft-failed', err?.message || err); }
     } else {
       state.profile = null;
       state.groups = [];
       state.activeGroup = null;
     }
-    // R20 (RC1): repaint the header label + the active view on EVERY async auth
-    // event — late session restore (esp. iOS PWA), token auto-refresh, and
-    // cross-tab sign-in/out. Previously this callback mutated state silently, so
-    // the header could stay on "Sign in" while actually logged in.
     window.dispatchEvent(new CustomEvent('competition:state-change'));
+    if (state.user) {
+      setTimeout(() => {
+        loadProfileAndGroups()
+          .then(() => window.dispatchEvent(new CustomEvent('competition:state-change')))
+          .catch((err) => console.warn('[auth] loadProfileAndGroups (deferred) soft-failed', err?.message || err));
+      }, 0);
+    }
   });
   state.authSubscription = data?.subscription || null;
 }

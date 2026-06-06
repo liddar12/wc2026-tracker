@@ -7,12 +7,22 @@ import { readFileSync } from 'node:fs';
 // docs/AUTH-TEST-PLAN.md.
 const read = (p) => readFileSync(p, 'utf8');
 
-test('RC1: onAuthStateChange repaints (dispatches competition:state-change)', () => {
+test('RC1: onAuthStateChange repaints AND is deadlock-safe (sync callback, deferred DB)', () => {
   const comp = read('app/competition.js');
-  const m = comp.match(/onAuthStateChange\([\s\S]*?\}\);/);
+  const m = comp.match(/onAuthStateChange\([\s\S]*?\n  \}\);/);
   assert.ok(m, 'onAuthStateChange callback found');
-  assert.match(m[0], /competition:state-change/,
-    'the auth-state callback must dispatch competition:state-change so async session restore / token refresh / cross-tab repaints the header + views');
+  const cb = m[0];
+  // must repaint on auth events
+  assert.match(cb, /competition:state-change/,
+    'callback must dispatch competition:state-change (header/view repaint on restore/refresh/cross-tab)');
+  // TRUE root cause guard: the callback must NOT be async (awaiting Supabase
+  // calls inside it holds the GoTrue lock → deadlocks getSession on reload).
+  assert.doesNotMatch(cb, /onAuthStateChange\(\s*async/,
+    'callback must be SYNCHRONOUS — awaiting Supabase calls inside it deadlocks getSession');
+  assert.doesNotMatch(cb, /\bawait\b/,
+    'no await inside the auth callback (deadlock); defer DB work with setTimeout');
+  assert.match(cb, /setTimeout\(/,
+    'profile/groups load must be deferred out of the lock via setTimeout');
 });
 
 test('RC2: header label prefers profile.username (not just email local-part)', () => {
