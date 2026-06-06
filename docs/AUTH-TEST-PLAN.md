@@ -49,10 +49,26 @@ For each platform, signed in as a username-account AND an email-account:
 ### D. Regression
 Full suite (173) stays green; the 6 R16 auth-modal Playwright tests stay green.
 
+## Deep-RCA update — RC1's TRUE root cause (the screenshots)
+The user's screenshots (header "Sign in" while logged in; Settings "Not signed
+in" while the account menu showed signed-in) drove a deeper trace. Findings,
+proven by instrumenting the boot + a real signed-in reload:
+- The session token persists and a FRESH client's `getSession()` restores it —
+  yet the app stayed signed-out on reload.
+- Cause: `onAuthStateChange` was an **async callback that awaited
+  `loadProfileAndGroups()`** (a Supabase `.from().select()`). That query needs
+  the **same GoTrue auth lock the callback holds → DEADLOCK**, which hung
+  `resolveCurrentUser()`'s `getSession()` so the repaint event never fired.
+  Lock timing varies by engine → intermittent + "different on desktop/iOS/PWA."
+- Fix: make the callback **synchronous** (set state + dispatch immediately) and
+  **defer** `loadProfileAndGroups()` via `setTimeout(0)` (Supabase's documented
+  pattern). Verified on prod: sign in → reload (×2) → header stays
+  "signed-in/<username>".
+
 ## Run results + fixes — RESOLVED
 Reproductions confirmed all four root causes (4/4 source guards + the Pools
 behavioral test failed). Fixes applied + verified:
-- RC1 ✅ dispatch `competition:state-change` at the end of `onAuthStateChange` (both branches) — `competition.js`.
+- RC1 ✅ **deadlock fix** — sync `onAuthStateChange` + deferred profile load (+ still dispatches `competition:state-change`) — `competition.js`. Regression guard asserts the callback is sync + deferred.
 - RC2 ✅ `syncLabel` → `profile?.username` then email fallback — `toolbar-auth.js`.
 - RC3 ✅ `#pools-signin` → `openAuth('signin')` — `pools-view.js`.
 - RC4 ✅ Home guest → shared `startGuest()` (handle prompt) — `home-view.js`.
