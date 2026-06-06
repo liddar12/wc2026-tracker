@@ -695,12 +695,18 @@ function wireAuthSubscription() {
     state.user = session?.user || null;
     if (state.user) {
       setGuestMode(false);
-      await loadProfileAndGroups();
-      return;
+      try { await loadProfileAndGroups(); }
+      catch (err) { console.warn('[auth] loadProfileAndGroups (onAuthStateChange) soft-failed', err?.message || err); }
+    } else {
+      state.profile = null;
+      state.groups = [];
+      state.activeGroup = null;
     }
-    state.profile = null;
-    state.groups = [];
-    state.activeGroup = null;
+    // R20 (RC1): repaint the header label + the active view on EVERY async auth
+    // event — late session restore (esp. iOS PWA), token auto-refresh, and
+    // cross-tab sign-in/out. Previously this callback mutated state silently, so
+    // the header could stay on "Sign in" while actually logged in.
+    window.dispatchEvent(new CustomEvent('competition:state-change'));
   });
   state.authSubscription = data?.subscription || null;
 }
