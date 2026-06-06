@@ -9,11 +9,11 @@ import { formatLastUpdated } from '../data-loader.js';
 import {
   getCompetitionState,
   isSupabaseConfigured,
-  continueAsGuest,
   fetchLeaderboard,
   EVERYONE_GROUP_ID
 } from '../competition.js';
 import { openAuth } from '../auth-modal.js';
+import { startGuest } from '../toolbar-auth.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
 import { topMovers as eloTopMovers } from '../live-elo.js';
 import { loadGroupPicks, isStage1Complete, isStage2Complete } from '../group-picks-builder.js';
@@ -338,7 +338,9 @@ function renderAuthSlot(data) {
       return;
     }
     if (e.target.closest('[data-go-guest]')) {
-      continueAsGuest();
+      // R20 (RC4): prompt for a display name (consistent with the modal's guest
+      // path) instead of silently creating a nameless "Guest".
+      void startGuest();
     }
   });
   return wrap;

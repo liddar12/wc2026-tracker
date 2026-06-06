@@ -23,8 +23,12 @@ export function initToolbarAuth(data) {
 
   function syncLabel() {
     const s = getCompetitionState();
-    if (s?.user?.email) {
-      label.textContent = labelFromEmail(s.user.email);
+    if (s?.user) {
+      // R20 (RC2): prefer the profile username (what the rest of the app shows);
+      // fall back to the email local-part. Username-based accounts have a
+      // synthetic email, so email-only labels were wrong/mangled for them.
+      const name = s.profile?.username || labelFromEmail(s.user.email);
+      label.textContent = String(name || 'Account').slice(0, 16);
       btn.dataset.state = 'signed-in';
     } else if (s?.guestMode) {
       label.textContent = s.guestHandle || 'Guest';

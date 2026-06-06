@@ -17,6 +17,7 @@ import {
 } from '../competition.js';
 import { helpCard, HELP_COPY } from '../components/help-card.js';
 import { loadBracketDraft } from '../bracket-builder.js';
+import { openAuth } from '../auth-modal.js';
 import { isStage1Complete, isStage2Complete, loadGroupPicks } from '../group-picks-builder.js';
 
 export function renderPoolsView(root, data, params) {
@@ -125,7 +126,9 @@ function renderHero(comp) {
   };
 
   hero.querySelector('#pools-create')?.addEventListener('click', () => setRoute('create-group', {}));
-  hero.querySelector('#pools-signin')?.addEventListener('click', () => setRoute('picks', {}));
+  // R20 (RC3): open the auth modal like every other "Sign in" — was the lone
+  // setRoute('picks') dead-end.
+  hero.querySelector('#pools-signin')?.addEventListener('click', () => openAuth('signin'));
   hero.querySelector('#pools-join-code-btn')?.addEventListener('click', async (e) => {
     const btn = e.currentTarget;
     const input = hero.querySelector('#pools-join-code');
