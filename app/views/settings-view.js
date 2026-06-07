@@ -107,10 +107,10 @@ function renderThemeCard() {
   card.innerHTML = `
     <h2 class="home-card-title">Theme</h2>
     <div class="settings-radio-group">
-      ${['auto', 'light', 'dark'].map((t) => `
+      ${['auto', 'light', 'dark', 'beta'].map((t) => `
         <label class="settings-radio ${current === t ? 'is-active' : ''}">
           <input type="radio" name="settings-theme" value="${t}" ${current === t ? 'checked' : ''}>
-          <span>${t === 'auto' ? 'Match system' : t === 'light' ? 'Light' : 'Dark'}</span>
+          <span>${t === 'auto' ? 'Match system' : t === 'light' ? 'Light' : t === 'dark' ? 'Dark' : 'Beta'}</span>
         </label>
       `).join('')}
     </div>
@@ -130,6 +130,7 @@ function applyTheme(theme) {
   const root = document.documentElement;
   if (theme === 'light') root.setAttribute('data-theme', 'light');
   else if (theme === 'dark') root.setAttribute('data-theme', 'dark');
+  else if (theme === 'beta') root.setAttribute('data-theme', 'beta');
   else root.removeAttribute('data-theme');
 }
 

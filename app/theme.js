@@ -1,10 +1,10 @@
-/* theme.js — light/dark with system fallback.
- * Stores user choice in localStorage under wc26.theme: 'light' | 'dark' | 'auto'.
+/* theme.js — light/dark/beta with system fallback.
+ * Stores user choice in localStorage under wc26.theme: 'light' | 'dark' | 'beta' | 'auto'.
  */
 const LS_KEY = 'wc26.theme';
 
 function effective(pref) {
-  if (pref === 'light' || pref === 'dark') return pref;
+  if (pref === 'light' || pref === 'dark' || pref === 'beta') return pref;
   return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
