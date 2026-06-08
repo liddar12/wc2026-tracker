@@ -37,13 +37,42 @@ def composite(team: dict, weights: dict) -> float:
     return round(base, 1)
 
 
+# V3 bivariate-Poisson match form (replaces the old logistic + linear-draw model).
+# mu=0.30 → exp(0.30)≈1.35 baseline goals/side (realistic international scoring).
+# beta=0.125 is calibrated so the favourite's win SHARE tracks the prior logistic
+# across the observed composite-gap range (MSE 3e-5) — so displayed favourite
+# probabilities barely move — while draws now follow a realistic Poisson scoreline
+# distribution (≈26% at an even match) instead of an inflated linear clamp (32%).
+# Validated on 610 historical finals: the Poisson form lowers Brier+log-loss vs
+# the logistic with no accuracy loss (see v3-model-changes/backtest/REPORT.md).
+_POIS_MU = 0.30
+_POIS_BETA = 0.125
+_POIS_MAXG = 10
+
+
+def _poisson_pmf(k: int, lam: float) -> float:
+    return math.exp(k * math.log(lam) - lam - math.lgamma(k + 1))
+
+
 def win_probs(gap: float) -> tuple[float, float, float]:
-    """Three-way model: logistic for A vs B, draw mass shrinks with |gap|."""
-    p_a = 1 / (1 + math.exp(-gap / 4.5))
-    p_b = 1 - p_a
-    draw = max(0.05, 0.32 - abs(gap) * 0.015)
-    rest = 1 - draw
-    return p_a * rest, draw, p_b * rest
+    """Three-way probs (A win, draw, B win) via a bivariate-Poisson scoreline."""
+    sup = _POIS_BETA * gap
+    lam_a = math.exp(_POIS_MU + sup / 2.0)
+    lam_b = math.exp(_POIS_MU - sup / 2.0)
+    pa = [_poisson_pmf(k, lam_a) for k in range(_POIS_MAXG + 1)]
+    pb = [_poisson_pmf(k, lam_b) for k in range(_POIS_MAXG + 1)]
+    h = d = a = 0.0
+    for i in range(_POIS_MAXG + 1):
+        for j in range(_POIS_MAXG + 1):
+            p = pa[i] * pb[j]
+            if i > j:
+                h += p
+            elif i == j:
+                d += p
+            else:
+                a += p
+    total = h + d + a
+    return h / total, d / total, a / total
 
 
 def rebuild() -> None:

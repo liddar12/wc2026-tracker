@@ -69,6 +69,9 @@ jobs:
       # ---- Composite + analytics rebuild (must succeed) ----
       - name: Recompute composite + probabilities
         run: python scripts/rebuild_composite.py
+      - name: Rebuild DT model (Elo + market value blend)
+        run: python scripts/build_dt_model.py
+        continue-on-error: true
       - name: Compute fatigue + travel
         run: python scripts/compute_fatigue.py
       - name: Compute model xG
