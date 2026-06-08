@@ -28,7 +28,7 @@ export function renderGoldenAwardsView(root, data, params = {}) {
     root.appendChild(oddsCard(c, {
       title: 'Golden Boot odds', pct: 'bootPct',
       factors: bootFactors, suffix: (x) => `~${x.projGoals} goals`,
-      note: `Chance to finish top scorer — the model${c.blendedWithMarket ? ' blended 50/50 with the live Kalshi Golden Boot market' : ''}. Updates through the day.`,
+      note: `Chance to finish top scorer — the model${c.blendedWithMarket ? ' blended 50/50 with the live Golden Boot market' : ''}. Updates through the day.`,
     }));
     root.appendChild(howCard('boot'));
     return;
@@ -37,9 +37,9 @@ export function renderGoldenAwardsView(root, data, params = {}) {
   const fn = award === 'ball' ? goldenBall : award === 'glove' ? goldenGlove : youngPlayer;
   const c = fn(data, {});
   const meta = {
-    ball: { title: 'Golden Ball odds', note: 'Best player of the tournament — model (talent + attack + deep run) blended 65% with the Kalshi market.' },
-    glove: { title: 'Golden Glove odds', note: 'Best goalkeeper — model (GK rating + team defense + deep run) blended 50/50 with the Kalshi market.' },
-    young: { title: 'Young Player odds', note: 'Best player aged 21 or under — model blended 65% with the Kalshi market.' },
+    ball: { title: 'Golden Ball odds', note: 'Best player of the tournament — model (talent + attack + deep run) blended 65% with the market.' },
+    glove: { title: 'Golden Glove odds', note: 'Best goalkeeper — model (GK rating + team defense + deep run) blended 50/50 with the market.' },
+    young: { title: 'Young Player odds', note: 'Best player aged 21 or under — model blended 65% with the market.' },
   }[award];
   root.appendChild(oddsCard(c, {
     title: meta.title, pct: 'awardPct',
@@ -80,7 +80,7 @@ function liveCard(live) {
   return s;
 }
 
-const mktChip = (c) => (c.marketPct ? `<span title="Kalshi market odds">📊 ${c.marketPct}%</span>` : '');
+const mktChip = (c) => (c.marketPct ? `<span title="market odds">📊 ${c.marketPct}%</span>` : '');
 function bootFactors(c) {
   return `<span title="Expected matches (deep run)">🏟️ ${c.factors.deepRun}</span>
     <span title="Opponent defense factor">🛡️ ${c.factors.oppDefense}</span>
@@ -118,10 +118,10 @@ function oddsCard(contenders, opts) {
 
 function howCard(award) {
   const bullets = {
-    boot: ['<strong>Finishing</strong> — scoring rating + position.', '<strong>Deep run</strong> — expected games (hybrid forecast).', '<strong>Opponent defense</strong> + <strong>xG environment</strong>.', '<strong>Market</strong> — blended 50/50 with the Kalshi Golden Boot market (📊).'],
-    ball: ['<strong>Talent</strong> — player overall rating.', '<strong>Attack</strong> — offensive output (goals + creativity).', '<strong>Deep run</strong> — finalist/champion odds (the Ball favours deep teams).', '<strong>Market</strong> — blended 65% with the Kalshi Golden Ball market (📊).'],
-    glove: ['<strong>GK rating</strong> — keeper overall.', '<strong>Team defense</strong> — clean-sheet potential.', '<strong>Deep run</strong> — more games + visibility (SF/final/champion).', '<strong>Market</strong> — blended 50/50 with the Kalshi Golden Glove market (📊).'],
-    young: ['<strong>Eligibility</strong> — players aged 21 or under.', '<strong>Talent + attack + deep run</strong> — same as the Golden Ball model.', '<strong>Market</strong> — blended 65% with the Kalshi Best Young Player market (📊).'],
+    boot: ['<strong>Finishing</strong> — scoring rating + position.', '<strong>Deep run</strong> — expected games (hybrid forecast).', '<strong>Opponent defense</strong> + <strong>xG environment</strong>.', '<strong>Market</strong> — blended 50/50 with the Golden Boot market (📊).'],
+    ball: ['<strong>Talent</strong> — player overall rating.', '<strong>Attack</strong> — offensive output (goals + creativity).', '<strong>Deep run</strong> — finalist/champion odds (the Ball favours deep teams).', '<strong>Market</strong> — blended 65% with the Golden Ball market (📊).'],
+    glove: ['<strong>GK rating</strong> — keeper overall.', '<strong>Team defense</strong> — clean-sheet potential.', '<strong>Deep run</strong> — more games + visibility (SF/final/champion).', '<strong>Market</strong> — blended 50/50 with the Golden Glove market (📊).'],
+    young: ['<strong>Eligibility</strong> — players aged 21 or under.', '<strong>Talent + attack + deep run</strong> — same as the Golden Ball model.', '<strong>Market</strong> — blended 65% with the Best Young Player market (📊).'],
   }[award];
   const s = document.createElement('section');
   s.className = 'home-card';
@@ -129,6 +129,6 @@ function howCard(award) {
     <h2 class="home-card-title">How the odds are built</h2>
     <ul class="muted" style="margin:0; padding-left:18px; font-size:13px; line-height:1.6;">
       ${bullets.map((b) => `<li>${b}</li>`).join('')}</ul>
-    <p class="muted" style="margin:10px 0 0; font-size:11px;">Inputs (squads, ratings, hybrid forecast, the award's Kalshi market, live goals) refresh multiple times a day, so the odds move through the tournament.</p>`;
+    <p class="muted" style="margin:10px 0 0; font-size:11px;">Inputs (squads, ratings, hybrid forecast, the award's market, live goals) refresh multiple times a day, so the odds move through the tournament.</p>`;
   return s;
 }

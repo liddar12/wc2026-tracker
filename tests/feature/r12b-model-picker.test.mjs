@@ -73,7 +73,7 @@ test('R12b: teamAnalytics returns sensible structure for each model', () => {
   assert.ok(j5l.secondary.find((r) => r.label === 'Power' && r.value === '#8'));
 
   const kalshi = teamAnalytics('USA', data, 'kalshi');
-  assert.equal(kalshi.primary.label, 'Kalshi');
+  assert.equal(kalshi.primary.label, 'Markets');
   assert.equal(kalshi.primary.value, '5.2%');
 
   const hybrid = teamAnalytics('USA', data, 'hybrid');

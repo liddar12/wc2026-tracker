@@ -65,7 +65,7 @@ function buildDiffSummary(data, currentSnap) {
   movers.sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta));
   if (movers.length) {
     const top = movers[0];
-    parts.push(`${top.team} ${top.delta >= 0 ? '+' : ''}${top.delta.toFixed(1)}pp Kalshi`);
+    parts.push(`${top.team} ${top.delta >= 0 ? '+' : ''}${top.delta.toFixed(1)}pp market`);
   }
   // Newly added match results
   const actuals = data?.actualResults || {};

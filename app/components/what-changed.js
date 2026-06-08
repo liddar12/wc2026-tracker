@@ -9,7 +9,7 @@ export function whatChangedToday(data) {
     const top = movers[0];
     const dir = top.delta_24h_pp >= 0 ? 'up' : 'down';
     bullets.push(
-      `${top.team} moved ${dir} ${Math.abs(top.delta_24h_pp).toFixed(1)}pp on Kalshi winner market (${top.prob_pct.toFixed(1)}% now).`
+      `${top.team} moved ${dir} ${Math.abs(top.delta_24h_pp).toFixed(1)}pp on the winner market (${top.prob_pct.toFixed(1)}% now).`
     );
     if (movers.length > 1) {
       const names = movers.slice(1, 4).map((m) => m.team).join(', ');

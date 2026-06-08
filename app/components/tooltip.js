@@ -5,7 +5,7 @@ const TIPS = {
   upset: 'Upset risk signals flag structural reasons the underdog could outperform (close gap, host advantage, momentum). Severity colors show risk level — not a win/loss prediction.',
   xg: 'Expected goals (xG) estimates scoring chances from shot quality — higher xG usually means more dangerous attack.',
   confidence: 'Model confidence is how strongly the prediction favors one outcome based on composite ratings and match context.',
-  market: 'Kalshi market odds reflect real-money prices on tournament and match outcomes — implied probability from yes-contract prices.',
+  market: 'Market odds reflect real-money prices on tournament and match outcomes — implied probability from yes-contract prices.',
 };
 
 let openTip = null;

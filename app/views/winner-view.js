@@ -1,5 +1,5 @@
 /* winner-view.js — tournament winner ladder. Defaults to the Hybrid forecast
-   (⅓ J5L + ⅓ DT + ⅓ Kalshi, Monte-Carlo champion odds from data/forecast.json);
+   (⅓ J5L + ⅓ DT + ⅓ Markets, Monte-Carlo champion odds from data/forecast.json);
    falls back to the raw Kalshi tournament-winner market when the forecast is
    unavailable. */
 import { escapeHtml } from '../lib/escape.js';
@@ -36,7 +36,7 @@ function renderHybrid(root, data, rows) {
   const sims = data.forecast?.bracket_simulation?.iterations;
   header.innerHTML = `
     <h2 class="section-heading">Tournament winner odds</h2>
-    <p class="muted" style="font-size:12px;margin:2px 0 0;">Hybrid forecast · ⅓ J5L + ⅓ DT + ⅓ Kalshi${sims ? ` · ${(sims / 1000)}k sims` : ''}</p>`;
+    <p class="muted" style="font-size:12px;margin:2px 0 0;">Hybrid forecast · ⅓ J5L + ⅓ DT + ⅓ Markets${sims ? ` · ${(sims / 1000)}k sims` : ''}</p>`;
   root.appendChild(header);
 
   const list = document.createElement('div');

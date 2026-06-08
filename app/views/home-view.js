@@ -103,7 +103,6 @@ function renderHero(data) {
     <button class="home-hero-updated" id="home-updated-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
       <span class="home-hero-dot" aria-hidden="true"></span>
       Data updated <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
-      ${freshestIso ? `<span class="muted"> · ${escapeHtml(prettyIso(freshestIso))}</span>` : ''}
       <span class="home-hero-info" aria-hidden="true">ⓘ</span>
     </button>
     <div class="home-hero-freshness" id="home-freshness-popover" hidden role="dialog" aria-label="Per-feed freshness"></div>
@@ -144,7 +143,7 @@ function renderHero(data) {
 function renderFreshnessPopover(data) {
   const feeds = [
     { key: 'schedule',  label: 'Schedule',       iso: data?.meta?.data_version || data?.scheduleFull?.__meta__?.updated_at },
-    { key: 'kalshi',    label: 'Kalshi markets', iso: data?.markets?.updated_at },
+    { key: 'kalshi',    label: 'Markets',        iso: data?.markets?.updated_at },
     { key: 'weather',   label: 'Weather',        iso: data?.weather?.__meta__?.updated_at || data?.weather?.updated_at },
     { key: 'lineups',   label: 'Lineups',        iso: data?.lineups?.__meta__?.updated_at || data?.lineups?.updated_at },
     { key: 'injuries',  label: 'Injuries',       iso: data?.injuries?.__meta__?.updated_at || data?.injuries?.updated_at },
@@ -165,7 +164,7 @@ function renderFreshnessPopover(data) {
     <div class="freshness-card">
       <h3>Data freshness</h3>
       <ul class="freshness-list">${rows}</ul>
-      <p class="muted" style="font-size:11px; margin:8px 0 0;">Updates hourly from openfootball, Kalshi, Wikipedia, and FIFA. Tap to refresh.</p>
+      <p class="muted" style="font-size:11px; margin:8px 0 0;">Updates hourly from openfootball, prediction markets, Wikipedia, and FIFA. Tap to refresh.</p>
     </div>
   `;
 }
@@ -223,19 +222,6 @@ function etDateISO(iso) {
   if (Number.isNaN(d.getTime())) return null;
   const et = new Date(d.getTime() - 4 * 60 * 60 * 1000);
   return et.toISOString().slice(0, 10);
-}
-
-function prettyIso(iso) {
-  // Normalize "...+00:00" / "...Z" / "...T..." into "YYYY-MM-DD HH:MM Z".
-  if (!iso) return '';
-  const d = new Date(iso);
-  if (isNaN(d)) return iso;
-  const yyyy = d.getUTCFullYear();
-  const mm = String(d.getUTCMonth() + 1).padStart(2, '0');
-  const dd = String(d.getUTCDate()).padStart(2, '0');
-  const hh = String(d.getUTCHours()).padStart(2, '0');
-  const mi = String(d.getUTCMinutes()).padStart(2, '0');
-  return `${yyyy}-${mm}-${dd} ${hh}:${mi}Z`;
 }
 
 function computeCountdown(iso) {
@@ -630,13 +616,13 @@ function renderFavKalshiCard(data) {
   const delta = typeof me.delta_24h_pp === 'number' ? me.delta_24h_pp : 0;
   const deltaCls = delta > 0 ? 'delta-up' : delta < 0 ? 'delta-down' : '';
   card.innerHTML = `
-    <h2 class="home-card-title">Your team on Kalshi <span class="muted home-card-meta">winner market</span></h2>
+    <h2 class="home-card-title">Your team on the markets <span class="muted home-card-meta">winner market</span></h2>
     <div class="fav-kalshi-row">
       <div class="fav-kalshi-team">${flagFor(fav)} <strong>${escapeHtml(fav)}</strong></div>
       <div class="fav-kalshi-prob">${typeof me.prob_pct === 'number' ? me.prob_pct.toFixed(1) : '—'}%</div>
       <div class="fav-kalshi-delta ${deltaCls}">${delta >= 0 ? '+' : ''}${delta.toFixed(1)}pp <span class="muted" style="font-size:11px;">24h</span></div>
     </div>
-    <p class="muted kalshi-attr">Tournament-winner odds via <a href="https://kalshi.com" target="_blank" rel="noopener">Kalshi</a></p>
+    <p class="muted kalshi-attr">Tournament-winner odds via <a href="https://kalshi.com" target="_blank" rel="noopener">prediction markets</a></p>
   `;
   return card;
 }
@@ -659,7 +645,7 @@ function renderMoversSection(data) {
 
   const wrap = document.createElement('section');
   wrap.className = 'home-section';
-  const movedLabel = movers.length ? 'Kalshi top movers' : 'Kalshi tournament winner odds';
+  const movedLabel = movers.length ? 'Market top movers' : 'Tournament winner odds';
   wrap.innerHTML = `
     <div class="home-card">
       <h2 class="home-card-title">${escapeHtml(movedLabel)} <span class="muted home-card-meta">${markets.updated_at ? escapeHtml(formatLastUpdated(markets.updated_at)) : ''}</span></h2>
@@ -671,7 +657,7 @@ function renderMoversSection(data) {
             <span class="mover-delta ${m.delta_pp >= 0 ? 'delta-up' : 'delta-down'}">${m.delta_pp >= 0 ? '+' : ''}${m.delta_pp.toFixed(1)}pp</span>
           </a>`).join('')}
       </div>
-      <p class="muted kalshi-attr">Tournament winner markets via <a href="https://kalshi.com" target="_blank" rel="noopener">Kalshi</a></p>
+      <p class="muted kalshi-attr">Tournament winner markets via <a href="https://kalshi.com" target="_blank" rel="noopener">prediction markets</a></p>
     </div>
   `;
   return wrap;

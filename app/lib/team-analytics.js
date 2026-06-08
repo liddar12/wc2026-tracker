@@ -35,7 +35,7 @@ export function teamAnalytics(team, data, model) {
   const dtRating = dtRec && dtRec.rating > 0 ? dtRec.rating : null;
   const dtTitlePct = dtRec && dtRec.title_prob > 0 ? dtRec.title_prob * 100 : null;
 
-  // Hybrid (⅓ J5L + ⅓ DT + ⅓ Kalshi): use the precomputed forecast (forecast.json)
+  // Hybrid (⅓ J5L + ⅓ DT + ⅓ Markets): use the precomputed forecast (forecast.json)
   // — champion odds + blended strength — falling back to a J5L+Kalshi mean.
   const fcRow = (data?.forecast?.teams || []).find((r) => r?.team === team) || null;
   const hybridChampPct = fcRow && typeof fcRow.champion === 'number' ? fcRow.champion * 100 : null;
@@ -55,30 +55,30 @@ export function teamAnalytics(team, data, model) {
       break;
     }
     case 'kalshi': {
-      primary = { label: 'Kalshi', value: kalshiPct != null ? `${kalshiPct.toFixed(1)}%` : '—', hint: 'win odds' };
+      primary = { label: 'Markets', value: kalshiPct != null ? `${kalshiPct.toFixed(1)}%` : '—', hint: 'win odds' };
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
       if (powerRank != null) secondary.push({ label: 'Power', value: `#${powerRank}` });
       break;
     }
     case 'hybrid': {
       const hv = hybridChampPct != null ? `${hybridChampPct.toFixed(1)}%` : (hybridPct != null ? `${hybridPct}` : '—');
-      primary = { label: 'Hybrid', value: hv, hint: '⅓ J5L + ⅓ DT + ⅓ Kalshi' };
+      primary = { label: 'Hybrid', value: hv, hint: '⅓ J5L + ⅓ DT + ⅓ Markets' };
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
       if (dtRating != null) secondary.push({ label: 'DT', value: dtRating.toFixed(1) });
-      if (kalshiPct != null) secondary.push({ label: 'Kalshi', value: `${kalshiPct.toFixed(1)}%` });
+      if (kalshiPct != null) secondary.push({ label: 'Markets', value: `${kalshiPct.toFixed(1)}%` });
       break;
     }
     case 'consensus': {
       primary = { label: 'Consensus', value: powerRank != null ? `#${powerRank}` : '—', hint: 'see Hot Picks' };
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
-      if (kalshiPct != null) secondary.push({ label: 'Kalshi', value: `${kalshiPct.toFixed(1)}%` });
+      if (kalshiPct != null) secondary.push({ label: 'Markets', value: `${kalshiPct.toFixed(1)}%` });
       break;
     }
     case 'j5l':
     default: {
       primary = { label: 'J5L', value: composite != null ? composite.toFixed(1) : '—', hint: 'composite power' };
       if (powerRank != null) secondary.push({ label: 'Power', value: `#${powerRank}` });
-      if (kalshiPct != null) secondary.push({ label: 'Kalshi', value: `${kalshiPct.toFixed(1)}%` });
+      if (kalshiPct != null) secondary.push({ label: 'Markets', value: `${kalshiPct.toFixed(1)}%` });
       break;
     }
   }

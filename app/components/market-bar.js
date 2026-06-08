@@ -12,8 +12,8 @@ export function marketBar(match, markets) {
 
   const title = document.createElement('div');
   title.className = 'bar-title';
-  title.append(document.createTextNode('Market (Kalshi) '));
-  title.appendChild(tipButton('market', 'Market (Kalshi)'));
+  title.append(document.createTextNode('Market '));
+  title.appendChild(tipButton('market', 'Market'));
   wrap.appendChild(title);
 
   const a = outcome.team_a_prob ?? 0;

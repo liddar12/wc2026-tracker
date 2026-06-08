@@ -110,6 +110,6 @@ export function getModelHistory(match) {
 export function kalshiAttribution() {
   const el = document.createElement('p');
   el.className = 'kalshi-attr muted';
-  el.innerHTML = 'Market data from <a href="https://kalshi.com/markets/kxmwc" target="_blank" rel="noopener">Kalshi</a>';
+  el.innerHTML = 'Odds from <a href="https://kalshi.com/markets/kxmwc" target="_blank" rel="noopener">prediction markets</a>';
   return el;
 }

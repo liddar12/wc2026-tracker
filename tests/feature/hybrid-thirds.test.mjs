@@ -32,7 +32,7 @@ test('group bars are the hybrid; J5L preserved under j5l_probabilities', () => {
 test('hybrid is the default model + documented as 1/3', () => {
   const am = read('app/lib/active-model.js');
   assert.match(am, /if \(!storage\) return 'hybrid'/, 'default model is hybrid');
-  assert.match(am, /⅓ blend of J5L \+ DT \+ Kalshi/, 'hybrid description updated');
+  assert.match(am, /⅓ blend of J5L \+ DT \+ Markets/, 'hybrid description updated');
   const dl = read('app/data-loader.js');
   assert.match(dl, /forecast\.json/, 'data-loader registers forecast.json');
   assert.match(dl, /case 'forecast\.json':\s*return 'forecast'/, 'fileToKey maps forecast');

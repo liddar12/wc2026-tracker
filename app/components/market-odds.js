@@ -37,12 +37,12 @@ function winnerFallback(match, markets) {
 
   const title = document.createElement('div');
   title.className = 'bar-title';
-  title.textContent = 'Market (Kalshi)';
+  title.textContent = 'Market';
   wrap.appendChild(title);
 
   const note = document.createElement('p');
   note.className = 'market-fallback-note muted';
-  note.textContent = 'Per-match Kalshi prices not yet available — showing tournament winner odds';
+  note.textContent = 'Per-match market prices not yet available — showing tournament winner odds';
   wrap.appendChild(note);
 
   const winners = winnerByTeam(markets);

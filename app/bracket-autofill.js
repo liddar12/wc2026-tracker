@@ -16,8 +16,8 @@ import { dtWinner } from './lib/dt-model.js';
 export const FILL_SOURCES = {
   model:     { label: 'Model',     description: 'My composite power ranking (mine + elo + tmv + qual)' },
   dt:        { label: 'DT',        description: 'DT Model rating (player-talent + coaching, Elo-anchored)' },
-  kalshi:    { label: 'Kalshi',    description: 'Kalshi tournament-winner probability per team' },
-  hybrid:    { label: '⅓·⅓·⅓',     description: 'Equal blend of J5L + DT + Kalshi (forecast hybrid strength)' },
+  kalshi:    { label: 'Markets',    description: 'Market tournament-winner probability per team' },
+  hybrid:    { label: '⅓·⅓·⅓',     description: 'Equal blend of J5L + DT + Markets (forecast hybrid strength)' },
   consensus: { label: 'Consensus', description: 'Most-picked team across all public pools' },
 };
 

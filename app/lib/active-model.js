@@ -16,7 +16,7 @@ export const MODELS = ['j5l', 'dt', 'kalshi', 'hybrid', 'consensus'];
 export const MODEL_LABELS = {
   j5l: 'J5L Model',
   dt: 'DT Model',
-  kalshi: 'Kalshi Market',
+  kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
   consensus: 'Public Consensus',
 };
@@ -27,8 +27,8 @@ export const MODEL_DESCRIPTIONS = {
   // today (the player-talent + coaching layer is pending the FBref scrape per
   // the DT pipeline README), Monte-Carlo'd into title odds.
   dt: 'Elo + squad market value blend (0.6/0.4), bivariate-Poisson Monte-Carlo title odds (20k sims).',
-  kalshi: 'Live tournament-winner odds from Kalshi prediction markets.',
-  hybrid: 'Equal ⅓ blend of J5L + DT + Kalshi, run through the Poisson Monte-Carlo bracket. The default forecast across the app.',
+  kalshi: 'Live tournament-winner odds from prediction markets.',
+  hybrid: 'Equal ⅓ blend of J5L + DT + Markets, run through the Poisson Monte-Carlo bracket. The default forecast across the app.',
   consensus: 'The most-picked team at each slot across every public-pool bracket.',
 };
 

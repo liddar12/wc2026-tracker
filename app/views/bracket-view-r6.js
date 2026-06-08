@@ -19,7 +19,7 @@ const MODE_LABELS = { live: 'Live', projected: 'Projected' };
 const SOURCE_LABELS = {
   model: 'J5L composite',
   dt: 'DT Model',
-  kalshi: 'Kalshi market',
+  kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
   consensus: 'Public consensus',
 };

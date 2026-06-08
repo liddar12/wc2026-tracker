@@ -144,7 +144,7 @@ function renderHeader(comp) {
       <div class="mb-autofill-grid">
         <button class="pick-btn pick-btn-secondary" data-autofill="model">Use Model</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="dt">Use DT</button>
-        <button class="pick-btn pick-btn-secondary" data-autofill="kalshi">Use Kalshi</button>
+        <button class="pick-btn pick-btn-secondary" data-autofill="kalshi">Use Markets</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="hybrid">Use Hybrid (⅓·⅓·⅓)</button>
         <button class="pick-btn pick-btn-secondary" data-autofill="consensus">Public Consensus</button>
       </div>

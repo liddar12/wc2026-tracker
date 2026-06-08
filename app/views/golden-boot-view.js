@@ -60,7 +60,7 @@ function oddsCard(contenders) {
   const blended = contenders.blendedWithMarket === true;
   s.innerHTML = `
     <h2 class="home-card-title">Golden Boot odds</h2>
-    <p class="muted" style="margin:0 0 10px; font-size:12px;">Chance to finish top scorer — the model${blended ? ' blended 50/50 with the live Kalshi Golden Boot market' : ''}. Updates through the day.</p>
+    <p class="muted" style="margin:0 0 10px; font-size:12px;">Chance to finish top scorer — the model${blended ? ' blended 50/50 with the live Golden Boot market' : ''}. Updates through the day.</p>
     <ol class="pw-standings" data-testid="gb-odds-list">${top.map((c) => `
       <li class="pw-standings-row">
         <span class="pw-standings-place">${c.rank}</span>
@@ -70,7 +70,7 @@ function oddsCard(contenders) {
             <span title="Expected matches (deep run)">🏟️ ${c.factors.deepRun}</span>
             <span title="Opponent defense factor (>1 = weak opponents)">🛡️ ${c.factors.oppDefense}</span>
             ${c.factors.setPiece ? '<span title="Likely penalty taker (heuristic)">⚽ PK</span>' : ''}
-            ${c.marketPct ? `<span title="Kalshi Golden Boot market odds">📊 ${c.marketPct}%</span>` : ''}
+            ${c.marketPct ? `<span title="Golden Boot market odds">📊 ${c.marketPct}%</span>` : ''}
           </span>
         </span>
         <span class="pw-standings-pts"><strong>${c.bootPct}%</strong><span class="pw-standings-split">~${c.projGoals} goals</span></span>
@@ -90,9 +90,9 @@ function howCard() {
       <li><strong>Scoring environment</strong> — expected goals (xG) of the team's matches.</li>
       <li><strong>Set pieces</strong> — penalty/free-kick takers pad totals (heuristic for now).</li>
       <li><strong>Deep run</strong> — expected games from the hybrid forecast (group + knockout path).</li>
-      <li><strong>Market</strong> — blended 50/50 with the live Kalshi Golden Boot market (📊), an independent signal.</li>
+      <li><strong>Market</strong> — blended 50/50 with the live Golden Boot market (📊), an independent signal.</li>
       <li><strong>Live goals</strong> — actual goals scored, blended in during the tournament.</li>
     </ul>
-    <p class="muted" style="margin:10px 0 0; font-size:11px;">A seeded Monte-Carlo simulates the rest of the tournament thousands of times to estimate each player's chance of finishing top scorer, then blends in the Kalshi market. Inputs (squads, xG, hybrid forecast, Kalshi market, live goals) refresh multiple times a day, so the odds move through the tournament.</p>`;
+    <p class="muted" style="margin:10px 0 0; font-size:11px;">A seeded Monte-Carlo simulates the rest of the tournament thousands of times to estimate each player's chance of finishing top scorer, then blends in the market. Inputs (squads, xG, hybrid forecast, market, live goals) refresh multiple times a day, so the odds move through the tournament.</p>`;
   return s;
 }
