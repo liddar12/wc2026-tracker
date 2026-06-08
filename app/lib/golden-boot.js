@@ -31,7 +31,31 @@ export const GB_CONFIG = {
   xgEnvClamp: [0.8, 1.25],
   contenderPool: 120,    // cap for the Monte-Carlo
   sims: 10000,
+  marketWeight: 0.5,     // blend weight for the Kalshi Golden Boot market (independent signal)
 };
+
+// ---- Kalshi Golden Boot market (independent signal) -------------------------
+function normName(s) {
+  return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z ]/g, '').trim();
+}
+function surnameOf(s) { const p = normName(s).split(' ').filter(Boolean); return p[p.length - 1] || ''; }
+
+/** Build {full→pct, surname→pct} from data.markets.goal_leader, or null if absent. */
+export function goalLeaderMarket(data) {
+  const rows = data?.markets?.goal_leader || [];
+  if (!rows.length) return null;
+  const byFull = {}, bySurname = {};
+  for (const r of rows) {
+    if (!r?.player || typeof r.prob_pct !== 'number') continue;
+    byFull[normName(r.player)] = r.prob_pct;
+    bySurname[surnameOf(r.player)] = (bySurname[surnameOf(r.player)] || 0) + r.prob_pct;
+  }
+  return { byFull, bySurname };
+}
+function marketPctFor(market, name) {
+  if (!market) return 0;
+  return market.byFull[normName(name)] ?? market.bySurname[surnameOf(name)] ?? 0;
+}
 
 // ---- seeded RNG (mulberry32) + Poisson (Knuth) ------------------------------
 export function mulberry32(seed) {
@@ -63,9 +87,19 @@ export function buildContext(data, cfg = GB_CONFIG) {
   const minC = comps.length ? Math.min(...comps) : 50;
   const maxC = comps.length ? Math.max(...comps) : 90;
 
-  // expected matches from composite (deep-run): weakest→minMatches, strongest→maxMatches
+  // Expected matches (deep-run): prefer the hybrid forecast — 3 group games + the
+  // sum of knockout round-reach probabilities (a principled expected-games count
+  // for the 48-team format, where a finalist plays 8). Fall back to a composite
+  // interpolation when forecast.json isn't loaded.
+  const fc = {};
+  for (const r of (data?.forecast?.teams || [])) {
+    if (r?.team) {
+      fc[r.team] = 3 + (r.r32 || 0) + (r.r16 || 0) + (r.qf || 0) + (r.sf || 0) + (r.final || 0);
+    }
+  }
   const expectedMatches = {};
   for (const n of names) {
+    if (fc[n] != null) { expectedMatches[n] = fc[n]; continue; }
     const c = teams[n]?.composite ?? minC;
     const t = maxC > minC ? (c - minC) / (maxC - minC) : 0.5;
     expectedMatches[n] = cfg.minMatches + t * (cfg.maxMatches - cfg.minMatches);
@@ -193,9 +227,26 @@ export function goldenBootProjections(data, opts = {}) {
     for (const i of bestIdx) wins[i] += share;
   }
   contenders.forEach((c, i) => {
-    c.bootPct = Math.round((wins[i] / sims) * 1000) / 10; // one decimal
+    c.modelPct = Math.round((wins[i] / sims) * 1000) / 10; // model-only boot %
+    c.bootPct = c.modelPct;
     c.projGoals = Math.round(c.projGoals * 10) / 10;
   });
+
+  // Blend the Kalshi Golden Boot market (independent signal) into boot %, then
+  // renormalise so the field still sums to ~100%. marketWeight=0 → model only.
+  const market = goalLeaderMarket(data);
+  const mw = cfg.marketWeight ?? 0;
+  if (market && mw > 0) {
+    let sum = 0;
+    for (const c of contenders) {
+      c.marketPct = Math.round(marketPctFor(market, c.player) * 10) / 10;
+      c.bootPct = mw * c.marketPct + (1 - mw) * c.modelPct;
+      sum += c.bootPct;
+    }
+    if (sum > 0) contenders.forEach((c) => { c.bootPct = Math.round((c.bootPct / sum) * 1000) / 10; });
+    contenders.blendedWithMarket = true;
+  }
+
   contenders.sort((a, b) => b.bootPct - a.bootPct || b.projGoals - a.projGoals);
   contenders.forEach((c, i) => { c.rank = i + 1; });
   return contenders;

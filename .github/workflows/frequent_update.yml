@@ -77,6 +77,9 @@ jobs:
       - name: Recompute composite + power rankings
         run: python scripts/rebuild_composite.py
         continue-on-error: true
+      - name: Recompute model xG (Golden Boot scoring environment)
+        run: python scripts/compute_xg.py
+        continue-on-error: true
       - name: Rebuild DT model (Elo + market value blend)
         run: python scripts/build_dt_model.py
         continue-on-error: true

@@ -163,6 +163,34 @@ def fetch_sparkline(ticker: str) -> list[float]:
 
 
 GAME_SERIES = "KXWCGAME"  # per-match 1X2: <teamA> / Tie / <teamB> markets per event
+GOAL_LEADER_EVENT = "KXWCGOALLEADER-26"  # Golden Boot Winner (per-player markets)
+
+
+def fetch_goal_leader() -> list[dict[str, Any]]:
+    """Kalshi 'Golden Boot Winner' market → de-vigged per-player win-the-boot odds.
+    An independent top-scorer signal blended into the Golden Boot model."""
+    try:
+        data = kalshi_get(f"/events/{GOAL_LEADER_EVENT}", params={"with_nested_markets": "true"})
+    except RuntimeError as exc:
+        err(str(exc))
+        return []
+    markets = (data.get("event") or {}).get("markets") or []
+    raw = []
+    for m in markets:
+        name = (m.get("yes_sub_title") or m.get("subtitle") or "").strip()
+        p = implied_prob(m)
+        if name and p > 0:
+            raw.append((name, p, m))
+    tot = sum(p for _, p, _ in raw)
+    out = []
+    for name, p, m in sorted(raw, key=lambda x: -x[1]):
+        out.append({
+            "player": name,
+            "prob_pct": round((p / tot * 100) if tot else 0.0, 1),
+            "volume": parse_volume(m),
+            "open_interest": parse_open_interest(m),
+        })
+    return out
 
 
 def _canonical_matchups() -> dict[frozenset, tuple[str, str]]:
@@ -281,11 +309,18 @@ def build_markets(*, skip_sparklines: bool = False) -> dict[str, Any]:
     except RuntimeError as exc:
         err(str(exc))
 
+    goal_leader: list[dict[str, Any]] = []
+    try:
+        goal_leader = fetch_goal_leader()
+    except RuntimeError as exc:
+        err(str(exc))
+
     return {
         "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "source": "kalshi",
         "tournament_winner": rows,
         "match_outcomes": match_outcomes,
+        "goal_leader": goal_leader,
         "biggest_movers": biggest,
     }
 
