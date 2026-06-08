@@ -2230,14 +2230,16 @@ body.search-open { overflow: hidden; }
   position: relative;
 }
 .lcard-banner::after {
-  /* Subtle Trionda ball decoration */
+  /* Subtle Trionda ball decoration — uses the SAME transparent base file as the
+     header logo (trionda-ball.png, flood-filled, no tile panel) so there's no box
+     around it. trionda-128.webp had an opaque square panel that showed as a box. */
   content: '';
   position: absolute;
   top: 8px;
   right: 12px;
   width: 64px;
   height: 64px;
-  background: url('../assets/wc26/trionda-128.webp') center/contain no-repeat;
+  background: url('../assets/wc26/trionda-ball.png') center/contain no-repeat;
   opacity: 0.18;
   pointer-events: none;
 }
