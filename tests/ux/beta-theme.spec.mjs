@@ -22,6 +22,8 @@ test('selecting Beta re-skins the app and shows the goal-FAB', async ({ page }) 
   await selectTheme(page, 'beta');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'beta');
   await expect(page.locator('[data-testid="beta-goal-fab"]')).toBeVisible({ timeout: 5_000 });
+  // "Goal menu only" nav: the bottom tab bar is dropped in Beta (no dual nav).
+  await expect(page.locator('#tab-bar-wrap')).toBeHidden();
   // token re-bind took effect: app background is the dark ink, not the light bg.
   const bg = await page.evaluate(() =>
     getComputedStyle(document.body).backgroundColor);
@@ -56,6 +58,8 @@ test('switching back to Light removes The Goal nav and clears the skin', async (
   await selectTheme(page, 'light');
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
   await expect(page.locator('[data-testid="beta-goal-fab"]')).toBeHidden();
+  // the normal tab bar comes back in Light
+  await expect(page.locator('#tab-bar-wrap')).toBeVisible();
 });
 
 test('no uncaught errors or Beta-file console errors while using the theme', async ({ page }) => {

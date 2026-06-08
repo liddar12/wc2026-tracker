@@ -4199,15 +4199,12 @@ html, body { overflow-x: hidden; }
   background:rgba(13,17,23,0.86); backdrop-filter:saturate(160%) blur(16px);
   border-bottom:1px solid var(--line);
 }
-/* tab bar — goal-line motif + lime active */
-[data-theme='beta'] .tab-bar { position:relative; background:rgba(13,17,23,0.92); backdrop-filter:blur(16px); border-top:1px solid var(--line); }
-[data-theme='beta'] .tab-bar-wrap { background:transparent; }
-[data-theme='beta'] .tab-bar::before {
-  content:""; position:absolute; top:0; left:8%; right:8%; height:2px; pointer-events:none;
-  background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 14px);
-}
-[data-theme='beta'] .tab { color:#6b7686; }
-[data-theme='beta'] .tab.is-active { color:var(--lime); }
+/* nav model = "Goal menu only": Beta drops the bottom tab bar entirely. The
+   anchored goal bar (in THE GOAL section below) is the single nav entry →
+   the full-screen pitch menu. Light/Dark keep their tab bar. */
+[data-theme='beta'] .tab-bar-wrap { display:none; }
+/* reserve space for the anchored goal bar so content isn't hidden behind it */
+[data-theme='beta'] #view { padding-bottom:calc(86px + env(safe-area-inset-bottom,0px)); }
 
 /* ---- numbers → mono tabular (scoreboard feel) ---- */
 [data-theme='beta'] .lcard-score-num,
@@ -4226,23 +4223,37 @@ html, body { overflow-x: hidden; }
   font-family:var(--beta-mono); font-variant-numeric:tabular-nums; letter-spacing:.3px;
 }
 
-/* ---- pitch hero / feature surfaces ---- */
-[data-theme='beta'] .home-hero,
+/* ---- live/feature MATCH CARD: full pitch-green (contained here only) ---- */
 [data-theme='beta'] .lcard-banner {
   position:relative; overflow:hidden;
   background:linear-gradient(135deg,var(--pitch) 0%,var(--pitch-deep) 100%);
   border:1px solid var(--line);
 }
-[data-theme='beta'] .home-hero::after,
 [data-theme='beta'] .lcard-banner::after {
   content:""; position:absolute; inset:0; pointer-events:none;
   background:repeating-linear-gradient(90deg,rgba(255,255,255,.06) 0 30px,transparent 30px 60px);
 }
+[data-theme='beta'] .lcard-team-name { color:#fff; }
+/* ---- home HERO: dark ink with a SUBTLE pitch tint, not a green slab ---- */
+[data-theme='beta'] .home-hero {
+  position:relative; overflow:hidden; color:var(--tx); border:1px solid var(--line);
+  background:
+    radial-gradient(130% 150% at 100% 0%, rgba(22,163,90,0.20) 0%, transparent 55%),
+    linear-gradient(160deg, var(--ink3) 0%, var(--ink) 80%);
+}
+[data-theme='beta'] .home-hero::after {
+  content:""; position:absolute; inset:0; pointer-events:none; opacity:.55;
+  background:repeating-linear-gradient(90deg,rgba(255,255,255,.022) 0 30px,transparent 30px 60px);
+}
 [data-theme='beta'] .home-hero > * { position:relative; }
 [data-theme='beta'] .home-hero-title,
-[data-theme='beta'] .home-hero-sub,
-[data-theme='beta'] .lcard-team-name { color:#fff; }
-[data-theme='beta'] .home-hero-eyebrow { color:#fff; opacity:.92; font-family:var(--beta-mono); letter-spacing:2px; }
+[data-theme='beta'] .home-hero-sub { color:#fff; }
+[data-theme='beta'] .home-hero-eyebrow { color:var(--lime); font-family:var(--beta-mono); letter-spacing:2px; }
+/* countdown sits on the now-dark hero → keep numbers light, labels dimmed */
+[data-theme='beta'] .cd-num { color:#fff; }
+[data-theme='beta'] .cd-lbl { color:var(--tx-dim); }
+[data-theme='beta'] .home-hero-updated,
+[data-theme='beta'] .home-hero-updated .muted { color:var(--tx-dim); }
 
 /* ---- lime CTAs / links ---- */
 [data-theme='beta'] .section-heading a,
@@ -4273,16 +4284,31 @@ html, body { overflow-x: hidden; }
 /* ==========================================================================
    THE GOAL — goal-FAB + full-screen pitch menu  (ported from handoff)
    ========================================================================== */
+/* anchored bottom goal bar (single nav) — NOT a floating blob. Full-width slim
+   bar with a goal-line motif; the lime goal button is its elevated center
+   notch, with a visible "THE GOAL" label (icon-only nav needs a label). */
+[data-theme='beta'] .beta-navbar {
+  position:fixed; left:0; right:0; bottom:0; z-index:70;
+  height:calc(64px + env(safe-area-inset-bottom,0px)); padding-bottom:env(safe-area-inset-bottom,0px);
+  background:rgba(13,17,23,0.92); backdrop-filter:saturate(160%) blur(16px);
+  border-top:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center;
+}
+[data-theme='beta'] .beta-navbar::before {
+  content:""; position:absolute; top:0; left:8%; right:8%; height:2px; pointer-events:none;
+  background:repeating-linear-gradient(90deg,var(--line2) 0 8px,transparent 8px 14px);
+}
 [data-theme='beta'] .beta-goal-fab {
-  position:fixed; left:50%; transform:translateX(-50%);
-  bottom:calc(env(safe-area-inset-bottom,0px) + 74px);
-  width:54px; height:54px; border:0; border-radius:16px; background:var(--lime); cursor:pointer;
-  display:flex; align-items:center; justify-content:center; z-index:70;
+  position:relative; width:52px; height:52px; border:0; border-radius:16px; background:var(--lime);
+  cursor:pointer; display:flex; align-items:center; justify-content:center; margin-top:-14px;
   box-shadow:0 8px 22px rgba(57,212,121,.4),0 0 0 5px var(--ink); transition:transform .14s;
 }
-[data-theme='beta'] .beta-goal-fab:active { transform:translateX(-50%) scale(.92); }
+[data-theme='beta'] .beta-goal-fab:active { transform:scale(.92); }
 [data-theme='beta'] .beta-goal-fab svg { width:30px; height:auto; color:var(--lime-ink); }
-@media (min-width:900px){ [data-theme='beta'] .beta-goal-fab { bottom:calc(env(safe-area-inset-bottom,0px) + 24px); } }
+[data-theme='beta'] .beta-goal-fab::after {
+  content:"THE GOAL"; position:absolute; top:calc(100% + 4px); left:50%; transform:translateX(-50%);
+  font:700 9px/1 var(--beta-mono); letter-spacing:1.5px; color:var(--lime); white-space:nowrap;
+}
 
 .goalmenu { position:fixed; inset:0; z-index:90; opacity:0; visibility:hidden; transition:opacity .34s ease,visibility .34s; }
 body.menu-open .goalmenu { opacity:1; visibility:visible; }

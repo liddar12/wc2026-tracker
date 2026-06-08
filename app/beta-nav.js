@@ -67,6 +67,7 @@ const ALIAS = {
 const norm = (v) => ALIAS[v] || v || 'home';
 
 let fab = null;
+let navbar = null;
 let menu = null;
 let lastFocus = null;
 
@@ -101,7 +102,11 @@ function closeMenu() {
 }
 
 function buildFab() {
-  if (fab) return;
+  if (navbar) return;
+  // anchored bottom bar (the single nav) with the goal button as its center.
+  navbar = document.createElement('div');
+  navbar.className = 'beta-navbar';
+  navbar.setAttribute('data-testid', 'beta-navbar');
   fab = document.createElement('button');
   fab.className = 'beta-goal-fab';
   fab.type = 'button';
@@ -109,7 +114,8 @@ function buildFab() {
   fab.setAttribute('data-testid', 'beta-goal-fab');
   fab.innerHTML = goalFrameSvg();
   fab.addEventListener('click', openMenu);
-  document.body.appendChild(fab);
+  navbar.appendChild(fab);
+  document.body.appendChild(navbar);
 }
 
 function buildMenu() {
@@ -159,13 +165,13 @@ function buildMenu() {
 function activate() {
   buildFab();
   buildMenu();
-  fab.style.display = '';
+  if (navbar) navbar.style.display = '';
   syncActiveChip();
 }
 
 function deactivate() {
   closeMenu();
-  if (fab) fab.style.display = 'none';
+  if (navbar) navbar.style.display = 'none';
 }
 
 export function initBetaNav() {
