@@ -1,0 +1,141 @@
+{
+  "generated_at": "2026-06-08T20:48:49+00:00",
+  "source": "polymarket",
+  "method": "De-vigged 3-way (home/draw/away) last pre-match daily price, scored vs result. Multiclass Brier + log-loss + argmax accuracy.",
+  "matches_total": 57,
+  "pooled_accuracy": 0.5088,
+  "pooled_brier": 0.60132,
+  "pooled_logloss": 0.9862,
+  "baseline_uniform_brier": 0.66667,
+  "baseline_uniform_logloss": 1.09861,
+  "results": [
+    {
+      "tournament": "Euro 2024",
+      "matches_scored": 45,
+      "candidates": 46,
+      "accuracy": 0.4667,
+      "correct": "21/45",
+      "brier": 0.62675,
+      "logloss": 1.01433,
+      "draw_rate_actual": 0.422,
+      "examples": [
+        {
+          "match": "Euro 2024: Germany vs. Scotland",
+          "probs": {
+            "Germany": 0.779,
+            "Scotland": 0.075,
+            "Draw": 0.146
+          },
+          "predicted": "Germany",
+          "actual": "Germany",
+          "correct": true,
+          "brier": 0.07580616651094668,
+          "logloss": 0.2498797078052457
+        },
+        {
+          "match": "Euro 2024: Poland  vs. Netherlands",
+          "probs": {
+            "Poland": 0.123,
+            "Netherlands": 0.655,
+            "Draw": 0.222
+          },
+          "predicted": "Netherlands",
+          "actual": "Netherlands",
+          "correct": true,
+          "brier": 0.18321240505714773,
+          "logloss": 0.4228568508200336
+        },
+        {
+          "match": "Euro 2024: Slovenia  vs. Denmark",
+          "probs": {
+            "Slovenia": 0.164,
+            "Denmark": 0.571,
+            "Draw": 0.265
+          },
+          "predicted": "Denmark",
+          "actual": "Draw",
+          "correct": false,
+          "brier": 0.893267446466921,
+          "logloss": 1.3286287192700816
+        },
+        {
+          "match": "Euro 2024: Serbia vs. England",
+          "probs": {
+            "Serbia": 0.1,
+            "England": 0.489,
+            "Draw": 0.411
+          },
+          "predicted": "England",
+          "actual": "England",
+          "correct": true,
+          "brier": 0.43951530612244893,
+          "logloss": 0.7148086773411245
+        }
+      ]
+    },
+    {
+      "tournament": "Copa Am\u00e9rica 2024",
+      "matches_scored": 12,
+      "candidates": 12,
+      "accuracy": 0.6667,
+      "correct": "8/12",
+      "brier": 0.50596,
+      "logloss": 0.88072,
+      "draw_rate_actual": 0.333,
+      "examples": [
+        {
+          "match": "Copa America 2024: Peru vs. Chile",
+          "probs": {
+            "Peru": 0.238,
+            "Chile": 0.446,
+            "Draw": 0.317
+          },
+          "predicted": "Chile",
+          "actual": "Draw",
+          "correct": false,
+          "brier": 0.7216939515733751,
+          "logloss": 1.149384614041533
+        },
+        {
+          "match": "Copa America 2024: Colombia vs. Paraguay",
+          "probs": {
+            "Colombia": 0.575,
+            "Paraguay": 0.161,
+            "Draw": 0.264
+          },
+          "predicted": "Colombia",
+          "actual": "Colombia",
+          "correct": true,
+          "brier": 0.2761416413863459,
+          "logloss": 0.5531599875925514
+        },
+        {
+          "match": "Copa America 2024: Brazil vs. Costa Rica",
+          "probs": {
+            "Brazil": 0.902,
+            "Costa Rica": 0.028,
+            "Draw": 0.07
+          },
+          "predicted": "Brazil",
+          "actual": "Draw",
+          "correct": false,
+          "brier": 1.6802016681759306,
+          "logloss": 2.6622555459125765
+        },
+        {
+          "match": "Copa America 2024: Peru vs. Canada",
+          "probs": {
+            "Peru": 0.275,
+            "Canada": 0.415,
+            "Draw": 0.31
+          },
+          "predicted": "Canada",
+          "actual": "Canada",
+          "correct": true,
+          "brier": 0.5139499999999999,
+          "logloss": 0.8794767587514388
+        }
+      ]
+    }
+  ]
+}

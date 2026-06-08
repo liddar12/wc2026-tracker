@@ -3317,6 +3317,25 @@ html.wc-reduce-motion .wc-ball-burst { display: none; }
   border-radius: 4px;
 }
 .backtest-pct { text-align: right; font-variant-numeric: tabular-nums; }
+.backtest-disclaimer {
+  font-size: 12px; line-height: 1.5; margin: 0;
+  padding: 8px 10px; border-radius: 8px;
+  background: color-mix(in srgb, var(--warn) 12%, transparent);
+  color: var(--text);
+}
+.backtest-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase;
+  padding: 1px 5px; border-radius: 5px; vertical-align: middle;
+}
+.backtest-badge.measured { background: color-mix(in srgb, var(--good) 18%, transparent); color: var(--good); }
+.backtest-badge.est { background: var(--surface-2); color: var(--text-muted); }
+/* estimate rows read as muted/hatched so measured numbers stand out */
+.backtest-row.is-est .backtest-fill {
+  opacity: .4;
+  background: repeating-linear-gradient(45deg, var(--text-muted), var(--text-muted) 3px, transparent 3px, transparent 6px);
+}
+.backtest-row.is-est .backtest-pct strong { color: var(--text-muted); font-weight: 600; }
+.backtest-sub { font-size: 11px; color: var(--text-muted); margin: -2px 0 2px; padding-left: 2px; }
 
 /* E5: accuracy leaderboard */
 .accuracy-board { list-style: none; padding: 0; margin: 0; display: grid; gap: 4px; }

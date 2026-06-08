@@ -233,8 +233,11 @@ function renderModelSettingsCard() {
       const btKey = m === 'j5l' ? 'model' : m === 'dt' ? 'dt' : m === 'kalshi' ? 'market' : m === 'hybrid' ? 'hybrid' : null;
       const wc = btKey && backtest?.wc2022?.[btKey];
       const eu = btKey && backtest?.euro2024?.[btKey];
-      const wcStr = wc ? `${Math.round((wc.correct / wc.total) * 100)}% (${wc.correct}/${wc.total})` : '—';
-      const euStr = eu ? `${Math.round((eu.correct / eu.total) * 100)}% (${eu.correct}/${eu.total})` : '—';
+      // Flag estimates so the picker never presents fabricated numbers as real;
+      // only the Euro 2024 market row is measured (Polymarket).
+      const tag = (s) => (s && s.measured ? '' : ' est.');
+      const wcStr = wc ? `${Math.round((wc.correct / wc.total) * 100)}% (${wc.correct}/${wc.total})${tag(wc)}` : '—';
+      const euStr = eu ? `${Math.round((eu.correct / eu.total) * 100)}% (${eu.correct}/${eu.total})${tag(eu)}` : '—';
       return `
         <div class="settings-model-row" style="padding: 10px 0; border-top: 1px solid var(--border);">
           <strong>${escapeHtml(MODEL_LABELS[m])}</strong>

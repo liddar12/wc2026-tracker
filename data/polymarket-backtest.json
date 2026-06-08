@@ -1,0 +1,122 @@
+{
+  "generated_at": "2026-06-08T20:39:34+00:00",
+  "source": "polymarket",
+  "method": "De-vigged tournament-winner implied probability as of kickoff-eve, scored vs actual champion. Brier/log-loss pooled over every priced (team, outcome) pair; uniform = 1/N baseline.",
+  "tournaments_scored": 2,
+  "favorite_won": "1/2",
+  "winner_in_top4": "1/2",
+  "pooled_brier": 0.04876,
+  "pooled_brier_uniform": 0.06035,
+  "pooled_brier_skill_vs_uniform": 0.192,
+  "pooled_logloss": 0.1699,
+  "results": [
+    {
+      "tournament": "Euro 2024",
+      "teams_priced": 15,
+      "winner": "Spain",
+      "winner_implied_pct": 9.1,
+      "winner_rank": 5,
+      "favorite": "England",
+      "favorite_implied_pct": 19.6,
+      "favorite_won": false,
+      "winner_in_top4": false,
+      "brier": 0.06286,
+      "brier_uniform": 0.06222,
+      "logloss": 0.22476,
+      "logloss_uniform": 0.24493,
+      "brier_skill_vs_uniform": -0.01,
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "England",
+          "implied_pct": 19.6,
+          "won": false
+        },
+        {
+          "rank": 2,
+          "team": "France",
+          "implied_pct": 18.2,
+          "won": false
+        },
+        {
+          "rank": 3,
+          "team": "Germany",
+          "implied_pct": 14.8,
+          "won": false
+        },
+        {
+          "rank": 4,
+          "team": "Portugal",
+          "implied_pct": 11.0,
+          "won": false
+        },
+        {
+          "rank": 5,
+          "team": "Spain",
+          "implied_pct": 9.1,
+          "won": true
+        },
+        {
+          "rank": 6,
+          "team": "Netherlands",
+          "implied_pct": 6.2,
+          "won": false
+        }
+      ]
+    },
+    {
+      "tournament": "Copa Am\u00e9rica 2024",
+      "teams_priced": 16,
+      "winner": "Argentina",
+      "winner_implied_pct": 31.6,
+      "winner_rank": 1,
+      "favorite": "Argentina",
+      "favorite_implied_pct": 31.6,
+      "favorite_won": true,
+      "winner_in_top4": true,
+      "brier": 0.03555,
+      "brier_uniform": 0.05859,
+      "logloss": 0.11846,
+      "logloss_uniform": 0.23379,
+      "brier_skill_vs_uniform": 0.393,
+      "ladder": [
+        {
+          "rank": 1,
+          "team": "Argentina",
+          "implied_pct": 31.6,
+          "won": true
+        },
+        {
+          "rank": 2,
+          "team": "Brazil",
+          "implied_pct": 26.3,
+          "won": false
+        },
+        {
+          "rank": 3,
+          "team": "Uruguay",
+          "implied_pct": 12.9,
+          "won": false
+        },
+        {
+          "rank": 4,
+          "team": "Colombia",
+          "implied_pct": 7.2,
+          "won": false
+        },
+        {
+          "rank": 5,
+          "team": "United States",
+          "implied_pct": 7.2,
+          "won": false
+        },
+        {
+          "rank": 6,
+          "team": "Ecuador",
+          "implied_pct": 4.4,
+          "won": false
+        }
+      ]
+    }
+  ]
+}
