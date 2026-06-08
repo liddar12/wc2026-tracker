@@ -81,6 +81,10 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/build_hybrid.py
         continue-on-error: true
+      - name: Capture + score live backtest (4 models + Kalshi + Polymarket)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/snapshot_backtest.py
+        continue-on-error: true
 
       - name: Validate refreshed data
         if: steps.gate.outputs.go == '1'

@@ -1,29 +1,68 @@
 {
   "__meta__": {
     "generated_at": "2026-06-08",
-    "method": "ONLY the Euro 2024 Market row is measured — from Polymarket per-match history via scripts/polymarket_match_backtest.py. J5L / DT / Hybrid rows are ESTIMATES: the app's models can't be re-run on past tournaments because point-in-time ratings aren't archived (J5L's curator sub-ratings never existed historically). WC 2022 has no per-match prediction-market data (Polymarket only ran a thin winner market with no price history), so nothing there is measurable. A fully-measured 4-model backtest begins live with WC 2026 — see live2026, populated by scripts/snapshot_backtest.py as matches resolve.",
+    "method": "ONLY the Euro 2024 Market row is measured \u2014 from Polymarket per-match history via scripts/polymarket_match_backtest.py. J5L / DT / Hybrid rows are ESTIMATES: the app's models can't be re-run on past tournaments because point-in-time ratings aren't archived (J5L's curator sub-ratings never existed historically). WC 2022 has no per-match prediction-market data (Polymarket only ran a thin winner market with no price history), so nothing there is measurable. A fully-measured 4-model backtest begins live with WC 2026 \u2014 see live2026, populated by scripts/snapshot_backtest.py as matches resolve.",
     "is_estimate": true,
     "measured_source": "polymarket"
   },
   "euro2024": {
     "total_matches": 51,
-    "model":  { "correct": 33, "total": 51, "estimate": true },
-    "dt":     { "correct": 34, "total": 51, "estimate": true },
-    "market": {
-      "correct": 21, "total": 45, "measured": true, "source": "polymarket",
-      "decisive_correct": 21, "decisive_total": 26,
-      "brier": 0.627, "logloss": 1.014, "draw_rate": 0.422,
-      "note": "Measured: 45 of 51 matches had Polymarket per-match history. Strict 3-way 46.7%; ~81% on decisive matches — the market almost never makes a draw its top pick, so all draws count as misses."
+    "model": {
+      "correct": 33,
+      "total": 51,
+      "estimate": true
     },
-    "hybrid": { "correct": 37, "total": 51, "estimate": true },
+    "dt": {
+      "correct": 34,
+      "total": 51,
+      "estimate": true
+    },
+    "market": {
+      "correct": 21,
+      "total": 45,
+      "measured": true,
+      "source": "polymarket",
+      "decisive_correct": 21,
+      "decisive_total": 26,
+      "brier": 0.627,
+      "logloss": 1.014,
+      "draw_rate": 0.422,
+      "note": "Measured: 45 of 51 matches had Polymarket per-match history. Strict 3-way 46.7%; ~81% on decisive matches \u2014 the market almost never makes a draw its top pick, so all draws count as misses."
+    },
+    "hybrid": {
+      "correct": 37,
+      "total": 51,
+      "estimate": true
+    },
     "note": "Only the Market row is measured (Polymarket). J5L / DT / Hybrid are estimates pending archived ratings."
   },
   "wc2022": {
     "total_matches": 64,
-    "model":  { "correct": 42, "total": 64, "estimate": true },
-    "dt":     { "correct": 43, "total": 64, "estimate": true },
-    "market": { "correct": 44, "total": 64, "estimate": true },
-    "hybrid": { "correct": 46, "total": 64, "estimate": true },
-    "note": "All rows are estimates — Polymarket ran no per-match WC 2022 markets and its winner market is too thin to have price history, so even the market leg can't be measured here."
+    "model": {
+      "correct": 42,
+      "total": 64,
+      "estimate": true
+    },
+    "dt": {
+      "correct": 43,
+      "total": 64,
+      "estimate": true
+    },
+    "market": {
+      "correct": 44,
+      "total": 64,
+      "estimate": true
+    },
+    "hybrid": {
+      "correct": 46,
+      "total": 64,
+      "estimate": true
+    },
+    "note": "All rows are estimates \u2014 Polymarket ran no per-match WC 2022 markets and its winner market is too thin to have price history, so even the market leg can't be measured here."
+  },
+  "live2026": {
+    "generated_at": "2026-06-08T21:18:37+00:00",
+    "note": "Awaiting first results (kickoff 11 June). Snapshots locked pre-kickoff.",
+    "matches_scored": 0
   }
 }
