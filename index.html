@@ -49,7 +49,10 @@
      users can jump past the header + tab-bar directly to main content. -->
 <a href="#view" class="skip-link">Skip to main content</a>
 <header class="app-header sticky-header" id="app-header" role="banner">
-  <button class="back-btn" id="back-btn" type="button" aria-label="Back" hidden>&larr;</button>
+  <div class="header-left">
+    <button class="back-btn" id="back-btn" type="button" aria-label="Back" hidden>&larr;</button>
+    <button class="settings-btn" id="settings-btn" type="button" aria-label="Settings">&#9881;</button>
+  </div>
   <h1 class="app-title" id="app-title" aria-label="World Cup 2026 App">
     <img class="app-logo" src="assets/wc26/trionda-ball.png" alt="" aria-hidden="true" width="44" height="44" loading="eager" decoding="async">
     <span class="app-title-text">World Cup 2026 App</span>
@@ -59,7 +62,6 @@
       <span class="auth-toolbar-icon" aria-hidden="true">&#128100;</span>
       <span class="auth-toolbar-label" id="auth-toolbar-label">Sign in</span>
     </button>
-    <button class="settings-btn" id="settings-btn" type="button" aria-label="Settings">&#9881;</button>
   </div>
 </header>
 <div class="auth-toolbar-menu" id="auth-toolbar-menu" hidden role="dialog" aria-label="Account menu" data-testid="toolbar-account-menu"></div>

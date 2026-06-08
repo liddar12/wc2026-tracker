@@ -1536,6 +1536,9 @@ body.search-open { overflow: hidden; }
 .fav-team-chip:active { transform: scale(0.98); }
 .fav-team-chip .fav-flag { font-size: 18px; }
 
+/* The leaderboard card is appended into the "Signed in" section, so it needs its
+   own top gap to match the 14px section rhythm (otherwise it hugs the card above). */
+.home-card-leaderboard { margin-top: 14px; }
 .home-card-leaderboard .home-leaderboard {
   list-style: none;
   padding: 0;
@@ -2358,6 +2361,15 @@ body.search-open { overflow: hidden; }
   text-overflow: ellipsis;
   min-width: 0;
 }
+/* Header left group: gear pinned far-left (+ back-btn on detail views). The account
+   pill stays alone on the far right (.header-actions) so the brand in the middle
+   column can never collide with it. */
+.app-header > .header-left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.app-header > .app-title { overflow: hidden; }   /* let the wordmark ellipsis */
 
 /* Vertical scroll-snap stack of large match cards */
 .lcard-stack {
@@ -3986,13 +3998,8 @@ html, body { overflow-x: hidden; }
    we collapse column 1 to give the title room. The grid then becomes
    `1fr auto`. Title sits flush at the left padding; account chip + settings
    sit flush at the right padding. */
-.app-header:has(.back-btn[hidden]) {
-  grid-template-columns: 1fr auto;
-}
-.app-header:has(.back-btn[hidden]) .back-btn {
-  display: none;
-}
-/* When the back-btn IS visible we still need it at 44px, gap 8 */
+/* Header grid is always `auto 1fr auto` (left group · brand · account). The left
+   group (gear + optional back-btn) sizes itself; no per-state column reflow. */
 .app-header .back-btn { min-width: 44px; }
 
 /* R12b: Model picker — sticky chip row above Play / Bracket / My Brackets */
@@ -4100,7 +4107,7 @@ html, body { overflow-x: hidden; }
 }
 /* the back-btn and header-actions stay in their grid columns and remain
    above the absolutely-centered title via the default stacking order */
-.app-header > .back-btn,
+.app-header > .header-left,
 .app-header > .header-actions { position: relative; z-index: 1; }
 
 /* R13: Stage 2 controls row — counter + "Rank thirds by <model>" CTA */
