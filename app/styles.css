@@ -93,7 +93,7 @@ body {
   backdrop-filter: saturate(180%) blur(20px);
   color: var(--primary-ink);
   display: grid;
-  grid-template-columns: 44px 1fr auto;
+  grid-template-columns: auto 1fr auto;  /* back-btn (collapses when hidden) · brand · actions */
   align-items: center;
   gap: 8px;                            /* R12: 8px gap matches header-actions */
   /* R6 QA pass-2: keep header width inside the viewport */
@@ -2326,8 +2326,8 @@ body.search-open { overflow: hidden; }
 
 /* FIFA logo in header (replaces "WC26" text) */
 .app-header .app-logo {
-  height: 26px;
-  width: 26px;
+  height: 44px;            /* ≥ the account pill height (transparent Trionda ball) */
+  width: 44px;
   display: block;
   filter: drop-shadow(0 1px 2px rgba(0,0,0,0.18));
   background: transparent;
@@ -2341,8 +2341,8 @@ body.search-open { overflow: hidden; }
   justify-content: center;
 }
 .app-logo {
-  height: 26px;
-  width: 26px;
+  height: 44px;
+  width: 44px;
   display: block;
   flex: 0 0 auto;
   background: transparent;
@@ -2352,6 +2352,11 @@ body.search-open { overflow: hidden; }
   font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.01em;
+  color: #fff;                 /* header bg is always teal/dark across themes */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0;
 }
 
 /* Vertical scroll-snap stack of large match cards */
@@ -4080,12 +4085,14 @@ html, body { overflow-x: hidden; }
    the account chip + Settings float at the right, and the logo sits dead
    center of the header regardless of either side's width. */
 .app-header > .app-title {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
+  /* Brand sits left (logo + "World Cup 2026 App"), in the flexible grid column;
+     back-btn to its left, account + settings to the right. */
+  position: static;
+  transform: none;
   margin: 0;
-  pointer-events: none; /* allow clicks to pass through to underlying tab-bar/back area */
+  min-width: 0;            /* allow the title text to shrink/ellipsis */
+  justify-content: flex-start;
+  pointer-events: auto;
 }
 .app-header > .app-title .app-logo {
   pointer-events: auto;
