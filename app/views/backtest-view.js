@@ -47,7 +47,7 @@ export async function renderBacktestView(root) {
         ${renderRow('Model only', r.model)}
         ${renderRow('DT Model', r.dt)}
         ${renderRow('Market only', r.market)}
-        ${renderRow('Hybrid 50/50', r.hybrid)}
+        ${renderRow('Hybrid (⅓·⅓·⅓)', r.hybrid)}
       </div>
       <p class="muted" style="font-size:11px; margin: 8px 0 0;">${escapeHtml(r.note || `${r.total_matches || 0} matches scored.`)}</p>
     `;

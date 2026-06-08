@@ -244,7 +244,7 @@ function hybridPill(match, markets) {
   const sideLabel = hp.side === 'team_a' ? match.team_a
     : hp.side === 'team_b' ? match.team_b
     : 'Draw';
-  const sourceLabel = hp.source === 'hybrid' ? 'model + market (50/50)' : 'model only';
+  const sourceLabel = hp.source === 'hybrid' ? 'hybrid + live match market' : 'hybrid (⅓ J5L+DT+Kalshi)';
   wrap.innerHTML = `
     <span class="hybrid-pill-label">Hybrid pick</span>
     <strong>${escapeHtml(sideLabel)}</strong>

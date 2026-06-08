@@ -17,10 +17,10 @@ import { getActiveModel, modelToAutofillSource } from '../lib/active-model.js';
 
 const MODE_LABELS = { live: 'Live', projected: 'Projected' };
 const SOURCE_LABELS = {
-  model: 'Model composite',
+  model: 'J5L composite',
   dt: 'DT Model',
   kalshi: 'Kalshi market',
-  hybrid: 'Hybrid 50/50',
+  hybrid: 'Hybrid (⅓·⅓·⅓)',
   consensus: 'Public consensus',
 };
 

@@ -35,10 +35,13 @@ export function teamAnalytics(team, data, model) {
   const dtRating = dtRec && dtRec.rating > 0 ? dtRec.rating : null;
   const dtTitlePct = dtRec && dtRec.title_prob > 0 ? dtRec.title_prob * 100 : null;
 
-  // Hybrid: simple normalize-and-mean
-  let hybridPct = null;
-  if (composite != null && kalshiPct != null) {
-    // J5L composite is roughly 0..100 already; Kalshi prob_pct is 0..100.
+  // Hybrid (⅓ J5L + ⅓ DT + ⅓ Kalshi): use the precomputed forecast (forecast.json)
+  // — champion odds + blended strength — falling back to a J5L+Kalshi mean.
+  const fcRow = (data?.forecast?.teams || []).find((r) => r?.team === team) || null;
+  const hybridChampPct = fcRow && typeof fcRow.champion === 'number' ? fcRow.champion * 100 : null;
+  const hybridStrength = fcRow && typeof fcRow.hybrid_strength === 'number' ? fcRow.hybrid_strength : null;
+  let hybridPct = hybridChampPct;
+  if (hybridPct == null && composite != null && kalshiPct != null) {
     hybridPct = Math.round((composite + kalshiPct) / 2);
   }
 
@@ -58,8 +61,10 @@ export function teamAnalytics(team, data, model) {
       break;
     }
     case 'hybrid': {
-      primary = { label: 'Hybrid', value: hybridPct != null ? `${hybridPct}` : '—', hint: '50/50 J5L+Kalshi' };
+      const hv = hybridChampPct != null ? `${hybridChampPct.toFixed(1)}%` : (hybridPct != null ? `${hybridPct}` : '—');
+      primary = { label: 'Hybrid', value: hv, hint: '⅓ J5L + ⅓ DT + ⅓ Kalshi' };
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
+      if (dtRating != null) secondary.push({ label: 'DT', value: dtRating.toFixed(1) });
       if (kalshiPct != null) secondary.push({ label: 'Kalshi', value: `${kalshiPct.toFixed(1)}%` });
       break;
     }
@@ -77,7 +82,7 @@ export function teamAnalytics(team, data, model) {
       break;
     }
   }
-  return { primary, secondary, model, composite, kalshiPct, powerRank, fifaRank, dtRating, dtTitlePct };
+  return { primary, secondary, model, composite, kalshiPct, powerRank, fifaRank, dtRating, dtTitlePct, hybridStrength, hybridChampPct };
 }
 
 /**
@@ -92,7 +97,9 @@ export function rankTeamsByModel(teams, data, model) {
     if (model === 'kalshi') score = a.kalshiPct ?? a.composite ?? 0;
     else if (model === 'dt') score = a.dtRating ?? a.composite ?? 0;
     else if (model === 'hybrid') {
-      score = a.composite != null && a.kalshiPct != null ? (a.composite + a.kalshiPct) / 2 : (a.composite ?? a.kalshiPct ?? 0);
+      // rank by the ⅓ blended strength (forecast.json); fall back to J5L+Kalshi mean
+      score = a.hybridStrength != null ? a.hybridStrength
+        : (a.composite != null && a.kalshiPct != null ? (a.composite + a.kalshiPct) / 2 : (a.composite ?? a.kalshiPct ?? 0));
     } else {
       // j5l + consensus default to composite
       score = a.composite ?? 0;
