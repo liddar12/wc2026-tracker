@@ -30,6 +30,7 @@ try {
 import { loadData, formatLastUpdated } from './data-loader.js';
 import { getState, setData, setRoute, parseHash } from './state.js';
 import { initTheme } from './theme.js';
+import { initBetaNav } from './beta-nav.js';
 import { renderMatchupList } from './views/matchup-list.js';
 import { renderMatchupDetail } from './views/matchup-detail.js';
 import { renderGroupView } from './views/group-view.js';
@@ -268,6 +269,9 @@ window.addEventListener('competition:state-change', () => {
 // it from Settings now.
 initTheme(document.getElementById('theme-btn'));
 bindNav();
+// Beta theme: inject "The Goal" navigation (goal-FAB + full-screen pitch menu)
+// when html[data-theme='beta'] is active; removed for Light/Dark. Theme-gated.
+initBetaNav();
 initTeamSkin();
 // B1: when the live poller pushes fresh data, replace state.data so the
 // current view re-renders with updated scores.
