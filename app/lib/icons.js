@@ -22,3 +22,19 @@ const PATHS = {
 export function icon(name, sw = 2) {
   return `<svg viewBox="0 0 24 24" xmlns="${NS}" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${PATHS[name] || ''}</svg>`;
 }
+
+/* Per-category hue for the home Jump-to tiles — each tile gets its own vibrant
+ * color (Apple-style), rendered as a frosted duotone chip (light hue-tint +
+ * saturated glyph) by .home-link-icon. The chip styling derives both the tint
+ * and the glyph color from this single --c, and adapts to light/dark surface. */
+const TINTS = {
+  play: '#34C759', ball: '#0A84FF', calendar: '#FF453A', pin: '#FF9F0A',
+  grid: '#5E5CE6', bracket: '#32ADE6', clipboard: '#BF5AF2', flame: '#FF6B22',
+  trophy: '#FFB300', chart: '#14B8A6', medal: '#FF2D55', cross: '#5AC8FA',
+};
+
+/* A colored home-link chip: the line glyph in its category hue on a soft tint. */
+export function chip(name, sw = 2) {
+  const c = TINTS[name] || 'var(--accent)';
+  return `<span class="home-link-icon" style="--c:${c}" aria-hidden="true">${icon(name, sw)}</span>`;
+}

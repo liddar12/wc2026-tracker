@@ -14,7 +14,7 @@ import {
 } from '../competition.js';
 import { openAuth } from '../auth-modal.js';
 import { startGuest } from '../toolbar-auth.js';
-import { icon } from '../lib/icons.js';
+import { chip } from '../lib/icons.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } from '../favorites.js';
 import { topMovers as eloTopMovers } from '../live-elo.js';
 import { loadGroupPicks, isStage1Complete, isStage2Complete } from '../group-picks-builder.js';
@@ -779,18 +779,18 @@ function renderQuickLinks() {
     <div class="home-card">
       <h2 class="home-card-title">Jump to</h2>
       <div class="home-grid">
-        <button class="home-link" data-go="play"><span class="home-link-icon" aria-hidden="true">${icon('play')}</span><span>Play</span></button>
-        <button class="home-link" data-go="matchups"><span class="home-link-icon" aria-hidden="true">${icon('ball')}</span><span>Matches</span></button>
-        <button class="home-link" data-go="schedule"><span class="home-link-icon" aria-hidden="true">${icon('calendar')}</span><span>Schedule</span></button>
-        <button class="home-link" data-go="venues"><span class="home-link-icon" aria-hidden="true">${icon('pin')}</span><span>Venues</span></button>
-        <button class="home-link" data-go="groups"><span class="home-link-icon" aria-hidden="true">${icon('grid')}</span><span>Groups</span></button>
-        <button class="home-link" data-go="brackets"><span class="home-link-icon" aria-hidden="true">${icon('bracket')}</span><span>Brackets</span></button>
-        <button class="home-link" data-go="my-brackets"><span class="home-link-icon" aria-hidden="true">${icon('clipboard')}</span><span>My Brackets</span></button>
-        <button class="home-link" data-go="hot-picks"><span class="home-link-icon" aria-hidden="true">${icon('flame')}</span><span>Hot Picks</span></button>
-        <button class="home-link" data-go="golden-awards"><span class="home-link-icon" aria-hidden="true">${icon('trophy')}</span><span>Golden Awards</span></button>
-        <button class="home-link" data-go="backtest"><span class="home-link-icon" aria-hidden="true">${icon('chart')}</span><span>Backtest</span></button>
-        <button class="home-link" data-go="leaderboard"><span class="home-link-icon" aria-hidden="true">${icon('medal')}</span><span>Leaderboard</span></button>
-        <button class="home-link" data-go="injuries"><span class="home-link-icon" aria-hidden="true">${icon('cross')}</span><span>Injuries</span></button>
+        <button class="home-link" data-go="play">${chip('play')}<span>Play</span></button>
+        <button class="home-link" data-go="matchups">${chip('ball')}<span>Matches</span></button>
+        <button class="home-link" data-go="schedule">${chip('calendar')}<span>Schedule</span></button>
+        <button class="home-link" data-go="venues">${chip('pin')}<span>Venues</span></button>
+        <button class="home-link" data-go="groups">${chip('grid')}<span>Groups</span></button>
+        <button class="home-link" data-go="brackets">${chip('bracket')}<span>Brackets</span></button>
+        <button class="home-link" data-go="my-brackets">${chip('clipboard')}<span>My Brackets</span></button>
+        <button class="home-link" data-go="hot-picks">${chip('flame')}<span>Hot Picks</span></button>
+        <button class="home-link" data-go="golden-awards">${chip('trophy')}<span>Golden Awards</span></button>
+        <button class="home-link" data-go="backtest">${chip('chart')}<span>Backtest</span></button>
+        <button class="home-link" data-go="leaderboard">${chip('medal')}<span>Leaderboard</span></button>
+        <button class="home-link" data-go="injuries">${chip('cross')}<span>Injuries</span></button>
       </div>
     </div>
   `;

@@ -1624,20 +1624,31 @@ body.search-open { overflow: hidden; }
 }
 .home-link:active { transform: scale(0.97); }
 .home-link-emoji { font-size: 22px; }
-/* Tinted icon chip: a soft accent-tinted rounded square behind a 2px line glyph.
-   Both glyph + tint use var(--accent), so it recolors per theme. */
+/* Frosted-duotone icon chip: each Jump-to tile carries its own category hue via
+   the inline --c (set by chip() in lib/icons.js). The chip is a soft hue-tint of
+   the surface with the line glyph in the saturated hue — colorful but airy.
+   --c falls back to --accent if a tile sets no hue. */
 .home-link-icon {
+  --c: var(--accent);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: color-mix(in srgb, var(--accent) 15%, transparent);
-  color: var(--accent);
+  width: 36px;
+  height: 36px;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--c) 15%, var(--surface));
+  color: color-mix(in srgb, var(--c) 86%, #000);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 24%, transparent);
   flex: 0 0 auto;
 }
-.home-link-icon svg { width: 20px; height: 20px; display: block; }
+.home-link-icon svg { width: 21px; height: 21px; display: block; }
+/* Dark mode: tint the dark surface with the hue and lift the glyph toward white
+   so it stays legible on the darker chip. */
+:root[data-theme='dark'] .home-link-icon {
+  background: color-mix(in srgb, var(--c) 26%, var(--surface));
+  color: color-mix(in srgb, var(--c) 52%, #fff);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--c) 34%, transparent);
+}
 
 @media (min-width: 720px) {
   .home-grid { grid-template-columns: repeat(6, 1fr); }
