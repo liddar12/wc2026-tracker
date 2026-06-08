@@ -1,0 +1,9 @@
+{
+  "__meta__": {
+    "note": "Exact per-match US channel assignments. Override the default FOX/FS1 + Telemundo/Universo here, keyed by match_id, as FOX & Telemundo publish the match-by-match schedule. Each value may set english_channel, spanish_channel, stream_url, english_stream, spanish_stream.",
+    "english_rights": "FOX, FS1 — free stream Tubi, Fox Sports app",
+    "spanish_rights": "Telemundo, Universo — stream Peacock, Telemundo app",
+    "example": { "<match_id>": { "english_channel": "FOX", "spanish_channel": "Telemundo" } }
+  },
+  "by_match": {}
+}

@@ -53,6 +53,9 @@ jobs:
       - name: Scrape FIFA schedule
         run: python scripts/scrape_schedule.py
         continue-on-error: true
+      - name: Fill US broadcast / streaming per match
+        run: python scripts/scrape_broadcast.py
+        continue-on-error: true
       - name: Scrape referees
         run: python scripts/scrape_referees.py
         continue-on-error: true
