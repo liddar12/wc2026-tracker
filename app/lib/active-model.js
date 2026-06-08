@@ -17,7 +17,7 @@ export const MODEL_LABELS = {
   j5l: 'J5L Model',
   dt: 'DT Model',
   kalshi: 'Kalshi Market',
-  hybrid: 'Hybrid 50/50',
+  hybrid: 'Hybrid (⅓·⅓·⅓)',
   consensus: 'Public Consensus',
 };
 
@@ -26,9 +26,9 @@ export const MODEL_DESCRIPTIONS = {
   // R16: DT sits under the J5L family. Honest framing — it is Elo-anchored
   // today (the player-talent + coaching layer is pending the FBref scrape per
   // the DT pipeline README), Monte-Carlo'd into title odds.
-  dt: 'Player-talent + coaching forecast, Elo-anchored, Monte-Carlo title odds (20k sims). Talent layer pending — currently an Elo-anchored prior.',
+  dt: 'Elo + squad market value blend (0.6/0.4), bivariate-Poisson Monte-Carlo title odds (20k sims).',
   kalshi: 'Live tournament-winner odds from Kalshi prediction markets.',
-  hybrid: '50/50 blend of the J5L model and Kalshi market. Tends to smooth out outliers in either source.',
+  hybrid: 'Equal ⅓ blend of J5L + DT + Kalshi, run through the Poisson Monte-Carlo bracket. The default forecast across the app.',
   consensus: 'The most-picked team at each slot across every public-pool bracket.',
 };
 
@@ -47,12 +47,12 @@ const LS_DEFAULT = 'wc26.settings.defaultModel';
 
 export function getDefaultModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
-  if (!storage) return 'j5l';
+  if (!storage) return 'hybrid';
   try {
     const v = storage.getItem(LS_DEFAULT);
     if (v && MODELS.includes(v)) return v;
   } catch {}
-  return 'j5l';
+  return 'hybrid';
 }
 
 export function setDefaultModel(model, storage) {
@@ -68,7 +68,7 @@ export function setDefaultModel(model, storage) {
 
 export function getActiveModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
-  if (!storage) return 'j5l';
+  if (!storage) return 'hybrid';
   try {
     const v = storage.getItem(LS_ACTIVE);
     if (v && MODELS.includes(v)) return v;

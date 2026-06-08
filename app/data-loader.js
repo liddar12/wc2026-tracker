@@ -39,7 +39,9 @@ const OPTIONAL_FILES = [
   { file: 'markets.json',        fallback: {} },
   { file: 'injuries.json',       fallback: {} },
   // R16: DT Model site contract — team_rankings + title odds + players.
-  { file: 'dt_model.json',       fallback: {} }
+  { file: 'dt_model.json',       fallback: {} },
+  // Hybrid forecast (⅓ J5L + ⅓ DT + ⅓ Kalshi): per-team round-reach + champion odds.
+  { file: 'forecast.json',       fallback: {} }
 ];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
@@ -146,6 +148,7 @@ function fileToKey(file) {
     case 'markets.json':         return 'markets';
     case 'injuries.json':        return 'injuries';
     case 'dt_model.json':        return 'dtModel';
+    case 'forecast.json':        return 'forecast';
     default: return file.replace('.json', '');
   }
 }

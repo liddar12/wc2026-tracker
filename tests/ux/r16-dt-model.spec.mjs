@@ -12,8 +12,8 @@ test.describe('R16 DT model', () => {
     await expect(dtChip).toHaveText(/DT Model/);
 
     await dtChip.click();
-    // description updates to the DT model's blurb
-    await expect(picker.locator('[data-testid="model-picker-desc"]')).toContainText(/Elo-anchored/i);
+    // description updates to the DT model's blurb (now the Elo + market-value blend)
+    await expect(picker.locator('[data-testid="model-picker-desc"]')).toContainText(/market value|Monte-Carlo/i);
     // and the chip is now active
     await expect(dtChip).toHaveClass(/is-active/);
   });

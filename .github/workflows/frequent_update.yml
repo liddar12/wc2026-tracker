@@ -77,6 +77,9 @@ jobs:
       - name: Rebuild DT model (Elo + market value blend)
         run: python scripts/build_dt_model.py
         continue-on-error: true
+      - name: Rebuild hybrid forecast (1/3 J5L + DT + Kalshi)
+        run: python scripts/build_hybrid.py
+        continue-on-error: true
 
       # ---- Bump meta.data_version so the homepage "Data updated" stamp moves ----
       - name: Bump meta.data_version
