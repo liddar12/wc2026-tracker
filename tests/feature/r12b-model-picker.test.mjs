@@ -33,7 +33,8 @@ test('R12b/R16: MODELS list contains the documented models incl. DT', () => {
 
 test('R12b: getActiveModel falls back to default when nothing set', () => {
   const s = mockStorage();
-  assert.equal(getActiveModel(s), 'j5l');
+  // default forecast is now the 1/3 hybrid (J5L + DT + Kalshi)
+  assert.equal(getActiveModel(s), 'hybrid');
 });
 
 test('R12b: setActiveModel writes and getActiveModel returns it', () => {

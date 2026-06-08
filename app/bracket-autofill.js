@@ -17,7 +17,7 @@ export const FILL_SOURCES = {
   model:     { label: 'Model',     description: 'My composite power ranking (mine + elo + tmv + qual)' },
   dt:        { label: 'DT',        description: 'DT Model rating (player-talent + coaching, Elo-anchored)' },
   kalshi:    { label: 'Kalshi',    description: 'Kalshi tournament-winner probability per team' },
-  hybrid:    { label: '50/50',     description: 'Average of model composite and Kalshi (normalized)' },
+  hybrid:    { label: '⅓·⅓·⅓',     description: 'Equal blend of J5L + DT + Kalshi (forecast hybrid strength)' },
   consensus: { label: 'Consensus', description: 'Most-picked team across all public pools' },
 };
 
@@ -59,18 +59,24 @@ function makeWinnerFn(data, source, consensusMap) {
         if (pa === pb) return a;
         return pa >= pb ? a : b;
       };
-    case 'hybrid':
+    case 'hybrid': {
+      // Prefer the precomputed ⅓ J5L + ⅓ DT + ⅓ Kalshi strength (forecast.json,
+      // recomputed each data refresh). Fall back to composite+Kalshi if absent.
+      const hs = {};
+      for (const r of (data?.forecast?.teams || [])) {
+        if (r?.team && typeof r.hybrid_strength === 'number') hs[r.team] = r.hybrid_strength;
+      }
       return (a, b) => {
-        // Normalize: composite is 0-100ish, Kalshi prob_pct is 0-100. Use both directly.
-        const ca = teams[a]?.composite || 0;
-        const cb = teams[b]?.composite || 0;
-        const ka = kalshiByTeam[a] || 0;
-        const kb = kalshiByTeam[b] || 0;
-        const sa = 0.5 * ca + 0.5 * ka;
-        const sb = 0.5 * cb + 0.5 * kb;
-        if (sa === sb) return a;
+        if (a in hs || b in hs) {
+          const sa = hs[a] ?? -Infinity;
+          const sb = hs[b] ?? -Infinity;
+          return sa >= sb ? a : b;
+        }
+        const sa = 0.5 * (teams[a]?.composite || 0) + 0.5 * (kalshiByTeam[a] || 0);
+        const sb = 0.5 * (teams[b]?.composite || 0) + 0.5 * (kalshiByTeam[b] || 0);
         return sa >= sb ? a : b;
       };
+    }
     case 'consensus':
       return (a, b) => {
         if (!consensusMap) return modelWinner(teams, a, b);

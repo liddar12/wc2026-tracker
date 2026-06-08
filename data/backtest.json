@@ -3,7 +3,8 @@
     "generated_at": "2026-06-05",
     "method": "Seed data; replace via scripts/build_backtest.py once historical model probabilities + actual results are aligned.",
     "is_estimate": true,
-    "dt_note": "DT is Elo-anchored today (player-talent + coaching layer pending the FBref scrape). Its backtest is an Elo-baseline ESTIMATE pending the dedicated worldcup_backtest.py harness — treat as a prior, not a fitted result."
+    "hybrid_note": "Hybrid is now an equal ⅓ J5L + ⅓ DT + ⅓ Kalshi blend (was 50/50 model+market). These per-tournament figures predate that change and remain ESTIMATES — historical per-match Kalshi odds don't exist, so a true ⅓ hybrid backtest is pending. Measured (point-in-time Elo) decisive-match accuracy is ~73%; strict 3-way ~54%. See v3-model-changes/backtest/.",
+    "dt_note": "DT is now an Elo + squad market-value blend (0.6/0.4), bivariate-Poisson Monte-Carlo title odds. Its row here is an Elo-baseline ESTIMATE pending a fitted harness — treat as a prior, not a fitted result."
   },
   "wc2022": {
     "total_matches": 64,
