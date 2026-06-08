@@ -1624,6 +1624,20 @@ body.search-open { overflow: hidden; }
 }
 .home-link:active { transform: scale(0.97); }
 .home-link-emoji { font-size: 22px; }
+/* Tinted icon chip: a soft accent-tinted rounded square behind a 2px line glyph.
+   Both glyph + tint use var(--accent), so it recolors per theme. */
+.home-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  color: var(--accent);
+  flex: 0 0 auto;
+}
+.home-link-icon svg { width: 20px; height: 20px; display: block; }
 
 @media (min-width: 720px) {
   .home-grid { grid-template-columns: repeat(6, 1fr); }
