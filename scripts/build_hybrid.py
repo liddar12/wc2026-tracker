@@ -147,28 +147,53 @@ def main():
 
     hybrid = zscore(W[0] * z_j5l + W[1] * z_dt + W[2] * z_kal)  # standardised rating
 
-    # --- group match bars = hybrid W/D/L (preserve J5L under j5l_probabilities) ---
+    # --- group match bars = per-match ⅓ probability blend (J5L + DT + Kalshi) ---
+    # Each model contributes a W/D/L distribution; the Kalshi third uses REAL
+    # per-match odds (markets.match_outcomes, from the KXWCGAME scraper) when a game
+    # is priced, otherwise its tournament-strength view. So the bars become a true
+    # ⅓-at-the-match-level blend automatically as Kalshi prices each match.
+    try:
+        mo = (load("markets.json") or {}).get("match_outcomes") or {}
+    except Exception:
+        mo = {}
     gm = load("group_matchups.json")
-    changed = 0
+    changed = kalshi_live = 0
     for g in gm.values():
         for m in g["matches"]:
             a, b = idx.get(m["team_a"]), idx.get(m["team_b"])
             if a is None or b is None:
                 continue
-            gap = float(hybrid[a] - hybrid[b])
-            pa, pd, pb = wdl(gap)
-            if "j5l_probabilities" not in m and "probabilities" in m:
-                m["j5l_probabilities"] = m["probabilities"]
+            # J5L: the composite-based probs rebuild_composite just wrote
+            jp = m.get("probabilities") or {}
+            j = (jp.get("team_a_wins", 0) / 100, jp.get("draw", 0) / 100, jp.get("team_b_wins", 0) / 100)
+            if sum(j) <= 0:
+                j = wdl(float(z_j5l[a] - z_j5l[b]))
+            # DT: bivariate-Poisson on the DT-rating gap
+            d = wdl(float(z_dt[a] - z_dt[b]))
+            # Kalshi: real per-match odds if priced, else strength-derived
+            key, rev = f"{m['team_a']}__vs__{m['team_b']}", f"{m['team_b']}__vs__{m['team_a']}"
+            o = mo.get(key)
+            if o and o.get("team_a_prob") is not None:
+                k = (o["team_a_prob"], o["draw_prob"], o["team_b_prob"]); kalshi_live += 1
+            elif mo.get(rev) and mo[rev].get("team_a_prob") is not None:
+                o = mo[rev]; k = (o["team_b_prob"], o["draw_prob"], o["team_a_prob"]); kalshi_live += 1
+            else:
+                k = wdl(float(z_kal[a] - z_kal[b]))
+            pa = (j[0] + d[0] + k[0]) / 3
+            pd = (j[1] + d[1] + k[1]) / 3
+            pb = (j[2] + d[2] + k[2]) / 3
+            tot = pa + pd + pb or 1.0
+            pa, pd, pb = pa / tot, pd / tot, pb / tot
+            m["j5l_probabilities"] = jp or m.get("j5l_probabilities")  # preserve fresh J5L
             m["probabilities"] = {"team_a_wins": round(pa * 100, 1),
                                   "draw": round(pd * 100, 1),
                                   "team_b_wins": round(pb * 100, 1)}
             m["expected_points"] = {"team_a": round(pa * 3 + pd, 2),
                                     "team_b": round(pb * 3 + pd, 2)}
-            m["hybrid_gap"] = round(gap, 3)
-            if abs(gap) < 0.20:
+            if abs(pa - pb) < 0.04:
                 m["predicted_winner"] = "draw_likely"
                 m["win_confidence_pct"] = round(max(pa, pb) * 100, 1)
-            elif gap > 0:
+            elif pa > pb:
                 m["predicted_winner"] = m["team_a"]; m["win_confidence_pct"] = round(pa * 100, 1)
             else:
                 m["predicted_winner"] = m["team_b"]; m["win_confidence_pct"] = round(pb * 100, 1)
@@ -206,8 +231,9 @@ def main():
             "weights": {"j5l": round(W[0], 4), "dt": round(W[1], 4), "kalshi": round(W[2], 4)},
             "method": "Equal 1/3 blend of J5L composite + DT rating + Kalshi implied strength; "
                       "bivariate-Poisson Monte-Carlo of the 48-team/12-group bracket.",
-            "note": "Kalshi third uses tournament-winner odds as a team-strength signal "
-                    "(per-match Kalshi odds pending). Recomputed each data refresh.",
+            "note": "Group bars blend ⅓ each at the match level, using REAL per-match Kalshi "
+                    "odds (KXWCGAME) where priced and tournament-winner strength otherwise. "
+                    "Champion odds use the blended strength. Recomputed each data refresh.",
         },
         "bracket_simulation": {"iterations": N_SIMS, "seed": SEED},
         "teams": rows,

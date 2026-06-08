@@ -162,31 +162,78 @@ def fetch_sparkline(ticker: str) -> list[float]:
     return out
 
 
-def fetch_match_outcomes() -> dict[str, Any]:
-    """Search for per-match outcome markets; empty dict if none published yet."""
+GAME_SERIES = "KXWCGAME"  # per-match 1X2: <teamA> / Tie / <teamB> markets per event
+
+
+def _canonical_matchups() -> dict[frozenset, tuple[str, str]]:
+    """team-set → (team_a, team_b) orientation from group_matchups.json, so stored
+    keys match the app's matchOutcomeKey orientation and team_a_prob aligns with
+    the match's team_a (markets.getMatchOutcome looks up team_a__vs__team_b)."""
     try:
-        data = kalshi_get("/events", params={"series_ticker": SERIES_TICKER, "limit": 50})
+        with (DATA_DIR / "group_matchups.json").open(encoding="utf-8") as f:
+            gm = json.load(f)
+    except Exception:
+        return {}
+    out: dict[frozenset, tuple[str, str]] = {}
+    for g in gm.values():
+        for m in (g.get("matches") or []):
+            a, b = m.get("team_a"), m.get("team_b")
+            if a and b:
+                out[frozenset((a, b))] = (a, b)
+    return out
+
+
+def fetch_match_outcomes(valid: set[str]) -> dict[str, Any]:
+    """Per-match win/draw/loss from the live KXWCGAME series (each event has three
+    markets: team-A win / Tie / team-B win). Only matches with live prices are
+    included — empty until Kalshi prices a game (e.g. close to kickoff / in-play),
+    at which point it auto-populates. Probabilities are de-vigged (normalised to 1)."""
+    try:
+        data = kalshi_get("/events", params={"series_ticker": GAME_SERIES, "limit": 200, "status": "open"})
     except RuntimeError as exc:
         err(str(exc))
         return {}
-    events = data.get("events") or []
+    canon = _canonical_matchups()
     outcomes: dict[str, Any] = {}
-    for ev in events:
+    for ev in (data.get("events") or []):
         ticker = ev.get("event_ticker") or ""
-        if ticker == EVENT_TICKER:
-            continue
-        title = (ev.get("title") or "").lower()
-        if "match" not in title and " vs " not in title:
-            continue
         try:
             nested = kalshi_get(f"/events/{ticker}", params={"with_nested_markets": "true"})
         except RuntimeError as exc:
             err(str(exc))
             continue
         markets = (nested.get("event") or {}).get("markets") or []
-        # Best-effort: skip until Kalshi publishes structured match contracts.
-        if len(markets) >= 3:
-            log(f"Found potential match event {ticker} with {len(markets)} markets (not mapped yet)")
+        team_probs: dict[str, float] = {}
+        draw_prob: float | None = None
+        for m in markets:
+            sub = (m.get("yes_sub_title") or m.get("subtitle") or "").strip()
+            p = implied_prob(m)
+            if p <= 0:
+                continue
+            if sub.lower() in ("tie", "draw"):
+                draw_prob = p
+            else:
+                t = map_team(sub, valid)
+                if t:
+                    team_probs[t] = p
+        if len(team_probs) != 2 or draw_prob is None:
+            continue  # illiquid or unmapped — skip; auto-fills once priced
+        ta, tb = list(team_probs.keys())
+        a, b = canon.get(frozenset((ta, tb)), (ta, tb))  # canonical orientation
+        pa, pb = team_probs[a], team_probs[b]
+        tot = pa + draw_prob + pb
+        if tot <= 0:
+            continue
+        outcomes[f"{a}__vs__{b}"] = {
+            "team_a": a,
+            "team_b": b,
+            "team_a_prob": round(pa / tot, 4),
+            "draw_prob": round(draw_prob / tot, 4),
+            "team_b_prob": round(pb / tot, 4),
+            "event_ticker": ticker,
+            "source": "kalshi-KXWCGAME",
+        }
+    log(f"match_outcomes: {len(outcomes)} priced match market(s)")
     return outcomes
 
 
@@ -230,7 +277,7 @@ def build_markets(*, skip_sparklines: bool = False) -> dict[str, Any]:
 
     match_outcomes: dict[str, Any] = {}
     try:
-        match_outcomes = fetch_match_outcomes()
+        match_outcomes = fetch_match_outcomes(valid_teams)
     except RuntimeError as exc:
         err(str(exc))
 
