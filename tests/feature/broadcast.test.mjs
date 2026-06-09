@@ -28,3 +28,13 @@ test('scrape_broadcast.py: accurate defaults + overrides hook', () => {
   const ov = json('data/broadcast_overrides.json');
   assert.ok(ov.by_match && typeof ov.by_match === 'object', 'overrides has by_match');
 });
+
+test('scrape_broadcast.py: kickoff fallback fills placeholder/knockout matches safely', () => {
+  const s = read('scripts/scrape_broadcast.py');
+  assert.match(s, /def iso2epoch/, 'tolerant ISO→epoch parser');
+  assert.match(s, /by_kick/, 'builds a kickoff-keyed index for team-unmatched rows');
+  // only unambiguous (single-event) timestamps are usable → can add, never mislabel
+  assert.match(s, /len\(lst\) == 1/, 'drops ambiguous (simultaneous) timestamps');
+  // team-set match keeps precedence; kickoff fallback only runs in the else branch
+  assert.match(s, /if key in espn:[\s\S]*?else:[\s\S]*?ep in by_kick/, 'kickoff fallback is additive (team match wins)');
+});

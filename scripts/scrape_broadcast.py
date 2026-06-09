@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import json
 import os
+import re
 import sys
 import time
 import urllib.request
@@ -64,9 +65,36 @@ def _map(name, valid):
     return n if n in valid else None
 
 
+def iso2epoch(s):
+    """Tolerant ISO → UTC epoch seconds. Handles 'Z' and missing seconds
+    (ESPN emits '...T19:00Z'; our schedule emits '...T19:00:00Z')."""
+    if not s:
+        return None
+    s = str(s).strip().replace(" ", "T")
+    if s.endswith("Z"):
+        s = s[:-1] + "+00:00"
+    s = re.sub(r"T(\d{2}:\d{2})(?=[+\-])", r"T\1:00", s)  # pad seconds before offset
+    s = re.sub(r"T(\d{2}:\d{2})$", r"T\1:00", s)
+    try:
+        d = datetime.fromisoformat(s)
+        if d.tzinfo is None:
+            d = d.replace(tzinfo=timezone.utc)
+        return int(d.timestamp())
+    except Exception:
+        return None
+
+
 def fetch_espn(dates, valid):
-    """frozenset(team_a,team_b) → composed broadcast dict, from ESPN geoBroadcasts."""
+    """Returns (team_map, kick_map) from ESPN geoBroadcasts:
+      team_map: frozenset(team_a, team_b) → broadcast dict (team-matched, unchanged).
+      kick_map: kickoff-epoch → broadcast dict, ONLY for timestamps with exactly one
+        ESPN event that carries an EXACT English channel. This is the additive
+        fallback for matches ESPN lists with placeholder teams (knockouts: "2A",
+        "W74") that can't be team-matched. kickoff+slot is unique per match, so a
+        single-event timestamp maps unambiguously; ambiguous (simultaneous) ones
+        are dropped, so this can only ever ADD an exact channel, never mislabel."""
     out = {}
+    by_kick_all = {}
     for d in sorted(dates):
         try:
             data = _get(f"{ESPN}?dates={d}")
@@ -81,8 +109,6 @@ def fetch_espn(dates, valid):
                 t = c.get("team") or {}
                 teams.append(_map(t.get("displayName") or t.get("name") or t.get("shortDisplayName"), valid))
             teams = [t for t in teams if t]
-            if len(teams) != 2:
-                continue
             nets = []
             for g in (comp.get("geoBroadcasts") or []):
                 sn = (g.get("media") or {}).get("shortName")
@@ -104,13 +130,20 @@ def fetch_espn(dates, valid):
                 spa += " · Peacock"
             stream_url = "https://tubitv.com/" if any("Tubi" in s for s in streams) else (
                 "https://www.peacocktv.com/" if any("Peacock" in s for s in streams) else "https://tubitv.com/")
-            out[frozenset(teams)] = {
+            bcast = {
                 "english_channel": eng, "spanish_channel": spa, "stream_url": stream_url,
                 "english_stream": ", ".join(s for s in streams if "Peacock" not in s) or "Tubi (free), Fox Sports app",
                 "spanish_stream": "Peacock, Telemundo app", "source": "espn",
             }
+            if len(teams) == 2:
+                out[frozenset(teams)] = bcast
+            # additive kickoff index — only when ESPN gave an EXACT english channel
+            ep = iso2epoch(e.get("date"))
+            if en and ep is not None:
+                by_kick_all.setdefault(ep, []).append(bcast)
         time.sleep(MIN_INTERVAL)
-    return out
+    by_kick = {ep: lst[0] for ep, lst in by_kick_all.items() if len(lst) == 1}
+    return out, by_kick
 
 
 def main():
@@ -129,9 +162,9 @@ def main():
         if k:
             dates.add(k.replace("-", ""))
 
-    espn = {}
+    espn, by_kick = {}, {}
     try:
-        espn = fetch_espn(dates, valid)
+        espn, by_kick = fetch_espn(dates, valid)
     except Exception as exc:
         print(f"  espn fetch skipped: {exc}", file=sys.stderr)
 
@@ -140,7 +173,7 @@ def main():
     except Exception:
         ov = {}
 
-    n = exact = 0
+    n = exact = kfill = 0
     for m in rows:
         if not isinstance(m, dict):
             continue
@@ -149,13 +182,19 @@ def main():
         key = frozenset((m.get("team_a"), m.get("team_b")))
         if key in espn:
             b.update(espn[key]); exact += 1
+        else:
+            # placeholder/knockout fallback: match ESPN by unique kickoff time
+            ep = iso2epoch(m.get("kickoff_utc"))
+            if ep is not None and ep in by_kick:
+                b.update(by_kick[ep]); exact += 1; kfill += 1
         mid = str(m.get("match_id") or m.get("match_number") or "")
         if mid in ov and isinstance(ov[mid], dict):
             b.update(ov[mid]); b["source"] = "official"
         m.setdefault("broadcast", {})["us"] = b
 
     json.dump(sched, open(dpath("schedule_full.json"), "w"), indent=2)
-    print(f"broadcast: {n} matches · {exact} from ESPN (exact channels) · "
+    print(f"broadcast: {n} matches · {exact} from ESPN (exact channels"
+          f"{f'; {kfill} via kickoff-match for placeholder/knockout' if kfill else ''}) · "
           f"{n - exact} on default FOX/Telemundo · {datetime.now(timezone.utc).date()}")
     return 0
 
