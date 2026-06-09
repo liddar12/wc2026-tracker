@@ -1543,22 +1543,38 @@ body.search-open { overflow: hidden; }
 
 /* Favorite team picker card */
 .home-card-favorite { }
+/* Phones: flag + name on row 1, action buttons on their OWN row below — so the
+   team name owns full width and can never be crowded/overlapped by the buttons
+   (the old "36px 1fr auto" let the 3 buttons starve the name cell to ~100px). */
 .fav-current {
   display: grid;
-  grid-template-columns: 36px 1fr auto;
+  grid-template-columns: 36px 1fr;
+  grid-template-areas:
+    "flag meta"
+    "actions actions";
   gap: 10px;
   align-items: center;
 }
-.fav-flag { font-size: 28px; line-height: 1; }
-.fav-meta { min-width: 0; }
-.fav-name { font-weight: 700; font-size: 16px; }
+.fav-flag { grid-area: flag; font-size: 28px; line-height: 1; }
+.fav-meta { grid-area: meta; min-width: 0; }
+/* defense-in-depth: clamp long names (Bosnia and Herzegovina, Korea Republic…)
+   with an ellipsis so text can never overflow onto neighbouring controls. */
+.fav-name { font-weight: 700; font-size: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fav-actions {
+  grid-area: actions;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: flex-end;
 }
 .fav-actions .pick-btn { padding: 8px 10px; min-height: 36px; font-size: 13px; flex: 0 0 auto; }
+/* Roomy widths: name + actions share one row (buttons sit right, name ellipsises). */
+@media (min-width: 560px) {
+  .fav-current {
+    grid-template-columns: 36px 1fr auto;
+    grid-template-areas: "flag meta actions";
+  }
+  .fav-actions { justify-content: flex-end; }
+}
 .fav-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -2979,7 +2995,7 @@ html.wc-reduce-motion *::after {
   align-items: center;
   padding: 10px 0;
 }
-.fav-kalshi-team { font-size: 16px; }
+.fav-kalshi-team { font-size: 16px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .fav-kalshi-prob {
   font-family: var(--font-display, var(--font-body));
   font-size: 1.5rem;
