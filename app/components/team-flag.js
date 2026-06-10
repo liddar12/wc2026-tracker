@@ -44,12 +44,13 @@ const ISO = {
   'Egypt': 'EG',
   'Nigeria': 'NG',
   'Ghana': 'GH',
-  "Côte d'Ivoire": 'CI', 'Cote d Ivoire': 'CI', 'Ivory Coast': 'CI',
+  "Côte d'Ivoire": 'CI', "Cote d'Ivoire": 'CI', 'Cote d Ivoire': 'CI', 'Ivory Coast': 'CI',
   'Cameroon': 'CM',
+  'DR Congo': 'CD', 'Congo DR': 'CD',
   'South Africa': 'ZA',
   'Mali': 'ML',
   'Burkina Faso': 'BF',
-  'Cape Verde': 'CV',
+  'Cape Verde': 'CV', 'Cabo Verde': 'CV',
   'Japan': 'JP',
   'Korea Republic': 'KR', 'South Korea': 'KR',
   'Australia': 'AU',
@@ -73,8 +74,29 @@ const ISO = {
   'Panama': 'PA',
   'Honduras': 'HN',
   'Jamaica': 'JM',
-  'Haiti': 'HT'
+  'Haiti': 'HT',
+  'Curacao': 'CW', 'Curaçao': 'CW'
 };
+
+// Accent/punctuation-insensitive fallback so any spelling variant of a team
+// name resolves to its flag (e.g. "Côte d'Ivoire" ↔ "Cote d'Ivoire"). Missing
+// or differently-worded names (Cabo/Cape Verde, DR Congo, Curaçao) are covered
+// by the explicit keys above; this catches accent/apostrophe/spacing drift.
+function _normName(s) {
+  return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/['’.\-\s]/g, '').toLowerCase();
+}
+let _normIso = null;
+function isoFor(team) {
+  if (!team) return '';
+  const direct = ISO[team] || ISO[team.trim && team.trim()];
+  if (direct) return direct;
+  if (!_normIso) {
+    _normIso = {};
+    for (const k of Object.keys(ISO)) _normIso[_normName(k)] = ISO[k];
+  }
+  return _normIso[_normName(team)] || '';
+}
 
 function isoToEmoji(code) {
   if (!code) return '🏳';

@@ -14,6 +14,7 @@ import { renderBracketView } from './bracket-view.js';
 import { STAGE_LABELS, STAGE_ORDER, resolveSlots, isSlotPlaceholder, computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
 import { getFavoriteTeam } from '../favorites.js';
 import { getCompetitionState } from '../competition.js';
+import { englishName } from '../lib/team-names.js';
 
 export function renderBracketsLiveView(root, data, params) {
   root.innerHTML = '';
@@ -205,12 +206,12 @@ function renderStage(stage, matches, data) {
     wrap.innerHTML = `
       <button class="bb-slot ${winnerIsA ? 'is-actual-win' : actual && winnerIsB ? 'is-busted' : ''} ${aIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(a || '')}" data-match="${m.match_number}" ${onTap}>
         <span class="bb-slot-flag">${fa}</span>
-        <span>${escapeHtml(a || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_a}</span>` : ''}</span>
+        <span>${escapeHtml(englishName(a) || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_a}</span>` : ''}</span>
       </button>
       <div class="bb-pair-vs">vs</div>
       <button class="bb-slot ${winnerIsB ? 'is-actual-win' : actual && winnerIsA ? 'is-busted' : ''} ${bIsFav ? 'is-fav-slot' : ''}" data-testid="bracket-slot" data-team="${escapeHtml(b || '')}" data-match="${m.match_number}" ${onTap}>
         <span class="bb-slot-flag">${fb}</span>
-        <span>${escapeHtml(b || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_b}</span>` : ''}</span>
+        <span>${escapeHtml(englishName(b) || 'TBD')} ${actual ? `<span class="bb-points">${actual.score_b}</span>` : ''}</span>
       </button>
     `;
     const stampRow = document.createElement('div');
@@ -318,11 +319,11 @@ function renderCompareView(root, data) {
       const row = document.createElement('div');
       row.className = 'bb-compare-row';
       row.innerHTML = `
-        <div class="bb-compare-pair">${escapeHtml(a || 'TBD')} <span class="muted">vs</span> ${escapeHtml(b || 'TBD')}</div>
+        <div class="bb-compare-pair">${escapeHtml(englishName(a) || 'TBD')} <span class="muted">vs</span> ${escapeHtml(englishName(b) || 'TBD')}</div>
         <div class="bb-compare-chips">
-          <span class="bb-chip bb-chip-mine ${userPick ? 'is-set' : ''}">${escapeHtml(userPick || '—')}</span>
-          <span class="bb-chip bb-chip-model">${escapeHtml(modelWinner || '—')}</span>
-          ${actualWinner ? `<span class="bb-chip bb-chip-actual">${escapeHtml(actualWinner)}</span>` : ''}
+          <span class="bb-chip bb-chip-mine ${userPick ? 'is-set' : ''}">${escapeHtml(userPick ? englishName(userPick) : '—')}</span>
+          <span class="bb-chip bb-chip-model">${escapeHtml(modelWinner ? englishName(modelWinner) : '—')}</span>
+          ${actualWinner ? `<span class="bb-chip bb-chip-actual">${escapeHtml(englishName(actualWinner))}</span>` : ''}
         </div>
         ${userPick && modelWinner && userPick !== modelWinner
           ? `<div class="bb-compare-flag">Diverges from model</div>`

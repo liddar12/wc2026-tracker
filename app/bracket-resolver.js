@@ -36,10 +36,15 @@ export function resolveSlots(knockouts, data, opts = {}) {
   const { winnerResolver = null } = opts;
   const winners = new Map();
   const losers  = new Map();
+  // Each best-third-placed team can fill only ONE R32 slot. Shared across the
+  // whole resolution pass so a strong third (best across several slot combos)
+  // isn't assigned to multiple matches. Matches are processed in match-number
+  // order by the callers, so earlier slots claim first.
+  const usedThirds = new Set();
 
   for (const m of knockouts) {
-    const a = resolveSlot(m.team_a, data, winners, losers);
-    const b = resolveSlot(m.team_b, data, winners, losers);
+    const a = resolveSlot(m.team_a, data, winners, losers, usedThirds);
+    const b = resolveSlot(m.team_b, data, winners, losers, usedThirds);
     m.resolved_team_a = a;
     m.resolved_team_b = b;
 
@@ -60,7 +65,7 @@ export function resolveSlots(knockouts, data, opts = {}) {
   return knockouts;
 }
 
-export function resolveSlot(slot, data, winners, losers) {
+export function resolveSlot(slot, data, winners, losers, usedThirds) {
   if (!slot || typeof slot !== 'string') return null;
   if (!isSlotPlaceholder(slot)) return slot;
 
@@ -68,7 +73,7 @@ export function resolveSlot(slot, data, winners, losers) {
   if (grpMatch) return resolveGroupSlot(data, parseInt(grpMatch[1], 10), grpMatch[2]);
 
   const thirdMatch = slot.match(/^3 ([A-L]+)$/);
-  if (thirdMatch) return resolveThirdSlot(data, thirdMatch[1]);
+  if (thirdMatch) return resolveThirdSlot(data, thirdMatch[1], usedThirds);
 
   const winMatch = slot.match(/^W(\d+)$/);
   if (winMatch) return winners.get(parseInt(winMatch[1], 10)) || slot;
@@ -92,7 +97,7 @@ export function resolveGroupSlot(data, place, group) {
   return `${place}${group}`;
 }
 
-export function resolveThirdSlot(data, letters) {
+export function resolveThirdSlot(data, letters, usedThirds) {
   const candidates = [];
   for (const g of letters) {
     const live = computeGroupStandings(data, g);
@@ -105,6 +110,16 @@ export function resolveThirdSlot(data, letters) {
     (b.gd || 0)     - (a.gd || 0)     ||
     (b.gf || 0)     - (a.gf || 0)
   );
+  // Dedup across slots: a third-placed team can only occupy one R32 slot. Each
+  // slot takes the best still-available third among its letters. Without this,
+  // one team (e.g. Group E's third, best across six "…E…" combos) was assigned
+  // to every matching slot — appearing as the opponent in multiple matches.
+  if (usedThirds) {
+    for (const c of candidates) {
+      if (!usedThirds.has(c.team)) { usedThirds.add(c.team); return c.team; }
+    }
+    return `3 ${letters}`; // every candidate already claimed → leave as placeholder
+  }
   return candidates[0]?.team || `3 ${letters}`;
 }
 
