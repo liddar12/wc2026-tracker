@@ -41,3 +41,21 @@ export function shortTeamName(name, maxLen = 10) {
 export function tinyTeamName(name) {
   return shortTeamName(name, 6);
 }
+
+/* Common English names for teams whose canonical (FIFA) spelling differs.
+   DISPLAY ONLY — never used for data keys, lookups, or matching. */
+const ENGLISH_NAMES = {
+  "Cote d'Ivoire": 'Ivory Coast',
+  "Côte d'Ivoire": 'Ivory Coast',
+  'Korea Republic': 'South Korea',
+  'Cabo Verde': 'Cape Verde',
+  'Türkiye': 'Turkey',
+  'Turkiye': 'Turkey',
+  'IR Iran': 'Iran',
+};
+
+/** Returns the common English name for display; falls back to the original. */
+export function englishName(name) {
+  if (!name) return name;
+  return ENGLISH_NAMES[name] || name;
+}
