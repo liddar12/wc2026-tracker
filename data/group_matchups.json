@@ -84,8 +84,8 @@
         "composite_b": 69.7,
         "gap": 4.0,
         "probabilities": {
-          "team_a_wins": 47.6,
-          "draw": 25.3,
+          "team_a_wins": 47.5,
+          "draw": 25.4,
           "team_b_wins": 27.1
         },
         "expected_points": {
@@ -93,7 +93,7 @@
           "team_b": 1.07
         },
         "predicted_winner": "Mexico",
-        "win_confidence_pct": 47.6,
+        "win_confidence_pct": 47.5,
         "upset_risk": {
           "favored": "Mexico",
           "underdog": "Czechia",
@@ -122,16 +122,16 @@
         "composite_b": 60.3,
         "gap": 12.1,
         "probabilities": {
-          "team_a_wins": 63.1,
-          "draw": 20.4,
-          "team_b_wins": 16.5
+          "team_a_wins": 62.9,
+          "draw": 20.7,
+          "team_b_wins": 16.4
         },
         "expected_points": {
-          "team_a": 2.1,
+          "team_a": 2.09,
           "team_b": 0.7
         },
         "predicted_winner": "Korea Republic",
-        "win_confidence_pct": 63.1,
+        "win_confidence_pct": 62.9,
         "upset_risk": {
           "favored": "Korea Republic",
           "underdog": "South Africa",
@@ -271,16 +271,16 @@
         "composite_b": 76.6,
         "gap": 6.7,
         "probabilities": {
-          "team_a_wins": 20.7,
-          "draw": 23.5,
-          "team_b_wins": 55.8
+          "team_a_wins": 20.9,
+          "draw": 23.4,
+          "team_b_wins": 55.6
         },
         "expected_points": {
           "team_a": 0.86,
-          "team_b": 1.91
+          "team_b": 1.9
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 55.8,
+        "win_confidence_pct": 55.6,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Canada",
@@ -474,15 +474,15 @@
         "gap": 9.2,
         "probabilities": {
           "team_a_wins": 12.9,
-          "draw": 19.5,
-          "team_b_wins": 67.7
+          "draw": 19.3,
+          "team_b_wins": 67.8
         },
         "expected_points": {
           "team_a": 0.58,
           "team_b": 2.23
         },
         "predicted_winner": "Bosnia and Herzegovina",
-        "win_confidence_pct": 67.7,
+        "win_confidence_pct": 67.8,
         "upset_risk": {
           "favored": "Bosnia and Herzegovina",
           "underdog": "Qatar",
@@ -643,8 +643,8 @@
         "gap": 19.5,
         "probabilities": {
           "team_a_wins": 91.9,
-          "draw": 5.5,
-          "team_b_wins": 2.6
+          "draw": 5.6,
+          "team_b_wins": 2.4
         },
         "expected_points": {
           "team_a": 2.81,
@@ -822,16 +822,16 @@
         "composite_b": 66.2,
         "gap": 9.9,
         "probabilities": {
-          "team_a_wins": 61.2,
+          "team_a_wins": 61.1,
           "draw": 20.9,
-          "team_b_wins": 17.8
+          "team_b_wins": 18.1
         },
         "expected_points": {
-          "team_a": 2.05,
-          "team_b": 0.74
+          "team_a": 2.04,
+          "team_b": 0.75
         },
         "predicted_winner": "USA",
-        "win_confidence_pct": 61.2,
+        "win_confidence_pct": 61.1,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Australia",
@@ -898,16 +898,16 @@
         "composite_b": 74.0,
         "gap": 2.1,
         "probabilities": {
-          "team_a_wins": 37.1,
+          "team_a_wins": 37.4,
           "draw": 25.8,
-          "team_b_wins": 37.1
+          "team_b_wins": 36.8
         },
         "expected_points": {
-          "team_a": 1.37,
-          "team_b": 1.37
+          "team_a": 1.38,
+          "team_b": 1.36
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 37.1,
+        "win_confidence_pct": 37.4,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Turkiye",
@@ -942,16 +942,16 @@
         "composite_b": 64.3,
         "gap": 1.9,
         "probabilities": {
-          "team_a_wins": 35.2,
-          "draw": 26.6,
-          "team_b_wins": 38.2
+          "team_a_wins": 35.3,
+          "draw": 26.7,
+          "team_b_wins": 38.0
         },
         "expected_points": {
-          "team_a": 1.32,
+          "team_a": 1.33,
           "team_b": 1.41
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 38.2,
+        "win_confidence_pct": 38.0,
         "upset_risk": {
           "favored": "Australia",
           "underdog": "Paraguay",
@@ -1111,16 +1111,16 @@
         "composite_b": 69.8,
         "gap": 11.9,
         "probabilities": {
-          "team_a_wins": 61.1,
-          "draw": 20.4,
-          "team_b_wins": 18.5
+          "team_a_wins": 60.9,
+          "draw": 20.3,
+          "team_b_wins": 18.8
         },
         "expected_points": {
-          "team_a": 2.04,
-          "team_b": 0.76
+          "team_a": 2.03,
+          "team_b": 0.77
         },
         "predicted_winner": "Germany",
-        "win_confidence_pct": 61.1,
+        "win_confidence_pct": 60.9,
         "upset_risk": {
           "favored": "Germany",
           "underdog": "Ecuador",
@@ -1628,7 +1628,7 @@
         },
         "expected_points": {
           "team_a": 2.37,
-          "team_b": 0.46
+          "team_b": 0.47
         },
         "predicted_winner": "Belgium",
         "win_confidence_pct": 73.8,
@@ -1653,16 +1653,16 @@
         "composite_b": 68.9,
         "gap": 9.8,
         "probabilities": {
-          "team_a_wins": 64.8,
-          "draw": 20.2,
-          "team_b_wins": 15.0
+          "team_a_wins": 64.6,
+          "draw": 20.5,
+          "team_b_wins": 14.9
         },
         "expected_points": {
-          "team_a": 2.15,
+          "team_a": 2.14,
           "team_b": 0.65
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 64.8,
+        "win_confidence_pct": 64.6,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Egypt",
@@ -1895,16 +1895,16 @@
         "composite_b": 71.5,
         "gap": 16.7,
         "probabilities": {
-          "team_a_wins": 76.9,
-          "draw": 14.4,
-          "team_b_wins": 8.7
+          "team_a_wins": 76.7,
+          "draw": 14.3,
+          "team_b_wins": 9.0
         },
         "expected_points": {
-          "team_a": 2.45,
+          "team_a": 2.44,
           "team_b": 0.41
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 76.9,
+        "win_confidence_pct": 76.7,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Uruguay",
@@ -2176,16 +2176,16 @@
         "composite_b": 81.2,
         "gap": 5.0,
         "probabilities": {
-          "team_a_wins": 57.4,
-          "draw": 23.1,
+          "team_a_wins": 57.3,
+          "draw": 23.2,
           "team_b_wins": 19.5
         },
         "expected_points": {
           "team_a": 1.95,
-          "team_b": 0.81
+          "team_b": 0.82
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 57.4,
+        "win_confidence_pct": 57.3,
         "upset_risk": {
           "favored": "France",
           "underdog": "Norway",
@@ -2220,16 +2220,16 @@
         "composite_b": 58.1,
         "gap": 28.1,
         "probabilities": {
-          "team_a_wins": 94.5,
+          "team_a_wins": 94.3,
           "draw": 4.1,
-          "team_b_wins": 1.4
+          "team_b_wins": 1.6
         },
         "expected_points": {
-          "team_a": 2.88,
-          "team_b": 0.08
+          "team_a": 2.87,
+          "team_b": 0.09
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 94.5,
+        "win_confidence_pct": 94.3,
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
@@ -2760,7 +2760,7 @@
         "probabilities": {
           "team_a_wins": 55.3,
           "draw": 22.2,
-          "team_b_wins": 22.4
+          "team_b_wins": 22.5
         },
         "expected_points": {
           "team_a": 1.88,
@@ -2796,16 +2796,16 @@
         "composite_b": 64.0,
         "gap": 3.1,
         "probabilities": {
-          "team_a_wins": 45.2,
+          "team_a_wins": 44.9,
           "draw": 26.3,
-          "team_b_wins": 28.6
+          "team_b_wins": 28.8
         },
         "expected_points": {
-          "team_a": 1.62,
-          "team_b": 1.12
+          "team_a": 1.61,
+          "team_b": 1.13
         },
         "predicted_winner": "DR Congo",
-        "win_confidence_pct": 45.2,
+        "win_confidence_pct": 44.9,
         "upset_risk": {
           "favored": "DR Congo",
           "underdog": "Uzbekistan",
@@ -3055,7 +3055,7 @@
         "probabilities": {
           "team_a_wins": 90.0,
           "draw": 6.2,
-          "team_b_wins": 3.7
+          "team_b_wins": 3.8
         },
         "expected_points": {
           "team_a": 2.76,
@@ -3091,16 +3091,16 @@
         "composite_b": 69.7,
         "gap": 6.9,
         "probabilities": {
-          "team_a_wins": 62.6,
-          "draw": 21.5,
-          "team_b_wins": 15.9
+          "team_a_wins": 62.7,
+          "draw": 21.4,
+          "team_b_wins": 15.8
         },
         "expected_points": {
-          "team_a": 2.09,
+          "team_a": 2.1,
           "team_b": 0.69
         },
         "predicted_winner": "Croatia",
-        "win_confidence_pct": 62.6,
+        "win_confidence_pct": 62.7,
         "upset_risk": {
           "favored": "Croatia",
           "underdog": "Ghana",
@@ -3129,16 +3129,16 @@
         "composite_b": 59.9,
         "gap": 16.7,
         "probabilities": {
-          "team_a_wins": 78.8,
-          "draw": 14.1,
-          "team_b_wins": 7.1
+          "team_a_wins": 78.6,
+          "draw": 14.0,
+          "team_b_wins": 7.4
         },
         "expected_points": {
           "team_a": 2.5,
-          "team_b": 0.35
+          "team_b": 0.36
         },
         "predicted_winner": "Croatia",
-        "win_confidence_pct": 78.8,
+        "win_confidence_pct": 78.6,
         "upset_risk": {
           "favored": "Croatia",
           "underdog": "Panama",

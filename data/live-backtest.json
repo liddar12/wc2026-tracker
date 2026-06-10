@@ -1,6 +1,45 @@
 {
-  "matches": {},
-  "updated_at": "2026-06-10T06:48:03+00:00",
+  "matches": {
+    "Mexico__vs__South Africa": {
+      "match_number": 1,
+      "stage": "group",
+      "team_a": "Mexico",
+      "team_b": "South Africa",
+      "kickoff_utc": "2026-06-11T19:00:00Z",
+      "captured_at": "2026-06-10T11:09:17+00:00",
+      "preds": {
+        "model": [
+          0.864,
+          0.095,
+          0.041
+        ],
+        "dt": [
+          0.5788,
+          0.2249,
+          0.1963
+        ],
+        "market": [
+          0.6915,
+          0.204,
+          0.1045
+        ],
+        "hybrid": [
+          0.7114,
+          0.1746,
+          0.1139
+        ],
+        "polymarket": [
+          0.6915,
+          0.204,
+          0.1045
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    }
+  },
+  "updated_at": "2026-06-10T11:09:17+00:00",
   "summary": {
     "matches_scored": 0
   }
