@@ -1,5 +1,654 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-10T09:52:00+00:00"
-  }
+    "updated_at": "2026-06-10T22:16:28+00:00",
+    "source": "espn"
+  },
+  "Mexico__vs__South Africa": [
+    {
+      "date": "2010-06-11",
+      "comp": "2010 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    },
+    {
+      "date": "2005-07-09",
+      "comp": "2005 Gold Cup",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "South Africa"
+    }
+  ],
+  "Korea Republic__vs__Czechia": [
+    {
+      "date": "2016-06-05",
+      "comp": "International Friendly",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "Korea Republic"
+    }
+  ],
+  "USA__vs__Paraguay": [
+    {
+      "date": "2025-11-15",
+      "comp": "2025 International Friendly",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "USA"
+    },
+    {
+      "date": "2018-03-27",
+      "comp": "2018 International Friendly",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "USA"
+    },
+    {
+      "date": "2016-06-11",
+      "comp": "2016 Copa América",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "USA"
+    },
+    {
+      "date": "2011-03-30",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Paraguay"
+    },
+    {
+      "date": "2007-07-02",
+      "comp": "2007 Copa America",
+      "score_a": 1,
+      "score_b": 3,
+      "winner": "Paraguay"
+    }
+  ],
+  "Australia__vs__Turkiye": [
+    {
+      "date": "2004-05-24",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Turkiye"
+    },
+    {
+      "date": "2004-05-21",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 3,
+      "winner": "Turkiye"
+    }
+  ],
+  "Qatar__vs__Switzerland": [
+    {
+      "date": "2018-11-14",
+      "comp": "2018 International Friendly",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "Qatar"
+    }
+  ],
+  "Brazil__vs__Morocco": [
+    {
+      "date": "2023-03-25",
+      "comp": "2023 International Friendly",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Morocco"
+    },
+    {
+      "date": "1998-06-16",
+      "comp": "1998 FIFA World Cup",
+      "score_a": 3,
+      "score_b": 0,
+      "winner": "Brazil"
+    }
+  ],
+  "Netherlands__vs__Japan": [
+    {
+      "date": "2013-11-16",
+      "comp": "International Friendly",
+      "score_a": 2,
+      "score_b": 2,
+      "winner": "draw"
+    },
+    {
+      "date": "2010-06-19",
+      "comp": "2010 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "Netherlands"
+    },
+    {
+      "date": "2009-09-05",
+      "comp": "International Friendly",
+      "score_a": 3,
+      "score_b": 0,
+      "winner": "Netherlands"
+    },
+    {
+      "date": "2008-08-13",
+      "comp": "2008 Olympic Men's Soccer",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "Netherlands"
+    }
+  ],
+  "Sweden__vs__Tunisia": [
+    {
+      "date": "2003-02-12",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Tunisia"
+    }
+  ],
+  "Belgium__vs__Egypt": [
+    {
+      "date": "2022-11-18",
+      "comp": "2022 International Friendly",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Egypt"
+    },
+    {
+      "date": "2018-06-06",
+      "comp": "2018 International Friendly",
+      "score_a": 3,
+      "score_b": 0,
+      "winner": "Belgium"
+    },
+    {
+      "date": "2005-02-09",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 4,
+      "winner": "Egypt"
+    }
+  ],
+  "Saudi Arabia__vs__Uruguay": [
+    {
+      "date": "2018-06-20",
+      "comp": "2018 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Uruguay"
+    },
+    {
+      "date": "2014-10-10",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "France__vs__Senegal": [
+    {
+      "date": "2002-05-31",
+      "comp": "2002 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Senegal"
+    }
+  ],
+  "Argentina__vs__Algeria": [
+    {
+      "date": "2007-06-05",
+      "comp": "International Friendly",
+      "score_a": 4,
+      "score_b": 3,
+      "winner": "Argentina"
+    }
+  ],
+  "England__vs__Croatia": [
+    {
+      "date": "2021-06-13",
+      "comp": "2020 European Championship",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "England"
+    },
+    {
+      "date": "2018-11-18",
+      "comp": "2018-19 UEFA Nations League",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "England"
+    },
+    {
+      "date": "2018-10-12",
+      "comp": "2018-19 UEFA Nations League",
+      "score_a": 0,
+      "score_b": 0,
+      "winner": "draw"
+    },
+    {
+      "date": "2018-07-11",
+      "comp": "2018 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Croatia"
+    },
+    {
+      "date": "2009-09-09",
+      "comp": "2010 World Cup Qualifying - UEFA",
+      "score_a": 5,
+      "score_b": 1,
+      "winner": "England"
+    }
+  ],
+  "Canada__vs__Qatar": [
+    {
+      "date": "2022-09-23",
+      "comp": "2022 International Friendly",
+      "score_a": 2,
+      "score_b": 0,
+      "winner": "Canada"
+    }
+  ],
+  "Mexico__vs__Korea Republic": [
+    {
+      "date": "2025-09-10",
+      "comp": "2025 International Friendly",
+      "score_a": 2,
+      "score_b": 2,
+      "winner": "draw"
+    },
+    {
+      "date": "2020-11-14",
+      "comp": "2020 International Friendly",
+      "score_a": 3,
+      "score_b": 2,
+      "winner": "Mexico"
+    },
+    {
+      "date": "2018-06-23",
+      "comp": "2018 FIFA World Cup",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "Mexico"
+    },
+    {
+      "date": "2014-01-30",
+      "comp": "International Friendly",
+      "score_a": 4,
+      "score_b": 0,
+      "winner": "Mexico"
+    },
+    {
+      "date": "2012-07-26",
+      "comp": "2012 Olympic Men's Soccer",
+      "score_a": 0,
+      "score_b": 0,
+      "winner": "draw"
+    }
+  ],
+  "USA__vs__Australia": [
+    {
+      "date": "2025-10-15",
+      "comp": "2025 International Friendly",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "USA"
+    },
+    {
+      "date": "2010-06-05",
+      "comp": "International Friendly",
+      "score_a": 3,
+      "score_b": 1,
+      "winner": "USA"
+    }
+  ],
+  "Scotland__vs__Morocco": [
+    {
+      "date": "1998-06-23",
+      "comp": "1998 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 3,
+      "winner": "Morocco"
+    }
+  ],
+  "Brazil__vs__Haiti": [
+    {
+      "date": "2016-06-08",
+      "comp": "2016 Copa América",
+      "score_a": 7,
+      "score_b": 1,
+      "winner": "Brazil"
+    }
+  ],
+  "Tunisia__vs__Japan": [
+    {
+      "date": "2023-10-17",
+      "comp": "2023 International Friendly",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Japan"
+    },
+    {
+      "date": "2022-06-14",
+      "comp": "2022 International Friendly",
+      "score_a": 3,
+      "score_b": 0,
+      "winner": "Tunisia"
+    },
+    {
+      "date": "2002-06-14",
+      "comp": "2002 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Japan"
+    }
+  ],
+  "Netherlands__vs__Sweden": [
+    {
+      "date": "2017-10-10",
+      "comp": "2018 World Cup Qualifying - UEFA",
+      "score_a": 2,
+      "score_b": 0,
+      "winner": "Netherlands"
+    },
+    {
+      "date": "2016-09-06",
+      "comp": "2018 World Cup Qualifying - UEFA",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    },
+    {
+      "date": "2011-10-11",
+      "comp": "2012 European Championship Qualifying",
+      "score_a": 2,
+      "score_b": 3,
+      "winner": "Sweden"
+    },
+    {
+      "date": "2010-10-12",
+      "comp": "Group Stage 2012",
+      "score_a": 4,
+      "score_b": 1,
+      "winner": "Netherlands"
+    },
+    {
+      "date": "2008-11-19",
+      "comp": "International Friendly",
+      "score_a": 3,
+      "score_b": 1,
+      "winner": "Netherlands"
+    }
+  ],
+  "Germany__vs__Cote d'Ivoire": [
+    {
+      "date": "2009-11-18",
+      "comp": "International Friendly",
+      "score_a": 2,
+      "score_b": 2,
+      "winner": "draw"
+    }
+  ],
+  "Spain__vs__Saudi Arabia": [
+    {
+      "date": "2012-09-07",
+      "comp": "International Friendly",
+      "score_a": 5,
+      "score_b": 0,
+      "winner": "Spain"
+    },
+    {
+      "date": "2010-05-29",
+      "comp": "International Friendly",
+      "score_a": 3,
+      "score_b": 2,
+      "winner": "Spain"
+    },
+    {
+      "date": "2006-06-23",
+      "comp": "2006 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 0,
+      "winner": "Spain"
+    }
+  ],
+  "New Zealand__vs__Egypt": [
+    {
+      "date": "2024-03-22",
+      "comp": "2024 International Friendly",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Egypt"
+    },
+    {
+      "date": "2012-07-29",
+      "comp": "2012 Olympic Men's Soccer",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "Norway__vs__Senegal": [
+    {
+      "date": "2006-03-01",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Senegal"
+    }
+  ],
+  "England__vs__Ghana": [
+    {
+      "date": "2011-03-29",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "Switzerland__vs__Canada": [
+    {
+      "date": "2002-05-15",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 3,
+      "winner": "Canada"
+    }
+  ],
+  "Scotland__vs__Brazil": [
+    {
+      "date": "2011-03-27",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Brazil"
+    },
+    {
+      "date": "1998-06-10",
+      "comp": "1998 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Brazil"
+    },
+    {
+      "date": "1990-06-20",
+      "comp": "1990 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Brazil"
+    },
+    {
+      "date": "1982-06-18",
+      "comp": "World Cup - Spain 1982",
+      "score_a": 1,
+      "score_b": 4,
+      "winner": "Brazil"
+    },
+    {
+      "date": "1974-06-18",
+      "comp": "World Cup - Germany 1974",
+      "score_a": 0,
+      "score_b": 0,
+      "winner": "draw"
+    }
+  ],
+  "Ecuador__vs__Germany": [
+    {
+      "date": "2013-05-29",
+      "comp": "International Friendly",
+      "score_a": 2,
+      "score_b": 4,
+      "winner": "Germany"
+    },
+    {
+      "date": "2006-06-20",
+      "comp": "2006 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 3,
+      "winner": "Germany"
+    }
+  ],
+  "Japan__vs__Sweden": [
+    {
+      "date": "2002-05-25",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "Tunisia__vs__Netherlands": [
+    {
+      "date": "2009-02-11",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "Turkiye__vs__USA": [
+    {
+      "date": "2025-06-07",
+      "comp": "2025 International Friendly",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "Turkiye"
+    },
+    {
+      "date": "2014-06-01",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "USA"
+    },
+    {
+      "date": "2010-05-29",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "USA"
+    },
+    {
+      "date": "2003-06-19",
+      "comp": "2003 FIFA Confederations Cup",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "Turkiye"
+    }
+  ],
+  "Paraguay__vs__Australia": [
+    {
+      "date": "2010-10-09",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Australia"
+    },
+    {
+      "date": "2006-10-07",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
+    }
+  ],
+  "Norway__vs__France": [
+    {
+      "date": "2014-05-27",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 4,
+      "winner": "France"
+    },
+    {
+      "date": "2010-08-11",
+      "comp": "International Friendly",
+      "score_a": 2,
+      "score_b": 1,
+      "winner": "Norway"
+    }
+  ],
+  "Uruguay__vs__Spain": [
+    {
+      "date": "2013-06-16",
+      "comp": "2013 FIFA Confederations Cup",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Spain"
+    },
+    {
+      "date": "2013-02-06",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 3,
+      "winner": "Spain"
+    },
+    {
+      "date": "2005-08-17",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Spain"
+    },
+    {
+      "date": "1990-06-13",
+      "comp": "1990 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 0,
+      "winner": "draw"
+    },
+    {
+      "date": "1950-07-09",
+      "comp": "World Cup - Brazil 1950",
+      "score_a": 2,
+      "score_b": 2,
+      "winner": "draw"
+    }
+  ],
+  "New Zealand__vs__Belgium": [
+    {
+      "date": "2008-08-13",
+      "comp": "2008 Olympic Men's Soccer",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Belgium"
+    }
+  ],
+  "Panama__vs__England": [
+    {
+      "date": "2018-06-24",
+      "comp": "2018 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 6,
+      "winner": "England"
+    }
+  ],
+  "Algeria__vs__Austria": [
+    {
+      "date": "1982-06-21",
+      "comp": "World Cup - Spain 1982",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Austria"
+    }
+  ]
 }

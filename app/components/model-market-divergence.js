@@ -7,7 +7,10 @@ export function divergenceLine(markets, match) {
   const pick = modelOutcomeProb(match);
   const marketProb = marketOutcomeProb(outcome, pick.side);
   if (marketProb == null) return null;
-  const div = formatDivergence(pick.prob, marketProb);
+  // pick.prob is a percent (0–100, from match.probabilities); marketProb is a
+  // fraction (0–1, from match_outcomes) — put both on the percent scale so the
+  // divergence reads e.g. "Model 61% · Market 50% · +11 pp", not "Market 0% · +60 pp".
+  const div = formatDivergence(pick.prob, marketProb * 100);
   const el = document.createElement('div');
   el.className = `divergence ${div.className}`;
   el.textContent = div.label;

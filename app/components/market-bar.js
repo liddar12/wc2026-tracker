@@ -16,9 +16,10 @@ export function marketBar(match, markets) {
   title.appendChild(tipButton('market', 'Market'));
   wrap.appendChild(title);
 
-  const a = outcome.team_a_prob ?? 0;
-  const d = outcome.draw_prob ?? 0;
-  const b = outcome.team_b_prob ?? 0;
+  // match_outcomes stores probabilities as fractions (0–1); ×100 for display.
+  const a = (outcome.team_a_prob ?? 0) * 100;
+  const d = (outcome.draw_prob ?? 0) * 100;
+  const b = (outcome.team_b_prob ?? 0) * 100;
 
   const bars = document.createElement('div');
   bars.className = 'bars';
