@@ -6,7 +6,7 @@
       "team_a": "Mexico",
       "team_b": "South Africa",
       "kickoff_utc": "2026-06-11T19:00:00Z",
-      "captured_at": "2026-06-10T11:09:17+00:00",
+      "captured_at": "2026-06-10T14:34:50+00:00",
       "preds": {
         "model": [
           0.864,
@@ -37,9 +37,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Korea Republic__vs__Czechia": {
+      "match_number": 2,
+      "stage": "group",
+      "team_a": "Korea Republic",
+      "team_b": "Czechia",
+      "kickoff_utc": "2026-06-12T02:00:00Z",
+      "captured_at": "2026-06-10T14:34:50+00:00",
+      "preds": {
+        "model": [
+          0.48,
+          0.248,
+          0.272
+        ],
+        "dt": [
+          0.3325,
+          0.2568,
+          0.4107
+        ],
+        "market": [
+          0.3632,
+          0.3035,
+          0.3333
+        ],
+        "hybrid": [
+          0.3919,
+          0.2694,
+          0.3387
+        ],
+        "polymarket": [
+          0.3632,
+          0.3134,
+          0.3234
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-10T11:09:17+00:00",
+  "updated_at": "2026-06-10T14:34:50+00:00",
   "summary": {
     "matches_scored": 0
   }
