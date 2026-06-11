@@ -6,14 +6,6 @@ import { escapeHtml } from '../lib/escape.js';
 import { getCompetitionState } from '../competition.js';
 import { flagFor } from '../components/team-flag.js';
 
-const STAGE_LABELS = {
-  round_of_32: 'R32',
-  round_of_16: 'R16',
-  quarterfinals: 'QF',
-  semifinals: 'SF',
-  final: 'Champion',
-};
-
 export async function renderHotPicksView(root, data) {
   root.innerHTML = '<p class="loading">Aggregating public picks…</p>';
   const aggregate = await fetchHotPicks(data);
@@ -36,22 +28,20 @@ export async function renderHotPicksView(root, data) {
   `;
   root.appendChild(header);
 
-  // Stage-by-stage top winners
-  for (const stage of Object.keys(STAGE_LABELS)) {
-    const counts = aggregate.byStage[stage];
-    if (!counts || !Object.keys(counts).length) continue;
-    const entries = Object.entries(counts).sort((a, b) => b[1] - a[1]).slice(0, 8);
-    const total = entries.reduce((s, [, n]) => s + n, 0);
+  // Most-backed teams across all aggregated knockout picks. (Per-round
+  // breakdown isn't derivable: submitted picks are team pairs with no round.)
+  if (aggregate.mostBacked?.length) {
+    const totalPicks = aggregate.mostBacked.reduce((s, e) => s + e.n, 0);
     const section = document.createElement('section');
     section.className = 'home-card';
     section.style.marginBottom = '10px';
     section.innerHTML = `
-      <h3 style="margin: 0 0 8px;">${STAGE_LABELS[stage]}</h3>
+      <h3 style="margin: 0 0 8px;">Most backed teams</h3>
       <div class="hot-strip">
-        ${entries.map(([team, n]) => `
+        ${aggregate.mostBacked.map(({ team, n }) => `
           <a class="mover-chip" href="#/team/name/${encodeURIComponent(team)}">
             <span class="mover-team">${flagFor(team)} ${escapeHtml(team)}</span>
-            <span class="mover-prob">${Math.round((n / total) * 100)}%</span>
+            <span class="mover-prob">${Math.round((n / totalPicks) * 100)}%</span>
             <span class="muted mover-delta">${n} pick${n === 1 ? '' : 's'}</span>
           </a>`).join('')}
       </div>
@@ -87,47 +77,43 @@ async function fetchHotPicks(data) {
     const { data: pools } = await client.from('groups').select('id').eq('visibility', 'public');
     if (!pools?.length) return null;
     const poolIds = pools.map((p) => p.id);
-    const { data: rows } = await client
+    // Column is `picks` (the submitted knockout pick ARRAY) — the old query
+    // selected a nonexistent `payload` column and errored on every load.
+    // NOTE: RLS only returns rows for pools the viewer belongs to, so this is
+    // "consensus across your public pools", not all of Supabase.
+    const { data: rows, error } = await client
       .from('group_brackets')
-      .select('payload')
+      .select('picks')
       .in('group_id', poolIds);
-    if (!rows?.length) return null;
-    return aggregate(rows, data);
+    if (error || !rows?.length) return null;
+    return aggregate(rows);
   } catch (err) {
     console.warn('[hotpicks] fetch failed', err);
     return null;
   }
 }
 
-function aggregate(rows, data) {
-  const byStage = { round_of_32: {}, round_of_16: {}, quarterfinals: {}, semifinals: {}, final: {} };
+function aggregate(rows) {
+  // Stored shape: picks = [{team_a, team_b, choice: 'team_a'|'team_b'}, ...]
+  // (knockout pairs only — no round info is persisted, so aggregate what the
+  // data really supports: most-backed teams + per-matchup divisiveness).
+  const backed = {};
   const perMatchup = {};
-  const sf = data?.scheduleFull || [];
-  const stageByNum = {};
-  for (const m of sf) {
-    if (m.match_number != null && m.stage) stageByNum[m.match_number] = m.stage;
-  }
 
   let totalBrackets = 0;
   for (const row of rows) {
-    const payload = row?.payload;
-    if (!payload || typeof payload !== 'object') continue;
-    const picks = payload.picks || payload;
-    if (!picks || typeof picks !== 'object') continue;
+    const picks = Array.isArray(row?.picks) ? row.picks : [];
+    if (!picks.length) continue;
     totalBrackets++;
-    for (const [k, p] of Object.entries(picks)) {
-      if (!p?.team) continue;
-      const stage = stageByNum[k] || 'group_stage';
-      if (byStage[stage] != null) {
-        byStage[stage][p.team] = (byStage[stage][p.team] || 0) + 1;
-      }
-      // Per-matchup divisiveness: key by sorted teams
-      if (p.team_a && p.team_b) {
-        const key = [p.team_a, p.team_b].sort().join('__');
-        if (!perMatchup[key]) perMatchup[key] = { team_a: p.team_a, team_b: p.team_b, count_a: 0, count_b: 0 };
-        if (p.team === p.team_a) perMatchup[key].count_a++;
-        else if (p.team === p.team_b) perMatchup[key].count_b++;
-      }
+    for (const p of picks) {
+      if (!p?.team_a || !p?.team_b) continue;
+      const team = p.choice === 'team_a' ? p.team_a : p.choice === 'team_b' ? p.team_b : null;
+      if (!team) continue;
+      backed[team] = (backed[team] || 0) + 1;
+      const key = [p.team_a, p.team_b].sort().join('__');
+      if (!perMatchup[key]) perMatchup[key] = { team_a: p.team_a, team_b: p.team_b, count_a: 0, count_b: 0 };
+      if (team === p.team_a) perMatchup[key].count_a++;
+      else perMatchup[key].count_b++;
     }
   }
 
@@ -144,6 +130,11 @@ function aggregate(rows, data) {
     .sort((x, y) => Math.abs(x.pct_a - 50) - Math.abs(y.pct_a - 50))
     .slice(0, 10);
 
-  return { byStage, divisive, totalBrackets };
+  const mostBacked = Object.entries(backed)
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, 10)
+    .map(([team, n]) => ({ team, n }));
+
+  return { mostBacked, divisive, totalBrackets };
 }
 

@@ -30,7 +30,9 @@ export function extractJoinCodeFromPath(pathname = '/') {
 }
 
 export function buildPostJoinPath(pathname = '/', hash = '') {
-  const safeHash = hash && hash !== '#' ? hash : '#/picks';
+  // Default invite-link landing is Pools (the joined pool + standings),
+  // matching the boot redirect in main.js.
+  const safeHash = hash && hash !== '#' ? hash : '#/pools';
   return `${computeBasePath(pathname)}${safeHash}`;
 }
 

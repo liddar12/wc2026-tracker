@@ -24,10 +24,11 @@ export const ANON_DRAFT_KEYS = [
 
 // Legacy/orphan keys we no longer use anywhere in the codebase. Safe to
 // purge on every version mismatch.
-const LEGACY_KEYS = [
-  'wc26.competition.bracketDrafts',
-  'wc26.competition.activeDraft',
-];
+// NOTE: wc26.competition.bracketDrafts / wc26.competition.activeDraft were
+// WRONGLY listed here — competition.js (listBracketDrafts/createBracketDraft/
+// setActiveDraft) and the my-picks create-group flow still actively read and
+// write them, so every APP_VERSION bump silently deleted users' draft state.
+const LEGACY_KEYS = [];
 
 // Keys that were once user-overridable (developer mode) and can shadow the
 // bundled Supabase env. If present after a deploy where we ship a different

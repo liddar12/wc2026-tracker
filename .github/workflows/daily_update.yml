@@ -70,6 +70,12 @@ jobs:
         continue-on-error: true
 
       # ---- Composite + analytics rebuild (must succeed) ----
+      # Kalshi FIRST: build_hybrid blends markets.json, so the scrape must
+      # precede the model rebuilds (was after them — the 06:00 hybrid was
+      # blended from the previous run's odds).
+      - name: Scrape Kalshi markets
+        run: python scripts/scrape_kalshi.py
+        continue-on-error: true
       - name: Recompute composite + probabilities
         run: python scripts/rebuild_composite.py
       - name: Rebuild DT model (Elo + market value blend)
@@ -82,9 +88,6 @@ jobs:
         run: python scripts/compute_fatigue.py
       - name: Compute model xG
         run: python scripts/compute_xg.py
-      - name: Scrape Kalshi markets
-        run: python scripts/scrape_kalshi.py
-        continue-on-error: true
 
       - name: Validate refreshed data
         run: python3 scripts/validate_data.py
@@ -98,5 +101,14 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: daily data refresh"
-            git push
+            # Four cron workflows push to main concurrently — rebase + retry so
+            # a race loses a few seconds, not the whole cycle's data. On data
+            # conflicts prefer OUR freshly-generated files (-X theirs replays
+            # our commit's version during rebase).
+            n=0
+            until git push; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
+              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+            done
           fi

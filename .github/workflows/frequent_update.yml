@@ -20,6 +20,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: frequent-update
@@ -90,10 +91,14 @@ jobs:
         run: python scripts/snapshot_backtest.py
         continue-on-error: true
 
-      # ---- Bump meta.data_version so the homepage "Data updated" stamp moves ----
-      - name: Bump meta.data_version
+      # ---- Bump meta.data_version ONLY when real data changed ----
+      # Was unconditional: every hourly run committed + pushed + redeployed even
+      # with zero data changes, maximizing the cross-cron push-race window and
+      # burning a Netlify deploy per hour for nothing.
+      - name: Bump meta.data_version (only if data changed)
         run: |
-          python3 - <<'PYEOF'
+          if [ -n "$(git status --porcelain data/ | grep -v 'data/meta.json' || true)" ]; then
+            python3 - <<'PYEOF'
           import json, datetime, pathlib
           p = pathlib.Path('data/meta.json')
           m = json.loads(p.read_text())
@@ -101,6 +106,10 @@ jobs:
           p.write_text(json.dumps(m, indent=2) + '\n')
           print('meta.data_version ->', m['data_version'])
           PYEOF
+          else
+            git checkout -- data/meta.json 2>/dev/null || true
+            echo "No real data changes — skipping version bump."
+          fi
 
       - name: Validate refreshed data
         run: python3 scripts/validate_data.py
@@ -114,5 +123,24 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: frequent data refresh (players/injuries/teams/power-rank/kalshi/weather/lineups)"
-            git push
+            # Rebase + retry: four crons push to main concurrently; don't drop the cycle.
+            n=0
+            until git push; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
+              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+            done
           fi
+
+      # Watchdog: failed hourly refresh files a labeled issue instead of dying silently.
+      - name: Alert on failure (GitHub issue)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" \
+            -d "{\"title\":\"🟠 frequent_update FAILED (run ${{ github.run_id }})\",\"body\":\"The hourly data/model refresh failed.\\n\\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"labels\":[\"pipeline-alert\"]}" \
+            > /dev/null || true

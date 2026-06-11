@@ -14,7 +14,11 @@ function mockStorage(seed = {}) {
   };
 }
 
-test('R12: purge clears legacy keys on version mismatch', () => {
+test('R12: purge PRESERVES in-use draft keys on version mismatch', () => {
+  // June-11 audit fix: wc26.competition.bracketDrafts / activeDraft were
+  // wrongly on the legacy purge list while competition.js still reads/writes
+  // them — every version bump silently wiped users' draft state. They must
+  // now survive the purge.
   const s = mockStorage({
     'wc26.competition.bracketDrafts': '[]',
     'wc26.competition.activeDraft': 'abc',
@@ -23,9 +27,10 @@ test('R12: purge clears legacy keys on version mismatch', () => {
   });
   const r = purgeLegacyState({ storage: s });
   assert.equal(r.ranMigration, true);
-  assert.ok(r.removed.includes('wc26.competition.bracketDrafts'));
-  assert.ok(r.removed.includes('wc26.competition.activeDraft'));
-  assert.equal(s.getItem('wc26.competition.bracketDrafts'), null);
+  assert.ok(!r.removed.includes('wc26.competition.bracketDrafts'), 'bracketDrafts kept');
+  assert.ok(!r.removed.includes('wc26.competition.activeDraft'), 'activeDraft kept');
+  assert.equal(s.getItem('wc26.competition.bracketDrafts'), '[]');
+  assert.equal(s.getItem('wc26.competition.activeDraft'), 'abc');
   // User picks + prefs preserved
   assert.equal(s.getItem('wc26.grouppicks.local'), '{}');
   assert.equal(s.getItem('wc26.theme'), 'dark');

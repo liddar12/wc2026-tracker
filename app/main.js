@@ -350,7 +350,10 @@ loadData()
     startLivePollerForData(data);
     await initCompetition(data);
     if (shouldOpenPicksForJoin()) {
-      setRoute('picks', {});
+      // Invite links land on Pools — the joined pool, its members and standings
+      // — not the legacy My Picks route (whose competition section was a
+      // confusing first impression for invitees).
+      setRoute('pools', {});
       return;
     }
     const synced = parseHash(location.hash);

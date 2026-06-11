@@ -80,7 +80,8 @@ assert.equal(extractJoinCodeFromPath('/join/not-a-valid-code'), null);
 assert.equal(extractJoinCodeFromPath('/join/silver-otter-821'), null);
 assert.equal(extractJoinCodeFromPath('/join/'), null);
 assert.equal(extractJoinCodeFromPath('/wc2026-tracker/picks'), null);
-assert.equal(buildPostJoinPath('/join/silver-otter-4821', ''), '/#/picks');
+// Invite links land on Pools (tournament-mode spec change, June 11).
+assert.equal(buildPostJoinPath('/join/silver-otter-4821', ''), '/#/pools');
 assert.equal(buildPostJoinPath('/wc2026-tracker/join/silver-otter-4821', '#/bracket'), '/wc2026-tracker/#/bracket');
 
 const normalizedPicks = normalizeBracketPicks([
