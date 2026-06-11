@@ -19,15 +19,30 @@ const STAGE_TO_ROUND = {
   final: 'Final',
 };
 
+// ESPN statuses that mean a match is OVER. scrape_live_results.py also writes
+// IN-PROGRESS records (live scores for the match cards) — scoring must ignore
+// those or pool points would swing mid-match and count half-played games.
+// Records without a status field (manual/legacy) are treated as final.
+const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+
+function isFinalRecord(rec) {
+  return !rec?.status || FINAL_STATUSES.has(rec.status);
+}
+
 function actualResultsToTierMap(data) {
+  // Knockout tiers FIRST: picks are team-pair keyed, and the 2026 format allows
+  // a knockout rematch of a group-stage pairing. With group_stage first, such a
+  // pick resolved to the group record and scored 0; knockout-first finds the
+  // scoreable occurrence. Pure group pairs still fall through to group_stage
+  // and are skipped (not scored), same as before.
   return {
-    group_stage: data?.actualResults?.group_stage || {},
     round_of_32: data?.actualResults?.round_of_32 || {},
     round_of_16: data?.actualResults?.round_of_16 || {},
     quarterfinals: data?.actualResults?.quarterfinals || {},
     semifinals: data?.actualResults?.semifinals || {},
-    third_place: data?.actualResults?.third_place || {},
     final: data?.actualResults?.final || {},
+    third_place: data?.actualResults?.third_place || {},
+    group_stage: data?.actualResults?.group_stage || {},
   };
 }
 
@@ -84,6 +99,7 @@ function findActualOutcomeWithStage(tierMap, aTeam, bTeam) {
     const key2 = `${bTeam}__vs__${aTeam}`;
     const rec = tier[key1] || tier[key2];
     if (!rec) continue;
+    if (!isFinalRecord(rec)) continue; // in-progress live score — not scoreable yet
     const a = Number(rec.score_a ?? rec.team_a_score);
     const b = Number(rec.score_b ?? rec.team_b_score);
     if (!Number.isFinite(a) || !Number.isFinite(b)) continue;

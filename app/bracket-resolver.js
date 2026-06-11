@@ -16,6 +16,17 @@ export const STAGE_ORDER = [
   'round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final',
 ];
 
+// ESPN statuses meaning the match is over. scrape_live_results.py also writes
+// IN-PROGRESS records (so match cards can show live scores) — standings and
+// winner-advancement must only consume FINAL results, or a halftime 1-0 counts
+// as a played win and the bracket advances the current leader mid-match.
+// Records without a status field (manual/legacy) are treated as final.
+const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+
+export function isFinalResultRecord(rec) {
+  return !rec?.status || FINAL_STATUSES.has(rec.status);
+}
+
 const SLOT_RE = /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/;
 
 export function isSlotPlaceholder(s) {
@@ -140,6 +151,7 @@ export function computeGroupStandings(data, group) {
     const key2 = `${m.team_b}__vs__${m.team_a}`;
     const rec = gs[key1] || gs[key2];
     if (!rec) continue;
+    if (!isFinalResultRecord(rec)) continue; // live in-progress score — not played yet
     const a = rec.score_a ?? rec.team_a_score;
     const b = rec.score_b ?? rec.team_b_score;
     if (!Number.isFinite(a) || !Number.isFinite(b)) continue;
@@ -194,10 +206,14 @@ export function lookupActual(data, stage, a, b) {
   const score_a = flipped ? sb : sa;
   const score_b = flipped ? sa : sb;
   let winner = null;
-  if (score_a > score_b) winner = a;
-  else if (score_b > score_a) winner = b;
-  if (rec.winner === a) winner = a;
-  else if (rec.winner === b) winner = b;
+  // Only declare a winner (and thereby advance them through the bracket) once
+  // the match is FINAL — in-progress records still surface the live score.
+  if (isFinalResultRecord(rec)) {
+    if (score_a > score_b) winner = a;
+    else if (score_b > score_a) winner = b;
+    if (rec.winner === a) winner = a;
+    else if (rec.winner === b) winner = b;
+  }
   return { score_a, score_b, winner, kickoff_utc: rec.kickoff_utc };
 }
 

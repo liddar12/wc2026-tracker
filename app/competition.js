@@ -439,7 +439,11 @@ export async function saveBracketForActiveGroup(data, explicitPicks) {
 // Upsert group_predictions for the active pool.
 export async function saveGroupPredictionsForActiveGroup(picks, data) {
   if (!state.client || !state.user || !state.activeGroup) throw new Error('Select a pool first');
-  if (state.lockState.bracketLocked) throw new Error(`Bracket locked (${state.lockState.phase})`);
+  // Gate on the GROUP lock, not the bracket lock: in the between-group-and-r32
+  // phase groupsLocked=true while bracketLocked=false — the old bracketLocked
+  // check let this call through and the DB lock trigger rejected it, aborting
+  // the whole Play submit exactly when the UI says "knockout picks are open".
+  if (state.lockState.groupsLocked) throw new Error(`Group picks locked (${state.lockState.phase})`);
   const normalized = normalizeGroupPredictions(picks);
   const stored = { ...normalized.groups, best_thirds: normalized.best_thirds };
   const score = scoreGroupPredictions(stored, data).score;

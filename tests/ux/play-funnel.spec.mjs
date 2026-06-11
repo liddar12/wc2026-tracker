@@ -1,7 +1,19 @@
 import { test, expect } from '@playwright/test';
 
+// These specs assert PRE-TOURNAMENT (unlocked) funnel behavior. The submit
+// button is lock-disabled from the first kickoff (deriveLockState →
+// group-stage-live), so with the real clock they became time bombs the moment
+// the tournament started (2026-06-11 19:00Z). Freeze Date.now() to a
+// pre-tournament instant so the funnel is deterministically unlocked.
+const PRE_TOURNAMENT_MS = Date.parse('2026-06-01T12:00:00Z');
+
 test.describe('Play funnel — Stage 1 / 2 / 3', () => {
   test.beforeEach(async ({ page }) => {
+    const offset = PRE_TOURNAMENT_MS - Date.now();
+    await page.addInitScript((off) => {
+      const realNow = Date.now.bind(Date);
+      Date.now = () => realNow() + off;
+    }, offset);
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     // Clear any prior local state so the funnel starts empty
     await page.evaluate(() => {

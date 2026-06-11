@@ -58,23 +58,28 @@ export function renderHome(root, data) {
     root.appendChild(p);
     return;
   }
+  // Tournament-mode order (owner spec, June 11): Your team → Today's match
+  // cards → Don't miss → Full schedule → Recent results → Jump to → Live Elo
+  // movers. Hero + Play CTA stay on top as page chrome / the core action;
+  // unlisted cards (market movers, account) follow the requested sequence.
   root.appendChild(renderHero(data));
   // R14: primary "Make your prediction" CTA — Home had no path into the Play
   // funnel (the core action), and the Quick Links grid omitted Play entirely.
   root.appendChild(renderPlayCta());
-  root.appendChild(renderAuthSlot(data));
   root.appendChild(renderFavoriteTeamSection(data));
   const favKalshi = renderFavKalshiCard(data);
   if (favKalshi) root.appendChild(favKalshi);
+  root.appendChild(renderTodaySection(data));
   const motd = renderMatchOfTheDayChip(data);
   if (motd) root.appendChild(motd);
-  root.appendChild(renderTodaySection(data));
-  const movers = renderMoversSection(data);
-  if (movers) root.appendChild(movers);
-  const eloMovers = renderEloMoversSection(data);
-  if (eloMovers) root.appendChild(eloMovers);
+  root.appendChild(renderFullScheduleCard());
   root.appendChild(renderRecentSection(data));
   root.appendChild(renderQuickLinks());
+  const eloMovers = renderEloMoversSection(data);
+  if (eloMovers) root.appendChild(eloMovers);
+  const movers = renderMoversSection(data);
+  if (movers) root.appendChild(movers);
+  root.appendChild(renderAuthSlot(data));
 }
 
 function renderHero(data) {
@@ -477,21 +482,13 @@ function renderTodaySection(data) {
     return wrap;
   }
 
-  // Heading + CTA in a small card; the actual matches go in a vertical
-  // scroll-snap stack of large match cards (Apple Sports inspired).
+  // Heading card; the actual matches go in a vertical scroll-snap stack of
+  // large match cards (Apple Sports inspired). The "Full schedule" CTA moved
+  // to its own card below the Don't-miss chip (tournament-mode home order).
   const head = document.createElement('div');
   head.className = 'home-card';
   head.style.marginBottom = '12px';
-  head.innerHTML = `
-    <h2 class="home-card-title">${heading}</h2>
-    <div class="home-card-cta">
-      <button class="pick-btn pick-btn-secondary" data-go="schedule">Full schedule →</button>
-    </div>
-  `;
-  head.addEventListener('click', (e) => {
-    const tgt = e.target.closest('[data-go]');
-    if (tgt) setRoute(tgt.dataset.go, {});
-  });
+  head.innerHTML = `<h2 class="home-card-title">${heading}</h2>`;
   wrap.appendChild(head);
 
   // B3 + favorite reorder: LIVE > favorite > everything else (by time).
@@ -555,6 +552,26 @@ function prettyStage(m) {
     third_place: '3rd',
     final: 'Final',
   }[m.stage] || m.stage || '';
+}
+
+function renderFullScheduleCard() {
+  // Standalone "Full schedule" jump card (tournament-mode home order — sits
+  // between the Don't-miss chip and Recent results).
+  const wrap = document.createElement('section');
+  wrap.className = 'home-section';
+  wrap.innerHTML = `
+    <div class="home-card">
+      <h2 class="home-card-title">Full schedule</h2>
+      <div class="home-card-cta">
+        <button class="pick-btn pick-btn-secondary" data-go="schedule">All 104 matches →</button>
+      </div>
+    </div>
+  `;
+  wrap.addEventListener('click', (e) => {
+    const tgt = e.target.closest('[data-go]');
+    if (tgt) setRoute(tgt.dataset.go, {});
+  });
+  return wrap;
 }
 
 function renderMatchOfTheDayChip(data) {

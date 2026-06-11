@@ -82,5 +82,11 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: pre-kickoff refresh (lineups + refs)"
-            git push
+            # Rebase + retry so a cross-cron push race doesn't drop the cycle.
+            n=0
+            until git push; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
+              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+            done
           fi

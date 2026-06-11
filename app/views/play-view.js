@@ -852,7 +852,16 @@ async function submitBracket(data, poolId) {
 
   // Signed in + active pool: persist to the server. Errors propagate to the
   // podium's onSubmit handler (modal stays open, shows the message).
-  const groupScore = await comp.saveGroupPredictionsForActiveGroup(groupPicks, data);
+  // Gap window (groups locked, bracket open): group predictions are frozen and
+  // graded against real results — skip that save instead of letting the DB
+  // lock trigger abort the whole submit; keep the stored group score for the
+  // message.
+  let groupScore;
+  if (state.lockState?.groupsLocked) {
+    groupScore = (await comp.fetchMyGroupPredictions())?.score || 0;
+  } else {
+    groupScore = await comp.saveGroupPredictionsForActiveGroup(groupPicks, data);
+  }
   const bracketScore = await comp.saveBracketForActiveGroup(data, pickArray);
   window.dispatchEvent(new CustomEvent('play:submitted', { detail: { poolId } }));
   // R16 (Phase 2): the leaderboard total is group (max 84) + knockout (max 96).

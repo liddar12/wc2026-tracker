@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  issues: write
 
 concurrency:
   group: live-update
@@ -50,10 +51,11 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_live_results.py
         continue-on-error: true
-      - name: Fetch live results (legacy update_results)
-        if: steps.gate.outputs.go == '1'
-        run: python scripts/update_results.py
-        continue-on-error: true
+      # Legacy update_results.py step REMOVED: it wrote a conflicting record
+      # schema (no `status` field, raw un-normalized ESPN team names, every
+      # stage defaulted to group_stage) and ran AFTER scrape_live_results,
+      # clobbering its normalized records — which broke status-gated scoring.
+      # scrape_live_results.py is the single writer of actual_results.json.
       - name: Scrape top scorers (live)
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_scorers.py
@@ -100,5 +102,27 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: live results update"
-            git push
+            # Rebase + retry: live results are the most important payload —
+            # never drop a cycle to a cross-cron push race.
+            n=0
+            until git push; do
+              n=$((n+1))
+              if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
+              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+            done
           fi
+
+      # 100%-automation watchdog: a silent pipeline failure froze live data on
+      # tournament day. Any failed run now files a labeled GitHub issue (and
+      # the Actions email notification fires) instead of dying quietly.
+      - name: Alert on failure (GitHub issue)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" \
+            -d "{\"title\":\"🔴 live_update FAILED — live scores frozen (run ${{ github.run_id }})\",\"body\":\"The 15-min live results cron failed. Scores/leaderboards are stale until this is fixed.\\n\\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"labels\":[\"pipeline-alert\"]}" \
+            > /dev/null || true

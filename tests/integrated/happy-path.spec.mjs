@@ -1,7 +1,17 @@
 import { test, expect } from '@playwright/test';
 
+// Asserts PRE-TOURNAMENT (unlocked) funnel behavior — freeze the clock before
+// the first kickoff or the lock-disabled submit makes this a time bomb (it
+// broke the moment the tournament started on 2026-06-11 19:00Z).
+const PRE_TOURNAMENT_MS = Date.parse('2026-06-01T12:00:00Z');
+
 test.describe('Integrated R6 happy path', () => {
   test.beforeEach(async ({ page }) => {
+    const offset = PRE_TOURNAMENT_MS - Date.now();
+    await page.addInitScript((off) => {
+      const realNow = Date.now.bind(Date);
+      Date.now = () => realNow() + off;
+    }, offset);
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await page.evaluate(() => {
       for (let i = 0; i < localStorage.length; i++) {
