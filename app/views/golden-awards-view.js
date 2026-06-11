@@ -23,13 +23,10 @@ export function renderGoldenAwardsView(root, data, params = {}) {
 
   if (award === 'boot') {
     const c = goldenBootProjections(data, { sims: 8000 });
-    const live = c.filter((x) => x.currentGoals > 0).sort((a, b) => b.currentGoals - a.currentGoals);
-    if (live.length) root.appendChild(liveCard(live));
-    root.appendChild(oddsCard(c, {
-      title: 'Golden Boot odds', pct: 'bootPct',
-      factors: bootFactors, suffix: (x) => `~${x.projGoals} goals`,
-      note: `Chance to finish top scorer — the model${c.blendedWithMarket ? ' blended 50/50 with the live Golden Boot market' : ''}. Updates through the day.`,
-    }));
+    // Columned list (owner spec, June 11): odds prediction alongside ACTUAL
+    // goals scored and the model's projected final total — replaces the
+    // separate "Live top scorers" card.
+    root.appendChild(bootTable(c));
     root.appendChild(howCard('boot'));
     return;
   }
@@ -66,16 +63,28 @@ function header(award) {
   return s;
 }
 
-function liveCard(live) {
+function bootTable(contenders) {
+  // Golden Boot columned list: Odds (model+market prediction) · Goals (actual,
+  // live scorers feed) · Proj (projected FINAL total = actual + modeled
+  // remaining). Sorted by odds; players already on goals float naturally as
+  // their odds/projections rise with each goal (refreshed by the cron).
   const s = document.createElement('section');
-  s.className = 'home-card'; s.style.marginBottom = '12px'; s.dataset.testid = 'gb-live';
+  s.className = 'home-card'; s.style.marginBottom = '12px'; s.dataset.testid = 'gb-odds';
+  const top = contenders.slice(0, 20);
   s.innerHTML = `
-    <h2 class="home-card-title">Live top scorers</h2>
-    <ol class="pw-standings">${live.slice(0, 12).map((c, i) => `
-      <li class="pw-standings-row">
-        <span class="pw-standings-place">${i + 1}</span>
-        <span class="pw-standings-name">${flagFor(c.team)} ${escapeHtml(c.player)} <span class="muted">${escapeHtml(c.team)}</span></span>
-        <span class="pw-standings-pts"><strong>${c.currentGoals}</strong> ${c.currentGoals === 1 ? 'goal' : 'goals'}</span>
+    <h2 class="home-card-title">Golden Boot odds</h2>
+    <p class="muted" style="margin:0 0 10px; font-size:12px;">Prediction vs reality — win odds, goals scored so far, and the model's projected final total. Updates through the day.</p>
+    <div class="gb-table-head muted" aria-hidden="true"><span></span><span>Player</span><span>Odds</span><span>Goals</span><span>Proj</span></div>
+    <ol class="gb-table" data-testid="gb-odds-list">${top.map((c) => `
+      <li class="gb-table-row">
+        <span class="gb-rank">${c.rank}</span>
+        <span class="gb-player">
+          ${flagFor(c.team)} ${escapeHtml(c.player)} <span class="muted">${escapeHtml(c.team)}</span>
+          <span class="gb-factors muted">${bootFactors(c)}</span>
+        </span>
+        <span class="gb-odds"><strong>${c.bootPct}%</strong></span>
+        <span class="gb-goals" title="Goals scored so far">${c.currentGoals}</span>
+        <span class="gb-proj muted" title="Projected final total">~${c.projGoals}</span>
       </li>`).join('')}</ol>`;
   return s;
 }

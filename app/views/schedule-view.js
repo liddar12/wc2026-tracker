@@ -10,7 +10,7 @@
 import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
-import { largeMatchCard } from '../components/large-match-card.js';
+import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
 import { getFavoriteTeam } from '../favorites.js';
 
 export function renderScheduleView(root, data, params) {
@@ -136,7 +136,11 @@ export function renderScheduleView(root, data, params) {
     const broadcast = m.broadcast?.us || {};
     const channelLabel = broadcast.english_channel || broadcast.spanish_channel || null;
     const enriched = { ...m, venue_label: venue ? `${venue.name}, ${venue.city}` : (m.venue_id || '') };
+    // Attach the real result so finished/live matches show score digits.
+    const found = actualForCard(data.actualResults, m);
     const card = largeMatchCard(enriched, {
+      ...(found ? { actual: found.actual } : {}),
+      ...(found?.mode ? { mode: found.mode } : {}),
       favorite: fav,
       extraMeta: channelLabel,
       onTap: (mm) => {

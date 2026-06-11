@@ -1649,6 +1649,26 @@ body.search-open { overflow: hidden; }
 .gb-factors { display: flex; flex-wrap: wrap; gap: 8px; font-size: 10px; margin-top: 3px; }
 .gb-factors span { white-space: nowrap; }
 
+/* Golden Boot columned list: rank · player · odds · actual goals · projected total */
+.gb-table { list-style: none; margin: 0; padding: 0; }
+.gb-table-head,
+.gb-table-row {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 52px 44px 48px;
+  gap: 6px;
+  align-items: center;
+}
+.gb-table-head {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 0 0 4px;
+}
+.gb-table-head span:nth-child(n+3) { text-align: right; }
+.gb-table-row { padding: 8px 0; border-top: 1px solid var(--border); font-size: 13px; }
+.gb-rank { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.gb-player { min-width: 0; overflow: hidden; }
+.gb-odds, .gb-goals, .gb-proj { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.gb-goals { font-weight: 800; }
+
 .home-match-list { display: grid; gap: 8px; }
 .home-match-row {
   display: grid;

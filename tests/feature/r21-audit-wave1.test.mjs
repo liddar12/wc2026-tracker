@@ -115,3 +115,22 @@ test('invite links land on Pools', () => {
   const main = read('app/main.js');
   assert.match(main, /shouldOpenPicksForJoin\(\)\)\s*\{[^}]*setRoute\('pools'/, 'boot redirect goes to pools');
 });
+
+test('actualForCard: oriented scores, scheduled stubs excluded, mode from status', async () => {
+  const { actualForCard } = await import('../../app/components/large-match-card.js');
+  const ar = {
+    group_stage: {
+      'Mexico__vs__South Africa': { score_a: 2, score_b: 0, status: 'STATUS_FULL_TIME' },
+      'USA__vs__Paraguay': { score_a: 0, score_b: 0, status: 'STATUS_SCHEDULED' },
+      'Spain__vs__France': { score_a: 1, score_b: 0, status: 'STATUS_IN_PROGRESS' },
+    },
+  };
+  const fin = actualForCard(ar, { stage: 'group', team_a: 'Mexico', team_b: 'South Africa' });
+  assert.deepEqual(fin.actual, { score_a: 2, score_b: 0 });
+  assert.equal(fin.mode, 'final');
+  const flip = actualForCard(ar, { stage: 'group', team_a: 'South Africa', team_b: 'Mexico' });
+  assert.deepEqual(flip.actual, { score_a: 0, score_b: 2 });
+  assert.equal(actualForCard(ar, { stage: 'group', team_a: 'USA', team_b: 'Paraguay' }), null, 'scheduled stub excluded');
+  const live = actualForCard(ar, { stage: 'group', team_a: 'Spain', team_b: 'France' });
+  assert.equal(live.mode, 'live');
+});

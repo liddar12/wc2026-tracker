@@ -4,7 +4,7 @@
 import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
-import { largeMatchCard } from '../components/large-match-card.js';
+import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
 import { formatLastUpdated } from '../data-loader.js';
 import {
   getCompetitionState,
@@ -92,6 +92,10 @@ function renderHero(data) {
     (m) => m.match_number === 1 || (m.team_a === 'Mexico' && m.team_b === 'South Africa')
   );
   const openingDate = openingMatch?.kickoff_utc || (opening?.date ? `${opening.date}T19:00:00Z` : null);
+  // Countdown only counts DOWN — once the opener has kicked off the tile goes
+  // away entirely (it was ticking elapsed time under "Tournament started").
+  const kickoffMs = openingDate ? Date.parse(openingDate) : NaN;
+  const showCountdown = Number.isFinite(kickoffMs) && kickoffMs > Date.now();
 
   // Defensive: meta.data_version is only bumped by some cron jobs, but other
   // data files carry their own timestamps that may be fresher. Show the most
@@ -104,7 +108,7 @@ function renderHero(data) {
       <div class="home-hero-title">${escapeHtml(meta.dates || '11 June – 19 July 2026')}</div>
       <div class="home-hero-sub">${escapeHtml(meta.hosts?.join(' · ') || 'USA · Canada · Mexico')}</div>
     </div>
-    ${openingDate ? renderCountdownShell(opening) : ''}
+    ${showCountdown ? renderCountdownShell(opening) : ''}
     <button class="home-hero-updated" id="home-updated-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
       <span class="home-hero-dot" aria-hidden="true"></span>
       Data updated <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
@@ -139,7 +143,7 @@ function renderHero(data) {
     }, { once: false });
   }
 
-  if (openingDate) {
+  if (showCountdown) {
     startCountdownTicker(wrap, openingDate);
   }
   return wrap;
@@ -508,7 +512,12 @@ function renderTodaySection(data) {
   const list = document.createElement('div');
   list.className = 'lcard-stack';
   for (const m of reorderedList.slice(0, 6)) {
+    // Attach the real result so finished/live matches show the score digits
+    // (cards previously inferred FINAL from the clock but had no score).
+    const found = actualForCard(data.actualResults, m);
     list.appendChild(largeMatchCard(m, {
+      ...(found ? { actual: found.actual } : {}),
+      ...(found?.mode ? { mode: found.mode } : {}),
       onTap: (match) => {
         if (match.team_a && match.team_b && !isPlaceholder(match.team_a) && !isPlaceholder(match.team_b)) {
           location.hash = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;

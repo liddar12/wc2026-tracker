@@ -153,6 +153,42 @@ function inferMode(match) {
   return 'final';
 }
 
+// ---- actual-result lookup for cards -----------------------------------------
+// largeMatchCard accepts opts.actual but NO view was passing it — cards showed
+// "FINAL" (time-inferred) with no score digits. This is the one shared,
+// orientation-safe lookup both Home and Schedule wire in.
+const TIER_BY_STAGE = {
+  group: 'group_stage', group_stage: 'group_stage',
+  round_of_32: 'round_of_32', round_of_16: 'round_of_16',
+  quarterfinals: 'quarterfinals', semifinals: 'semifinals',
+  third_place: 'third_place', final: 'final',
+};
+const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+const LIVE_STATUSES = new Set(['STATUS_IN_PROGRESS', 'STATUS_HALFTIME', 'STATUS_END_PERIOD']);
+
+/**
+ * Returns { actual: {score_a, score_b}, mode } for a schedule row, oriented to
+ * the row's team_a/team_b — or null when there's nothing displayable yet.
+ * STATUS_SCHEDULED placeholder rows (the scraper writes 0-0 stubs for future
+ * matches) are excluded, or every upcoming card would read "0 – 0".
+ */
+export function actualForCard(actualResults, match) {
+  if (!actualResults || !match?.team_a || !match?.team_b) return null;
+  const tier = actualResults[TIER_BY_STAGE[match.stage] || 'group_stage'] || {};
+  const direct = tier[`${match.team_a}__vs__${match.team_b}`];
+  const flipped = direct ? null : tier[`${match.team_b}__vs__${match.team_a}`];
+  const rec = direct || flipped;
+  if (!rec) return null;
+  const sa = Number(rec.score_a ?? rec.team_a_score);
+  const sb = Number(rec.score_b ?? rec.team_b_score);
+  if (!Number.isFinite(sa) || !Number.isFinite(sb)) return null;
+  const status = rec.status || '';
+  if (status && !FINAL_STATUSES.has(status) && !LIVE_STATUSES.has(status)) return null;
+  const actual = flipped ? { score_a: sb, score_b: sa } : { score_a: sa, score_b: sb };
+  const mode = FINAL_STATUSES.has(status) ? 'final' : LIVE_STATUSES.has(status) ? 'live' : null;
+  return { actual, mode };
+}
+
 function prettyStage(m) {
   if (m.stage === 'group') return `Group ${m.group || ''}`.trim();
   return {
