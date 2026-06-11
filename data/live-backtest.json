@@ -34,9 +34,36 @@
           0.1045
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.0292,
+          "logloss": 0.14618
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.26652,
+          "logloss": 0.5468
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.14771,
+          "logloss": 0.36889
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.12675,
+          "logloss": 0.34052
+        },
+        "polymarket": {
+          "correct": 1,
+          "brier": 0.14771,
+          "logloss": 0.36889
+        }
+      },
+      "scored": true,
+      "actual_score": "2-0"
     },
     "Korea Republic__vs__Czechia": {
       "match_number": 2,
@@ -44,7 +71,7 @@
       "team_a": "Korea Republic",
       "team_b": "Czechia",
       "kickoff_utc": "2026-06-12T02:00:00Z",
-      "captured_at": "2026-06-11T22:21:57+00:00",
+      "captured_at": "2026-06-11T22:30:17+00:00",
       "preds": {
         "model": [
           0.48,
@@ -82,7 +109,7 @@
       "team_a": "Canada",
       "team_b": "Bosnia and Herzegovina",
       "kickoff_utc": "2026-06-12T19:00:00Z",
-      "captured_at": "2026-06-11T22:21:57+00:00",
+      "captured_at": "2026-06-11T22:30:17+00:00",
       "preds": {
         "model": [
           0.418,
@@ -115,7 +142,7 @@
       "team_a": "USA",
       "team_b": "Paraguay",
       "kickoff_utc": "2026-06-13T01:00:00Z",
-      "captured_at": "2026-06-11T22:21:57+00:00",
+      "captured_at": "2026-06-11T22:30:17+00:00",
       "preds": {
         "model": [
           0.821,
@@ -153,7 +180,7 @@
       "team_a": "Australia",
       "team_b": "Turkiye",
       "kickoff_utc": "2026-06-13T04:00:00Z",
-      "captured_at": "2026-06-11T22:21:57+00:00",
+      "captured_at": "2026-06-11T22:30:17+00:00",
       "preds": {
         "model": [
           0.128,
@@ -186,8 +213,43 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-11T22:21:57+00:00",
+  "updated_at": "2026-06-11T22:30:17+00:00",
   "summary": {
-    "matches_scored": 0
+    "matches_scored": 1,
+    "model": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.0292,
+      "logloss": 0.1462
+    },
+    "dt": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.2665,
+      "logloss": 0.5468
+    },
+    "market": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1477,
+      "logloss": 0.3689
+    },
+    "polymarket": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1477,
+      "logloss": 0.3689
+    },
+    "hybrid": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1268,
+      "logloss": 0.3405
+    }
   }
 }

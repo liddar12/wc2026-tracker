@@ -61,8 +61,43 @@
     "note": "All rows are estimates \u2014 Polymarket ran no per-match WC 2022 markets and its winner market is too thin to have price history, so even the market leg can't be measured here."
   },
   "live2026": {
-    "generated_at": "2026-06-11T22:21:57+00:00",
-    "note": "Awaiting first results (kickoff 11 June). Snapshots locked pre-kickoff.",
-    "matches_scored": 0
+    "generated_at": "2026-06-11T22:30:17+00:00",
+    "note": "1 matches scored live. Pre-kickoff predictions locked from all models + markets, scored on the regulation result.",
+    "matches_scored": 1,
+    "model": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.0292,
+      "logloss": 0.1462
+    },
+    "dt": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.2665,
+      "logloss": 0.5468
+    },
+    "market": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1477,
+      "logloss": 0.3689
+    },
+    "polymarket": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1477,
+      "logloss": 0.3689
+    },
+    "hybrid": {
+      "correct": 1,
+      "total": 1,
+      "measured": true,
+      "brier": 0.1268,
+      "logloss": 0.3405
+    }
   }
 }
