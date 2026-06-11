@@ -6,7 +6,7 @@
       "team_a": "Mexico",
       "team_b": "South Africa",
       "kickoff_utc": "2026-06-11T19:00:00Z",
-      "captured_at": "2026-06-11T11:54:13+00:00",
+      "captured_at": "2026-06-11T14:57:14+00:00",
       "preds": {
         "model": [
           0.864,
@@ -29,9 +29,9 @@
           0.1139
         ],
         "polymarket": [
-          0.6884,
-          0.206,
-          0.1055
+          0.6915,
+          0.204,
+          0.1045
         ]
       },
       "actual": null,
@@ -44,7 +44,7 @@
       "team_a": "Korea Republic",
       "team_b": "Czechia",
       "kickoff_utc": "2026-06-12T02:00:00Z",
-      "captured_at": "2026-06-11T11:54:13+00:00",
+      "captured_at": "2026-06-11T14:57:14+00:00",
       "preds": {
         "model": [
           0.48,
@@ -57,19 +57,19 @@
           0.4107
         ],
         "market": [
-          0.3632,
-          0.3035,
-          0.3333
-        ],
-        "hybrid": [
-          0.3919,
-          0.2694,
-          0.3387
-        ],
-        "polymarket": [
           0.3596,
           0.3103,
           0.33
+        ],
+        "hybrid": [
+          0.3907,
+          0.2717,
+          0.3376
+        ],
+        "polymarket": [
+          0.3632,
+          0.3134,
+          0.3234
         ]
       },
       "actual": null,
@@ -82,7 +82,7 @@
       "team_a": "Canada",
       "team_b": "Bosnia and Herzegovina",
       "kickoff_utc": "2026-06-12T19:00:00Z",
-      "captured_at": "2026-06-11T11:54:13+00:00",
+      "captured_at": "2026-06-11T14:57:14+00:00",
       "preds": {
         "model": [
           0.418,
@@ -95,14 +95,52 @@
           0.3537
         ],
         "market": [
-          0.5423,
-          0.2637,
-          0.194
+          0.5377,
+          0.2663,
+          0.196
         ],
         "hybrid": [
-          0.4497,
-          0.2593,
-          0.291
+          0.4482,
+          0.2602,
+          0.2916
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "USA__vs__Paraguay": {
+      "match_number": 4,
+      "stage": "group",
+      "team_a": "USA",
+      "team_b": "Paraguay",
+      "kickoff_utc": "2026-06-13T01:00:00Z",
+      "captured_at": "2026-06-11T14:57:14+00:00",
+      "preds": {
+        "model": [
+          0.821,
+          0.12,
+          0.059
+        ],
+        "dt": [
+          0.4984,
+          0.245,
+          0.2566
+        ],
+        "market": [
+          0.4925,
+          0.2836,
+          0.2239
+        ],
+        "hybrid": [
+          0.604,
+          0.2162,
+          0.1798
+        ],
+        "polymarket": [
+          0.4975,
+          0.2764,
+          0.2261
         ]
       },
       "actual": null,
@@ -110,7 +148,7 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-11T11:54:13+00:00",
+  "updated_at": "2026-06-11T14:57:14+00:00",
   "summary": {
     "matches_scored": 0
   }
