@@ -7,6 +7,13 @@ on:
 
 permissions:
   contents: write
+  issues: write
+
+# Opt into Node 24 ahead of GitHub's June 16 forced default (checkout@v4 /
+# setup-python@v5 are compatible; this silences the deprecation warning and
+# removes the mid-tournament surprise).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 concurrency:
   group: daily-update
@@ -112,3 +119,17 @@ jobs:
               git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
             done
           fi
+
+      # Watchdog: a failed daily refresh files a labeled issue (parity with
+      # live/frequent — this workflow previously only failed via email).
+      - name: Alert on failure (GitHub issue)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          curl -s -X POST \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" \
+            -d "{\"title\":\"🟠 daily_update FAILED (run ${{ github.run_id }})\",\"body\":\"The 06:00 daily refresh failed.\\n\\nRun: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}\",\"labels\":[\"pipeline-alert\"]}" \
+            > /dev/null || true

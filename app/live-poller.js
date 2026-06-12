@@ -1,15 +1,23 @@
-/* live-poller.js — B1: poll our static data feeds for fresh scores when
-   there's a match in [now, now+2h]. Triggers a 'data:live-refresh' event
-   on window when new data arrives so any view can re-render. */
+/* live-poller.js — B1 + R22: live-window polling on two speeds.
+   Every tick (30s): fetch ESPN's scoreboard DIRECTLY from the client and merge
+   scores + game clock into the in-memory data (live-scores.js) — tiles show
+   0-0 + LIVE within seconds of kickoff and goals within ~30s, with NO pipeline
+   /deploy latency. Every 5th tick: full refreshData() so the rest of the feeds
+   (odds, lineups, events) stay current too. Triggers 'data:live-refresh'. */
 
 import { refreshData } from './data-loader.js';
+import { fetchEspnLive, mergeLiveScores } from './live-scores.js';
 
 const POLL_INTERVAL_MS = 30 * 1000;   // 30s during live windows
+const FULL_REFRESH_EVERY = 5;         // full data refetch every 5th tick (2.5 min)
 const LIVE_WINDOW_MS = 2 * 3600 * 1000;
 let intervalId = null;
+let currentData = null;
+let tickCount = 0;
 
 export function startLivePollerForData(data) {
   stopLivePoller();
+  currentData = data || null;
   if (!data?.scheduleFull) return;
   const liveStart = nearestLiveStart(data.scheduleFull);
   if (!liveStart) return;
@@ -46,12 +54,29 @@ function nearestLiveStart(scheduleFull) {
 }
 
 async function pollOnce() {
-  // Re-fetch data; if it changed (data_version), the data-loader updates
-  // the cache and we emit a refresh event. Always re-emit so views can
-  // poll for the latest UTC moment regardless of data-version delta.
+  tickCount++;
   try {
-    const fresh = await refreshData();
-    window.dispatchEvent(new CustomEvent('data:live-refresh', { detail: { data: fresh } }));
+    // Fast lane every tick: direct ESPN scoreboard → in-memory merge. Cheap
+    // (~30KB) and instant — this is what makes scores + clock near-real-time.
+    if (currentData) {
+      try {
+        const board = await fetchEspnLive();
+        mergeLiveScores(currentData, board);
+      } catch { /* ESPN blip — the pipeline copy still flows below */ }
+    }
+    // Slow lane every Nth tick: full static-feed refresh (odds, events, etc.).
+    if (!currentData || tickCount % FULL_REFRESH_EVERY === 1) {
+      const fresh = await refreshData();
+      if (fresh) {
+        // Re-apply the freshest live overlay on top of the just-fetched copy
+        // so a stale deployed JSON can't visually regress a live score.
+        try { mergeLiveScores(fresh, await fetchEspnLive()); } catch {}
+        currentData = fresh;
+      }
+    }
+    if (currentData) {
+      window.dispatchEvent(new CustomEvent('data:live-refresh', { detail: { data: currentData } }));
+    }
   } catch (e) {
     // Network blip — silently ignore; the next interval tick retries.
   }

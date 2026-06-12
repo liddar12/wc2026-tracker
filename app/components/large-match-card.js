@@ -65,7 +65,6 @@ export function largeMatchCard(match, opts = {}) {
   card.innerHTML = `
     <div class="lcard-banner" data-team-a="${escapeHtml(teamA)}" data-team-b="${escapeHtml(teamB)}"></div>
     <div class="lcard-body">
-      <div class="lcard-eyebrow">${eyebrow}</div>
       <div class="lcard-teams">
         <div class="lcard-team lcard-team-a">
           <span class="lcard-flag">${flagFor(teamA)}</span>
@@ -81,6 +80,9 @@ export function largeMatchCard(match, opts = {}) {
         ${venue ? `<span>${escapeHtml(venue)}</span>` : ''}
         ${extraMeta ? `<span>${escapeHtml(extraMeta)}</span>` : ''}
       </div>
+      <!-- Status/group/your-team line moved BELOW the venue (was overlaying the
+           team-color banner gradient — an ADA contrast failure). -->
+      <div class="lcard-eyebrow lcard-eyebrow-below">${eyebrow}</div>
     </div>
   `;
 
@@ -185,6 +187,7 @@ export function actualForCard(actualResults, match) {
   const status = rec.status || '';
   if (status && !FINAL_STATUSES.has(status) && !LIVE_STATUSES.has(status)) return null;
   const actual = flipped ? { score_a: sb, score_b: sa } : { score_a: sa, score_b: sb };
+  if (rec.minute) actual.minute = rec.minute; // live game clock (e.g. "67'")
   const mode = FINAL_STATUSES.has(status) ? 'final' : LIVE_STATUSES.has(status) ? 'live' : null;
   return { actual, mode };
 }

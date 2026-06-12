@@ -5,6 +5,7 @@ import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
+import { isFinalResultRecord } from '../bracket-resolver.js';
 import { formatLastUpdated } from '../data-loader.js';
 import {
   getCompetitionState,
@@ -723,6 +724,10 @@ function renderRecentSection(data) {
     for (const [key, rec] of Object.entries(tier)) {
       if (!rec || typeof rec !== 'object') continue;
       if (typeof rec.score_a !== 'number' || typeof rec.score_b !== 'number') continue;
+      // FINAL results only. The scraper also writes STATUS_SCHEDULED 0-0 stubs
+      // (future kickoff dates!) and in-progress records — those sorted ABOVE
+      // yesterday's real results and polluted the list with fake 0-0 rows.
+      if (!isFinalResultRecord(rec)) continue;
       const [a, b] = key.split('__vs__');
       recents.push({ stage, a, b, sa: rec.score_a, sb: rec.score_b, when: rec.kickoff_utc || rec.played_at || '' });
     }
