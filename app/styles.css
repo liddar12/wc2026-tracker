@@ -2346,7 +2346,10 @@ body.search-open { overflow: hidden; }
 .lcard[role="button"]:active { transform: scale(0.99); transition: transform 100ms; }
 
 .lcard-banner {
-  height: 88px;
+  /* 64px (was 88) — the body no longer overlaps the banner (-32px margin
+     removed: text on the gradient failed ADA contrast), so the banner slims
+     down to keep the card height similar. */
+  height: 64px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
   position: relative;
 }
@@ -2368,7 +2371,9 @@ body.search-open { overflow: hidden; }
 .lcard-body {
   position: relative;
   padding: 14px 18px 18px;
-  margin-top: -32px;
+  /* was margin-top:-32px — overlapping body text onto the banner gradient
+     failed ADA contrast; the body now starts on white below the banner. */
+  margin-top: 0;
 }
 .lcard-eyebrow {
   font-size: 11px;
@@ -2382,6 +2387,8 @@ body.search-open { overflow: hidden; }
   align-items: center;
   flex-wrap: wrap;
 }
+/* eyebrow relocated under the venue line */
+.lcard-eyebrow-below { margin: 6px 0 0; }
 
 .lcard-teams {
   display: grid;

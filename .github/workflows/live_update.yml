@@ -10,6 +10,10 @@ permissions:
   contents: write
   issues: write
 
+# Node 24 opt-in ahead of GitHub's June 16 forced default (mid-tournament).
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
 concurrency:
   group: live-update
   cancel-in-progress: true

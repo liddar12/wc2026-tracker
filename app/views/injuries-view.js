@@ -15,10 +15,35 @@ export function renderInjuriesView(root, data) {
   head.className = 'home-card';
   head.style.marginBottom = '12px';
   head.innerHTML = `
-    <h2 class="home-card-title">Injuries <span class="home-card-meta muted">${updatedAt ? `updated ${escapeHtml(formatRel(updatedAt))}` : 'no data'}</span></h2>
-    <p class="muted" style="margin: 0; font-size: 13px;">Reported injuries + late fitness flags across all 48 teams. Refreshed hourly.</p>
+    <h2 class="home-card-title">Injuries &amp; availability <span class="home-card-meta muted">${updatedAt ? `updated ${escapeHtml(formatRel(updatedAt))}` : 'no data'}</span></h2>
+    <p class="muted" style="margin: 0; font-size: 13px;">Reported injuries, late fitness flags, and card suspensions across all 48 teams. Refreshed through the day.</p>
   `;
   root.appendChild(head);
+
+  // Card suspensions (from live match events): a straight red = banned for the
+  // team's NEXT match (at least); two accumulated yellows across matches = a
+  // one-match ban (FIFA rule; accumulated yellows wipe after the QFs).
+  const susp = suspensionsFromEvents(data);
+  if (susp.length) {
+    const card = document.createElement('section');
+    card.className = 'home-card';
+    card.style.marginBottom = '12px';
+    card.dataset.testid = 'suspensions';
+    card.innerHTML = `
+      <h2 class="home-card-title">Suspensions (cards)</h2>
+      <ul class="ev-list">
+        ${susp.map((s) => `
+          <li class="ev-row">
+            <span class="ev-minute">${flagFor(s.team)}</span>
+            <span class="ev-player"><strong>${escapeHtml(s.player)}</strong>
+              <span class="muted">${escapeHtml(s.reason)}${s.misses ? ` — misses ${escapeHtml(s.misses)}` : ''}</span>
+            </span>
+          </li>`).join('')}
+      </ul>
+      <p class="muted" style="font-size:11px;margin:6px 0 0;">From live match events. Reds = next-match ban minimum (FIFA may extend); 2 accumulated yellows = one-match ban.</p>
+    `;
+    root.appendChild(card);
+  }
 
   const teams = Object.keys(byTeam).sort();
   const withInjuries = teams.filter((t) => (byTeam[t] || []).length > 0);
@@ -79,5 +104,48 @@ function formatRel(iso) {
     if (hrs < 24) return `${hrs}h ago`;
     return `${Math.floor(hrs / 24)}d ago`;
   } catch { return ''; }
+}
+
+// ---- card suspensions from live match events --------------------------------
+// Returns [{player, team, reason, misses}] — straight reds (next-match ban
+// minimum) and accumulated-yellow bans (2 yellows across matches = 1-match ban).
+function suspensionsFromEvents(data) {
+  const me = data?.matchEvents;
+  if (!me || typeof me !== 'object') return [];
+  const reds = [];          // {player, team, matchKey}
+  const yellows = {};       // player → {count, team}
+  for (const [key, rec] of Object.entries(me)) {
+    if (key === '__meta__' || !Array.isArray(rec?.events)) continue;
+    for (const e of rec.events) {
+      if (!e.player) continue;
+      if (e.type === 'red') reds.push({ player: e.player, team: e.team, matchKey: key });
+      else if (e.type === 'yellow') {
+        const y = (yellows[e.player] = yellows[e.player] || { count: 0, team: e.team });
+        y.count++;
+      }
+    }
+  }
+  // Which game does a red-carded player miss? The team's next scheduled match
+  // after the one where the red was shown.
+  const sched = (data?.scheduleFull || []).slice()
+    .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)));
+  const missesFor = (team, matchKey) => {
+    const at = sched.find((m) => `${m.team_a}__vs__${m.team_b}` === matchKey || `${m.team_b}__vs__${m.team_a}` === matchKey);
+    const after = at ? at.kickoff_utc : '';
+    const next = sched.find((m) => (m.team_a === team || m.team_b === team) && String(m.kickoff_utc) > String(after));
+    if (!next) return '';
+    const opp = next.team_a === team ? next.team_b : next.team_a;
+    return `vs ${opp}`;
+  };
+  const out = reds.map((r) => ({
+    player: r.player, team: r.team,
+    reason: '🟥 red card', misses: missesFor(r.team, r.matchKey),
+  }));
+  for (const [player, y] of Object.entries(yellows)) {
+    if (y.count >= 2 && !out.some((o) => o.player === player)) {
+      out.push({ player, team: y.team, reason: `🟨×${y.count} accumulated — one-match ban`, misses: '' });
+    }
+  }
+  return out;
 }
 
