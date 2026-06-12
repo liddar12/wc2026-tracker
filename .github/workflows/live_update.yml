@@ -60,6 +60,14 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_scorers.py
         continue-on-error: true
+      - name: Scrape match events (goals + cards)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_match_events.py
+        continue-on-error: true
+      - name: Scrape lineups (in-game/post-game backfill)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_lineups.py
+        continue-on-error: true
       - name: Scrape referees (assignments may change live)
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_referees.py

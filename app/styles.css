@@ -639,7 +639,40 @@ body {
 /* Buttons / links */
 button { font-family: inherit; }
 a { color: var(--primary); }
+/* Team links read as tappable: primary-colored name with a dotted underline +
+   chevron (was color:inherit with no affordance — looked like plain text). */
 a.team-link { color: inherit; text-decoration: none; }
+a.team-link strong {
+  color: var(--primary);
+  text-decoration: underline dotted color-mix(in srgb, var(--primary) 55%, transparent);
+  text-underline-offset: 3px;
+}
+a.team-link::after { content: '›'; color: var(--text-muted); font-weight: 700; }
+a.team-link.team-link-rtl::after { content: none; }
+a.team-link.team-link-rtl::before { content: '‹'; color: var(--text-muted); font-weight: 700; }
+
+/* Matchup-detail header score (between the team names) */
+.detail-score {
+  font-family: var(--font-display, var(--font-body));
+  font-size: 26px; font-weight: 800; font-variant-numeric: tabular-nums;
+  display: inline-flex; align-items: baseline; gap: 6px; white-space: nowrap;
+}
+.detail-score small { font-size: 11px; font-weight: 700; color: var(--text-muted); }
+.detail-score .detail-score-live { color: var(--bad); }
+
+/* Match events timeline + discipline */
+.ev-list { list-style: none; margin: 0; padding: 0; }
+.ev-row {
+  display: grid; grid-template-columns: 44px 28px 1fr; gap: 6px;
+  align-items: baseline; padding: 6px 0; border-top: 1px solid var(--border);
+  font-size: 13px;
+}
+.ev-row:first-child { border-top: 0; }
+.ev-minute { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.ev-player .muted { font-size: 11px; }
+.ev-subhead { margin: 12px 0 4px; font-size: 14px; }
+.ev-team-totals { font-size: 11px; font-weight: 400; }
+ul.ev-list .ev-row { grid-template-columns: 44px 1fr; }
 
 /* Hover only enabled on devices that actually hover */
 @media (hover: hover) {

@@ -155,6 +155,7 @@ function renderFreshnessPopover(data) {
     { key: 'kalshi',    label: 'Markets',        iso: data?.markets?.updated_at },
     { key: 'weather',   label: 'Weather',        iso: data?.weather?.__meta__?.updated_at || data?.weather?.updated_at },
     { key: 'lineups',   label: 'Lineups',        iso: data?.lineups?.__meta__?.updated_at || data?.lineups?.updated_at },
+    { key: 'events',    label: 'Match events',   iso: data?.matchEvents?.__meta__?.updated_at },
     { key: 'injuries',  label: 'Injuries',       iso: data?.injuries?.__meta__?.updated_at || data?.injuries?.updated_at },
     { key: 'h2h',       label: 'Head-to-head',   iso: data?.h2h?.__meta__?.updated_at || data?.h2h?.updated_at },
     { key: 'form',      label: 'Form',           iso: data?.form?.__meta__?.updated_at || data?.form?.updated_at },

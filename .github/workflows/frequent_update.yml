@@ -73,6 +73,9 @@ jobs:
       - name: Scrape projected lineups
         run: python scripts/scrape_lineups.py
         continue-on-error: true
+      - name: Scrape match events (goals + cards)
+        run: python scripts/scrape_match_events.py
+        continue-on-error: true
 
       # ---- Recompute composite + power_rank from refreshed inputs ----
       - name: Recompute composite + power rankings
