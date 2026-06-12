@@ -101,3 +101,19 @@ test('live poller: fast ESPN lane every tick + periodic full refresh', () => {
   assert.match(p, /mergeLiveScores/, 'merges into in-memory data');
   assert.match(p, /FULL_REFRESH_EVERY/, 'periodic full feed refresh retained');
 });
+
+test('June-12 follow-ups: clock strip, home venue label, cron queueing, fresh JS', () => {
+  // ESPN displayClock arrives as "26'" — strip the apostrophe (card adds one).
+  const ls = read('app/live-scores.js');
+  assert.match(ls, /replace\(\/'\+\$\/, ''\)/, 'minute apostrophe stripped');
+  // Home cards show the real venue name, not the raw id ("bmo_field").
+  const hv = read('app/views/home-view.js');
+  assert.match(hv, /venue_label: `\$\{venue\.name\}, \$\{venue\.city\}`/, 'home enriches venue label');
+  // Live cron queues instead of canceling (starvation dropped commits to ~2h).
+  const lu = read('.github/workflows/live_update.yml');
+  assert.match(lu, /group: live-update[\s\S]{0,500}cancel-in-progress: false/, 'live cron queues');
+  assert.ok(!/run:\s*python\s+scripts\/scrape_kalshi\.py/.test(lu), 'kalshi off the live cycle');
+  // Deploys reach open tabs in minutes, not a day.
+  const h = read('_headers');
+  assert.match(h, /\/app\/\*\n  Cache-Control: public, max-age=120, stale-while-revalidate=600/, 'short app-code SWR');
+});

@@ -16,7 +16,12 @@ env:
 
 concurrency:
   group: live-update
-  cancel-in-progress: true
+  # QUEUE, don't cancel: with ~3-4 min runs on a 15-min cadence plus GitHub's
+  # scheduler drift, cancel-in-progress killed most runs BEFORE their commit
+  # step — live results only landed every ~2h on June 12 (07:15/10:43/12:55).
+  # Cancellation isn't failure(), so the watchdog never fired. Queued runs
+  # execute back-to-back at worst.
+  cancel-in-progress: false
 
 jobs:
   update-results:
@@ -83,10 +88,9 @@ jobs:
       - name: Recompute xG
         if: steps.gate.outputs.go == '1'
         run: python scripts/compute_xg.py
-      - name: Scrape Kalshi markets
-        if: steps.gate.outputs.go == '1'
-        run: python scripts/scrape_kalshi.py
-        continue-on-error: true
+      # scrape_kalshi REMOVED from the live cycle (it alone took ~45s of rate-
+      # limited fetches): the hourly frequent_update refreshes markets.json and
+      # build_hybrid blends whatever's latest. Shorter runs = no more overlap.
       - name: Rebuild DT model (Elo + market value blend)
         if: steps.gate.outputs.go == '1'
         run: python scripts/build_dt_model.py

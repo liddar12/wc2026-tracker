@@ -513,11 +513,16 @@ function renderTodaySection(data) {
 
   const list = document.createElement('div');
   list.className = 'lcard-stack';
+  const venueById = new Map((data.venues || []).map((v) => [v.id, v]));
   for (const m of reorderedList.slice(0, 6)) {
     // Attach the real result so finished/live matches show the score digits
     // (cards previously inferred FINAL from the clock but had no score).
     const found = actualForCard(data.actualResults, m);
-    list.appendChild(largeMatchCard(m, {
+    // Real venue name ("BMO Field, Toronto") — the card otherwise falls back
+    // to the raw venue_id ("bmo_field").
+    const venue = venueById.get(m.venue_id);
+    const enriched = venue ? { ...m, venue_label: `${venue.name}, ${venue.city}` } : m;
+    list.appendChild(largeMatchCard(enriched, {
       ...(found ? { actual: found.actual } : {}),
       ...(found?.mode ? { mode: found.mode } : {}),
       onTap: (match) => {

@@ -7,14 +7,16 @@
   Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 
-# R14: tiered caching. Filenames are unhashed, so the SW (network-first for
-# navigations) guarantees freshness while these let the browser/CDN reuse
-# bytes between visits.
-# App code/CSS: short cache + background revalidate.
+# R14/R23: tiered caching. Filenames are unhashed and the SW no longer caches
+# (R16 removed its fetch handler), so these headers are the ONLY freshness
+# control for app code. stale-while-revalidate was 86400 — users ran up-to-a-
+# DAY-old JS after a deploy (live-score features "missing" mid-match on June
+# 12). Now: ≤2 min cached + ≤10 min background-stale → deploys reach every
+# open tab within ~12 minutes worst case.
 /app/*
-  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+  Cache-Control: public, max-age=120, stale-while-revalidate=600
 /styles.css
-  Cache-Control: public, max-age=300, stale-while-revalidate=86400
+  Cache-Control: public, max-age=120, stale-while-revalidate=600
 # Data feeds: always revalidate (cron updates them; meta.json gates freshness).
 /data/*
   Cache-Control: public, max-age=0, must-revalidate

@@ -57,11 +57,13 @@ export async function fetchEspnLive() {
       if (name) teams[name] = Number.isFinite(score) ? score : 0;
     }
     if (Object.keys(teams).length !== 2) continue;
+    // displayClock arrives WITH the apostrophe ("26'") — strip it; the card's
+    // live eyebrow appends its own (avoids rendering LIVE 26'').
+    const rawClock = (st.state === 'in' && (comp.status?.displayClock || ev.status?.displayClock)) || '';
     out.push({
       teams,
       status: st.name || '',
-      // displayClock e.g. "67'" while in progress
-      minute: (st.state === 'in' && (comp.status?.displayClock || ev.status?.displayClock)) || '',
+      minute: String(rawClock).replace(/'+$/, ''),
     });
   }
   return out;
