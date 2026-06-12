@@ -50,10 +50,39 @@
         "team": "Mexico"
       }
     ],
-    "updated_at": "2026-06-12T01:44:36+00:00"
+    "updated_at": "2026-06-12T04:16:40+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-12T01:44:36+00:00",
+    "updated_at": "2026-06-12T04:16:40+00:00",
     "source": "espn-summary"
+  },
+  "Korea Republic__vs__Czechia": {
+    "events": [
+      {
+        "minute": "59'",
+        "type": "goal",
+        "player": "Ladislav Krejcí",
+        "team": "Czechia"
+      },
+      {
+        "minute": "67'",
+        "type": "goal",
+        "player": "Hwang In-Beom",
+        "team": "Korea Republic"
+      },
+      {
+        "minute": "80'",
+        "type": "goal",
+        "player": "Oh Hyeon-Gyu",
+        "team": "Korea Republic"
+      },
+      {
+        "minute": "90'+6'",
+        "type": "yellow",
+        "player": "Lee Gi-Hyuk",
+        "team": "Korea Republic"
+      }
+    ],
+    "updated_at": "2026-06-12T04:16:40+00:00"
   }
 }
