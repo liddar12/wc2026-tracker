@@ -50,7 +50,7 @@ PM_ALIAS = {
     "United States": "USA", "South Korea": "Korea Republic", "Türkiye": "Turkiye",
     "Turkey": "Turkiye", "Czech Republic": "Czechia", "Cape Verde": "Cabo Verde",
     "Ivory Coast": "Cote d'Ivoire", "Congo DR": "DR Congo",
-    "Bosnia & Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao", "IR Iran": "Iran",
+    "Bosnia & Herzegovina": "Bosnia and Herzegovina", "Bosnia-Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao", "IR Iran": "Iran",
 }
 
 

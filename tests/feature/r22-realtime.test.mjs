@@ -57,6 +57,31 @@ test('live merge never regresses a FINAL record to in-progress', () => {
   assert.equal(rec.status, 'STATUS_FULL_TIME');
 });
 
+test('ESPN half-specific statuses + hyphenated Bosnia match (June-12 live RCA)', () => {
+  // Verified live: a 26th-minute game reports STATUS_FIRST_HALF and the team
+  // is "Bosnia-Herzegovina" (hyphen). Both previously failed to match.
+  const data = {
+    scheduleFull: [
+      { match_id: 'Canada__vs__Bosnia and Herzegovina', stage: 'group', team_a: 'Canada', team_b: 'Bosnia and Herzegovina', kickoff_utc: '2026-06-12T19:00:00Z' },
+    ],
+    actualResults: { group_stage: {} },
+  };
+  const board = [
+    { teams: { Canada: 0, 'Bosnia and Herzegovina': 1 }, status: 'STATUS_FIRST_HALF', minute: '26' },
+  ];
+  mergeLiveScores(data, board);
+  const found = actualForCard(data.actualResults, data.scheduleFull[0]);
+  assert.ok(found, 'FIRST_HALF record is displayable');
+  assert.equal(found.mode, 'live');
+  assert.equal(found.actual.score_b, 1, 'Bosnia leads 1-0');
+  assert.equal(found.actual.minute, '26');
+  // name normalization: the hyphenated ESPN form maps to the canonical name
+  const ls = read('app/live-scores.js');
+  assert.match(ls, /'Bosnia-Herzegovina': 'Bosnia and Herzegovina'/, 'hyphen variant mapped (client)');
+  const py = read('scripts/scrape_live_results.py');
+  assert.match(py, /"Bosnia-Herzegovina"/, 'hyphen variant mapped (results scraper)');
+});
+
 test('live merge orients flipped ESPN ordering to the schedule row', () => {
   const data = freshData();
   delete data.actualResults.group_stage['Mexico__vs__South Africa'];

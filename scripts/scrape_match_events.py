@@ -37,7 +37,7 @@ TEAM_RENAMES = {
     "United States": "USA", "South Korea": "Korea Republic", "Türkiye": "Turkiye",
     "Turkey": "Turkiye", "Czech Republic": "Czechia", "Cape Verde": "Cabo Verde",
     "Ivory Coast": "Cote d'Ivoire", "IR Iran": "Iran", "Congo DR": "DR Congo",
-    "Bosnia & Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao",
+    "Bosnia & Herzegovina": "Bosnia and Herzegovina", "Bosnia-Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao",
 }
 
 # ESPN keyEvents type.text → our compact event type. Anything unmapped

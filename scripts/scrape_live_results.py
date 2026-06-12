@@ -37,6 +37,7 @@ TEAM_RENAMES = {
     "Ivory Coast":                      "Cote d'Ivoire",
     "Curaçao":                          "Curacao",
     "Bosnia & Herzegovina":             "Bosnia and Herzegovina",
+    "Bosnia-Herzegovina":               "Bosnia and Herzegovina",
     "Bosnia and Herzegovina":           "Bosnia and Herzegovina",
     "DR Congo":                         "DR Congo",
     "Congo DR":                         "DR Congo",

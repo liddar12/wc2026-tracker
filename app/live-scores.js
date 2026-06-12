@@ -21,9 +21,17 @@ const RENAMES = {
   'United States': 'USA', 'South Korea': 'Korea Republic', 'Türkiye': 'Turkiye',
   'Turkey': 'Turkiye', 'Czech Republic': 'Czechia', 'Cape Verde': 'Cabo Verde',
   'Ivory Coast': "Cote d'Ivoire", 'IR Iran': 'Iran', 'Congo DR': 'DR Congo',
-  'Bosnia & Herzegovina': 'Bosnia and Herzegovina', 'Curaçao': 'Curacao',
+  'Bosnia & Herzegovina': 'Bosnia and Herzegovina',
+  // ESPN's scoreboard uses the HYPHENATED form (verified live June 12) —
+  // without it the Canada–Bosnia game could never be matched.
+  'Bosnia-Herzegovina': 'Bosnia and Herzegovina',
+  'Curaçao': 'Curacao',
 };
-const norm = (n) => RENAMES[(n || '').trim()] || (n || '').trim();
+const norm = (n) => {
+  const t = (n || '').trim();
+  // exact rename → hyphen variant ("X-Y" ≈ "X and Y") → as-is
+  return RENAMES[t] || RENAMES[t.replace(/-/g, ' ')] || t;
+};
 
 const TIER_BY_STAGE = {
   group: 'group_stage', group_stage: 'group_stage',

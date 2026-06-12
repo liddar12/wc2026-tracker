@@ -166,7 +166,15 @@ const TIER_BY_STAGE = {
   third_place: 'third_place', final: 'final',
 };
 const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
-const LIVE_STATUSES = new Set(['STATUS_IN_PROGRESS', 'STATUS_HALFTIME', 'STATUS_END_PERIOD']);
+// ESPN soccer uses HALF-specific statuses live (verified June 12: a 26'-minute
+// game reports STATUS_FIRST_HALF, not STATUS_IN_PROGRESS) — missing them made
+// the lookup reject live records entirely (no score, no clock).
+const LIVE_STATUSES = new Set([
+  'STATUS_IN_PROGRESS', 'STATUS_FIRST_HALF', 'STATUS_SECOND_HALF',
+  'STATUS_HALFTIME', 'STATUS_END_PERIOD', 'STATUS_OVERTIME',
+  'STATUS_FIRST_HALF_EXTRA_TIME', 'STATUS_SECOND_HALF_EXTRA_TIME',
+  'STATUS_HALFTIME_ET', 'STATUS_SHOOTOUT',
+]);
 
 /**
  * Returns { actual: {score_a, score_b}, mode } for a schedule row, oriented to

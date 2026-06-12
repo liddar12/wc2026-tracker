@@ -38,6 +38,7 @@ TEAM_RENAMES = {
     "Cape Verde":                        "Cabo Verde",
     "Cabo Verde":                        "Cabo Verde",
     "Bosnia & Herzegovina":              "Bosnia and Herzegovina",
+    "Bosnia-Herzegovina":                "Bosnia and Herzegovina",
     "Bosnia and Herzegovina":            "Bosnia and Herzegovina",
     "Turkey":                            "Turkiye",
     "Türkiye":                           "Turkiye",
