@@ -1,24 +1,20 @@
 #!/usr/bin/env python3
-"""Starting lineups from ESPN's match-summary rosters → data/lineups.json.
+"""Per-match goals + cards from ESPN's summary keyEvents → data/match_events.json.
 
-REWRITE (June 11): the original scraped ESPN fixture HTML pages
-(window.espn.preloadedData), which never yielded data — lineups.json shipped
-as {} and the freshness panel showed "never". ESPN's public summary API
-exposes full rosters (jersey, position, starter flags, formation) per event,
-the same endpoint family the results/h2h scrapers already use.
+Powers the matchup-detail "Match events" timeline and the discipline panel
+(yellow/red cards this game + tournament totals per player).
 
-For each match in data/schedule_full.json kicking off within
-[now - 26h, now + 2h] (post-game backfill + the ~75-min-pre-kickoff window):
-  scoreboard(date) → event id by team-set → summary(event) → rosters.starters
+Window: matches kicking off within [now - 26h, now + 2h] — covers live games,
+same-day backfill, and never touches older matches (their events are final).
 
-Output (consumed by app/components/lineups.js — shape unchanged):
+Output:
   { "<A__vs__B>": {
-      "team_a": { "xi": ["Name", ...], "formation": "4-2-3-1" },
-      "team_b": { ... },
+      "events": [ { "minute": "9'", "type": "goal"|"own-goal"|"pen-goal"|
+                    "yellow"|"red", "player": "Name", "team": "Mexico" }, ... ],
       "updated_at": "ISO"
     }, ..., "__meta__": { "updated_at": "ISO", "source": "espn-summary" } }
 
-Failures leave existing data untouched; always exits 0.
+Failures keep existing data; always exits 0. Safe under continue-on-error.
 """
 from __future__ import annotations
 
@@ -43,10 +39,23 @@ TEAM_RENAMES = {
     "Ivory Coast": "Cote d'Ivoire", "IR Iran": "Iran", "Congo DR": "DR Congo",
     "Bosnia & Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao",
 }
+
+# ESPN keyEvents type.text → our compact event type. Anything unmapped
+# (Kickoff, Halftime, Substitution, Start Delay, …) is skipped.
+EVENT_TYPES = {
+    "Goal": "goal",
+    "Goal - Header": "goal",
+    "Goal - Free-kick": "goal",
+    "Goal - Volley": "goal",
+    "Own Goal": "own-goal",
+    "Penalty - Scored": "pen-goal",
+    "Yellow Card": "yellow",
+    "Red Card": "red",
+}
 _last = 0.0
 
 
-def log(m): print(f"[lineups] {m}", file=sys.stderr, flush=True)
+def log(m): print(f"[events] {m}", file=sys.stderr, flush=True)
 
 
 def norm(n):
@@ -77,24 +86,20 @@ def in_window(kick_iso, now):
     return now - timedelta(hours=WINDOW_BACK_H) <= k <= now + timedelta(hours=WINDOW_FWD_H)
 
 
-def starters_for(summary, want_team):
-    for block in summary.get("rosters") or []:
-        team = norm((block.get("team") or {}).get("displayName"))
-        if team != want_team:
+def events_from(summary):
+    out = []
+    for e in summary.get("keyEvents") or []:
+        raw = ((e.get("type") or {}).get("text") or "").strip()
+        kind = EVENT_TYPES.get(raw)
+        if not kind:
             continue
-        xi = []
-        for entry in block.get("roster") or []:
-            if not entry.get("starter"):
-                continue
-            name = (entry.get("athlete") or {}).get("displayName")
-            if name:
-                xi.append(name)
-        if xi:
-            side = {"xi": xi}
-            if block.get("formation"):
-                side["formation"] = block["formation"]
-            return side
-    return None
+        player = ((e.get("participants") or [{}])[0].get("athlete") or {}).get("displayName")
+        team = norm((e.get("team") or {}).get("displayName"))
+        minute = (e.get("clock") or {}).get("displayValue") or ""
+        if not player and not team:
+            continue
+        out.append({"minute": minute, "type": kind, "player": player or "", "team": team or ""})
+    return out
 
 
 def main():
@@ -108,13 +113,12 @@ def main():
         return 0
 
     try:
-        out = json.loads((DATA / "lineups.json").read_text())
+        out = json.loads((DATA / "match_events.json").read_text())
         if not isinstance(out, dict):
             out = {}
     except Exception:  # noqa: BLE001
         out = {}
 
-    # event ids by team-set, one scoreboard call per involved date
     event_by_pair = {}
     for d in sorted({str(m.get("kickoff_utc"))[:10].replace("-", "") for m in targets}):
         data = get(f"{SB}?dates={d}")
@@ -134,19 +138,16 @@ def main():
         s = get(f"{SUMMARY}?event={eid}")
         if not s:
             continue
-        side_a, side_b = starters_for(s, a), starters_for(s, b)
-        if not side_a and not side_b:
-            continue  # XIs not posted yet
-        out[f"{a}__vs__{b}"] = {
-            "team_a": side_a, "team_b": side_b,
-            "updated_at": now.isoformat(timespec="seconds"),
-        }
+        evs = events_from(s)
+        if not evs:
+            continue
+        out[f"{a}__vs__{b}"] = {"events": evs, "updated_at": now.isoformat(timespec="seconds")}
         updated += 1
 
     out.setdefault("__meta__", {})
     out["__meta__"].update({"updated_at": now.isoformat(timespec="seconds"), "source": "espn-summary"})
-    (DATA / "lineups.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n")
-    log(f"lineups: {updated}/{len(targets)} matches updated")
+    (DATA / "match_events.json").write_text(json.dumps(out, ensure_ascii=False, indent=2) + "\n")
+    log(f"events: {updated}/{len(targets)} matches updated")
     return 0
 
 

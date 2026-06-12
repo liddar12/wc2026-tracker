@@ -17,6 +17,8 @@ import { upsetBadges } from '../components/upset-badge.js';
 import { flagFor } from '../components/team-flag.js';
 import { whenWhereWatch } from '../components/when-where-watch.js';
 import { lineupsSection } from '../components/lineups.js';
+import { matchEventsSection } from '../components/match-events.js';
+import { actualForCard } from '../components/large-match-card.js';
 import { refereeSection } from '../components/referee.js';
 import { h2hSection } from '../components/h2h.js';
 import { formSection } from '../components/form.js';
@@ -71,13 +73,20 @@ export function renderMatchupDetail(root, data, params) {
   bodyWrap.appendChild(starRow);
   const teamsRow = document.createElement('div');
   teamsRow.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;';
+  // Real result (final or in-progress): show the score between the teams
+  // instead of a bare "vs" — the detail page previously never displayed it.
+  const found = actualForCard(data.actualResults, { stage: 'group', team_a: match.team_a, team_b: match.team_b });
+  const centre = found
+    ? `<span class="detail-score" data-testid="detail-score">${found.actual.score_a}&thinsp;–&thinsp;${found.actual.score_b}${
+        found.mode === 'final' ? '<small>FT</small>' : found.mode === 'live' ? '<small class="detail-score-live">LIVE</small>' : ''}</span>`
+    : '<span class="muted">vs</span>';
   teamsRow.innerHTML = `
-    <a class="team-link" href="#/team/name/${encodeURIComponent(match.team_a)}" style="display:flex;align-items:center;gap:8px;">
+    <a class="team-link" href="#/team/name/${encodeURIComponent(match.team_a)}" style="display:flex;align-items:center;gap:8px;" aria-label="${escapeHtml(match.team_a)} team page">
       <span class="flag" aria-hidden="true" style="font-size:32px;">${flagFor(match.team_a)}</span>
       <strong>${escapeHtml(match.team_a)}</strong>
     </a>
-    <span class="muted">vs</span>
-    <a class="team-link" href="#/team/name/${encodeURIComponent(match.team_b)}" style="display:flex;align-items:center;gap:8px;">
+    ${centre}
+    <a class="team-link team-link-rtl" href="#/team/name/${encodeURIComponent(match.team_b)}" style="display:flex;align-items:center;gap:8px;" aria-label="${escapeHtml(match.team_b)} team page">
       <strong>${escapeHtml(match.team_b)}</strong>
       <span class="flag" aria-hidden="true" style="font-size:32px;">${flagFor(match.team_b)}</span>
     </a>
@@ -148,6 +157,7 @@ export function renderMatchupDetail(root, data, params) {
   // Phase-2 sections (each renders gracefully when its data is missing).
   // whenWhereWatch moved to the top of the page (right under the group label).
   root.appendChild(lineupsSection(match, data.lineups));
+  root.appendChild(matchEventsSection(match, data.matchEvents));
   root.appendChild(refereeSection(match, data));
   root.appendChild(h2hSection(match, data.h2h));
   root.appendChild(formSection(match, data.form));

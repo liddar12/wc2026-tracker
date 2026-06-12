@@ -158,6 +158,10 @@ def main():
             applied += 1
         print(f"applied {applied} curated overrides")
 
+    # Freshness stamp — the home "Data freshness" panel reads
+    # teamColors.__meta__.updated_at (was missing → showed "never").
+    from datetime import datetime, timezone
+    out["__meta__"] = {"updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
     OUT_JSON.write_text(json.dumps(out, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
     print(f"\nwrote {len(out)} teams to {OUT_JSON}")
     print(f"failed: {len(failed)} ({', '.join(failed) if failed else 'none'})")

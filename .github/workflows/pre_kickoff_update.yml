@@ -65,6 +65,10 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_lineups.py
         continue-on-error: true
+      - name: Scrape match events (early cards/goals)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_match_events.py
+        continue-on-error: true
       - name: Scrape referees
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_referees.py

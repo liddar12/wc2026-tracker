@@ -41,7 +41,12 @@ const OPTIONAL_FILES = [
   // R16: DT Model site contract — team_rankings + title odds + players.
   { file: 'dt_model.json',       fallback: {} },
   // Hybrid forecast (⅓ J5L + ⅓ DT + ⅓ Kalshi): per-team round-reach + champion odds.
-  { file: 'forecast.json',       fallback: {} }
+  { file: 'forecast.json',       fallback: {} },
+  // Team kit colors (was only fetched ad-hoc by team-skin.js — loading it here
+  // gives the freshness popover a real timestamp instead of "never").
+  { file: 'team_colors.json',    fallback: {} },
+  // Per-match goals + cards timeline (ESPN summary keyEvents).
+  { file: 'match_events.json',   fallback: {} }
 ];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
@@ -149,6 +154,8 @@ function fileToKey(file) {
     case 'injuries.json':        return 'injuries';
     case 'dt_model.json':        return 'dtModel';
     case 'forecast.json':        return 'forecast';
+    case 'team_colors.json':     return 'teamColors';
+    case 'match_events.json':    return 'matchEvents';
     default: return file.replace('.json', '');
   }
 }
