@@ -70,7 +70,14 @@ function bootTable(contenders) {
   // their odds/projections rise with each goal (refreshed by the cron).
   const s = document.createElement('section');
   s.className = 'home-card'; s.style.marginBottom = '12px'; s.dataset.testid = 'gb-odds';
-  const top = contenders.slice(0, 20);
+  // Top 20 by odds PLUS every player who has actually scored (owner spec:
+  // all scorers must be on the list with their odds, even outside the top 20).
+  const top20 = contenders.slice(0, 20);
+  const shown = new Set(top20.map((c) => c.player));
+  const extraScorers = contenders
+    .filter((c) => c.currentGoals > 0 && !shown.has(c.player))
+    .sort((a, b) => b.currentGoals - a.currentGoals || (b.bootPct || 0) - (a.bootPct || 0));
+  const top = top20.concat(extraScorers);
   s.innerHTML = `
     <h2 class="home-card-title">Golden Boot odds</h2>
     <p class="muted" style="margin:0 0 10px; font-size:12px;">Prediction vs reality — win odds, goals scored so far, and the model's projected final total. Updates through the day.</p>

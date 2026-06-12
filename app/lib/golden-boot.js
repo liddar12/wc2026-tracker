@@ -142,18 +142,58 @@ export function buildContext(data, cfg = GB_CONFIG) {
   return { teams, leagueDef, expectedMatches, oppDefFactor, xgEnvFactor };
 }
 
-// ---- live goals lookup (defensive — scorers.json shape varies) --------------
+// ---- live goals lookup -------------------------------------------------------
+// Accent/punctuation-insensitive key so ESPN's "Julián Quiñones" credits the
+// squad list's "Julian Quinones" (and vice versa).
+export function normPlayerName(s) {
+  return String(s || '')
+    .normalize('NFD').replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]/gi, '')
+    .toLowerCase();
+}
+
+// Two sources, merged by normalized name taking the MAX (they count the SAME
+// tournament goals): scorers.json (ESPN team top-scorers — historically slow
+// to populate) and match_events.json goal events (live within ~15 min). The
+// events source is what guarantees today's scorers appear even when the
+// scorers feed is empty.
 export function liveGoalsByPlayer(data) {
-  const out = {};
+  const raw = {}; // normalized key → { name (first-seen raw), goals }
+  const credit = (name, goals) => {
+    const nk = normPlayerName(name);
+    if (!nk || !Number.isFinite(goals)) return;
+    if (!(nk in raw) || goals > raw[nk].goals) raw[nk] = { name: raw[nk]?.name || name, goals };
+  };
+
   const s = data?.scorers;
   if (Array.isArray(s)) {
-    for (const r of s) { const k = r?.player || r?.name; if (k) out[k] = (out[k] || 0) + (r.goals || 0); }
+    const acc = {};
+    for (const r of s) { const k = r?.player || r?.name; if (k) acc[k] = (acc[k] || 0) + (r.goals || 0); }
+    for (const [k, v] of Object.entries(acc)) credit(k, v);
   } else if (s && typeof s === 'object') {
     for (const [k, v] of Object.entries(s)) {
-      if (typeof v === 'number') out[k] = v;
-      else if (v && typeof v === 'object' && typeof v.goals === 'number') out[k] = v.goals;
+      if (k === '__meta__') continue;
+      if (typeof v === 'number') credit(k, v);
+      else if (v && typeof v === 'object' && typeof v.goals === 'number') credit(k, v.goals);
     }
   }
+
+  const me = data?.matchEvents;
+  if (me && typeof me === 'object') {
+    const acc = {};
+    for (const [k, rec] of Object.entries(me)) {
+      if (k === '__meta__' || !Array.isArray(rec?.events)) continue;
+      for (const e of rec.events) {
+        if ((e.type === 'goal' || e.type === 'pen-goal') && e.player) {
+          acc[e.player] = (acc[e.player] || 0) + 1;
+        }
+      }
+    }
+    for (const [k, v] of Object.entries(acc)) credit(k, v);
+  }
+
+  const out = {};
+  for (const { name, goals } of Object.values(raw)) out[name] = goals;
   return out;
 }
 
@@ -206,11 +246,56 @@ export function goldenBootProjections(data, opts = {}) {
   }
   const topNameByTeam = Object.fromEntries(Object.entries(topScorerByTeam).map(([t, v]) => [t, v.name]));
 
-  let contenders = players
-    .map((p) => projectPlayer(p, ctx, live, cfg, topNameByTeam))
+  // Re-key live goals to the squad list's canonical names (accent-insensitive)
+  // and keep any scorer who has no players.json entry at all.
+  const normToCanonical = {};
+  for (const p of players) {
+    const nk = normPlayerName(p.name);
+    if (nk && !(nk in normToCanonical)) normToCanonical[nk] = p.name;
+  }
+  const liveCanon = {};
+  const unmatchedScorers = [];
+  for (const [name, goals] of Object.entries(live)) {
+    const canon = normToCanonical[normPlayerName(name)];
+    if (canon) liveCanon[canon] = Math.max(liveCanon[canon] || 0, goals);
+    else if (goals > 0) unmatchedScorers.push({ name, goals });
+  }
+
+  const projected = players
+    .map((p) => projectPlayer(p, ctx, liveCanon, cfg, topNameByTeam))
     .filter(Boolean)
-    .sort((a, b) => b.projGoals - a.projGoals)
-    .slice(0, cfg.contenderPool);
+    .sort((a, b) => b.projGoals - a.projGoals);
+  let contenders = projected.slice(0, cfg.contenderPool);
+
+  // EVERY actual goal-scorer enters the field (and the Monte-Carlo) even if
+  // their projection fell outside the contender pool — real goals must always
+  // be on the board with real odds.
+  const inField = new Set(contenders.map((c) => c.player));
+  for (const c of projected.slice(cfg.contenderPool)) {
+    if (c.currentGoals > 0 && !inField.has(c.player)) { contenders.push(c); inField.add(c.player); }
+  }
+  // Scorers missing from the squad list entirely get a conservative synthetic
+  // projection so they still appear with honest (small) odds.
+  if (unmatchedScorers.length) {
+    const teamByScorer = {};
+    for (const [k, rec] of Object.entries(data?.matchEvents || {})) {
+      if (k === '__meta__' || !Array.isArray(rec?.events)) continue;
+      for (const e of rec.events) if (e.player && e.team) teamByScorer[normPlayerName(e.player)] = e.team;
+    }
+    for (const { name, goals } of unmatchedScorers) {
+      if (inField.has(name)) continue;
+      contenders.push({
+        player: name,
+        team: teamByScorer[normPlayerName(name)] || '',
+        position: 'FWD',
+        currentGoals: goals,
+        projRemaining: 1.2,
+        projGoals: goals + 1.2,
+        factors: { finishing: 0, deepRun: 2.5, oppDefense: 1, xgEnv: 1, setPiece: false, synthetic: true },
+      });
+      inField.add(name);
+    }
+  }
 
   // Monte-Carlo: each sim draws Poisson(projRemaining)+currentGoals; top scorer wins.
   const sims = opts.sims ?? cfg.sims;
