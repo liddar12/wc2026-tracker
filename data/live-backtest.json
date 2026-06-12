@@ -159,9 +159,31 @@
           0.291
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.83388,
+          "logloss": 1.36258
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.82667,
+          "logloss": 1.35518
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.84864,
+          "logloss": 1.29609
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.82771,
+          "logloss": 1.33712
+        }
+      },
+      "scored": true,
+      "actual_score": "1-1"
     },
     "USA__vs__Paraguay": {
       "match_number": 4,
@@ -169,7 +191,7 @@
       "team_a": "USA",
       "team_b": "Paraguay",
       "kickoff_utc": "2026-06-13T01:00:00Z",
-      "captured_at": "2026-06-12T20:31:55+00:00",
+      "captured_at": "2026-06-12T21:25:23+00:00",
       "preds": {
         "model": [
           0.821,
@@ -207,7 +229,7 @@
       "team_a": "Australia",
       "team_b": "Turkiye",
       "kickoff_utc": "2026-06-13T04:00:00Z",
-      "captured_at": "2026-06-12T20:31:55+00:00",
+      "captured_at": "2026-06-12T21:25:23+00:00",
       "preds": {
         "model": [
           0.128,
@@ -245,7 +267,7 @@
       "team_a": "Qatar",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-06-13T19:00:00Z",
-      "captured_at": "2026-06-12T20:31:55+00:00",
+      "captured_at": "2026-06-12T21:25:23+00:00",
       "preds": {
         "model": [
           0.016,
@@ -268,9 +290,9 @@
           0.8609
         ],
         "polymarket": [
-          0.0581,
-          0.1353,
-          0.8066
+          0.0591,
+          0.1351,
+          0.8058
         ]
       },
       "actual": null,
@@ -283,7 +305,7 @@
       "team_a": "Brazil",
       "team_b": "Morocco",
       "kickoff_utc": "2026-06-13T22:00:00Z",
-      "captured_at": "2026-06-12T20:31:55+00:00",
+      "captured_at": "2026-06-12T21:25:23+00:00",
       "preds": {
         "model": [
           0.329,
@@ -306,9 +328,9 @@
           0.254
         ],
         "polymarket": [
-          0.5879,
-          0.2462,
-          0.1658
+          0.5821,
+          0.2438,
+          0.1741
         ]
       },
       "actual": null,
@@ -321,7 +343,7 @@
       "team_a": "Haiti",
       "team_b": "Scotland",
       "kickoff_utc": "2026-06-14T01:00:00Z",
-      "captured_at": "2026-06-12T20:31:55+00:00",
+      "captured_at": "2026-06-12T21:25:23+00:00",
       "preds": {
         "model": [
           0.066,
@@ -354,29 +376,29 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-12T20:31:55+00:00",
+  "updated_at": "2026-06-12T21:25:23+00:00",
   "summary": {
-    "matches_scored": 2,
+    "matches_scored": 3,
     "model": {
       "correct": 2,
-      "total": 2,
+      "total": 3,
       "measured": true,
-      "brier": 0.2175,
-      "logloss": 0.4401
+      "brier": 0.423,
+      "logloss": 0.7476
     },
     "dt": {
       "correct": 1,
-      "total": 2,
+      "total": 3,
       "measured": true,
-      "brier": 0.4733,
-      "logloss": 0.824
+      "brier": 0.5911,
+      "logloss": 1.001
     },
     "market": {
       "correct": 2,
-      "total": 2,
+      "total": 3,
       "measured": true,
-      "brier": 0.3686,
-      "logloss": 0.6774
+      "brier": 0.5286,
+      "logloss": 0.8836
     },
     "polymarket": {
       "correct": 2,
@@ -387,10 +409,10 @@
     },
     "hybrid": {
       "correct": 2,
-      "total": 2,
+      "total": 3,
       "measured": true,
-      "brier": 0.3386,
-      "logloss": 0.6344
+      "brier": 0.5016,
+      "logloss": 0.8687
     }
   }
 }
