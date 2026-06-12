@@ -136,7 +136,7 @@
       "team_a": "Canada",
       "team_b": "Bosnia and Herzegovina",
       "kickoff_utc": "2026-06-12T19:00:00Z",
-      "captured_at": "2026-06-12T08:48:46+00:00",
+      "captured_at": "2026-06-12T11:14:52+00:00",
       "preds": {
         "model": [
           0.418,
@@ -169,7 +169,7 @@
       "team_a": "USA",
       "team_b": "Paraguay",
       "kickoff_utc": "2026-06-13T01:00:00Z",
-      "captured_at": "2026-06-12T08:48:46+00:00",
+      "captured_at": "2026-06-12T11:14:52+00:00",
       "preds": {
         "model": [
           0.821,
@@ -182,14 +182,14 @@
           0.2566
         ],
         "market": [
-          0.4872,
-          0.2821,
-          0.2308
+          0.4822,
+          0.2792,
+          0.2386
         ],
         "hybrid": [
-          0.6022,
-          0.2157,
-          0.1821
+          0.6005,
+          0.2147,
+          0.1847
         ],
         "polymarket": [
           0.468,
@@ -207,7 +207,7 @@
       "team_a": "Australia",
       "team_b": "Turkiye",
       "kickoff_utc": "2026-06-13T04:00:00Z",
-      "captured_at": "2026-06-12T08:48:46+00:00",
+      "captured_at": "2026-06-12T11:14:52+00:00",
       "preds": {
         "model": [
           0.128,
@@ -220,19 +220,19 @@
           0.6061
         ],
         "market": [
-          0.1741,
-          0.2537,
-          0.5721
-        ],
-        "hybrid": [
-          0.1599,
-          0.2187,
-          0.6214
-        ],
-        "polymarket": [
           0.1823,
           0.2512,
           0.5665
+        ],
+        "hybrid": [
+          0.1626,
+          0.2178,
+          0.6195
+        ],
+        "polymarket": [
+          0.1832,
+          0.2525,
+          0.5644
         ]
       },
       "actual": null,
@@ -245,7 +245,7 @@
       "team_a": "Qatar",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-06-13T19:00:00Z",
-      "captured_at": "2026-06-12T08:48:46+00:00",
+      "captured_at": "2026-06-12T11:14:52+00:00",
       "preds": {
         "model": [
           0.016,
@@ -276,9 +276,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Brazil__vs__Morocco": {
+      "match_number": 7,
+      "stage": "group",
+      "team_a": "Brazil",
+      "team_b": "Morocco",
+      "kickoff_utc": "2026-06-13T22:00:00Z",
+      "captured_at": "2026-06-12T11:14:52+00:00",
+      "preds": {
+        "model": [
+          0.329,
+          0.257,
+          0.414
+        ],
+        "dt": [
+          0.6116,
+          0.2144,
+          0.174
+        ],
+        "market": [
+          0.5821,
+          0.2438,
+          0.1741
+        ],
+        "hybrid": [
+          0.5076,
+          0.2384,
+          0.254
+        ],
+        "polymarket": [
+          0.592,
+          0.2438,
+          0.1642
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-12T08:48:46+00:00",
+  "updated_at": "2026-06-12T11:14:52+00:00",
   "summary": {
     "matches_scored": 2,
     "model": {

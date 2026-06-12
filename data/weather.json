@@ -1,5 +1,12 @@
 {
-  "azteca": {},
+  "azteca": {
+    "2026-06-18": {
+      "temp_c": 23.9,
+      "condition_code": 55,
+      "humidity_pct": 100,
+      "wind_kph": 20.9
+    }
+  },
   "akron": {},
   "sofi": {},
   "bc_place": {},
@@ -16,6 +23,6 @@
   "levis": {},
   "bbva": {},
   "__meta__": {
-    "updated_at": "2026-06-12T10:02:41+00:00"
+    "updated_at": "2026-06-12T11:14:45+00:00"
   }
 }
