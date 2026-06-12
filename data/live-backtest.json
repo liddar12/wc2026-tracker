@@ -136,7 +136,7 @@
       "team_a": "Canada",
       "team_b": "Bosnia and Herzegovina",
       "kickoff_utc": "2026-06-12T19:00:00Z",
-      "captured_at": "2026-06-12T12:15:49+00:00",
+      "captured_at": "2026-06-12T14:20:45+00:00",
       "preds": {
         "model": [
           0.418,
@@ -149,14 +149,14 @@
           0.3537
         ],
         "market": [
-          0.5369,
-          0.2611,
-          0.202
+          0.5377,
+          0.2663,
+          0.196
         ],
         "hybrid": [
-          0.4479,
-          0.2584,
-          0.2936
+          0.4482,
+          0.2602,
+          0.2916
         ]
       },
       "actual": null,
@@ -169,7 +169,7 @@
       "team_a": "USA",
       "team_b": "Paraguay",
       "kickoff_utc": "2026-06-13T01:00:00Z",
-      "captured_at": "2026-06-12T12:15:49+00:00",
+      "captured_at": "2026-06-12T14:20:45+00:00",
       "preds": {
         "model": [
           0.821,
@@ -182,13 +182,13 @@
           0.2566
         ],
         "market": [
-          0.4774,
-          0.2864,
+          0.4673,
+          0.2965,
           0.2362
         ],
         "hybrid": [
-          0.5989,
-          0.2171,
+          0.5956,
+          0.2205,
           0.1839
         ],
         "polymarket": [
@@ -207,7 +207,7 @@
       "team_a": "Australia",
       "team_b": "Turkiye",
       "kickoff_utc": "2026-06-13T04:00:00Z",
-      "captured_at": "2026-06-12T12:15:49+00:00",
+      "captured_at": "2026-06-12T14:20:45+00:00",
       "preds": {
         "model": [
           0.128,
@@ -245,7 +245,7 @@
       "team_a": "Qatar",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-06-13T19:00:00Z",
-      "captured_at": "2026-06-12T12:15:49+00:00",
+      "captured_at": "2026-06-12T14:20:45+00:00",
       "preds": {
         "model": [
           0.016,
@@ -283,7 +283,7 @@
       "team_a": "Brazil",
       "team_b": "Morocco",
       "kickoff_utc": "2026-06-13T22:00:00Z",
-      "captured_at": "2026-06-12T12:15:49+00:00",
+      "captured_at": "2026-06-12T14:20:45+00:00",
       "preds": {
         "model": [
           0.329,
@@ -314,9 +314,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Haiti__vs__Scotland": {
+      "match_number": 5,
+      "stage": "group",
+      "team_a": "Haiti",
+      "team_b": "Scotland",
+      "kickoff_utc": "2026-06-14T01:00:00Z",
+      "captured_at": "2026-06-12T14:20:45+00:00",
+      "preds": {
+        "model": [
+          0.066,
+          0.128,
+          0.806
+        ],
+        "dt": [
+          0.1758,
+          0.2153,
+          0.6088
+        ],
+        "market": [
+          0.1658,
+          0.2161,
+          0.6181
+        ],
+        "hybrid": [
+          0.1359,
+          0.1865,
+          0.6776
+        ],
+        "polymarket": [
+          0.1558,
+          0.2261,
+          0.6181
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-12T12:15:49+00:00",
+  "updated_at": "2026-06-12T14:20:45+00:00",
   "summary": {
     "matches_scored": 2,
     "model": {
