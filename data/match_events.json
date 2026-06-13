@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-13T00:13:43+00:00",
+    "updated_at": "2026-06-13T01:39:06+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -130,6 +130,29 @@
         "team": "Bosnia and Herzegovina"
       }
     ],
-    "updated_at": "2026-06-13T00:13:43+00:00"
+    "updated_at": "2026-06-13T01:39:06+00:00"
+  },
+  "USA__vs__Paraguay": {
+    "events": [
+      {
+        "minute": "7'",
+        "type": "own-goal",
+        "player": "Damián Bobadilla",
+        "team": "USA"
+      },
+      {
+        "minute": "10'",
+        "type": "yellow",
+        "player": "Juan Cáceres",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "31'",
+        "type": "goal",
+        "player": "Folarin Balogun",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-06-13T01:39:06+00:00"
   }
 }
