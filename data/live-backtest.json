@@ -294,7 +294,7 @@
       "team_a": "Qatar",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-06-13T19:00:00Z",
-      "captured_at": "2026-06-13T10:43:08+00:00",
+      "captured_at": "2026-06-13T12:07:35+00:00",
       "preds": {
         "model": [
           0.016,
@@ -307,19 +307,19 @@
           0.8457
         ],
         "market": [
-          0.0647,
+          0.0547,
           0.1343,
-          0.801
+          0.8109
         ],
         "hybrid": [
-          0.0431,
+          0.0397,
           0.096,
-          0.8609
+          0.8643
         ],
         "polymarket": [
-          0.0608,
-          0.1335,
-          0.8057
+          0.0589,
+          0.1337,
+          0.8073
         ]
       },
       "actual": null,
@@ -332,7 +332,7 @@
       "team_a": "Brazil",
       "team_b": "Morocco",
       "kickoff_utc": "2026-06-13T22:00:00Z",
-      "captured_at": "2026-06-13T10:43:08+00:00",
+      "captured_at": "2026-06-13T12:07:35+00:00",
       "preds": {
         "model": [
           0.329,
@@ -355,9 +355,9 @@
           0.2535
         ],
         "polymarket": [
-          0.5721,
-          0.2537,
-          0.1741
+          0.5779,
+          0.2563,
+          0.1658
         ]
       },
       "actual": null,
@@ -370,7 +370,7 @@
       "team_a": "Haiti",
       "team_b": "Scotland",
       "kickoff_utc": "2026-06-14T01:00:00Z",
-      "captured_at": "2026-06-13T10:43:08+00:00",
+      "captured_at": "2026-06-13T12:07:35+00:00",
       "preds": {
         "model": [
           0.066,
@@ -383,19 +383,19 @@
           0.6088
         ],
         "market": [
-          0.1642,
-          0.2139,
-          0.6219
+          0.1626,
+          0.2118,
+          0.6256
         ],
         "hybrid": [
-          0.1353,
-          0.1857,
-          0.6789
+          0.1348,
+          0.185,
+          0.6801
         ],
         "polymarket": [
-          0.1642,
-          0.2139,
-          0.6219
+          0.1626,
+          0.2118,
+          0.6256
         ]
       },
       "actual": null,
@@ -408,7 +408,7 @@
       "team_a": "Germany",
       "team_b": "Curacao",
       "kickoff_utc": "2026-06-14T17:00:00Z",
-      "captured_at": "2026-06-13T10:43:08+00:00",
+      "captured_at": "2026-06-13T12:07:35+00:00",
       "preds": {
         "model": [
           0.988,
@@ -431,9 +431,9 @@
           0.0212
         ],
         "polymarket": [
-          0.9372,
+          0.9382,
           0.0384,
-          0.0244
+          0.0234
         ]
       },
       "actual": null,
@@ -446,7 +446,7 @@
       "team_a": "Netherlands",
       "team_b": "Japan",
       "kickoff_utc": "2026-06-14T20:00:00Z",
-      "captured_at": "2026-06-13T10:43:08+00:00",
+      "captured_at": "2026-06-13T12:07:35+00:00",
       "preds": {
         "model": [
           0.571,
@@ -477,9 +477,42 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Cote d'Ivoire__vs__Ecuador": {
+      "match_number": 9,
+      "stage": "group",
+      "team_a": "Cote d'Ivoire",
+      "team_b": "Ecuador",
+      "kickoff_utc": "2026-06-14T23:00:00Z",
+      "captured_at": "2026-06-13T12:07:35+00:00",
+      "preds": {
+        "model": [
+          0.484,
+          0.248,
+          0.268
+        ],
+        "dt": [
+          0.2778,
+          0.2496,
+          0.4726
+        ],
+        "market": [
+          0.2709,
+          0.33,
+          0.399
+        ],
+        "hybrid": [
+          0.3442,
+          0.2759,
+          0.3799
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-13T10:43:08+00:00",
+  "updated_at": "2026-06-13T12:07:35+00:00",
   "summary": {
     "matches_scored": 4,
     "model": {
