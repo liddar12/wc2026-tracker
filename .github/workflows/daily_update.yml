@@ -60,6 +60,12 @@ jobs:
       - name: Scrape FIFA schedule
         run: python scripts/scrape_schedule.py
         continue-on-error: true
+      # ESPN is the authoritative kickoff-time source (scrape_schedule's FIFA
+      # feed is robots-blocked). This corrects any seed/feed date drift — it
+      # caught 3 group games dated 24h early on June 13.
+      - name: Reconcile kickoff times from ESPN
+        run: python scripts/reconcile_schedule.py
+        continue-on-error: true
       - name: Fill US broadcast / streaming per match
         run: python scripts/scrape_broadcast.py
         continue-on-error: true

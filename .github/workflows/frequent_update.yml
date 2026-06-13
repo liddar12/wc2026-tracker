@@ -63,6 +63,10 @@ jobs:
       - name: Refresh tournament schedule from open feed
         run: python scripts/scrape_schedule.py
         continue-on-error: true
+      # Authoritative kickoff-time correction from ESPN (hourly self-heal).
+      - name: Reconcile kickoff times from ESPN
+        run: python scripts/reconcile_schedule.py
+        continue-on-error: true
       - name: Fill US broadcast / streaming per match
         run: python scripts/scrape_broadcast.py
         continue-on-error: true
