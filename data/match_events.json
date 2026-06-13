@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-13T01:39:06+00:00",
+    "updated_at": "2026-06-13T04:51:49+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -130,7 +130,7 @@
         "team": "Bosnia and Herzegovina"
       }
     ],
-    "updated_at": "2026-06-13T01:39:06+00:00"
+    "updated_at": "2026-06-13T04:51:49+00:00"
   },
   "USA__vs__Paraguay": {
     "events": [
@@ -143,7 +143,7 @@
       {
         "minute": "10'",
         "type": "yellow",
-        "player": "Juan Cáceres",
+        "player": "Juan Jose Cáceres",
         "team": "Paraguay"
       },
       {
@@ -151,8 +151,56 @@
         "type": "goal",
         "player": "Folarin Balogun",
         "team": "USA"
+      },
+      {
+        "minute": "45'+5'",
+        "type": "goal",
+        "player": "Folarin Balogun",
+        "team": "USA"
+      },
+      {
+        "minute": "53'",
+        "type": "yellow",
+        "player": "Miguel Almirón",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "59'",
+        "type": "yellow",
+        "player": "Tyler Adams",
+        "team": "USA"
+      },
+      {
+        "minute": "73'",
+        "type": "goal",
+        "player": "Maurício",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "79'",
+        "type": "yellow",
+        "player": "Diego Gómez",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "88'",
+        "type": "yellow",
+        "player": "Alex Arce",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Júnior Alonso",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "90'+8'",
+        "type": "goal",
+        "player": "Giovanni Reyna",
+        "team": "USA"
       }
     ],
-    "updated_at": "2026-06-13T01:39:06+00:00"
+    "updated_at": "2026-06-13T04:51:49+00:00"
   }
 }
