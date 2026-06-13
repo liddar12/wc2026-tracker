@@ -294,7 +294,7 @@
       "team_a": "Qatar",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-06-13T19:00:00Z",
-      "captured_at": "2026-06-13T06:37:36+00:00",
+      "captured_at": "2026-06-13T08:16:47+00:00",
       "preds": {
         "model": [
           0.016,
@@ -317,9 +317,9 @@
           0.8609
         ],
         "polymarket": [
-          0.0614,
-          0.1348,
-          0.8038
+          0.058,
+          0.1339,
+          0.8081
         ]
       },
       "actual": null,
@@ -332,7 +332,7 @@
       "team_a": "Brazil",
       "team_b": "Morocco",
       "kickoff_utc": "2026-06-13T22:00:00Z",
-      "captured_at": "2026-06-13T06:37:36+00:00",
+      "captured_at": "2026-06-13T08:16:47+00:00",
       "preds": {
         "model": [
           0.329,
@@ -355,9 +355,9 @@
           0.2529
         ],
         "polymarket": [
-          0.5764,
-          0.2512,
-          0.1724
+          0.5721,
+          0.2537,
+          0.1741
         ]
       },
       "actual": null,
@@ -370,7 +370,7 @@
       "team_a": "Haiti",
       "team_b": "Scotland",
       "kickoff_utc": "2026-06-14T01:00:00Z",
-      "captured_at": "2026-06-13T06:37:36+00:00",
+      "captured_at": "2026-06-13T08:16:47+00:00",
       "preds": {
         "model": [
           0.066,
@@ -393,8 +393,8 @@
           0.6789
         ],
         "polymarket": [
-          0.1542,
-          0.2239,
+          0.1642,
+          0.2139,
           0.6219
         ]
       },
@@ -408,7 +408,7 @@
       "team_a": "Germany",
       "team_b": "Curacao",
       "kickoff_utc": "2026-06-14T17:00:00Z",
-      "captured_at": "2026-06-13T06:37:36+00:00",
+      "captured_at": "2026-06-13T08:16:47+00:00",
       "preds": {
         "model": [
           0.988,
@@ -431,9 +431,47 @@
           0.0212
         ],
         "polymarket": [
-          0.9358,
-          0.0398,
+          0.9367,
+          0.0389,
           0.0244
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Netherlands__vs__Japan": {
+      "match_number": 11,
+      "stage": "group",
+      "team_a": "Netherlands",
+      "team_b": "Japan",
+      "kickoff_utc": "2026-06-14T20:00:00Z",
+      "captured_at": "2026-06-13T08:16:47+00:00",
+      "preds": {
+        "model": [
+          0.571,
+          0.227,
+          0.202
+        ],
+        "dt": [
+          0.5577,
+          0.2309,
+          0.2114
+        ],
+        "market": [
+          0.4826,
+          0.2637,
+          0.2537
+        ],
+        "hybrid": [
+          0.5371,
+          0.2405,
+          0.2224
+        ],
+        "polymarket": [
+          0.4774,
+          0.2663,
+          0.2563
         ]
       },
       "actual": null,
@@ -441,7 +479,7 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-13T06:37:36+00:00",
+  "updated_at": "2026-06-13T08:16:47+00:00",
   "summary": {
     "matches_scored": 4,
     "model": {
