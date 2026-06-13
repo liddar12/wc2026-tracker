@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-12T10:02:40+00:00",
+    "updated_at": "2026-06-13T08:51:48+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -37,6 +37,13 @@
   ],
   "USA__vs__Paraguay": [
     {
+      "date": "2026-06-13",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 4,
+      "score_b": 1,
+      "winner": "USA"
+    },
+    {
       "date": "2025-11-15",
       "comp": "2025 International Friendly",
       "score_a": 2,
@@ -62,13 +69,6 @@
       "comp": "International Friendly",
       "score_a": 0,
       "score_b": 1,
-      "winner": "Paraguay"
-    },
-    {
-      "date": "2007-07-02",
-      "comp": "2007 Copa America",
-      "score_a": 1,
-      "score_b": 3,
       "winner": "Paraguay"
     }
   ],
@@ -656,6 +656,24 @@
       "score_a": 0,
       "score_b": 2,
       "winner": "Austria"
+    }
+  ],
+  "Switzerland__vs__Bosnia and Herzegovina": [
+    {
+      "date": "2016-03-29",
+      "comp": "International Friendly",
+      "score_a": 0,
+      "score_b": 2,
+      "winner": "Bosnia and Herzegovina"
+    }
+  ],
+  "Bosnia and Herzegovina__vs__Qatar": [
+    {
+      "date": "2010-08-10",
+      "comp": "International Friendly",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
     }
   ]
 }
