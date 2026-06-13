@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-13T22:44:25+00:00",
+    "updated_at": "2026-06-13T23:48:03+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -236,7 +236,7 @@
         "team": "Qatar"
       }
     ],
-    "updated_at": "2026-06-13T22:44:25+00:00"
+    "updated_at": "2026-06-13T23:48:03+00:00"
   },
   "Brazil__vs__Morocco": {
     "events": [
@@ -245,8 +245,26 @@
         "type": "goal",
         "player": "Ismael Saibari",
         "team": "Morocco"
+      },
+      {
+        "minute": "32'",
+        "type": "goal",
+        "player": "Vinícius Júnior",
+        "team": "Brazil"
+      },
+      {
+        "minute": "37'",
+        "type": "yellow",
+        "player": "Casemiro",
+        "team": "Brazil"
+      },
+      {
+        "minute": "43'",
+        "type": "yellow",
+        "player": "Roger Ibañez",
+        "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-13T22:35:24+00:00"
+    "updated_at": "2026-06-13T23:48:03+00:00"
   }
 }
