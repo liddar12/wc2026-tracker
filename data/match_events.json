@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-14T22:59:40+00:00",
+    "updated_at": "2026-06-14T23:42:32+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -265,7 +265,7 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-14T22:59:40+00:00"
+    "updated_at": "2026-06-14T23:42:32+00:00"
   },
   "Haiti__vs__Scotland": {
     "events": [
@@ -300,7 +300,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-14T22:59:40+00:00"
+    "updated_at": "2026-06-14T23:42:32+00:00"
   },
   "Australia__vs__Turkiye": {
     "events": [
@@ -323,7 +323,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-14T22:59:40+00:00"
+    "updated_at": "2026-06-14T23:42:32+00:00"
   },
   "Germany__vs__Curacao": {
     "events": [
@@ -376,7 +376,7 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-14T22:59:40+00:00"
+    "updated_at": "2026-06-14T23:42:32+00:00"
   },
   "Netherlands__vs__Japan": {
     "events": [
@@ -411,7 +411,7 @@
         "team": "Netherlands"
       },
       {
-        "minute": "88'",
+        "minute": "89'",
         "type": "goal",
         "player": "Daichi Kamada",
         "team": "Japan"
@@ -423,6 +423,23 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-14T22:59:40+00:00"
+    "updated_at": "2026-06-14T23:42:32+00:00"
+  },
+  "Cote d'Ivoire__vs__Ecuador": {
+    "events": [
+      {
+        "minute": "28'",
+        "type": "yellow",
+        "player": "Seko Fofana",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "38'",
+        "type": "yellow",
+        "player": "Franck Kessié",
+        "team": "Cote d'Ivoire"
+      }
+    ],
+    "updated_at": "2026-06-14T23:42:32+00:00"
   }
 }
