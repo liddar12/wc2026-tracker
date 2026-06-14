@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-14T02:44:01+00:00",
+    "updated_at": "2026-06-14T07:02:45+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -236,7 +236,7 @@
         "team": "Qatar"
       }
     ],
-    "updated_at": "2026-06-14T02:44:01+00:00"
+    "updated_at": "2026-06-14T07:02:45+00:00"
   },
   "Brazil__vs__Morocco": {
     "events": [
@@ -265,7 +265,7 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-14T02:44:01+00:00"
+    "updated_at": "2026-06-14T07:02:45+00:00"
   },
   "Haiti__vs__Scotland": {
     "events": [
@@ -286,8 +286,43 @@
         "type": "yellow",
         "player": "Aaron Hickey",
         "team": "Scotland"
+      },
+      {
+        "minute": "90'+1'",
+        "type": "yellow",
+        "player": "Findlay Curtis",
+        "team": "Scotland"
+      },
+      {
+        "minute": "90'+5'",
+        "type": "yellow",
+        "player": "Kenny McLean",
+        "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-14T02:44:01+00:00"
+    "updated_at": "2026-06-14T07:02:45+00:00"
+  },
+  "Australia__vs__Turkiye": {
+    "events": [
+      {
+        "minute": "27'",
+        "type": "goal",
+        "player": "Nestory Irankunda",
+        "team": "Australia"
+      },
+      {
+        "minute": "75'",
+        "type": "goal",
+        "player": "Connor Metcalfe",
+        "team": "Australia"
+      },
+      {
+        "minute": "86'",
+        "type": "yellow",
+        "player": "Yunus Akgün",
+        "team": "Turkiye"
+      }
+    ],
+    "updated_at": "2026-06-14T07:02:45+00:00"
   }
 }
