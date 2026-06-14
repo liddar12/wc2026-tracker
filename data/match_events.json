@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-14T20:19:40+00:00",
+    "updated_at": "2026-06-14T21:42:58+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -265,7 +265,7 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-14T20:19:40+00:00"
+    "updated_at": "2026-06-14T21:42:58+00:00"
   },
   "Haiti__vs__Scotland": {
     "events": [
@@ -300,7 +300,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-14T20:19:40+00:00"
+    "updated_at": "2026-06-14T21:42:58+00:00"
   },
   "Australia__vs__Turkiye": {
     "events": [
@@ -323,7 +323,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-14T20:19:40+00:00"
+    "updated_at": "2026-06-14T21:42:58+00:00"
   },
   "Germany__vs__Curacao": {
     "events": [
@@ -376,6 +376,41 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-14T20:19:40+00:00"
+    "updated_at": "2026-06-14T21:42:58+00:00"
+  },
+  "Netherlands__vs__Japan": {
+    "events": [
+      {
+        "minute": "51'",
+        "type": "goal",
+        "player": "Virgil van Dijk",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "57'",
+        "type": "goal",
+        "player": "Keito Nakamura",
+        "team": "Japan"
+      },
+      {
+        "minute": "61'",
+        "type": "yellow",
+        "player": "Crysencio Summerville",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "64'",
+        "type": "goal",
+        "player": "Crysencio Summerville",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "83'",
+        "type": "yellow",
+        "player": "Memphis Depay",
+        "team": "Netherlands"
+      }
+    ],
+    "updated_at": "2026-06-14T21:42:58+00:00"
   }
 }
