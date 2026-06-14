@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-14T21:42:58+00:00",
+    "updated_at": "2026-06-14T21:49:03+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -265,7 +265,7 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-14T21:42:58+00:00"
+    "updated_at": "2026-06-14T21:49:03+00:00"
   },
   "Haiti__vs__Scotland": {
     "events": [
@@ -300,7 +300,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-14T21:42:58+00:00"
+    "updated_at": "2026-06-14T21:49:03+00:00"
   },
   "Australia__vs__Turkiye": {
     "events": [
@@ -323,7 +323,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-14T21:42:58+00:00"
+    "updated_at": "2026-06-14T21:49:03+00:00"
   },
   "Germany__vs__Curacao": {
     "events": [
@@ -376,7 +376,7 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-14T21:42:58+00:00"
+    "updated_at": "2026-06-14T21:49:03+00:00"
   },
   "Netherlands__vs__Japan": {
     "events": [
@@ -409,8 +409,14 @@
         "type": "yellow",
         "player": "Memphis Depay",
         "team": "Netherlands"
+      },
+      {
+        "minute": "88'",
+        "type": "goal",
+        "player": "Daichi Kamada",
+        "team": "Japan"
       }
     ],
-    "updated_at": "2026-06-14T21:42:58+00:00"
+    "updated_at": "2026-06-14T21:49:03+00:00"
   }
 }
