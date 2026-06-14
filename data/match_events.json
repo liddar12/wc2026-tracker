@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-14T00:19:22+00:00",
+    "updated_at": "2026-06-14T01:41:51+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -236,7 +236,7 @@
         "team": "Qatar"
       }
     ],
-    "updated_at": "2026-06-14T00:19:22+00:00"
+    "updated_at": "2026-06-14T01:41:51+00:00"
   },
   "Brazil__vs__Morocco": {
     "events": [
@@ -265,6 +265,23 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-14T00:19:22+00:00"
+    "updated_at": "2026-06-14T01:41:51+00:00"
+  },
+  "Haiti__vs__Scotland": {
+    "events": [
+      {
+        "minute": "28'",
+        "type": "goal",
+        "player": "John McGinn",
+        "team": "Scotland"
+      },
+      {
+        "minute": "39'",
+        "type": "yellow",
+        "player": "Jean-Ricner Bellegarde",
+        "team": "Haiti"
+      }
+    ],
+    "updated_at": "2026-06-14T01:41:51+00:00"
   }
 }
