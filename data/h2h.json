@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-13T08:51:48+00:00",
+    "updated_at": "2026-06-14T09:24:45+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -73,6 +73,13 @@
     }
   ],
   "Australia__vs__Turkiye": [
+    {
+      "date": "2026-06-14",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 2,
+      "score_b": 0,
+      "winner": "Australia"
+    },
     {
       "date": "2004-05-24",
       "comp": "International Friendly",
@@ -674,6 +681,15 @@
       "score_a": 1,
       "score_b": 1,
       "winner": "draw"
+    }
+  ],
+  "Haiti__vs__Scotland": [
+    {
+      "date": "2026-06-14",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Scotland"
     }
   ]
 }
