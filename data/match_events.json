@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-15T02:06:49+00:00",
+    "updated_at": "2026-06-15T05:29:20+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -323,7 +323,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-15T02:06:49+00:00"
+    "updated_at": "2026-06-15T05:29:20+00:00"
   },
   "Germany__vs__Curacao": {
     "events": [
@@ -376,7 +376,7 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-15T02:06:49+00:00"
+    "updated_at": "2026-06-15T05:29:20+00:00"
   },
   "Netherlands__vs__Japan": {
     "events": [
@@ -423,7 +423,7 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-15T02:06:49+00:00"
+    "updated_at": "2026-06-15T05:29:20+00:00"
   },
   "Cote d'Ivoire__vs__Ecuador": {
     "events": [
@@ -458,6 +458,53 @@
         "team": "Cote d'Ivoire"
       }
     ],
-    "updated_at": "2026-06-15T02:06:49+00:00"
+    "updated_at": "2026-06-15T05:29:20+00:00"
+  },
+  "Sweden__vs__Tunisia": {
+    "events": [
+      {
+        "minute": "7'",
+        "type": "goal",
+        "player": "Yasin Ayari",
+        "team": "Sweden"
+      },
+      {
+        "minute": "30'",
+        "type": "goal",
+        "player": "Alexander Isak",
+        "team": "Sweden"
+      },
+      {
+        "minute": "43'",
+        "type": "goal",
+        "player": "Omar Rekik",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "54'",
+        "type": "yellow",
+        "player": "Rani Khedira",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "59'",
+        "type": "goal",
+        "player": "Viktor Gyökeres",
+        "team": "Sweden"
+      },
+      {
+        "minute": "84'",
+        "type": "goal",
+        "player": "Mattias Svanberg",
+        "team": "Sweden"
+      },
+      {
+        "minute": "90'+6'",
+        "type": "goal",
+        "player": "Yasin Ayari",
+        "team": "Sweden"
+      }
+    ],
+    "updated_at": "2026-06-15T05:29:20+00:00"
   }
 }
