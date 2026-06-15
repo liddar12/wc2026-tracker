@@ -58,7 +58,7 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-06-14T23:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_SECOND_HALF"
     },
     "Sweden__vs__Tunisia": {
       "score_a": 0,
@@ -113,6 +113,36 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-17T01:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Austria__vs__Jordan": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-17T04:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Portugal__vs__DR Congo": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-17T17:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "England__vs__Croatia": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-17T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Ghana__vs__Panama": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-17T23:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Uzbekistan__vs__Colombia": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-18T02:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -121,5 +151,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-14T22:59:40+00:00"
+  "last_updated": "2026-06-15T00:14:54+00:00"
 }
