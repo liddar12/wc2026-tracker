@@ -79,16 +79,16 @@
       "status": "STATUS_FULL_TIME"
     },
     "Belgium__vs__Egypt": {
-      "score_a": 0,
+      "score_a": 1,
       "score_b": 1,
       "kickoff_utc": "2026-06-15T19:00Z",
-      "status": "STATUS_HALFTIME"
+      "status": "STATUS_FULL_TIME"
     },
     "Saudi Arabia__vs__Uruguay": {
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-06-15T22:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Iran__vs__New Zealand": {
       "score_a": 0,
@@ -151,5 +151,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-15T20:01:56+00:00"
+  "last_updated": "2026-06-15T22:27:52+00:00"
 }
