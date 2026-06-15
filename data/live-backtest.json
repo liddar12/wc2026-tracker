@@ -804,7 +804,7 @@
       "team_a": "Belgium",
       "team_b": "Egypt",
       "kickoff_utc": "2026-06-15T19:00:00Z",
-      "captured_at": "2026-06-15T12:48:11+00:00",
+      "captured_at": "2026-06-15T16:28:15+00:00",
       "preds": {
         "model": [
           0.758,
@@ -842,7 +842,7 @@
       "team_a": "Saudi Arabia",
       "team_b": "Uruguay",
       "kickoff_utc": "2026-06-15T22:00:00Z",
-      "captured_at": "2026-06-15T12:48:11+00:00",
+      "captured_at": "2026-06-15T16:28:15+00:00",
       "preds": {
         "model": [
           0.071,
@@ -865,9 +865,9 @@
           0.7404
         ],
         "polymarket": [
-          0.1133,
-          0.2217,
-          0.665
+          0.1144,
+          0.2139,
+          0.6716
         ]
       },
       "actual": null,
@@ -880,7 +880,7 @@
       "team_a": "Iran",
       "team_b": "New Zealand",
       "kickoff_utc": "2026-06-16T01:00:00Z",
-      "captured_at": "2026-06-15T12:48:11+00:00",
+      "captured_at": "2026-06-15T16:28:15+00:00",
       "preds": {
         "model": [
           0.694,
@@ -903,9 +903,9 @@
           0.2463
         ],
         "polymarket": [
-          0.5224,
-          0.2836,
-          0.194
+          0.5377,
+          0.2764,
+          0.1859
         ]
       },
       "actual": null,
@@ -918,7 +918,7 @@
       "team_a": "France",
       "team_b": "Senegal",
       "kickoff_utc": "2026-06-16T19:00:00Z",
-      "captured_at": "2026-06-15T12:48:11+00:00",
+      "captured_at": "2026-06-15T16:28:15+00:00",
       "preds": {
         "model": [
           0.761,
@@ -956,7 +956,7 @@
       "team_a": "Iraq",
       "team_b": "Norway",
       "kickoff_utc": "2026-06-16T22:00:00Z",
-      "captured_at": "2026-06-15T12:48:11+00:00",
+      "captured_at": "2026-06-15T16:28:15+00:00",
       "preds": {
         "model": [
           0.002,
@@ -987,9 +987,85 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Austria__vs__Jordan": {
+      "match_number": 20,
+      "stage": "group",
+      "team_a": "Austria",
+      "team_b": "Jordan",
+      "kickoff_utc": "2026-06-17T04:00:00Z",
+      "captured_at": "2026-06-15T16:28:15+00:00",
+      "preds": {
+        "model": [
+          0.934,
+          0.05,
+          0.016
+        ],
+        "dt": [
+          0.7169,
+          0.1727,
+          0.1105
+        ],
+        "market": [
+          0.7214,
+          0.1741,
+          0.1045
+        ],
+        "hybrid": [
+          0.7908,
+          0.1323,
+          0.077
+        ],
+        "polymarket": [
+          0.7286,
+          0.1759,
+          0.0955
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Argentina__vs__Algeria": {
+      "match_number": 19,
+      "stage": "group",
+      "team_a": "Argentina",
+      "team_b": "Algeria",
+      "kickoff_utc": "2026-06-17T01:00:00Z",
+      "captured_at": "2026-06-15T16:28:15+00:00",
+      "preds": {
+        "model": [
+          0.854,
+          0.101,
+          0.045
+        ],
+        "dt": [
+          0.8498,
+          0.1033,
+          0.0468
+        ],
+        "market": [
+          0.6946,
+          0.202,
+          0.1034
+        ],
+        "hybrid": [
+          0.7995,
+          0.1354,
+          0.0651
+        ],
+        "polymarket": [
+          0.7015,
+          0.204,
+          0.0945
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-15T12:48:11+00:00",
+  "updated_at": "2026-06-15T16:28:15+00:00",
   "summary": {
     "matches_scored": 12,
     "model": {
