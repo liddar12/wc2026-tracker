@@ -35,7 +35,7 @@
     "updated_at": "2026-06-12T20:31:46+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-15T00:14:59+00:00",
+    "updated_at": "2026-06-15T02:06:44+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -281,7 +281,7 @@
       ],
       "formation": "4-2-3-1"
     },
-    "updated_at": "2026-06-15T00:14:59+00:00"
+    "updated_at": "2026-06-15T02:06:44+00:00"
   },
   "Germany__vs__Curacao": {
     "team_a": {
@@ -316,7 +316,7 @@
       ],
       "formation": "4-3-1-2"
     },
-    "updated_at": "2026-06-15T00:14:59+00:00"
+    "updated_at": "2026-06-15T02:06:44+00:00"
   },
   "Netherlands__vs__Japan": {
     "team_a": {
@@ -351,7 +351,7 @@
       ],
       "formation": "3-4-2-1"
     },
-    "updated_at": "2026-06-15T00:14:59+00:00"
+    "updated_at": "2026-06-15T02:06:44+00:00"
   },
   "Cote d'Ivoire__vs__Ecuador": {
     "team_a": {
@@ -373,19 +373,54 @@
     "team_b": {
       "xi": [
         "Hernán Galíndez",
-        "Joel Ordóñez",
         "Willian Pacho",
+        "Joel Ordóñez",
+        "Piero Hincapié",
         "Alan Franco",
         "Pedro Vite",
         "Moisés Caicedo",
-        "Piero Hincapié",
+        "Alan Minda",
         "John Yeboah",
         "Enner Valencia",
-        "Alan Minda",
         "Gonzalo Plata"
       ],
-      "formation": "3-4-2-1"
+      "formation": "4-4-2"
     },
-    "updated_at": "2026-06-15T00:14:59+00:00"
+    "updated_at": "2026-06-15T02:06:44+00:00"
+  },
+  "Sweden__vs__Tunisia": {
+    "team_a": {
+      "xi": [
+        "Kristoffer Nordfeldt",
+        "Isak Hien",
+        "Victor Lindelöf",
+        "Gustaf Lagerbielke",
+        "Yasin Ayari",
+        "Jesper Karlström",
+        "Benjamin Nygren",
+        "Gabriel Gudmundsson",
+        "Alexander Bernhardsson",
+        "Alexander Isak",
+        "Viktor Gyökeres"
+      ],
+      "formation": "3-4-1-2"
+    },
+    "team_b": {
+      "xi": [
+        "Mouhib Chamakh",
+        "Montassar Talbi",
+        "Omar Rekik",
+        "Mohamed Amine Ben Hamida",
+        "Yan Valery",
+        "Hannibal Mejbri",
+        "Ellyes Skhiri",
+        "Rani Khedira",
+        "Elias Saad",
+        "Ali Abdi",
+        "Anis Slimane"
+      ],
+      "formation": "4-2-3-1"
+    },
+    "updated_at": "2026-06-15T02:06:44+00:00"
   }
 }

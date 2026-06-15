@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-15T00:14:55+00:00",
+    "updated_at": "2026-06-15T02:06:49+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -323,7 +323,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-15T00:14:55+00:00"
+    "updated_at": "2026-06-15T02:06:49+00:00"
   },
   "Germany__vs__Curacao": {
     "events": [
@@ -376,7 +376,7 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-15T00:14:55+00:00"
+    "updated_at": "2026-06-15T02:06:49+00:00"
   },
   "Netherlands__vs__Japan": {
     "events": [
@@ -423,7 +423,7 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-15T00:14:55+00:00"
+    "updated_at": "2026-06-15T02:06:49+00:00"
   },
   "Cote d'Ivoire__vs__Ecuador": {
     "events": [
@@ -444,8 +444,20 @@
         "type": "yellow",
         "player": "Guela Doué",
         "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "73'",
+        "type": "yellow",
+        "player": "Jackson Porozo",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "90'",
+        "type": "goal",
+        "player": "Amad Diallo",
+        "team": "Cote d'Ivoire"
       }
     ],
-    "updated_at": "2026-06-15T00:14:55+00:00"
+    "updated_at": "2026-06-15T02:06:49+00:00"
   }
 }
