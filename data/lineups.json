@@ -35,7 +35,7 @@
     "updated_at": "2026-06-12T20:31:46+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-16T19:01:06+00:00",
+    "updated_at": "2026-06-16T21:24:18+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -526,7 +526,7 @@
       ],
       "formation": "4-2-3-1"
     },
-    "updated_at": "2026-06-16T19:01:06+00:00"
+    "updated_at": "2026-06-16T21:24:18+00:00"
   },
   "Iran__vs__New Zealand": {
     "team_a": {
@@ -561,14 +561,14 @@
       ],
       "formation": "4-2-3-1"
     },
-    "updated_at": "2026-06-16T19:01:06+00:00"
+    "updated_at": "2026-06-16T21:24:18+00:00"
   },
   "France__vs__Senegal": {
     "team_a": {
       "xi": [
         "Mike Maignan",
-        "Dayot Upamecano",
         "William Saliba",
+        "Dayot Upamecano",
         "Theo Hernández",
         "Jules Koundé",
         "Ousmane Dembélé",
@@ -587,15 +587,50 @@
         "Kalidou Koulibaly",
         "El Hadji Malick Diouf",
         "Krépin Diatta",
-        "Idrissa Gueye",
-        "Pape Gueye",
         "Lamine Camara",
+        "Pape Gueye",
+        "Idrissa Gueye",
         "Nicolas Jackson",
         "Sadio Mané",
         "Ismaïla Sarr"
       ],
+      "formation": "4-2-3-1"
+    },
+    "updated_at": "2026-06-16T21:24:18+00:00"
+  },
+  "Iraq__vs__Norway": {
+    "team_a": {
+      "xi": [
+        "Jalal Hassan",
+        "Zaid Tahseen",
+        "Akam Hashim",
+        "Merchas Doski",
+        "Hussein Ali",
+        "Amir Al-Ammari",
+        "Ibrahim Bayesh",
+        "Zaid Ismael",
+        "Ali Jasim",
+        "Ali Al-Hamadi",
+        "Aymen Hussein"
+      ],
+      "formation": "4-4-2"
+    },
+    "team_b": {
+      "xi": [
+        "Ørjan Nyland",
+        "Kristoffer Ajer",
+        "Julian Ryerson",
+        "David Møller Wolfe",
+        "Torbjørn Heggem",
+        "Martin Ødegaard",
+        "Sander Berge",
+        "Fredrik Aursnes",
+        "Erling Haaland",
+        "Alexander Sørloth",
+        "Antonio Nusa"
+      ],
       "formation": "4-3-3"
     },
-    "updated_at": "2026-06-16T19:01:06+00:00"
+    "updated_at": "2026-06-16T21:24:18+00:00"
   }
 }
