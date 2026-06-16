@@ -46,12 +46,17 @@ function etDate(d = new Date()) {
   return et.toISOString().slice(0, 10).replace(/-/g, '');
 }
 
-/** Fetch today's live board → { 'A__vs__B' (canonical, unordered match):
- *  { teams:{name:score}, status, minute } } */
-export async function fetchEspnLive() {
-  const res = await fetch(`${SCOREBOARD}?dates=${etDate()}`, { cache: 'no-store' });
-  if (!res.ok) throw new Error(`espn ${res.status}`);
-  const data = await res.json();
+// Phase 1 real-time read path (docs/REALTIME_ARCHITECTURE.md): when a Vercel
+// `/api/live` endpoint URL is configured, the client reads the normalized,
+// edge-cached board from there instead of hitting ESPN per-user. Default OFF
+// (empty) → unchanged direct-ESPN behavior. The cutover is a one-line set of
+// window.__WC26_LIVE_API_URL in the shell — deploy of the function and the
+// flip stay independent and instantly reversible.
+const LIVE_API_URL = (typeof window !== 'undefined' && window.__WC26_LIVE_API_URL) || '';
+
+/** ESPN scoreboard JSON → [{ teams:{name:score}, status, minute }]. Shared by
+ *  the direct-ESPN path and (mirrored) by the Vercel function. */
+function parseScoreboard(data) {
   const out = [];
   for (const ev of data?.events || []) {
     const comp = (ev.competitions || [])[0] || {};
@@ -75,6 +80,29 @@ export async function fetchEspnLive() {
     });
   }
   return out;
+}
+
+async function fetchEspnDirect() {
+  const res = await fetch(`${SCOREBOARD}?dates=${etDate()}`, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`espn ${res.status}`);
+  return parseScoreboard(await res.json());
+}
+
+/** Fetch the live board. Prefers the configured Vercel `/api/live` endpoint
+ *  (normalized + edge-cached); on ANY failure falls back to direct ESPN so a
+ *  backend hiccup never blanks scores. Returns
+ *  [{ teams:{name:score}, status, minute }]. */
+export async function fetchEspnLive() {
+  if (LIVE_API_URL) {
+    try {
+      const res = await fetch(LIVE_API_URL, { cache: 'no-store' });
+      if (res.ok) {
+        const json = await res.json();
+        if (Array.isArray(json?.board)) return json.board;
+      }
+    } catch { /* fall through to direct ESPN */ }
+  }
+  return fetchEspnDirect();
 }
 
 /** Merge the live board into data.actualResults IN PLACE (display overlay).

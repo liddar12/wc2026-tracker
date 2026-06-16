@@ -1,0 +1,7 @@
+{
+  "name": "wc26-live",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "WC26 Tracker real-time live-score read API (Vercel Edge). Phase 1 of docs/REALTIME_ARCHITECTURE.md — read-through proxy over ESPN, edge-cached. Deploy with Root Directory = live-api; Netlify ignores this folder."
+}

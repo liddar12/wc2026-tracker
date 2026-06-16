@@ -93,12 +93,34 @@ def canonical_z(dt):
     return dt.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def build_espn_map(days_back, days_fwd):
-    """{frozenset(canonical names): espn_iso_kickoff}."""
+def target_dates(rows, days_fwd):
+    """ESPN scoreboard dates to fetch (YYYYMMDD), derived from the schedule's OWN
+    real-team match days within [tournament-start-ish .. now+days_fwd]. Deriving
+    from the schedule (not a fixed rolling window) keeps reconcile authoritative
+    over ALREADY-PLAYED games too — scrape_schedule.py re-clobbers kickoff times
+    from its backup feed every run, and a fixed back-window stopped re-correcting
+    games once they were >1 day old (Australia–Türkiye regressed this way)."""
     now = datetime.now(timezone.utc)
+    horizon = now + timedelta(days=days_fwd)
+    floor = now - timedelta(days=400)  # all of "the past"; far-future placeholders excluded by horizon
+    dates = set()
+    for m in rows or []:
+        if is_placeholder(m.get("team_a")) or is_placeholder(m.get("team_b")):
+            continue
+        dt = parse_instant(m.get("kickoff_utc"))
+        if not dt or dt > horizon or dt < floor:
+            continue
+        # ESPN buckets by US/Eastern day; include the kickoff's UTC day and the
+        # day before so late-UTC (evening-ET) games are always covered.
+        for off in (0, -1):
+            dates.add((dt + timedelta(days=off)).strftime("%Y%m%d"))
+    return sorted(dates)
+
+
+def build_espn_map(rows, days_fwd):
+    """{frozenset(canonical names): espn_iso_kickoff}."""
     out = {}
-    for off in range(-days_back, days_fwd + 1):
-        d = (now + timedelta(days=off)).strftime("%Y%m%d")
+    for d in target_dates(rows, days_fwd):
         data = get(f"{SB}?dates={d}")
         for ev in (data or {}).get("events", []):
             comp = (ev.get("competitions") or [{}])[0]
@@ -140,7 +162,7 @@ def main(days_back=DAYS_BACK, days_fwd=DAYS_FWD):
     if not isinstance(rows, list):
         log("schedule_full.json is not a list; aborting safely")
         return 0
-    espn = build_espn_map(days_back, days_fwd)
+    espn = build_espn_map(rows, days_fwd)
     if not espn:
         log("no ESPN fixtures fetched; leaving schedule untouched")
         return 0
