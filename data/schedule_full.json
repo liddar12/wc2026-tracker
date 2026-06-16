@@ -104,12 +104,12 @@
     "venue_timezone": "America/Vancouver",
     "broadcast": {
       "us": {
-        "english_channel": "FOX / FS1 \u00b7 stream Tubi (free)",
-        "spanish_channel": "Telemundo / Universo \u00b7 stream Peacock",
-        "stream_url": "https://tubitv.com/",
+        "english_channel": "FS1",
+        "spanish_channel": "Telemundo \u00b7 Peacock",
+        "stream_url": "https://www.peacocktv.com/",
         "english_stream": "Tubi (free), Fox Sports app",
         "spanish_stream": "Peacock, Telemundo app",
-        "source": "default-rights"
+        "source": "espn"
       }
     },
     "group": "D"
