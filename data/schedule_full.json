@@ -97,19 +97,19 @@
     "stage": "group",
     "team_a": "Australia",
     "team_b": "Turkiye",
-    "kickoff_utc": "2026-06-14T04:00:00Z",
+    "kickoff_utc": "2026-06-13T04:00:00Z",
     "kickoff_local_et": "2026-06-13T00:00:00-04:00",
     "kickoff_local_venue": "2026-06-12T21:00:00-07:00",
     "venue_id": "bc_place",
     "venue_timezone": "America/Vancouver",
     "broadcast": {
       "us": {
-        "english_channel": "FS1",
-        "spanish_channel": "Telemundo \u00b7 Peacock",
-        "stream_url": "https://www.peacocktv.com/",
+        "english_channel": "FOX / FS1 \u00b7 stream Tubi (free)",
+        "spanish_channel": "Telemundo / Universo \u00b7 stream Peacock",
+        "stream_url": "https://tubitv.com/",
         "english_stream": "Tubi (free), Fox Sports app",
         "spanish_stream": "Peacock, Telemundo app",
-        "source": "espn"
+        "source": "default-rights"
       }
     },
     "group": "D"
