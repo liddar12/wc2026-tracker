@@ -71,6 +71,14 @@ jobs:
         run: python scripts/scrape_broadcast.py
         continue-on-error: true
 
+      # Live results FLOOR: GitHub throttles the */15 live_update cron hard
+      # (it fired only ~every 3-5h on June 16), so final scores lagged hours.
+      # Running the results scrape here too means the canonical feed is at most
+      # ~1h stale even when */15 is dropped entirely. Idempotent + status-gated.
+      - name: Scrape live results (reliable hourly floor)
+        run: python scripts/scrape_live_results.py
+        continue-on-error: true
+
       # ---- Volatile market + venue data (Kalshi, weather, lineups) ----
       - name: Scrape Kalshi tournament-winner markets
         run: python scripts/scrape_kalshi.py

@@ -82,6 +82,12 @@ jobs:
         run: python scripts/scrape_weather.py
         continue-on-error: true
 
+      # Live results: refresh here too so the daily run also reconciles scores
+      # (defense-in-depth against */15 live_update throttling).
+      - name: Scrape live results
+        run: python scripts/scrape_live_results.py
+        continue-on-error: true
+
       # ---- Composite + analytics rebuild (must succeed) ----
       # Kalshi FIRST: build_hybrid blends markets.json, so the scrape must
       # precede the model rebuilds (was after them — the 06:00 hybrid was

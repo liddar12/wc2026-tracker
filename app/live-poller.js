@@ -10,7 +10,12 @@ import { fetchEspnLive, mergeLiveScores } from './live-scores.js';
 
 const POLL_INTERVAL_MS = 30 * 1000;   // 30s during live windows
 const FULL_REFRESH_EVERY = 5;         // full data refetch every 5th tick (2.5 min)
-const LIVE_WINDOW_MS = 2 * 3600 * 1000;
+// 3.5h (was 2h): a 90-min match + halftime + stoppage runs ~1h50m, and ESPN
+// posts FULL_TIME a bit later — plus fans check the score well after the final
+// whistle. The 2h window stopped polling before a just-finished game's final
+// merged (France–Senegal: viewed 2h40m post-kickoff, still showed 0-0 because
+// the throttled */15 cron hadn't committed and the client had stopped polling).
+const LIVE_WINDOW_MS = 3.5 * 3600 * 1000;
 let intervalId = null;
 let currentData = null;
 let tickCount = 0;
