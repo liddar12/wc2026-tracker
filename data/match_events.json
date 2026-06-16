@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-16T21:47:20+00:00",
+    "updated_at": "2026-06-16T23:18:07+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -586,7 +586,7 @@
         "team": "Uruguay"
       }
     ],
-    "updated_at": "2026-06-16T21:47:20+00:00"
+    "updated_at": "2026-06-16T23:18:07+00:00"
   },
   "Iran__vs__New Zealand": {
     "events": [
@@ -621,7 +621,7 @@
         "team": "Iran"
       }
     ],
-    "updated_at": "2026-06-16T21:47:20+00:00"
+    "updated_at": "2026-06-16T23:18:07+00:00"
   },
   "France__vs__Senegal": {
     "events": [
@@ -650,6 +650,29 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-16T21:47:20+00:00"
+    "updated_at": "2026-06-16T23:18:07+00:00"
+  },
+  "Iraq__vs__Norway": {
+    "events": [
+      {
+        "minute": "29'",
+        "type": "goal",
+        "player": "Erling Haaland",
+        "team": "Norway"
+      },
+      {
+        "minute": "39'",
+        "type": "goal",
+        "player": "Aymen Hussein",
+        "team": "Iraq"
+      },
+      {
+        "minute": "43'",
+        "type": "goal",
+        "player": "Erling Haaland",
+        "team": "Norway"
+      }
+    ],
+    "updated_at": "2026-06-16T23:18:07+00:00"
   }
 }
