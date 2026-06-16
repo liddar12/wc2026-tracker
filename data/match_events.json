@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-16T00:10:30+00:00",
+    "updated_at": "2026-06-16T05:29:42+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -522,7 +522,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-06-16T00:10:30+00:00"
+    "updated_at": "2026-06-16T05:29:42+00:00"
   },
   "Belgium__vs__Egypt": {
     "events": [
@@ -539,7 +539,7 @@
         "team": "Belgium"
       },
       {
-        "minute": "19'",
+        "minute": "20'",
         "type": "goal",
         "player": "Emam Ashour",
         "team": "Egypt"
@@ -563,7 +563,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-06-16T00:10:30+00:00"
+    "updated_at": "2026-06-16T05:29:42+00:00"
   },
   "Saudi Arabia__vs__Uruguay": {
     "events": [
@@ -586,6 +586,41 @@
         "team": "Uruguay"
       }
     ],
-    "updated_at": "2026-06-16T00:10:30+00:00"
+    "updated_at": "2026-06-16T05:29:42+00:00"
+  },
+  "Iran__vs__New Zealand": {
+    "events": [
+      {
+        "minute": "7'",
+        "type": "goal",
+        "player": "Elijah Just",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "32'",
+        "type": "goal",
+        "player": "Ramin Rezaeian",
+        "team": "Iran"
+      },
+      {
+        "minute": "54'",
+        "type": "goal",
+        "player": "Elijah Just",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "64'",
+        "type": "goal",
+        "player": "Mohammad Mohebbi",
+        "team": "Iran"
+      },
+      {
+        "minute": "89'",
+        "type": "yellow",
+        "player": "Ehsan Hajsafi",
+        "team": "Iran"
+      }
+    ],
+    "updated_at": "2026-06-16T05:29:42+00:00"
   }
 }
