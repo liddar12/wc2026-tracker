@@ -85,10 +85,10 @@
       "status": "STATUS_FULL_TIME"
     },
     "Saudi Arabia__vs__Uruguay": {
-      "score_a": 0,
-      "score_b": 0,
+      "score_a": 1,
+      "score_b": 1,
       "kickoff_utc": "2026-06-15T22:00Z",
-      "status": "STATUS_FIRST_HALF"
+      "status": "STATUS_FULL_TIME"
     },
     "Iran__vs__New Zealand": {
       "score_a": 0,
@@ -143,6 +143,30 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-18T02:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Czechia__vs__South Africa": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-18T16:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Switzerland__vs__Bosnia and Herzegovina": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-18T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Canada__vs__Qatar": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-18T22:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Mexico__vs__Korea Republic": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-19T01:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -151,5 +175,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-15T22:27:52+00:00"
+  "last_updated": "2026-06-16T00:10:28+00:00"
 }

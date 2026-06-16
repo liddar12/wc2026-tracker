@@ -924,9 +924,36 @@
           0.6716
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 1.3837,
+          "logloss": 2.00248
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 1.31643,
+          "logloss": 1.90046
+        },
+        "market": {
+          "correct": 0,
+          "brier": 1.05327,
+          "logloss": 1.49656
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 1.24606,
+          "logloss": 1.7749
+        },
+        "polymarket": {
+          "correct": 0,
+          "brier": 1.08209,
+          "logloss": 1.54225
+        }
+      },
+      "scored": true,
+      "actual_score": "1-1"
     },
     "Iran__vs__New Zealand": {
       "match_number": 15,
@@ -934,7 +961,7 @@
       "team_a": "Iran",
       "team_b": "New Zealand",
       "kickoff_utc": "2026-06-16T01:00:00Z",
-      "captured_at": "2026-06-16T00:07:13+00:00",
+      "captured_at": "2026-06-16T00:10:44+00:00",
       "preds": {
         "model": [
           0.694,
@@ -972,7 +999,7 @@
       "team_a": "France",
       "team_b": "Senegal",
       "kickoff_utc": "2026-06-16T19:00:00Z",
-      "captured_at": "2026-06-16T00:07:13+00:00",
+      "captured_at": "2026-06-16T00:10:44+00:00",
       "preds": {
         "model": [
           0.761,
@@ -1010,7 +1037,7 @@
       "team_a": "Iraq",
       "team_b": "Norway",
       "kickoff_utc": "2026-06-16T22:00:00Z",
-      "captured_at": "2026-06-16T00:07:13+00:00",
+      "captured_at": "2026-06-16T00:10:44+00:00",
       "preds": {
         "model": [
           0.002,
@@ -1048,7 +1075,7 @@
       "team_a": "Austria",
       "team_b": "Jordan",
       "kickoff_utc": "2026-06-17T04:00:00Z",
-      "captured_at": "2026-06-16T00:07:13+00:00",
+      "captured_at": "2026-06-16T00:10:44+00:00",
       "preds": {
         "model": [
           0.934,
@@ -1086,7 +1113,7 @@
       "team_a": "Argentina",
       "team_b": "Algeria",
       "kickoff_utc": "2026-06-17T01:00:00Z",
-      "captured_at": "2026-06-16T00:07:13+00:00",
+      "captured_at": "2026-06-16T00:10:44+00:00",
       "preds": {
         "model": [
           0.854,
@@ -1119,43 +1146,43 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-16T00:07:13+00:00",
+  "updated_at": "2026-06-16T00:10:44+00:00",
   "summary": {
-    "matches_scored": 14,
+    "matches_scored": 15,
     "model": {
       "correct": 7,
-      "total": 14,
+      "total": 15,
       "measured": true,
-      "brier": 0.7256,
-      "logloss": 1.3751
+      "brier": 0.7695,
+      "logloss": 1.417
     },
     "dt": {
       "correct": 5,
-      "total": 14,
+      "total": 15,
       "measured": true,
-      "brier": 0.7822,
-      "logloss": 1.3005
+      "brier": 0.8178,
+      "logloss": 1.3405
     },
     "market": {
       "correct": 6,
-      "total": 14,
+      "total": 15,
       "measured": true,
-      "brier": 0.7352,
-      "logloss": 1.182
+      "brier": 0.7564,
+      "logloss": 1.2029
     },
     "polymarket": {
       "correct": 6,
-      "total": 12,
+      "total": 13,
       "measured": true,
-      "brier": 0.7251,
-      "logloss": 1.1761
+      "brier": 0.7526,
+      "logloss": 1.2043
     },
     "hybrid": {
       "correct": 6,
-      "total": 14,
+      "total": 15,
       "measured": true,
-      "brier": 0.7361,
-      "logloss": 1.2341
+      "brier": 0.7701,
+      "logloss": 1.2701
     }
   }
 }
