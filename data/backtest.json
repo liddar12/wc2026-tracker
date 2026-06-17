@@ -61,43 +61,43 @@
     "note": "All rows are estimates \u2014 Polymarket ran no per-match WC 2022 markets and its winner market is too thin to have price history, so even the market leg can't be measured here."
   },
   "live2026": {
-    "generated_at": "2026-06-16T23:53:30+00:00",
-    "note": "17 matches scored live. Pre-kickoff predictions locked from all models + markets, scored on the regulation result.",
-    "matches_scored": 17,
+    "generated_at": "2026-06-17T01:59:14+00:00",
+    "note": "18 matches scored live. Pre-kickoff predictions locked from all models + markets, scored on the regulation result.",
+    "matches_scored": 18,
     "model": {
-      "correct": 8,
-      "total": 17,
+      "correct": 9,
+      "total": 18,
       "measured": true,
-      "brier": 0.7526,
-      "logloss": 1.3662
+      "brier": 0.7108,
+      "logloss": 1.2909
     },
     "dt": {
-      "correct": 6,
-      "total": 17,
+      "correct": 7,
+      "total": 18,
       "measured": true,
-      "brier": 0.7813,
-      "logloss": 1.2852
+      "brier": 0.7394,
+      "logloss": 1.2217
     },
     "market": {
-      "correct": 7,
-      "total": 17,
+      "correct": 8,
+      "total": 18,
       "measured": true,
-      "brier": 0.7266,
-      "logloss": 1.1659
+      "brier": 0.6899,
+      "logloss": 1.114
     },
     "polymarket": {
-      "correct": 7,
-      "total": 15,
+      "correct": 8,
+      "total": 16,
       "measured": true,
-      "brier": 0.7205,
-      "logloss": 1.1576
+      "brier": 0.6798,
+      "logloss": 1.0999
     },
     "hybrid": {
-      "correct": 7,
-      "total": 17,
+      "correct": 8,
+      "total": 18,
       "measured": true,
-      "brier": 0.7418,
-      "logloss": 1.2276
+      "brier": 0.7018,
+      "logloss": 1.1663
     }
   }
 }

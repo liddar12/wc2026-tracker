@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-16T23:57:12+00:00",
+    "updated_at": "2026-06-17T01:59:06+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -650,7 +650,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-16T23:57:12+00:00"
+    "updated_at": "2026-06-17T01:59:06+00:00"
   },
   "Iraq__vs__Norway": {
     "events": [
@@ -683,8 +683,25 @@
         "type": "yellow",
         "player": "Zaid Tahseen",
         "team": "Iraq"
+      },
+      {
+        "minute": "90'+6'",
+        "type": "own-goal",
+        "player": "Aymen Hussein",
+        "team": "Norway"
       }
     ],
-    "updated_at": "2026-06-16T23:57:12+00:00"
+    "updated_at": "2026-06-17T01:59:06+00:00"
+  },
+  "Argentina__vs__Algeria": {
+    "events": [
+      {
+        "minute": "17'",
+        "type": "goal",
+        "player": "Lionel Messi",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-06-17T01:59:06+00:00"
   }
 }
