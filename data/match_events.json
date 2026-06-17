@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-17T03:58:48+00:00",
+    "updated_at": "2026-06-17T05:22:20+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -650,7 +650,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-17T03:58:48+00:00"
+    "updated_at": "2026-06-17T05:22:20+00:00"
   },
   "Iraq__vs__Norway": {
     "events": [
@@ -691,7 +691,7 @@
         "team": "Norway"
       }
     ],
-    "updated_at": "2026-06-17T03:58:48+00:00"
+    "updated_at": "2026-06-17T05:22:20+00:00"
   },
   "Argentina__vs__Algeria": {
     "events": [
@@ -714,6 +714,23 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-17T03:58:48+00:00"
+    "updated_at": "2026-06-17T05:22:20+00:00"
+  },
+  "Austria__vs__Jordan": {
+    "events": [
+      {
+        "minute": "20'",
+        "type": "goal",
+        "player": "Romano Schmid",
+        "team": "Austria"
+      },
+      {
+        "minute": "50'",
+        "type": "goal",
+        "player": "Ali Olwan",
+        "team": "Jordan"
+      }
+    ],
+    "updated_at": "2026-06-17T05:22:20+00:00"
   }
 }
