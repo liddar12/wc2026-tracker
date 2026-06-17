@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-17T20:29:20+00:00",
+    "updated_at": "2026-06-17T21:23:43+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -691,7 +691,7 @@
         "team": "Norway"
       }
     ],
-    "updated_at": "2026-06-17T20:29:20+00:00"
+    "updated_at": "2026-06-17T21:23:43+00:00"
   },
   "Argentina__vs__Algeria": {
     "events": [
@@ -714,7 +714,7 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-17T20:29:20+00:00"
+    "updated_at": "2026-06-17T21:23:43+00:00"
   },
   "Austria__vs__Jordan": {
     "events": [
@@ -749,7 +749,7 @@
         "team": "Austria"
       }
     ],
-    "updated_at": "2026-06-17T20:29:20+00:00"
+    "updated_at": "2026-06-17T21:23:43+00:00"
   },
   "Portugal__vs__DR Congo": {
     "events": [
@@ -790,7 +790,7 @@
         "team": "Portugal"
       }
     ],
-    "updated_at": "2026-06-17T20:29:20+00:00"
+    "updated_at": "2026-06-17T21:23:43+00:00"
   },
   "England__vs__Croatia": {
     "events": [
@@ -799,8 +799,32 @@
         "type": "pen-goal",
         "player": "Harry Kane",
         "team": "England"
+      },
+      {
+        "minute": "36'",
+        "type": "goal",
+        "player": "Martin Baturina",
+        "team": "Croatia"
+      },
+      {
+        "minute": "42'",
+        "type": "goal",
+        "player": "Harry Kane",
+        "team": "England"
+      },
+      {
+        "minute": "45'+5'",
+        "type": "goal",
+        "player": "Petar Musa",
+        "team": "Croatia"
+      },
+      {
+        "minute": "47'",
+        "type": "goal",
+        "player": "Jude Bellingham",
+        "team": "England"
       }
     ],
-    "updated_at": "2026-06-17T20:29:20+00:00"
+    "updated_at": "2026-06-17T21:23:43+00:00"
   }
 }
