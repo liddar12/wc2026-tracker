@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-18T20:43:29+00:00",
+    "updated_at": "2026-06-18T21:08:16+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -831,7 +831,7 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-06-18T20:43:29+00:00"
+    "updated_at": "2026-06-18T21:08:16+00:00"
   },
   "Ghana__vs__Panama": {
     "events": [
@@ -860,7 +860,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-18T20:43:29+00:00"
+    "updated_at": "2026-06-18T21:08:16+00:00"
   },
   "Uzbekistan__vs__Colombia": {
     "events": [
@@ -901,7 +901,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-18T20:43:29+00:00"
+    "updated_at": "2026-06-18T21:08:16+00:00"
   },
   "Czechia__vs__South Africa": {
     "events": [
@@ -936,7 +936,7 @@
         "team": "South Africa"
       }
     ],
-    "updated_at": "2026-06-18T20:43:29+00:00"
+    "updated_at": "2026-06-18T21:08:16+00:00"
   },
   "Switzerland__vs__Bosnia and Herzegovina": {
     "events": [
@@ -969,8 +969,32 @@
         "type": "red",
         "player": "Tarik Muharemovic",
         "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "84'",
+        "type": "goal",
+        "player": "Rubén Vargas",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "90'",
+        "type": "goal",
+        "player": "Johan Manzambi",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "goal",
+        "player": "Ermin Mahmic",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "90'+7'",
+        "type": "pen-goal",
+        "player": "Granit Xhaka",
+        "team": "Switzerland"
       }
     ],
-    "updated_at": "2026-06-18T20:43:29+00:00"
+    "updated_at": "2026-06-18T21:08:16+00:00"
   }
 }
