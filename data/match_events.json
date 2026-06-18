@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-18T02:43:22+00:00",
+    "updated_at": "2026-06-18T05:07:49+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -749,7 +749,7 @@
         "team": "Austria"
       }
     ],
-    "updated_at": "2026-06-18T02:43:22+00:00"
+    "updated_at": "2026-06-18T05:07:49+00:00"
   },
   "Portugal__vs__DR Congo": {
     "events": [
@@ -790,7 +790,7 @@
         "team": "Portugal"
       }
     ],
-    "updated_at": "2026-06-18T02:43:22+00:00"
+    "updated_at": "2026-06-18T05:07:49+00:00"
   },
   "England__vs__Croatia": {
     "events": [
@@ -831,7 +831,7 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-06-18T02:43:22+00:00"
+    "updated_at": "2026-06-18T05:07:49+00:00"
   },
   "Ghana__vs__Panama": {
     "events": [
@@ -860,7 +860,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-18T02:43:22+00:00"
+    "updated_at": "2026-06-18T05:07:49+00:00"
   },
   "Uzbekistan__vs__Colombia": {
     "events": [
@@ -881,8 +881,26 @@
         "type": "goal",
         "player": "Daniel Muñoz",
         "team": "Colombia"
+      },
+      {
+        "minute": "60'",
+        "type": "goal",
+        "player": "Abbosbek Fayzullaev",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "65'",
+        "type": "goal",
+        "player": "Luis Díaz",
+        "team": "Colombia"
+      },
+      {
+        "minute": "90'+9'",
+        "type": "goal",
+        "player": "Jáminton Campaz",
+        "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-18T02:43:22+00:00"
+    "updated_at": "2026-06-18T05:07:49+00:00"
   }
 }
