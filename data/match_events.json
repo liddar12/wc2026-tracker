@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-18T17:34:46+00:00",
+    "updated_at": "2026-06-18T17:47:14+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -790,7 +790,7 @@
         "team": "Portugal"
       }
     ],
-    "updated_at": "2026-06-18T17:34:46+00:00"
+    "updated_at": "2026-06-18T17:47:14+00:00"
   },
   "England__vs__Croatia": {
     "events": [
@@ -831,7 +831,7 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-06-18T17:34:46+00:00"
+    "updated_at": "2026-06-18T17:47:14+00:00"
   },
   "Ghana__vs__Panama": {
     "events": [
@@ -860,7 +860,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-18T17:34:46+00:00"
+    "updated_at": "2026-06-18T17:47:14+00:00"
   },
   "Uzbekistan__vs__Colombia": {
     "events": [
@@ -901,7 +901,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-18T17:34:46+00:00"
+    "updated_at": "2026-06-18T17:47:14+00:00"
   },
   "Czechia__vs__South Africa": {
     "events": [
@@ -922,8 +922,20 @@
         "type": "yellow",
         "player": "Thalente Mbatha",
         "team": "South Africa"
+      },
+      {
+        "minute": "75'",
+        "type": "yellow",
+        "player": "Ladislav Krejcí",
+        "team": "Czechia"
+      },
+      {
+        "minute": "83'",
+        "type": "pen-goal",
+        "player": "Teboho Mokoena",
+        "team": "South Africa"
       }
     ],
-    "updated_at": "2026-06-18T17:34:46+00:00"
+    "updated_at": "2026-06-18T17:47:14+00:00"
   }
 }
