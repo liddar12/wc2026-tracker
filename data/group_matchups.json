@@ -1242,8 +1242,8 @@
         "composite_b": 58.7,
         "gap": 11.1,
         "probabilities": {
-          "team_a_wins": 83.7,
-          "draw": 10.9,
+          "team_a_wins": 83.4,
+          "draw": 11.2,
           "team_b_wins": 5.4
         },
         "expected_points": {
@@ -1251,7 +1251,7 @@
           "team_b": 0.27
         },
         "predicted_winner": "Ecuador",
-        "win_confidence_pct": 83.7,
+        "win_confidence_pct": 83.4,
         "upset_risk": {
           "favored": "Ecuador",
           "underdog": "Curacao",
@@ -2258,16 +2258,16 @@
         "composite_b": 81.2,
         "gap": 4.9,
         "probabilities": {
-          "team_a_wins": 26.2,
-          "draw": 24.7,
-          "team_b_wins": 49.1
+          "team_a_wins": 26.1,
+          "draw": 24.6,
+          "team_b_wins": 49.3
         },
         "expected_points": {
           "team_a": 1.03,
           "team_b": 1.72
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 49.1,
+        "win_confidence_pct": 49.3,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Senegal",
@@ -2413,7 +2413,7 @@
         "composite_b": 71.3,
         "gap": 13.0,
         "probabilities": {
-          "team_a_wins": 87.4,
+          "team_a_wins": 87.5,
           "draw": 8.8,
           "team_b_wins": 3.8
         },
@@ -2422,7 +2422,7 @@
           "team_b": 0.2
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 87.4,
+        "win_confidence_pct": 87.5,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Algeria",
@@ -2697,7 +2697,7 @@
         "gap": 17.7,
         "probabilities": {
           "team_a_wins": 79.1,
-          "draw": 12.9,
+          "draw": 13.0,
           "team_b_wins": 8.0
         },
         "expected_points": {
@@ -2889,7 +2889,7 @@
           "team_b_wins": 76.5
         },
         "expected_points": {
-          "team_a": 0.41,
+          "team_a": 0.4,
           "team_b": 2.45
         },
         "predicted_winner": "Colombia",
