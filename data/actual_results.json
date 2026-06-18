@@ -133,16 +133,16 @@
       "status": "STATUS_FULL_TIME"
     },
     "Ghana__vs__Panama": {
-      "score_a": 0,
+      "score_a": 1,
       "score_b": 0,
       "kickoff_utc": "2026-06-17T23:00Z",
-      "status": "STATUS_HALFTIME"
+      "status": "STATUS_FULL_TIME"
     },
     "Uzbekistan__vs__Colombia": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-06-18T02:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Czechia__vs__South Africa": {
       "score_a": 0,
@@ -191,6 +191,24 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-20T03:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Netherlands__vs__Sweden": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-20T17:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Germany__vs__Cote d'Ivoire": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-20T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Ecuador__vs__Curacao": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-21T00:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -199,5 +217,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-17T23:52:33+00:00"
+  "last_updated": "2026-06-18T02:43:21+00:00"
 }
