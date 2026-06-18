@@ -35,7 +35,7 @@
     "updated_at": "2026-06-12T20:31:46+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-18T14:34:12+00:00",
+    "updated_at": "2026-06-18T16:03:59+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -736,7 +736,7 @@
       ],
       "formation": "5-3-2"
     },
-    "updated_at": "2026-06-18T14:34:12+00:00"
+    "updated_at": "2026-06-18T16:03:59+00:00"
   },
   "England__vs__Croatia": {
     "team_a": {
@@ -771,7 +771,7 @@
       ],
       "formation": "3-4-2-1"
     },
-    "updated_at": "2026-06-18T14:34:12+00:00"
+    "updated_at": "2026-06-18T16:03:59+00:00"
   },
   "Ghana__vs__Panama": {
     "team_a": {
@@ -782,13 +782,13 @@
         "Gideon Mensah",
         "Marvin Senaya",
         "Elisha Owusu",
+        "Kamaldeen Sulemana",
         "Caleb Yirenkyi",
-        "Antoine Semenyo",
-        "Ernest Nuamah",
         "Jordan Ayew",
-        "Kamaldeen Sulemana"
+        "Antoine Semenyo",
+        "Ernest Nuamah"
       ],
-      "formation": "4-4-1-1"
+      "formation": "4-3-3"
     },
     "team_b": {
       "xi": [
@@ -806,7 +806,7 @@
       ],
       "formation": "3-4-3"
     },
-    "updated_at": "2026-06-18T14:34:12+00:00"
+    "updated_at": "2026-06-18T16:03:59+00:00"
   },
   "Uzbekistan__vs__Colombia": {
     "team_a": {
@@ -841,6 +841,41 @@
       ],
       "formation": "4-3-3"
     },
-    "updated_at": "2026-06-18T14:34:12+00:00"
+    "updated_at": "2026-06-18T16:03:59+00:00"
+  },
+  "Czechia__vs__South Africa": {
+    "team_a": {
+      "xi": [
+        "Matej Kovár",
+        "Robin Hranác",
+        "Ladislav Krejcí",
+        "Tomás Holes",
+        "Vladimír Darida",
+        "Michal Sadílek",
+        "Lukás Cerv",
+        "Alexandr Sojka",
+        "Vladimír Coufal",
+        "Patrik Schick",
+        "Adam Hlozek"
+      ],
+      "formation": "3-5-2"
+    },
+    "team_b": {
+      "xi": [
+        "Ronwen Williams",
+        "Mbekezeli Mbokazi",
+        "Ime Okon",
+        "Aubrey Modiba",
+        "Khuliso Mudau",
+        "Teboho Mokoena",
+        "Jayden Adams",
+        "Thalente Mbatha",
+        "Iqraam Rayners",
+        "Oswin Appollis",
+        "Thapelo Maseko"
+      ],
+      "formation": "4-3-3"
+    },
+    "updated_at": "2026-06-18T16:03:59+00:00"
   }
 }
