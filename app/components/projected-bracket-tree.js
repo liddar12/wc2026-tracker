@@ -1,11 +1,11 @@
-/* projected-bracket-tree.js — Phase 1 enhanced Projected bracket (BR-1…BR-4).
+/* projected-bracket-tree.js — enhanced Projected bracket.
  *
- * Video-inspired: a top stage nav (GS · R32 · R16 · QF · SF · F) that scrolls /
- * zooms the bracket, +/−/fit zoom buttons, the existing left-right swipe
- * (canvas scroll), connector-line tree (R32→Final + 3rd place), and per-pick
- * confidence (the active model's matchup win %, shaded). GS shows group
- * standings feeding the projected R32. Read-only; what-if + pinch-zoom are
- * Phase 2 (docs/PROJECTED_BRACKET_ENHANCEMENT.md). Vanilla JS, CSS transforms.
+ * Phase 1 (BR-1..4): connector-line tree (R32→Final + 3rd), stage nav
+ * (GS·R32·R16·QF·SF·F), zoom (−/＋/fit), per-pick confidence (model win %).
+ * Phase 2 (BR-6/BR-7): tap a winner to override → bracket re-cascades, with a
+ * diff-vs-model marker + reset (what-if); tap a group team in GS → highlight
+ * its projected path. Gesture pinch-zoom (BR-5) intentionally skipped.
+ * Read-mostly; overrides are in-session only. Vanilla JS + CSS transforms.
  */
 import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
@@ -16,30 +16,27 @@ import { MODELS, modelToAutofillSource, getActiveModel } from '../lib/active-mod
 import { computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
 
 const ROUNDS = [
-  { key: 'r32', label: 'R32', full: 'Round of 32', lo: 73, hi: 88 },
-  { key: 'r16', label: 'R16', full: 'Round of 16', lo: 89, hi: 96 },
-  { key: 'qf', label: 'QF', full: 'Quarterfinals', lo: 97, hi: 100 },
-  { key: 'sf', label: 'SF', full: 'Semifinals', lo: 101, hi: 102 },
-  { key: 'final', label: 'F', full: 'Final', lo: 104, hi: 104 },
+  { key: 'r32', full: 'Round of 32', lo: 73, hi: 88 },
+  { key: 'r16', full: 'Round of 16', lo: 89, hi: 96 },
+  { key: 'qf', full: 'Quarterfinals', lo: 97, hi: 100 },
+  { key: 'sf', full: 'Semifinals', lo: 101, hi: 102 },
+  { key: 'final', full: 'Final', lo: 104, hi: 104 },
 ];
-const STAGES = [{ key: 'gs', label: 'GS' }, ...ROUNDS.map((r) => ({ key: r.key, label: r.label }))];
+const STAGES = [{ key: 'gs', label: 'GS' }, { key: 'r32', label: 'R32' }, { key: 'r16', label: 'R16' },
+  { key: 'qf', label: 'QF' }, { key: 'sf', label: 'SF' }, { key: 'final', label: 'F' }];
 const ZOOMS = [0.55, 0.7, 0.85, 1, 1.2];
 const isPlaceholder = (n) => !n || /^\d[A-L]$|^[A-L]\d|^3[A-L/ ]|^W\d|^L\d|^1[A-L]|^2[A-L]|^RU/i.test(String(n));
 
-// --- per-source team strength → matchup win % (confidence shading) -----------
+// What-if overrides ({matchNumber: team}) — in-session, persist across model
+// switches and re-renders. Reset clears them.
+const OVERRIDES = {};
+let _root = null, _data = null, _params = {};
+
 function strengthMap(data, source) {
-  const teams = data?.teams || {};
-  const m = {};
-  if (source === 'dt') {
-    for (const r of data?.dtModel?.team_rankings || []) if (r.country) m[r.country] = r.rating;
-    if (Object.keys(m).length) return m;
-  } else if (source === 'kalshi') {
-    for (const r of data?.markets?.tournament_winner || []) if (r.team) m[r.team] = r.prob_pct;
-    if (Object.keys(m).length) return m;
-  } else if (source === 'hybrid') {
-    for (const r of data?.forecast?.teams || []) if (r.team) m[r.team] = r.hybrid_strength;
-    if (Object.keys(m).length) return m;
-  }
+  const teams = data?.teams || {}; const m = {};
+  if (source === 'dt') { for (const r of data?.dtModel?.team_rankings || []) if (r.country) m[r.country] = r.rating; if (Object.keys(m).length) return m; }
+  else if (source === 'kalshi') { for (const r of data?.markets?.tournament_winner || []) if (r.team) m[r.team] = r.prob_pct; if (Object.keys(m).length) return m; }
+  else if (source === 'hybrid') { for (const r of data?.forecast?.teams || []) if (r.team) m[r.team] = r.hybrid_strength; if (Object.keys(m).length) return m; }
   for (const [n, t] of Object.entries(teams)) m[n] = t.composite || 0;
   return m;
 }
@@ -54,93 +51,107 @@ function confidence(map, winner, other) {
 }
 
 export function renderProjectedBracket(root, data, params = {}) {
+  _root = root; _data = data; _params = params || {};
+  paint();
+}
+
+function paint() {
+  const root = _root, data = _data, params = _params;
   root.innerHTML = '';
   let model = params.model && MODELS.includes(params.model) ? params.model : getActiveModel();
   if (!MODELS.includes(model)) model = 'hybrid';
   const source = modelToAutofillSource(model);
   const stage = STAGES.some((s) => s.key === params.stage) ? params.stage : 'r32';
   const zoom = Number(params.zoom) || 1;
+  const routeName = params.routeName || 'projected';
 
-  // model picker (reroutes within /projected, preserving stage)
-  root.appendChild(renderModelPicker({
-    active: model,
-    onChange: (m) => setRoute(params.routeName || 'projected', { model: m, stage, zoom }),
-  }));
+  root.appendChild(renderModelPicker({ active: model, onChange: (m) => setRoute(routeName, { model: m, stage, zoom }) }));
+  root.appendChild(renderStageNav(stage, zoom, routeName, model));
 
-  // stage nav + zoom controls
-  root.appendChild(renderStageNav(stage, zoom, params.routeName || 'projected', model));
+  if (stage === 'gs') { root.appendChild(renderGroupSeeding(data, routeName, model)); return; }
 
-  if (stage === 'gs') {
-    root.appendChild(renderGroupSeeding(data, source));
-    return;
-  }
-
-  let rows;
-  try { rows = buildAutofill(data, source) || []; } catch { rows = []; }
-  if (!rows.length) {
-    const e = document.createElement('div');
-    e.className = 'home-card';
+  let modelRows, ovRows;
+  try {
+    modelRows = buildAutofill(data, source) || [];
+    ovRows = Object.keys(OVERRIDES).length ? (buildAutofill(data, source, { overrides: OVERRIDES }) || []) : modelRows;
+  } catch { modelRows = ovRows = []; }
+  if (!ovRows.length) {
+    const e = document.createElement('div'); e.className = 'home-card';
     e.innerHTML = '<p class="muted" style="margin:0;">Projection unavailable — model data is still loading.</p>';
-    root.appendChild(e);
-    return;
+    root.appendChild(e); return;
   }
-  root.appendChild(renderTree(rows, strengthMap(data, source), zoom, stage));
+  root.appendChild(renderTree(ovRows, modelRows, strengthMap(data, source), zoom, stage, params.team));
 }
 
 function renderStageNav(stage, zoom, routeName, model) {
   const wrap = document.createElement('section');
-  wrap.className = 'eb-nav';
-  wrap.dataset.testid = 'eb-stage-nav';
+  wrap.className = 'eb-nav'; wrap.dataset.testid = 'eb-stage-nav';
   const tabs = STAGES.map((s) => `<button class="eb-stage${s.key === stage ? ' is-active' : ''}" data-stage="${s.key}" data-testid="eb-stage-${s.key}">${s.label}</button>`).join('');
-  const zi = Math.max(0, ZOOMS.indexOf(zoom) === -1 ? 3 : ZOOMS.indexOf(zoom));
+  const zi = ZOOMS.indexOf(zoom) === -1 ? 3 : ZOOMS.indexOf(zoom);
+  const nOv = Object.keys(OVERRIDES).length;
+  const reset = nOv ? `<button class="eb-reset" data-testid="eb-reset">↺ Reset (${nOv})</button>` : '';
   wrap.innerHTML = `
     <div class="eb-stages" role="tablist" aria-label="Round">${tabs}</div>
-    <div class="eb-zoom" role="group" aria-label="Zoom">
+    <div class="eb-zoom" role="group" aria-label="Zoom">${reset}
       <button class="eb-zoom-btn" data-zoom="out" aria-label="Zoom out">−</button>
       <button class="eb-zoom-btn" data-zoom="fit" aria-label="Fit whole bracket">Fit</button>
       <button class="eb-zoom-btn" data-zoom="in" aria-label="Zoom in">＋</button>
     </div>`;
-  wrap.querySelectorAll('[data-stage]').forEach((b) => {
-    b.addEventListener('click', () => setRoute(routeName, { model, stage: b.dataset.stage, zoom }));
-  });
+  wrap.querySelectorAll('[data-stage]').forEach((b) => b.addEventListener('click', () => setRoute(routeName, { model, stage: b.dataset.stage, zoom })));
   wrap.querySelector('[data-zoom="fit"]').addEventListener('click', () => setRoute(routeName, { model, stage, zoom: ZOOMS[0] }));
   wrap.querySelector('[data-zoom="in"]').addEventListener('click', () => setRoute(routeName, { model, stage, zoom: ZOOMS[Math.min(ZOOMS.length - 1, zi + 1)] }));
   wrap.querySelector('[data-zoom="out"]').addEventListener('click', () => setRoute(routeName, { model, stage, zoom: ZOOMS[Math.max(0, zi - 1)] }));
+  wrap.querySelector('[data-testid="eb-reset"]')?.addEventListener('click', () => { for (const k of Object.keys(OVERRIDES)) delete OVERRIDES[k]; paint(); });
   return wrap;
 }
 
-function teamRow(name, isWinner, conf) {
+function teamRow(name, isWinner, conf, opts = {}) {
   if (isPlaceholder(name)) return `<div class="eb-team eb-tbd">${escapeHtml(String(name || 'TBD'))}</div>`;
-  const pct = isWinner && conf != null ? `<span class="eb-conf" style="--c:${conf}">${conf}%</span>` : '';
-  return `<div class="eb-team${isWinner ? ' eb-win' : ''}"${isWinner && conf != null ? ` data-conf="${conf}"` : ''}>
-    <span class="eb-team-name">${flagFor(name)} ${escapeHtml(name)}</span>${pct}</div>`;
+  const hl = opts.highlight && name === opts.highlight ? ' eb-hl' : '';
+  const ov = isWinner && opts.overridden ? ' eb-override' : '';
+  const tag = isWinner && opts.overridden ? '<span class="eb-yourpick">✎ your pick</span>'
+    : (isWinner && conf != null ? `<span class="eb-conf" style="--c:${conf}">${conf}%</span>` : '');
+  const tappable = opts.tappable ? ` data-match="${opts.matchNumber}" data-team="${escapeHtml(name)}" role="button" tabindex="0"` : '';
+  return `<div class="eb-team${isWinner ? ' eb-win' : ''}${hl}${ov}${opts.tappable ? ' eb-tappable' : ''}"${tappable}>
+    <span class="eb-team-name">${flagFor(name)} ${escapeHtml(name)}</span>${tag}</div>`;
 }
 
-function renderTree(rows, smap, zoom, stage) {
+function renderTree(rows, modelRows, smap, zoom, stage, highlight) {
   const byNum = new Map(rows.map((r) => [r.matchNumber, r]));
+  const modelByNum = new Map(modelRows.map((r) => [r.matchNumber, r]));
   const wrap = document.createElement('section');
-  wrap.className = 'home-card eb-canvas-wrap';
-  wrap.dataset.testid = 'eb-bracket';
+  wrap.className = 'home-card eb-canvas-wrap'; wrap.dataset.testid = 'eb-bracket';
+
+  const matchCell = (r) => {
+    const overridden = OVERRIDES[r.matchNumber] === r.team && modelByNum.get(r.matchNumber)?.team !== r.team;
+    const conf = confidence(smap, r.team, r.team_a === r.team ? r.team_b : r.team_a);
+    const tap = (n, win) => ({ tappable: !isPlaceholder(r.team_a) && !isPlaceholder(r.team_b), matchNumber: r.matchNumber, overridden: overridden && win, highlight });
+    return `<div class="eb-match"${overridden ? ' data-overridden="1"' : ''}>
+      ${teamRow(r.team_a, r.team_a === r.team, conf, tap(r.team_a, r.team_a === r.team))}
+      ${teamRow(r.team_b, r.team_b === r.team, conf, tap(r.team_b, r.team_b === r.team))}
+    </div>`;
+  };
+
   const cols = ROUNDS.map((rd) => {
     const cells = [];
-    for (let n = rd.lo; n <= rd.hi; n++) {
-      const r = byNum.get(n);
-      if (!r) continue;
-      const conf = confidence(smap, r.team, r.team_a === r.team ? r.team_b : r.team_a);
-      cells.push(`<div class="eb-match">
-        ${teamRow(r.team_a, r.team_a === r.team, conf)}
-        ${teamRow(r.team_b, r.team_b === r.team, conf)}
-      </div>`);
-    }
+    for (let n = rd.lo; n <= rd.hi; n++) { const r = byNum.get(n); if (r) cells.push(matchCell(r)); }
     return `<div class="eb-col" data-round="${rd.key}"><div class="eb-col-head">${rd.full}</div><div class="eb-col-body">${cells.join('')}</div></div>`;
   }).join('');
   const tp = byNum.get(103);
-  const third = tp ? `<div class="eb-col eb-col-third"><div class="eb-col-head">3rd place</div><div class="eb-col-body"><div class="eb-match">
-      ${teamRow(tp.team_a, tp.team_a === tp.team, confidence(smap, tp.team, tp.team_a === tp.team ? tp.team_b : tp.team_a))}
-      ${teamRow(tp.team_b, tp.team_b === tp.team, null)}
-    </div></div></div>` : '';
-  wrap.innerHTML = `<div class="eb-canvas" data-testid="eb-canvas"><div class="eb-tree" style="transform:scale(${zoom})">${cols}${third}</div></div>`;
-  // scroll to the requested round after layout
+  const third = tp ? `<div class="eb-col eb-col-third"><div class="eb-col-head">3rd place</div><div class="eb-col-body">${matchCell(tp)}</div></div>` : '';
+
+  wrap.innerHTML = `
+    <p class="muted" style="margin:0 0 6px;font-size:12px;">Tap a team to set a what-if winner — the bracket re-cascades. ${Object.keys(OVERRIDES).length ? 'Your picks override the model below.' : ''}</p>
+    <div class="eb-canvas" data-testid="eb-canvas"><div class="eb-tree" style="transform:scale(${zoom})">${cols}${third}</div></div>`;
+
+  // delegated tap → set/clear what-if override, then re-cascade
+  wrap.querySelector('.eb-tree').addEventListener('click', (e) => {
+    const cell = e.target.closest('.eb-tappable'); if (!cell) return;
+    const mn = Number(cell.dataset.match); const team = cell.dataset.team;
+    if (!mn || !team) return;
+    if (OVERRIDES[mn] === team) delete OVERRIDES[mn]; else OVERRIDES[mn] = team;
+    paint();
+  });
   requestAnimationFrame(() => {
     const target = wrap.querySelector(`.eb-col[data-round="${stage}"]`);
     if (target && stage !== 'r32') target.scrollIntoView({ inline: 'center', block: 'nearest' });
@@ -148,26 +159,23 @@ function renderTree(rows, smap, zoom, stage) {
   return wrap;
 }
 
-function renderGroupSeeding(data, source) {
+function renderGroupSeeding(data, routeName, model) {
   const wrap = document.createElement('section');
-  wrap.className = 'home-card';
-  wrap.dataset.testid = 'eb-group-seeding';
+  wrap.className = 'home-card'; wrap.dataset.testid = 'eb-group-seeding';
   const groups = Object.keys(data?.groupMatchups || {}).sort();
-  let rowsHtml = '';
+  let html = '';
   for (const g of groups) {
-    // Real standings once a group is complete; projected order before then.
     let standings = [];
     try { standings = computeGroupStandings(data, g) || computeProjectedGroupOrder(data, g) || []; } catch { standings = []; }
     const lines = standings.slice(0, 4).map((s, i) => {
       const nm = s.team || s.name || s;
       const raw = s.points ?? s.pts;
       const pts = typeof raw === 'number' ? (Number.isInteger(raw) ? raw : raw.toFixed(1)) : (raw ?? '');
-      return `<li class="eb-gs-row"><span class="eb-gs-pos">${i + 1}</span><span class="eb-gs-team">${flagFor(nm)} ${escapeHtml(String(nm))}</span><span class="eb-gs-pts muted">${pts}</span></li>`;
+      return `<li class="eb-gs-row eb-tappable" data-team="${escapeHtml(String(nm))}" role="button" tabindex="0"><span class="eb-gs-pos">${i + 1}</span><span class="eb-gs-team">${flagFor(nm)} ${escapeHtml(String(nm))}</span><span class="eb-gs-pts muted">${pts}</span></li>`;
     }).join('');
-    rowsHtml += `<div class="eb-gs-group"><h4 class="eb-gs-head">Group ${escapeHtml(g)}</h4><ol class="eb-gs-list">${lines}</ol></div>`;
+    html += `<div class="eb-gs-group"><h4 class="eb-gs-head">Group ${escapeHtml(g)}</h4><ol class="eb-gs-list">${lines}</ol></div>`;
   }
-  wrap.innerHTML = `
-    <p class="muted" style="margin:0 0 10px;font-size:12px;">Projected group standings — top two (and best thirds) seed the Round of 32. Tap R32 to see the matchups.</p>
-    <div class="eb-gs-grid">${rowsHtml}</div>`;
+  wrap.innerHTML = `<p class="muted" style="margin:0 0 10px;font-size:12px;">Projected standings — top two (and best thirds) seed the Round of 32. Tap a team to trace its projected bracket path.</p><div class="eb-gs-grid">${html}</div>`;
+  wrap.querySelectorAll('.eb-tappable').forEach((el) => el.addEventListener('click', () => setRoute(routeName, { model, stage: 'r32', team: el.dataset.team })));
   return wrap;
 }

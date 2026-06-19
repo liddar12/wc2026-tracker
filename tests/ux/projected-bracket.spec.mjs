@@ -37,6 +37,29 @@ test.describe('Projected bracket + hidden nav', () => {
     await expect(page.locator('.home-hero')).toHaveCount(0);
   });
 
+  test('BR-6 what-if: tap a team to override a winner → reset appears', async ({ page }) => {
+    await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 15_000 });
+    // tap the NON-winner team in the first R32 match to flip it
+    const first = page.locator('.eb-col[data-round="r32"] .eb-match').first();
+    const loser = first.locator('.eb-team.eb-tappable:not(.eb-win)').first();
+    await loser.click();
+    // an override marker + reset control appear
+    await expect(page.locator('.eb-match[data-overridden]').first()).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator('[data-testid="eb-reset"]')).toBeVisible();
+    // reset clears it
+    await page.locator('[data-testid="eb-reset"]').click();
+    await expect(page.locator('.eb-match[data-overridden]')).toHaveCount(0);
+  });
+
+  test('BR-7: tapping a group team highlights its path in R32', async ({ page }) => {
+    await page.goto('/#/projected/stage/gs', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[data-testid="eb-group-seeding"]')).toBeVisible({ timeout: 15_000 });
+    await page.locator('.eb-gs-row.eb-tappable').first().click();
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 5_000 });
+    await expect(page.locator('.eb-team.eb-hl').first()).toBeVisible();
+  });
+
   test('the five low-use tabs are hidden; Projected tab is shown', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="tab-projected"]')).toBeVisible();
