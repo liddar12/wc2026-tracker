@@ -10,7 +10,8 @@
  *   loadData() -> {
  *     meta, teams, players, groupMatchups, schedule, actualResults,
  *     venues, scheduleFull, lineups, referees, matchReferees,
- *     h2h, form, scorers, weather, fatigue, xg, markets, injuries
+ *     h2h, form, scorers, weather, fatigue, xg, markets, injuries,
+ *     consensusOdds
  *   }
  */
 
@@ -38,6 +39,9 @@ const OPTIONAL_FILES = [
   { file: 'xg.json',             fallback: {} },
   { file: 'markets.json',        fallback: {} },
   { file: 'injuries.json',       fallback: {} },
+  // Multi-book consensus odds (API-Football) — sharpens the Parlay of the Day's
+  // market term; empty match_outcomes until the APIFOOTBALL_KEY cron runs.
+  { file: 'consensus_odds.json', fallback: {} },
   // R16: DT Model site contract — team_rankings + title odds + players.
   { file: 'dt_model.json',       fallback: {} },
   // Hybrid forecast (⅓ J5L + ⅓ DT + ⅓ Kalshi): per-team round-reach + champion odds.
@@ -152,6 +156,7 @@ function fileToKey(file) {
     case 'xg.json':              return 'xg';
     case 'markets.json':         return 'markets';
     case 'injuries.json':        return 'injuries';
+    case 'consensus_odds.json':  return 'consensusOdds';
     case 'dt_model.json':        return 'dtModel';
     case 'forecast.json':        return 'forecast';
     case 'team_colors.json':     return 'teamColors';

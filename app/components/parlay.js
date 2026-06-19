@@ -44,24 +44,35 @@ function modelWDL(data, a, b) {
   }
   return null;
 }
+// A match_outcomes record ({team_a, team_b, team_a_prob, draw_prob, team_b_prob})
+// oriented to our team_a, or null. Shared by Kalshi + API-Football consensus.
+function outcomeWDL(mo, a, b) {
+  const rec = mo?.[`${a}__vs__${b}`] || mo?.[`${b}__vs__${a}`];
+  if (!rec) return null;
+  const flip = rec.team_a !== a;
+  return { a: flip ? rec.team_b_prob : rec.team_a_prob, d: rec.draw_prob, b: flip ? rec.team_a_prob : rec.team_b_prob };
+}
 function marketWDL(data, a, b) {
-  // Prefer near-real-time live lines (ESPN/DraftKings, live-odds.js), oriented
-  // to our team_a; fall back to the hourly Kalshi cron feed.
+  // Precedence: near-real-time live lines (ESPN/DraftKings, live-odds.js) →
+  // multi-book CONSENSUS (API-Football, sharper than one book) → hourly Kalshi.
   const lo = data?.liveOdds || {};
   const w = (lo[`${a}__vs__${b}`] || lo[`${b}__vs__${a}`])?.wdl;
   if (w && w.home) {
     if (w.home === a) return { a: w.a, d: w.d, b: w.b };
     if (w.away === a) return { a: w.b, d: w.d, b: w.a };
   }
-  const mo = data?.markets?.match_outcomes || {};
-  const rec = mo[`${a}__vs__${b}`] || mo[`${b}__vs__${a}`];
-  if (!rec) return null;
-  const flip = rec.team_a !== a;
-  return { a: flip ? rec.team_b_prob : rec.team_a_prob, d: rec.draw_prob, b: flip ? rec.team_a_prob : rec.team_b_prob };
+  return outcomeWDL(data?.consensusOdds?.match_outcomes, a, b)
+      || outcomeWDL(data?.markets?.match_outcomes, a, b);
 }
 function liveOU(data, a, b) {
+  // live book line → multi-book consensus (Over/Under 2.5) → null (model fills in).
   const lo = data?.liveOdds || {};
-  return (lo[`${a}__vs__${b}`] || lo[`${b}__vs__${a}`])?.ou || null;
+  const live = (lo[`${a}__vs__${b}`] || lo[`${b}__vs__${a}`])?.ou;
+  if (live && typeof live.over === 'number') return live;
+  const co = data?.consensusOdds?.match_outcomes || {};
+  const rec = co[`${a}__vs__${b}`] || co[`${b}__vs__${a}`];
+  if (rec && typeof rec.over25 === 'number') return { line: 2.5, over: rec.over25 };
+  return null;
 }
 function xgFor(data, a, b) {
   for (const r of Object.values(data?.xg || {})) {

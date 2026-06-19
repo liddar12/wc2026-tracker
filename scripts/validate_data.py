@@ -412,6 +412,33 @@ class Validator:
                 if side not in row:
                     self.err(f"fatigue.json[{k}]: missing {side}")
 
+    def check_consensus_odds(self) -> None:
+        v = self.load("consensus_odds.json")
+        if not isinstance(v, dict):
+            self.err("consensus_odds.json: expected an object")
+            return
+        if v.get("source") != "api-football":
+            self.err("consensus_odds.json: source must be 'api-football'")
+        ua = v.get("updated_at")
+        if isinstance(ua, str):
+            try:
+                datetime.fromisoformat(ua.replace("Z", "+00:00"))
+            except ValueError:
+                self.err(f"consensus_odds.json: updated_at {ua!r} not ISO-8601")
+        else:
+            self.err("consensus_odds.json: updated_at must be a string")
+        mo = v.get("match_outcomes")
+        if not isinstance(mo, dict):
+            self.err("consensus_odds.json: match_outcomes must be an object")
+            return
+        for k, rec in mo.items():
+            if not isinstance(rec, dict):
+                self.err(f"consensus_odds.json.match_outcomes[{k}]: not an object")
+                continue
+            for key in ("team_a", "team_b", "team_a_prob", "draw_prob", "team_b_prob"):
+                if key not in rec:
+                    self.err(f"consensus_odds.json.match_outcomes[{k}]: missing {key!r}")
+
     def check_markets(self) -> None:
         v = self.load("markets.json")
         if not isinstance(v, dict):
@@ -473,6 +500,7 @@ class Validator:
         self.check_xg()
         self.check_fatigue()
         self.check_markets()
+        self.check_consensus_odds()
 
         if self.warnings:
             for w in self.warnings:

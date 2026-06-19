@@ -72,6 +72,29 @@ test('prefers near-real-time live odds (ESPN/DraftKings) over the hourly cron', 
   assert.ok(pool.some((l) => l.type === 'Total goals' && l.mid === 'USA__vs__Paraguay' && /3\.5/.test(l.selection)), 'uses the live O/U line (3.5), not the model 2.5');
 });
 
+test('uses multi-book consensus (API-Football) over the hourly Kalshi feed', () => {
+  const d = dataToday();
+  // Kalshi has USA at 0.55; consensus (sharper) has USA at 0.72 + Over2.5 at 0.70.
+  d.consensusOdds = { source: 'api-football', match_outcomes: {
+    'USA__vs__Paraguay': { team_a: 'USA', team_b: 'Paraguay', team_a_prob: 0.72, draw_prob: 0.18, team_b_prob: 0.10, over25: 0.70, books: 9 },
+  } };
+  const pool = dailyLegs(d);
+  const usaMl = pool.find((l) => l.type === 'Moneyline' && /USA/.test(l.selection) && l.mid === 'USA__vs__Paraguay');
+  // (0.62 model + 0.72 consensus)/2 = 0.67 — NOT the (0.62+0.55 Kalshi)/2 = 0.585 blend.
+  assert.ok(usaMl && usaMl.prob > 0.65 && usaMl.prob < 0.69, `blended toward consensus (got ${usaMl?.prob})`);
+  const usaOu = pool.find((l) => l.type === 'Total goals' && l.mid === 'USA__vs__Paraguay');
+  assert.ok(usaOu && /Over 2\.5/.test(usaOu.selection) && Math.abs(usaOu.prob - 0.70) < 1e-9, `consensus Over2.5 0.70 (got ${usaOu?.selection} ${usaOu?.prob})`);
+});
+
+test('live odds (near-real-time) still win over consensus when both present', () => {
+  const d = dataToday();
+  d.consensusOdds = { match_outcomes: { 'USA__vs__Paraguay': { team_a: 'USA', team_b: 'Paraguay', team_a_prob: 0.72, draw_prob: 0.18, team_b_prob: 0.10 } } };
+  d.liveOdds = { 'USA__vs__Paraguay': { wdl: { a: 0.50, d: 0.28, b: 0.22, home: 'USA', away: 'Paraguay' }, provider: 'DraftKings' }, __ts: new Date().toISOString() };
+  const usaMl = dailyLegs(d).find((l) => l.type === 'Moneyline' && /USA/.test(l.selection) && l.mid === 'USA__vs__Paraguay');
+  // live 0.50 wins → (0.62 + 0.50)/2 = 0.56, not the consensus-blended 0.67.
+  assert.ok(usaMl && usaMl.prob > 0.54 && usaMl.prob < 0.58, `live beats consensus (got ${usaMl?.prob})`);
+});
+
 test('near-real-time wiring: poller fetches live odds; CSP already allows ESPN', async () => {
   const { readFileSync } = await import('node:fs');
   const root = new URL('../../', import.meta.url);

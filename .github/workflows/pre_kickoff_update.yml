@@ -73,6 +73,14 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_match_events.py
         continue-on-error: true
+      # Multi-book CONSENSUS odds (API-Football) for the Parlay of the Day —
+      # only near kickoffs (few fixtures), key-gated, no-ops without the secret.
+      - name: Scrape consensus odds (API-Football)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_apifootball_odds.py
+        env:
+          APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
+        continue-on-error: true
       # Also refresh live results here — the */10 gate fires around kickoffs,
       # giving another path to capture scores when */15 live_update is throttled.
       - name: Scrape live results

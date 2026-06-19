@@ -55,8 +55,13 @@ jobs:
       - name: Scrape squad / injury news (inline player flags)
         run: python scripts/update_squads.py
         continue-on-error: true
+      # Injuries: ESPN (empty for WC) + API-Football when APIFOOTBALL_KEY is set.
+      # The scraper self-throttles the API-Football call to ≤1 fetch / 6h, so
+      # this hourly step costs ~4 API-Football requests/day (free tier = 100/day).
       - name: Build dedicated injuries feed
         run: python scripts/scrape_injuries.py
+        env:
+          APIFOOTBALL_KEY: ${{ secrets.APIFOOTBALL_KEY }}
         continue-on-error: true
 
       # ---- Schedule (mjwebmaster open feed, no API key) ----
