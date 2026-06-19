@@ -18,6 +18,7 @@ import { flagFor } from '../components/team-flag.js';
 import { whenWhereWatch } from '../components/when-where-watch.js';
 import { lineupsSection } from '../components/lineups.js';
 import { matchEventsSection } from '../components/match-events.js';
+import { suspendedForMatch } from '../lib/availability.js';
 import { actualForCard } from '../components/large-match-card.js';
 import { refereeSection } from '../components/referee.js';
 import { h2hSection } from '../components/h2h.js';
@@ -156,6 +157,7 @@ export function renderMatchupDetail(root, data, params) {
 
   // Phase-2 sections (each renders gracefully when its data is missing).
   // whenWhereWatch moved to the top of the page (right under the group label).
+  root.appendChild(availabilitySection(match, data));
   root.appendChild(lineupsSection(match, data.lineups));
   root.appendChild(matchEventsSection(match, data.matchEvents));
   root.appendChild(refereeSection(match, data));
@@ -177,6 +179,36 @@ export function renderMatchupDetail(root, data, params) {
     res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
     root.appendChild(res);
   }
+}
+
+// Availability for THIS match — suspended players per side (reds / 2-yellow
+// bans), from match events. ESPN has no WC injury data, so suspensions are the
+// reliable availability signal; this surfaces it on the match (not just the
+// Injuries page). Renders nothing pre-tournament / when nobody is banned.
+function availabilitySection(match, data) {
+  const susp = suspendedForMatch(data, match);
+  const rows = [
+    ...susp.team_a.map((s) => ({ ...s, team: match.team_a })),
+    ...susp.team_b.map((s) => ({ ...s, team: match.team_b })),
+  ];
+  if (!rows.length) return document.createDocumentFragment();
+  const sec = document.createElement('div');
+  sec.className = 'section';
+  sec.dataset.testid = 'match-availability';
+  sec.innerHTML = `
+    <h2>Unavailable (suspended)</h2>
+    <ul class="ev-list">
+      ${rows.map((s) => `
+        <li class="ev-row">
+          <span class="ev-minute">${flagFor(s.team)}</span>
+          <span class="ev-player"><strong>${escapeHtml(s.player)}</strong>
+            <span class="muted">${escapeHtml(s.team)} · ${escapeHtml(s.reason)} — suspended this match</span>
+          </span>
+        </li>`).join('')}
+    </ul>
+    <p class="muted" style="font-size:11px;margin:6px 0 0;">From match cards (red / two accumulated yellows). ESPN publishes no World Cup injury data.</p>
+  `;
+  return sec;
 }
 
 function renderPickRow(match) {

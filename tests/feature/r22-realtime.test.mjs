@@ -113,11 +113,14 @@ test('card eyebrow sits on white below the venue (ADA contrast)', () => {
 
 test('injuries page lists card suspensions with the match they miss', () => {
   const v = read('app/views/injuries-view.js');
-  assert.match(v, /function suspensionsFromEvents/, 'suspension derivation exists');
-  assert.match(v, /red card/, 'reds covered');
-  assert.match(v, /accumulated/, 'yellow accumulation covered');
-  assert.match(v, /misses/, 'shows which match is missed');
-  assert.match(v, /dataset\.testid = 'suspensions'/, 'rendered section'); // set via dataset property
+  // Suspension derivation now lives in the shared availability module (P1-B2).
+  assert.match(v, /from '\.\.\/lib\/availability\.js'/, 'imports shared suspension logic');
+  assert.match(v, /suspensions\(data\)/, 'renders suspensions');
+  assert.match(v, /dataset\.testid = 'suspensions'/, 'rendered section');
+  const a = read('app/lib/availability.js');
+  assert.match(a, /red card/, 'reds covered');
+  assert.match(a, /accumulated/, 'yellow accumulation covered');
+  assert.match(a, /misses/, 'shows which match is missed');
 });
 
 test('live poller: fast ESPN lane every tick + periodic full refresh', () => {

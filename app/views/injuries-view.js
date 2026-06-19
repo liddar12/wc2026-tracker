@@ -4,6 +4,7 @@
 import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from '../components/team-flag.js';
 import { setRoute } from '../state.js';
+import { suspensions } from '../lib/availability.js';
 
 export function renderInjuriesView(root, data) {
   root.innerHTML = '';
@@ -23,7 +24,7 @@ export function renderInjuriesView(root, data) {
   // Card suspensions (from live match events): a straight red = banned for the
   // team's NEXT match (at least); two accumulated yellows across matches = a
   // one-match ban (FIFA rule; accumulated yellows wipe after the QFs).
-  const susp = suspensionsFromEvents(data);
+  const susp = suspensions(data);
   if (susp.length) {
     const card = document.createElement('section');
     card.className = 'home-card';
@@ -106,46 +107,6 @@ function formatRel(iso) {
   } catch { return ''; }
 }
 
-// ---- card suspensions from live match events --------------------------------
-// Returns [{player, team, reason, misses}] — straight reds (next-match ban
-// minimum) and accumulated-yellow bans (2 yellows across matches = 1-match ban).
-function suspensionsFromEvents(data) {
-  const me = data?.matchEvents;
-  if (!me || typeof me !== 'object') return [];
-  const reds = [];          // {player, team, matchKey}
-  const yellows = {};       // player → {count, team}
-  for (const [key, rec] of Object.entries(me)) {
-    if (key === '__meta__' || !Array.isArray(rec?.events)) continue;
-    for (const e of rec.events) {
-      if (!e.player) continue;
-      if (e.type === 'red') reds.push({ player: e.player, team: e.team, matchKey: key });
-      else if (e.type === 'yellow') {
-        const y = (yellows[e.player] = yellows[e.player] || { count: 0, team: e.team });
-        y.count++;
-      }
-    }
-  }
-  // Which game does a red-carded player miss? The team's next scheduled match
-  // after the one where the red was shown.
-  const sched = (data?.scheduleFull || []).slice()
-    .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)));
-  const missesFor = (team, matchKey) => {
-    const at = sched.find((m) => `${m.team_a}__vs__${m.team_b}` === matchKey || `${m.team_b}__vs__${m.team_a}` === matchKey);
-    const after = at ? at.kickoff_utc : '';
-    const next = sched.find((m) => (m.team_a === team || m.team_b === team) && String(m.kickoff_utc) > String(after));
-    if (!next) return '';
-    const opp = next.team_a === team ? next.team_b : next.team_a;
-    return `vs ${opp}`;
-  };
-  const out = reds.map((r) => ({
-    player: r.player, team: r.team,
-    reason: '🟥 red card', misses: missesFor(r.team, r.matchKey),
-  }));
-  for (const [player, y] of Object.entries(yellows)) {
-    if (y.count >= 2 && !out.some((o) => o.player === player)) {
-      out.push({ player, team: y.team, reason: `🟨×${y.count} accumulated — one-match ban`, misses: '' });
-    }
-  }
-  return out;
-}
+// (Suspension derivation moved to app/lib/availability.js — shared with the
+// matchup view so both surfaces agree on who is unavailable.)
 
