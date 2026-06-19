@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-19T20:40:29+00:00",
+    "updated_at": "2026-06-19T21:20:26+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1060,7 +1060,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-19T20:40:29+00:00"
+    "updated_at": "2026-06-19T21:20:26+00:00"
   },
   "Mexico__vs__Korea Republic": {
     "events": [
@@ -1083,7 +1083,7 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-19T20:40:29+00:00"
+    "updated_at": "2026-06-19T21:20:26+00:00"
   },
   "USA__vs__Australia": {
     "events": [
@@ -1116,8 +1116,32 @@
         "type": "yellow",
         "player": "Antonee Robinson",
         "team": "USA"
+      },
+      {
+        "minute": "88'",
+        "type": "yellow",
+        "player": "Harry Souttar",
+        "team": "Australia"
+      },
+      {
+        "minute": "89'",
+        "type": "yellow",
+        "player": "Folarin Balogun",
+        "team": "USA"
+      },
+      {
+        "minute": "89'",
+        "type": "yellow",
+        "player": "Jacob Italiano",
+        "team": "Australia"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Chris Richards",
+        "team": "USA"
       }
     ],
-    "updated_at": "2026-06-19T20:40:29+00:00"
+    "updated_at": "2026-06-19T21:20:26+00:00"
   }
 }
