@@ -1754,6 +1754,7 @@ body.search-open { overflow: hidden; }
 .parlay-leg-main { display: flex; flex-direction: column; min-width: 0; }
 .parlay-leg-sel { font-weight: 700; }
 .parlay-leg-prob { flex: 0 0 auto; font-variant-numeric: tabular-nums; color: var(--text-muted); }
+.parlay-live { font-size: 11px; font-weight: 700; color: var(--good, #16a34a); white-space: nowrap; }
 
 /* GS standings → seeding */
 .eb-gs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }

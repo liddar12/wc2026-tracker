@@ -2,7 +2,7 @@
    matches (Most likely / Safe-diversified / Best value), model+market blended. */
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parlayOfTheDay } from '../../app/components/parlay.js';
+import { parlayOfTheDay, dailyLegs } from '../../app/components/parlay.js';
 
 function dataToday() {
   const now = new Date().toISOString();
@@ -55,6 +55,30 @@ test('blends market into the moneyline (USA 62% model + 55% market → ~59%)', (
 
 test('no games today → renders nothing (null)', () => {
   assert.equal(parlayOfTheDay({ scheduleFull: [] }), null);
+});
+
+test('prefers near-real-time live odds (ESPN/DraftKings) over the hourly cron', () => {
+  const d = dataToday();
+  d.liveOdds = {
+    'USA__vs__Paraguay': { wdl: { a: 0.70, d: 0.18, b: 0.12, home: 'USA', away: 'Paraguay' }, ou: { line: 3.5, over: 0.6 }, provider: 'DraftKings' },
+    __ts: new Date().toISOString(),
+  };
+  const r = parlayOfTheDay(d);
+  assert.ok(r.live, 'flagged as live');
+  // check the full candidate pool (selected parlays may not surface every leg)
+  const pool = dailyLegs(d);
+  const usaMl = pool.find((l) => l.type === 'Moneyline' && /USA/.test(l.selection) && l.mid === 'USA__vs__Paraguay');
+  assert.ok(usaMl && usaMl.prob > 0.63, `ML blended toward live 0.70 (got ${usaMl?.prob})`); // (0.62 model + 0.70 live)/2
+  assert.ok(pool.some((l) => l.type === 'Total goals' && l.mid === 'USA__vs__Paraguay' && /3\.5/.test(l.selection)), 'uses the live O/U line (3.5), not the model 2.5');
+});
+
+test('near-real-time wiring: poller fetches live odds; CSP already allows ESPN', async () => {
+  const { readFileSync } = await import('node:fs');
+  const root = new URL('../../', import.meta.url);
+  const rd = (p) => readFileSync(new URL(p, root), 'utf8');
+  assert.match(rd('app/live-poller.js'), /fetchLiveOdds/, 'poller pulls live odds on the slow tick');
+  assert.match(rd('app/live-odds.js'), /site\.api\.espn\.com/, 'odds from ESPN (open CORS, already used for scores)');
+  assert.match(rd('_headers'), /site\.api\.espn\.com/, 'CSP connect-src already allows ESPN');
 });
 
 test('schedule view + parlay carry the not-betting-advice disclaimer', async () => {

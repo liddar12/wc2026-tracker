@@ -7,6 +7,7 @@
 
 import { refreshData } from './data-loader.js';
 import { fetchEspnLive, mergeLiveScores } from './live-scores.js';
+import { fetchLiveOdds } from './live-odds.js';
 
 const POLL_INTERVAL_MS = 30 * 1000;   // 30s during live windows
 const FULL_REFRESH_EVERY = 5;         // full data refetch every 5th tick (2.5 min)
@@ -69,13 +70,13 @@ async function pollOnce() {
         mergeLiveScores(currentData, board);
       } catch { /* ESPN blip — the pipeline copy still flows below */ }
     }
-    // Slow lane every Nth tick: full static-feed refresh (odds, events, etc.).
+    // Slow lane every Nth tick: full static-feed refresh + near-real-time
+    // betting lines (ESPN/DraftKings) for the Parlay of the Day.
     if (!currentData || tickCount % FULL_REFRESH_EVERY === 1) {
       const fresh = await refreshData();
       if (fresh) {
-        // Re-apply the freshest live overlay on top of the just-fetched copy
-        // so a stale deployed JSON can't visually regress a live score.
         try { mergeLiveScores(fresh, await fetchEspnLive()); } catch {}
+        try { fresh.liveOdds = await fetchLiveOdds(); } catch { fresh.liveOdds = currentData?.liveOdds; }
         currentData = fresh;
       }
     }
