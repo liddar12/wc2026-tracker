@@ -111,6 +111,15 @@ jobs:
       - name: Validate refreshed data
         run: python3 scripts/validate_data.py
 
+      # P0-A2: alert if model inputs (teams/players) stop moving mid-tournament.
+      # Non-blocking (always exits 0); opens a deduped stale-data issue.
+      - name: Staleness watchdog (model inputs)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/check_staleness.py
+        continue-on-error: true
+
       - name: Commit and push
         run: |
           git config user.name "wc26-bot"
