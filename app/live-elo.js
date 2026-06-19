@@ -27,24 +27,25 @@ export function recomputeElo(data) {
   const elo = { ...start };
 
   const results = data?.actualResults || data?.actual_results || {};
-  const groupStage = results.group_stage || {};
-  const knockouts = results.knockouts || {};
-
-  // Process group-stage results
-  for (const key of Object.keys(groupStage)) {
-    const [a, , b] = key.split('__');
-    if (!a || !b) continue;
-    const rec = groupStage[key];
-    applyEloUpdate(elo, a, b, rec, K_GROUP);
+  // FINAL only — scheduled 0-0 stubs and in-progress games must NOT move Elo
+  // (was counting them as draws). Iterate ALL knockout tiers — the old code
+  // read a knockouts key this structure never had, so KO games never counted —
+  // chronologically so the result matches the server (scripts/compute_elo.py).
+  const FINAL = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+  const KO_TIERS = ['round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final'];
+  const matches = [];
+  for (const [tier, k] of [['group_stage', K_GROUP], ...KO_TIERS.map((t) => [t, K_KO])]) {
+    const recs = results[tier] || {};
+    for (const key of Object.keys(recs)) {
+      const rec = recs[key];
+      if (!rec || (rec.status && !FINAL.has(rec.status))) continue;
+      const i = key.indexOf('__vs__');
+      if (i < 0) continue;
+      matches.push([rec.kickoff_utc || '', key.slice(0, i), key.slice(i + 6), rec, k]);
+    }
   }
-
-  // Process knockouts
-  for (const key of Object.keys(knockouts)) {
-    const [a, , b] = key.split('__');
-    if (!a || !b) continue;
-    const rec = knockouts[key];
-    applyEloUpdate(elo, a, b, rec, K_KO);
-  }
+  matches.sort((x, y) => String(x[0]).localeCompare(String(y[0])));
+  for (const [, a, b, rec, k] of matches) applyEloUpdate(elo, a, b, rec, k);
 
   const out = {};
   for (const name of Object.keys(start)) {

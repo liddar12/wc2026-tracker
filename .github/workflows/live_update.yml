@@ -82,6 +82,12 @@ jobs:
         run: python scripts/scrape_referees.py
         continue-on-error: true
 
+      # P0-A1: results-driven Elo before composite so predictions move with the
+      # live results this cron just scraped.
+      - name: Compute results-driven Elo
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/compute_elo.py
+        continue-on-error: true
       - name: Recompute composite + probabilities
         if: steps.gate.outputs.go == '1'
         run: python scripts/rebuild_composite.py

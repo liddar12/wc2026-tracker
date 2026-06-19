@@ -95,6 +95,11 @@ jobs:
       - name: Scrape Kalshi markets
         run: python scripts/scrape_kalshi.py
         continue-on-error: true
+      # P0-A1: results-driven Elo (from actual_results) BEFORE composite, so the
+      # model moves game-to-game instead of sitting on frozen pre-tournament Elo.
+      - name: Compute results-driven Elo
+        run: python scripts/compute_elo.py
+        continue-on-error: true
       - name: Recompute composite + probabilities
         run: python scripts/rebuild_composite.py
       - name: Rebuild DT model (Elo + market value blend)

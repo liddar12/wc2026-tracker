@@ -94,6 +94,10 @@ jobs:
         continue-on-error: true
 
       # ---- Recompute composite + power_rank from refreshed inputs ----
+      # P0-A1: results-driven Elo first so composite reflects games played.
+      - name: Compute results-driven Elo
+        run: python scripts/compute_elo.py
+        continue-on-error: true
       - name: Recompute composite + power rankings
         run: python scripts/rebuild_composite.py
         continue-on-error: true
