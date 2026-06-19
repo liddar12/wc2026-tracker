@@ -27,6 +27,10 @@ const SOURCE_LABELS = {
 export function renderBracketView(root, data, params = {}) {
   root.innerHTML = '';
   const mode = params.mode === 'projected' ? 'projected' : 'live';
+  // The Projected nav tab reuses this view; routeName keeps the mode/source
+  // controls on whichever route invoked it (so they don't bounce to the hidden
+  // Bracket route).
+  const routeName = params.routeName || 'bracket';
   // R12b: prefer the URL param (so deep links keep working) but fall back to
   // the user's active model from settings. The Bracket Projected source IS
   // the model in this view.
@@ -38,10 +42,10 @@ export function renderBracketView(root, data, params = {}) {
   root.appendChild(renderModelPicker({
     onChange: (m) => {
       // Reroute to projected mode with the new source so the URL is shareable.
-      setRoute('bracket', { mode: 'projected', source: modelToAutofillSource(m) });
+      setRoute(routeName, { mode: 'projected', source: modelToAutofillSource(m) });
     },
   }));
-  root.appendChild(renderModeToggle(mode, source));
+  root.appendChild(renderModeToggle(mode, source, routeName));
 
   if (mode === 'live') {
     root.appendChild(renderLive(data));
@@ -51,7 +55,7 @@ export function renderBracketView(root, data, params = {}) {
   }
 }
 
-function renderModeToggle(mode, source) {
+function renderModeToggle(mode, source, routeName = 'bracket') {
   const wrap = document.createElement('section');
   wrap.className = 'pw-bracket-modes';
   wrap.setAttribute('data-testid', 'bracket-mode-toggle');
@@ -72,10 +76,10 @@ function renderModeToggle(mode, source) {
     ${sourcePicker}
   `;
   wrap.querySelectorAll('[data-mode]').forEach((b) => {
-    b.addEventListener('click', () => setRoute('bracket', { mode: b.dataset.mode }));
+    b.addEventListener('click', () => setRoute(routeName, { mode: b.dataset.mode }));
   });
   wrap.querySelector('#pw-bracket-source')?.addEventListener('change', (e) => {
-    setRoute('bracket', { mode: 'projected', source: e.target.value });
+    setRoute(routeName, { mode: 'projected', source: e.target.value });
   });
   return wrap;
 }
