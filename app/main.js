@@ -46,7 +46,6 @@ import { renderVenuesView } from './views/venues-view.js';
 import { renderVenueDetail } from './views/venue-detail.js';
 import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
-import { renderProjectedBracketView } from './views/projected-bracket-view.js';
 import { applyHiddenFeatures } from './lib/hidden-features.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
@@ -194,7 +193,7 @@ function renderView() {
     case 'leaderboard':  renderAccuracyScoreboardView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;  // legacy alias
     case 'projected':
-    case 'projected-bracket': renderProjectedBracketView(root, state.data, params); break;
+    case 'projected-bracket': renderProjectedShim(root, state.data, params); break;
     case 'winner':       renderWinnerView(root, state.data, params); break;
     default:             renderHome(root, state.data, params);
   }
@@ -214,6 +213,14 @@ async function renderBracketShim(root, data, params) {
   if (m?.renderBracketView) return m.renderBracketView(root, data, params);
   // Fallback to the legacy live view while the consolidated view is being wired.
   renderBracketsLiveView(root, data, params);
+}
+// Projected nav tab: the same bracket view, defaulted to Projected mode, with
+// its mode/source controls kept on the /projected route (routeName).
+async function renderProjectedShim(root, data, params) {
+  const m = await import('./views/bracket-view-r6.js').catch(() => null);
+  const p = { ...params, mode: params.mode || 'projected', routeName: 'projected' };
+  if (m?.renderBracketView) return m.renderBracketView(root, data, p);
+  renderBracketsLiveView(root, data, p);
 }
 function redirectToPlay() {
   setRoute('play', { stage: '1' });
@@ -251,6 +258,7 @@ function bindNav() {
         case 'my-picks':    return setRoute('my-picks', {});
         case 'matches':     return setRoute('matches', { group: grp });
         case 'schedule':    return setRoute('schedule', {});
+        case 'projected':   return setRoute('projected', {});
         case 'venues':      return setRoute('venues', {});
         default:            return setRoute('home', {});
       }
