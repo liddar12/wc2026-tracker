@@ -1,163 +1,134 @@
 #!/usr/bin/env python3
-"""Injury / availability tracker — builds a dedicated data/injuries.json feed.
+"""Injuries feed → data/injuries.json (by_team + __meta__).
 
-Why a separate file?
-  `update_squads.py` flips a player's inline `injury_status` field inside
-  players.json. This script materialises a *standalone* injuries feed that the
-  UI (and future endpoints) can read without walking the whole player roster,
-  grouped by team and timestamped.
+REWRITE (2026-06-19): the old source (an ESPN squad-tracker story page) is a
+hard 404, so this wrote 0 entries every run, silently, for the whole tournament
+(docs/POSTMORTEM_2026-06-19.md, Track 1).
 
-Sources we try, in order (all best-effort, robots-respecting, rate-limited):
-  1. ESPN World Cup 2026 squad-tracker article (HTML) — same source the squad
-     scraper uses; we scan a window around each known player name for injury
-     keywords.
-  2. The current inline `injury_status` already present in players.json — this
-     guarantees injuries.json is never *less* complete than the roster, even if
-     every network source is down.
+Investigation finding: ESPN publishes NO structured injury data for the World
+Cup — the per-team injuries endpoints all return 200 with 0 items, and the
+match summary carries no injuries block. So there is no automated source that
+can flag e.g. Christian Pulisic as injured. The only reliable, automatically
+available availability signal is SUSPENSIONS (red cards + accumulated yellows),
+which we already capture in data/match_events.json.
 
-Output:
-  data/injuries.json
-    {
-      "__meta__": { "updated_at": ISO-8601, "source": "espn+roster" },
-      "by_team":  { "Team Name": [
-          { "player": str, "position": str, "club": str,
-            "status": str, "note": str, "source": str }
-      ] },
-      "count": int
-    }
+This scraper therefore:
+  1. Queries ESPN's per-team injuries endpoint for every WC team (correct URL,
+     no 404) — future-proof: it populates if ESPN ever adds WC injury data.
+  2. Records honest status in __meta__ (source + whether ESPN returned anything)
+     so the staleness watchdog and the UI reflect reality instead of a dead 404.
 
-Conventions (mirrors the other scrapers):
-  * Respects robots.txt + per-host rate limit + identifying UA via _common.
-  * Logs to stderr and ALWAYS exits 0 — a dead source must never fail the build.
-  * Idempotent: re-running with no source changes rewrites the same shape.
+Card SUSPENSIONS remain surfaced by the app from match_events (injuries-view's
+Suspensions section); propagating those into the match view + model is the
+recommended P1 (B2). Always exits 0.
 """
 from __future__ import annotations
 
+import json
 import sys
+import time
+import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+ROOT = Path(__file__).resolve().parent.parent
+DATA = ROOT / "data"
+OUT = DATA / "injuries.json"
+TEAMS_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/teams"
+INJ_URL = "https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/teams/{id}/injuries"
+UA = {"User-Agent": "wc26-tracker/1.0", "Accept": "application/json"}
+MIN_INTERVAL = 0.4
 
-from _common import ScrapeError, load_json, log, polite_get, save_json  # type: ignore
-
-ESPN_TRACKER = (
-    "https://www.espn.com/soccer/world-cup-2026/story/_/id/_/"
-    "world-cup-2026-squad-tracker"
-)
-
-# Keyword -> normalised status. Order matters (first match wins).
-STATUS_KEYWORDS = (
-    ("ruled out", "Out"),
-    ("out injured", "Out"),
-    ("season-ending", "Out"),
-    ("withdrawn", "Out"),
-    ("withdraws", "Out"),
-    ("suspended", "Suspended"),
-    ("doubtful", "Doubtful"),
-    ("questionable", "Doubtful"),
-    ("injury doubt", "Doubtful"),
-    ("knock", "Doubtful"),
-)
+RENAMES = {
+    "United States": "USA", "South Korea": "Korea Republic", "Türkiye": "Turkiye",
+    "Czech Republic": "Czechia", "Cape Verde": "Cabo Verde", "Ivory Coast": "Cote d'Ivoire",
+    "IR Iran": "Iran", "Congo DR": "DR Congo", "Bosnia & Herzegovina": "Bosnia and Herzegovina",
+    "Bosnia-Herzegovina": "Bosnia and Herzegovina", "Curaçao": "Curacao",
+}
+_last = 0.0
 
 
-def fetch_article(url: str) -> str:
-    """Pull the squad-tracker article HTML. Returns "" on any failure."""
+def log(m): print(f"[injuries] {m}", file=sys.stderr, flush=True)
+def norm(n): n = (n or "").strip(); return RENAMES.get(n, RENAMES.get(n.replace("-", " "), n))
+
+
+def get(url):
+    global _last
+    wait = MIN_INTERVAL - (time.monotonic() - _last)
+    if wait > 0:
+        time.sleep(wait)
     try:
-        return polite_get(url).text
-    except ScrapeError as e:
-        log(f"injuries: source unavailable ({e})")
-        return ""
-    except Exception as e:  # network/parse — stay alive
-        log(f"injuries: unexpected source error ({e})")
-        return ""
+        with urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=25) as r:
+            _last = time.monotonic()
+            return json.load(r)
+    except Exception as e:  # noqa: BLE001
+        _last = time.monotonic()
+        log(f"GET fail {url[-48:]}: {e}")
+        return None
 
 
-def classify(window: str) -> str | None:
-    """Return a normalised status for the first injury keyword in `window`."""
-    low = window.lower()
-    for kw, status in STATUS_KEYWORDS:
-        if kw in low:
-            return status
-    return None
+def team_ids():
+    data = get(TEAMS_URL)
+    out = {}
+    for s in (data or {}).get("sports", []):
+        for lg in s.get("leagues", []):
+            for entry in lg.get("teams", []):
+                t = entry.get("team", {})
+                name = norm(t.get("displayName") or t.get("name"))
+                if name and t.get("id"):
+                    out[name] = t["id"]
+    return out
 
 
-def build() -> dict:
-    try:
-        players = load_json("players.json")
-    except Exception as e:
-        log(f"injuries: cannot read players.json ({e}); writing empty feed")
-        players = []
-    if not isinstance(players, list):
-        players = []
-
-    article = fetch_article(ESPN_TRACKER)
-
-    by_team: dict[str, list[dict]] = {}
-    count = 0
-    for p in players:
-        if not isinstance(p, dict):
-            continue
-        name = p.get("name")
-        team = p.get("team")
-        if not name or not team:
-            continue
-
-        status: str | None = None
-        note = ""
-        source = ""
-
-        # 1) Article-derived status (preferred — carries context).
-        if article:
-            idx = article.lower().find(name.lower())
-            if idx >= 0:
-                window = article[max(0, idx - 220): idx + 220]
-                derived = classify(window)
-                if derived:
-                    status = derived
-                    source = "espn"
-                    snippet = " ".join(window.split())
-                    note = snippet[:160]
-
-        # 2) Fall back to the inline roster flag so the feed is never thinner
-        #    than players.json itself.
-        if status is None and p.get("injury_status"):
-            status = str(p["injury_status"])
-            source = "roster"
-
-        if status is None:
-            continue
-
-        by_team.setdefault(team, []).append({
-            "player": name,
-            "position": p.get("position", ""),
-            "club": p.get("club", ""),
-            "status": status,
-            "note": note,
-            "source": source,
-        })
-        count += 1
-
+def build():
+    ids = team_ids()
+    by_team = {}
+    espn_count = 0
+    for name, tid in sorted(ids.items()):
+        data = get(INJ_URL.format(id=tid))
+        items = (data or {}).get("injuries") or []
+        entries = []
+        for it in items:
+            ath = (it.get("athlete") or {}).get("displayName")
+            if not ath:
+                continue
+            entries.append({
+                "player": ath,
+                "position": ((it.get("athlete") or {}).get("position") or {}).get("abbreviation", ""),
+                "status": it.get("status") or (it.get("type") or {}).get("description", "Out"),
+                "injury": (it.get("details") or {}).get("type") or it.get("shortComment") or "Injury",
+                "source": "espn",
+            })
+        if entries:
+            by_team[name] = entries
+            espn_count += len(entries)
     return {
         "__meta__": {
             "updated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-            "source": "espn+roster",
+            "source": "espn-team-injuries",
+            "espn_entries": espn_count,
+            "note": ("ESPN currently exposes no World Cup injury data; suspensions "
+                     "(red/2-yellow) are surfaced from match_events. See "
+                     "docs/POSTMORTEM_2026-06-19.md."),
         },
         "by_team": dict(sorted(by_team.items())),
-        "count": count,
+        "count": espn_count,
     }
 
 
-def main() -> int:
+def main():
     feed = build()
-    save_json("injuries.json", feed)
-    log(f"injuries: wrote {feed['count']} entries across {len(feed['by_team'])} teams")
+    OUT.write_text(json.dumps(feed, ensure_ascii=False, indent=2) + "\n")
+    log(f"injuries: {feed['count']} ESPN entries across {len(feed['by_team'])} team(s) "
+        f"(ESPN WC injury data is currently empty — expected)")
     return 0
 
 
 if __name__ == "__main__":
     try:
         raise SystemExit(main())
-    except Exception as e:  # last-resort guard — never fail the workflow
-        log(f"injuries: fatal — {e}; continuing")
+    except SystemExit:
+        raise
+    except Exception as e:  # noqa: BLE001
+        log(f"fatal — {e}")
         raise SystemExit(0)

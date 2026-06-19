@@ -1,7 +1,9 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-19T18:11:00+00:00",
-    "source": "espn+roster"
+    "updated_at": "2026-06-19T19:40:58+00:00",
+    "source": "espn-team-injuries",
+    "espn_entries": 0,
+    "note": "ESPN currently exposes no World Cup injury data; suspensions (red/2-yellow) are surfaced from match_events. See docs/POSTMORTEM_2026-06-19.md."
   },
   "by_team": {},
   "count": 0
