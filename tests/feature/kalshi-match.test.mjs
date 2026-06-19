@@ -17,8 +17,8 @@ test('build_hybrid blends real per-match Kalshi odds when present', () => {
   const s = read('scripts/build_hybrid.py');
   assert.match(s, /match_outcomes/, 'reads markets.match_outcomes');
   assert.match(s, /kalshi_live/, 'counts matches using live per-match Kalshi');
-  // ⅓ each at the match level
-  assert.match(s, /\(j\[0\] \+ d\[0\] \+ k\[0\]\) \/ 3/, 'averages J5L + DT + Kalshi distributions');
+  // Backtest-tuned blend at the match level (was hardcoded ⅓ each).
+  assert.match(s, /blend\[0\] \* j\[0\] \+ blend\[1\] \* d\[0\] \+ blend\[2\] \* k\[0\]/, 'weighted-blends J5L + DT + Kalshi distributions');
 });
 
 test('match_outcomes consumer contract intact (markets.js)', () => {

@@ -23,11 +23,14 @@ from _common import load_json, log, save_json, update_meta
 
 def composite(team: dict, weights: dict) -> float:
     sub = team.get("sub_ratings", {})
+    # form is the in-tournament signal (compute_form.py); weight defaults to 0 so
+    # the term is inert until optimize_weights tunes it in.
     base = (
         weights["mine"] * sub.get("mine", 0)
         + weights["elo"] * sub.get("elo_scaled", 0)
         + weights["tmv"] * sub.get("tmv_scaled", 0)
         + weights["qual"] * sub.get("qual_scaled", 0)
+        + weights.get("form", 0) * sub.get("form_scaled", 0)
     )
     boosts = team.get("boosts", {})
     if team.get("continental_champion"):
@@ -54,11 +57,13 @@ def _poisson_pmf(k: int, lam: float) -> float:
     return math.exp(k * math.log(lam) - lam - math.lgamma(k + 1))
 
 
-def win_probs(gap: float) -> tuple[float, float, float]:
-    """Three-way probs (A win, draw, B win) via a bivariate-Poisson scoreline."""
-    sup = _POIS_BETA * gap
-    lam_a = math.exp(_POIS_MU + sup / 2.0)
-    lam_b = math.exp(_POIS_MU - sup / 2.0)
+def win_probs(gap: float, mu: float = _POIS_MU, beta: float = _POIS_BETA) -> tuple[float, float, float]:
+    """Three-way probs (A win, draw, B win) via a bivariate-Poisson scoreline.
+    mu/beta default to the calibrated constants; optimize_weights can override
+    them via meta.poisson_group (read in rebuild())."""
+    sup = beta * gap
+    lam_a = math.exp(mu + sup / 2.0)
+    lam_b = math.exp(mu - sup / 2.0)
     pa = [_poisson_pmf(k, lam_a) for k in range(_POIS_MAXG + 1)]
     pb = [_poisson_pmf(k, lam_b) for k in range(_POIS_MAXG + 1)]
     h = d = a = 0.0
@@ -78,6 +83,11 @@ def win_probs(gap: float) -> tuple[float, float, float]:
 def rebuild() -> None:
     meta = load_json("meta.json")
     weights = meta["model_weights"]
+    # optimize_weights may tune the group Poisson calibration; fall back to the
+    # historically-calibrated constants.
+    pg = meta.get("poisson_group") or {}
+    mu = pg.get("mu", _POIS_MU)
+    beta = pg.get("beta", _POIS_BETA)
 
     teams = load_json("teams.json")
     teams_changed = 0
@@ -102,7 +112,7 @@ def rebuild() -> None:
             new_a = a["composite"]
             new_b = b["composite"]
             gap = new_a - new_b
-            pa, pd, pb = win_probs(gap)
+            pa, pd, pb = win_probs(gap, mu, beta)
             new = {
                 "composite_a": new_a,
                 "composite_b": new_b,

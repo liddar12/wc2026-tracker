@@ -11,24 +11,24 @@
       {
         "team_a": "Mexico",
         "team_b": "Korea Republic",
-        "composite_a": 73.8,
-        "composite_b": 72.4,
-        "gap": 1.4,
+        "composite_a": 74.1,
+        "composite_b": 72.9,
+        "gap": 1.2,
         "probabilities": {
-          "team_a_wins": 46.9,
+          "team_a_wins": 47.2,
           "draw": 24.5,
-          "team_b_wins": 28.6
+          "team_b_wins": 28.3
         },
         "expected_points": {
-          "team_a": 1.65,
-          "team_b": 1.1
+          "team_a": 1.66,
+          "team_b": 1.09
         },
         "predicted_winner": "Mexico",
-        "win_confidence_pct": 46.9,
+        "win_confidence_pct": 47.2,
         "upset_risk": {
           "favored": "Mexico",
           "underdog": "Korea Republic",
-          "gap": 1.4,
+          "gap": 1.2,
           "indicators": [
             {
               "type": "close_gap",
@@ -40,64 +40,64 @@
         },
         "match_id": "Mexico__vs__Korea Republic",
         "j5l_probabilities": {
-          "team_a_wins": 42.7,
-          "draw": 25.6,
-          "team_b_wins": 31.8
+          "team_a_wins": 39.8,
+          "draw": 26.3,
+          "team_b_wins": 33.9
         },
         "hybrid_gap": 0.554
       },
       {
         "team_a": "Mexico",
         "team_b": "South Africa",
-        "composite_a": 73.8,
+        "composite_a": 74.1,
         "composite_b": 60.2,
-        "gap": 13.6,
+        "gap": 13.9,
         "probabilities": {
-          "team_a_wins": 73.7,
-          "draw": 15.6,
-          "team_b_wins": 10.7
+          "team_a_wins": 69.5,
+          "draw": 18.0,
+          "team_b_wins": 12.5
         },
         "expected_points": {
-          "team_a": 2.37,
-          "team_b": 0.48
+          "team_a": 2.26,
+          "team_b": 0.56
         },
         "predicted_winner": "Mexico",
-        "win_confidence_pct": 73.7,
+        "win_confidence_pct": 69.5,
         "upset_risk": {
           "favored": "Mexico",
           "underdog": "South Africa",
-          "gap": 13.6,
+          "gap": 13.9,
           "indicators": []
         },
         "match_id": "Mexico__vs__South Africa",
         "j5l_probabilities": {
-          "team_a_wins": 86.9,
-          "draw": 9.2,
-          "team_b_wins": 3.9
+          "team_a_wins": 71.9,
+          "draw": 17.4,
+          "team_b_wins": 10.7
         },
         "hybrid_gap": 1.474
       },
       {
         "team_a": "Mexico",
         "team_b": "Czechia",
-        "composite_a": 73.8,
-        "composite_b": 69.6,
-        "gap": 4.2,
+        "composite_a": 74.1,
+        "composite_b": 69.7,
+        "gap": 4.4,
         "probabilities": {
-          "team_a_wins": 45.5,
-          "draw": 24.5,
-          "team_b_wins": 30.1
+          "team_a_wins": 43.7,
+          "draw": 25.0,
+          "team_b_wins": 31.3
         },
         "expected_points": {
-          "team_a": 1.61,
-          "team_b": 1.15
+          "team_a": 1.56,
+          "team_b": 1.19
         },
         "predicted_winner": "Mexico",
-        "win_confidence_pct": 45.5,
+        "win_confidence_pct": 43.7,
         "upset_risk": {
           "favored": "Mexico",
           "underdog": "Czechia",
-          "gap": 4.2,
+          "gap": 4.4,
           "indicators": [
             {
               "type": "close_gap",
@@ -109,64 +109,64 @@
         },
         "match_id": "Mexico__vs__Czechia",
         "j5l_probabilities": {
-          "team_a_wins": 54.2,
-          "draw": 23.5,
-          "team_b_wins": 22.3
+          "team_a_wins": 48.0,
+          "draw": 25.3,
+          "team_b_wins": 26.7
         },
         "hybrid_gap": 0.26
       },
       {
         "team_a": "Korea Republic",
         "team_b": "South Africa",
-        "composite_a": 72.4,
+        "composite_a": 72.9,
         "composite_b": 60.2,
-        "gap": 12.2,
+        "gap": 12.7,
         "probabilities": {
-          "team_a_wins": 66.4,
-          "draw": 19.3,
-          "team_b_wins": 14.4
+          "team_a_wins": 61.5,
+          "draw": 21.9,
+          "team_b_wins": 16.6
         },
         "expected_points": {
-          "team_a": 2.18,
-          "team_b": 0.62
+          "team_a": 2.06,
+          "team_b": 0.72
         },
         "predicted_winner": "Korea Republic",
-        "win_confidence_pct": 66.4,
+        "win_confidence_pct": 61.5,
         "upset_risk": {
           "favored": "Korea Republic",
           "underdog": "South Africa",
-          "gap": 12.2,
+          "gap": 12.7,
           "indicators": []
         },
         "match_id": "Korea Republic__vs__South Africa",
         "j5l_probabilities": {
-          "team_a_wins": 83.3,
-          "draw": 11.3,
-          "team_b_wins": 5.4
+          "team_a_wins": 69.1,
+          "draw": 18.7,
+          "team_b_wins": 12.2
         },
         "hybrid_gap": 0.92
       },
       {
         "team_a": "Korea Republic",
         "team_b": "Czechia",
-        "composite_a": 72.4,
-        "composite_b": 69.6,
-        "gap": 2.8,
+        "composite_a": 72.9,
+        "composite_b": 69.7,
+        "gap": 3.2,
         "probabilities": {
-          "team_a_wins": 35.8,
-          "draw": 25.0,
-          "team_b_wins": 39.2
+          "team_a_wins": 33.8,
+          "draw": 25.3,
+          "team_b_wins": 41.0
         },
         "expected_points": {
-          "team_a": 1.32,
-          "team_b": 1.43
+          "team_a": 1.27,
+          "team_b": 1.48
         },
-        "predicted_winner": "draw_likely",
-        "win_confidence_pct": 39.2,
+        "predicted_winner": "Czechia",
+        "win_confidence_pct": 41.0,
         "upset_risk": {
           "favored": "Korea Republic",
           "underdog": "Czechia",
-          "gap": 2.8,
+          "gap": 3.2,
           "indicators": [
             {
               "type": "close_gap",
@@ -178,9 +178,9 @@
         },
         "match_id": "Korea Republic__vs__Czechia",
         "j5l_probabilities": {
-          "team_a_wins": 48.4,
-          "draw": 24.8,
-          "team_b_wins": 26.8
+          "team_a_wins": 44.9,
+          "draw": 25.8,
+          "team_b_wins": 29.3
         },
         "hybrid_gap": -0.294
       },
@@ -188,30 +188,30 @@
         "team_a": "South Africa",
         "team_b": "Czechia",
         "composite_a": 60.2,
-        "composite_b": 69.6,
-        "gap": 9.4,
+        "composite_b": 69.7,
+        "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 13.6,
-          "draw": 18.8,
-          "team_b_wins": 67.6
+          "team_a_wins": 15.7,
+          "draw": 20.6,
+          "team_b_wins": 63.7
         },
         "expected_points": {
-          "team_a": 0.6,
-          "team_b": 2.22
+          "team_a": 0.68,
+          "team_b": 2.12
         },
         "predicted_winner": "Czechia",
-        "win_confidence_pct": 67.6,
+        "win_confidence_pct": 63.7,
         "upset_risk": {
           "favored": "Czechia",
           "underdog": "South Africa",
-          "gap": 9.4,
+          "gap": 9.5,
           "indicators": []
         },
         "match_id": "South Africa__vs__Czechia",
         "j5l_probabilities": {
-          "team_a_wins": 9.6,
-          "draw": 16.0,
-          "team_b_wins": 74.4
+          "team_a_wins": 17.0,
+          "draw": 21.8,
+          "team_b_wins": 61.2
         },
         "hybrid_gap": -1.214
       }
@@ -267,24 +267,24 @@
       {
         "team_a": "Canada",
         "team_b": "Switzerland",
-        "composite_a": 69.9,
-        "composite_b": 76.6,
-        "gap": 6.7,
+        "composite_a": 70.2,
+        "composite_b": 76.7,
+        "gap": 6.5,
         "probabilities": {
-          "team_a_wins": 21.8,
-          "draw": 24.7,
-          "team_b_wins": 53.5
+          "team_a_wins": 24.8,
+          "draw": 26.4,
+          "team_b_wins": 48.8
         },
         "expected_points": {
-          "team_a": 0.9,
-          "team_b": 1.85
+          "team_a": 1.01,
+          "team_b": 1.73
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 53.5,
+        "win_confidence_pct": 48.8,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Canada",
-          "gap": 6.7,
+          "gap": 6.5,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -302,33 +302,33 @@
         },
         "match_id": "Canada__vs__Switzerland",
         "j5l_probabilities": {
-          "team_a_wins": 15.4,
-          "draw": 20.3,
-          "team_b_wins": 64.3
+          "team_a_wins": 22.4,
+          "draw": 24.1,
+          "team_b_wins": 53.4
         },
         "hybrid_gap": -0.773
       },
       {
         "team_a": "Canada",
         "team_b": "Qatar",
-        "composite_a": 69.9,
-        "composite_b": 59.5,
-        "gap": 10.4,
+        "composite_a": 70.2,
+        "composite_b": 59.9,
+        "gap": 10.3,
         "probabilities": {
-          "team_a_wins": 68.5,
-          "draw": 18.4,
-          "team_b_wins": 13.2
+          "team_a_wins": 63.2,
+          "draw": 20.8,
+          "team_b_wins": 16.1
         },
         "expected_points": {
-          "team_a": 2.24,
-          "team_b": 0.58
+          "team_a": 2.1,
+          "team_b": 0.69
         },
         "predicted_winner": "Canada",
-        "win_confidence_pct": 68.5,
+        "win_confidence_pct": 63.2,
         "upset_risk": {
           "favored": "Canada",
           "underdog": "Qatar",
-          "gap": 10.4,
+          "gap": 10.3,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -340,33 +340,33 @@
         },
         "match_id": "Canada__vs__Qatar",
         "j5l_probabilities": {
-          "team_a_wins": 77.8,
-          "draw": 14.3,
-          "team_b_wins": 7.9
+          "team_a_wins": 63.2,
+          "draw": 21.1,
+          "team_b_wins": 15.7
         },
         "hybrid_gap": 1.193
       },
       {
         "team_a": "Canada",
         "team_b": "Bosnia and Herzegovina",
-        "composite_a": 69.9,
-        "composite_b": 68.6,
-        "gap": 1.3,
+        "composite_a": 70.2,
+        "composite_b": 68.8,
+        "gap": 1.4,
         "probabilities": {
-          "team_a_wins": 36.5,
-          "draw": 25.5,
-          "team_b_wins": 38.0
+          "team_a_wins": 35.1,
+          "draw": 25.6,
+          "team_b_wins": 39.3
         },
         "expected_points": {
-          "team_a": 1.35,
-          "team_b": 1.4
+          "team_a": 1.31,
+          "team_b": 1.43
         },
-        "predicted_winner": "draw_likely",
-        "win_confidence_pct": 38.0,
+        "predicted_winner": "Bosnia and Herzegovina",
+        "win_confidence_pct": 39.3,
         "upset_risk": {
           "favored": "Canada",
           "underdog": "Bosnia and Herzegovina",
-          "gap": 1.3,
+          "gap": 1.4,
           "indicators": [
             {
               "type": "close_gap",
@@ -384,33 +384,33 @@
         },
         "match_id": "Canada__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 42.2,
-          "draw": 25.6,
-          "team_b_wins": 32.2
+          "team_a_wins": 40.3,
+          "draw": 26.2,
+          "team_b_wins": 33.5
         },
         "hybrid_gap": -0.118
       },
       {
         "team_a": "Switzerland",
         "team_b": "Qatar",
-        "composite_a": 76.6,
-        "composite_b": 59.5,
-        "gap": 17.1,
+        "composite_a": 76.7,
+        "composite_b": 59.9,
+        "gap": 16.8,
         "probabilities": {
-          "team_a_wins": 81.8,
-          "draw": 11.5,
-          "team_b_wins": 6.7
+          "team_a_wins": 75.7,
+          "draw": 15.1,
+          "team_b_wins": 9.1
         },
         "expected_points": {
-          "team_a": 2.57,
-          "team_b": 0.32
+          "team_a": 2.42,
+          "team_b": 0.43
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 81.8,
+        "win_confidence_pct": 75.7,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Qatar",
-          "gap": 17.1,
+          "gap": 16.8,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -422,33 +422,33 @@
         },
         "match_id": "Switzerland__vs__Qatar",
         "j5l_probabilities": {
-          "team_a_wins": 93.7,
-          "draw": 4.8,
-          "team_b_wins": 1.6
+          "team_a_wins": 78.2,
+          "draw": 14.3,
+          "team_b_wins": 7.5
         },
         "hybrid_gap": 1.966
       },
       {
         "team_a": "Switzerland",
         "team_b": "Bosnia and Herzegovina",
-        "composite_a": 76.6,
-        "composite_b": 68.6,
-        "gap": 8.0,
+        "composite_a": 76.7,
+        "composite_b": 68.8,
+        "gap": 7.9,
         "probabilities": {
-          "team_a_wins": 54.7,
-          "draw": 22.1,
-          "team_b_wins": 23.2
+          "team_a_wins": 49.2,
+          "draw": 23.9,
+          "team_b_wins": 27.0
         },
         "expected_points": {
-          "team_a": 1.86,
-          "team_b": 0.92
+          "team_a": 1.71,
+          "team_b": 1.05
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 54.7,
+        "win_confidence_pct": 49.2,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Bosnia and Herzegovina",
-          "gap": 8.0,
+          "gap": 7.9,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -460,33 +460,33 @@
         },
         "match_id": "Switzerland__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 69.4,
-          "draw": 18.3,
-          "team_b_wins": 12.4
+          "team_a_wins": 57.1,
+          "draw": 23.1,
+          "team_b_wins": 19.8
         },
         "hybrid_gap": 0.655
       },
       {
         "team_a": "Qatar",
         "team_b": "Bosnia and Herzegovina",
-        "composite_a": 59.5,
-        "composite_b": 68.6,
-        "gap": 9.1,
+        "composite_a": 59.9,
+        "composite_b": 68.8,
+        "gap": 8.9,
         "probabilities": {
-          "team_a_wins": 12.5,
-          "draw": 18.5,
-          "team_b_wins": 69.0
+          "team_a_wins": 15.0,
+          "draw": 20.3,
+          "team_b_wins": 64.7
         },
         "expected_points": {
-          "team_a": 0.56,
-          "team_b": 2.26
+          "team_a": 0.65,
+          "team_b": 2.15
         },
         "predicted_winner": "Bosnia and Herzegovina",
-        "win_confidence_pct": 69.0,
+        "win_confidence_pct": 64.7,
         "upset_risk": {
           "favored": "Bosnia and Herzegovina",
           "underdog": "Qatar",
-          "gap": 9.1,
+          "gap": 8.9,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -498,9 +498,9 @@
         },
         "match_id": "Qatar__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 10.1,
-          "draw": 16.5,
-          "team_b_wins": 73.4
+          "team_a_wins": 18.0,
+          "draw": 22.3,
+          "team_b_wins": 59.7
         },
         "hybrid_gap": -1.311
       }
@@ -556,24 +556,24 @@
       {
         "team_a": "Brazil",
         "team_b": "Morocco",
-        "composite_a": 78.6,
-        "composite_b": 79.7,
-        "gap": 1.1,
+        "composite_a": 78.5,
+        "composite_b": 80.0,
+        "gap": 1.5,
         "probabilities": {
-          "team_a_wins": 48.9,
-          "draw": 23.7,
-          "team_b_wins": 27.4
+          "team_a_wins": 49.4,
+          "draw": 23.9,
+          "team_b_wins": 26.8
         },
         "expected_points": {
-          "team_a": 1.7,
-          "team_b": 1.06
+          "team_a": 1.72,
+          "team_b": 1.04
         },
         "predicted_winner": "Brazil",
-        "win_confidence_pct": 48.9,
+        "win_confidence_pct": 49.4,
         "upset_risk": {
           "favored": "Morocco",
           "underdog": "Brazil",
-          "gap": 1.1,
+          "gap": 1.5,
           "indicators": [
             {
               "type": "close_gap",
@@ -585,33 +585,33 @@
         },
         "match_id": "Brazil__vs__Morocco",
         "j5l_probabilities": {
-          "team_a_wins": 32.9,
-          "draw": 25.7,
-          "team_b_wins": 41.4
+          "team_a_wins": 33.2,
+          "draw": 26.2,
+          "team_b_wins": 40.5
         },
         "hybrid_gap": 0.642
       },
       {
         "team_a": "Brazil",
         "team_b": "Scotland",
-        "composite_a": 78.6,
-        "composite_b": 70.5,
-        "gap": 8.1,
+        "composite_a": 78.5,
+        "composite_b": 70.9,
+        "gap": 7.6,
         "probabilities": {
-          "team_a_wins": 70.3,
-          "draw": 17.6,
-          "team_b_wins": 12.2
+          "team_a_wins": 66.1,
+          "draw": 19.1,
+          "team_b_wins": 14.8
         },
         "expected_points": {
-          "team_a": 2.28,
-          "team_b": 0.54
+          "team_a": 2.17,
+          "team_b": 0.63
         },
         "predicted_winner": "Brazil",
-        "win_confidence_pct": 70.3,
+        "win_confidence_pct": 66.1,
         "upset_risk": {
           "favored": "Brazil",
           "underdog": "Scotland",
-          "gap": 8.1,
+          "gap": 7.6,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -629,33 +629,33 @@
         },
         "match_id": "Brazil__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 69.7,
-          "draw": 18.1,
-          "team_b_wins": 12.1
+          "team_a_wins": 56.3,
+          "draw": 23.3,
+          "team_b_wins": 20.4
         },
         "hybrid_gap": 1.652
       },
       {
         "team_a": "Brazil",
         "team_b": "Haiti",
-        "composite_a": 78.6,
-        "composite_b": 59.0,
-        "gap": 19.6,
+        "composite_a": 78.5,
+        "composite_b": 59.2,
+        "gap": 19.3,
         "probabilities": {
-          "team_a_wins": 91.3,
-          "draw": 5.9,
-          "team_b_wins": 2.7
+          "team_a_wins": 86.9,
+          "draw": 8.8,
+          "team_b_wins": 4.3
         },
         "expected_points": {
-          "team_a": 2.8,
-          "team_b": 0.14
+          "team_a": 2.69,
+          "team_b": 0.22
         },
         "predicted_winner": "Brazil",
-        "win_confidence_pct": 91.3,
+        "win_confidence_pct": 86.9,
         "upset_risk": {
           "favored": "Brazil",
           "underdog": "Haiti",
-          "gap": 19.6,
+          "gap": 19.3,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -667,102 +667,102 @@
         },
         "match_id": "Brazil__vs__Haiti",
         "j5l_probabilities": {
-          "team_a_wins": 96.7,
-          "draw": 2.6,
-          "team_b_wins": 0.7
+          "team_a_wins": 83.0,
+          "draw": 11.7,
+          "team_b_wins": 5.4
         },
         "hybrid_gap": 2.619
       },
       {
         "team_a": "Morocco",
         "team_b": "Scotland",
-        "composite_a": 79.7,
-        "composite_b": 70.5,
-        "gap": 9.2,
+        "composite_a": 80.0,
+        "composite_b": 70.9,
+        "gap": 9.1,
         "probabilities": {
-          "team_a_wins": 60.2,
-          "draw": 22.5,
-          "team_b_wins": 17.4
+          "team_a_wins": 55.9,
+          "draw": 24.6,
+          "team_b_wins": 19.5
         },
         "expected_points": {
-          "team_a": 2.03,
-          "team_b": 0.75
+          "team_a": 1.92,
+          "team_b": 0.83
         },
         "predicted_winner": "Morocco",
-        "win_confidence_pct": 60.2,
+        "win_confidence_pct": 55.9,
         "upset_risk": {
           "favored": "Morocco",
           "underdog": "Scotland",
-          "gap": 9.2,
+          "gap": 9.1,
           "indicators": []
         },
         "match_id": "Morocco__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 73.7,
-          "draw": 16.3,
-          "team_b_wins": 10.0
+          "team_a_wins": 60.2,
+          "draw": 22.1,
+          "team_b_wins": 17.7
         },
         "hybrid_gap": 1.01
       },
       {
         "team_a": "Morocco",
         "team_b": "Haiti",
-        "composite_a": 79.7,
-        "composite_b": 59.0,
-        "gap": 20.7,
+        "composite_a": 80.0,
+        "composite_b": 59.2,
+        "gap": 20.8,
         "probabilities": {
-          "team_a_wins": 81.9,
-          "draw": 11.5,
-          "team_b_wins": 6.6
+          "team_a_wins": 77.7,
+          "draw": 14.3,
+          "team_b_wins": 7.9
         },
         "expected_points": {
-          "team_a": 2.57,
-          "team_b": 0.31
+          "team_a": 2.47,
+          "team_b": 0.38
         },
         "predicted_winner": "Morocco",
-        "win_confidence_pct": 81.9,
+        "win_confidence_pct": 77.7,
         "upset_risk": {
           "favored": "Morocco",
           "underdog": "Haiti",
-          "gap": 20.7,
+          "gap": 20.8,
           "indicators": []
         },
         "match_id": "Morocco__vs__Haiti",
         "j5l_probabilities": {
-          "team_a_wins": 97.6,
-          "draw": 2.0,
-          "team_b_wins": 0.5
+          "team_a_wins": 85.5,
+          "draw": 10.1,
+          "team_b_wins": 4.3
         },
         "hybrid_gap": 1.977
       },
       {
         "team_a": "Scotland",
         "team_b": "Haiti",
-        "composite_a": 70.5,
-        "composite_b": 59.0,
-        "gap": 11.5,
+        "composite_a": 70.9,
+        "composite_b": 59.2,
+        "gap": 11.7,
         "probabilities": {
-          "team_a_wins": 59.7,
-          "draw": 20.0,
-          "team_b_wins": 20.3
+          "team_a_wins": 53.1,
+          "draw": 22.7,
+          "team_b_wins": 24.2
         },
         "expected_points": {
-          "team_a": 1.99,
-          "team_b": 0.81
+          "team_a": 1.82,
+          "team_b": 0.95
         },
         "predicted_winner": "Scotland",
-        "win_confidence_pct": 59.7,
+        "win_confidence_pct": 53.1,
         "upset_risk": {
           "favored": "Scotland",
           "underdog": "Haiti",
-          "gap": 11.5,
+          "gap": 11.7,
           "indicators": []
         },
         "match_id": "Scotland__vs__Haiti",
         "j5l_probabilities": {
-          "team_a_wins": 81.2,
-          "draw": 12.5,
-          "team_b_wins": 6.3
+          "team_a_wins": 66.7,
+          "draw": 19.7,
+          "team_b_wins": 13.6
         },
         "hybrid_gap": 0.967
       }
@@ -818,24 +818,24 @@
       {
         "team_a": "USA",
         "team_b": "Australia",
-        "composite_a": 76.2,
-        "composite_b": 66.4,
-        "gap": 9.8,
+        "composite_a": 76.9,
+        "composite_b": 66.6,
+        "gap": 10.3,
         "probabilities": {
-          "team_a_wins": 74.4,
-          "draw": 14.3,
-          "team_b_wins": 11.3
+          "team_a_wins": 72.7,
+          "draw": 15.0,
+          "team_b_wins": 12.3
         },
         "expected_points": {
-          "team_a": 2.37,
-          "team_b": 0.48
+          "team_a": 2.33,
+          "team_b": 0.52
         },
         "predicted_winner": "USA",
-        "win_confidence_pct": 74.4,
+        "win_confidence_pct": 72.7,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Australia",
-          "gap": 9.8,
+          "gap": 10.3,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -847,33 +847,33 @@
         },
         "match_id": "USA__vs__Australia",
         "j5l_probabilities": {
-          "team_a_wins": 75.8,
-          "draw": 15.3,
-          "team_b_wins": 8.9
+          "team_a_wins": 63.2,
+          "draw": 21.1,
+          "team_b_wins": 15.7
         },
         "hybrid_gap": 1.216
       },
       {
         "team_a": "USA",
         "team_b": "Paraguay",
-        "composite_a": 76.2,
-        "composite_b": 64.2,
-        "gap": 12.0,
+        "composite_a": 76.9,
+        "composite_b": 64.1,
+        "gap": 12.8,
         "probabilities": {
-          "team_a_wins": 73.0,
-          "draw": 15.2,
-          "team_b_wins": 11.8
+          "team_a_wins": 70.3,
+          "draw": 16.7,
+          "team_b_wins": 13.0
         },
         "expected_points": {
-          "team_a": 2.34,
-          "team_b": 0.51
+          "team_a": 2.28,
+          "team_b": 0.56
         },
         "predicted_winner": "USA",
-        "win_confidence_pct": 73.0,
+        "win_confidence_pct": 70.3,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Paraguay",
-          "gap": 12.0,
+          "gap": 12.8,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -885,33 +885,33 @@
         },
         "match_id": "USA__vs__Paraguay",
         "j5l_probabilities": {
-          "team_a_wins": 82.7,
-          "draw": 11.7,
-          "team_b_wins": 5.6
+          "team_a_wins": 69.3,
+          "draw": 18.6,
+          "team_b_wins": 12.1
         },
         "hybrid_gap": 1.117
       },
       {
         "team_a": "USA",
         "team_b": "Turkiye",
-        "composite_a": 76.2,
+        "composite_a": 76.9,
         "composite_b": 73.8,
-        "gap": 2.4,
+        "gap": 3.1,
         "probabilities": {
-          "team_a_wins": 38.4,
-          "draw": 24.2,
-          "team_b_wins": 37.4
+          "team_a_wins": 37.8,
+          "draw": 24.3,
+          "team_b_wins": 37.9
         },
         "expected_points": {
-          "team_a": 1.39,
-          "team_b": 1.36
+          "team_a": 1.38,
+          "team_b": 1.38
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 38.4,
+        "win_confidence_pct": 37.9,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Turkiye",
-          "gap": 2.4,
+          "gap": 3.1,
           "indicators": [
             {
               "type": "close_gap",
@@ -929,33 +929,33 @@
         },
         "match_id": "USA__vs__Turkiye",
         "j5l_probabilities": {
-          "team_a_wins": 46.7,
-          "draw": 25.0,
-          "team_b_wins": 28.2
+          "team_a_wins": 44.6,
+          "draw": 25.8,
+          "team_b_wins": 29.6
         },
         "hybrid_gap": 0.033
       },
       {
         "team_a": "Australia",
         "team_b": "Paraguay",
-        "composite_a": 66.4,
-        "composite_b": 64.2,
-        "gap": 2.2,
+        "composite_a": 66.6,
+        "composite_b": 64.1,
+        "gap": 2.5,
         "probabilities": {
-          "team_a_wins": 36.6,
-          "draw": 26.2,
-          "team_b_wins": 37.2
+          "team_a_wins": 35.0,
+          "draw": 26.6,
+          "team_b_wins": 38.4
         },
         "expected_points": {
-          "team_a": 1.36,
-          "team_b": 1.38
+          "team_a": 1.32,
+          "team_b": 1.42
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 37.2,
+        "win_confidence_pct": 38.4,
         "upset_risk": {
           "favored": "Australia",
           "underdog": "Paraguay",
-          "gap": 2.2,
+          "gap": 2.5,
           "indicators": [
             {
               "type": "close_gap",
@@ -967,33 +967,33 @@
         },
         "match_id": "Australia__vs__Paraguay",
         "j5l_probabilities": {
-          "team_a_wins": 45.9,
-          "draw": 25.2,
-          "team_b_wins": 28.9
+          "team_a_wins": 43.1,
+          "draw": 26.0,
+          "team_b_wins": 30.9
         },
         "hybrid_gap": -0.099
       },
       {
         "team_a": "Australia",
         "team_b": "Turkiye",
-        "composite_a": 66.4,
+        "composite_a": 66.6,
         "composite_b": 73.8,
-        "gap": 7.4,
+        "gap": 7.2,
         "probabilities": {
-          "team_a_wins": 17.4,
-          "draw": 21.3,
-          "team_b_wins": 61.3
+          "team_a_wins": 20.0,
+          "draw": 22.8,
+          "team_b_wins": 57.3
         },
         "expected_points": {
-          "team_a": 0.74,
-          "team_b": 2.05
+          "team_a": 0.83,
+          "team_b": 1.95
         },
         "predicted_winner": "Turkiye",
-        "win_confidence_pct": 61.3,
+        "win_confidence_pct": 57.3,
         "upset_risk": {
           "favored": "Turkiye",
           "underdog": "Australia",
-          "gap": 7.4,
+          "gap": 7.2,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1011,33 +1011,33 @@
         },
         "match_id": "Australia__vs__Turkiye",
         "j5l_probabilities": {
-          "team_a_wins": 13.7,
-          "draw": 19.2,
-          "team_b_wins": 67.1
+          "team_a_wins": 21.1,
+          "draw": 23.6,
+          "team_b_wins": 55.3
         },
         "hybrid_gap": -1.182
       },
       {
         "team_a": "Paraguay",
         "team_b": "Turkiye",
-        "composite_a": 64.2,
+        "composite_a": 64.1,
         "composite_b": 73.8,
-        "gap": 9.6,
+        "gap": 9.7,
         "probabilities": {
-          "team_a_wins": 17.5,
-          "draw": 22.1,
-          "team_b_wins": 60.4
+          "team_a_wins": 20.5,
+          "draw": 24.5,
+          "team_b_wins": 55.0
         },
         "expected_points": {
-          "team_a": 0.75,
-          "team_b": 2.03
+          "team_a": 0.86,
+          "team_b": 1.9
         },
         "predicted_winner": "Turkiye",
-        "win_confidence_pct": 60.4,
+        "win_confidence_pct": 55.0,
         "upset_risk": {
           "favored": "Turkiye",
           "underdog": "Paraguay",
-          "gap": 9.6,
+          "gap": 9.7,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -1049,9 +1049,9 @@
         },
         "match_id": "Paraguay__vs__Turkiye",
         "j5l_probabilities": {
-          "team_a_wins": 9.2,
-          "draw": 15.7,
-          "team_b_wins": 75.1
+          "team_a_wins": 16.7,
+          "draw": 21.6,
+          "team_b_wins": 61.7
         },
         "hybrid_gap": -1.084
       }
@@ -1107,117 +1107,117 @@
       {
         "team_a": "Germany",
         "team_b": "Ecuador",
-        "composite_a": 81.8,
-        "composite_b": 69.6,
-        "gap": 12.2,
+        "composite_a": 82.3,
+        "composite_b": 69.1,
+        "gap": 13.2,
         "probabilities": {
-          "team_a_wins": 62.1,
-          "draw": 20.1,
-          "team_b_wins": 17.8
+          "team_a_wins": 57.8,
+          "draw": 22.5,
+          "team_b_wins": 19.8
         },
         "expected_points": {
-          "team_a": 2.06,
-          "team_b": 0.74
+          "team_a": 1.96,
+          "team_b": 0.82
         },
         "predicted_winner": "Germany",
-        "win_confidence_pct": 62.1,
+        "win_confidence_pct": 57.8,
         "upset_risk": {
           "favored": "Germany",
           "underdog": "Ecuador",
-          "gap": 12.2,
+          "gap": 13.2,
           "indicators": []
         },
         "match_id": "Germany__vs__Ecuador",
         "j5l_probabilities": {
-          "team_a_wins": 83.3,
-          "draw": 11.3,
-          "team_b_wins": 5.4
+          "team_a_wins": 70.3,
+          "draw": 18.2,
+          "team_b_wins": 11.6
         },
         "hybrid_gap": 1.01
       },
       {
         "team_a": "Germany",
         "team_b": "Cote d'Ivoire",
-        "composite_a": 81.8,
-        "composite_b": 72.7,
-        "gap": 9.1,
+        "composite_a": 82.3,
+        "composite_b": 73.1,
+        "gap": 9.2,
         "probabilities": {
-          "team_a_wins": 64.2,
-          "draw": 19.9,
-          "team_b_wins": 15.9
+          "team_a_wins": 60.3,
+          "draw": 21.6,
+          "team_b_wins": 18.1
         },
         "expected_points": {
-          "team_a": 2.13,
-          "team_b": 0.68
+          "team_a": 2.02,
+          "team_b": 0.76
         },
         "predicted_winner": "Germany",
-        "win_confidence_pct": 64.2,
+        "win_confidence_pct": 60.3,
         "upset_risk": {
           "favored": "Germany",
           "underdog": "Cote d'Ivoire",
-          "gap": 9.1,
+          "gap": 9.2,
           "indicators": []
         },
         "match_id": "Germany__vs__Cote d'Ivoire",
         "j5l_probabilities": {
-          "team_a_wins": 73.4,
-          "draw": 16.5,
-          "team_b_wins": 10.1
+          "team_a_wins": 60.4,
+          "draw": 22.0,
+          "team_b_wins": 17.5
         },
         "hybrid_gap": 1.223
       },
       {
         "team_a": "Germany",
         "team_b": "Curacao",
-        "composite_a": 81.8,
-        "composite_b": 58.6,
-        "gap": 23.2,
+        "composite_a": 82.3,
+        "composite_b": 58.8,
+        "gap": 23.5,
         "probabilities": {
-          "team_a_wins": 91.3,
-          "draw": 6.2,
-          "team_b_wins": 2.5
+          "team_a_wins": 88.1,
+          "draw": 8.4,
+          "team_b_wins": 3.4
         },
         "expected_points": {
-          "team_a": 2.8,
-          "team_b": 0.14
+          "team_a": 2.73,
+          "team_b": 0.19
         },
         "predicted_winner": "Germany",
-        "win_confidence_pct": 91.3,
+        "win_confidence_pct": 88.1,
         "upset_risk": {
           "favored": "Germany",
           "underdog": "Curacao",
-          "gap": 23.2,
+          "gap": 23.5,
           "indicators": []
         },
         "match_id": "Germany__vs__Curacao",
         "j5l_probabilities": {
-          "team_a_wins": 98.9,
-          "draw": 0.9,
-          "team_b_wins": 0.2
+          "team_a_wins": 89.5,
+          "draw": 7.6,
+          "team_b_wins": 2.9
         },
         "hybrid_gap": 2.657
       },
       {
         "team_a": "Ecuador",
         "team_b": "Cote d'Ivoire",
-        "composite_a": 69.6,
-        "composite_b": 72.7,
-        "gap": 3.1,
+        "composite_a": 69.1,
+        "composite_b": 73.1,
+        "gap": 4.0,
         "probabilities": {
-          "team_a_wins": 36.7,
-          "draw": 25.1,
-          "team_b_wins": 38.2
+          "team_a_wins": 37.3,
+          "draw": 25.5,
+          "team_b_wins": 37.2
         },
         "expected_points": {
-          "team_a": 1.35,
-          "team_b": 1.4
+          "team_a": 1.37,
+          "team_b": 1.37
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 38.2,
+        "win_confidence_pct": 37.3,
         "upset_risk": {
           "favored": "Cote d'Ivoire",
           "underdog": "Ecuador",
-          "gap": 3.1,
+          "gap": 4.0,
           "indicators": [
             {
               "type": "close_gap",
@@ -1229,33 +1229,33 @@
         },
         "match_id": "Ecuador__vs__Cote d'Ivoire",
         "j5l_probabilities": {
-          "team_a_wins": 25.8,
-          "draw": 24.5,
-          "team_b_wins": 49.6
+          "team_a_wins": 27.6,
+          "draw": 25.5,
+          "team_b_wins": 46.9
         },
         "hybrid_gap": 0.214
       },
       {
         "team_a": "Ecuador",
         "team_b": "Curacao",
-        "composite_a": 69.6,
-        "composite_b": 58.6,
-        "gap": 11.0,
+        "composite_a": 69.1,
+        "composite_b": 58.8,
+        "gap": 10.3,
         "probabilities": {
-          "team_a_wins": 83.3,
-          "draw": 11.3,
-          "team_b_wins": 5.5
+          "team_a_wins": 78.8,
+          "draw": 13.3,
+          "team_b_wins": 7.9
         },
         "expected_points": {
-          "team_a": 2.61,
-          "team_b": 0.28
+          "team_a": 2.5,
+          "team_b": 0.37
         },
         "predicted_winner": "Ecuador",
-        "win_confidence_pct": 83.3,
+        "win_confidence_pct": 78.8,
         "upset_risk": {
           "favored": "Ecuador",
           "underdog": "Curacao",
-          "gap": 11.0,
+          "gap": 10.3,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -1267,40 +1267,40 @@
         },
         "match_id": "Ecuador__vs__Curacao",
         "j5l_probabilities": {
-          "team_a_wins": 79.7,
-          "draw": 13.3,
-          "team_b_wins": 7.0
+          "team_a_wins": 63.2,
+          "draw": 21.1,
+          "team_b_wins": 15.7
         },
         "hybrid_gap": 1.647
       },
       {
         "team_a": "Cote d'Ivoire",
         "team_b": "Curacao",
-        "composite_a": 72.7,
-        "composite_b": 58.6,
-        "gap": 14.1,
+        "composite_a": 73.1,
+        "composite_b": 58.8,
+        "gap": 14.3,
         "probabilities": {
-          "team_a_wins": 82.8,
-          "draw": 11.3,
-          "team_b_wins": 5.9
+          "team_a_wins": 78.5,
+          "draw": 13.7,
+          "team_b_wins": 7.8
         },
         "expected_points": {
-          "team_a": 2.6,
-          "team_b": 0.29
+          "team_a": 2.49,
+          "team_b": 0.37
         },
         "predicted_winner": "Cote d'Ivoire",
-        "win_confidence_pct": 82.8,
+        "win_confidence_pct": 78.5,
         "upset_risk": {
           "favored": "Cote d'Ivoire",
           "underdog": "Curacao",
-          "gap": 14.1,
+          "gap": 14.3,
           "indicators": []
         },
         "match_id": "Cote d'Ivoire__vs__Curacao",
         "j5l_probabilities": {
-          "team_a_wins": 88.1,
-          "draw": 8.4,
-          "team_b_wins": 3.5
+          "team_a_wins": 72.8,
+          "draw": 17.0,
+          "team_b_wins": 10.2
         },
         "hybrid_gap": 1.433
       }
@@ -1356,24 +1356,24 @@
       {
         "team_a": "Netherlands",
         "team_b": "Japan",
-        "composite_a": 82.8,
-        "composite_b": 77.9,
-        "gap": 4.9,
+        "composite_a": 82.9,
+        "composite_b": 78.1,
+        "gap": 4.8,
         "probabilities": {
-          "team_a_wins": 54.2,
-          "draw": 23.4,
-          "team_b_wins": 22.4
+          "team_a_wins": 51.3,
+          "draw": 24.3,
+          "team_b_wins": 24.4
         },
         "expected_points": {
-          "team_a": 1.86,
-          "team_b": 0.91
+          "team_a": 1.78,
+          "team_b": 0.98
         },
         "predicted_winner": "Netherlands",
-        "win_confidence_pct": 54.2,
+        "win_confidence_pct": 51.3,
         "upset_risk": {
           "favored": "Netherlands",
           "underdog": "Japan",
-          "gap": 4.9,
+          "gap": 4.8,
           "indicators": [
             {
               "type": "close_gap",
@@ -1385,91 +1385,91 @@
         },
         "match_id": "Netherlands__vs__Japan",
         "j5l_probabilities": {
-          "team_a_wins": 57.1,
-          "draw": 22.7,
-          "team_b_wins": 20.2
+          "team_a_wins": 49.0,
+          "draw": 25.1,
+          "team_b_wins": 25.9
         },
         "hybrid_gap": 0.707
       },
       {
         "team_a": "Netherlands",
         "team_b": "Tunisia",
-        "composite_a": 82.8,
-        "composite_b": 66.2,
-        "gap": 16.6,
+        "composite_a": 82.9,
+        "composite_b": 66.4,
+        "gap": 16.5,
         "probabilities": {
-          "team_a_wins": 82.1,
-          "draw": 11.6,
-          "team_b_wins": 6.3
+          "team_a_wins": 76.8,
+          "draw": 14.8,
+          "team_b_wins": 8.4
         },
         "expected_points": {
-          "team_a": 2.58,
-          "team_b": 0.31
+          "team_a": 2.45,
+          "team_b": 0.4
         },
         "predicted_winner": "Netherlands",
-        "win_confidence_pct": 82.1,
+        "win_confidence_pct": 76.8,
         "upset_risk": {
           "favored": "Netherlands",
           "underdog": "Tunisia",
-          "gap": 16.6,
+          "gap": 16.5,
           "indicators": []
         },
         "match_id": "Netherlands__vs__Tunisia",
         "j5l_probabilities": {
-          "team_a_wins": 92.9,
-          "draw": 5.3,
-          "team_b_wins": 1.8
+          "team_a_wins": 77.6,
+          "draw": 14.6,
+          "team_b_wins": 7.8
         },
         "hybrid_gap": 2.152
       },
       {
         "team_a": "Netherlands",
         "team_b": "Sweden",
-        "composite_a": 82.8,
-        "composite_b": 71.9,
-        "gap": 10.9,
+        "composite_a": 82.9,
+        "composite_b": 72.3,
+        "gap": 10.6,
         "probabilities": {
-          "team_a_wins": 65.6,
-          "draw": 19.6,
-          "team_b_wins": 14.7
+          "team_a_wins": 59.9,
+          "draw": 22.3,
+          "team_b_wins": 17.8
         },
         "expected_points": {
-          "team_a": 2.17,
-          "team_b": 0.64
+          "team_a": 2.02,
+          "team_b": 0.76
         },
         "predicted_winner": "Netherlands",
-        "win_confidence_pct": 65.6,
+        "win_confidence_pct": 59.9,
         "upset_risk": {
           "favored": "Netherlands",
           "underdog": "Sweden",
-          "gap": 10.9,
+          "gap": 10.6,
           "indicators": []
         },
         "match_id": "Netherlands__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 79.4,
-          "draw": 13.5,
-          "team_b_wins": 7.1
+          "team_a_wins": 64.0,
+          "draw": 20.8,
+          "team_b_wins": 15.3
         },
         "hybrid_gap": 1.317
       },
       {
         "team_a": "Japan",
         "team_b": "Tunisia",
-        "composite_a": 77.9,
-        "composite_b": 66.2,
+        "composite_a": 78.1,
+        "composite_b": 66.4,
         "gap": 11.7,
         "probabilities": {
-          "team_a_wins": 69.0,
-          "draw": 18.9,
-          "team_b_wins": 12.1
+          "team_a_wins": 63.9,
+          "draw": 21.6,
+          "team_b_wins": 14.5
         },
         "expected_points": {
-          "team_a": 2.26,
-          "team_b": 0.55
+          "team_a": 2.13,
+          "team_b": 0.65
         },
         "predicted_winner": "Japan",
-        "win_confidence_pct": 69.0,
+        "win_confidence_pct": 63.9,
         "upset_risk": {
           "favored": "Japan",
           "underdog": "Tunisia",
@@ -1478,33 +1478,33 @@
         },
         "match_id": "Japan__vs__Tunisia",
         "j5l_probabilities": {
-          "team_a_wins": 81.8,
-          "draw": 12.1,
-          "team_b_wins": 6.0
+          "team_a_wins": 66.7,
+          "draw": 19.7,
+          "team_b_wins": 13.6
         },
         "hybrid_gap": 1.445
       },
       {
         "team_a": "Japan",
         "team_b": "Sweden",
-        "composite_a": 77.9,
-        "composite_b": 71.9,
-        "gap": 6.0,
+        "composite_a": 78.1,
+        "composite_b": 72.3,
+        "gap": 5.8,
         "probabilities": {
-          "team_a_wins": 49.9,
-          "draw": 24.5,
-          "team_b_wins": 25.6
+          "team_a_wins": 46.4,
+          "draw": 25.7,
+          "team_b_wins": 27.9
         },
         "expected_points": {
-          "team_a": 1.74,
-          "team_b": 1.01
+          "team_a": 1.65,
+          "team_b": 1.09
         },
         "predicted_winner": "Japan",
-        "win_confidence_pct": 49.9,
+        "win_confidence_pct": 46.4,
         "upset_risk": {
           "favored": "Japan",
           "underdog": "Sweden",
-          "gap": 6.0,
+          "gap": 5.8,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1516,33 +1516,33 @@
         },
         "match_id": "Japan__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 61.5,
-          "draw": 21.3,
-          "team_b_wins": 17.1
+          "team_a_wins": 51.6,
+          "draw": 24.6,
+          "team_b_wins": 23.8
         },
         "hybrid_gap": 0.61
       },
       {
         "team_a": "Tunisia",
         "team_b": "Sweden",
-        "composite_a": 66.2,
-        "composite_b": 71.9,
-        "gap": 5.7,
+        "composite_a": 66.4,
+        "composite_b": 72.3,
+        "gap": 5.9,
         "probabilities": {
-          "team_a_wins": 19.4,
-          "draw": 22.3,
-          "team_b_wins": 58.2
+          "team_a_wins": 21.0,
+          "draw": 23.1,
+          "team_b_wins": 55.8
         },
         "expected_points": {
-          "team_a": 0.81,
-          "team_b": 1.97
+          "team_a": 0.86,
+          "team_b": 1.91
         },
         "predicted_winner": "Sweden",
-        "win_confidence_pct": 58.2,
+        "win_confidence_pct": 55.8,
         "upset_risk": {
           "favored": "Sweden",
           "underdog": "Tunisia",
-          "gap": 5.7,
+          "gap": 5.9,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1560,9 +1560,9 @@
         },
         "match_id": "Tunisia__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 18.0,
-          "draw": 21.7,
-          "team_b_wins": 60.3
+          "team_a_wins": 23.6,
+          "draw": 24.5,
+          "team_b_wins": 51.9
         },
         "hybrid_gap": -0.835
       }
@@ -1618,117 +1618,117 @@
       {
         "team_a": "Belgium",
         "team_b": "Iran",
-        "composite_a": 78.7,
-        "composite_b": 67.9,
-        "gap": 10.8,
+        "composite_a": 79.2,
+        "composite_b": 68.0,
+        "gap": 11.2,
         "probabilities": {
-          "team_a_wins": 72.7,
-          "draw": 16.6,
-          "team_b_wins": 10.7
+          "team_a_wins": 68.9,
+          "draw": 18.5,
+          "team_b_wins": 12.7
         },
         "expected_points": {
-          "team_a": 2.35,
-          "team_b": 0.49
+          "team_a": 2.25,
+          "team_b": 0.56
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 72.7,
+        "win_confidence_pct": 68.9,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Iran",
-          "gap": 10.8,
+          "gap": 11.2,
           "indicators": []
         },
         "match_id": "Belgium__vs__Iran",
         "j5l_probabilities": {
-          "team_a_wins": 79.1,
-          "draw": 13.6,
-          "team_b_wins": 7.3
+          "team_a_wins": 65.4,
+          "draw": 20.2,
+          "team_b_wins": 14.4
         },
         "hybrid_gap": 1.504
       },
       {
         "team_a": "Belgium",
         "team_b": "Egypt",
-        "composite_a": 78.7,
-        "composite_b": 68.9,
-        "gap": 9.8,
+        "composite_a": 79.2,
+        "composite_b": 69.1,
+        "gap": 10.1,
         "probabilities": {
-          "team_a_wins": 67.2,
-          "draw": 18.9,
-          "team_b_wins": 13.9
+          "team_a_wins": 63.2,
+          "draw": 20.8,
+          "team_b_wins": 16.0
         },
         "expected_points": {
-          "team_a": 2.2,
-          "team_b": 0.61
+          "team_a": 2.1,
+          "team_b": 0.69
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 67.2,
+        "win_confidence_pct": 63.2,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Egypt",
-          "gap": 9.8,
+          "gap": 10.1,
           "indicators": []
         },
         "match_id": "Belgium__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 75.8,
-          "draw": 15.3,
-          "team_b_wins": 8.9
+          "team_a_wins": 62.7,
+          "draw": 21.2,
+          "team_b_wins": 16.1
         },
         "hybrid_gap": 1.243
       },
       {
         "team_a": "Belgium",
         "team_b": "New Zealand",
-        "composite_a": 78.7,
-        "composite_b": 59.9,
-        "gap": 18.8,
+        "composite_a": 79.2,
+        "composite_b": 60.1,
+        "gap": 19.1,
         "probabilities": {
-          "team_a_wins": 83.7,
-          "draw": 10.8,
-          "team_b_wins": 5.6
+          "team_a_wins": 79.1,
+          "draw": 13.8,
+          "team_b_wins": 7.1
         },
         "expected_points": {
-          "team_a": 2.62,
-          "team_b": 0.27
+          "team_a": 2.51,
+          "team_b": 0.35
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 83.7,
+        "win_confidence_pct": 79.1,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "New Zealand",
-          "gap": 18.8,
+          "gap": 19.1,
           "indicators": []
         },
         "match_id": "Belgium__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 95.9,
-          "draw": 3.2,
-          "team_b_wins": 0.9
+          "team_a_wins": 82.6,
+          "draw": 11.9,
+          "team_b_wins": 5.5
         },
         "hybrid_gap": 2.048
       },
       {
         "team_a": "Iran",
         "team_b": "Egypt",
-        "composite_a": 67.9,
-        "composite_b": 68.9,
-        "gap": 1.0,
+        "composite_a": 68.0,
+        "composite_b": 69.1,
+        "gap": 1.1,
         "probabilities": {
           "team_a_wins": 31.4,
-          "draw": 25.5,
-          "team_b_wins": 43.1
+          "draw": 25.6,
+          "team_b_wins": 43.0
         },
         "expected_points": {
           "team_a": 1.2,
           "team_b": 1.55
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 43.1,
+        "win_confidence_pct": 43.0,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "Iran",
-          "gap": 1.0,
+          "gap": 1.1,
           "indicators": [
             {
               "type": "close_gap",
@@ -1740,60 +1740,60 @@
         },
         "match_id": "Iran__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 33.3,
-          "draw": 25.7,
-          "team_b_wins": 41.0
+          "team_a_wins": 34.2,
+          "draw": 26.3,
+          "team_b_wins": 39.5
         },
         "hybrid_gap": -0.261
       },
       {
         "team_a": "Iran",
         "team_b": "New Zealand",
-        "composite_a": 67.9,
-        "composite_b": 59.9,
-        "gap": 8.0,
+        "composite_a": 68.0,
+        "composite_b": 60.1,
+        "gap": 7.9,
         "probabilities": {
-          "team_a_wins": 52.6,
-          "draw": 22.8,
-          "team_b_wins": 24.6
+          "team_a_wins": 47.4,
+          "draw": 24.5,
+          "team_b_wins": 28.1
         },
         "expected_points": {
-          "team_a": 1.81,
-          "team_b": 0.97
+          "team_a": 1.67,
+          "team_b": 1.09
         },
         "predicted_winner": "Iran",
-        "win_confidence_pct": 52.6,
+        "win_confidence_pct": 47.4,
         "upset_risk": {
           "favored": "Iran",
           "underdog": "New Zealand",
-          "gap": 8.0,
+          "gap": 7.9,
           "indicators": []
         },
         "match_id": "Iran__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 69.4,
-          "draw": 18.3,
-          "team_b_wins": 12.4
+          "team_a_wins": 57.1,
+          "draw": 23.1,
+          "team_b_wins": 19.8
         },
         "hybrid_gap": 0.543
       },
       {
         "team_a": "Egypt",
         "team_b": "New Zealand",
-        "composite_a": 68.9,
-        "composite_b": 59.9,
+        "composite_a": 69.1,
+        "composite_b": 60.1,
         "gap": 9.0,
         "probabilities": {
-          "team_a_wins": 63.2,
-          "draw": 21.0,
-          "team_b_wins": 15.8
+          "team_a_wins": 58.9,
+          "draw": 22.9,
+          "team_b_wins": 18.2
         },
         "expected_points": {
-          "team_a": 2.11,
-          "team_b": 0.68
+          "team_a": 2.0,
+          "team_b": 0.77
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 63.2,
+        "win_confidence_pct": 58.9,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "New Zealand",
@@ -1802,9 +1802,9 @@
         },
         "match_id": "Egypt__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 73.0,
-          "draw": 16.7,
-          "team_b_wins": 10.3
+          "team_a_wins": 59.9,
+          "draw": 22.2,
+          "team_b_wins": 17.9
         },
         "hybrid_gap": 0.804
       }
@@ -1860,117 +1860,117 @@
       {
         "team_a": "Spain",
         "team_b": "Cabo Verde",
-        "composite_a": 88.1,
-        "composite_b": 62.5,
-        "gap": 25.6,
+        "composite_a": 87.3,
+        "composite_b": 62.7,
+        "gap": 24.6,
         "probabilities": {
-          "team_a_wins": 96.2,
-          "draw": 2.9,
-          "team_b_wins": 0.9
+          "team_a_wins": 93.3,
+          "draw": 5.0,
+          "team_b_wins": 1.7
         },
         "expected_points": {
-          "team_a": 2.91,
-          "team_b": 0.06
+          "team_a": 2.85,
+          "team_b": 0.1
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 96.2,
+        "win_confidence_pct": 93.3,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Cabo Verde",
-          "gap": 25.6,
+          "gap": 24.6,
           "indicators": []
         },
         "match_id": "Spain__vs__Cabo Verde",
         "j5l_probabilities": {
-          "team_a_wins": 99.5,
-          "draw": 0.4,
-          "team_b_wins": 0.1
+          "team_a_wins": 90.9,
+          "draw": 6.7,
+          "team_b_wins": 2.4
         },
         "hybrid_gap": 3.31
       },
       {
         "team_a": "Spain",
         "team_b": "Uruguay",
-        "composite_a": 88.1,
-        "composite_b": 71.5,
-        "gap": 16.6,
+        "composite_a": 87.3,
+        "composite_b": 71.4,
+        "gap": 15.9,
         "probabilities": {
-          "team_a_wins": 77.8,
-          "draw": 13.7,
-          "team_b_wins": 8.4
+          "team_a_wins": 71.4,
+          "draw": 17.5,
+          "team_b_wins": 11.1
         },
         "expected_points": {
-          "team_a": 2.47,
-          "team_b": 0.39
+          "team_a": 2.32,
+          "team_b": 0.51
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 77.8,
+        "win_confidence_pct": 71.4,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Uruguay",
-          "gap": 16.6,
+          "gap": 15.9,
           "indicators": []
         },
         "match_id": "Spain__vs__Uruguay",
         "j5l_probabilities": {
-          "team_a_wins": 92.9,
-          "draw": 5.3,
-          "team_b_wins": 1.8
+          "team_a_wins": 76.3,
+          "draw": 15.3,
+          "team_b_wins": 8.4
         },
         "hybrid_gap": 1.908
       },
       {
         "team_a": "Spain",
         "team_b": "Saudi Arabia",
-        "composite_a": 88.1,
-        "composite_b": 60.6,
-        "gap": 27.5,
+        "composite_a": 87.3,
+        "composite_b": 60.8,
+        "gap": 26.5,
         "probabilities": {
-          "team_a_wins": 95.0,
-          "draw": 3.6,
-          "team_b_wins": 1.3
+          "team_a_wins": 92.3,
+          "draw": 5.6,
+          "team_b_wins": 2.1
         },
         "expected_points": {
-          "team_a": 2.89,
-          "team_b": 0.08
+          "team_a": 2.83,
+          "team_b": 0.12
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 95.0,
+        "win_confidence_pct": 92.3,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Saudi Arabia",
-          "gap": 27.5,
+          "gap": 26.5,
           "indicators": []
         },
         "match_id": "Spain__vs__Saudi Arabia",
         "j5l_probabilities": {
-          "team_a_wins": 99.8,
-          "draw": 0.2,
-          "team_b_wins": 0.0
+          "team_a_wins": 93.0,
+          "draw": 5.3,
+          "team_b_wins": 1.7
         },
         "hybrid_gap": 3.458
       },
       {
         "team_a": "Cabo Verde",
         "team_b": "Uruguay",
-        "composite_a": 62.5,
-        "composite_b": 71.5,
-        "gap": 9.0,
+        "composite_a": 62.7,
+        "composite_b": 71.4,
+        "gap": 8.7,
         "probabilities": {
-          "team_a_wins": 10.8,
-          "draw": 18.7,
-          "team_b_wins": 70.5
+          "team_a_wins": 13.3,
+          "draw": 20.8,
+          "team_b_wins": 65.9
         },
         "expected_points": {
-          "team_a": 0.51,
-          "team_b": 2.3
+          "team_a": 0.61,
+          "team_b": 2.18
         },
         "predicted_winner": "Uruguay",
-        "win_confidence_pct": 70.5,
+        "win_confidence_pct": 65.9,
         "upset_risk": {
           "favored": "Uruguay",
           "underdog": "Cabo Verde",
-          "gap": 9.0,
+          "gap": 8.7,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -1988,29 +1988,29 @@
         },
         "match_id": "Cabo Verde__vs__Uruguay",
         "j5l_probabilities": {
-          "team_a_wins": 10.3,
-          "draw": 16.7,
-          "team_b_wins": 73.0
+          "team_a_wins": 18.4,
+          "draw": 22.5,
+          "team_b_wins": 59.1
         },
         "hybrid_gap": -1.402
       },
       {
         "team_a": "Cabo Verde",
         "team_b": "Saudi Arabia",
-        "composite_a": 62.5,
-        "composite_b": 60.6,
+        "composite_a": 62.7,
+        "composite_b": 60.8,
         "gap": 1.9,
         "probabilities": {
-          "team_a_wins": 39.9,
-          "draw": 25.7,
-          "team_b_wins": 34.5
+          "team_a_wins": 38.2,
+          "draw": 26.0,
+          "team_b_wins": 35.8
         },
         "expected_points": {
-          "team_a": 1.45,
-          "team_b": 1.29
+          "team_a": 1.41,
+          "team_b": 1.33
         },
-        "predicted_winner": "Cabo Verde",
-        "win_confidence_pct": 39.9,
+        "predicted_winner": "draw_likely",
+        "win_confidence_pct": 38.2,
         "upset_risk": {
           "favored": "Cabo Verde",
           "underdog": "Saudi Arabia",
@@ -2026,33 +2026,33 @@
         },
         "match_id": "Cabo Verde__vs__Saudi Arabia",
         "j5l_probabilities": {
-          "team_a_wins": 44.7,
-          "draw": 25.3,
-          "team_b_wins": 30.0
+          "team_a_wins": 41.6,
+          "draw": 26.2,
+          "team_b_wins": 32.3
         },
         "hybrid_gap": 0.148
       },
       {
         "team_a": "Uruguay",
         "team_b": "Saudi Arabia",
-        "composite_a": 71.5,
-        "composite_b": 60.6,
-        "gap": 10.9,
+        "composite_a": 71.4,
+        "composite_b": 60.8,
+        "gap": 10.6,
         "probabilities": {
-          "team_a_wins": 71.8,
-          "draw": 16.8,
-          "team_b_wins": 11.4
+          "team_a_wins": 65.9,
+          "draw": 19.5,
+          "team_b_wins": 14.6
         },
         "expected_points": {
-          "team_a": 2.32,
-          "team_b": 0.51
+          "team_a": 2.17,
+          "team_b": 0.63
         },
         "predicted_winner": "Uruguay",
-        "win_confidence_pct": 71.8,
+        "win_confidence_pct": 65.9,
         "upset_risk": {
           "favored": "Uruguay",
           "underdog": "Saudi Arabia",
-          "gap": 10.9,
+          "gap": 10.6,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -2070,9 +2070,9 @@
         },
         "match_id": "Uruguay__vs__Saudi Arabia",
         "j5l_probabilities": {
-          "team_a_wins": 79.4,
-          "draw": 13.5,
-          "team_b_wins": 7.1
+          "team_a_wins": 64.0,
+          "draw": 20.8,
+          "team_b_wins": 15.3
         },
         "hybrid_gap": 1.55
       }
@@ -2129,23 +2129,23 @@
         "team_a": "France",
         "team_b": "Senegal",
         "composite_a": 86.3,
-        "composite_b": 76.2,
-        "gap": 10.1,
+        "composite_b": 76.3,
+        "gap": 10.0,
         "probabilities": {
-          "team_a_wins": 77.6,
-          "draw": 14.3,
-          "team_b_wins": 8.1
+          "team_a_wins": 73.9,
+          "draw": 15.9,
+          "team_b_wins": 10.2
         },
         "expected_points": {
-          "team_a": 2.47,
-          "team_b": 0.39
+          "team_a": 2.38,
+          "team_b": 0.46
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 77.6,
+        "win_confidence_pct": 73.9,
         "upset_risk": {
           "favored": "France",
           "underdog": "Senegal",
-          "gap": 10.1,
+          "gap": 10.0,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2163,9 +2163,9 @@
         },
         "match_id": "France__vs__Senegal",
         "j5l_probabilities": {
-          "team_a_wins": 76.8,
-          "draw": 14.8,
-          "team_b_wins": 8.4
+          "team_a_wins": 62.5,
+          "draw": 21.3,
+          "team_b_wins": 16.2
         },
         "hybrid_gap": 1.588
       },
@@ -2173,23 +2173,23 @@
         "team_a": "France",
         "team_b": "Norway",
         "composite_a": 86.3,
-        "composite_b": 81.2,
-        "gap": 5.1,
+        "composite_b": 81.6,
+        "gap": 4.7,
         "probabilities": {
-          "team_a_wins": 58.0,
-          "draw": 22.7,
-          "team_b_wins": 19.3
+          "team_a_wins": 54.9,
+          "draw": 23.6,
+          "team_b_wins": 21.4
         },
         "expected_points": {
-          "team_a": 1.97,
-          "team_b": 0.81
+          "team_a": 1.88,
+          "team_b": 0.88
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 58.0,
+        "win_confidence_pct": 54.9,
         "upset_risk": {
           "favored": "France",
           "underdog": "Norway",
-          "gap": 5.1,
+          "gap": 4.7,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -2207,9 +2207,9 @@
         },
         "match_id": "France__vs__Norway",
         "j5l_probabilities": {
-          "team_a_wins": 57.9,
-          "draw": 22.5,
-          "team_b_wins": 19.6
+          "team_a_wins": 48.8,
+          "draw": 25.2,
+          "team_b_wins": 26.1
         },
         "hybrid_gap": 0.974
       },
@@ -2217,23 +2217,23 @@
         "team_a": "France",
         "team_b": "Iraq",
         "composite_a": 86.3,
-        "composite_b": 58.0,
-        "gap": 28.3,
+        "composite_b": 58.1,
+        "gap": 28.2,
         "probabilities": {
-          "team_a_wins": 95.2,
-          "draw": 3.4,
-          "team_b_wins": 1.4
+          "team_a_wins": 93.0,
+          "draw": 5.0,
+          "team_b_wins": 2.0
         },
         "expected_points": {
-          "team_a": 2.89,
-          "team_b": 0.08
+          "team_a": 2.84,
+          "team_b": 0.11
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 95.2,
+        "win_confidence_pct": 93.0,
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
-          "gap": 28.3,
+          "gap": 28.2,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2245,33 +2245,33 @@
         },
         "match_id": "France__vs__Iraq",
         "j5l_probabilities": {
-          "team_a_wins": 99.8,
-          "draw": 0.1,
-          "team_b_wins": 0.0
+          "team_a_wins": 94.6,
+          "draw": 4.2,
+          "team_b_wins": 1.3
         },
         "hybrid_gap": 2.942
       },
       {
         "team_a": "Senegal",
         "team_b": "Norway",
-        "composite_a": 76.2,
-        "composite_b": 81.2,
-        "gap": 5.0,
+        "composite_a": 76.3,
+        "composite_b": 81.6,
+        "gap": 5.3,
         "probabilities": {
-          "team_a_wins": 26.1,
-          "draw": 24.7,
-          "team_b_wins": 49.2
+          "team_a_wins": 28.2,
+          "draw": 25.5,
+          "team_b_wins": 46.3
         },
         "expected_points": {
-          "team_a": 1.03,
-          "team_b": 1.72
+          "team_a": 1.1,
+          "team_b": 1.64
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 49.2,
+        "win_confidence_pct": 46.3,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Senegal",
-          "gap": 5.0,
+          "gap": 5.3,
           "indicators": [
             {
               "type": "close_gap",
@@ -2289,29 +2289,29 @@
         },
         "match_id": "Senegal__vs__Norway",
         "j5l_probabilities": {
-          "team_a_wins": 19.9,
-          "draw": 22.6,
-          "team_b_wins": 57.5
+          "team_a_wins": 24.8,
+          "draw": 24.8,
+          "team_b_wins": 50.3
         },
         "hybrid_gap": -0.614
       },
       {
         "team_a": "Senegal",
         "team_b": "Iraq",
-        "composite_a": 76.2,
-        "composite_b": 58.0,
+        "composite_a": 76.3,
+        "composite_b": 58.1,
         "gap": 18.2,
         "probabilities": {
-          "team_a_wins": 82.5,
-          "draw": 11.6,
-          "team_b_wins": 5.9
+          "team_a_wins": 77.3,
+          "draw": 14.9,
+          "team_b_wins": 7.8
         },
         "expected_points": {
-          "team_a": 2.59,
-          "team_b": 0.29
+          "team_a": 2.47,
+          "team_b": 0.38
         },
         "predicted_winner": "Senegal",
-        "win_confidence_pct": 82.5,
+        "win_confidence_pct": 77.3,
         "upset_risk": {
           "favored": "Senegal",
           "underdog": "Iraq",
@@ -2320,40 +2320,40 @@
         },
         "match_id": "Senegal__vs__Iraq",
         "j5l_probabilities": {
-          "team_a_wins": 95.2,
-          "draw": 3.7,
-          "team_b_wins": 1.1
+          "team_a_wins": 80.9,
+          "draw": 12.8,
+          "team_b_wins": 6.3
         },
         "hybrid_gap": 1.355
       },
       {
         "team_a": "Norway",
         "team_b": "Iraq",
-        "composite_a": 81.2,
-        "composite_b": 58.0,
-        "gap": 23.2,
+        "composite_a": 81.6,
+        "composite_b": 58.1,
+        "gap": 23.5,
         "probabilities": {
-          "team_a_wins": 78.6,
-          "draw": 11.5,
-          "team_b_wins": 9.9
+          "team_a_wins": 72.9,
+          "draw": 14.8,
+          "team_b_wins": 12.2
         },
         "expected_points": {
-          "team_a": 2.47,
-          "team_b": 0.41
+          "team_a": 2.34,
+          "team_b": 0.51
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 78.6,
+        "win_confidence_pct": 72.9,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Iraq",
-          "gap": 23.2,
+          "gap": 23.5,
           "indicators": []
         },
         "match_id": "Norway__vs__Iraq",
         "j5l_probabilities": {
-          "team_a_wins": 98.9,
-          "draw": 0.9,
-          "team_b_wins": 0.2
+          "team_a_wins": 89.5,
+          "draw": 7.6,
+          "team_b_wins": 2.9
         },
         "hybrid_gap": 1.969
       }
@@ -2409,24 +2409,24 @@
       {
         "team_a": "Argentina",
         "team_b": "Algeria",
-        "composite_a": 84.3,
-        "composite_b": 71.3,
-        "gap": 13.0,
+        "composite_a": 83.8,
+        "composite_b": 71.5,
+        "gap": 12.3,
         "probabilities": {
-          "team_a_wins": 87.4,
-          "draw": 8.8,
-          "team_b_wins": 3.8
+          "team_a_wins": 82.6,
+          "draw": 11.3,
+          "team_b_wins": 6.1
         },
         "expected_points": {
-          "team_a": 2.71,
-          "team_b": 0.2
+          "team_a": 2.59,
+          "team_b": 0.3
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 87.4,
+        "win_confidence_pct": 82.6,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Algeria",
-          "gap": 13.0,
+          "gap": 12.3,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2438,33 +2438,33 @@
         },
         "match_id": "Argentina__vs__Algeria",
         "j5l_probabilities": {
-          "team_a_wins": 85.4,
-          "draw": 10.1,
-          "team_b_wins": 4.5
+          "team_a_wins": 68.1,
+          "draw": 19.1,
+          "team_b_wins": 12.8
         },
         "hybrid_gap": 2.271
       },
       {
         "team_a": "Argentina",
         "team_b": "Austria",
-        "composite_a": 84.3,
-        "composite_b": 75.3,
-        "gap": 9.0,
+        "composite_a": 83.8,
+        "composite_b": 75.8,
+        "gap": 8.0,
         "probabilities": {
-          "team_a_wins": 70.6,
-          "draw": 18.3,
-          "team_b_wins": 11.1
+          "team_a_wins": 65.0,
+          "draw": 20.8,
+          "team_b_wins": 14.2
         },
         "expected_points": {
-          "team_a": 2.3,
-          "team_b": 0.52
+          "team_a": 2.16,
+          "team_b": 0.63
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 70.6,
+        "win_confidence_pct": 65.0,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Austria",
-          "gap": 9.0,
+          "gap": 8.0,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2476,33 +2476,33 @@
         },
         "match_id": "Argentina__vs__Austria",
         "j5l_probabilities": {
-          "team_a_wins": 73.0,
-          "draw": 16.7,
-          "team_b_wins": 10.3
+          "team_a_wins": 57.3,
+          "draw": 23.0,
+          "team_b_wins": 19.6
         },
         "hybrid_gap": 1.609
       },
       {
         "team_a": "Argentina",
         "team_b": "Jordan",
-        "composite_a": 84.3,
-        "composite_b": 58.1,
-        "gap": 26.2,
+        "composite_a": 83.8,
+        "composite_b": 57.7,
+        "gap": 26.1,
         "probabilities": {
-          "team_a_wins": 92.5,
-          "draw": 5.0,
-          "team_b_wins": 2.5
+          "team_a_wins": 89.4,
+          "draw": 7.2,
+          "team_b_wins": 3.4
         },
         "expected_points": {
-          "team_a": 2.83,
-          "team_b": 0.12
+          "team_a": 2.75,
+          "team_b": 0.17
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 92.5,
+        "win_confidence_pct": 89.4,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Jordan",
-          "gap": 26.2,
+          "gap": 26.1,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2520,33 +2520,33 @@
         },
         "match_id": "Argentina__vs__Jordan",
         "j5l_probabilities": {
-          "team_a_wins": 99.6,
-          "draw": 0.3,
-          "team_b_wins": 0.1
+          "team_a_wins": 92.6,
+          "draw": 5.6,
+          "team_b_wins": 1.8
         },
         "hybrid_gap": 3.171
       },
       {
         "team_a": "Algeria",
         "team_b": "Austria",
-        "composite_a": 71.3,
-        "composite_b": 75.3,
-        "gap": 4.0,
+        "composite_a": 71.5,
+        "composite_b": 75.8,
+        "gap": 4.3,
         "probabilities": {
-          "team_a_wins": 27.1,
-          "draw": 26.5,
-          "team_b_wins": 46.4
+          "team_a_wins": 28.7,
+          "draw": 27.5,
+          "team_b_wins": 43.9
         },
         "expected_points": {
-          "team_a": 1.08,
-          "team_b": 1.66
+          "team_a": 1.13,
+          "team_b": 1.59
         },
         "predicted_winner": "Austria",
-        "win_confidence_pct": 46.4,
+        "win_confidence_pct": 43.9,
         "upset_risk": {
           "favored": "Austria",
           "underdog": "Algeria",
-          "gap": 4.0,
+          "gap": 4.3,
           "indicators": [
             {
               "type": "close_gap",
@@ -2558,33 +2558,33 @@
         },
         "match_id": "Algeria__vs__Austria",
         "j5l_probabilities": {
-          "team_a_wins": 22.9,
-          "draw": 23.7,
-          "team_b_wins": 53.4
+          "team_a_wins": 26.9,
+          "draw": 25.4,
+          "team_b_wins": 47.7
         },
         "hybrid_gap": -0.662
       },
       {
         "team_a": "Algeria",
         "team_b": "Jordan",
-        "composite_a": 71.3,
-        "composite_b": 58.1,
-        "gap": 13.2,
+        "composite_a": 71.5,
+        "composite_b": 57.7,
+        "gap": 13.8,
         "probabilities": {
-          "team_a_wins": 69.7,
-          "draw": 17.9,
-          "team_b_wins": 12.4
+          "team_a_wins": 64.6,
+          "draw": 20.7,
+          "team_b_wins": 14.7
         },
         "expected_points": {
-          "team_a": 2.27,
-          "team_b": 0.55
+          "team_a": 2.15,
+          "team_b": 0.65
         },
         "predicted_winner": "Algeria",
-        "win_confidence_pct": 69.7,
+        "win_confidence_pct": 64.6,
         "upset_risk": {
           "favored": "Algeria",
           "underdog": "Jordan",
-          "gap": 13.2,
+          "gap": 13.8,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2596,33 +2596,33 @@
         },
         "match_id": "Algeria__vs__Jordan",
         "j5l_probabilities": {
-          "team_a_wins": 85.9,
-          "draw": 9.8,
-          "team_b_wins": 4.3
+          "team_a_wins": 71.7,
+          "draw": 17.5,
+          "team_b_wins": 10.8
         },
         "hybrid_gap": 0.9
       },
       {
         "team_a": "Austria",
         "team_b": "Jordan",
-        "composite_a": 75.3,
-        "composite_b": 58.1,
-        "gap": 17.2,
+        "composite_a": 75.8,
+        "composite_b": 57.7,
+        "gap": 18.1,
         "probabilities": {
-          "team_a_wins": 73.9,
-          "draw": 15.0,
-          "team_b_wins": 11.1
+          "team_a_wins": 68.2,
+          "draw": 18.2,
+          "team_b_wins": 13.6
         },
         "expected_points": {
-          "team_a": 2.37,
-          "team_b": 0.48
+          "team_a": 2.23,
+          "team_b": 0.59
         },
         "predicted_winner": "Austria",
-        "win_confidence_pct": 73.9,
+        "win_confidence_pct": 68.2,
         "upset_risk": {
           "favored": "Austria",
           "underdog": "Jordan",
-          "gap": 17.2,
+          "gap": 18.1,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2634,9 +2634,9 @@
         },
         "match_id": "Austria__vs__Jordan",
         "j5l_probabilities": {
-          "team_a_wins": 93.8,
-          "draw": 4.7,
-          "team_b_wins": 1.5
+          "team_a_wins": 80.7,
+          "draw": 12.9,
+          "team_b_wins": 6.4
         },
         "hybrid_gap": 1.562
       }
@@ -2692,51 +2692,51 @@
       {
         "team_a": "Portugal",
         "team_b": "DR Congo",
-        "composite_a": 84.7,
-        "composite_b": 67.2,
-        "gap": 17.5,
+        "composite_a": 84.8,
+        "composite_b": 67.5,
+        "gap": 17.3,
         "probabilities": {
-          "team_a_wins": 78.2,
-          "draw": 13.3,
-          "team_b_wins": 8.5
+          "team_a_wins": 72.3,
+          "draw": 16.8,
+          "team_b_wins": 10.9
         },
         "expected_points": {
-          "team_a": 2.48,
-          "team_b": 0.39
+          "team_a": 2.34,
+          "team_b": 0.49
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 78.2,
+        "win_confidence_pct": 72.3,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "DR Congo",
-          "gap": 17.5,
+          "gap": 17.3,
           "indicators": []
         },
         "match_id": "Portugal__vs__DR Congo",
         "j5l_probabilities": {
-          "team_a_wins": 94.3,
-          "draw": 4.4,
-          "team_b_wins": 1.4
+          "team_a_wins": 79.2,
+          "draw": 13.8,
+          "team_b_wins": 7.1
         },
         "hybrid_gap": 1.817
       },
       {
         "team_a": "Portugal",
         "team_b": "Uzbekistan",
-        "composite_a": 84.7,
-        "composite_b": 64.0,
+        "composite_a": 84.8,
+        "composite_b": 64.1,
         "gap": 20.7,
         "probabilities": {
-          "team_a_wins": 87.1,
-          "draw": 8.9,
-          "team_b_wins": 4.0
+          "team_a_wins": 82.9,
+          "draw": 11.7,
+          "team_b_wins": 5.4
         },
         "expected_points": {
-          "team_a": 2.7,
-          "team_b": 0.21
+          "team_a": 2.6,
+          "team_b": 0.28
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 87.1,
+        "win_confidence_pct": 82.9,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "Uzbekistan",
@@ -2745,33 +2745,33 @@
         },
         "match_id": "Portugal__vs__Uzbekistan",
         "j5l_probabilities": {
-          "team_a_wins": 97.6,
-          "draw": 2.0,
-          "team_b_wins": 0.5
+          "team_a_wins": 85.3,
+          "draw": 10.2,
+          "team_b_wins": 4.4
         },
         "hybrid_gap": 2.551
       },
       {
         "team_a": "Portugal",
         "team_b": "Colombia",
-        "composite_a": 84.7,
-        "composite_b": 73.8,
-        "gap": 10.9,
+        "composite_a": 84.8,
+        "composite_b": 73.4,
+        "gap": 11.4,
         "probabilities": {
-          "team_a_wins": 56.1,
-          "draw": 21.5,
-          "team_b_wins": 22.4
+          "team_a_wins": 51.2,
+          "draw": 23.8,
+          "team_b_wins": 25.0
         },
         "expected_points": {
-          "team_a": 1.9,
-          "team_b": 0.89
+          "team_a": 1.77,
+          "team_b": 0.99
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 56.1,
+        "win_confidence_pct": 51.2,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "Colombia",
-          "gap": 10.9,
+          "gap": 11.4,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2783,33 +2783,33 @@
         },
         "match_id": "Portugal__vs__Colombia",
         "j5l_probabilities": {
-          "team_a_wins": 79.4,
-          "draw": 13.5,
-          "team_b_wins": 7.1
+          "team_a_wins": 65.9,
+          "draw": 20.0,
+          "team_b_wins": 14.1
         },
         "hybrid_gap": 0.885
       },
       {
         "team_a": "DR Congo",
         "team_b": "Uzbekistan",
-        "composite_a": 67.2,
-        "composite_b": 64.0,
-        "gap": 3.2,
+        "composite_a": 67.5,
+        "composite_b": 64.1,
+        "gap": 3.4,
         "probabilities": {
-          "team_a_wins": 47.0,
-          "draw": 25.1,
-          "team_b_wins": 27.9
+          "team_a_wins": 45.6,
+          "draw": 25.5,
+          "team_b_wins": 29.0
         },
         "expected_points": {
-          "team_a": 1.66,
-          "team_b": 1.09
+          "team_a": 1.62,
+          "team_b": 1.12
         },
         "predicted_winner": "DR Congo",
-        "win_confidence_pct": 47.0,
+        "win_confidence_pct": 45.6,
         "upset_risk": {
           "favored": "DR Congo",
           "underdog": "Uzbekistan",
-          "gap": 3.2,
+          "gap": 3.4,
           "indicators": [
             {
               "type": "close_gap",
@@ -2821,33 +2821,33 @@
         },
         "match_id": "DR Congo__vs__Uzbekistan",
         "j5l_probabilities": {
-          "team_a_wins": 50.0,
-          "draw": 24.5,
-          "team_b_wins": 25.5
+          "team_a_wins": 45.4,
+          "draw": 25.7,
+          "team_b_wins": 28.9
         },
         "hybrid_gap": 0.734
       },
       {
         "team_a": "DR Congo",
         "team_b": "Colombia",
-        "composite_a": 67.2,
-        "composite_b": 73.8,
-        "gap": 6.6,
+        "composite_a": 67.5,
+        "composite_b": 73.4,
+        "gap": 5.9,
         "probabilities": {
-          "team_a_wins": 13.3,
-          "draw": 20.0,
-          "team_b_wins": 66.8
+          "team_a_wins": 15.7,
+          "draw": 21.4,
+          "team_b_wins": 62.9
         },
         "expected_points": {
-          "team_a": 0.6,
-          "team_b": 2.2
+          "team_a": 0.68,
+          "team_b": 2.1
         },
         "predicted_winner": "Colombia",
-        "win_confidence_pct": 66.8,
+        "win_confidence_pct": 62.9,
         "upset_risk": {
           "favored": "Colombia",
           "underdog": "DR Congo",
-          "gap": 6.6,
+          "gap": 5.9,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -2871,33 +2871,33 @@
         },
         "match_id": "DR Congo__vs__Colombia",
         "j5l_probabilities": {
-          "team_a_wins": 15.6,
-          "draw": 20.5,
-          "team_b_wins": 63.9
+          "team_a_wins": 23.6,
+          "draw": 24.5,
+          "team_b_wins": 51.9
         },
         "hybrid_gap": -0.932
       },
       {
         "team_a": "Uzbekistan",
         "team_b": "Colombia",
-        "composite_a": 64.0,
-        "composite_b": 73.8,
-        "gap": 9.8,
+        "composite_a": 64.1,
+        "composite_b": 73.4,
+        "gap": 9.3,
         "probabilities": {
-          "team_a_wins": 8.5,
-          "draw": 14.9,
-          "team_b_wins": 76.7
+          "team_a_wins": 11.1,
+          "draw": 16.9,
+          "team_b_wins": 72.0
         },
         "expected_points": {
-          "team_a": 0.4,
-          "team_b": 2.45
+          "team_a": 0.5,
+          "team_b": 2.33
         },
         "predicted_winner": "Colombia",
-        "win_confidence_pct": 76.7,
+        "win_confidence_pct": 72.0,
         "upset_risk": {
           "favored": "Colombia",
           "underdog": "Uzbekistan",
-          "gap": 9.8,
+          "gap": 9.3,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -2915,9 +2915,9 @@
         },
         "match_id": "Uzbekistan__vs__Colombia",
         "j5l_probabilities": {
-          "team_a_wins": 8.9,
-          "draw": 15.3,
-          "team_b_wins": 75.8
+          "team_a_wins": 17.4,
+          "draw": 22.0,
+          "team_b_wins": 60.7
         },
         "hybrid_gap": -1.666
       }
@@ -2973,24 +2973,24 @@
       {
         "team_a": "England",
         "team_b": "Croatia",
-        "composite_a": 88.8,
+        "composite_a": 89.0,
         "composite_b": 76.5,
-        "gap": 12.3,
+        "gap": 12.5,
         "probabilities": {
-          "team_a_wins": 73.5,
-          "draw": 16.0,
-          "team_b_wins": 10.5
+          "team_a_wins": 69.3,
+          "draw": 18.2,
+          "team_b_wins": 12.5
         },
         "expected_points": {
-          "team_a": 2.36,
-          "team_b": 0.48
+          "team_a": 2.26,
+          "team_b": 0.56
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 73.5,
+        "win_confidence_pct": 69.3,
         "upset_risk": {
           "favored": "England",
           "underdog": "Croatia",
-          "gap": 12.3,
+          "gap": 12.5,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3002,33 +3002,33 @@
         },
         "match_id": "England__vs__Croatia",
         "j5l_probabilities": {
-          "team_a_wins": 83.5,
-          "draw": 11.2,
-          "team_b_wins": 5.3
+          "team_a_wins": 68.6,
+          "draw": 18.9,
+          "team_b_wins": 12.5
         },
         "hybrid_gap": 1.369
       },
       {
         "team_a": "England",
         "team_b": "Ghana",
-        "composite_a": 88.8,
-        "composite_b": 69.7,
-        "gap": 19.1,
+        "composite_a": 89.0,
+        "composite_b": 70.3,
+        "gap": 18.7,
         "probabilities": {
-          "team_a_wins": 86.3,
-          "draw": 9.5,
-          "team_b_wins": 4.2
+          "team_a_wins": 81.3,
+          "draw": 12.8,
+          "team_b_wins": 5.9
         },
         "expected_points": {
-          "team_a": 2.68,
-          "team_b": 0.22
+          "team_a": 2.57,
+          "team_b": 0.31
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 86.3,
+        "win_confidence_pct": 81.3,
         "upset_risk": {
           "favored": "England",
           "underdog": "Ghana",
-          "gap": 19.1,
+          "gap": 18.7,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3040,33 +3040,33 @@
         },
         "match_id": "England__vs__Ghana",
         "j5l_probabilities": {
-          "team_a_wins": 96.2,
-          "draw": 3.0,
-          "team_b_wins": 0.8
+          "team_a_wins": 81.9,
+          "draw": 12.3,
+          "team_b_wins": 5.9
         },
         "hybrid_gap": 2.512
       },
       {
         "team_a": "England",
         "team_b": "Panama",
-        "composite_a": 88.8,
+        "composite_a": 89.0,
         "composite_b": 59.8,
-        "gap": 29.0,
+        "gap": 29.2,
         "probabilities": {
-          "team_a_wins": 90.8,
-          "draw": 5.5,
-          "team_b_wins": 3.7
+          "team_a_wins": 88.3,
+          "draw": 7.2,
+          "team_b_wins": 4.6
         },
         "expected_points": {
-          "team_a": 2.78,
-          "team_b": 0.17
+          "team_a": 2.72,
+          "team_b": 0.21
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 90.8,
+        "win_confidence_pct": 88.3,
         "upset_risk": {
           "favored": "England",
           "underdog": "Panama",
-          "gap": 29.0,
+          "gap": 29.2,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3078,9 +3078,9 @@
         },
         "match_id": "England__vs__Panama",
         "j5l_probabilities": {
-          "team_a_wins": 99.9,
-          "draw": 0.1,
-          "team_b_wins": 0.0
+          "team_a_wins": 95.3,
+          "draw": 3.6,
+          "team_b_wins": 1.0
         },
         "hybrid_gap": 3.195
       },
@@ -3088,23 +3088,23 @@
         "team_a": "Croatia",
         "team_b": "Ghana",
         "composite_a": 76.5,
-        "composite_b": 69.7,
-        "gap": 6.8,
+        "composite_b": 70.3,
+        "gap": 6.2,
         "probabilities": {
-          "team_a_wins": 62.9,
-          "draw": 21.5,
-          "team_b_wins": 15.6
+          "team_a_wins": 59.1,
+          "draw": 23.0,
+          "team_b_wins": 18.0
         },
         "expected_points": {
-          "team_a": 2.1,
-          "team_b": 0.68
+          "team_a": 2.0,
+          "team_b": 0.77
         },
         "predicted_winner": "Croatia",
-        "win_confidence_pct": 62.9,
+        "win_confidence_pct": 59.1,
         "upset_risk": {
           "favored": "Croatia",
           "underdog": "Ghana",
-          "gap": 6.8,
+          "gap": 6.2,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -3116,9 +3116,9 @@
         },
         "match_id": "Croatia__vs__Ghana",
         "j5l_probabilities": {
-          "team_a_wins": 64.7,
-          "draw": 20.2,
-          "team_b_wins": 15.1
+          "team_a_wins": 52.7,
+          "draw": 24.3,
+          "team_b_wins": 23.0
         },
         "hybrid_gap": 1.143
       },
@@ -3129,16 +3129,16 @@
         "composite_b": 59.8,
         "gap": 16.7,
         "probabilities": {
-          "team_a_wins": 78.7,
-          "draw": 13.9,
-          "team_b_wins": 7.4
+          "team_a_wins": 72.6,
+          "draw": 17.7,
+          "team_b_wins": 9.7
         },
         "expected_points": {
-          "team_a": 2.5,
-          "team_b": 0.36
+          "team_a": 2.35,
+          "team_b": 0.47
         },
         "predicted_winner": "Croatia",
-        "win_confidence_pct": 78.7,
+        "win_confidence_pct": 72.6,
         "upset_risk": {
           "favored": "Croatia",
           "underdog": "Panama",
@@ -3147,33 +3147,33 @@
         },
         "match_id": "Croatia__vs__Panama",
         "j5l_probabilities": {
-          "team_a_wins": 93.1,
-          "draw": 5.2,
-          "team_b_wins": 1.7
+          "team_a_wins": 78.0,
+          "draw": 14.4,
+          "team_b_wins": 7.6
         },
         "hybrid_gap": 1.826
       },
       {
         "team_a": "Ghana",
         "team_b": "Panama",
-        "composite_a": 69.7,
+        "composite_a": 70.3,
         "composite_b": 59.8,
-        "gap": 9.9,
+        "gap": 10.5,
         "probabilities": {
-          "team_a_wins": 56.4,
-          "draw": 21.3,
-          "team_b_wins": 22.3
+          "team_a_wins": 50.7,
+          "draw": 23.5,
+          "team_b_wins": 25.8
         },
         "expected_points": {
-          "team_a": 1.9,
-          "team_b": 0.88
+          "team_a": 1.76,
+          "team_b": 1.01
         },
         "predicted_winner": "Ghana",
-        "win_confidence_pct": 56.4,
+        "win_confidence_pct": 50.7,
         "upset_risk": {
           "favored": "Ghana",
           "underdog": "Panama",
-          "gap": 9.9,
+          "gap": 10.5,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3185,9 +3185,9 @@
         },
         "match_id": "Ghana__vs__Panama",
         "j5l_probabilities": {
-          "team_a_wins": 76.1,
-          "draw": 15.1,
-          "team_b_wins": 8.7
+          "team_a_wins": 63.7,
+          "draw": 20.9,
+          "team_b_wins": 15.4
         },
         "hybrid_gap": 0.683
       }

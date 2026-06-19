@@ -7,7 +7,7 @@ const json = (p) => JSON.parse(read(p));
 test('W/D/L bars use the V3 bivariate-Poisson form (not the old logistic)', () => {
   const src = read('scripts/rebuild_composite.py');
   assert.match(src, /_poisson_pmf/, 'Poisson pmf helper present');
-  assert.match(src, /lam_a = math\.exp\(_POIS_MU/, 'lambdas from mu + supremacy');
+  assert.match(src, /lam_a = math\.exp\(mu \+ sup/, 'lambdas from mu + supremacy (mu tunable via meta.poisson_group)');
   assert.doesNotMatch(src, /1 \/ \(1 \+ math\.exp\(-gap \/ 4\.5\)\)/, 'old logistic removed');
 });
 

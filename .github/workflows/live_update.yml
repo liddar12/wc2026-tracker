@@ -88,6 +88,10 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/compute_elo.py
         continue-on-error: true
+      - name: Compute in-tournament form signal
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/compute_form.py
+        continue-on-error: true
       - name: Recompute composite + probabilities
         if: steps.gate.outputs.go == '1'
         run: python scripts/rebuild_composite.py

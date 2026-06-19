@@ -37,7 +37,7 @@ def load(f):
     return json.load(open(dpath(f)))
 
 
-W = (1 / 3, 1 / 3, 1 / 3)          # J5L, DT, Kalshi
+W = (1 / 3, 1 / 3, 1 / 3)          # J5L, DT, Kalshi (default; meta.hybrid_weights overrides)
 MU, BETA, LAMBDA3, PEN_BETA = 0.30, 0.70, 0.12, 0.35
 N_SIMS, SEED = 20000, 2026
 KALSHI_FLOOR = 0.05                 # title-prob floor (%) for unlisted long-shots
@@ -138,6 +138,11 @@ def main():
     names = list(teams.keys())
     idx = {n: i for i, n in enumerate(names)}
 
+    # optimize_weights may tune the J5L/DT/Kalshi blend; fall back to equal thirds.
+    meta = load("meta.json")
+    hw = meta.get("hybrid_weights")
+    blend = tuple(hw) if isinstance(hw, (list, tuple)) and len(hw) == 3 else W
+
     # --- three signals, z-scored across the 48 teams ---
     z_j5l = zscore([teams[n].get("composite") or 0 for n in names])
     dt_rating = {r["country"]: r["rating"] for r in load("dt_model.json").get("team_rankings", [])}
@@ -145,7 +150,7 @@ def main():
     kal = {r["team"]: r.get("prob_pct", 0) for r in load("markets.json").get("tournament_winner", [])}
     z_kal = zscore([math.log(max(kal.get(n, 0.0), KALSHI_FLOOR)) for n in names])
 
-    hybrid = zscore(W[0] * z_j5l + W[1] * z_dt + W[2] * z_kal)  # standardised rating
+    hybrid = zscore(blend[0] * z_j5l + blend[1] * z_dt + blend[2] * z_kal)  # standardised rating
 
     # --- group match bars = per-match ⅓ probability blend (J5L + DT + Kalshi) ---
     # Each model contributes a W/D/L distribution; the Kalshi third uses REAL
@@ -179,9 +184,9 @@ def main():
                 o = mo[rev]; k = (o["team_b_prob"], o["draw_prob"], o["team_a_prob"]); kalshi_live += 1
             else:
                 k = wdl(float(z_kal[a] - z_kal[b]))
-            pa = (j[0] + d[0] + k[0]) / 3
-            pd = (j[1] + d[1] + k[1]) / 3
-            pb = (j[2] + d[2] + k[2]) / 3
+            pa = blend[0] * j[0] + blend[1] * d[0] + blend[2] * k[0]
+            pd = blend[0] * j[1] + blend[1] * d[1] + blend[2] * k[1]
+            pb = blend[0] * j[2] + blend[1] * d[2] + blend[2] * k[2]
             tot = pa + pd + pb or 1.0
             pa, pd, pb = pa / tot, pd / tot, pb / tot
             m["j5l_probabilities"] = jp or m.get("j5l_probabilities")  # preserve fresh J5L
@@ -228,7 +233,7 @@ def main():
             "id": "hybrid", "name": "Hybrid",
             "version": "1.0",
             "generated_at": datetime.now(timezone.utc).isoformat(),
-            "weights": {"j5l": round(W[0], 4), "dt": round(W[1], 4), "kalshi": round(W[2], 4)},
+            "weights": {"j5l": round(blend[0], 4), "dt": round(blend[1], 4), "kalshi": round(blend[2], 4)},
             "method": "Equal 1/3 blend of J5L composite + DT rating + Kalshi implied strength; "
                       "bivariate-Poisson Monte-Carlo of the 48-team/12-group bracket.",
             "note": "Group bars blend ⅓ each at the match level, using REAL per-match Kalshi "

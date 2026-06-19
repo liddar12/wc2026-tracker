@@ -100,6 +100,14 @@ jobs:
       - name: Compute results-driven Elo
         run: python scripts/compute_elo.py
         continue-on-error: true
+      - name: Compute in-tournament form signal
+        run: python scripts/compute_form.py
+        continue-on-error: true
+      # Daily-only: re-fit composite weights + Poisson + hybrid blend to minimize
+      # walk-forward log-loss on games played (never-regress guarded).
+      - name: Optimize model weights (backtest-tuned)
+        run: python scripts/optimize_weights.py
+        continue-on-error: true
       - name: Recompute composite + probabilities
         run: python scripts/rebuild_composite.py
       - name: Rebuild DT model (Elo + market value blend)
