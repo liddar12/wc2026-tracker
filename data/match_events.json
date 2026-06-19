@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-19T23:20:19+00:00",
+    "updated_at": "2026-06-19T23:36:46+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1060,7 +1060,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-19T23:20:19+00:00"
+    "updated_at": "2026-06-19T23:36:46+00:00"
   },
   "Mexico__vs__Korea Republic": {
     "events": [
@@ -1083,7 +1083,7 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-19T23:20:19+00:00"
+    "updated_at": "2026-06-19T23:36:46+00:00"
   },
   "USA__vs__Australia": {
     "events": [
@@ -1142,7 +1142,7 @@
         "team": "USA"
       }
     ],
-    "updated_at": "2026-06-19T23:20:19+00:00"
+    "updated_at": "2026-06-19T23:36:46+00:00"
   },
   "Scotland__vs__Morocco": {
     "events": [
@@ -1157,8 +1157,14 @@
         "type": "yellow",
         "player": "Issa Diop",
         "team": "Morocco"
+      },
+      {
+        "minute": "65'",
+        "type": "yellow",
+        "player": "Andy Robertson",
+        "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-19T23:20:19+00:00"
+    "updated_at": "2026-06-19T23:36:46+00:00"
   }
 }
