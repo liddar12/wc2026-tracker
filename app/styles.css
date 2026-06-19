@@ -1706,18 +1706,41 @@ body.search-open { overflow: hidden; }
 .gb-odds, .gb-goals, .gb-proj { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .gb-goals { font-weight: 800; }
 
-/* Projected bracket */
-.pb-models { display: flex; flex-wrap: wrap; gap: 6px; }
-.pb-podium-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.pb-podium-cell { text-align: center; padding: 8px; border: 1px solid var(--border); border-radius: 10px; }
-.pb-medal { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
-.pb-podium-team { font-weight: 700; font-size: 14px; }
-.pb-bracket { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
-.pb-col { min-width: 150px; flex: 0 0 auto; }
-.pb-col-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px; }
-.pb-match { border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; margin-bottom: 6px; display: flex; flex-direction: column; gap: 2px; }
-.pb-team { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pb-team.pb-win { font-weight: 800; color: var(--primary); }
+/* ===== Enhanced Projected bracket (Phase 1: tree + stage nav + zoom + confidence) ===== */
+.eb-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; position: sticky; top: 0; z-index: 5; background: var(--bg, var(--surface)); padding: 6px 0; margin-bottom: 8px; flex-wrap: wrap; }
+.eb-stages { display: flex; gap: 4px; flex: 1 1 auto; overflow-x: auto; }
+.eb-stage { flex: 0 0 auto; border: 1px solid var(--border); background: var(--surface); color: var(--text-muted); border-radius: 999px; padding: 5px 12px; font-weight: 700; font-size: 12px; cursor: pointer; }
+.eb-stage.is-active { background: var(--primary); color: #fff; border-color: var(--primary); }
+.eb-zoom { display: flex; gap: 4px; flex: 0 0 auto; }
+.eb-zoom-btn { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; min-width: 34px; height: 30px; font-weight: 700; cursor: pointer; }
+
+.eb-canvas-wrap { padding: 8px; }
+.eb-canvas { overflow-x: auto; overflow-y: hidden; -webkit-overflow-scrolling: touch; }
+.eb-tree { display: flex; align-items: stretch; gap: 0; transform-origin: top left; width: max-content; }
+.eb-col { display: flex; flex-direction: column; min-width: 170px; padding: 0 12px 0 0; }
+.eb-col-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px; font-weight: 700; }
+.eb-col-body { flex: 1 1 auto; display: flex; flex-direction: column; justify-content: space-around; gap: 6px; }
+.eb-match { position: relative; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; background: var(--surface); }
+/* connector stubs — read as a tree without fragile vertical-joiner math */
+.eb-col:not(.eb-col-third):not(:last-child) .eb-match::after { content: ''; position: absolute; right: -12px; top: 50%; width: 12px; height: 2px; background: var(--border); }
+.eb-col:not(.eb-col-third):not(:first-child) .eb-match::before { content: ''; position: absolute; left: -12px; top: 50%; width: 12px; height: 2px; background: var(--border); }
+.eb-team { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 9px; font-size: 13px; }
+.eb-team + .eb-team { border-top: 1px solid var(--border); }
+.eb-team-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.eb-win { font-weight: 800; }
+.eb-win .eb-team-name { color: var(--primary); }
+.eb-tbd { color: var(--text-muted); font-style: italic; }
+.eb-conf { flex: 0 0 auto; font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; padding: 1px 6px; border-radius: 999px; background: color-mix(in srgb, var(--good, #16a34a) calc(var(--c) * 1%), transparent); color: var(--text); }
+.eb-col-third { margin-left: 8px; border-left: 1px dashed var(--border); padding-left: 16px; }
+
+/* GS standings → seeding */
+.eb-gs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.eb-gs-head { font-size: 12px; margin: 0 0 4px; }
+.eb-gs-list { list-style: none; margin: 0; padding: 0; }
+.eb-gs-row { display: grid; grid-template-columns: 18px 1fr auto; gap: 6px; align-items: center; padding: 3px 0; font-size: 13px; border-top: 1px solid var(--border); }
+.eb-gs-row:first-child { border-top: 0; }
+.eb-gs-pos { color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.eb-gs-team { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
 .home-match-list { display: grid; gap: 8px; }
 .home-match-row {
