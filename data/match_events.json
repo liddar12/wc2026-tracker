@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-18T23:14:32+00:00",
+    "updated_at": "2026-06-19T00:07:07+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -860,7 +860,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-18T23:14:32+00:00"
+    "updated_at": "2026-06-19T00:07:07+00:00"
   },
   "Uzbekistan__vs__Colombia": {
     "events": [
@@ -901,7 +901,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-18T23:14:32+00:00"
+    "updated_at": "2026-06-19T00:07:07+00:00"
   },
   "Czechia__vs__South Africa": {
     "events": [
@@ -936,7 +936,7 @@
         "team": "South Africa"
       }
     ],
-    "updated_at": "2026-06-18T23:14:32+00:00"
+    "updated_at": "2026-06-19T00:07:07+00:00"
   },
   "Switzerland__vs__Bosnia and Herzegovina": {
     "events": [
@@ -995,7 +995,7 @@
         "team": "Switzerland"
       }
     ],
-    "updated_at": "2026-06-18T23:14:32+00:00"
+    "updated_at": "2026-06-19T00:07:07+00:00"
   },
   "Canada__vs__Qatar": {
     "events": [
@@ -1030,12 +1030,36 @@
         "team": "Canada"
       },
       {
-        "minute": "51'",
-        "type": "yellow",
+        "minute": "53'",
+        "type": "red",
         "player": "Assim Madibo",
         "team": "Qatar"
+      },
+      {
+        "minute": "62'",
+        "type": "yellow",
+        "player": "Ahmed Fathy",
+        "team": "Qatar"
+      },
+      {
+        "minute": "64'",
+        "type": "goal",
+        "player": "Nathan Saliba",
+        "team": "Canada"
+      },
+      {
+        "minute": "75'",
+        "type": "own-goal",
+        "player": "Mohamed Manai",
+        "team": "Canada"
+      },
+      {
+        "minute": "90'+2'",
+        "type": "goal",
+        "player": "Jonathan David",
+        "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-18T23:14:32+00:00"
+    "updated_at": "2026-06-19T00:07:07+00:00"
   }
 }
