@@ -1806,7 +1806,7 @@
       "team_a": "USA",
       "team_b": "Australia",
       "kickoff_utc": "2026-06-19T19:00:00Z",
-      "captured_at": "2026-06-19T07:34:20+00:00",
+      "captured_at": "2026-06-19T09:57:11+00:00",
       "preds": {
         "model": [
           0.761,
@@ -1829,9 +1829,9 @@
           0.1647
         ],
         "polymarket": [
-          0.608,
-          0.2161,
-          0.1759
+          0.602,
+          0.2239,
+          0.1741
         ]
       },
       "actual": null,
@@ -1844,7 +1844,7 @@
       "team_a": "Scotland",
       "team_b": "Morocco",
       "kickoff_utc": "2026-06-19T22:00:00Z",
-      "captured_at": "2026-06-19T07:34:20+00:00",
+      "captured_at": "2026-06-19T09:57:11+00:00",
       "preds": {
         "model": [
           0.098,
@@ -1867,9 +1867,9 @@
           0.5945
         ],
         "polymarket": [
-          0.1759,
+          0.1658,
           0.2663,
-          0.5578
+          0.5678
         ]
       },
       "actual": null,
@@ -1882,7 +1882,7 @@
       "team_a": "Brazil",
       "team_b": "Haiti",
       "kickoff_utc": "2026-06-20T00:30:00Z",
-      "captured_at": "2026-06-19T07:34:20+00:00",
+      "captured_at": "2026-06-19T09:57:11+00:00",
       "preds": {
         "model": [
           0.966,
@@ -1905,9 +1905,9 @@
           0.0259
         ],
         "polymarket": [
-          0.8832,
-          0.0823,
-          0.0344
+          0.885,
+          0.0795,
+          0.0355
         ]
       },
       "actual": null,
@@ -1920,7 +1920,7 @@
       "team_a": "Turkiye",
       "team_b": "Paraguay",
       "kickoff_utc": "2026-06-20T03:00:00Z",
-      "captured_at": "2026-06-19T07:34:20+00:00",
+      "captured_at": "2026-06-19T09:57:11+00:00",
       "preds": {
         "model": [
           0.755,
@@ -1958,7 +1958,7 @@
       "team_a": "Netherlands",
       "team_b": "Sweden",
       "kickoff_utc": "2026-06-20T17:00:00Z",
-      "captured_at": "2026-06-19T07:34:20+00:00",
+      "captured_at": "2026-06-19T09:57:11+00:00",
       "preds": {
         "model": [
           0.8,
@@ -1989,9 +1989,42 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Germany__vs__Cote d'Ivoire": {
+      "match_number": 33,
+      "stage": "group",
+      "team_a": "Germany",
+      "team_b": "Cote d'Ivoire",
+      "kickoff_utc": "2026-06-20T20:00:00Z",
+      "captured_at": "2026-06-19T09:57:11+00:00",
+      "preds": {
+        "model": [
+          0.734,
+          0.165,
+          0.101
+        ],
+        "dt": [
+          0.5567,
+          0.2312,
+          0.2121
+        ],
+        "market": [
+          0.6418,
+          0.204,
+          0.1542
+        ],
+        "hybrid": [
+          0.6442,
+          0.2001,
+          0.1558
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-19T07:34:20+00:00",
+  "updated_at": "2026-06-19T09:57:11+00:00",
   "summary": {
     "matches_scored": 28,
     "model": {
