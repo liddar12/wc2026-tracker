@@ -214,12 +214,15 @@ async function renderBracketShim(root, data, params) {
   // Fallback to the legacy live view while the consolidated view is being wired.
   renderBracketsLiveView(root, data, params);
 }
-// Projected nav tab: the same bracket view, defaulted to Projected mode, with
-// its mode/source controls kept on the /projected route (routeName).
+// Projected nav tab: Phase-1 enhanced bracket (tree + stage nav + zoom +
+// confidence). Falls back to the legacy projected bracket view if the enhanced
+// component fails to load.
 async function renderProjectedShim(root, data, params) {
-  const m = await import('./views/bracket-view-r6.js').catch(() => null);
-  const p = { ...params, mode: params.mode || 'projected', routeName: 'projected' };
-  if (m?.renderBracketView) return m.renderBracketView(root, data, p);
+  const p = { ...params, routeName: 'projected' };
+  const m = await import('./components/projected-bracket-tree.js').catch(() => null);
+  if (m?.renderProjectedBracket) return m.renderProjectedBracket(root, data, p);
+  const b = await import('./views/bracket-view-r6.js').catch(() => null);
+  if (b?.renderBracketView) return b.renderBracketView(root, data, { ...p, mode: 'projected' });
   renderBracketsLiveView(root, data, p);
 }
 function redirectToPlay() {

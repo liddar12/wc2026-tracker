@@ -1,23 +1,29 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Projected bracket + hidden nav', () => {
-  test('Projected tab renders the projected bracket (source picker + resolved teams)', async ({ page }) => {
+  test('Projected tab: enhanced tree + stage nav + zoom + confidence', async ({ page }) => {
     const errors = [];
-    // "Transition was skipped" is a benign View Transitions notice when a
-    // re-render interrupts an in-flight transition — not an app error.
     page.on('pageerror', (e) => { if (!/Transition was skipped/i.test(e.message)) errors.push(e.message); });
     await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
 
-    // defaults to Projected mode with the source/model selector (the image)
-    await expect(page.locator('[data-testid="bracket-mode-toggle"]')).toBeVisible({ timeout: 15_000 });
-    await expect(page.locator('[data-testid="bracket-mode-projected"]')).toHaveClass(/is-active/);
-    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible();
-    await expect(page.locator('[data-testid="bracket-source-select"]')).toBeVisible();
+    // stage nav (GS/R32/.../F) + the bracket tree render
+    await expect(page.locator('[data-testid="eb-stage-nav"]')).toBeVisible({ timeout: 15_000 });
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible();
+    // tree has connector-line matches + at least one confidence badge
+    expect(await page.locator('.eb-match').count()).toBeGreaterThan(20);
+    expect(await page.locator('.eb-conf').count()).toBeGreaterThan(0);
 
-    // switching source stays on /projected (route-aware) and repaints
-    await page.locator('[data-testid="bracket-source-select"]').selectOption('dt');
+    // GS stage shows the standings → seeding view
+    await page.locator('[data-testid="eb-stage-gs"]').click();
+    await expect(page.locator('[data-testid="eb-group-seeding"]')).toBeVisible();
+    expect(await page.locator('.eb-gs-row').count()).toBeGreaterThan(20); // 12 groups × ~4 teams
     await expect(page).toHaveURL(/#\/projected/);
-    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible();
+
+    // back to a round + zoom fit (stays on /projected)
+    await page.locator('[data-testid="eb-stage-qf"]').click();
+    await page.locator('.eb-zoom-btn[data-zoom="fit"]').click();
+    await expect(page).toHaveURL(/#\/projected/);
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible();
     expect(errors, errors.join('\n')).toHaveLength(0);
   });
 
@@ -26,7 +32,7 @@ test.describe('Projected bracket + hidden nav', () => {
     await expect(page.locator('[data-testid="tab-projected"]')).toBeVisible({ timeout: 10_000 });
     await page.locator('[data-testid="tab-projected"]').click();
     await expect(page).toHaveURL(/#\/projected/);
-    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible({ timeout: 10_000 });
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 10_000 });
     // must NOT have fallen back to the home view
     await expect(page.locator('.home-hero')).toHaveCount(0);
   });

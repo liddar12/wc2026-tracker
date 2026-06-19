@@ -33,7 +33,9 @@ test('Projected Bracket is wired: tab, route, title, render', () => {
   assert.match(read('index.html'), /data-route="projected"[^>]*>Projected/, 'Projected nav tab');
   const m = read('app/main.js');
   assert.match(m, /case 'projected'/, 'route dispatched');
-  assert.match(m, /renderProjectedBracketView/, 'view imported + called');
+  assert.match(m, /renderProjectedShim/, 'shim renders the enhanced bracket');
+  assert.match(m, /projected-bracket-tree\.js/, 'loads the Phase-1 enhanced component');
+  assert.match(m, /routeName: 'projected'/, 'keeps controls on the /projected route');
   assert.match(m, /applyHiddenFeatures\(document\)/, 'hiding applied each render');
 });
 
@@ -42,13 +44,16 @@ test('Home Play CTA is gated on the flag', () => {
   assert.match(h, /if \(isRouteHidden\('play'\)\) return document\.createDocumentFragment\(\)/, 'Play CTA dropped when hidden');
 });
 
-test('Projected view: all 5 models, default hybrid, R32→Final + 3rd, light detail', () => {
-  const v = read('app/views/projected-bracket-view.js');
-  assert.match(v, /MODELS/, 'iterates all models');
-  assert.match(v, /getActiveModel|'hybrid'/, 'defaults to active/hybrid');
-  assert.match(v, /buildAutofill/, 'uses the autofill projection engine');
-  assert.match(v, /lo: 73, hi: 88/, 'starts at Round of 32');
+test('Phase-1 enhanced Projected bracket: tree + stage nav + zoom + confidence', () => {
+  const v = read('app/components/projected-bracket-tree.js');
+  assert.match(v, /buildAutofill/, 'projects winners via the autofill engine');
+  assert.match(v, /eb-stage-nav|eb-stages/, 'stage nav (GS/R32/.../F)');
+  assert.match(v, /data-zoom="fit"/, 'zoom controls (−/＋/fit)');
+  assert.match(v, /function confidence/, 'per-pick confidence from the model');
+  assert.match(v, /renderModelPicker/, 'model selector present');
+  assert.match(v, /computeGroupStandings/, 'GS view shows standings→seeding');
+  assert.match(v, /lo: 73, hi: 88/, 'R32 round');
   assert.match(v, /byNum\.get\(103\)/, '3rd-place game');
-  assert.match(v, /byNum\.get\(104\)/, 'Final → champion + runner-up');
-  assert.match(v, /MODEL_DESCRIPTIONS/, 'shows model name + one-line description');
+  // legacy renderer kept route-aware as the fallback
+  assert.match(read('app/views/bracket-view-r6.js'), /params\.routeName \|\| 'bracket'/, 'fallback stays route-aware');
 });
