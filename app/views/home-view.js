@@ -6,6 +6,7 @@ import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
 import { isFinalResultRecord } from '../bracket-resolver.js';
+import { isRouteHidden } from '../lib/hidden-features.js';
 import { formatLastUpdated } from '../data-loader.js';
 import {
   getCompetitionState,
@@ -766,6 +767,8 @@ function renderRecentSection(data) {
 }
 
 function renderPlayCta() {
+  // Hidden-feature flag: when Play is hidden, drop its primary CTA entirely.
+  if (isRouteHidden('play')) return document.createDocumentFragment();
   const wrap = document.createElement('section');
   wrap.className = 'home-section';
   // Progress-aware: reflect how far the user is through the funnel.

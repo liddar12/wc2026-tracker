@@ -2,8 +2,9 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Bracket section — Live | Projected', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-testid="tab-bracket"]').click();
+    // Bracket tab is hidden from nav (owner request) but the route still works;
+    // navigate by URL to validate the section's internals.
+    await page.goto('/#/bracket', { waitUntil: 'domcontentloaded' });
     await page.waitForURL(/#\/bracket/);
   });
 
