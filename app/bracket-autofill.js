@@ -26,9 +26,15 @@ export function buildAutofill(data, source, opts = {}) {
   const ko = sf.filter((m) => STAGE_ORDER.includes(m.stage))
     .sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
   const winnerOf = makeWinnerFn(data, source, opts.consensusMap || null);
-  // Use resolveSlots to chain winners through downstream rounds.
+  // What-if overrides ({matchNumber: team}) take precedence over the model for
+  // UNPLAYED matches; actual results still win (handled inside resolveSlots).
+  const overrides = opts.overrides || {};
   resolveSlots(ko, data, {
-    winnerResolver: ({ team_a, team_b }) => winnerOf(team_a, team_b),
+    winnerResolver: ({ matchNumber, team_a, team_b }) => {
+      const ov = overrides[matchNumber];
+      if (ov && (ov === team_a || ov === team_b)) return ov;
+      return winnerOf(team_a, team_b);
+    },
   });
   const out = [];
   for (const m of ko) {

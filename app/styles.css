@@ -1732,6 +1732,28 @@ body.search-open { overflow: hidden; }
 .eb-tbd { color: var(--text-muted); font-style: italic; }
 .eb-conf { flex: 0 0 auto; font-size: 11px; font-weight: 800; font-variant-numeric: tabular-nums; padding: 1px 6px; border-radius: 999px; background: color-mix(in srgb, var(--good, #16a34a) calc(var(--c) * 1%), transparent); color: var(--text); }
 .eb-col-third { margin-left: 8px; border-left: 1px dashed var(--border); padding-left: 16px; }
+/* BR-6 what-if + BR-7 highlight */
+.eb-reset { border: 1px solid var(--border); background: var(--surface); border-radius: 8px; height: 30px; padding: 0 8px; font-weight: 700; font-size: 12px; cursor: pointer; }
+.eb-tappable { cursor: pointer; }
+@media (hover: hover) { .eb-tappable:hover { background: color-mix(in srgb, var(--primary) 8%, transparent); } }
+.eb-match[data-overridden] { outline: 2px solid var(--accent, #f59e0b); outline-offset: -1px; }
+.eb-override .eb-team-name { color: var(--accent, #f59e0b); }
+.eb-yourpick { flex: 0 0 auto; font-size: 10px; font-weight: 800; color: var(--accent, #f59e0b); white-space: nowrap; }
+.eb-hl { background: color-mix(in srgb, var(--picked, #2563eb) 16%, transparent); border-radius: 6px; }
+
+/* BR-8 Parlay of the Day */
+.parlay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
+.parlay { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--surface); }
+.parlay-head { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; }
+.parlay-name { font-weight: 800; font-size: 14px; }
+.parlay-odds { font-weight: 800; font-variant-numeric: tabular-nums; color: var(--primary); white-space: nowrap; }
+.parlay-sub { font-size: 11px; margin: 2px 0 8px; }
+.parlay-legs { list-style: none; margin: 0; padding: 0; }
+.parlay-leg { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 5px 0; border-top: 1px solid var(--border); font-size: 12px; }
+.parlay-leg:first-child { border-top: 0; }
+.parlay-leg-main { display: flex; flex-direction: column; min-width: 0; }
+.parlay-leg-sel { font-weight: 700; }
+.parlay-leg-prob { flex: 0 0 auto; font-variant-numeric: tabular-nums; color: var(--text-muted); }
 
 /* GS standings → seeding */
 .eb-gs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }

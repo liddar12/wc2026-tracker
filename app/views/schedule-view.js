@@ -12,6 +12,7 @@ import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
 import { getFavoriteTeam } from '../favorites.js';
+import { renderParlayOfDay } from '../components/parlay.js';
 
 export function renderScheduleView(root, data, params) {
   const schedule = Array.isArray(data.scheduleFull) ? data.scheduleFull : [];
@@ -152,6 +153,10 @@ export function renderScheduleView(root, data, params) {
     list.appendChild(card);
   }
   root.appendChild(list);
+
+  // BR-8: Parlay of the Day at the bottom (today's games only; renders nothing
+  // when there are no real-team matches today).
+  root.appendChild(renderParlayOfDay(data));
 }
 
 function isSlotPlaceholder(s) {

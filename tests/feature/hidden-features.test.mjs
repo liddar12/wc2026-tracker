@@ -39,6 +39,18 @@ test('Projected Bracket is wired: tab, route, title, render', () => {
   assert.match(m, /applyHiddenFeatures\(document\)/, 'hiding applied each render');
 });
 
+test('BR-6/BR-7: what-if overrides engine + tap-to-override + path highlight', () => {
+  const af = read('app/bracket-autofill.js');
+  assert.match(af, /opts\.overrides/, 'buildAutofill accepts what-if overrides');
+  assert.match(af, /overrides\[matchNumber\]/, 'overrides keyed by matchNumber (actual results still win)');
+  const v = read('app/components/projected-bracket-tree.js');
+  assert.match(v, /OVERRIDES\[mn\] === team/, 'tap toggles a what-if winner');
+  assert.match(v, /buildAutofill\(data, source, \{ overrides: OVERRIDES \}\)/, 'bracket re-cascades from overrides');
+  assert.match(v, /data-overridden/, 'overridden node is marked (diff vs model)');
+  assert.match(v, /eb-reset/, 'reset-to-model control');
+  assert.match(v, /stage: 'r32', team: el\.dataset\.team/, 'GS team tap highlights its R32 path');
+});
+
 test('Home Play CTA is gated on the flag', () => {
   const h = read('app/views/home-view.js');
   assert.match(h, /if \(isRouteHidden\('play'\)\) return document\.createDocumentFragment\(\)/, 'Play CTA dropped when hidden');
