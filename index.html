@@ -29,6 +29,11 @@
     document.documentElement.classList.add('wc26-join-route');
   }
 })();
+// Phase 1 real-time read path (docs/REALTIME_ARCHITECTURE.md): point the live
+// poller at the Vercel edge endpoint. Set BEFORE the app modules evaluate so
+// live-scores.js picks it up. The client falls back to direct ESPN on any
+// error, so this is safe; remove this line to instantly revert to ESPN-direct.
+window.__WC26_LIVE_API_URL = 'https://live-api-liart.vercel.app/api/live';
 </script>
 <link rel="apple-touch-icon" sizes="180x180" href="icons/apple-touch-icon.png">
 <link rel="apple-touch-icon" sizes="167x167" href="icons/apple-touch-icon-167.png">
