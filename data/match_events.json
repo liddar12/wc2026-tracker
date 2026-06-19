@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-19T18:59:58+00:00",
+    "updated_at": "2026-06-19T20:03:45+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -995,7 +995,7 @@
         "team": "Switzerland"
       }
     ],
-    "updated_at": "2026-06-19T18:59:58+00:00"
+    "updated_at": "2026-06-19T20:03:45+00:00"
   },
   "Canada__vs__Qatar": {
     "events": [
@@ -1060,7 +1060,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-19T18:59:58+00:00"
+    "updated_at": "2026-06-19T20:03:45+00:00"
   },
   "Mexico__vs__Korea Republic": {
     "events": [
@@ -1083,6 +1083,35 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-19T18:59:58+00:00"
+    "updated_at": "2026-06-19T20:03:45+00:00"
+  },
+  "USA__vs__Australia": {
+    "events": [
+      {
+        "minute": "11'",
+        "type": "own-goal",
+        "player": "Cameron Burgess",
+        "team": "USA"
+      },
+      {
+        "minute": "16'",
+        "type": "yellow",
+        "player": "Jordan Bos",
+        "team": "Australia"
+      },
+      {
+        "minute": "32'",
+        "type": "yellow",
+        "player": "Alessandro Circati",
+        "team": "Australia"
+      },
+      {
+        "minute": "43'",
+        "type": "goal",
+        "player": "Alex Freeman",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-06-19T20:03:45+00:00"
   }
 }

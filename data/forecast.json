@@ -3,7 +3,7 @@
     "id": "hybrid",
     "name": "Hybrid",
     "version": "1.0",
-    "generated_at": "2026-06-19T19:33:55.214477+00:00",
+    "generated_at": "2026-06-19T20:03:56.745841+00:00",
     "weights": {
       "j5l": 0.3333,
       "dt": 0.3333,
@@ -74,17 +74,6 @@
     },
     {
       "rank": 6,
-      "team": "Germany",
-      "champion": 0.043,
-      "final": 0.1124,
-      "sf": 0.2675,
-      "qf": 0.5896,
-      "r16": 0.7988,
-      "r32": 0.9879,
-      "hybrid_strength": 1.234
-    },
-    {
-      "rank": 7,
       "team": "Brazil",
       "champion": 0.043,
       "final": 0.1004,
@@ -93,6 +82,17 @@
       "r16": 0.7924,
       "r32": 0.9898,
       "hybrid_strength": 1.278
+    },
+    {
+      "rank": 7,
+      "team": "Germany",
+      "champion": 0.043,
+      "final": 0.1124,
+      "sf": 0.2675,
+      "qf": 0.5896,
+      "r16": 0.7988,
+      "r32": 0.9879,
+      "hybrid_strength": 1.234
     },
     {
       "rank": 8,
@@ -261,17 +261,6 @@
     },
     {
       "rank": 23,
-      "team": "Sweden",
-      "champion": 0.0003,
-      "final": 0.0019,
-      "sf": 0.0099,
-      "qf": 0.0557,
-      "r16": 0.1315,
-      "r32": 0.6573,
-      "hybrid_strength": 0.003
-    },
-    {
-      "rank": 24,
       "team": "Ecuador",
       "champion": 0.0003,
       "final": 0.0024,
@@ -280,6 +269,17 @@
       "r16": 0.1131,
       "r32": 0.8264,
       "hybrid_strength": 0.08
+    },
+    {
+      "rank": 24,
+      "team": "Sweden",
+      "champion": 0.0003,
+      "final": 0.0019,
+      "sf": 0.0099,
+      "qf": 0.0557,
+      "r16": 0.1315,
+      "r32": 0.6573,
+      "hybrid_strength": 0.003
     },
     {
       "rank": 25,
@@ -305,17 +305,6 @@
     },
     {
       "rank": 27,
-      "team": "Canada",
-      "champion": 0.0001,
-      "final": 0.001,
-      "sf": 0.0078,
-      "qf": 0.0347,
-      "r16": 0.1951,
-      "r32": 0.801,
-      "hybrid_strength": -0.207
-    },
-    {
-      "rank": 28,
       "team": "DR Congo",
       "champion": 0.0001,
       "final": 0.0008,
@@ -326,18 +315,18 @@
       "hybrid_strength": -0.238
     },
     {
-      "rank": 29,
-      "team": "Turkiye",
+      "rank": 28,
+      "team": "Canada",
       "champion": 0.0001,
-      "final": 0.0022,
-      "sf": 0.0114,
-      "qf": 0.0622,
-      "r16": 0.1442,
-      "r32": 0.8135,
-      "hybrid_strength": 0.013
+      "final": 0.001,
+      "sf": 0.0078,
+      "qf": 0.0347,
+      "r16": 0.1951,
+      "r32": 0.801,
+      "hybrid_strength": -0.207
     },
     {
-      "rank": 30,
+      "rank": 29,
       "team": "Australia",
       "champion": 0.0001,
       "final": 0.0002,
@@ -348,18 +337,18 @@
       "hybrid_strength": -0.5
     },
     {
-      "rank": 31,
-      "team": "Ghana",
-      "champion": 0.0,
-      "final": 0.0003,
-      "sf": 0.002,
-      "qf": 0.0149,
-      "r16": 0.108,
-      "r32": 0.4716,
-      "hybrid_strength": -0.565
+      "rank": 30,
+      "team": "Turkiye",
+      "champion": 0.0001,
+      "final": 0.0022,
+      "sf": 0.0114,
+      "qf": 0.0622,
+      "r16": 0.1442,
+      "r32": 0.8135,
+      "hybrid_strength": 0.013
     },
     {
-      "rank": 32,
+      "rank": 31,
       "team": "South Africa",
       "champion": 0.0,
       "final": 0.0,
@@ -370,59 +359,70 @@
       "hybrid_strength": -1.217
     },
     {
-      "rank": 33,
-      "team": "Uzbekistan",
+      "rank": 32,
+      "team": "Haiti",
       "champion": 0.0,
       "final": 0.0001,
-      "sf": 0.0002,
+      "sf": 0.0001,
+      "qf": 0.0022,
+      "r16": 0.0216,
+      "r32": 0.1488,
+      "hybrid_strength": -1.326
+    },
+    {
+      "rank": 33,
+      "team": "Saudi Arabia",
+      "champion": 0.0,
+      "final": 0.0,
+      "sf": 0.0001,
       "qf": 0.0029,
-      "r16": 0.0337,
-      "r32": 0.1919,
-      "hybrid_strength": -0.977
+      "r16": 0.0341,
+      "r32": 0.2444,
+      "hybrid_strength": -1.28
     },
     {
       "rank": 34,
-      "team": "Qatar",
+      "team": "Cabo Verde",
       "champion": 0.0,
       "final": 0.0,
-      "sf": 0.0001,
-      "qf": 0.0016,
-      "r16": 0.0236,
-      "r32": 0.1948,
-      "hybrid_strength": -1.452
+      "sf": 0.0003,
+      "qf": 0.0039,
+      "r16": 0.0483,
+      "r32": 0.3127,
+      "hybrid_strength": -1.127
     },
     {
       "rank": 35,
-      "team": "Jordan",
+      "team": "Egypt",
       "champion": 0.0,
-      "final": 0.0,
-      "sf": 0.0,
-      "qf": 0.0014,
-      "r16": 0.02,
-      "r32": 0.1572,
-      "hybrid_strength": -1.399
+      "final": 0.0001,
+      "sf": 0.0032,
+      "qf": 0.0214,
+      "r16": 0.1731,
+      "r32": 0.7489,
+      "hybrid_strength": -0.509
     },
     {
       "rank": 36,
-      "team": "Algeria",
-      "champion": 0.0,
-      "final": 0.0003,
-      "sf": 0.0026,
-      "qf": 0.0126,
-      "r16": 0.1253,
-      "r32": 0.5941,
-      "hybrid_strength": -0.49
-    },
-    {
-      "rank": 37,
-      "team": "Iraq",
+      "team": "New Zealand",
       "champion": 0.0,
       "final": 0.0,
       "sf": 0.0001,
-      "qf": 0.0018,
-      "r16": 0.0159,
-      "r32": 0.098,
-      "hybrid_strength": -0.991
+      "qf": 0.0033,
+      "r16": 0.0435,
+      "r32": 0.3343,
+      "hybrid_strength": -1.317
+    },
+    {
+      "rank": 37,
+      "team": "Iran",
+      "champion": 0.0,
+      "final": 0.0001,
+      "sf": 0.0015,
+      "qf": 0.0146,
+      "r16": 0.123,
+      "r32": 0.6335,
+      "hybrid_strength": -0.771
     },
     {
       "rank": 38,
@@ -437,14 +437,14 @@
     },
     {
       "rank": 39,
-      "team": "Haiti",
+      "team": "Curacao",
       "champion": 0.0,
-      "final": 0.0001,
+      "final": 0.0,
       "sf": 0.0001,
-      "qf": 0.0022,
-      "r16": 0.0216,
-      "r32": 0.1488,
-      "hybrid_strength": -1.326
+      "qf": 0.0012,
+      "r16": 0.0137,
+      "r32": 0.1143,
+      "hybrid_strength": -1.445
     },
     {
       "rank": 40,
@@ -459,72 +459,17 @@
     },
     {
       "rank": 41,
-      "team": "Saudi Arabia",
+      "team": "Qatar",
       "champion": 0.0,
       "final": 0.0,
       "sf": 0.0001,
-      "qf": 0.0029,
-      "r16": 0.0341,
-      "r32": 0.2444,
-      "hybrid_strength": -1.28
+      "qf": 0.0016,
+      "r16": 0.0236,
+      "r32": 0.1948,
+      "hybrid_strength": -1.452
     },
     {
       "rank": 42,
-      "team": "Cabo Verde",
-      "champion": 0.0,
-      "final": 0.0,
-      "sf": 0.0003,
-      "qf": 0.0039,
-      "r16": 0.0483,
-      "r32": 0.3127,
-      "hybrid_strength": -1.127
-    },
-    {
-      "rank": 43,
-      "team": "New Zealand",
-      "champion": 0.0,
-      "final": 0.0,
-      "sf": 0.0001,
-      "qf": 0.0033,
-      "r16": 0.0435,
-      "r32": 0.3343,
-      "hybrid_strength": -1.317
-    },
-    {
-      "rank": 44,
-      "team": "Egypt",
-      "champion": 0.0,
-      "final": 0.0001,
-      "sf": 0.0032,
-      "qf": 0.0214,
-      "r16": 0.1731,
-      "r32": 0.7489,
-      "hybrid_strength": -0.509
-    },
-    {
-      "rank": 45,
-      "team": "Iran",
-      "champion": 0.0,
-      "final": 0.0001,
-      "sf": 0.0015,
-      "qf": 0.0146,
-      "r16": 0.123,
-      "r32": 0.6335,
-      "hybrid_strength": -0.771
-    },
-    {
-      "rank": 46,
-      "team": "Curacao",
-      "champion": 0.0,
-      "final": 0.0,
-      "sf": 0.0001,
-      "qf": 0.0012,
-      "r16": 0.0137,
-      "r32": 0.1143,
-      "hybrid_strength": -1.445
-    },
-    {
-      "rank": 47,
       "team": "Scotland",
       "champion": 0.0,
       "final": 0.0001,
@@ -533,6 +478,61 @@
       "r16": 0.1261,
       "r32": 0.5534,
       "hybrid_strength": -0.494
+    },
+    {
+      "rank": 43,
+      "team": "Iraq",
+      "champion": 0.0,
+      "final": 0.0,
+      "sf": 0.0001,
+      "qf": 0.0018,
+      "r16": 0.0159,
+      "r32": 0.098,
+      "hybrid_strength": -0.991
+    },
+    {
+      "rank": 44,
+      "team": "Algeria",
+      "champion": 0.0,
+      "final": 0.0003,
+      "sf": 0.0026,
+      "qf": 0.0126,
+      "r16": 0.1253,
+      "r32": 0.5941,
+      "hybrid_strength": -0.49
+    },
+    {
+      "rank": 45,
+      "team": "Jordan",
+      "champion": 0.0,
+      "final": 0.0,
+      "sf": 0.0,
+      "qf": 0.0014,
+      "r16": 0.02,
+      "r32": 0.1572,
+      "hybrid_strength": -1.399
+    },
+    {
+      "rank": 46,
+      "team": "Uzbekistan",
+      "champion": 0.0,
+      "final": 0.0001,
+      "sf": 0.0002,
+      "qf": 0.0029,
+      "r16": 0.0337,
+      "r32": 0.1919,
+      "hybrid_strength": -0.977
+    },
+    {
+      "rank": 47,
+      "team": "Ghana",
+      "champion": 0.0,
+      "final": 0.0003,
+      "sf": 0.002,
+      "qf": 0.0149,
+      "r16": 0.108,
+      "r32": 0.4716,
+      "hybrid_strength": -0.565
     },
     {
       "rank": 48,
