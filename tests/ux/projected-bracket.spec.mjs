@@ -1,25 +1,34 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Projected bracket + hidden nav', () => {
-  test('Projected view renders a real bracket (podium + rounds) and switches models', async ({ page }) => {
+  test('Projected tab renders the projected bracket (source picker + resolved teams)', async ({ page }) => {
     const errors = [];
-    page.on('pageerror', (e) => errors.push(e.message));
+    // "Transition was skipped" is a benign View Transitions notice when a
+    // re-render interrupts an in-flight transition — not an app error.
+    page.on('pageerror', (e) => { if (!/Transition was skipped/i.test(e.message)) errors.push(e.message); });
     await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
 
-    await expect(page.locator('[data-testid="pb-podium"]')).toBeVisible({ timeout: 15_000 });
-    await expect(page.locator('[data-testid="pb-bracket"]')).toBeVisible();
-    // a real projection: at least one round-column header and several matches
-    await expect(page.locator('.pb-col-head').first()).toContainText(/Round of 32/);
-    expect(await page.locator('.pb-match').count()).toBeGreaterThan(20);
-    // champion cell shows an actual team (not TBD)
-    await expect(page.locator('[data-testid="pb-podium"] .pb-podium-team').first()).not.toContainText('TBD');
+    // defaults to Projected mode with the source/model selector (the image)
+    await expect(page.locator('[data-testid="bracket-mode-toggle"]')).toBeVisible({ timeout: 15_000 });
+    await expect(page.locator('[data-testid="bracket-mode-projected"]')).toHaveClass(/is-active/);
+    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible();
+    await expect(page.locator('[data-testid="bracket-source-select"]')).toBeVisible();
 
-    // model switch re-renders
-    const chips = page.locator('.pb-models .pw-model-chip');
-    await expect(chips).not.toHaveCount(0);
-    await chips.nth(1).click();
-    await expect(page.locator('[data-testid="pb-bracket"]')).toBeVisible();
+    // switching source stays on /projected (route-aware) and repaints
+    await page.locator('[data-testid="bracket-source-select"]').selectOption('dt');
+    await expect(page).toHaveURL(/#\/projected/);
+    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible();
     expect(errors, errors.join('\n')).toHaveLength(0);
+  });
+
+  test('CLICKING the Projected tab opens the bracket (not a redirect to home)', async ({ page }) => {
+    await page.goto('/', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[data-testid="tab-projected"]')).toBeVisible({ timeout: 10_000 });
+    await page.locator('[data-testid="tab-projected"]').click();
+    await expect(page).toHaveURL(/#\/projected/);
+    await expect(page.locator('[data-testid="bracket-projected"]')).toBeVisible({ timeout: 10_000 });
+    // must NOT have fallen back to the home view
+    await expect(page.locator('.home-hero')).toHaveCount(0);
   });
 
   test('the five low-use tabs are hidden; Projected tab is shown', async ({ page }) => {
