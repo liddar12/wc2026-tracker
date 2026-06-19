@@ -82,11 +82,25 @@ test('client prefers /api/live when configured, falls back to ESPN on error', as
   }
 });
 
-test('flag is OFF by default + CORS limited to prod origin', () => {
+test('flag defaults OFF in code + CORS limited to prod origin', () => {
   const ls = read('app/live-scores.js');
-  assert.match(ls, /window\.__WC26_LIVE_API_URL\) \|\| ''/, 'defaults to empty (off)');
+  assert.match(ls, /window\.__WC26_LIVE_API_URL\) \|\| ''/, 'code defaults to empty (off)');
   const fn = read('live-api/api/live.js');
   assert.match(fn, /worldcup2026\.j5lagenticstrategy\.com/, 'CORS pinned to prod origin');
   assert.match(fn, /s-maxage=10/, 'edge-cached 10s');
   assert.match(fn, /runtime: 'edge'/, 'edge runtime');
+});
+
+test('cutover: index.html points the client at the Vercel endpoint + CSP allows it', () => {
+  const html = read('index.html');
+  const URL = 'https://live-api-liart.vercel.app/api/live';
+  assert.match(html, /window\.__WC26_LIVE_API_URL = 'https:\/\/live-api-liart\.vercel\.app\/api\/live'/, 'flag set to endpoint');
+  // the global must be set before the app module loads (classic head script
+  // runs before <script type="module">)
+  const flagAt = html.indexOf('__WC26_LIVE_API_URL =');
+  const moduleAt = html.indexOf('type="module" src="app/main.js"');
+  assert.ok(flagAt !== -1 && flagAt < moduleAt, 'flag is set before the module loads');
+  // CSP must allow the endpoint host, or the browser blocks the fetch
+  const headers = read('_headers');
+  assert.match(headers, /connect-src[^;]*https:\/\/live-api-liart\.vercel\.app/, 'CSP connect-src allows the endpoint');
 });
