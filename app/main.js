@@ -46,6 +46,8 @@ import { renderVenuesView } from './views/venues-view.js';
 import { renderVenueDetail } from './views/venue-detail.js';
 import { renderWinnerView } from './views/winner-view.js';
 import { renderHome } from './views/home-view.js';
+import { renderProjectedBracketView } from './views/projected-bracket-view.js';
+import { applyHiddenFeatures } from './lib/hidden-features.js';
 import { renderCreateGroupWizard } from './views/create-group-wizard.js';
 import { renderPoolsView } from './views/pools-view.js';
 import { renderPoolStandingsView } from './views/pool-standings-view.js';
@@ -80,6 +82,8 @@ const TITLES = {
   'my-brackets': 'My Brackets',
   'my-picks': 'My Picks',
   schedule: 'Schedule',
+  projected: 'Projected Bracket',
+  'projected-bracket': 'Projected Bracket',
   venues: 'Venues',
   venue: 'Venue',
   matches: 'Matches',
@@ -100,6 +104,9 @@ const TITLES = {
 function renderView() {
   const state = getState();
   const root = document.getElementById('view');
+  // Apply nav hiding on every path (incl. the pre-data skeleton) so flagged
+  // tabs never flash visible before data loads.
+  applyHiddenFeatures(document);
   if (!state.data) {
     root.innerHTML = '';
     root.appendChild(viewSkeleton());
@@ -128,6 +135,8 @@ function renderView() {
     matches: 'matches',
     matchups: 'matches',
     schedule: 'schedule',
+    projected: 'projected',
+    'projected-bracket': 'projected',
     venues: 'venues',
     venue: 'venues',
     group: 'play',               // legacy group view nav-highlights Play
@@ -184,9 +193,13 @@ function renderView() {
     case 'backtest':     renderBacktestView(root, state.data, params); break;
     case 'leaderboard':  renderAccuracyScoreboardView(root, state.data, params); break;
     case 'picks':        renderMyPicks(root, state.data, params); break;  // legacy alias
+    case 'projected':
+    case 'projected-bracket': renderProjectedBracketView(root, state.data, params); break;
     case 'winner':       renderWinnerView(root, state.data, params); break;
     default:             renderHome(root, state.data, params);
   }
+  // Reversible nav/feature hiding: remove flagged tabs + in-content entry points.
+  applyHiddenFeatures(document);
   window.scrollTo(0, 0);
 }
 

@@ -638,6 +638,10 @@ body {
 
 /* Buttons / links */
 button { font-family: inherit; }
+/* The hidden attribute must win over component display rules (e.g. .home-link
+   sets display:flex, which otherwise overrides the UA [hidden] rule). Used by
+   the reversible nav/feature hiding (hidden-features.js). */
+[hidden] { display: none !important; }
 a { color: var(--primary); }
 /* Team links read as tappable: primary-colored name with a dotted underline +
    chevron (was color:inherit with no affordance — looked like plain text). */
@@ -1701,6 +1705,19 @@ body.search-open { overflow: hidden; }
 .gb-player { min-width: 0; overflow: hidden; }
 .gb-odds, .gb-goals, .gb-proj { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .gb-goals { font-weight: 800; }
+
+/* Projected bracket */
+.pb-models { display: flex; flex-wrap: wrap; gap: 6px; }
+.pb-podium-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pb-podium-cell { text-align: center; padding: 8px; border: 1px solid var(--border); border-radius: 10px; }
+.pb-medal { font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; }
+.pb-podium-team { font-weight: 700; font-size: 14px; }
+.pb-bracket { display: flex; gap: 12px; overflow-x: auto; padding-bottom: 6px; }
+.pb-col { min-width: 150px; flex: 0 0 auto; }
+.pb-col-head { font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin: 0 0 6px; }
+.pb-match { border: 1px solid var(--border); border-radius: 8px; padding: 6px 8px; margin-bottom: 6px; display: flex; flex-direction: column; gap: 2px; }
+.pb-team { font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pb-team.pb-win { font-weight: 800; color: var(--primary); }
 
 .home-match-list { display: grid; gap: 8px; }
 .home-match-row {

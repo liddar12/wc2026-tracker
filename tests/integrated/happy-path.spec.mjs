@@ -22,9 +22,8 @@ test.describe('Integrated R6 happy path', () => {
   });
 
   test('full flow: nav → Play → seed full picks → submit unlocks → podium fires', async ({ page }) => {
-    // Start on home, click Play tab
-    await page.goto('/', { waitUntil: 'domcontentloaded' });
-    await page.locator('[data-testid="tab-play"]').click();
+    // Play tab is hidden from nav (owner request); route still works by URL.
+    await page.goto('/#/play', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="play-stage-1"]')).toBeVisible({ timeout: 10_000 });
 
     // Submit must start disabled
@@ -50,9 +49,9 @@ test.describe('Integrated R6 happy path', () => {
       localStorage.setItem('wc26.mybrackets.local', JSON.stringify(bracket));
     });
 
-    // Reload to pick up the seeded picks
+    // Reload to pick up the seeded picks (Play tab hidden; navigate by URL)
     await page.reload({ waitUntil: 'domcontentloaded' });
-    await page.locator('[data-testid="tab-play"]').click();
+    await page.goto('/#/play', { waitUntil: 'domcontentloaded' });
     await expect(submit).toBeEnabled({ timeout: 10_000 });
 
     // Submit opens podium modal
@@ -72,8 +71,8 @@ test.describe('Integrated R6 happy path', () => {
     await teams.nth(1).click();
     await teams.nth(2).click();
     await teams.nth(3).click();
-    // Switch to Bracket
-    await page.locator('[data-testid="tab-bracket"]').click();
+    // Switch to Bracket (tab hidden from nav; route still works by URL)
+    await page.goto('/#/bracket', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="bracket-mode-toggle"]')).toBeVisible({ timeout: 10_000 });
     // Live mode default — the live tree should still render (no actuals yet, but the slots exist)
     await expect(page.locator('[data-testid="bracket-live"]')).toBeVisible();
