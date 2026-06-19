@@ -98,6 +98,9 @@ jobs:
       - name: Compute results-driven Elo
         run: python scripts/compute_elo.py
         continue-on-error: true
+      - name: Compute in-tournament form signal
+        run: python scripts/compute_form.py
+        continue-on-error: true
       - name: Recompute composite + power rankings
         run: python scripts/rebuild_composite.py
         continue-on-error: true

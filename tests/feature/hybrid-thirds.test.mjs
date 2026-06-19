@@ -7,7 +7,10 @@ const json = (p) => JSON.parse(read(p));
 test('forecast.json: 1/3 hybrid champion+round odds (group→finals)', () => {
   const f = json('data/forecast.json');
   assert.equal(f.teams.length, 48);
-  assert.deepEqual(f.model.weights, { j5l: 0.3333, dt: 0.3333, kalshi: 0.3333 });
+  // Blend is now backtest-TUNED (meta.hybrid_weights), no longer hardcoded 1/3.
+  const w = f.model.weights;
+  assert.ok(['j5l', 'dt', 'kalshi'].every((k) => typeof w[k] === 'number'), 'three blend weights');
+  assert.ok(Math.abs(w.j5l + w.dt + w.kalshi - 1) < 0.02, 'blend weights sum to 1');
   const champ = f.teams.reduce((s, t) => s + t.champion, 0);
   assert.ok(Math.abs(champ - 1) < 0.01, `champion sums ~1 (got ${champ.toFixed(3)})`);
   f.teams.forEach((t) => {
@@ -40,8 +43,9 @@ test('hybrid is the default model + documented as 1/3', () => {
   assert.match(ba, /forecast\?\.teams/, 'bracket hybrid source reads forecast hybrid_strength');
 });
 
-test('build_hybrid.py exists and documents the 1/3 weights', () => {
+test('build_hybrid.py exists; equal-thirds is the default, meta blend overrides', () => {
   const s = read('scripts/build_hybrid.py');
-  assert.match(s, /W = \(1 \/ 3, 1 \/ 3, 1 \/ 3\)/, '1/3 weights');
+  assert.match(s, /W = \(1 \/ 3, 1 \/ 3, 1 \/ 3\)/, 'equal-thirds default constant');
+  assert.match(s, /meta\.get\("hybrid_weights"\)/, 'tuned blend overrides the default');
   assert.match(s, /forecast\.json/, 'writes forecast.json');
 });

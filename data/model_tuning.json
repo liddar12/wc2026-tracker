@@ -1,0 +1,42 @@
+{
+  "generated_from_games": 28,
+  "objective": "multiclass log-loss (walk-forward / captured pre-match)",
+  "group": {
+    "n_games": 28,
+    "current": {
+      "logloss": 1.1013,
+      "accuracy": 0.607
+    },
+    "tuned": {
+      "logloss": 0.9495,
+      "accuracy": 0.607
+    },
+    "adopted": true,
+    "weights": {
+      "mine": 0.1661,
+      "elo": 0.0302,
+      "tmv": 0.4786,
+      "qual": 0.3096,
+      "form": 0.0156
+    },
+    "poisson": {
+      "mu": 0.265,
+      "beta": 0.08
+    }
+  },
+  "blend": {
+    "n_matches": 28,
+    "current_equal_thirds": {
+      "logloss": 0.9991
+    },
+    "tuned": {
+      "logloss": 0.9945
+    },
+    "adopted": true,
+    "weights": {
+      "j5l": 0.3,
+      "dt": 0.3,
+      "kalshi": 0.4
+    }
+  }
+}
