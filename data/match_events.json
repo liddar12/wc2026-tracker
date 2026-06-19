@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-19T20:08:13+00:00",
+    "updated_at": "2026-06-19T20:40:29+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -995,7 +995,7 @@
         "team": "Switzerland"
       }
     ],
-    "updated_at": "2026-06-19T20:08:13+00:00"
+    "updated_at": "2026-06-19T20:40:29+00:00"
   },
   "Canada__vs__Qatar": {
     "events": [
@@ -1060,7 +1060,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-19T20:08:13+00:00"
+    "updated_at": "2026-06-19T20:40:29+00:00"
   },
   "Mexico__vs__Korea Republic": {
     "events": [
@@ -1083,7 +1083,7 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-19T20:08:13+00:00"
+    "updated_at": "2026-06-19T20:40:29+00:00"
   },
   "USA__vs__Australia": {
     "events": [
@@ -1110,8 +1110,14 @@
         "type": "goal",
         "player": "Alex Freeman",
         "team": "USA"
+      },
+      {
+        "minute": "56'",
+        "type": "yellow",
+        "player": "Antonee Robinson",
+        "team": "USA"
       }
     ],
-    "updated_at": "2026-06-19T20:08:13+00:00"
+    "updated_at": "2026-06-19T20:40:29+00:00"
   }
 }
