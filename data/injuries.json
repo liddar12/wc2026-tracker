@@ -1,9 +1,12 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-19T23:17:02+00:00",
+    "updated_at": "2026-06-20T01:33:21+00:00",
     "source": "espn-team-injuries",
     "espn_entries": 0,
-    "note": "ESPN currently exposes no World Cup injury data; suspensions (red/2-yellow) are surfaced from match_events. See docs/POSTMORTEM_2026-06-19.md."
+    "apifootball_entries": 0,
+    "apifootball_updated_at": null,
+    "apifootball_status": "disabled (no APIFOOTBALL_KEY)",
+    "note": "ESPN exposes no World Cup injury data; injuries/suspensions come from API-Football when APIFOOTBALL_KEY is set. Suspensions are also surfaced from match_events. See docs/APIFOOTBALL_INTEGRATION.md."
   },
   "by_team": {},
   "count": 0
