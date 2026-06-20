@@ -59,6 +59,18 @@ test('matchup-detail: header score, events section, tappable team links', () => 
   assert.match(ev, /tournament: \$\{t\.yellow\}/, 'discipline shows tournament card totals');
 });
 
+test('matchup-detail: live header shows the elapsed game minute, not a bare LIVE', () => {
+  // Regression: the detail view rendered only "LIVE" and discarded the ESPN
+  // game clock that actualForCard already provides (found.actual.minute).
+  const md = read('app/views/matchup-detail.js');
+  // minute is rendered, gated to live mode, with the trailing apostrophe.
+  assert.match(md, /found\.actual\.minute/, 'detail live label uses the elapsed minute');
+  assert.match(md, /detail-score-live[^]*found\.actual\.minute[^]*'/, "minute shown with the ' suffix in the live label");
+  // and actualForCard actually carries the minute through from the merged record.
+  const lmc = read('app/components/large-match-card.js');
+  assert.match(lmc, /actual\.minute = rec\.minute/, 'actualForCard exposes the live minute');
+});
+
 test('crons run the new scrapers', () => {
   const live = read('.github/workflows/live_update.yml');
   assert.match(live, /scrape_match_events\.py/);

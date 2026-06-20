@@ -77,9 +77,12 @@ export function renderMatchupDetail(root, data, params) {
   // Real result (final or in-progress): show the score between the teams
   // instead of a bare "vs" — the detail page previously never displayed it.
   const found = actualForCard(data.actualResults, { stage: 'group', team_a: match.team_a, team_b: match.team_b });
+  const liveLabel = found?.mode === 'live'
+    ? `<small class="detail-score-live" data-testid="detail-live">LIVE${found.actual.minute ? ' ' + escapeHtml(String(found.actual.minute)) + "'" : ''}</small>`
+    : '';
   const centre = found
     ? `<span class="detail-score" data-testid="detail-score">${found.actual.score_a}&thinsp;–&thinsp;${found.actual.score_b}${
-        found.mode === 'final' ? '<small>FT</small>' : found.mode === 'live' ? '<small class="detail-score-live">LIVE</small>' : ''}</span>`
+        found.mode === 'final' ? '<small>FT</small>' : liveLabel}</span>`
     : '<span class="muted">vs</span>';
   teamsRow.innerHTML = `
     <a class="team-link" href="#/team/name/${encodeURIComponent(match.team_a)}" style="display:flex;align-items:center;gap:8px;" aria-label="${escapeHtml(match.team_a)} team page">
