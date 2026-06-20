@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-20T18:05:36+00:00",
+    "updated_at": "2026-06-20T18:52:15+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1142,7 +1142,7 @@
         "team": "USA"
       }
     ],
-    "updated_at": "2026-06-20T18:05:36+00:00"
+    "updated_at": "2026-06-20T18:52:15+00:00"
   },
   "Scotland__vs__Morocco": {
     "events": [
@@ -1165,7 +1165,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-20T18:05:36+00:00"
+    "updated_at": "2026-06-20T18:52:15+00:00"
   },
   "Brazil__vs__Haiti": {
     "events": [
@@ -1212,7 +1212,7 @@
         "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-20T18:05:36+00:00"
+    "updated_at": "2026-06-20T18:52:15+00:00"
   },
   "Turkiye__vs__Paraguay": {
     "events": [
@@ -1241,7 +1241,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-20T18:05:36+00:00"
+    "updated_at": "2026-06-20T18:52:15+00:00"
   },
   "Netherlands__vs__Sweden": {
     "events": [
@@ -1256,8 +1256,50 @@
         "type": "goal",
         "player": "Brian Brobbey",
         "team": "Netherlands"
+      },
+      {
+        "minute": "47'",
+        "type": "goal",
+        "player": "Cody Gakpo",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "53'",
+        "type": "yellow",
+        "player": "Gabriel Gudmundsson",
+        "team": "Sweden"
+      },
+      {
+        "minute": "54'",
+        "type": "goal",
+        "player": "Cody Gakpo",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "59'",
+        "type": "goal",
+        "player": "Anthony Elanga",
+        "team": "Sweden"
+      },
+      {
+        "minute": "75'",
+        "type": "yellow",
+        "player": "Yasin Ayari",
+        "team": "Sweden"
+      },
+      {
+        "minute": "80'",
+        "type": "yellow",
+        "player": "Lucas Bergvall",
+        "team": "Sweden"
+      },
+      {
+        "minute": "89'",
+        "type": "goal",
+        "player": "Crysencio Summerville",
+        "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-20T18:05:36+00:00"
+    "updated_at": "2026-06-20T18:52:15+00:00"
   }
 }
