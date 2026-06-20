@@ -59,29 +59,40 @@ function nearestLiveStart(scheduleFull) {
   return best;
 }
 
+function emitLiveRefresh() {
+  if (currentData) {
+    window.dispatchEvent(new CustomEvent('data:live-refresh', { detail: { data: currentData } }));
+  }
+}
+
 async function pollOnce() {
   tickCount++;
   try {
-    // Fast lane every tick: direct ESPN scoreboard → in-memory merge. Cheap
-    // (~30KB) and instant — this is what makes scores + clock near-real-time.
+    // Fast lane every tick: direct ESPN scoreboard → in-memory merge, then
+    // PAINT IMMEDIATELY. Score/clock freshness must NEVER wait on the slow lane
+    // below — the durable actual_results.json ships matches as STATUS_SCHEDULED
+    // stubs (rejected by actualForCard), so the live score exists only in this
+    // merge. Gating the dispatch behind refreshData() + fetchLiveOdds() left a
+    // freshly-opened view (e.g. a deep-linked match detail) showing "vs" for
+    // ~7s on the one in-progress game. Cheap (~30KB) and near-instant.
     if (currentData) {
       try {
         const board = await fetchEspnLive();
         mergeLiveScores(currentData, board);
-      } catch { /* ESPN blip — the pipeline copy still flows below */ }
+      } catch { /* ESPN blip — the slow lane below still flows */ }
+      emitLiveRefresh();
     }
     // Slow lane every Nth tick: full static-feed refresh + near-real-time
-    // betting lines (ESPN/DraftKings) for the Parlay of the Day.
+    // betting lines (ESPN/DraftKings) for the Parlay of the Day. Repaints again
+    // when done — but scores are already on screen from the fast lane above.
     if (!currentData || tickCount % FULL_REFRESH_EVERY === 1) {
       const fresh = await refreshData();
       if (fresh) {
         try { mergeLiveScores(fresh, await fetchEspnLive()); } catch {}
         try { fresh.liveOdds = await fetchLiveOdds(); } catch { fresh.liveOdds = currentData?.liveOdds; }
         currentData = fresh;
+        emitLiveRefresh();
       }
-    }
-    if (currentData) {
-      window.dispatchEvent(new CustomEvent('data:live-refresh', { detail: { data: currentData } }));
     }
   } catch (e) {
     // Network blip — silently ignore; the next interval tick retries.

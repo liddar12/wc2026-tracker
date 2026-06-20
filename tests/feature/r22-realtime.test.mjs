@@ -130,6 +130,19 @@ test('live poller: fast ESPN lane every tick + periodic full refresh', () => {
   assert.match(p, /FULL_REFRESH_EVERY/, 'periodic full feed refresh retained');
 });
 
+test('live poller: scores paint from the fast lane, NOT gated on the slow lane/odds', () => {
+  // Regression: the live-refresh dispatch fired only at the END of pollOnce —
+  // after refreshData() (~25 JSON files) + fetchLiveOdds() — so a freshly-opened
+  // match detail showed "vs" for ~7s on the one in-progress game (durable data
+  // is a STATUS_SCHEDULED stub; the live score exists only in the merge).
+  const p = read('app/live-poller.js');
+  // the dispatch happens right after the fast-lane merge, BEFORE the slow lane.
+  assert.match(p, /mergeLiveScores\(currentData[\s\S]*?emitLiveRefresh\(\)[\s\S]*?refreshData\(\)/,
+    'fast-lane emit precedes the slow-lane full refresh');
+  // and there is an emit before the odds fetch (odds never gate score painting).
+  assert.match(p, /emitLiveRefresh\(\)[\s\S]*?fetchLiveOdds/, 'odds fetch does not gate the first score paint');
+});
+
 test('June-12 follow-ups: clock strip, home venue label, cron queueing, fresh JS', () => {
   // ESPN displayClock arrives as "26'" — strip the apostrophe (card adds one).
   const ls = read('app/live-scores.js');
