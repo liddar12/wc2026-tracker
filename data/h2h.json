@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-19T10:19:09+00:00",
+    "updated_at": "2026-06-20T08:47:01+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -339,6 +339,13 @@
     }
   ],
   "Brazil__vs__Haiti": [
+    {
+      "date": "2026-06-20",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 3,
+      "score_b": 0,
+      "winner": "Brazil"
+    },
     {
       "date": "2016-06-08",
       "comp": "2016 Copa América",
@@ -731,6 +738,15 @@
       "score_a": 1,
       "score_b": 3,
       "winner": "Colombia"
+    }
+  ],
+  "Turkiye__vs__Paraguay": [
+    {
+      "date": "2026-06-20",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Paraguay"
     }
   ]
 }
