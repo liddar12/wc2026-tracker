@@ -2316,7 +2316,7 @@
       "team_a": "Spain",
       "team_b": "Saudi Arabia",
       "kickoff_utc": "2026-06-21T16:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.914,
@@ -2339,9 +2339,9 @@
           0.024
         ],
         "polymarket": [
-          0.889,
-          0.0753,
-          0.0357
+          0.8883,
+          0.0744,
+          0.0372
         ]
       },
       "actual": null,
@@ -2354,7 +2354,7 @@
       "team_a": "Belgium",
       "team_b": "Iran",
       "kickoff_utc": "2026-06-21T19:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.645,
@@ -2377,8 +2377,8 @@
           0.1352
         ],
         "polymarket": [
-          0.6716,
-          0.204,
+          0.6816,
+          0.194,
           0.1244
         ]
       },
@@ -2392,7 +2392,7 @@
       "team_a": "Uruguay",
       "team_b": "Cabo Verde",
       "kickoff_utc": "2026-06-21T22:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.566,
@@ -2430,7 +2430,7 @@
       "team_a": "New Zealand",
       "team_b": "Egypt",
       "kickoff_utc": "2026-06-22T01:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.179,
@@ -2453,9 +2453,9 @@
           0.5874
         ],
         "polymarket": [
-          0.1558,
-          0.2362,
-          0.608
+          0.1542,
+          0.2338,
+          0.6119
         ]
       },
       "actual": null,
@@ -2468,7 +2468,7 @@
       "team_a": "Argentina",
       "team_b": "Austria",
       "kickoff_utc": "2026-06-22T17:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.553,
@@ -2506,7 +2506,7 @@
       "team_a": "France",
       "team_b": "Iraq",
       "kickoff_utc": "2026-06-22T21:00:00Z",
-      "captured_at": "2026-06-21T10:51:45+00:00",
+      "captured_at": "2026-06-21T12:30:54+00:00",
       "preds": {
         "model": [
           0.943,
@@ -2537,9 +2537,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Norway__vs__Senegal": {
+      "match_number": 41,
+      "stage": "group",
+      "team_a": "Norway",
+      "team_b": "Senegal",
+      "kickoff_utc": "2026-06-23T00:00:00Z",
+      "captured_at": "2026-06-21T12:30:54+00:00",
+      "preds": {
+        "model": [
+          0.512,
+          0.248,
+          0.24
+        ],
+        "dt": [
+          0.4836,
+          0.2478,
+          0.2686
+        ],
+        "market": [
+          0.4271,
+          0.2663,
+          0.3065
+        ],
+        "hybrid": [
+          0.4743,
+          0.254,
+          0.2717
+        ],
+        "polymarket": [
+          0.4271,
+          0.2764,
+          0.2965
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-21T10:51:45+00:00",
+  "updated_at": "2026-06-21T12:30:54+00:00",
   "summary": {
     "matches_scored": 36,
     "model": {
