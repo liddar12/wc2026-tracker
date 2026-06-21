@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-20T23:48:02+00:00",
+    "updated_at": "2026-06-21T01:44:14+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1300,7 +1300,7 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-20T23:48:02+00:00"
+    "updated_at": "2026-06-21T01:44:14+00:00"
   },
   "Germany__vs__Cote d'Ivoire": {
     "events": [
@@ -1323,6 +1323,41 @@
         "team": "Germany"
       }
     ],
-    "updated_at": "2026-06-20T23:48:02+00:00"
+    "updated_at": "2026-06-21T01:44:14+00:00"
+  },
+  "Ecuador__vs__Curacao": {
+    "events": [
+      {
+        "minute": "38'",
+        "type": "yellow",
+        "player": "Jordy Alcívar",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "39'",
+        "type": "yellow",
+        "player": "Leandro Bacuna",
+        "team": "Curacao"
+      },
+      {
+        "minute": "53'",
+        "type": "yellow",
+        "player": "Juninho Bacuna",
+        "team": "Curacao"
+      },
+      {
+        "minute": "56'",
+        "type": "yellow",
+        "player": "Livano Comenencia",
+        "team": "Curacao"
+      },
+      {
+        "minute": "75'",
+        "type": "yellow",
+        "player": "Juriën Gaari",
+        "team": "Curacao"
+      }
+    ],
+    "updated_at": "2026-06-21T01:44:14+00:00"
   }
 }
