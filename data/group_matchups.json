@@ -595,23 +595,23 @@
         "team_a": "Brazil",
         "team_b": "Scotland",
         "composite_a": 78.2,
-        "composite_b": 70.8,
-        "gap": 7.4,
+        "composite_b": 70.7,
+        "gap": 7.5,
         "probabilities": {
-          "team_a_wins": 65.8,
+          "team_a_wins": 65.9,
           "draw": 19.6,
-          "team_b_wins": 14.6
+          "team_b_wins": 14.5
         },
         "expected_points": {
           "team_a": 2.17,
           "team_b": 0.63
         },
         "predicted_winner": "Brazil",
-        "win_confidence_pct": 65.8,
+        "win_confidence_pct": 65.9,
         "upset_risk": {
           "favored": "Brazil",
           "underdog": "Scotland",
-          "gap": 7.4,
+          "gap": 7.5,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -629,9 +629,9 @@
         },
         "match_id": "Brazil__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 55.6,
-          "draw": 23.7,
-          "team_b_wins": 20.7
+          "team_a_wins": 55.9,
+          "draw": 23.6,
+          "team_b_wins": 20.6
         },
         "hybrid_gap": 1.652
       },
@@ -677,30 +677,30 @@
         "team_a": "Morocco",
         "team_b": "Scotland",
         "composite_a": 80.4,
-        "composite_b": 70.8,
-        "gap": 9.6,
+        "composite_b": 70.7,
+        "gap": 9.7,
         "probabilities": {
-          "team_a_wins": 64.4,
+          "team_a_wins": 64.5,
           "draw": 19.7,
-          "team_b_wins": 15.9
+          "team_b_wins": 15.8
         },
         "expected_points": {
           "team_a": 2.13,
           "team_b": 0.67
         },
         "predicted_winner": "Morocco",
-        "win_confidence_pct": 64.4,
+        "win_confidence_pct": 64.5,
         "upset_risk": {
           "favored": "Morocco",
           "underdog": "Scotland",
-          "gap": 9.6,
+          "gap": 9.7,
           "indicators": []
         },
         "match_id": "Morocco__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 61.2,
-          "draw": 21.9,
-          "team_b_wins": 16.9
+          "team_a_wins": 61.5,
+          "draw": 21.8,
+          "team_b_wins": 16.7
         },
         "hybrid_gap": 1.01
       },
@@ -738,11 +738,11 @@
       {
         "team_a": "Scotland",
         "team_b": "Haiti",
-        "composite_a": 70.8,
+        "composite_a": 70.7,
         "composite_b": 59.2,
-        "gap": 11.6,
+        "gap": 11.5,
         "probabilities": {
-          "team_a_wins": 53.2,
+          "team_a_wins": 53.1,
           "draw": 22.7,
           "team_b_wins": 24.1
         },
@@ -751,18 +751,18 @@
           "team_b": 0.95
         },
         "predicted_winner": "Scotland",
-        "win_confidence_pct": 53.2,
+        "win_confidence_pct": 53.1,
         "upset_risk": {
           "favored": "Scotland",
           "underdog": "Haiti",
-          "gap": 11.6,
+          "gap": 11.5,
           "indicators": []
         },
         "match_id": "Scotland__vs__Haiti",
         "j5l_probabilities": {
-          "team_a_wins": 66.2,
-          "draw": 20.0,
-          "team_b_wins": 13.8
+          "team_a_wins": 66.0,
+          "draw": 20.1,
+          "team_b_wins": 14.0
         },
         "hybrid_gap": 0.967
       }
@@ -1619,30 +1619,30 @@
         "team_a": "Belgium",
         "team_b": "Iran",
         "composite_a": 79.0,
-        "composite_b": 68.1,
-        "gap": 10.9,
+        "composite_b": 68.2,
+        "gap": 10.8,
         "probabilities": {
-          "team_a_wins": 66.2,
-          "draw": 19.7,
-          "team_b_wins": 14.1
+          "team_a_wins": 66.1,
+          "draw": 19.8,
+          "team_b_wins": 14.2
         },
         "expected_points": {
           "team_a": 2.18,
           "team_b": 0.62
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 66.2,
+        "win_confidence_pct": 66.1,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Iran",
-          "gap": 10.9,
+          "gap": 10.8,
           "indicators": []
         },
         "match_id": "Belgium__vs__Iran",
         "j5l_probabilities": {
-          "team_a_wins": 64.5,
-          "draw": 20.7,
-          "team_b_wins": 14.8
+          "team_a_wins": 64.2,
+          "draw": 20.8,
+          "team_b_wins": 15.0
         },
         "hybrid_gap": 1.504
       },
@@ -1711,24 +1711,24 @@
       {
         "team_a": "Iran",
         "team_b": "Egypt",
-        "composite_a": 68.1,
+        "composite_a": 68.2,
         "composite_b": 69.3,
-        "gap": 1.2,
+        "gap": 1.1,
         "probabilities": {
           "team_a_wins": 31.5,
           "draw": 25.7,
-          "team_b_wins": 42.8
+          "team_b_wins": 42.7
         },
         "expected_points": {
           "team_a": 1.2,
           "team_b": 1.54
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 42.8,
+        "win_confidence_pct": 42.7,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "Iran",
-          "gap": 1.2,
+          "gap": 1.1,
           "indicators": [
             {
               "type": "close_gap",
@@ -1740,21 +1740,21 @@
         },
         "match_id": "Iran__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 33.9,
+          "team_a_wins": 34.1,
           "draw": 26.4,
-          "team_b_wins": 39.7
+          "team_b_wins": 39.4
         },
         "hybrid_gap": -0.261
       },
       {
         "team_a": "Iran",
         "team_b": "New Zealand",
-        "composite_a": 68.1,
+        "composite_a": 68.2,
         "composite_b": 60.3,
-        "gap": 7.8,
+        "gap": 7.9,
         "probabilities": {
-          "team_a_wins": 47.5,
-          "draw": 24.6,
+          "team_a_wins": 47.6,
+          "draw": 24.5,
           "team_b_wins": 27.9
         },
         "expected_points": {
@@ -1762,18 +1762,18 @@
           "team_b": 1.08
         },
         "predicted_winner": "Iran",
-        "win_confidence_pct": 47.5,
+        "win_confidence_pct": 47.6,
         "upset_risk": {
           "favored": "Iran",
           "underdog": "New Zealand",
-          "gap": 7.8,
+          "gap": 7.9,
           "indicators": []
         },
         "match_id": "Iran__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 56.6,
-          "draw": 23.4,
-          "team_b_wins": 20.0
+          "team_a_wins": 56.9,
+          "draw": 23.3,
+          "team_b_wins": 19.8
         },
         "hybrid_gap": 0.543
       },
