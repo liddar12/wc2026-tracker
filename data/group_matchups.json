@@ -1357,23 +1357,23 @@
         "team_a": "Netherlands",
         "team_b": "Japan",
         "composite_a": 83.0,
-        "composite_b": 78.2,
-        "gap": 4.8,
+        "composite_b": 78.5,
+        "gap": 4.5,
         "probabilities": {
-          "team_a_wins": 55.1,
-          "draw": 23.3,
-          "team_b_wins": 21.5
+          "team_a_wins": 54.9,
+          "draw": 23.4,
+          "team_b_wins": 21.7
         },
         "expected_points": {
-          "team_a": 1.89,
-          "team_b": 0.88
+          "team_a": 1.88,
+          "team_b": 0.89
         },
         "predicted_winner": "Netherlands",
-        "win_confidence_pct": 55.1,
+        "win_confidence_pct": 54.9,
         "upset_risk": {
           "favored": "Netherlands",
           "underdog": "Japan",
-          "gap": 4.8,
+          "gap": 4.5,
           "indicators": [
             {
               "type": "close_gap",
@@ -1385,9 +1385,9 @@
         },
         "match_id": "Netherlands__vs__Japan",
         "j5l_probabilities": {
-          "team_a_wins": 48.9,
-          "draw": 25.3,
-          "team_b_wins": 25.9
+          "team_a_wins": 48.1,
+          "draw": 25.4,
+          "team_b_wins": 26.5
         },
         "hybrid_gap": 0.707
       },
@@ -1456,55 +1456,55 @@
       {
         "team_a": "Japan",
         "team_b": "Tunisia",
-        "composite_a": 78.2,
+        "composite_a": 78.5,
         "composite_b": 66.3,
-        "gap": 11.9,
+        "gap": 12.2,
         "probabilities": {
-          "team_a_wins": 65.8,
-          "draw": 20.5,
-          "team_b_wins": 13.7
+          "team_a_wins": 66.0,
+          "draw": 20.4,
+          "team_b_wins": 13.6
         },
         "expected_points": {
           "team_a": 2.18,
-          "team_b": 0.62
+          "team_b": 0.61
         },
         "predicted_winner": "Japan",
-        "win_confidence_pct": 65.8,
+        "win_confidence_pct": 66.0,
         "upset_risk": {
           "favored": "Japan",
           "underdog": "Tunisia",
-          "gap": 11.9,
+          "gap": 12.2,
           "indicators": []
         },
         "match_id": "Japan__vs__Tunisia",
         "j5l_probabilities": {
-          "team_a_wins": 66.9,
-          "draw": 19.7,
-          "team_b_wins": 13.4
+          "team_a_wins": 67.7,
+          "draw": 19.4,
+          "team_b_wins": 13.0
         },
         "hybrid_gap": 1.445
       },
       {
         "team_a": "Japan",
         "team_b": "Sweden",
-        "composite_a": 78.2,
+        "composite_a": 78.5,
         "composite_b": 72.1,
-        "gap": 6.1,
+        "gap": 6.4,
         "probabilities": {
-          "team_a_wins": 47.2,
+          "team_a_wins": 47.4,
           "draw": 26.3,
-          "team_b_wins": 26.4
+          "team_b_wins": 26.3
         },
         "expected_points": {
-          "team_a": 1.68,
-          "team_b": 1.06
+          "team_a": 1.69,
+          "team_b": 1.05
         },
         "predicted_winner": "Japan",
-        "win_confidence_pct": 47.2,
+        "win_confidence_pct": 47.4,
         "upset_risk": {
           "favored": "Japan",
           "underdog": "Sweden",
-          "gap": 6.1,
+          "gap": 6.4,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1516,9 +1516,9 @@
         },
         "match_id": "Japan__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 52.2,
-          "draw": 24.5,
-          "team_b_wins": 23.2
+          "team_a_wins": 53.0,
+          "draw": 24.4,
+          "team_b_wins": 22.6
         },
         "hybrid_gap": 0.61
       },
