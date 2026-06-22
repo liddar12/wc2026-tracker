@@ -1650,30 +1650,30 @@
         "team_a": "Belgium",
         "team_b": "Egypt",
         "composite_a": 79.0,
-        "composite_b": 69.3,
-        "gap": 9.7,
+        "composite_b": 69.6,
+        "gap": 9.4,
         "probabilities": {
-          "team_a_wins": 59.8,
-          "draw": 22.0,
-          "team_b_wins": 18.1
+          "team_a_wins": 59.6,
+          "draw": 22.1,
+          "team_b_wins": 18.3
         },
         "expected_points": {
-          "team_a": 2.02,
-          "team_b": 0.76
+          "team_a": 2.01,
+          "team_b": 0.77
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 59.8,
+        "win_confidence_pct": 59.6,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Egypt",
-          "gap": 9.7,
+          "gap": 9.4,
           "indicators": []
         },
         "match_id": "Belgium__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 61.5,
-          "draw": 21.8,
-          "team_b_wins": 16.7
+          "team_a_wins": 60.7,
+          "draw": 22.0,
+          "team_b_wins": 17.2
         },
         "hybrid_gap": 1.243
       },
@@ -1681,30 +1681,30 @@
         "team_a": "Belgium",
         "team_b": "New Zealand",
         "composite_a": 79.0,
-        "composite_b": 60.3,
-        "gap": 18.7,
+        "composite_b": 60.1,
+        "gap": 18.9,
         "probabilities": {
-          "team_a_wins": 80.2,
+          "team_a_wins": 80.3,
           "draw": 13.0,
-          "team_b_wins": 6.8
+          "team_b_wins": 6.7
         },
         "expected_points": {
           "team_a": 2.54,
           "team_b": 0.33
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 80.2,
+        "win_confidence_pct": 80.3,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "New Zealand",
-          "gap": 18.7,
+          "gap": 18.9,
           "indicators": []
         },
         "match_id": "Belgium__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 81.6,
-          "draw": 12.4,
-          "team_b_wins": 5.9
+          "team_a_wins": 82.0,
+          "draw": 12.2,
+          "team_b_wins": 5.7
         },
         "hybrid_gap": 2.048
       },
@@ -1712,23 +1712,23 @@
         "team_a": "Iran",
         "team_b": "Egypt",
         "composite_a": 68.2,
-        "composite_b": 69.3,
-        "gap": 1.1,
+        "composite_b": 69.6,
+        "gap": 1.4,
         "probabilities": {
-          "team_a_wins": 31.5,
+          "team_a_wins": 31.3,
           "draw": 25.7,
-          "team_b_wins": 42.8
+          "team_b_wins": 43.0
         },
         "expected_points": {
           "team_a": 1.2,
-          "team_b": 1.54
+          "team_b": 1.55
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 42.8,
+        "win_confidence_pct": 43.0,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "Iran",
-          "gap": 1.1,
+          "gap": 1.4,
           "indicators": [
             {
               "type": "close_gap",
@@ -1740,9 +1740,9 @@
         },
         "match_id": "Iran__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 34.1,
+          "team_a_wins": 33.4,
           "draw": 26.4,
-          "team_b_wins": 39.4
+          "team_b_wins": 40.2
         },
         "hybrid_gap": -0.261
       },
@@ -1750,61 +1750,61 @@
         "team_a": "Iran",
         "team_b": "New Zealand",
         "composite_a": 68.2,
-        "composite_b": 60.3,
-        "gap": 7.9,
+        "composite_b": 60.1,
+        "gap": 8.1,
         "probabilities": {
-          "team_a_wins": 47.6,
+          "team_a_wins": 47.8,
           "draw": 24.5,
-          "team_b_wins": 27.9
+          "team_b_wins": 27.8
         },
         "expected_points": {
-          "team_a": 1.67,
+          "team_a": 1.68,
           "team_b": 1.08
         },
         "predicted_winner": "Iran",
-        "win_confidence_pct": 47.6,
+        "win_confidence_pct": 47.8,
         "upset_risk": {
           "favored": "Iran",
           "underdog": "New Zealand",
-          "gap": 7.9,
+          "gap": 8.1,
           "indicators": []
         },
         "match_id": "Iran__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 56.9,
-          "draw": 23.3,
-          "team_b_wins": 19.8
+          "team_a_wins": 57.4,
+          "draw": 23.1,
+          "team_b_wins": 19.5
         },
         "hybrid_gap": 0.543
       },
       {
         "team_a": "Egypt",
         "team_b": "New Zealand",
-        "composite_a": 69.3,
-        "composite_b": 60.3,
-        "gap": 9.0,
+        "composite_a": 69.6,
+        "composite_b": 60.1,
+        "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 59.2,
-          "draw": 22.8,
-          "team_b_wins": 18.0
+          "team_a_wins": 59.6,
+          "draw": 22.7,
+          "team_b_wins": 17.7
         },
         "expected_points": {
-          "team_a": 2.0,
-          "team_b": 0.77
+          "team_a": 2.02,
+          "team_b": 0.76
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 59.2,
+        "win_confidence_pct": 59.6,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "New Zealand",
-          "gap": 9.0,
+          "gap": 9.5,
           "indicators": []
         },
         "match_id": "Egypt__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 59.7,
-          "draw": 22.4,
-          "team_b_wins": 17.9
+          "team_a_wins": 61.0,
+          "draw": 22.0,
+          "team_b_wins": 17.1
         },
         "hybrid_gap": 0.804
       }
@@ -1861,8 +1861,8 @@
         "team_a": "Spain",
         "team_b": "Cabo Verde",
         "composite_a": 86.8,
-        "composite_b": 63.2,
-        "gap": 23.6,
+        "composite_b": 63.1,
+        "gap": 23.7,
         "probabilities": {
           "team_a_wins": 92.4,
           "draw": 5.6,
@@ -1870,21 +1870,21 @@
         },
         "expected_points": {
           "team_a": 2.83,
-          "team_b": 0.12
+          "team_b": 0.11
         },
         "predicted_winner": "Spain",
         "win_confidence_pct": 92.4,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Cabo Verde",
-          "gap": 23.6,
+          "gap": 23.7,
           "indicators": []
         },
         "match_id": "Spain__vs__Cabo Verde",
         "j5l_probabilities": {
-          "team_a_wins": 89.4,
-          "draw": 7.7,
-          "team_b_wins": 2.9
+          "team_a_wins": 89.6,
+          "draw": 7.6,
+          "team_b_wins": 2.8
         },
         "hybrid_gap": 3.31
       },
@@ -1953,24 +1953,24 @@
       {
         "team_a": "Cabo Verde",
         "team_b": "Uruguay",
-        "composite_a": 63.2,
+        "composite_a": 63.1,
         "composite_b": 70.9,
-        "gap": 7.7,
+        "gap": 7.8,
         "probabilities": {
-          "team_a_wins": 13.1,
+          "team_a_wins": 13.0,
           "draw": 35.8,
-          "team_b_wins": 51.1
+          "team_b_wins": 51.2
         },
         "expected_points": {
           "team_a": 0.75,
           "team_b": 1.89
         },
         "predicted_winner": "Uruguay",
-        "win_confidence_pct": 51.1,
+        "win_confidence_pct": 51.2,
         "upset_risk": {
           "favored": "Uruguay",
           "underdog": "Cabo Verde",
-          "gap": 7.7,
+          "gap": 7.8,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -1988,33 +1988,33 @@
         },
         "match_id": "Cabo Verde__vs__Uruguay",
         "j5l_probabilities": {
-          "team_a_wins": 20.2,
+          "team_a_wins": 20.0,
           "draw": 23.4,
-          "team_b_wins": 56.4
+          "team_b_wins": 56.6
         },
         "hybrid_gap": -1.402
       },
       {
         "team_a": "Cabo Verde",
         "team_b": "Saudi Arabia",
-        "composite_a": 63.2,
+        "composite_a": 63.1,
         "composite_b": 61.0,
-        "gap": 2.2,
+        "gap": 2.1,
         "probabilities": {
-          "team_a_wins": 41.0,
-          "draw": 24.9,
-          "team_b_wins": 34.1
+          "team_a_wins": 40.9,
+          "draw": 25.0,
+          "team_b_wins": 34.2
         },
         "expected_points": {
           "team_a": 1.48,
-          "team_b": 1.27
+          "team_b": 1.28
         },
         "predicted_winner": "Cabo Verde",
-        "win_confidence_pct": 41.0,
+        "win_confidence_pct": 40.9,
         "upset_risk": {
           "favored": "Cabo Verde",
           "underdog": "Saudi Arabia",
-          "gap": 2.2,
+          "gap": 2.1,
           "indicators": [
             {
               "type": "close_gap",
@@ -2026,9 +2026,9 @@
         },
         "match_id": "Cabo Verde__vs__Saudi Arabia",
         "j5l_probabilities": {
-          "team_a_wins": 42.2,
-          "draw": 26.2,
-          "team_b_wins": 31.6
+          "team_a_wins": 41.9,
+          "draw": 26.3,
+          "team_b_wins": 31.8
         },
         "hybrid_gap": 0.148
       },

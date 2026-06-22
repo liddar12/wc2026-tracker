@@ -2474,9 +2474,36 @@
           0.0945
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.94566,
+          "logloss": 1.45243
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 1.22413,
+          "logloss": 1.77372
+        },
+        "market": {
+          "correct": 0,
+          "brier": 1.13465,
+          "logloss": 1.58964
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 1.09351,
+          "logloss": 1.59652
+        },
+        "polymarket": {
+          "correct": 0,
+          "brier": 1.13465,
+          "logloss": 1.58964
+        }
+      },
+      "scored": true,
+      "actual_score": "2-2"
     },
     "New Zealand__vs__Egypt": {
       "match_number": 40,
@@ -2512,9 +2539,36 @@
           0.6119
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.24463,
+          "logloss": 0.51584
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.28643,
+          "logloss": 0.57412
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.23535,
+          "logloss": 0.50104
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.25478,
+          "logloss": 0.52984
+        },
+        "polymarket": {
+          "correct": 1,
+          "brier": 0.22906,
+          "logloss": 0.49119
+        }
+      },
+      "scored": true,
+      "actual_score": "1-3"
     },
     "Argentina__vs__Austria": {
       "match_number": 43,
@@ -2522,7 +2576,7 @@
       "team_a": "Argentina",
       "team_b": "Austria",
       "kickoff_utc": "2026-06-22T17:00:00Z",
-      "captured_at": "2026-06-22T00:04:02+00:00",
+      "captured_at": "2026-06-22T05:28:27+00:00",
       "preds": {
         "model": [
           0.553,
@@ -2545,9 +2599,9 @@
           0.1417
         ],
         "polymarket": [
-          0.6418,
-          0.2239,
-          0.1343
+          0.6552,
+          0.2217,
+          0.1232
         ]
       },
       "actual": null,
@@ -2560,7 +2614,7 @@
       "team_a": "France",
       "team_b": "Iraq",
       "kickoff_utc": "2026-06-22T21:00:00Z",
-      "captured_at": "2026-06-22T00:04:02+00:00",
+      "captured_at": "2026-06-22T05:28:27+00:00",
       "preds": {
         "model": [
           0.943,
@@ -2583,9 +2637,9 @@
           0.0183
         ],
         "polymarket": [
-          0.8974,
-          0.0744,
-          0.0283
+          0.9009,
+          0.0747,
+          0.0244
         ]
       },
       "actual": null,
@@ -2598,7 +2652,7 @@
       "team_a": "Norway",
       "team_b": "Senegal",
       "kickoff_utc": "2026-06-23T00:00:00Z",
-      "captured_at": "2026-06-22T00:04:02+00:00",
+      "captured_at": "2026-06-22T05:28:27+00:00",
       "preds": {
         "model": [
           0.515,
@@ -2621,9 +2675,9 @@
           0.27
         ],
         "polymarket": [
-          0.4271,
-          0.2764,
-          0.2965
+          0.4328,
+          0.2736,
+          0.2935
         ]
       },
       "actual": null,
@@ -2636,7 +2690,7 @@
       "team_a": "Jordan",
       "team_b": "Algeria",
       "kickoff_utc": "2026-06-23T03:00:00Z",
-      "captured_at": "2026-06-22T00:04:02+00:00",
+      "captured_at": "2026-06-22T05:28:27+00:00",
       "preds": {
         "model": [
           0.109,
@@ -2667,45 +2721,83 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Portugal__vs__Uzbekistan": {
+      "match_number": 47,
+      "stage": "group",
+      "team_a": "Portugal",
+      "team_b": "Uzbekistan",
+      "kickoff_utc": "2026-06-23T17:00:00Z",
+      "captured_at": "2026-06-22T05:28:27+00:00",
+      "preds": {
+        "model": [
+          0.843,
+          0.109,
+          0.048
+        ],
+        "dt": [
+          0.8175,
+          0.1219,
+          0.0606
+        ],
+        "market": [
+          0.8191,
+          0.1256,
+          0.0553
+        ],
+        "hybrid": [
+          0.8265,
+          0.1188,
+          0.0546
+        ],
+        "polymarket": [
+          0.8191,
+          0.1256,
+          0.0553
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-22T00:04:02+00:00",
+  "updated_at": "2026-06-22T05:28:27+00:00",
   "summary": {
-    "matches_scored": 38,
+    "matches_scored": 40,
     "model": {
-      "correct": 24,
-      "total": 38,
+      "correct": 25,
+      "total": 40,
       "measured": true,
-      "brier": 0.5548,
-      "logloss": 1.0009
+      "brier": 0.5568,
+      "logloss": 1.0001
     },
     "dt": {
-      "correct": 22,
-      "total": 38,
+      "correct": 23,
+      "total": 40,
       "measured": true,
-      "brier": 0.5891,
-      "logloss": 0.9861
+      "brier": 0.5974,
+      "logloss": 0.9955
     },
     "market": {
-      "correct": 23,
-      "total": 38,
+      "correct": 24,
+      "total": 40,
       "measured": true,
-      "brier": 0.5602,
-      "logloss": 0.9301
+      "brier": 0.5665,
+      "logloss": 0.9359
     },
     "polymarket": {
-      "correct": 22,
-      "total": 35,
+      "correct": 23,
+      "total": 37,
       "measured": true,
-      "brier": 0.5599,
-      "logloss": 0.9273
+      "brier": 0.5664,
+      "logloss": 0.9334
     },
     "hybrid": {
-      "correct": 23,
-      "total": 38,
+      "correct": 24,
+      "total": 40,
       "measured": true,
-      "brier": 0.558,
-      "logloss": 0.943
+      "brier": 0.5638,
+      "logloss": 0.949
     }
   }
 }

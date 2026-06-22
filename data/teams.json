@@ -141,7 +141,7 @@
       "elo_scaled": 67.7,
       "tmv_scaled": 76.3,
       "qual_scaled": 62.0,
-      "form_scaled": 63.5
+      "form_scaled": 63.6
     },
     "boosts": {
       "continental": 0.0,
@@ -168,7 +168,7 @@
     "contender_tier": 3,
     "is_host": false,
     "continental_champion": false,
-    "power_rank": 29,
+    "power_rank": 30,
     "elo_current": 1790
   },
   "Canada": {
@@ -270,7 +270,7 @@
       "elo_scaled": 56.3,
       "tmv_scaled": 61.2,
       "qual_scaled": 50,
-      "form_scaled": 72.3
+      "form_scaled": 72.4
     },
     "boosts": {
       "continental": 2.25,
@@ -297,7 +297,7 @@
     "contender_tier": 4,
     "is_host": false,
     "continental_champion": true,
-    "power_rank": 43,
+    "power_rank": 42,
     "elo_current": 1618
   },
   "Bosnia and Herzegovina": {
@@ -528,7 +528,7 @@
       "elo_scaled": 70.6,
       "tmv_scaled": 81.1,
       "qual_scaled": 65.3,
-      "form_scaled": 92.7
+      "form_scaled": 92.6
     },
     "boosts": {
       "continental": 0.75,
@@ -743,7 +743,7 @@
       "elo_scaled": 75.3,
       "tmv_scaled": 76.7,
       "qual_scaled": 58.0,
-      "form_scaled": 59.4
+      "form_scaled": 59.5
     },
     "boosts": {
       "continental": 0.0,
@@ -958,7 +958,7 @@
       "elo_scaled": 62.1,
       "tmv_scaled": 68.8,
       "qual_scaled": 64.7,
-      "form_scaled": 61.8
+      "form_scaled": 61.9
     },
     "boosts": {
       "continental": 0.0,
@@ -1044,7 +1044,7 @@
       "elo_scaled": 71.2,
       "tmv_scaled": 85.5,
       "qual_scaled": 71.7,
-      "form_scaled": 68.4
+      "form_scaled": 68.5
     },
     "boosts": {
       "continental": 0.0,
@@ -1124,13 +1124,13 @@
     "espn_rank": 33,
     "elo_raw": 1780,
     "tmv_musd": 110,
-    "composite": 69.3,
+    "composite": 69.6,
     "sub_ratings": {
       "mine": 63.9,
-      "elo_scaled": 67.2,
+      "elo_scaled": 68.3,
       "tmv_scaled": 70.1,
       "qual_scaled": 70.3,
-      "form_scaled": 74.1
+      "form_scaled": 81.7
     },
     "boosts": {
       "continental": 0.0,
@@ -1157,8 +1157,8 @@
     "contender_tier": 3,
     "is_host": false,
     "continental_champion": false,
-    "power_rank": 30,
-    "elo_current": 1783
+    "power_rank": 29,
+    "elo_current": 1800
   },
   "New Zealand": {
     "name": "New Zealand",
@@ -1167,13 +1167,13 @@
     "espn_rank": 41,
     "elo_raw": 1690,
     "tmv_musd": 38,
-    "composite": 60.3,
+    "composite": 60.1,
     "sub_ratings": {
       "mine": 59.9,
-      "elo_scaled": 61.2,
+      "elo_scaled": 60.1,
       "tmv_scaled": 60.7,
       "qual_scaled": 58.3,
-      "form_scaled": 74.5
+      "form_scaled": 68.7
     },
     "boosts": {
       "continental": 0.0,
@@ -1200,8 +1200,8 @@
     "contender_tier": 4,
     "is_host": false,
     "continental_champion": false,
-    "power_rank": 42,
-    "elo_current": 1693
+    "power_rank": 43,
+    "elo_current": 1677
   },
   "Spain": {
     "name": "Spain",
@@ -1253,13 +1253,13 @@
     "espn_rank": 46,
     "elo_raw": 1705,
     "tmv_musd": 60,
-    "composite": 63.2,
+    "composite": 63.1,
     "sub_ratings": {
       "mine": 58.7,
-      "elo_scaled": 62.9,
+      "elo_scaled": 63.3,
       "tmv_scaled": 64.8,
       "qual_scaled": 60.7,
-      "form_scaled": 83.6
+      "form_scaled": 80.9
     },
     "boosts": {
       "continental": 0.0,
@@ -1287,7 +1287,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 39,
-    "elo_current": 1718
+    "elo_current": 1725
   },
   "Uruguay": {
     "name": "Uruguay",
@@ -1299,10 +1299,10 @@
     "composite": 70.9,
     "sub_ratings": {
       "mine": 72.3,
-      "elo_scaled": 73.8,
+      "elo_scaled": 73.4,
       "tmv_scaled": 80.1,
       "qual_scaled": 57.4,
-      "form_scaled": 64.4
+      "form_scaled": 64.6
     },
     "boosts": {
       "continental": 0.0,
@@ -1330,7 +1330,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 25,
-    "elo_current": 1883
+    "elo_current": 1876
   },
   "Saudi Arabia": {
     "name": "Saudi Arabia",
@@ -1431,7 +1431,7 @@
       "elo_scaled": 72.2,
       "tmv_scaled": 79.3,
       "qual_scaled": 68.0,
-      "form_scaled": 66.3
+      "form_scaled": 66.4
     },
     "boosts": {
       "continental": 2.25,
@@ -1689,7 +1689,7 @@
       "elo_scaled": 63.5,
       "tmv_scaled": 53.0,
       "qual_scaled": 59.7,
-      "form_scaled": 62.2
+      "form_scaled": 62.3
     },
     "boosts": {
       "continental": 0.75,
@@ -1818,7 +1818,7 @@
       "elo_scaled": 63.5,
       "tmv_scaled": 67.3,
       "qual_scaled": 60.7,
-      "form_scaled": 68.2
+      "form_scaled": 68.3
     },
     "boosts": {
       "continental": 0.0,
@@ -1904,7 +1904,7 @@
       "elo_scaled": 85.5,
       "tmv_scaled": 95.2,
       "qual_scaled": 79.3,
-      "form_scaled": 88.6
+      "form_scaled": 88.5
     },
     "boosts": {
       "continental": 1.5,
@@ -1947,7 +1947,7 @@
       "elo_scaled": 76.2,
       "tmv_scaled": 83.2,
       "qual_scaled": 68.3,
-      "form_scaled": 63.5
+      "form_scaled": 63.6
     },
     "boosts": {
       "continental": 0.0,
