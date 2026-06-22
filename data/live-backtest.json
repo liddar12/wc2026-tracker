@@ -2576,7 +2576,7 @@
       "team_a": "Argentina",
       "team_b": "Austria",
       "kickoff_utc": "2026-06-22T17:00:00Z",
-      "captured_at": "2026-06-22T05:36:20+00:00",
+      "captured_at": "2026-06-22T11:13:31+00:00",
       "preds": {
         "model": [
           0.553,
@@ -2599,9 +2599,9 @@
           0.1355
         ],
         "polymarket": [
-          0.6552,
-          0.2217,
-          0.1232
+          0.6716,
+          0.2139,
+          0.1144
         ]
       },
       "actual": null,
@@ -2614,7 +2614,7 @@
       "team_a": "France",
       "team_b": "Iraq",
       "kickoff_utc": "2026-06-22T21:00:00Z",
-      "captured_at": "2026-06-22T05:36:20+00:00",
+      "captured_at": "2026-06-22T11:13:31+00:00",
       "preds": {
         "model": [
           0.943,
@@ -2637,9 +2637,9 @@
           0.0151
         ],
         "polymarket": [
-          0.9018,
+          0.9009,
           0.0747,
-          0.0234
+          0.0244
         ]
       },
       "actual": null,
@@ -2652,7 +2652,7 @@
       "team_a": "Norway",
       "team_b": "Senegal",
       "kickoff_utc": "2026-06-23T00:00:00Z",
-      "captured_at": "2026-06-22T05:36:20+00:00",
+      "captured_at": "2026-06-22T11:13:31+00:00",
       "preds": {
         "model": [
           0.515,
@@ -2675,9 +2675,9 @@
           0.2677
         ],
         "polymarket": [
-          0.4328,
+          0.4428,
           0.2736,
-          0.2935
+          0.2836
         ]
       },
       "actual": null,
@@ -2690,7 +2690,7 @@
       "team_a": "Jordan",
       "team_b": "Algeria",
       "kickoff_utc": "2026-06-23T03:00:00Z",
-      "captured_at": "2026-06-22T05:36:20+00:00",
+      "captured_at": "2026-06-22T11:13:31+00:00",
       "preds": {
         "model": [
           0.109,
@@ -2728,7 +2728,7 @@
       "team_a": "Portugal",
       "team_b": "Uzbekistan",
       "kickoff_utc": "2026-06-23T17:00:00Z",
-      "captured_at": "2026-06-22T05:36:20+00:00",
+      "captured_at": "2026-06-22T11:13:31+00:00",
       "preds": {
         "model": [
           0.843,
@@ -2751,9 +2751,85 @@
           0.0546
         ],
         "polymarket": [
-          0.8191,
-          0.1256,
-          0.0553
+          0.8209,
+          0.1244,
+          0.0547
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "England__vs__Ghana": {
+      "match_number": 45,
+      "stage": "group",
+      "team_a": "England",
+      "team_b": "Ghana",
+      "kickoff_utc": "2026-06-23T20:00:00Z",
+      "captured_at": "2026-06-22T11:13:31+00:00",
+      "preds": {
+        "model": [
+          0.807,
+          0.13,
+          0.063
+        ],
+        "dt": [
+          0.8347,
+          0.1121,
+          0.0531
+        ],
+        "market": [
+          0.7931,
+          0.1429,
+          0.064
+        ],
+        "hybrid": [
+          0.8116,
+          0.1283,
+          0.06
+        ],
+        "polymarket": [
+          0.791,
+          0.1443,
+          0.0647
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Panama__vs__Croatia": {
+      "match_number": 46,
+      "stage": "group",
+      "team_a": "Panama",
+      "team_b": "Croatia",
+      "kickoff_utc": "2026-06-23T23:00:00Z",
+      "captured_at": "2026-06-22T11:13:31+00:00",
+      "preds": {
+        "model": [
+          0.081,
+          0.15,
+          0.769
+        ],
+        "dt": [
+          0.0695,
+          0.1326,
+          0.7979
+        ],
+        "market": [
+          0.1343,
+          0.2338,
+          0.6318
+        ],
+        "hybrid": [
+          0.0949,
+          0.1721,
+          0.7329
+        ],
+        "polymarket": [
+          0.1357,
+          0.2362,
+          0.6281
         ]
       },
       "actual": null,
@@ -2761,7 +2837,7 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-22T05:36:20+00:00",
+  "updated_at": "2026-06-22T11:13:31+00:00",
   "summary": {
     "matches_scored": 40,
     "model": {
