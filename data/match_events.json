@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-22T19:43:37+00:00",
+    "updated_at": "2026-06-22T21:18:23+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1510,7 +1510,7 @@
         "team": "Cabo Verde"
       }
     ],
-    "updated_at": "2026-06-22T19:43:37+00:00"
+    "updated_at": "2026-06-22T21:18:23+00:00"
   },
   "New Zealand__vs__Egypt": {
     "events": [
@@ -1557,7 +1557,7 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-06-22T19:43:37+00:00"
+    "updated_at": "2026-06-22T21:18:23+00:00"
   },
   "Argentina__vs__Austria": {
     "events": [
@@ -1598,6 +1598,23 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-22T19:43:37+00:00"
+    "updated_at": "2026-06-22T21:18:23+00:00"
+  },
+  "France__vs__Iraq": {
+    "events": [
+      {
+        "minute": "6'",
+        "type": "yellow",
+        "player": "Amir Al-Ammari",
+        "team": "Iraq"
+      },
+      {
+        "minute": "14'",
+        "type": "goal",
+        "player": "Kylian Mbappé",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-06-22T21:18:23+00:00"
   }
 }
