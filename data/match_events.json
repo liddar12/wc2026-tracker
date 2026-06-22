@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-22T16:00:52+00:00",
+    "updated_at": "2026-06-22T17:56:23+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1434,7 +1434,7 @@
         "team": "Saudi Arabia"
       }
     ],
-    "updated_at": "2026-06-22T16:00:52+00:00"
+    "updated_at": "2026-06-22T17:56:23+00:00"
   },
   "Belgium__vs__Iran": {
     "events": [
@@ -1457,7 +1457,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-06-22T16:00:52+00:00"
+    "updated_at": "2026-06-22T17:56:23+00:00"
   },
   "Uruguay__vs__Cabo Verde": {
     "events": [
@@ -1510,7 +1510,7 @@
         "team": "Cabo Verde"
       }
     ],
-    "updated_at": "2026-06-22T16:00:52+00:00"
+    "updated_at": "2026-06-22T17:56:23+00:00"
   },
   "New Zealand__vs__Egypt": {
     "events": [
@@ -1557,6 +1557,23 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-06-22T16:00:52+00:00"
+    "updated_at": "2026-06-22T17:56:23+00:00"
+  },
+  "Argentina__vs__Austria": {
+    "events": [
+      {
+        "minute": "38'",
+        "type": "goal",
+        "player": "Lionel Messi",
+        "team": "Argentina"
+      },
+      {
+        "minute": "40'",
+        "type": "yellow",
+        "player": "Stefan Posch",
+        "team": "Austria"
+      }
+    ],
+    "updated_at": "2026-06-22T17:56:23+00:00"
   }
 }
