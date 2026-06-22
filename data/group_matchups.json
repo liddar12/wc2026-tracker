@@ -595,15 +595,15 @@
         "team_a": "Brazil",
         "team_b": "Scotland",
         "composite_a": 78.2,
-        "composite_b": 70.7,
-        "gap": 7.5,
+        "composite_b": 70.8,
+        "gap": 7.4,
         "probabilities": {
           "team_a_wins": 66.0,
           "draw": 19.5,
           "team_b_wins": 14.5
         },
         "expected_points": {
-          "team_a": 2.18,
+          "team_a": 2.17,
           "team_b": 0.63
         },
         "predicted_winner": "Brazil",
@@ -611,7 +611,7 @@
         "upset_risk": {
           "favored": "Brazil",
           "underdog": "Scotland",
-          "gap": 7.5,
+          "gap": 7.4,
           "indicators": [
             {
               "type": "qualifying_form_edge",
@@ -629,9 +629,9 @@
         },
         "match_id": "Brazil__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 55.9,
-          "draw": 23.6,
-          "team_b_wins": 20.6
+          "team_a_wins": 55.6,
+          "draw": 23.7,
+          "team_b_wins": 20.7
         },
         "hybrid_gap": 1.652
       },
@@ -677,30 +677,30 @@
         "team_a": "Morocco",
         "team_b": "Scotland",
         "composite_a": 80.4,
-        "composite_b": 70.7,
-        "gap": 9.7,
+        "composite_b": 70.8,
+        "gap": 9.6,
         "probabilities": {
-          "team_a_wins": 64.3,
+          "team_a_wins": 64.2,
           "draw": 19.8,
-          "team_b_wins": 15.9
+          "team_b_wins": 16.0
         },
         "expected_points": {
-          "team_a": 2.13,
+          "team_a": 2.12,
           "team_b": 0.68
         },
         "predicted_winner": "Morocco",
-        "win_confidence_pct": 64.3,
+        "win_confidence_pct": 64.2,
         "upset_risk": {
           "favored": "Morocco",
           "underdog": "Scotland",
-          "gap": 9.7,
+          "gap": 9.6,
           "indicators": []
         },
         "match_id": "Morocco__vs__Scotland",
         "j5l_probabilities": {
-          "team_a_wins": 61.5,
-          "draw": 21.8,
-          "team_b_wins": 16.7
+          "team_a_wins": 61.2,
+          "draw": 21.9,
+          "team_b_wins": 16.9
         },
         "hybrid_gap": 1.01
       },
@@ -738,11 +738,11 @@
       {
         "team_a": "Scotland",
         "team_b": "Haiti",
-        "composite_a": 70.7,
+        "composite_a": 70.8,
         "composite_b": 59.2,
-        "gap": 11.5,
+        "gap": 11.6,
         "probabilities": {
-          "team_a_wins": 53.1,
+          "team_a_wins": 53.2,
           "draw": 22.7,
           "team_b_wins": 24.1
         },
@@ -751,18 +751,18 @@
           "team_b": 0.95
         },
         "predicted_winner": "Scotland",
-        "win_confidence_pct": 53.1,
+        "win_confidence_pct": 53.2,
         "upset_risk": {
           "favored": "Scotland",
           "underdog": "Haiti",
-          "gap": 11.5,
+          "gap": 11.6,
           "indicators": []
         },
         "match_id": "Scotland__vs__Haiti",
         "j5l_probabilities": {
-          "team_a_wins": 66.0,
-          "draw": 20.1,
-          "team_b_wins": 14.0
+          "team_a_wins": 66.2,
+          "draw": 20.0,
+          "team_b_wins": 13.8
         },
         "hybrid_gap": 0.967
       }
@@ -2448,23 +2448,23 @@
         "team_a": "Argentina",
         "team_b": "Austria",
         "composite_a": 83.5,
-        "composite_b": 76.2,
-        "gap": 7.3,
+        "composite_b": 75.8,
+        "gap": 7.7,
         "probabilities": {
-          "team_a_wins": 71.4,
-          "draw": 18.2,
-          "team_b_wins": 10.4
+          "team_a_wins": 71.8,
+          "draw": 18.1,
+          "team_b_wins": 10.1
         },
         "expected_points": {
-          "team_a": 2.32,
+          "team_a": 2.33,
           "team_b": 0.49
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 71.4,
+        "win_confidence_pct": 71.8,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Austria",
-          "gap": 7.3,
+          "gap": 7.7,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2476,9 +2476,9 @@
         },
         "match_id": "Argentina__vs__Austria",
         "j5l_probabilities": {
-          "team_a_wins": 55.3,
-          "draw": 23.7,
-          "team_b_wins": 20.9
+          "team_a_wins": 56.4,
+          "draw": 23.4,
+          "team_b_wins": 20.2
         },
         "hybrid_gap": 1.609
       },
@@ -2530,23 +2530,23 @@
         "team_a": "Algeria",
         "team_b": "Austria",
         "composite_a": 71.5,
-        "composite_b": 76.2,
-        "gap": 4.7,
+        "composite_b": 75.8,
+        "gap": 4.3,
         "probabilities": {
-          "team_a_wins": 28.2,
-          "draw": 28.1,
-          "team_b_wins": 43.6
+          "team_a_wins": 28.5,
+          "draw": 28.2,
+          "team_b_wins": 43.3
         },
         "expected_points": {
-          "team_a": 1.13,
-          "team_b": 1.59
+          "team_a": 1.14,
+          "team_b": 1.58
         },
         "predicted_winner": "Austria",
-        "win_confidence_pct": 43.6,
+        "win_confidence_pct": 43.3,
         "upset_risk": {
           "favored": "Austria",
           "underdog": "Algeria",
-          "gap": 4.7,
+          "gap": 4.3,
           "indicators": [
             {
               "type": "close_gap",
@@ -2558,9 +2558,9 @@
         },
         "match_id": "Algeria__vs__Austria",
         "j5l_probabilities": {
-          "team_a_wins": 26.1,
-          "draw": 25.3,
-          "team_b_wins": 48.6
+          "team_a_wins": 26.9,
+          "draw": 25.5,
+          "team_b_wins": 47.6
         },
         "hybrid_gap": -0.662
       },
@@ -2605,24 +2605,24 @@
       {
         "team_a": "Austria",
         "team_b": "Jordan",
-        "composite_a": 76.2,
+        "composite_a": 75.8,
         "composite_b": 57.7,
-        "gap": 18.5,
+        "gap": 18.1,
         "probabilities": {
-          "team_a_wins": 64.8,
-          "draw": 18.8,
-          "team_b_wins": 16.4
+          "team_a_wins": 64.5,
+          "draw": 19.0,
+          "team_b_wins": 16.5
         },
         "expected_points": {
           "team_a": 2.13,
           "team_b": 0.68
         },
         "predicted_winner": "Austria",
-        "win_confidence_pct": 64.8,
+        "win_confidence_pct": 64.5,
         "upset_risk": {
           "favored": "Austria",
           "underdog": "Jordan",
-          "gap": 18.5,
+          "gap": 18.1,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2634,9 +2634,9 @@
         },
         "match_id": "Austria__vs__Jordan",
         "j5l_probabilities": {
-          "team_a_wins": 81.3,
-          "draw": 12.7,
-          "team_b_wins": 6.1
+          "team_a_wins": 80.5,
+          "draw": 13.1,
+          "team_b_wins": 6.4
         },
         "hybrid_gap": 1.562
       }

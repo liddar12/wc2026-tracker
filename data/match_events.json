@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-22T17:56:23+00:00",
+    "updated_at": "2026-06-22T19:43:37+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1457,7 +1457,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-06-22T17:56:23+00:00"
+    "updated_at": "2026-06-22T19:43:37+00:00"
   },
   "Uruguay__vs__Cabo Verde": {
     "events": [
@@ -1510,7 +1510,7 @@
         "team": "Cabo Verde"
       }
     ],
-    "updated_at": "2026-06-22T17:56:23+00:00"
+    "updated_at": "2026-06-22T19:43:37+00:00"
   },
   "New Zealand__vs__Egypt": {
     "events": [
@@ -1557,7 +1557,7 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-06-22T17:56:23+00:00"
+    "updated_at": "2026-06-22T19:43:37+00:00"
   },
   "Argentina__vs__Austria": {
     "events": [
@@ -1572,8 +1572,32 @@
         "type": "yellow",
         "player": "Stefan Posch",
         "team": "Austria"
+      },
+      {
+        "minute": "76'",
+        "type": "yellow",
+        "player": "Facundo Medina",
+        "team": "Argentina"
+      },
+      {
+        "minute": "76'",
+        "type": "yellow",
+        "player": "Konrad Laimer",
+        "team": "Austria"
+      },
+      {
+        "minute": "90'+2'",
+        "type": "yellow",
+        "player": "Leandro Paredes",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+5'",
+        "type": "goal",
+        "player": "Lionel Messi",
+        "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-22T17:56:23+00:00"
+    "updated_at": "2026-06-22T19:43:37+00:00"
   }
 }
