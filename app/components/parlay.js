@@ -93,7 +93,8 @@ const pBTTS = (la, lb) => (1 - Math.exp(-la)) * (1 - Math.exp(-lb));
 function legsForMatch(data, m) {
   const a = m.team_a, b = m.team_b, label = `${a} v ${b}`, mid = m.match_id || `${a}__vs__${b}`;
   const legs = [];
-  // Moneyline (model blended 50/50 with market where present)
+  // Moneyline — a SINGLE clean outcome (team to win OR draw, whichever is most
+  // likely). No double-chance "X or Draw" hybrids — the bet must be unambiguous.
   const mdl = modelWDL(data, a, b);
   if (mdl) {
     const mkt = marketWDL(data, a, b);
@@ -104,31 +105,32 @@ function legsForMatch(data, m) {
       { sel: `${b} to win`, p: blend('b'), mp: mkt?.b, modelP: mdl.b },
     ].sort((x, y) => y.p - x.p);
     const top = outs[0];
-    legs.push({ mid, label, type: 'Moneyline', selection: top.sel, prob: top.p, ev: top.mp ? top.modelP / Math.max(top.mp, 0.02) : 1 });
-    legs.push({ mid, label, type: 'Double chance', selection: `${outs[0].sel.replace(' to win', '')} or ${outs[1].sel.replace(' to win', '')}`.replace('Draw or', 'Draw or').slice(0, 40), prob: outs[0].p + outs[1].p, ev: 1 });
+    legs.push({ mid, label, type: 'Moneyline', market: 'Moneyline', selection: top.sel, prob: top.p, ev: top.mp ? top.modelP / Math.max(top.mp, 0.02) : 1, estimated: !mkt });
   }
   // Over/Under: prefer the live book line; else model (xG → Poisson) at 2.5.
   const xg = xgFor(data, a, b);
   const lou = liveOU(data, a, b);
   if (lou && typeof lou.over === 'number') {
     legs.push(lou.over >= 0.5
-      ? { mid, label, type: 'Total goals', selection: `Over ${lou.line}`, prob: lou.over, ev: 1 }
-      : { mid, label, type: 'Total goals', selection: `Under ${lou.line}`, prob: 1 - lou.over, ev: 1 });
+      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: `Over ${lou.line} goals`, prob: lou.over, ev: 1 }
+      : { mid, label, type: 'Total goals', market: 'Total goals', selection: `Under ${lou.line} goals`, prob: 1 - lou.over, ev: 1 });
   } else if (xg) {
     const ov = pTotalOver(xg.la, xg.lb, 2.5);
     legs.push(ov >= 0.5
-      ? { mid, label, type: 'Total goals', selection: 'Over 2.5', prob: ov, ev: 1 }
-      : { mid, label, type: 'Total goals', selection: 'Under 2.5', prob: 1 - ov, ev: 1 });
+      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Over 2.5 goals', prob: ov, ev: 1, estimated: true }
+      : { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Under 2.5 goals', prob: 1 - ov, ev: 1, estimated: true });
   }
   if (xg) {
     const y = pBTTS(xg.la, xg.lb);
     legs.push(y >= 0.5
-      ? { mid, label, type: 'Both teams to score', selection: 'Yes', prob: y, ev: 1 }
-      : { mid, label, type: 'Both teams to score', selection: 'No', prob: 1 - y, ev: 1 });
-    // experimental anytime scorer: top-rated forward on the higher-xG side
+      ? { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'Yes', prob: y, ev: 1, estimated: true }
+      : { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'No', prob: 1 - y, ev: 1, estimated: true });
+    // Anytime goalscorer (player prop): top-rated forward on the higher-xG side.
+    // No real book line yet → a clearly-tagged model estimate (upgrades to a real
+    // line once the API-Football prop feed is live). "estimated" drives the tag.
     const strong = xg.la >= xg.lb ? a : b, lam = Math.max(xg.la, xg.lb);
     const fwd = topForward(data, strong);
-    if (fwd) legs.push({ mid, label, type: 'Anytime scorer', selection: `${fwd} (exp.)`, prob: 1 - Math.exp(-lam * 0.5), ev: 1, experimental: true });
+    if (fwd) legs.push({ mid, label, type: 'Anytime goalscorer', market: 'Anytime goalscorer', selection: `${fwd} to score`, prob: 1 - Math.exp(-lam * 0.5), ev: 1, estimated: true });
   }
   return legs.filter((l) => l.prob > 0 && l.prob < 0.995);
 }
@@ -168,10 +170,13 @@ export function parlayOfTheDay(data) {
   if (!matches.length) return null;
   const pool = matches.flatMap((m) => legsForMatch(data, m));
   if (pool.length < 3) return null;
+  // Confidence floor everywhere: never include a leg that's "unlikely to hit".
+  // Per match, pickParlay takes the single most-likely clear bet (so a coin-flip
+  // moneyline is naturally replaced by a more-confident prop, e.g. Over 2.5).
   const parlays = [
-    { name: 'Most likely', sub: 'Three highest-probability legs', ...pickParlay(pool) },
+    { name: 'Most likely', sub: 'Three highest-probability single bets', ...pickParlay(pool, { floor: 0.5 }) },
     { name: 'Safe (diversified)', sub: 'High-confidence, spread across bet types', ...pickParlay(pool, { floor: 0.5, diverseTypes: true }) },
-    { name: 'Best value', sub: 'Best model-vs-market edge', ...pickParlay(pool, { floor: 0.45, byEv: true }) },
+    { name: 'Best value', sub: 'Best model-vs-market edge', ...pickParlay(pool, { floor: 0.5, byEv: true }) },
   ].filter((p) => p.legs);
   if (!parlays.length) return null;
   const liveKeys = Object.keys(data?.liveOdds || {}).filter((k) => k !== '__ts');
@@ -199,7 +204,10 @@ export function renderParlayOfDay(data) {
       <div class="parlay-sub muted">${escapeHtml(par.sub)}</div>
       <ul class="parlay-legs">
         ${par.legs.map((l) => `<li class="parlay-leg">
-          <span class="parlay-leg-main">${escapeHtml(l.label)}<span class="parlay-leg-sel">${escapeHtml(l.selection)}${l.experimental ? ' ⚠️' : ''}</span></span>
+          <span class="parlay-leg-main">
+            <span class="parlay-leg-sel"><span class="parlay-leg-market">${escapeHtml(l.market || l.type)}</span> — ${escapeHtml(l.selection)}${l.estimated ? ' <em class="parlay-leg-est" title="Model estimate — no posted book line yet">model est.</em>' : ''}</span>
+            <span class="parlay-leg-match">${escapeHtml(l.label)}</span>
+          </span>
           <span class="parlay-leg-prob">${Math.round(l.prob * 100)}%</span></li>`).join('')}
       </ul>
     </div>`).join('');
@@ -209,6 +217,6 @@ export function renderParlayOfDay(data) {
   sec.innerHTML = `
     <h2 class="home-card-title">🎯 Parlay of the Day <span class="home-card-meta muted">${p.gameCount} game${p.gameCount === 1 ? '' : 's'} today</span> ${freshness}</h2>
     <div class="parlay-grid">${cards}</div>
-    <p class="muted" style="font-size:11px;margin:8px 0 0;">Model blended with ${p.live ? 'near-real-time book' : 'market'} odds — for entertainment, <strong>not betting advice</strong>. Combined odds assume independent legs.</p>`;
+    <p class="muted" style="font-size:11px;margin:8px 0 0;">Each leg is a single clear bet. Model blended with ${p.live ? 'near-real-time book' : 'market'} odds; legs tagged <em>model est.</em> are model estimates with no posted book line yet. For entertainment, <strong>not betting advice</strong>. Combined odds assume independent legs.</p>`;
   return sec;
 }

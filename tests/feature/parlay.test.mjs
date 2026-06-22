@@ -48,9 +48,46 @@ test('Safe parlay diversifies across bet types', () => {
 });
 
 test('blends market into the moneyline (USA 62% model + 55% market → ~59%)', () => {
-  const r = parlayOfTheDay(dataToday());
-  const usaMl = r.parlays.flatMap((p) => p.legs).find((l) => l.type === 'Moneyline' && /USA/.test(l.selection));
+  const usaMl = dailyLegs(dataToday()).find((l) => l.type === 'Moneyline' && /USA/.test(l.selection));
   assert.ok(usaMl && usaMl.prob > 0.57 && usaMl.prob < 0.61, `blended ~59% (got ${usaMl?.prob})`);
+});
+
+test('every leg is a SINGLE clear bet — no double-chance "X or Draw" hybrids', () => {
+  const r = parlayOfTheDay(dataToday());
+  const legs = r.parlays.flatMap((p) => p.legs);
+  for (const l of legs) {
+    assert.notEqual(l.type, 'Double chance', 'no double-chance legs');
+    // moneyline picks ONE outcome: "<team> to win" or "Draw" — never "X or Draw".
+    if (l.type === 'Moneyline') {
+      assert.ok(/( to win$| Draw$|^Draw$)/.test(l.selection) && !/ or /.test(l.selection),
+        `single moneyline outcome, got "${l.selection}"`);
+    }
+    assert.ok(l.market, `leg carries an explicit market (got ${JSON.stringify(l)})`);
+  }
+});
+
+test('confidence floor: no selected leg is "unlikely to hit" (>=50%)', () => {
+  const r = parlayOfTheDay(dataToday());
+  for (const p of r.parlays) {
+    for (const l of p.legs) assert.ok(l.prob >= 0.5, `${p.name}: "${l.selection}" is ${Math.round(l.prob*100)}% (< 50%)`);
+  }
+});
+
+test('player prop is a clear "<player> to score", tagged as a model estimate (no "(exp.)")', () => {
+  const scorer = dailyLegs(dataToday()).find((l) => l.market === 'Anytime goalscorer');
+  assert.ok(scorer, 'an anytime-goalscorer leg exists');
+  assert.match(scorer.selection, /to score$/, 'reads "<player> to score"');
+  assert.ok(!/exp\./.test(scorer.selection), 'no cryptic "(exp.)"');
+  assert.equal(scorer.estimated, true, 'flagged as a model estimate');
+});
+
+test('render: bet-slip style (market + selection), model-est tag, no "(exp.)"/⚠️', async () => {
+  const { readFileSync } = await import('node:fs');
+  const src = readFileSync(new URL('../../app/components/parlay.js', import.meta.url), 'utf8');
+  assert.match(src, /parlay-leg-market/, 'each leg shows its market');
+  assert.match(src, /parlay-leg-est[\s\S]*model est\./, 'estimated legs carry a "model est." tag');
+  assert.ok(!/\(exp\.\)/.test(src), 'no "(exp.)" anywhere in parlay.js');
+  assert.ok(!/⚠️/.test(src), 'no cryptic warning glyph in the leg render');
 });
 
 test('no games today → renders nothing (null)', () => {

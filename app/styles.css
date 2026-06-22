@@ -1751,8 +1751,11 @@ body.search-open { overflow: hidden; }
 .parlay-legs { list-style: none; margin: 0; padding: 0; }
 .parlay-leg { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; padding: 5px 0; border-top: 1px solid var(--border); font-size: 12px; }
 .parlay-leg:first-child { border-top: 0; }
-.parlay-leg-main { display: flex; flex-direction: column; min-width: 0; }
+.parlay-leg-main { display: flex; flex-direction: column; min-width: 0; gap: 1px; }
 .parlay-leg-sel { font-weight: 700; }
+.parlay-leg-market { font-weight: 800; color: var(--accent, #2563eb); text-transform: uppercase; letter-spacing: .02em; font-size: 10px; }
+.parlay-leg-match { font-size: 11px; color: var(--text-muted); }
+.parlay-leg-est { font-style: normal; font-weight: 700; font-size: 10px; color: var(--text-muted); background: var(--surface-2, rgba(127,127,127,.14)); padding: 0 5px; border-radius: 6px; margin-left: 4px; white-space: nowrap; }
 .parlay-leg-prob { flex: 0 0 auto; font-variant-numeric: tabular-nums; color: var(--text-muted); }
 .parlay-live { font-size: 11px; font-weight: 700; color: var(--good, #16a34a); white-space: nowrap; }
 
