@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-23T01:28:29+00:00",
+    "updated_at": "2026-06-23T04:37:25+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1598,7 +1598,7 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-23T01:28:29+00:00"
+    "updated_at": "2026-06-23T04:37:25+00:00"
   },
   "France__vs__Iraq": {
     "events": [
@@ -1627,7 +1627,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-23T01:28:29+00:00"
+    "updated_at": "2026-06-23T04:37:25+00:00"
   },
   "Norway__vs__Senegal": {
     "events": [
@@ -1654,8 +1654,43 @@
         "type": "goal",
         "player": "Erling Haaland",
         "team": "Norway"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "goal",
+        "player": "Ismaïla Sarr",
+        "team": "Senegal"
       }
     ],
-    "updated_at": "2026-06-23T01:28:29+00:00"
+    "updated_at": "2026-06-23T04:37:25+00:00"
+  },
+  "Jordan__vs__Algeria": {
+    "events": [
+      {
+        "minute": "36'",
+        "type": "goal",
+        "player": "Nizar Al-Rashdan",
+        "team": "Jordan"
+      },
+      {
+        "minute": "44'",
+        "type": "yellow",
+        "player": "Ramiz Zerrouki",
+        "team": "Algeria"
+      },
+      {
+        "minute": "64'",
+        "type": "yellow",
+        "player": "Husam Abu Dahab",
+        "team": "Jordan"
+      },
+      {
+        "minute": "69'",
+        "type": "goal",
+        "player": "Nadhir Benbouali",
+        "team": "Algeria"
+      }
+    ],
+    "updated_at": "2026-06-23T04:37:25+00:00"
   }
 }
