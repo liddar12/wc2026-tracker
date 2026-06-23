@@ -3,7 +3,7 @@
     "id": "dt_model",
     "name": "DT Model",
     "version": "3.0",
-    "generated_at": "2026-06-23T08:19:10.009371+00:00",
+    "generated_at": "2026-06-23T09:31:22.805409+00:00",
     "method": "Elo + squad market value blend (0.6/0.4), bivariate-Poisson Monte-Carlo bracket",
     "elo_anchored": true,
     "w_elo": 0.6,

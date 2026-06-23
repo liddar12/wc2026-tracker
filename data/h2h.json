@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-22T11:43:00+00:00",
+    "updated_at": "2026-06-23T09:29:21+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -478,6 +478,13 @@
   ],
   "Norway__vs__Senegal": [
     {
+      "date": "2026-06-23",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 3,
+      "score_b": 2,
+      "winner": "Norway"
+    },
+    {
       "date": "2006-03-01",
       "comp": "International Friendly",
       "score_a": 1,
@@ -761,6 +768,15 @@
       "score_a": 0,
       "score_b": 1,
       "winner": "Paraguay"
+    }
+  ],
+  "Jordan__vs__Algeria": [
+    {
+      "date": "2026-06-23",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 2,
+      "winner": "Algeria"
     }
   ]
 }

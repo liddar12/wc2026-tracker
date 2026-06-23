@@ -7,16 +7,16 @@
   ],
   "dates": "11 June – 19 July 2026",
   "format": "48 teams · 12 groups of 4 · Top 2 + 8 best 3rd-place to Round of 32",
-  "data_version": "2026-06-23T08:19:09+00:00",
+  "data_version": "2026-06-23T09:31:22+00:00",
   "model_version": "v4-optimized",
   "model_weights": {
-    "mine": 0.1666,
-    "elo": 0.005,
-    "tmv": 0.4715,
-    "qual": 0.3198,
+    "mine": 0.1368,
+    "elo": 0.0067,
+    "tmv": 0.4617,
+    "qual": 0.3484,
     "cont_mult": 1.5,
     "host_mult": 0.5,
-    "form": 0.0372
+    "form": 0.0464
   },
   "model_accuracy_2022_backtest": {
     "top_4": "1/4 (25%)",
@@ -27,8 +27,8 @@
     "spearman_vs_espn_2026": 0.941
   },
   "poisson_group": {
-    "mu": 0.2546,
-    "beta": 0.08
+    "mu": 0.2534,
+    "beta": 0.0833
   },
   "hybrid_weights": [
     0.35,
