@@ -2836,7 +2836,7 @@
       "team_a": "Portugal",
       "team_b": "Uzbekistan",
       "kickoff_utc": "2026-06-23T17:00:00Z",
-      "captured_at": "2026-06-23T06:32:17+00:00",
+      "captured_at": "2026-06-23T08:19:10+00:00",
       "preds": {
         "model": [
           0.843,
@@ -2874,7 +2874,7 @@
       "team_a": "England",
       "team_b": "Ghana",
       "kickoff_utc": "2026-06-23T20:00:00Z",
-      "captured_at": "2026-06-23T06:32:17+00:00",
+      "captured_at": "2026-06-23T08:19:10+00:00",
       "preds": {
         "model": [
           0.807,
@@ -2912,7 +2912,7 @@
       "team_a": "Panama",
       "team_b": "Croatia",
       "kickoff_utc": "2026-06-23T23:00:00Z",
-      "captured_at": "2026-06-23T06:32:17+00:00",
+      "captured_at": "2026-06-23T08:19:10+00:00",
       "preds": {
         "model": [
           0.081,
@@ -2950,7 +2950,7 @@
       "team_a": "Colombia",
       "team_b": "DR Congo",
       "kickoff_utc": "2026-06-24T02:00:00Z",
-      "captured_at": "2026-06-23T06:32:17+00:00",
+      "captured_at": "2026-06-23T08:19:10+00:00",
       "preds": {
         "model": [
           0.507,
@@ -2981,9 +2981,85 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Switzerland__vs__Canada": {
+      "match_number": 51,
+      "stage": "group",
+      "team_a": "Switzerland",
+      "team_b": "Canada",
+      "kickoff_utc": "2026-06-24T19:00:00Z",
+      "captured_at": "2026-06-23T08:19:10+00:00",
+      "preds": {
+        "model": [
+          0.528,
+          0.244,
+          0.228
+        ],
+        "dt": [
+          0.5733,
+          0.2265,
+          0.2002
+        ],
+        "market": [
+          0.397,
+          0.3166,
+          0.2864
+        ],
+        "hybrid": [
+          0.4994,
+          0.2624,
+          0.2382
+        ],
+        "polymarket": [
+          0.403,
+          0.3134,
+          0.2836
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Bosnia and Herzegovina__vs__Qatar": {
+      "match_number": 52,
+      "stage": "group",
+      "team_a": "Bosnia and Herzegovina",
+      "team_b": "Qatar",
+      "kickoff_utc": "2026-06-24T19:00:00Z",
+      "captured_at": "2026-06-23T08:19:10+00:00",
+      "preds": {
+        "model": [
+          0.589,
+          0.226,
+          0.184
+        ],
+        "dt": [
+          0.6656,
+          0.1945,
+          0.1399
+        ],
+        "market": [
+          0.6816,
+          0.1841,
+          0.1343
+        ],
+        "hybrid": [
+          0.6456,
+          0.2016,
+          0.1528
+        ],
+        "polymarket": [
+          0.6816,
+          0.194,
+          0.1244
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-23T06:32:17+00:00",
+  "updated_at": "2026-06-23T08:19:10+00:00",
   "summary": {
     "matches_scored": 44,
     "model": {
