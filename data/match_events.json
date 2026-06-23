@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-23T04:37:25+00:00",
+    "updated_at": "2026-06-23T06:32:12+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1598,7 +1598,7 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-23T04:37:25+00:00"
+    "updated_at": "2026-06-23T06:32:12+00:00"
   },
   "France__vs__Iraq": {
     "events": [
@@ -1627,7 +1627,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-23T04:37:25+00:00"
+    "updated_at": "2026-06-23T06:32:12+00:00"
   },
   "Norway__vs__Senegal": {
     "events": [
@@ -1662,7 +1662,7 @@
         "team": "Senegal"
       }
     ],
-    "updated_at": "2026-06-23T04:37:25+00:00"
+    "updated_at": "2026-06-23T06:32:12+00:00"
   },
   "Jordan__vs__Algeria": {
     "events": [
@@ -1689,8 +1689,14 @@
         "type": "goal",
         "player": "Nadhir Benbouali",
         "team": "Algeria"
+      },
+      {
+        "minute": "82'",
+        "type": "goal",
+        "player": "Amine Gouiri",
+        "team": "Algeria"
       }
     ],
-    "updated_at": "2026-06-23T04:37:25+00:00"
+    "updated_at": "2026-06-23T06:32:12+00:00"
   }
 }
