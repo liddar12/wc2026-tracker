@@ -434,8 +434,8 @@
   "France__vs__Senegal": {
     "team_a": "France",
     "team_b": "Senegal",
-    "team_a_xg": 1.91,
-    "team_b_xg": 0.99,
+    "team_a_xg": 1.9,
+    "team_b_xg": 1.0,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -443,8 +443,8 @@
   "France__vs__Norway": {
     "team_a": "France",
     "team_b": "Norway",
-    "team_a_xg": 1.65,
-    "team_b_xg": 1.25,
+    "team_a_xg": 1.64,
+    "team_b_xg": 1.26,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -452,7 +452,7 @@
   "France__vs__Iraq": {
     "team_a": "France",
     "team_b": "Iraq",
-    "team_a_xg": 2.71,
+    "team_a_xg": 2.7,
     "team_b_xg": 0.2,
     "formula_version": "v1",
     "used_form_a": false,
@@ -657,6 +657,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-06-23T00:21:07+00:00"
+    "computed_at": "2026-06-23T01:28:33+00:00"
   }
 }

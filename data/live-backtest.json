@@ -2669,9 +2669,36 @@
           0.0254
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.00535,
+          "logloss": 0.05869
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.00188,
+          "logloss": 0.03418
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.01609,
+          "logloss": 0.10481
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.00658,
+          "logloss": 0.0655
+        },
+        "polymarket": {
+          "correct": 1,
+          "brier": 0.01292,
+          "logloss": 0.09431
+        }
+      },
+      "scored": true,
+      "actual_score": "3-0"
     },
     "Norway__vs__Senegal": {
       "match_number": 41,
@@ -2717,7 +2744,7 @@
       "team_a": "Jordan",
       "team_b": "Algeria",
       "kickoff_utc": "2026-06-23T03:00:00Z",
-      "captured_at": "2026-06-23T00:21:08+00:00",
+      "captured_at": "2026-06-23T01:28:34+00:00",
       "preds": {
         "model": [
           0.109,
@@ -2740,9 +2767,9 @@
           0.6531
         ],
         "polymarket": [
-          0.1443,
-          0.2239,
-          0.6318
+          0.1429,
+          0.2217,
+          0.6355
         ]
       },
       "actual": null,
@@ -2755,7 +2782,7 @@
       "team_a": "Portugal",
       "team_b": "Uzbekistan",
       "kickoff_utc": "2026-06-23T17:00:00Z",
-      "captured_at": "2026-06-23T00:21:08+00:00",
+      "captured_at": "2026-06-23T01:28:34+00:00",
       "preds": {
         "model": [
           0.843,
@@ -2793,7 +2820,7 @@
       "team_a": "England",
       "team_b": "Ghana",
       "kickoff_utc": "2026-06-23T20:00:00Z",
-      "captured_at": "2026-06-23T00:21:08+00:00",
+      "captured_at": "2026-06-23T01:28:34+00:00",
       "preds": {
         "model": [
           0.807,
@@ -2831,7 +2858,7 @@
       "team_a": "Panama",
       "team_b": "Croatia",
       "kickoff_utc": "2026-06-23T23:00:00Z",
-      "captured_at": "2026-06-23T00:21:08+00:00",
+      "captured_at": "2026-06-23T01:28:34+00:00",
       "preds": {
         "model": [
           0.081,
@@ -2869,7 +2896,7 @@
       "team_a": "Colombia",
       "team_b": "DR Congo",
       "kickoff_utc": "2026-06-24T02:00:00Z",
-      "captured_at": "2026-06-23T00:21:08+00:00",
+      "captured_at": "2026-06-23T01:28:34+00:00",
       "preds": {
         "model": [
           0.507,
@@ -2882,14 +2909,14 @@
           0.1096
         ],
         "market": [
-          0.6382,
-          0.2261,
-          0.1357
+          0.6345,
+          0.2284,
+          0.1371
         ],
         "hybrid": [
-          0.6212,
-          0.2157,
-          0.1631
+          0.62,
+          0.2164,
+          0.1636
         ],
         "polymarket": [
           0.6318,
@@ -2902,43 +2929,43 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-23T00:21:08+00:00",
+  "updated_at": "2026-06-23T01:28:34+00:00",
   "summary": {
-    "matches_scored": 41,
+    "matches_scored": 42,
     "model": {
-      "correct": 26,
-      "total": 41,
+      "correct": 27,
+      "total": 42,
       "measured": true,
-      "brier": 0.5505,
-      "logloss": 0.9901
+      "brier": 0.5375,
+      "logloss": 0.968
     },
     "dt": {
-      "correct": 24,
-      "total": 41,
+      "correct": 25,
+      "total": 42,
       "measured": true,
-      "brier": 0.5848,
-      "logloss": 0.9776
+      "brier": 0.5709,
+      "logloss": 0.9552
     },
     "market": {
-      "correct": 25,
-      "total": 41,
+      "correct": 26,
+      "total": 42,
       "measured": true,
-      "brier": 0.5564,
-      "logloss": 0.9224
+      "brier": 0.5436,
+      "logloss": 0.9029
     },
     "polymarket": {
-      "correct": 24,
-      "total": 38,
+      "correct": 25,
+      "total": 39,
       "measured": true,
-      "brier": 0.5559,
-      "logloss": 0.9193
+      "brier": 0.542,
+      "logloss": 0.8981
     },
     "hybrid": {
-      "correct": 25,
-      "total": 41,
+      "correct": 26,
+      "total": 42,
       "measured": true,
-      "brier": 0.5542,
-      "logloss": 0.9357
+      "brier": 0.5411,
+      "logloss": 0.915
     }
   }
 }

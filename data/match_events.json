@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-23T00:21:00+00:00",
+    "updated_at": "2026-06-23T01:28:29+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1598,7 +1598,7 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-06-23T00:21:00+00:00"
+    "updated_at": "2026-06-23T01:28:29+00:00"
   },
   "France__vs__Iraq": {
     "events": [
@@ -1619,8 +1619,43 @@
         "type": "goal",
         "player": "Kylian Mbappé",
         "team": "France"
+      },
+      {
+        "minute": "66'",
+        "type": "goal",
+        "player": "Ousmane Dembélé",
+        "team": "France"
       }
     ],
-    "updated_at": "2026-06-23T00:21:00+00:00"
+    "updated_at": "2026-06-23T01:28:29+00:00"
+  },
+  "Norway__vs__Senegal": {
+    "events": [
+      {
+        "minute": "43'",
+        "type": "goal",
+        "player": "Marcus Holmgren Pedersen",
+        "team": "Norway"
+      },
+      {
+        "minute": "48'",
+        "type": "goal",
+        "player": "Erling Haaland",
+        "team": "Norway"
+      },
+      {
+        "minute": "53'",
+        "type": "goal",
+        "player": "Ismaïla Sarr",
+        "team": "Senegal"
+      },
+      {
+        "minute": "58'",
+        "type": "goal",
+        "player": "Erling Haaland",
+        "team": "Norway"
+      }
+    ],
+    "updated_at": "2026-06-23T01:28:29+00:00"
   }
 }
