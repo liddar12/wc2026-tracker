@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-06-23T21:55:00+00:00",
+  "updated_at": "2026-06-23T23:34:37+00:00",
   "source": "kalshi",
   "tournament_winner": [
     {
       "team": "France",
       "ticker": "KXMENWORLDCUP-26-FR",
-      "prob_pct": 19.8,
-      "delta_24h_pp": 0.3,
-      "volume": 22498934,
-      "open_interest": 16171574,
+      "prob_pct": 20.2,
+      "delta_24h_pp": 0.8,
+      "volume": 22664165,
+      "open_interest": 16173587,
       "sparkline": [
         0.175,
         0.172,
@@ -45,10 +45,10 @@
     {
       "team": "Argentina",
       "ticker": "KXMENWORLDCUP-26-AR",
-      "prob_pct": 13.9,
+      "prob_pct": 14.3,
       "delta_24h_pp": 0.4,
-      "volume": 18474873,
-      "open_interest": 15376640,
+      "volume": 18672456,
+      "open_interest": 15407175,
       "sparkline": [
         0.091,
         0.091,
@@ -86,9 +86,9 @@
       "team": "Spain",
       "ticker": "KXMENWORLDCUP-26-ES",
       "prob_pct": 13.4,
-      "delta_24h_pp": -0.7,
-      "volume": 16404532,
-      "open_interest": 12287741,
+      "delta_24h_pp": -0.4,
+      "volume": 16491326,
+      "open_interest": 12363713,
       "sparkline": [
         0.168,
         0.166,
@@ -125,10 +125,10 @@
     {
       "team": "England",
       "ticker": "KXMENWORLDCUP-26-GB",
-      "prob_pct": 10.4,
+      "prob_pct": 10.3,
       "delta_24h_pp": -1.9,
-      "volume": 14205003,
-      "open_interest": 11436041,
+      "volume": 14470849,
+      "open_interest": 11482788,
       "sparkline": [
         0.111,
         0.108,
@@ -165,10 +165,10 @@
     {
       "team": "Portugal",
       "ticker": "KXMENWORLDCUP-26-PT",
-      "prob_pct": 8.9,
-      "delta_24h_pp": 1.7,
-      "volume": 25176908,
-      "open_interest": 19137212,
+      "prob_pct": 9.2,
+      "delta_24h_pp": 2.1,
+      "volume": 25309034,
+      "open_interest": 19209666,
       "sparkline": [
         0.101,
         0.096,
@@ -207,8 +207,8 @@
       "ticker": "KXMENWORLDCUP-26-NL",
       "prob_pct": 6.9,
       "delta_24h_pp": -0.2,
-      "volume": 22379999,
-      "open_interest": 18209490,
+      "volume": 22446345,
+      "open_interest": 18238858,
       "sparkline": [
         0.034,
         0.036,
@@ -243,52 +243,12 @@
       ]
     },
     {
-      "team": "Brazil",
-      "ticker": "KXMENWORLDCUP-26-BR",
-      "prob_pct": 5.0,
-      "delta_24h_pp": -0.8,
-      "volume": 12243161,
-      "open_interest": 10382569,
-      "sparkline": [
-        0.095,
-        0.095,
-        0.092,
-        0.092,
-        0.091,
-        0.091,
-        0.09,
-        0.088,
-        0.086,
-        0.087,
-        0.085,
-        0.085,
-        0.081,
-        0.081,
-        0.078,
-        0.08,
-        0.084,
-        0.089,
-        0.088,
-        0.086,
-        0.076,
-        0.068,
-        0.066,
-        0.068,
-        0.068,
-        0.068,
-        0.068,
-        0.062,
-        0.057,
-        0.057
-      ]
-    },
-    {
       "team": "Germany",
       "ticker": "KXMENWORLDCUP-26-DE",
-      "prob_pct": 5.0,
-      "delta_24h_pp": -0.8,
-      "volume": 13261084,
-      "open_interest": 10681030,
+      "prob_pct": 5.1,
+      "delta_24h_pp": -0.5,
+      "volume": 13316302,
+      "open_interest": 10717770,
       "sparkline": [
         0.051,
         0.051,
@@ -323,12 +283,52 @@
       ]
     },
     {
+      "team": "Brazil",
+      "ticker": "KXMENWORLDCUP-26-BR",
+      "prob_pct": 5.0,
+      "delta_24h_pp": -0.6,
+      "volume": 12360351,
+      "open_interest": 10497803,
+      "sparkline": [
+        0.095,
+        0.095,
+        0.092,
+        0.092,
+        0.091,
+        0.091,
+        0.09,
+        0.088,
+        0.086,
+        0.087,
+        0.085,
+        0.085,
+        0.081,
+        0.081,
+        0.078,
+        0.08,
+        0.084,
+        0.089,
+        0.088,
+        0.086,
+        0.076,
+        0.068,
+        0.066,
+        0.068,
+        0.068,
+        0.068,
+        0.068,
+        0.062,
+        0.057,
+        0.057
+      ]
+    },
+    {
       "team": "USA",
       "ticker": "KXMENWORLDCUP-26-US",
-      "prob_pct": 4.8,
+      "prob_pct": 4.9,
       "delta_24h_pp": -0.1,
-      "volume": 42219578,
-      "open_interest": 31834901,
+      "volume": 42547660,
+      "open_interest": 32099647,
       "sparkline": [
         0.013,
         0.013,
@@ -367,8 +367,8 @@
       "ticker": "KXMENWORLDCUP-26-NO",
       "prob_pct": 2.9,
       "delta_24h_pp": 0.7,
-      "volume": 12901667,
-      "open_interest": 10729927,
+      "volume": 12945197,
+      "open_interest": 10755182,
       "sparkline": [
         0.021,
         0.023,
@@ -403,52 +403,12 @@
       ]
     },
     {
-      "team": "Morocco",
-      "ticker": "KXMENWORLDCUP-26-MA",
-      "prob_pct": 1.9,
-      "delta_24h_pp": -0.3,
-      "volume": 15764547,
-      "open_interest": 12875173,
-      "sparkline": [
-        0.013,
-        0.016,
-        0.015,
-        0.016,
-        0.015,
-        0.012,
-        0.014,
-        0.016,
-        0.015,
-        0.016,
-        0.016,
-        0.016,
-        0.014,
-        0.015,
-        0.017,
-        0.016,
-        0.016,
-        0.016,
-        0.016,
-        0.015,
-        0.018,
-        0.021,
-        0.022,
-        0.023,
-        0.02,
-        0.019,
-        0.026,
-        0.02,
-        0.023,
-        0.021
-      ]
-    },
-    {
       "team": "Mexico",
       "ticker": "KXMENWORLDCUP-26-MX",
-      "prob_pct": 1.8,
-      "delta_24h_pp": -0.2,
-      "volume": 28160762,
-      "open_interest": 21251988,
+      "prob_pct": 2.1,
+      "delta_24h_pp": 0.1,
+      "volume": 28282415,
+      "open_interest": 21248914,
       "sparkline": [
         0.013,
         0.013,
@@ -483,52 +443,52 @@
       ]
     },
     {
-      "team": "Japan",
-      "ticker": "KXMENWORLDCUP-26-JP",
-      "prob_pct": 1.8,
-      "delta_24h_pp": -0.2,
-      "volume": 13350495,
-      "open_interest": 11524701,
+      "team": "Morocco",
+      "ticker": "KXMENWORLDCUP-26-MA",
+      "prob_pct": 1.9,
+      "delta_24h_pp": 0.0,
+      "volume": 15791897,
+      "open_interest": 12886079,
       "sparkline": [
-        0.016,
-        0.016,
-        0.016,
-        0.016,
-        0.016,
-        0.015,
-        0.015,
-        0.015,
-        0.014,
         0.013,
-        0.014,
-        0.015,
-        0.015,
         0.016,
-        0.017,
-        0.017,
-        0.017,
-        0.017,
-        0.017,
-        0.017,
-        0.013,
-        0.018,
         0.015,
-        0.016,
         0.016,
         0.015,
         0.012,
-        0.013,
+        0.014,
+        0.016,
+        0.015,
+        0.016,
+        0.016,
+        0.016,
+        0.014,
+        0.015,
+        0.017,
+        0.016,
+        0.016,
+        0.016,
+        0.016,
+        0.015,
+        0.018,
         0.021,
-        0.02
+        0.022,
+        0.023,
+        0.02,
+        0.019,
+        0.026,
+        0.02,
+        0.023,
+        0.021
       ]
     },
     {
       "team": "Colombia",
       "ticker": "KXMENWORLDCUP-26-CO",
-      "prob_pct": 1.7,
-      "delta_24h_pp": 0.1,
-      "volume": 11909310,
-      "open_interest": 11093389,
+      "prob_pct": 1.8,
+      "delta_24h_pp": 0.2,
+      "volume": 11961725,
+      "open_interest": 11131552,
       "sparkline": [
         0.018,
         0.018,
@@ -563,12 +523,52 @@
       ]
     },
     {
+      "team": "Japan",
+      "ticker": "KXMENWORLDCUP-26-JP",
+      "prob_pct": 1.8,
+      "delta_24h_pp": -0.3,
+      "volume": 13420213,
+      "open_interest": 11586565,
+      "sparkline": [
+        0.016,
+        0.016,
+        0.016,
+        0.016,
+        0.016,
+        0.015,
+        0.015,
+        0.015,
+        0.014,
+        0.013,
+        0.014,
+        0.015,
+        0.015,
+        0.016,
+        0.017,
+        0.017,
+        0.017,
+        0.017,
+        0.017,
+        0.017,
+        0.013,
+        0.018,
+        0.015,
+        0.016,
+        0.016,
+        0.015,
+        0.012,
+        0.013,
+        0.021,
+        0.02
+      ]
+    },
+    {
       "team": "Belgium",
       "ticker": "KXMENWORLDCUP-26-BE",
       "prob_pct": 1.1,
-      "delta_24h_pp": 0.1,
-      "volume": 10237580,
-      "open_interest": 8258160,
+      "delta_24h_pp": -0.1,
+      "volume": 10240745,
+      "open_interest": 8258846,
       "sparkline": [
         0.021,
         0.021,
@@ -643,8 +643,8 @@
       "ticker": "KXMENWORLDCUP-26-BIH",
       "prob_pct": 1.0,
       "delta_24h_pp": 0.0,
-      "volume": 391967,
-      "open_interest": 391856,
+      "volume": 391971,
+      "open_interest": 391860,
       "sparkline": [
         0.01,
         0.01,
@@ -681,8 +681,8 @@
       "ticker": "KXMENWORLDCUP-26-COD",
       "prob_pct": 1.0,
       "delta_24h_pp": 0.0,
-      "volume": 232259,
-      "open_interest": 232209,
+      "volume": 232425,
+      "open_interest": 232375,
       "sparkline": [
         0.01,
         0.01,
@@ -749,9 +749,9 @@
       "team": "Croatia",
       "ticker": "KXMENWORLDCUP-26-HR",
       "prob_pct": 0.5,
-      "delta_24h_pp": 0.1,
-      "volume": 11058971,
-      "open_interest": 9499912,
+      "delta_24h_pp": -0.0,
+      "volume": 11094730,
+      "open_interest": 9535671,
       "sparkline": [
         0.009,
         0.009,
@@ -790,42 +790,42 @@
       "ticker": "KXMENWORLDCUP-26-CH",
       "prob_pct": 0.5,
       "delta_24h_pp": -0.1,
-      "volume": 9607009,
-      "open_interest": 8095309,
+      "volume": 9615211,
+      "open_interest": 8100761,
       "sparkline": []
     },
     {
       "team": "Canada",
       "ticker": "KXMENWORLDCUP-26-CA",
       "prob_pct": 0.4,
-      "delta_24h_pp": 0.1,
-      "volume": 7821688,
-      "open_interest": 7428521,
+      "delta_24h_pp": -0.1,
+      "volume": 7826137,
+      "open_interest": 7432571,
       "sparkline": []
     },
     {
       "team": "Cote d'Ivoire",
       "ticker": "KXMENWORLDCUP-26-CIV",
       "prob_pct": 0.4,
-      "delta_24h_pp": 0.1,
-      "volume": 14137191,
-      "open_interest": 11979148,
+      "delta_24h_pp": -0.1,
+      "volume": 14155067,
+      "open_interest": 11996756,
       "sparkline": []
     },
     {
       "team": "Uruguay",
       "ticker": "KXMENWORLDCUP-26-UY",
       "prob_pct": 0.2,
-      "delta_24h_pp": 0.1,
-      "volume": 10092371,
-      "open_interest": 8988924,
+      "delta_24h_pp": -0.1,
+      "volume": 10119388,
+      "open_interest": 9015940,
       "sparkline": []
     },
     {
       "team": "Sweden",
       "ticker": "KXMENWORLDCUP-26-SE",
       "prob_pct": 0.2,
-      "delta_24h_pp": 0.1,
+      "delta_24h_pp": -0.1,
       "volume": 9923118,
       "open_interest": 8742856,
       "sparkline": []
@@ -835,8 +835,8 @@
       "ticker": "KXMENWORLDCUP-26-SN",
       "prob_pct": 0.2,
       "delta_24h_pp": -0.1,
-      "volume": 11073334,
-      "open_interest": 9797019,
+      "volume": 11675656,
+      "open_interest": 10015056,
       "sparkline": []
     },
     {
@@ -844,24 +844,24 @@
       "ticker": "KXMENWORLDCUP-26-KR",
       "prob_pct": 0.2,
       "delta_24h_pp": -0.1,
-      "volume": 13800673,
-      "open_interest": 11534545,
+      "volume": 13823344,
+      "open_interest": 11553410,
       "sparkline": []
     },
     {
       "team": "Egypt",
       "ticker": "KXMENWORLDCUP-26-EGY",
       "prob_pct": 0.2,
-      "delta_24h_pp": 0.1,
-      "volume": 11735429,
-      "open_interest": 9583951,
+      "delta_24h_pp": -0.1,
+      "volume": 11737552,
+      "open_interest": 9586074,
       "sparkline": []
     },
     {
       "team": "Austria",
       "ticker": "KXMENWORLDCUP-26-AT",
       "prob_pct": 0.1,
-      "delta_24h_pp": 0.1,
+      "delta_24h_pp": -0.1,
       "volume": 9580863,
       "open_interest": 8128175,
       "sparkline": []
@@ -870,9 +870,9 @@
       "team": "Ecuador",
       "ticker": "KXMENWORLDCUP-26-EC",
       "prob_pct": 0.1,
-      "delta_24h_pp": 0.1,
-      "volume": 13015994,
-      "open_interest": 11392104,
+      "delta_24h_pp": -0.1,
+      "volume": 13088896,
+      "open_interest": 11412742,
       "sparkline": []
     },
     {
@@ -889,16 +889,16 @@
       "ticker": "KXMENWORLDCUP-26-PY",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 7925940,
-      "open_interest": 6924520,
+      "volume": 7950298,
+      "open_interest": 6948878,
       "sparkline": []
     },
     {
       "team": "Scotland",
       "ticker": "KXMENWORLDCUP-26-SC",
       "prob_pct": 0.1,
-      "delta_24h_pp": 0.1,
-      "volume": 9068067,
+      "delta_24h_pp": -0.1,
+      "volume": 9069622,
       "open_interest": 8684384,
       "sparkline": []
     },
@@ -906,7 +906,7 @@
       "team": "Australia",
       "ticker": "KXMENWORLDCUP-26-AU",
       "prob_pct": 0.1,
-      "delta_24h_pp": 0.1,
+      "delta_24h_pp": -0.1,
       "volume": 9833934,
       "open_interest": 8749063,
       "sparkline": []
@@ -916,8 +916,8 @@
       "ticker": "KXMENWORLDCUP-26-GH",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 7729170,
-      "open_interest": 7507282,
+      "volume": 9407404,
+      "open_interest": 9185095,
       "sparkline": []
     },
     {
@@ -925,8 +925,8 @@
       "ticker": "KXMENWORLDCUP-26-IR",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 12248796,
-      "open_interest": 10002808,
+      "volume": 12254385,
+      "open_interest": 10008397,
       "sparkline": []
     },
     {
@@ -952,8 +952,8 @@
       "ticker": "KXMENWORLDCUP-26-NZL",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 3167059,
-      "open_interest": 3167059,
+      "volume": 3168910,
+      "open_interest": 3168910,
       "sparkline": []
     },
     {
@@ -979,8 +979,8 @@
       "ticker": "KXMENWORLDCUP-26-DZA",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 9488538,
-      "open_interest": 9079703,
+      "volume": 9498380,
+      "open_interest": 9089545,
       "sparkline": []
     },
     {
@@ -988,8 +988,8 @@
       "ticker": "KXMENWORLDCUP-26-CPV",
       "prob_pct": 0.1,
       "delta_24h_pp": -0.1,
-      "volume": 12043020,
-      "open_interest": 10946469,
+      "volume": 12076665,
+      "open_interest": 10979213,
       "sparkline": []
     },
     {
@@ -1006,8 +1006,8 @@
       "ticker": "KXMENWORLDCUP-26-QAT",
       "prob_pct": 0.1,
       "delta_24h_pp": 0.0,
-      "volume": 1325784,
-      "open_interest": 1325779,
+      "volume": 1325786,
+      "open_interest": 1325781,
       "sparkline": []
     },
     {
@@ -1042,26 +1042,26 @@
     "Argentina__vs__Jordan": {
       "team_a": "Argentina",
       "team_b": "Jordan",
-      "team_a_prob": 0.8291,
-      "draw_prob": 0.1156,
-      "team_b_prob": 0.0553,
+      "team_a_prob": 0.8308,
+      "draw_prob": 0.1144,
+      "team_b_prob": 0.0547,
       "event_ticker": "KXWCGAME-26JUN27JORARG",
       "source": "kalshi-KXWCGAME"
     },
     "Algeria__vs__Austria": {
       "team_a": "Algeria",
       "team_b": "Austria",
-      "team_a_prob": 0.2438,
-      "draw_prob": 0.4328,
-      "team_b_prob": 0.3234,
+      "team_a_prob": 0.2362,
+      "draw_prob": 0.4372,
+      "team_b_prob": 0.3266,
       "event_ticker": "KXWCGAME-26JUN27DZAAUT",
       "source": "kalshi-KXWCGAME"
     },
     "Portugal__vs__Colombia": {
       "team_a": "Portugal",
       "team_b": "Colombia",
-      "team_a_prob": 0.5025,
-      "draw_prob": 0.2438,
+      "team_a_prob": 0.5124,
+      "draw_prob": 0.2338,
       "team_b_prob": 0.2537,
       "event_ticker": "KXWCGAME-26JUN27COLPOR",
       "source": "kalshi-KXWCGAME"
@@ -1078,18 +1078,18 @@
     "England__vs__Panama": {
       "team_a": "England",
       "team_b": "Panama",
-      "team_a_prob": 0.8191,
-      "draw_prob": 0.1156,
-      "team_b_prob": 0.0653,
+      "team_a_prob": 0.8209,
+      "draw_prob": 0.1144,
+      "team_b_prob": 0.0647,
       "event_ticker": "KXWCGAME-26JUN27PANENG",
       "source": "kalshi-KXWCGAME"
     },
     "Croatia__vs__Ghana": {
       "team_a": "Croatia",
       "team_b": "Ghana",
-      "team_a_prob": 0.5678,
-      "draw_prob": 0.2764,
-      "team_b_prob": 0.1558,
+      "team_a_prob": 0.5635,
+      "draw_prob": 0.269,
+      "team_b_prob": 0.1675,
       "event_ticker": "KXWCGAME-26JUN27CROGHA",
       "source": "kalshi-KXWCGAME"
     },
@@ -1105,8 +1105,8 @@
     "Spain__vs__Uruguay": {
       "team_a": "Spain",
       "team_b": "Uruguay",
-      "team_a_prob": 0.6583,
-      "draw_prob": 0.2161,
+      "team_a_prob": 0.6482,
+      "draw_prob": 0.2261,
       "team_b_prob": 0.1256,
       "event_ticker": "KXWCGAME-26JUN26URUESP",
       "source": "kalshi-KXWCGAME"
@@ -1123,9 +1123,9 @@
     "Senegal__vs__Iraq": {
       "team_a": "Senegal",
       "team_b": "Iraq",
-      "team_a_prob": 0.7889,
-      "draw_prob": 0.1457,
-      "team_b_prob": 0.0653,
+      "team_a_prob": 0.797,
+      "draw_prob": 0.1371,
+      "team_b_prob": 0.066,
       "event_ticker": "KXWCGAME-26JUN26SENIRQ",
       "source": "kalshi-KXWCGAME"
     },
@@ -1141,9 +1141,9 @@
     "USA__vs__Turkiye": {
       "team_a": "USA",
       "team_b": "Turkiye",
-      "team_a_prob": 0.5124,
-      "draw_prob": 0.2239,
-      "team_b_prob": 0.2637,
+      "team_a_prob": 0.51,
+      "draw_prob": 0.225,
+      "team_b_prob": 0.265,
       "event_ticker": "KXWCGAME-26JUN25TURUSA",
       "source": "kalshi-KXWCGAME"
     },
@@ -1195,9 +1195,9 @@
     "Korea Republic__vs__South Africa": {
       "team_a": "Korea Republic",
       "team_b": "South Africa",
-      "team_a_prob": 0.5779,
-      "draw_prob": 0.2462,
-      "team_b_prob": 0.1759,
+      "team_a_prob": 0.5821,
+      "draw_prob": 0.2438,
+      "team_b_prob": 0.1741,
       "event_ticker": "KXWCGAME-26JUN24RSAKOR",
       "source": "kalshi-KXWCGAME"
     },
@@ -1213,18 +1213,18 @@
     "Brazil__vs__Scotland": {
       "team_a": "Brazil",
       "team_b": "Scotland",
-      "team_a_prob": 0.7114,
-      "draw_prob": 0.1741,
-      "team_b_prob": 0.1144,
+      "team_a_prob": 0.7186,
+      "draw_prob": 0.1759,
+      "team_b_prob": 0.1055,
       "event_ticker": "KXWCGAME-26JUN24SCOBRA",
       "source": "kalshi-KXWCGAME"
     },
     "Morocco__vs__Haiti": {
       "team_a": "Morocco",
       "team_b": "Haiti",
-      "team_a_prob": 0.8376,
-      "draw_prob": 0.1168,
-      "team_b_prob": 0.0457,
+      "team_a_prob": 0.8291,
+      "draw_prob": 0.1256,
+      "team_b_prob": 0.0452,
       "event_ticker": "KXWCGAME-26JUN24MARHTI",
       "source": "kalshi-KXWCGAME"
     },
@@ -1258,57 +1258,54 @@
     "Croatia__vs__Panama": {
       "team_a": "Croatia",
       "team_b": "Panama",
-      "team_a_prob": 0.6784,
-      "draw_prob": 0.206,
-      "team_b_prob": 0.1156,
+      "team_a_prob": 0.5838,
+      "draw_prob": 0.269,
+      "team_b_prob": 0.1472,
       "event_ticker": "KXWCGAME-26JUN23PANCRO",
-      "source": "kalshi-KXWCGAME"
-    },
-    "England__vs__Ghana": {
-      "team_a": "England",
-      "team_b": "Ghana",
-      "team_a_prob": 0.1795,
-      "draw_prob": 0.7949,
-      "team_b_prob": 0.0256,
-      "event_ticker": "KXWCGAME-26JUN23ENGGHA",
       "source": "kalshi-KXWCGAME"
     }
   },
   "goal_leader": [
     {
       "player": "Lionel Messi",
-      "prob_pct": 25.2,
-      "volume": 734340,
-      "open_interest": 563888
+      "prob_pct": 25.3,
+      "volume": 740515,
+      "open_interest": 567952
     },
     {
       "player": "Kylian Mbappe",
-      "prob_pct": 22.4,
-      "volume": 901294,
-      "open_interest": 690658
+      "prob_pct": 22.9,
+      "volume": 903529,
+      "open_interest": 691294
     },
     {
       "player": "Erling Haaland",
-      "prob_pct": 7.8,
-      "volume": 671778,
-      "open_interest": 582139
+      "prob_pct": 6.8,
+      "volume": 674524,
+      "open_interest": 582283
     },
     {
       "player": "Harry Kane",
-      "prob_pct": 5.8,
-      "volume": 525761,
-      "open_interest": 405612
+      "prob_pct": 4.4,
+      "volume": 529368,
+      "open_interest": 403423
     },
     {
       "player": "Cristiano Ronaldo",
+      "prob_pct": 2.4,
+      "volume": 553686,
+      "open_interest": 419500
+    },
+    {
+      "player": "Mikel Oyarzabal",
       "prob_pct": 2.0,
-      "volume": 551987,
-      "open_interest": 417895
+      "volume": 321617,
+      "open_interest": 270573
     },
     {
       "player": "Vinicius Junior",
       "prob_pct": 1.7,
-      "volume": 242007,
+      "volume": 243037,
       "open_interest": 211249
     },
     {
@@ -1318,10 +1315,10 @@
       "open_interest": 18549
     },
     {
-      "player": "Mikel Oyarzabal",
-      "prob_pct": 1.0,
-      "volume": 321356,
-      "open_interest": 270339
+      "player": "Deniz Undav",
+      "prob_pct": 1.4,
+      "volume": 64410,
+      "open_interest": 46144
     },
     {
       "player": "Matheus Cunha",
@@ -1332,20 +1329,14 @@
     {
       "player": "Lamine Yamal",
       "prob_pct": 1.0,
-      "volume": 433985,
-      "open_interest": 357186
+      "volume": 434193,
+      "open_interest": 357394
     },
     {
       "player": "Kai Havertz",
       "prob_pct": 1.0,
-      "volume": 113190,
-      "open_interest": 106473
-    },
-    {
-      "player": "Deniz Undav",
-      "prob_pct": 1.0,
-      "volume": 63582,
-      "open_interest": 45410
+      "volume": 113191,
+      "open_interest": 106474
     },
     {
       "player": "Lautaro Martinez",
@@ -1380,8 +1371,8 @@
     {
       "player": "Julian Alvarez",
       "prob_pct": 0.7,
-      "volume": 226477,
-      "open_interest": 188429
+      "volume": 226757,
+      "open_interest": 188709
     },
     {
       "player": "Raphinha",
@@ -1464,8 +1455,8 @@
     {
       "player": "Cody Gakpo",
       "prob_pct": 0.7,
-      "volume": 214583,
-      "open_interest": 148521
+      "volume": 215083,
+      "open_interest": 148998
     },
     {
       "player": "Christian Pulisic",
@@ -1488,8 +1479,8 @@
     {
       "player": "Neymar",
       "prob_pct": 0.7,
-      "volume": 37137,
-      "open_interest": 37137
+      "volume": 37605,
+      "open_interest": 37605
     },
     {
       "player": "Michael Olise",
@@ -1500,7 +1491,7 @@
     {
       "player": "Folarin Balogun",
       "prob_pct": 0.7,
-      "volume": 202262,
+      "volume": 203262,
       "open_interest": 165203
     },
     {
@@ -1604,67 +1595,73 @@
     "golden_ball": [
       {
         "player": "Lionel Messi",
-        "prob_pct": 18.4,
-        "volume": 156665,
-        "open_interest": 107064
+        "prob_pct": 22.0,
+        "volume": 156859,
+        "open_interest": 107132
       },
       {
         "player": "Kylian Mbappe",
-        "prob_pct": 17.8,
-        "volume": 157918,
-        "open_interest": 108777
+        "prob_pct": 20.2,
+        "volume": 157976,
+        "open_interest": 108774
       },
       {
         "player": "Vinicius Junior",
-        "prob_pct": 8.8,
+        "prob_pct": 8.4,
         "volume": 37026,
         "open_interest": 34155
       },
       {
-        "player": "Harry Kane",
-        "prob_pct": 6.6,
-        "volume": 95792,
-        "open_interest": 73102
+        "player": "Lamine Yamal",
+        "prob_pct": 4.5,
+        "volume": 168415,
+        "open_interest": 128184
       },
       {
         "player": "Michael Olise",
-        "prob_pct": 5.3,
-        "volume": 106285,
-        "open_interest": 83223
+        "prob_pct": 4.2,
+        "volume": 107443,
+        "open_interest": 84127
       },
       {
-        "player": "Lamine Yamal",
-        "prob_pct": 4.4,
-        "volume": 168289,
-        "open_interest": 128151
+        "player": "Harry Kane",
+        "prob_pct": 3.6,
+        "volume": 97311,
+        "open_interest": 73102
       },
       {
         "player": "Erling Haaland",
-        "prob_pct": 4.4,
-        "volume": 73036,
-        "open_interest": 51294
+        "prob_pct": 3.3,
+        "volume": 74123,
+        "open_interest": 52379
       },
       {
-        "player": "Declan Rice",
-        "prob_pct": 3.1,
-        "volume": 39654,
-        "open_interest": 37538
-      },
-      {
-        "player": "Jude Bellingham",
-        "prob_pct": 2.2,
-        "volume": 73149,
-        "open_interest": 68295
+        "player": "Cristiano Ronaldo",
+        "prob_pct": 3.0,
+        "volume": 130994,
+        "open_interest": 116192
       },
       {
         "player": "Bruno Fernandes",
-        "prob_pct": 1.9,
+        "prob_pct": 1.8,
         "volume": 69996,
         "open_interest": 61863
       },
       {
+        "player": "Jude Bellingham",
+        "prob_pct": 1.8,
+        "volume": 73149,
+        "open_interest": 68295
+      },
+      {
+        "player": "Declan Rice",
+        "prob_pct": 1.5,
+        "volume": 39654,
+        "open_interest": 37538
+      },
+      {
         "player": "Pedri",
-        "prob_pct": 1.6,
+        "prob_pct": 1.5,
         "volume": 60850,
         "open_interest": 52202
       },
@@ -1715,12 +1712,6 @@
         "prob_pct": 0.6,
         "volume": 56760,
         "open_interest": 50504
-      },
-      {
-        "player": "Cristiano Ronaldo",
-        "prob_pct": 0.6,
-        "volume": 130806,
-        "open_interest": 116005
       },
       {
         "player": "Endrick",
@@ -1809,8 +1800,8 @@
       {
         "player": "Neymar",
         "prob_pct": 0.6,
-        "volume": 25946,
-        "open_interest": 25435
+        "volume": 26946,
+        "open_interest": 26435
       },
       {
         "player": "Dani Olmo",
@@ -1906,67 +1897,67 @@
     "golden_glove": [
       {
         "player": "Dominik Livakovic",
-        "prob_pct": 16.5,
+        "prob_pct": 16.2,
         "volume": 2575,
         "open_interest": 2258
       },
       {
-        "player": "Tie/Co-Winners",
-        "prob_pct": 14.5,
-        "volume": 1997,
-        "open_interest": 1995
-      },
-      {
         "player": "Emiliano Martinez",
-        "prob_pct": 14.0,
+        "prob_pct": 14.9,
         "volume": 6959,
         "open_interest": 6173
       },
       {
+        "player": "Tie/Co-Winners",
+        "prob_pct": 14.1,
+        "volume": 1997,
+        "open_interest": 1995
+      },
+      {
         "player": "Unai Simon",
-        "prob_pct": 10.9,
+        "prob_pct": 10.6,
         "volume": 6124,
         "open_interest": 4143
       },
       {
         "player": "Vozinha",
-        "prob_pct": 9.3,
+        "prob_pct": 9.1,
         "volume": 2363,
         "open_interest": 1697
       },
       {
         "player": "Alisson",
-        "prob_pct": 7.5,
+        "prob_pct": 7.6,
         "volume": 2698,
         "open_interest": 2556
       },
       {
         "player": "Mike Maignan",
-        "prob_pct": 5.7,
+        "prob_pct": 6.1,
         "volume": 7959,
         "open_interest": 6010
       },
       {
         "player": "Jordan Pickford",
-        "prob_pct": 5.7,
+        "prob_pct": 5.8,
         "volume": 14708,
         "open_interest": 10871
       },
       {
         "player": "Guillermo Ochoa",
-        "prob_pct": 2.6,
+        "prob_pct": 2.5,
         "volume": 1864,
         "open_interest": 1838
       },
       {
         "player": "Gregor Kobel",
-        "prob_pct": 2.6,
+        "prob_pct": 2.5,
         "volume": 1130,
         "open_interest": 1130
       },
       {
         "player": "David Raya",
-        "prob_pct": 2.6,
+        "prob_pct": 2.5,
         "volume": 1469,
         "open_interest": 882
       },
@@ -1978,7 +1969,7 @@
       },
       {
         "player": "Bart Verbruggen",
-        "prob_pct": 2.1,
+        "prob_pct": 2.0,
         "volume": 3804,
         "open_interest": 3496
       },
@@ -1990,7 +1981,7 @@
       },
       {
         "player": "Matt Freese",
-        "prob_pct": 1.6,
+        "prob_pct": 1.5,
         "volume": 399,
         "open_interest": 399
       },
@@ -2004,39 +1995,27 @@
     "young_player": [
       {
         "player": "Lamine Yamal",
-        "prob_pct": 32.7,
-        "volume": 60497,
-        "open_interest": 36064
+        "prob_pct": 31.8,
+        "volume": 60571,
+        "open_interest": 36067
+      },
+      {
+        "player": "Desire Doue",
+        "prob_pct": 14.2,
+        "volume": 2101,
+        "open_interest": 1731
       },
       {
         "player": "Yan Diomande",
-        "prob_pct": 13.9,
+        "prob_pct": 12.8,
         "volume": 764,
         "open_interest": 674
       },
       {
         "player": "Ayyoub Bouaddi",
-        "prob_pct": 11.4,
+        "prob_pct": 10.6,
         "volume": 447,
         "open_interest": 442
-      },
-      {
-        "player": "Desire Doue",
-        "prob_pct": 8.6,
-        "volume": 1990,
-        "open_interest": 1621
-      },
-      {
-        "player": "Nico O'Reilly",
-        "prob_pct": 6.8,
-        "volume": 873,
-        "open_interest": 833
-      },
-      {
-        "player": "Endrick",
-        "prob_pct": 5.9,
-        "volume": 11571,
-        "open_interest": 9750
       },
       {
         "player": "Warren Zaire-Emery",
@@ -2045,32 +2024,44 @@
         "open_interest": 10
       },
       {
+        "player": "Endrick",
+        "prob_pct": 5.6,
+        "volume": 11571,
+        "open_interest": 9750
+      },
+      {
+        "player": "Nico O'Reilly",
+        "prob_pct": 5.6,
+        "volume": 873,
+        "open_interest": 833
+      },
+      {
         "player": "Dean Huijsen",
-        "prob_pct": 4.9,
+        "prob_pct": 4.5,
         "volume": 1077,
         "open_interest": 1016
       },
       {
         "player": "Pau Cubarsi",
-        "prob_pct": 3.1,
+        "prob_pct": 2.8,
         "volume": 1270,
         "open_interest": 945
       },
       {
         "player": "Kobbie Mainoo",
-        "prob_pct": 3.1,
+        "prob_pct": 2.8,
         "volume": 886,
         "open_interest": 807
       },
       {
         "player": "Luka Vuskovic",
-        "prob_pct": 1.5,
+        "prob_pct": 1.4,
         "volume": 186,
         "open_interest": 132
       },
       {
         "player": "Lennart Karl",
-        "prob_pct": 1.2,
+        "prob_pct": 1.1,
         "volume": 4486,
         "open_interest": 4340
       },
@@ -2090,52 +2081,12 @@
   },
   "biggest_movers": [
     {
-      "team": "England",
-      "ticker": "KXMENWORLDCUP-26-GB",
-      "prob_pct": 10.4,
-      "delta_24h_pp": -1.9,
-      "volume": 14205003,
-      "open_interest": 11436041,
-      "sparkline": [
-        0.111,
-        0.108,
-        0.109,
-        0.108,
-        0.11,
-        0.114,
-        0.113,
-        0.114,
-        0.111,
-        0.111,
-        0.109,
-        0.102,
-        0.105,
-        0.105,
-        0.102,
-        0.102,
-        0.107,
-        0.108,
-        0.107,
-        0.108,
-        0.104,
-        0.104,
-        0.103,
-        0.104,
-        0.129,
-        0.13,
-        0.129,
-        0.129,
-        0.127,
-        0.116
-      ]
-    },
-    {
       "team": "Portugal",
       "ticker": "KXMENWORLDCUP-26-PT",
-      "prob_pct": 8.9,
-      "delta_24h_pp": 1.7,
-      "volume": 25176908,
-      "open_interest": 19137212,
+      "prob_pct": 9.2,
+      "delta_24h_pp": 2.1,
+      "volume": 25309034,
+      "open_interest": 19209666,
       "sparkline": [
         0.101,
         0.096,
@@ -2170,12 +2121,132 @@
       ]
     },
     {
+      "team": "England",
+      "ticker": "KXMENWORLDCUP-26-GB",
+      "prob_pct": 10.3,
+      "delta_24h_pp": -1.9,
+      "volume": 14470849,
+      "open_interest": 11482788,
+      "sparkline": [
+        0.111,
+        0.108,
+        0.109,
+        0.108,
+        0.11,
+        0.114,
+        0.113,
+        0.114,
+        0.111,
+        0.111,
+        0.109,
+        0.102,
+        0.105,
+        0.105,
+        0.102,
+        0.102,
+        0.107,
+        0.108,
+        0.107,
+        0.108,
+        0.104,
+        0.104,
+        0.103,
+        0.104,
+        0.129,
+        0.13,
+        0.129,
+        0.129,
+        0.127,
+        0.116
+      ]
+    },
+    {
+      "team": "France",
+      "ticker": "KXMENWORLDCUP-26-FR",
+      "prob_pct": 20.2,
+      "delta_24h_pp": 0.8,
+      "volume": 22664165,
+      "open_interest": 16173587,
+      "sparkline": [
+        0.175,
+        0.172,
+        0.169,
+        0.165,
+        0.168,
+        0.169,
+        0.176,
+        0.175,
+        0.171,
+        0.165,
+        0.17,
+        0.166,
+        0.162,
+        0.163,
+        0.162,
+        0.162,
+        0.162,
+        0.16,
+        0.172,
+        0.172,
+        0.163,
+        0.162,
+        0.18,
+        0.192,
+        0.185,
+        0.187,
+        0.186,
+        0.194,
+        0.2,
+        0.206
+      ]
+    },
+    {
+      "team": "Norway",
+      "ticker": "KXMENWORLDCUP-26-NO",
+      "prob_pct": 2.9,
+      "delta_24h_pp": 0.7,
+      "volume": 12945197,
+      "open_interest": 10755182,
+      "sparkline": [
+        0.021,
+        0.023,
+        0.024,
+        0.024,
+        0.024,
+        0.025,
+        0.025,
+        0.025,
+        0.025,
+        0.025,
+        0.027,
+        0.026,
+        0.025,
+        0.025,
+        0.024,
+        0.021,
+        0.026,
+        0.025,
+        0.025,
+        0.024,
+        0.025,
+        0.025,
+        0.026,
+        0.029,
+        0.026,
+        0.026,
+        0.027,
+        0.027,
+        0.025,
+        0.029
+      ]
+    },
+    {
       "team": "Brazil",
       "ticker": "KXMENWORLDCUP-26-BR",
       "prob_pct": 5.0,
-      "delta_24h_pp": -0.8,
-      "volume": 12243161,
-      "open_interest": 10382569,
+      "delta_24h_pp": -0.6,
+      "volume": 12360351,
+      "open_interest": 10497803,
       "sparkline": [
         0.095,
         0.095,
@@ -2207,86 +2278,6 @@
         0.062,
         0.057,
         0.057
-      ]
-    },
-    {
-      "team": "Germany",
-      "ticker": "KXMENWORLDCUP-26-DE",
-      "prob_pct": 5.0,
-      "delta_24h_pp": -0.8,
-      "volume": 13261084,
-      "open_interest": 10681030,
-      "sparkline": [
-        0.051,
-        0.051,
-        0.053,
-        0.056,
-        0.055,
-        0.056,
-        0.056,
-        0.056,
-        0.058,
-        0.058,
-        0.058,
-        0.058,
-        0.06,
-        0.06,
-        0.06,
-        0.06,
-        0.059,
-        0.056,
-        0.056,
-        0.051,
-        0.051,
-        0.06,
-        0.062,
-        0.061,
-        0.058,
-        0.061,
-        0.06,
-        0.06,
-        0.057,
-        0.055
-      ]
-    },
-    {
-      "team": "Spain",
-      "ticker": "KXMENWORLDCUP-26-ES",
-      "prob_pct": 13.4,
-      "delta_24h_pp": -0.7,
-      "volume": 16404532,
-      "open_interest": 12287741,
-      "sparkline": [
-        0.168,
-        0.166,
-        0.164,
-        0.171,
-        0.17,
-        0.17,
-        0.176,
-        0.171,
-        0.167,
-        0.167,
-        0.167,
-        0.165,
-        0.165,
-        0.165,
-        0.165,
-        0.165,
-        0.166,
-        0.176,
-        0.172,
-        0.171,
-        0.172,
-        0.171,
-        0.143,
-        0.143,
-        0.131,
-        0.134,
-        0.132,
-        0.131,
-        0.14,
-        0.137
       ]
     }
   ]
