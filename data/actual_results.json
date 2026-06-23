@@ -247,16 +247,16 @@
       "status": "STATUS_FULL_TIME"
     },
     "France__vs__Iraq": {
-      "score_a": 1,
+      "score_a": 2,
       "score_b": 0,
       "kickoff_utc": "2026-06-22T21:00Z",
-      "status": "STATUS_DELAYED"
+      "status": "STATUS_SECOND_HALF"
     },
     "Norway__vs__Senegal": {
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-06-23T00:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Jordan__vs__Algeria": {
       "score_a": 0,
@@ -323,6 +323,42 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-25T01:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Curacao__vs__Cote d'Ivoire": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-25T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Ecuador__vs__Germany": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-25T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Japan__vs__Sweden": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-25T23:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Tunisia__vs__Netherlands": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-25T23:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Paraguay__vs__Australia": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-26T02:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Turkiye__vs__USA": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-26T02:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -331,5 +367,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-22T23:12:45+00:00"
+  "last_updated": "2026-06-23T00:20:59+00:00"
 }
