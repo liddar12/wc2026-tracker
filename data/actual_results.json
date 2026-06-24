@@ -301,16 +301,16 @@
       "status": "STATUS_FULL_TIME"
     },
     "Morocco__vs__Haiti": {
-      "score_a": 0,
-      "score_b": 0,
+      "score_a": 1,
+      "score_b": 1,
       "kickoff_utc": "2026-06-24T22:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Scotland__vs__Brazil": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-06-24T22:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Czechia__vs__Mexico": {
       "score_a": 0,
@@ -403,5 +403,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-24T21:49:36+00:00"
+  "last_updated": "2026-06-24T22:43:47+00:00"
 }
