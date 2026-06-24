@@ -278,9 +278,9 @@
     },
     "Panama__vs__Croatia": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-06-23T23:00Z",
-      "status": "STATUS_FIRST_HALF"
+      "status": "STATUS_FULL_TIME"
     },
     "Colombia__vs__DR Congo": {
       "score_a": 0,
@@ -359,6 +359,42 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-26T02:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Norway__vs__France": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-26T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Senegal__vs__Iraq": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-26T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Cabo Verde__vs__Saudi Arabia": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T00:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Uruguay__vs__Spain": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T00:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Egypt__vs__Iran": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T03:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "New Zealand__vs__Belgium": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T03:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -367,5 +403,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-23T23:32:49+00:00"
+  "last_updated": "2026-06-24T01:22:29+00:00"
 }
