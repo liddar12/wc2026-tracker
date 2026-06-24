@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-24T17:58:58+00:00",
+    "updated_at": "2026-06-24T19:48:01+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1761,7 +1761,7 @@
         "team": "Ghana"
       }
     ],
-    "updated_at": "2026-06-24T17:58:58+00:00"
+    "updated_at": "2026-06-24T19:48:01+00:00"
   },
   "Panama__vs__Croatia": {
     "events": [
@@ -1784,7 +1784,7 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-06-24T17:58:58+00:00"
+    "updated_at": "2026-06-24T19:48:01+00:00"
   },
   "Colombia__vs__DR Congo": {
     "events": [
@@ -1813,6 +1813,46 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-24T17:58:58+00:00"
+    "updated_at": "2026-06-24T19:48:01+00:00"
+  },
+  "Switzerland__vs__Canada": {
+    "events": [
+      {
+        "minute": "32'",
+        "type": "yellow",
+        "player": "Cyle Larin",
+        "team": "Canada"
+      },
+      {
+        "minute": "32'",
+        "type": "yellow",
+        "player": "Granit Xhaka",
+        "team": "Switzerland"
+      }
+    ],
+    "updated_at": "2026-06-24T19:48:01+00:00"
+  },
+  "Bosnia and Herzegovina__vs__Qatar": {
+    "events": [
+      {
+        "minute": "29'",
+        "type": "goal",
+        "player": "Kerim Alajbegovic",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "34'",
+        "type": "own-goal",
+        "player": "Sultan Al-Brake",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "42'",
+        "type": "goal",
+        "player": "Hassan Al-Haydos",
+        "team": "Qatar"
+      }
+    ],
+    "updated_at": "2026-06-24T19:48:01+00:00"
   }
 }
