@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-24T22:43:47+00:00",
+    "updated_at": "2026-06-24T23:38:20+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1784,7 +1784,7 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   },
   "Colombia__vs__DR Congo": {
     "events": [
@@ -1813,7 +1813,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   },
   "Switzerland__vs__Canada": {
     "events": [
@@ -1854,7 +1854,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   },
   "Bosnia and Herzegovina__vs__Qatar": {
     "events": [
@@ -1895,7 +1895,7 @@
         "team": "Bosnia and Herzegovina"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   },
   "Scotland__vs__Brazil": {
     "events": [
@@ -1904,9 +1904,27 @@
         "type": "goal",
         "player": "Vinícius Júnior",
         "team": "Brazil"
+      },
+      {
+        "minute": "45'+3'",
+        "type": "goal",
+        "player": "Vinícius Júnior",
+        "team": "Brazil"
+      },
+      {
+        "minute": "60'",
+        "type": "goal",
+        "player": "Matheus Cunha",
+        "team": "Brazil"
+      },
+      {
+        "minute": "62'",
+        "type": "yellow",
+        "player": "Danilo",
+        "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1921,8 +1939,20 @@
         "type": "goal",
         "player": "Achraf Hakimi",
         "team": "Morocco"
+      },
+      {
+        "minute": "43'",
+        "type": "goal",
+        "player": "Wilson Isidor",
+        "team": "Haiti"
+      },
+      {
+        "minute": "45'+1'",
+        "type": "goal",
+        "player": "Ismael Saibari",
+        "team": "Morocco"
       }
     ],
-    "updated_at": "2026-06-24T22:43:47+00:00"
+    "updated_at": "2026-06-24T23:38:20+00:00"
   }
 }
