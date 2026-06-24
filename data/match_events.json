@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-24T23:46:20+00:00",
+    "updated_at": "2026-06-24T23:49:18+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1784,7 +1784,7 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   },
   "Colombia__vs__DR Congo": {
     "events": [
@@ -1813,7 +1813,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   },
   "Switzerland__vs__Canada": {
     "events": [
@@ -1854,7 +1854,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   },
   "Bosnia and Herzegovina__vs__Qatar": {
     "events": [
@@ -1895,7 +1895,7 @@
         "team": "Bosnia and Herzegovina"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   },
   "Scotland__vs__Brazil": {
     "events": [
@@ -1922,9 +1922,15 @@
         "type": "yellow",
         "player": "Danilo",
         "team": "Brazil"
+      },
+      {
+        "minute": "82'",
+        "type": "yellow",
+        "player": "Fabinho",
+        "team": "Brazil"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1959,12 +1965,18 @@
         "team": "Morocco"
       },
       {
+        "minute": "78'",
+        "type": "yellow",
+        "player": "Johny Placide",
+        "team": "Haiti"
+      },
+      {
         "minute": "79'",
         "type": "yellow",
         "player": "Duckens Nazon",
         "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-24T23:46:20+00:00"
+    "updated_at": "2026-06-24T23:49:18+00:00"
   }
 }
