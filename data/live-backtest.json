@@ -3096,7 +3096,7 @@
       "team_a": "Switzerland",
       "team_b": "Canada",
       "kickoff_utc": "2026-06-24T19:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.539,
@@ -3119,9 +3119,9 @@
           0.2334
         ],
         "polymarket": [
-          0.4089,
-          0.3103,
-          0.2808
+          0.403,
+          0.3134,
+          0.2836
         ]
       },
       "actual": null,
@@ -3134,7 +3134,7 @@
       "team_a": "Bosnia and Herzegovina",
       "team_b": "Qatar",
       "kickoff_utc": "2026-06-24T19:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.604,
@@ -3172,7 +3172,7 @@
       "team_a": "Scotland",
       "team_b": "Brazil",
       "kickoff_utc": "2026-06-24T22:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.209,
@@ -3196,8 +3196,8 @@
         ],
         "polymarket": [
           0.0945,
-          0.1741,
-          0.7313
+          0.1642,
+          0.7413
         ]
       },
       "actual": null,
@@ -3210,7 +3210,7 @@
       "team_a": "Morocco",
       "team_b": "Haiti",
       "kickoff_utc": "2026-06-24T22:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.879,
@@ -3233,9 +3233,9 @@
           0.0659
         ],
         "polymarket": [
-          0.8291,
-          0.1256,
-          0.0452
+          0.8209,
+          0.1244,
+          0.0547
         ]
       },
       "actual": null,
@@ -3248,7 +3248,7 @@
       "team_a": "Czechia",
       "team_b": "Mexico",
       "kickoff_utc": "2026-06-25T01:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.24,
@@ -3286,7 +3286,7 @@
       "team_a": "South Africa",
       "team_b": "Korea Republic",
       "kickoff_utc": "2026-06-25T01:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.112,
@@ -3309,9 +3309,9 @@
           0.6153
         ],
         "polymarket": [
-          0.1741,
-          0.2438,
-          0.5821
+          0.1724,
+          0.2414,
+          0.5862
         ]
       },
       "actual": null,
@@ -3324,7 +3324,7 @@
       "team_a": "Curacao",
       "team_b": "Cote d'Ivoire",
       "kickoff_utc": "2026-06-25T20:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.106,
@@ -3357,7 +3357,7 @@
       "team_a": "Ecuador",
       "team_b": "Germany",
       "kickoff_utc": "2026-06-25T20:00:00Z",
-      "captured_at": "2026-06-24T08:37:33+00:00",
+      "captured_at": "2026-06-24T11:27:54+00:00",
       "preds": {
         "model": [
           0.096,
@@ -3388,9 +3388,85 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Japan__vs__Sweden": {
+      "match_number": 57,
+      "stage": "group",
+      "team_a": "Japan",
+      "team_b": "Sweden",
+      "kickoff_utc": "2026-06-25T23:00:00Z",
+      "captured_at": "2026-06-24T11:27:54+00:00",
+      "preds": {
+        "model": [
+          0.55,
+          0.238,
+          0.211
+        ],
+        "dt": [
+          0.4341,
+          0.2548,
+          0.3111
+        ],
+        "market": [
+          0.5224,
+          0.2637,
+          0.2139
+        ],
+        "hybrid": [
+          0.5023,
+          0.2522,
+          0.2454
+        ],
+        "polymarket": [
+          0.5224,
+          0.2637,
+          0.2139
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Tunisia__vs__Netherlands": {
+      "match_number": 58,
+      "stage": "group",
+      "team_a": "Tunisia",
+      "team_b": "Netherlands",
+      "kickoff_utc": "2026-06-25T23:00:00Z",
+      "captured_at": "2026-06-24T11:27:54+00:00",
+      "preds": {
+        "model": [
+          0.07,
+          0.139,
+          0.791
+        ],
+        "dt": [
+          0.0758,
+          0.1397,
+          0.7845
+        ],
+        "market": [
+          0.0348,
+          0.0945,
+          0.8706
+        ],
+        "hybrid": [
+          0.0602,
+          0.1244,
+          0.8154
+        ],
+        "polymarket": [
+          0.0363,
+          0.0944,
+          0.8693
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-24T08:37:33+00:00",
+  "updated_at": "2026-06-24T11:27:54+00:00",
   "summary": {
     "matches_scored": 48,
     "model": {
