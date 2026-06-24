@@ -3096,7 +3096,7 @@
       "team_a": "Switzerland",
       "team_b": "Canada",
       "kickoff_utc": "2026-06-24T19:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.539,
@@ -3134,7 +3134,7 @@
       "team_a": "Bosnia and Herzegovina",
       "team_b": "Qatar",
       "kickoff_utc": "2026-06-24T19:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.604,
@@ -3157,9 +3157,9 @@
           0.1457
         ],
         "polymarket": [
-          0.6985,
+          0.7085,
           0.1759,
-          0.1256
+          0.1156
         ]
       },
       "actual": null,
@@ -3172,7 +3172,7 @@
       "team_a": "Scotland",
       "team_b": "Brazil",
       "kickoff_utc": "2026-06-24T22:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.209,
@@ -3195,9 +3195,9 @@
           0.6663
         ],
         "polymarket": [
-          0.1045,
+          0.0945,
           0.1741,
-          0.7214
+          0.7313
         ]
       },
       "actual": null,
@@ -3210,7 +3210,7 @@
       "team_a": "Morocco",
       "team_b": "Haiti",
       "kickoff_utc": "2026-06-24T22:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.879,
@@ -3233,9 +3233,9 @@
           0.0659
         ],
         "polymarket": [
-          0.8209,
-          0.1244,
-          0.0547
+          0.8291,
+          0.1256,
+          0.0452
         ]
       },
       "actual": null,
@@ -3248,7 +3248,7 @@
       "team_a": "Czechia",
       "team_b": "Mexico",
       "kickoff_utc": "2026-06-25T01:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.24,
@@ -3272,8 +3272,8 @@
         ],
         "polymarket": [
           0.2537,
-          0.2338,
-          0.5124
+          0.2438,
+          0.5025
         ]
       },
       "actual": null,
@@ -3286,7 +3286,7 @@
       "team_a": "South Africa",
       "team_b": "Korea Republic",
       "kickoff_utc": "2026-06-25T01:00:00Z",
-      "captured_at": "2026-06-24T05:14:58+00:00",
+      "captured_at": "2026-06-24T08:34:01+00:00",
       "preds": {
         "model": [
           0.112,
@@ -3317,9 +3317,80 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "Curacao__vs__Cote d'Ivoire": {
+      "match_number": 55,
+      "stage": "group",
+      "team_a": "Curacao",
+      "team_b": "Cote d'Ivoire",
+      "kickoff_utc": "2026-06-25T20:00:00Z",
+      "captured_at": "2026-06-24T08:34:01+00:00",
+      "preds": {
+        "model": [
+          0.106,
+          0.175,
+          0.72
+        ],
+        "dt": [
+          0.0976,
+          0.1615,
+          0.7409
+        ],
+        "market": [
+          0.0553,
+          0.1055,
+          0.8392
+        ],
+        "hybrid": [
+          0.0863,
+          0.1473,
+          0.7664
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
+    },
+    "Ecuador__vs__Germany": {
+      "match_number": 56,
+      "stage": "group",
+      "team_a": "Ecuador",
+      "team_b": "Germany",
+      "kickoff_utc": "2026-06-25T20:00:00Z",
+      "captured_at": "2026-06-24T08:34:01+00:00",
+      "preds": {
+        "model": [
+          0.096,
+          0.166,
+          0.739
+        ],
+        "dt": [
+          0.295,
+          0.2526,
+          0.4524
+        ],
+        "market": [
+          0.2512,
+          0.2217,
+          0.5271
+        ],
+        "hybrid": [
+          0.214,
+          0.2134,
+          0.5726
+        ],
+        "polymarket": [
+          0.2462,
+          0.2261,
+          0.5276
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-06-24T05:14:58+00:00",
+  "updated_at": "2026-06-24T08:34:01+00:00",
   "summary": {
     "matches_scored": 48,
     "model": {
