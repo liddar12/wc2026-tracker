@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-25T08:34:32+00:00",
+  "updated_at": "2026-06-25T08:55:28+00:00",
   "source": "kalshi",
   "tournament_winner": [
     {
@@ -166,7 +166,7 @@
       "team": "Portugal",
       "ticker": "KXMENWORLDCUP-26-PT",
       "prob_pct": 8.6,
-      "delta_24h_pp": -0.9,
+      "delta_24h_pp": -1.0,
       "volume": 26874990,
       "open_interest": 20422759,
       "sparkline": [
@@ -206,7 +206,7 @@
       "team": "Netherlands",
       "ticker": "KXMENWORLDCUP-26-NL",
       "prob_pct": 6.4,
-      "delta_24h_pp": 0.3,
+      "delta_24h_pp": 0.1,
       "volume": 23870081,
       "open_interest": 19312281,
       "sparkline": [
@@ -286,7 +286,7 @@
       "team": "Germany",
       "ticker": "KXMENWORLDCUP-26-DE",
       "prob_pct": 5.2,
-      "delta_24h_pp": -0.3,
+      "delta_24h_pp": -0.2,
       "volume": 13986452,
       "open_interest": 11253487,
       "sparkline": [
@@ -326,7 +326,7 @@
       "team": "USA",
       "ticker": "KXMENWORLDCUP-26-US",
       "prob_pct": 4.9,
-      "delta_24h_pp": 0.2,
+      "delta_24h_pp": 0.1,
       "volume": 45988037,
       "open_interest": 34685268,
       "sparkline": [
@@ -446,7 +446,7 @@
       "team": "Colombia",
       "ticker": "KXMENWORLDCUP-26-CO",
       "prob_pct": 1.7,
-      "delta_24h_pp": 0.1,
+      "delta_24h_pp": -0.1,
       "volume": 12738189,
       "open_interest": 11608118,
       "sparkline": [
@@ -486,7 +486,7 @@
       "team": "Morocco",
       "ticker": "KXMENWORLDCUP-26-MA",
       "prob_pct": 1.6,
-      "delta_24h_pp": -0.3,
+      "delta_24h_pp": -0.5,
       "volume": 17102264,
       "open_interest": 13768475,
       "sparkline": [
@@ -1527,25 +1527,25 @@
     "golden_ball": [
       {
         "player": "Lionel Messi",
-        "prob_pct": 18.6,
+        "prob_pct": 18.4,
         "volume": 175006,
         "open_interest": 121114
       },
       {
-        "player": "Kylian Mbappe",
-        "prob_pct": 15.3,
-        "volume": 166266,
-        "open_interest": 113673
-      },
-      {
         "player": "Michael Olise",
-        "prob_pct": 14.0,
+        "prob_pct": 15.1,
         "volume": 110085,
         "open_interest": 85819
       },
       {
+        "player": "Kylian Mbappe",
+        "prob_pct": 15.1,
+        "volume": 166266,
+        "open_interest": 113673
+      },
+      {
         "player": "Vinicius Junior",
-        "prob_pct": 8.2,
+        "prob_pct": 8.1,
         "volume": 38251,
         "open_interest": 35207
       },
@@ -1563,7 +1563,7 @@
       },
       {
         "player": "Bruno Fernandes",
-        "prob_pct": 3.3,
+        "prob_pct": 3.2,
         "volume": 70075,
         "open_interest": 61864
       },
@@ -1847,69 +1847,69 @@
     "golden_glove": [
       {
         "player": "Dominik Livakovic",
-        "prob_pct": 14.7,
+        "prob_pct": 14.4,
         "volume": 2575,
         "open_interest": 2258
       },
       {
         "player": "Emiliano Martinez",
-        "prob_pct": 13.8,
+        "prob_pct": 13.5,
         "volume": 8447,
         "open_interest": 7378
       },
       {
         "player": "Raul Rangel",
-        "prob_pct": 11.7,
+        "prob_pct": 11.5,
         "volume": 0,
         "open_interest": 0
       },
       {
         "player": "Unai Simon",
-        "prob_pct": 9.2,
+        "prob_pct": 9.0,
         "volume": 6659,
         "open_interest": 4678
       },
       {
         "player": "Vozinha",
-        "prob_pct": 8.7,
+        "prob_pct": 8.6,
         "volume": 2464,
         "open_interest": 1772
       },
       {
         "player": "Tie/Co-Winners",
-        "prob_pct": 8.5,
+        "prob_pct": 8.3,
         "volume": 2007,
         "open_interest": 1995
       },
       {
         "player": "Alisson",
-        "prob_pct": 6.0,
+        "prob_pct": 5.9,
         "volume": 2917,
         "open_interest": 2775
       },
       {
         "player": "Jordan Pickford",
-        "prob_pct": 5.3,
+        "prob_pct": 5.2,
         "volume": 14847,
         "open_interest": 10732
       },
       {
         "player": "Yassine Bounou",
-        "prob_pct": 5.1,
+        "prob_pct": 5.0,
         "volume": 30,
         "open_interest": 30
+      },
+      {
+        "player": "Mike Maignan",
+        "prob_pct": 4.5,
+        "volume": 8380,
+        "open_interest": 5866
       },
       {
         "player": "Bart Verbruggen",
         "prob_pct": 4.1,
         "volume": 4147,
         "open_interest": 3739
-      },
-      {
-        "player": "Mike Maignan",
-        "prob_pct": 2.5,
-        "volume": 8380,
-        "open_interest": 5866
       },
       {
         "player": "Gregor Kobel",
@@ -1919,7 +1919,7 @@
       },
       {
         "player": "Diogo Costa",
-        "prob_pct": 2.1,
+        "prob_pct": 2.0,
         "volume": 6639,
         "open_interest": 5336
       },
@@ -2046,7 +2046,7 @@
       "team": "Portugal",
       "ticker": "KXMENWORLDCUP-26-PT",
       "prob_pct": 8.6,
-      "delta_24h_pp": -0.9,
+      "delta_24h_pp": -1.0,
       "volume": 26874990,
       "open_interest": 20422759,
       "sparkline": [
@@ -2203,43 +2203,43 @@
       ]
     },
     {
-      "team": "Norway",
-      "ticker": "KXMENWORLDCUP-26-NO",
-      "prob_pct": 2.6,
-      "delta_24h_pp": -0.4,
-      "volume": 13869815,
-      "open_interest": 11433532,
+      "team": "Morocco",
+      "ticker": "KXMENWORLDCUP-26-MA",
+      "prob_pct": 1.6,
+      "delta_24h_pp": -0.5,
+      "volume": 17102264,
+      "open_interest": 13768475,
       "sparkline": [
-        0.024,
-        0.024,
-        0.024,
-        0.025,
-        0.025,
-        0.025,
-        0.025,
-        0.025,
-        0.027,
-        0.026,
-        0.025,
-        0.025,
-        0.024,
+        0.015,
+        0.016,
+        0.015,
+        0.012,
+        0.014,
+        0.016,
+        0.015,
+        0.016,
+        0.016,
+        0.016,
+        0.014,
+        0.015,
+        0.017,
+        0.016,
+        0.016,
+        0.016,
+        0.016,
+        0.015,
+        0.018,
         0.021,
+        0.022,
+        0.023,
+        0.02,
+        0.019,
         0.026,
-        0.025,
-        0.025,
-        0.024,
-        0.025,
-        0.025,
-        0.026,
-        0.029,
-        0.026,
-        0.026,
-        0.027,
-        0.027,
-        0.025,
-        0.029,
-        0.028,
-        0.027
+        0.02,
+        0.023,
+        0.021,
+        0.02,
+        0.019
       ]
     }
   ]

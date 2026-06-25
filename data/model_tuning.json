@@ -1,27 +1,27 @@
 {
-  "generated_from_games": 48,
+  "generated_from_games": 54,
   "objective": "multiclass log-loss (walk-forward / captured pre-match)",
   "group": {
-    "n_games": 48,
+    "n_games": 54,
     "current": {
-      "logloss": 0.8481,
-      "accuracy": 0.667
+      "logloss": 0.8412,
+      "accuracy": 0.685
     },
     "tuned": {
-      "logloss": 0.8481,
-      "accuracy": 0.667
+      "logloss": 0.8412,
+      "accuracy": 0.685
     },
     "adopted": false,
     "weights": null,
     "poisson": null
   },
   "blend": {
-    "n_matches": 48,
+    "n_matches": 54,
     "current_equal_thirds": {
-      "logloss": 0.8895
+      "logloss": 0.8713
     },
     "tuned": {
-      "logloss": 0.8882
+      "logloss": 0.8703
     },
     "adopted": false,
     "weights": null
