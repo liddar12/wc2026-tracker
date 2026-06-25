@@ -340,13 +340,13 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-06-25T23:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_HALFTIME"
     },
     "Tunisia__vs__Netherlands": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 2,
       "kickoff_utc": "2026-06-25T23:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_HALFTIME"
     },
     "Paraguay__vs__Australia": {
       "score_a": 0,
@@ -439,5 +439,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-25T22:49:28+00:00"
+  "last_updated": "2026-06-25T23:58:50+00:00"
 }

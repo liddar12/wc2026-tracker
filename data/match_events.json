@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-25T22:51:06+00:00",
+    "updated_at": "2026-06-25T23:58:51+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1936,7 +1936,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1995,7 +1995,7 @@
         "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
   },
   "Czechia__vs__Mexico": {
     "events": [
@@ -2024,7 +2024,7 @@
         "team": "Mexico"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
   },
   "South Africa__vs__Korea Republic": {
     "events": [
@@ -2047,7 +2047,7 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
   },
   "Curacao__vs__Cote d'Ivoire": {
     "events": [
@@ -2082,7 +2082,7 @@
         "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2129,6 +2129,34 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-25T22:51:06+00:00"
+    "updated_at": "2026-06-25T23:58:51+00:00"
+  },
+  "Japan__vs__Sweden": {
+    "events": [
+      {
+        "minute": "32'",
+        "type": "yellow",
+        "player": "Isak Hien",
+        "team": "Sweden"
+      }
+    ],
+    "updated_at": "2026-06-25T23:58:51+00:00"
+  },
+  "Tunisia__vs__Netherlands": {
+    "events": [
+      {
+        "minute": "3'",
+        "type": "own-goal",
+        "player": "Ellyes Skhiri",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "7'",
+        "type": "goal",
+        "player": "Brian Brobbey",
+        "team": "Netherlands"
+      }
+    ],
+    "updated_at": "2026-06-25T23:58:51+00:00"
   }
 }
