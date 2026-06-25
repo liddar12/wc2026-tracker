@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-24T23:49:18+00:00",
+    "updated_at": "2026-06-25T02:28:46+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1854,7 +1854,7 @@
         "team": "Canada"
       }
     ],
-    "updated_at": "2026-06-24T23:49:18+00:00"
+    "updated_at": "2026-06-25T02:28:46+00:00"
   },
   "Bosnia and Herzegovina__vs__Qatar": {
     "events": [
@@ -1895,7 +1895,7 @@
         "team": "Bosnia and Herzegovina"
       }
     ],
-    "updated_at": "2026-06-24T23:49:18+00:00"
+    "updated_at": "2026-06-25T02:28:46+00:00"
   },
   "Scotland__vs__Brazil": {
     "events": [
@@ -1928,9 +1928,15 @@
         "type": "yellow",
         "player": "Fabinho",
         "team": "Brazil"
+      },
+      {
+        "minute": "89'",
+        "type": "yellow",
+        "player": "Ryan Christie",
+        "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-24T23:49:18+00:00"
+    "updated_at": "2026-06-25T02:28:46+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1965,18 +1971,64 @@
         "team": "Morocco"
       },
       {
-        "minute": "78'",
+        "minute": "79'",
         "type": "yellow",
         "player": "Johny Placide",
         "team": "Haiti"
       },
       {
-        "minute": "79'",
+        "minute": "80'",
         "type": "yellow",
         "player": "Duckens Nazon",
         "team": "Haiti"
+      },
+      {
+        "minute": "89'",
+        "type": "goal",
+        "player": "Gessime Yassine",
+        "team": "Morocco"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Josué Casimir",
+        "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-24T23:49:18+00:00"
+    "updated_at": "2026-06-25T02:28:46+00:00"
+  },
+  "Czechia__vs__Mexico": {
+    "events": [
+      {
+        "minute": "55'",
+        "type": "goal",
+        "player": "Mateo Chávez",
+        "team": "Mexico"
+      },
+      {
+        "minute": "61'",
+        "type": "goal",
+        "player": "Julián Quiñones",
+        "team": "Mexico"
+      },
+      {
+        "minute": "64'",
+        "type": "yellow",
+        "player": "Edson Álvarez",
+        "team": "Mexico"
+      }
+    ],
+    "updated_at": "2026-06-25T02:28:46+00:00"
+  },
+  "South Africa__vs__Korea Republic": {
+    "events": [
+      {
+        "minute": "63'",
+        "type": "goal",
+        "player": "Thapelo Maseko",
+        "team": "South Africa"
+      }
+    ],
+    "updated_at": "2026-06-25T02:28:46+00:00"
   }
 }

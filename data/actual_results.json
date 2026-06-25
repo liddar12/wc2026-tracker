@@ -301,28 +301,28 @@
       "status": "STATUS_FULL_TIME"
     },
     "Morocco__vs__Haiti": {
-      "score_a": 3,
+      "score_a": 4,
       "score_b": 2,
       "kickoff_utc": "2026-06-24T22:00Z",
-      "status": "STATUS_SECOND_HALF"
+      "status": "STATUS_FULL_TIME"
     },
     "Scotland__vs__Brazil": {
       "score_a": 0,
       "score_b": 3,
       "kickoff_utc": "2026-06-24T22:00Z",
-      "status": "STATUS_SECOND_HALF"
+      "status": "STATUS_FULL_TIME"
     },
     "Czechia__vs__Mexico": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 2,
       "kickoff_utc": "2026-06-25T01:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_SECOND_HALF"
     },
     "South Africa__vs__Korea Republic": {
-      "score_a": 0,
+      "score_a": 1,
       "score_b": 0,
       "kickoff_utc": "2026-06-25T01:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_SECOND_HALF"
     },
     "Curacao__vs__Cote d'Ivoire": {
       "score_a": 0,
@@ -395,6 +395,42 @@
       "score_b": 0,
       "kickoff_utc": "2026-06-27T03:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Croatia__vs__Ghana": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T21:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Panama__vs__England": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T21:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Colombia__vs__Portugal": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T23:30Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "DR Congo__vs__Uzbekistan": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-27T23:30Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Algeria__vs__Austria": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-28T02:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Jordan__vs__Argentina": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-28T02:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "round_of_32": {},
@@ -403,5 +439,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-24T23:49:17+00:00"
+  "last_updated": "2026-06-25T02:28:46+00:00"
 }

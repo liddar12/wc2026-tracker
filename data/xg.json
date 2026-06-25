@@ -110,7 +110,7 @@
   "Brazil__vs__Morocco": {
     "team_a": "Brazil",
     "team_b": "Morocco",
-    "team_a_xg": 1.31,
+    "team_a_xg": 1.32,
     "team_b_xg": 1.58,
     "formula_version": "v1",
     "used_form_a": false,
@@ -119,8 +119,8 @@
   "Brazil__vs__Scotland": {
     "team_a": "Brazil",
     "team_b": "Scotland",
-    "team_a_xg": 1.76,
-    "team_b_xg": 1.14,
+    "team_a_xg": 1.78,
+    "team_b_xg": 1.12,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -128,8 +128,8 @@
   "Brazil__vs__Haiti": {
     "team_a": "Brazil",
     "team_b": "Haiti",
-    "team_a_xg": 2.29,
-    "team_b_xg": 0.61,
+    "team_a_xg": 2.3,
+    "team_b_xg": 0.6,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -137,8 +137,8 @@
   "Morocco__vs__Scotland": {
     "team_a": "Morocco",
     "team_b": "Scotland",
-    "team_a_xg": 1.9,
-    "team_b_xg": 1.0,
+    "team_a_xg": 1.91,
+    "team_b_xg": 0.99,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -146,8 +146,8 @@
   "Morocco__vs__Haiti": {
     "team_a": "Morocco",
     "team_b": "Haiti",
-    "team_a_xg": 2.42,
-    "team_b_xg": 0.48,
+    "team_a_xg": 2.43,
+    "team_b_xg": 0.47,
     "formula_version": "v1",
     "used_form_a": false,
     "used_form_b": false
@@ -657,6 +657,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-06-24T23:49:34+00:00"
+    "computed_at": "2026-06-25T02:29:00+00:00"
   }
 }
