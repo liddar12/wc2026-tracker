@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-25T21:09:34+00:00",
+    "updated_at": "2026-06-25T22:41:36+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1936,7 +1936,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1995,7 +1995,7 @@
         "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   },
   "Czechia__vs__Mexico": {
     "events": [
@@ -2024,7 +2024,7 @@
         "team": "Mexico"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   },
   "South Africa__vs__Korea Republic": {
     "events": [
@@ -2047,7 +2047,7 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   },
   "Curacao__vs__Cote d'Ivoire": {
     "events": [
@@ -2062,9 +2062,27 @@
         "type": "yellow",
         "player": "Nicolas Pépé",
         "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "64'",
+        "type": "goal",
+        "player": "Nicolas Pépé",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "75'",
+        "type": "yellow",
+        "player": "Juninho Bacuna",
+        "team": "Curacao"
+      },
+      {
+        "minute": "83'",
+        "type": "yellow",
+        "player": "Gervane Kastaneer",
+        "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2091,8 +2109,26 @@
         "type": "yellow",
         "player": "Aleksandar Pavlovic",
         "team": "Germany"
+      },
+      {
+        "minute": "50'",
+        "type": "yellow",
+        "player": "Alan Franco",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "77'",
+        "type": "goal",
+        "player": "Gonzalo Plata",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "89'",
+        "type": "yellow",
+        "player": "Gonzalo Plata",
+        "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-25T21:09:34+00:00"
+    "updated_at": "2026-06-25T22:41:36+00:00"
   }
 }
