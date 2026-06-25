@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-25T19:23:17+00:00",
+    "updated_at": "2026-06-25T21:06:30+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -1936,7 +1936,7 @@
         "team": "Scotland"
       }
     ],
-    "updated_at": "2026-06-25T19:23:17+00:00"
+    "updated_at": "2026-06-25T21:06:30+00:00"
   },
   "Morocco__vs__Haiti": {
     "events": [
@@ -1995,7 +1995,7 @@
         "team": "Haiti"
       }
     ],
-    "updated_at": "2026-06-25T19:23:17+00:00"
+    "updated_at": "2026-06-25T21:06:30+00:00"
   },
   "Czechia__vs__Mexico": {
     "events": [
@@ -2024,7 +2024,7 @@
         "team": "Mexico"
       }
     ],
-    "updated_at": "2026-06-25T19:23:17+00:00"
+    "updated_at": "2026-06-25T21:06:30+00:00"
   },
   "South Africa__vs__Korea Republic": {
     "events": [
@@ -2047,6 +2047,52 @@
         "team": "Korea Republic"
       }
     ],
-    "updated_at": "2026-06-25T19:23:17+00:00"
+    "updated_at": "2026-06-25T21:06:30+00:00"
+  },
+  "Curacao__vs__Cote d'Ivoire": {
+    "events": [
+      {
+        "minute": "7'",
+        "type": "goal",
+        "player": "Nicolas Pépé",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "35'",
+        "type": "yellow",
+        "player": "Nicolas Pépé",
+        "team": "Cote d'Ivoire"
+      }
+    ],
+    "updated_at": "2026-06-25T21:06:30+00:00"
+  },
+  "Ecuador__vs__Germany": {
+    "events": [
+      {
+        "minute": "2'",
+        "type": "goal",
+        "player": "Leroy Sané",
+        "team": "Germany"
+      },
+      {
+        "minute": "9'",
+        "type": "goal",
+        "player": "Nilson Angulo",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "43'",
+        "type": "yellow",
+        "player": "Piero Hincapié",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "44'",
+        "type": "yellow",
+        "player": "Aleksandar Pavlovic",
+        "team": "Germany"
+      }
+    ],
+    "updated_at": "2026-06-25T21:06:30+00:00"
   }
 }
