@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-26T01:34:02+00:00",
+    "updated_at": "2026-06-26T03:48:17+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2082,7 +2082,7 @@
         "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-26T01:34:02+00:00"
+    "updated_at": "2026-06-26T03:48:17+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2129,7 +2129,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-26T01:34:02+00:00"
+    "updated_at": "2026-06-26T03:48:17+00:00"
   },
   "Japan__vs__Sweden": {
     "events": [
@@ -2164,7 +2164,7 @@
         "team": "Sweden"
       }
     ],
-    "updated_at": "2026-06-26T01:34:02+00:00"
+    "updated_at": "2026-06-26T03:48:17+00:00"
   },
   "Tunisia__vs__Netherlands": {
     "events": [
@@ -2193,6 +2193,58 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-26T01:34:02+00:00"
+    "updated_at": "2026-06-26T03:48:17+00:00"
+  },
+  "Turkiye__vs__USA": {
+    "events": [
+      {
+        "minute": "3'",
+        "type": "goal",
+        "player": "Auston Trusty",
+        "team": "USA"
+      },
+      {
+        "minute": "10'",
+        "type": "goal",
+        "player": "Arda Güler",
+        "team": "Turkiye"
+      },
+      {
+        "minute": "19'",
+        "type": "yellow",
+        "player": "Sebastian Berhalter",
+        "team": "USA"
+      },
+      {
+        "minute": "31'",
+        "type": "goal",
+        "player": "Baris Alper Yilmaz",
+        "team": "Turkiye"
+      },
+      {
+        "minute": "49'",
+        "type": "goal",
+        "player": "Sebastian Berhalter",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-06-26T03:48:17+00:00"
+  },
+  "Paraguay__vs__Australia": {
+    "events": [
+      {
+        "minute": "46'",
+        "type": "yellow",
+        "player": "Jackson Irvine",
+        "team": "Australia"
+      },
+      {
+        "minute": "77'",
+        "type": "yellow",
+        "player": "Diego Gómez",
+        "team": "Paraguay"
+      }
+    ],
+    "updated_at": "2026-06-26T03:48:17+00:00"
   }
 }
