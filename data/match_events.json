@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-26T19:08:01+00:00",
+    "updated_at": "2026-06-26T20:53:25+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2082,7 +2082,7 @@
         "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2129,7 +2129,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Japan__vs__Sweden": {
     "events": [
@@ -2164,7 +2164,7 @@
         "team": "Sweden"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Tunisia__vs__Netherlands": {
     "events": [
@@ -2193,7 +2193,7 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Turkiye__vs__USA": {
     "events": [
@@ -2234,7 +2234,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Paraguay__vs__Australia": {
     "events": [
@@ -2251,7 +2251,7 @@
         "team": "Paraguay"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
   },
   "Senegal__vs__Iraq": {
     "events": [
@@ -2260,8 +2260,97 @@
         "type": "goal",
         "player": "Habib Diarra",
         "team": "Senegal"
+      },
+      {
+        "minute": "13'",
+        "type": "red",
+        "player": "Rebin Sulaka",
+        "team": "Iraq"
+      },
+      {
+        "minute": "18'",
+        "type": "yellow",
+        "player": "Abdoulaye Seck",
+        "team": "Senegal"
+      },
+      {
+        "minute": "56'",
+        "type": "goal",
+        "player": "Ismaïla Sarr",
+        "team": "Senegal"
+      },
+      {
+        "minute": "59'",
+        "type": "goal",
+        "player": "Pape Gueye",
+        "team": "Senegal"
+      },
+      {
+        "minute": "71'",
+        "type": "goal",
+        "player": "Pape Gueye",
+        "team": "Senegal"
+      },
+      {
+        "minute": "75'",
+        "type": "yellow",
+        "player": "Amir Al-Ammari",
+        "team": "Iraq"
+      },
+      {
+        "minute": "81'",
+        "type": "yellow",
+        "player": "Pape Gueye",
+        "team": "Senegal"
+      },
+      {
+        "minute": "82'",
+        "type": "goal",
+        "player": "Iliman Ndiaye",
+        "team": "Senegal"
       }
     ],
-    "updated_at": "2026-06-26T19:08:01+00:00"
+    "updated_at": "2026-06-26T20:53:25+00:00"
+  },
+  "Norway__vs__France": {
+    "events": [
+      {
+        "minute": "7'",
+        "type": "goal",
+        "player": "Ousmane Dembélé",
+        "team": "France"
+      },
+      {
+        "minute": "10'",
+        "type": "yellow",
+        "player": "Patrick Berg",
+        "team": "Norway"
+      },
+      {
+        "minute": "20'",
+        "type": "goal",
+        "player": "Ousmane Dembélé",
+        "team": "France"
+      },
+      {
+        "minute": "21'",
+        "type": "goal",
+        "player": "Thelo Aasgaard",
+        "team": "Norway"
+      },
+      {
+        "minute": "32'",
+        "type": "goal",
+        "player": "Ousmane Dembélé",
+        "team": "France"
+      },
+      {
+        "minute": "74'",
+        "type": "yellow",
+        "player": "Aurélien Tchouaméni",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-06-26T20:53:25+00:00"
   }
 }
