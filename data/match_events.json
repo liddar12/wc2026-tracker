@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-26T20:53:25+00:00",
+    "updated_at": "2026-06-26T20:58:48+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2082,7 +2082,7 @@
         "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2129,7 +2129,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Japan__vs__Sweden": {
     "events": [
@@ -2164,7 +2164,7 @@
         "team": "Sweden"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Tunisia__vs__Netherlands": {
     "events": [
@@ -2193,7 +2193,7 @@
         "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Turkiye__vs__USA": {
     "events": [
@@ -2234,7 +2234,7 @@
         "team": "Turkiye"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Paraguay__vs__Australia": {
     "events": [
@@ -2251,7 +2251,7 @@
         "team": "Paraguay"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Senegal__vs__Iraq": {
     "events": [
@@ -2308,9 +2308,15 @@
         "type": "goal",
         "player": "Iliman Ndiaye",
         "team": "Senegal"
+      },
+      {
+        "minute": "90'",
+        "type": "yellow",
+        "player": "Merchas Doski",
+        "team": "Iraq"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   },
   "Norway__vs__France": {
     "events": [
@@ -2349,8 +2355,14 @@
         "type": "yellow",
         "player": "Aurélien Tchouaméni",
         "team": "France"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "goal",
+        "player": "Désiré Doué",
+        "team": "France"
       }
     ],
-    "updated_at": "2026-06-26T20:53:25+00:00"
+    "updated_at": "2026-06-26T20:58:48+00:00"
   }
 }
