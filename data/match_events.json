@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-25T23:58:51+00:00",
+    "updated_at": "2026-06-26T01:34:02+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2082,7 +2082,7 @@
         "team": "Curacao"
       }
     ],
-    "updated_at": "2026-06-25T23:58:51+00:00"
+    "updated_at": "2026-06-26T01:34:02+00:00"
   },
   "Ecuador__vs__Germany": {
     "events": [
@@ -2129,7 +2129,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-06-25T23:58:51+00:00"
+    "updated_at": "2026-06-26T01:34:02+00:00"
   },
   "Japan__vs__Sweden": {
     "events": [
@@ -2138,9 +2138,33 @@
         "type": "yellow",
         "player": "Isak Hien",
         "team": "Sweden"
+      },
+      {
+        "minute": "56'",
+        "type": "goal",
+        "player": "Daizen Maeda",
+        "team": "Japan"
+      },
+      {
+        "minute": "62'",
+        "type": "goal",
+        "player": "Anthony Elanga",
+        "team": "Sweden"
+      },
+      {
+        "minute": "77'",
+        "type": "yellow",
+        "player": "Shogo Taniguchi",
+        "team": "Japan"
+      },
+      {
+        "minute": "85'",
+        "type": "yellow",
+        "player": "Viktor Gyökeres",
+        "team": "Sweden"
       }
     ],
-    "updated_at": "2026-06-25T23:58:51+00:00"
+    "updated_at": "2026-06-26T01:34:02+00:00"
   },
   "Tunisia__vs__Netherlands": {
     "events": [
@@ -2155,8 +2179,20 @@
         "type": "goal",
         "player": "Brian Brobbey",
         "team": "Netherlands"
+      },
+      {
+        "minute": "54'",
+        "type": "goal",
+        "player": "Hazem Mastouri",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "62'",
+        "type": "goal",
+        "player": "Jan Paul van Hecke",
+        "team": "Netherlands"
       }
     ],
-    "updated_at": "2026-06-25T23:58:51+00:00"
+    "updated_at": "2026-06-26T01:34:02+00:00"
   }
 }
