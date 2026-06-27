@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T20:51:29+00:00",
+    "updated_at": "2026-06-27T21:55:08+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2546,5 +2546,16 @@
       }
     ],
     "updated_at": "2026-06-27T20:51:29+00:00"
+  },
+  "Croatia__vs__Ghana": {
+    "events": [
+      {
+        "minute": "31'",
+        "type": "goal",
+        "player": "Petar Sucic",
+        "team": "Croatia"
+      }
+    ],
+    "updated_at": "2026-06-27T21:55:08+00:00"
   }
 }
