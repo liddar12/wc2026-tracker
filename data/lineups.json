@@ -35,7 +35,7 @@
     "updated_at": "2026-06-12T20:31:46+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T22:19:58+00:00",
+    "updated_at": "2026-06-27T22:44:36+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2335,18 +2335,18 @@
         "Jordan Pickford",
         "Marc Guéhi",
         "Ezri Konsa",
+        "Elliot Anderson",
         "Nico O'Reilly",
         "Jarell Quansah",
-        "Morgan Rogers",
         "Jude Bellingham",
-        "Elliot Anderson",
-        "Harry Kane",
+        "Morgan Rogers",
         "Marcus Rashford",
-        "Bukayo Saka"
+        "Bukayo Saka",
+        "Harry Kane"
       ],
-      "formation": "4-2-3-1"
+      "formation": "4-1-4-1"
     },
-    "updated_at": "2026-06-27T22:19:58+00:00"
+    "updated_at": "2026-06-27T22:44:36+00:00"
   },
   "Croatia__vs__Ghana": {
     "team_a": {
@@ -2381,6 +2381,76 @@
       ],
       "formation": "4-1-4-1"
     },
-    "updated_at": "2026-06-27T22:19:58+00:00"
+    "updated_at": "2026-06-27T22:44:36+00:00"
+  },
+  "Colombia__vs__Portugal": {
+    "team_a": {
+      "xi": [
+        "Camilo Vargas",
+        "Santiago Arias",
+        "Deiver Machado",
+        "Davinson Sánchez",
+        "Jhon Lucumí",
+        "Gustavo Puerta",
+        "Jhon Arias",
+        "Jefferson Lerma",
+        "Luis Díaz",
+        "James Rodríguez",
+        "Jhon Córdoba"
+      ],
+      "formation": "4-3-3"
+    },
+    "team_b": {
+      "xi": [
+        "Diogo Costa",
+        "Nuno Mendes",
+        "Rúben Dias",
+        "Renato Veiga",
+        "João Cancelo",
+        "Vitinha ",
+        "Rúben Neves",
+        "Pedro Neto",
+        "Bruno Fernandes",
+        "João Félix",
+        "Cristiano Ronaldo"
+      ],
+      "formation": "4-2-3-1"
+    },
+    "updated_at": "2026-06-27T22:44:36+00:00"
+  },
+  "DR Congo__vs__Uzbekistan": {
+    "team_a": {
+      "xi": [
+        "Lionel Mpasi",
+        "Chancel Mbemba",
+        "Arthur Masuaku",
+        "Aaron Wan-Bissaka",
+        "Axel Tuanzebe",
+        "Noah Sadiki",
+        "Brian Cipenga",
+        "Nathanaël Mbuku",
+        "Samuel Moutoussamy",
+        "Cédric Bakambu",
+        "Yoane Wissa"
+      ],
+      "formation": "4-4-2"
+    },
+    "team_b": {
+      "xi": [
+        "Abduvohid Nematov",
+        "Abdukodir Khusanov",
+        "Jakhongir Urozov",
+        "Rustam Ashurmatov",
+        "Otabek Shukurov",
+        "Khojiakbar Alijonov",
+        "Sherzod Nasrullaev",
+        "Dostonbek Khamdamov",
+        "Abbosbek Fayzullaev",
+        "Akmal Mozgovoy",
+        "Eldor Shomurodov"
+      ],
+      "formation": "3-4-2-1"
+    },
+    "updated_at": "2026-06-27T22:44:36+00:00"
   }
 }

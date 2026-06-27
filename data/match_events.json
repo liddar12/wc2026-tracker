@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T22:20:02+00:00",
+    "updated_at": "2026-06-27T22:44:40+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2554,9 +2554,27 @@
         "type": "goal",
         "player": "Petar Sucic",
         "team": "Croatia"
+      },
+      {
+        "minute": "68'",
+        "type": "yellow",
+        "player": "Ivan Perisic",
+        "team": "Croatia"
+      },
+      {
+        "minute": "73'",
+        "type": "goal",
+        "player": "Derrick Luckassen",
+        "team": "Ghana"
+      },
+      {
+        "minute": "83'",
+        "type": "goal",
+        "player": "Nikola Vlasic",
+        "team": "Croatia"
       }
     ],
-    "updated_at": "2026-06-27T22:20:02+00:00"
+    "updated_at": "2026-06-27T22:44:40+00:00"
   },
   "Panama__vs__England": {
     "events": [
@@ -2571,8 +2589,26 @@
         "type": "yellow",
         "player": "Jarell Quansah",
         "team": "England"
+      },
+      {
+        "minute": "62'",
+        "type": "goal",
+        "player": "Jude Bellingham",
+        "team": "England"
+      },
+      {
+        "minute": "67'",
+        "type": "goal",
+        "player": "Harry Kane",
+        "team": "England"
+      },
+      {
+        "minute": "84'",
+        "type": "yellow",
+        "player": "Andrés Andrade",
+        "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-27T22:20:02+00:00"
+    "updated_at": "2026-06-27T22:44:40+00:00"
   }
 }
