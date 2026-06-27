@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T23:34:31+00:00",
+    "updated_at": "2026-06-27T23:55:54+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2580,7 +2580,7 @@
         "team": "Ghana"
       }
     ],
-    "updated_at": "2026-06-27T23:34:31+00:00"
+    "updated_at": "2026-06-27T23:55:54+00:00"
   },
   "Panama__vs__England": {
     "events": [
@@ -2615,6 +2615,23 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-27T23:34:31+00:00"
+    "updated_at": "2026-06-27T23:55:54+00:00"
+  },
+  "DR Congo__vs__Uzbekistan": {
+    "events": [
+      {
+        "minute": "10'",
+        "type": "goal",
+        "player": "Eldor Shomurodov",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "21'",
+        "type": "yellow",
+        "player": "Noah Sadiki",
+        "team": "DR Congo"
+      }
+    ],
+    "updated_at": "2026-06-27T23:55:54+00:00"
   }
 }
