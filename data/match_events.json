@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T21:55:08+00:00",
+    "updated_at": "2026-06-27T22:20:02+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2556,6 +2556,23 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-06-27T21:55:08+00:00"
+    "updated_at": "2026-06-27T22:20:02+00:00"
+  },
+  "Panama__vs__England": {
+    "events": [
+      {
+        "minute": "53'",
+        "type": "yellow",
+        "player": "José Fajardo",
+        "team": "Panama"
+      },
+      {
+        "minute": "60'",
+        "type": "yellow",
+        "player": "Jarell Quansah",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-06-27T22:20:02+00:00"
   }
 }
