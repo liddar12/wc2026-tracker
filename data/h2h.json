@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-26T08:56:13+00:00",
+    "updated_at": "2026-06-27T08:31:23+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -659,6 +659,13 @@
   ],
   "Uruguay__vs__Spain": [
     {
+      "date": "2026-06-27",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 1,
+      "winner": "Spain"
+    },
+    {
       "date": "2013-06-16",
       "comp": "2013 FIFA Confederations Cup",
       "score_a": 1,
@@ -685,16 +692,16 @@
       "score_a": 0,
       "score_b": 0,
       "winner": "draw"
-    },
-    {
-      "date": "1950-07-09",
-      "comp": "World Cup - Brazil 1950",
-      "score_a": 2,
-      "score_b": 2,
-      "winner": "draw"
     }
   ],
   "New Zealand__vs__Belgium": [
+    {
+      "date": "2026-06-27",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 5,
+      "winner": "Belgium"
+    },
     {
       "date": "2008-08-13",
       "comp": "2008 Olympic Men's Soccer",
@@ -818,6 +825,24 @@
       "score_a": 1,
       "score_b": 0,
       "winner": "South Africa"
+    }
+  ],
+  "Cabo Verde__vs__Saudi Arabia": [
+    {
+      "date": "2026-06-27",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 0,
+      "score_b": 0,
+      "winner": "draw"
+    }
+  ],
+  "Egypt__vs__Iran": [
+    {
+      "date": "2026-06-27",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 1,
+      "winner": "draw"
     }
   ]
 }
