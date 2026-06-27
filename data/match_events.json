@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-26T23:21:56+00:00",
+    "updated_at": "2026-06-27T01:27:02+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2316,7 +2316,7 @@
         "team": "Iraq"
       }
     ],
-    "updated_at": "2026-06-26T23:21:56+00:00"
+    "updated_at": "2026-06-27T01:27:02+00:00"
   },
   "Norway__vs__France": {
     "events": [
@@ -2363,6 +2363,52 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-26T23:21:56+00:00"
+    "updated_at": "2026-06-27T01:27:02+00:00"
+  },
+  "Cabo Verde__vs__Saudi Arabia": {
+    "events": [
+      {
+        "minute": "4'",
+        "type": "yellow",
+        "player": "Saud Abdulhamid",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "9'",
+        "type": "yellow",
+        "player": "Wagner Pina",
+        "team": "Cabo Verde"
+      }
+    ],
+    "updated_at": "2026-06-27T01:27:02+00:00"
+  },
+  "Uruguay__vs__Spain": {
+    "events": [
+      {
+        "minute": "42'",
+        "type": "goal",
+        "player": "Álex Baena",
+        "team": "Spain"
+      },
+      {
+        "minute": "46'",
+        "type": "yellow",
+        "player": "Álex Baena",
+        "team": "Spain"
+      },
+      {
+        "minute": "54'",
+        "type": "yellow",
+        "player": "Juan Manuel Sanabria",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "58'",
+        "type": "yellow",
+        "player": "Guillermo Varela",
+        "team": "Uruguay"
+      }
+    ],
+    "updated_at": "2026-06-27T01:27:02+00:00"
   }
 }
