@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T22:44:40+00:00",
+    "updated_at": "2026-06-27T22:55:31+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2572,9 +2572,15 @@
         "type": "goal",
         "player": "Nikola Vlasic",
         "team": "Croatia"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "yellow",
+        "player": "Kojo Peprah Oppong",
+        "team": "Ghana"
       }
     ],
-    "updated_at": "2026-06-27T22:44:40+00:00"
+    "updated_at": "2026-06-27T22:55:31+00:00"
   },
   "Panama__vs__England": {
     "events": [
@@ -2609,6 +2615,6 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-27T22:44:40+00:00"
+    "updated_at": "2026-06-27T22:55:31+00:00"
   }
 }
