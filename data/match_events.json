@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T01:27:14+00:00",
+    "updated_at": "2026-06-27T05:11:12+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2316,7 +2316,7 @@
         "team": "Iraq"
       }
     ],
-    "updated_at": "2026-06-27T01:27:14+00:00"
+    "updated_at": "2026-06-27T05:11:12+00:00"
   },
   "Norway__vs__France": {
     "events": [
@@ -2363,7 +2363,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-06-27T01:27:14+00:00"
+    "updated_at": "2026-06-27T05:11:12+00:00"
   },
   "Cabo Verde__vs__Saudi Arabia": {
     "events": [
@@ -2374,13 +2374,25 @@
         "team": "Saudi Arabia"
       },
       {
-        "minute": "9'",
+        "minute": "8'",
         "type": "yellow",
         "player": "Wagner Pina",
         "team": "Cabo Verde"
+      },
+      {
+        "minute": "67'",
+        "type": "yellow",
+        "player": "Nasser Al-Dawsari",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Feras Al-Brikan",
+        "team": "Saudi Arabia"
       }
     ],
-    "updated_at": "2026-06-27T01:27:14+00:00"
+    "updated_at": "2026-06-27T05:11:12+00:00"
   },
   "Uruguay__vs__Spain": {
     "events": [
@@ -2407,8 +2419,132 @@
         "type": "yellow",
         "player": "Guillermo Varela",
         "team": "Uruguay"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Nicolás de la Cruz",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "90'+5'",
+        "type": "red",
+        "player": "Agustín Canobbio",
+        "team": "Uruguay"
       }
     ],
-    "updated_at": "2026-06-27T01:27:14+00:00"
+    "updated_at": "2026-06-27T05:11:12+00:00"
+  },
+  "Egypt__vs__Iran": {
+    "events": [
+      {
+        "minute": "5'",
+        "type": "goal",
+        "player": "Mahmoud Saber",
+        "team": "Egypt"
+      },
+      {
+        "minute": "14'",
+        "type": "goal",
+        "player": "Ramin Rezaeian",
+        "team": "Iran"
+      },
+      {
+        "minute": "19'",
+        "type": "yellow",
+        "player": "Hossein Kanani",
+        "team": "Iran"
+      },
+      {
+        "minute": "20'",
+        "type": "yellow",
+        "player": "Mahmoud Saber",
+        "team": "Egypt"
+      },
+      {
+        "minute": "42'",
+        "type": "yellow",
+        "player": "Yasser Ibrahim",
+        "team": "Egypt"
+      },
+      {
+        "minute": "43'",
+        "type": "yellow",
+        "player": "Ali Nemati",
+        "team": "Iran"
+      },
+      {
+        "minute": "79'",
+        "type": "yellow",
+        "player": "Saeid Ezatolahi",
+        "team": "Iran"
+      },
+      {
+        "minute": "90'+2'",
+        "type": "yellow",
+        "player": "Mohanad Lashin",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "yellow",
+        "player": "Shoja Khalilzadeh",
+        "team": "Iran"
+      }
+    ],
+    "updated_at": "2026-06-27T05:11:12+00:00"
+  },
+  "New Zealand__vs__Belgium": {
+    "events": [
+      {
+        "minute": "28'",
+        "type": "goal",
+        "player": "Leandro Trossard",
+        "team": "Belgium"
+      },
+      {
+        "minute": "46'",
+        "type": "yellow",
+        "player": "Marko Stamenic",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "50'",
+        "type": "goal",
+        "player": "Leandro Trossard",
+        "team": "Belgium"
+      },
+      {
+        "minute": "56'",
+        "type": "yellow",
+        "player": "Elijah Just",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "66'",
+        "type": "goal",
+        "player": "Kevin De Bruyne",
+        "team": "Belgium"
+      },
+      {
+        "minute": "84'",
+        "type": "goal",
+        "player": "Elijah Just",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "86'",
+        "type": "goal",
+        "player": "Romelu Lukaku",
+        "team": "Belgium"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "goal",
+        "player": "Alexis Saelemaekers",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-06-27T05:11:12+00:00"
   }
 }
