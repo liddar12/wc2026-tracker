@@ -1,6 +1,6 @@
 {
   "__meta__": {
-    "updated_at": "2026-06-27T08:31:23+00:00",
+    "updated_at": "2026-06-28T08:46:08+00:00",
     "source": "espn"
   },
   "Mexico__vs__South Africa": [
@@ -721,6 +721,13 @@
   ],
   "Algeria__vs__Austria": [
     {
+      "date": "2026-06-28",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 3,
+      "score_b": 3,
+      "winner": "draw"
+    },
+    {
       "date": "1982-06-21",
       "comp": "World Cup - Spain 1982",
       "score_a": 0,
@@ -843,6 +850,15 @@
       "score_a": 1,
       "score_b": 1,
       "winner": "draw"
+    }
+  ],
+  "Jordan__vs__Argentina": [
+    {
+      "date": "2026-06-28",
+      "comp": "2026 FIFA World Cup",
+      "score_a": 1,
+      "score_b": 3,
+      "winner": "Argentina"
     }
   ]
 }
