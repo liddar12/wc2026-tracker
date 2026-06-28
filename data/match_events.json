@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-27T23:55:54+00:00",
+    "updated_at": "2026-06-28T01:54:11+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2580,7 +2580,7 @@
         "team": "Ghana"
       }
     ],
-    "updated_at": "2026-06-27T23:55:54+00:00"
+    "updated_at": "2026-06-28T01:54:11+00:00"
   },
   "Panama__vs__England": {
     "events": [
@@ -2615,7 +2615,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-27T23:55:54+00:00"
+    "updated_at": "2026-06-28T01:54:11+00:00"
   },
   "DR Congo__vs__Uzbekistan": {
     "events": [
@@ -2630,8 +2630,61 @@
         "type": "yellow",
         "player": "Noah Sadiki",
         "team": "DR Congo"
+      },
+      {
+        "minute": "43'",
+        "type": "yellow",
+        "player": "Abdukodir Khusanov",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "45'+5'",
+        "type": "yellow",
+        "player": "Nathanaël Mbuku",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "48'",
+        "type": "yellow",
+        "player": "Sherzod Nasrullaev",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "62'",
+        "type": "yellow",
+        "player": "Samuel Moutoussamy",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "68'",
+        "type": "pen-goal",
+        "player": "Yoane Wissa",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "78'",
+        "type": "goal",
+        "player": "Fiston Mayele",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "90'+1'",
+        "type": "goal",
+        "player": "Yoane Wissa",
+        "team": "DR Congo"
       }
     ],
-    "updated_at": "2026-06-27T23:55:54+00:00"
+    "updated_at": "2026-06-28T01:54:11+00:00"
+  },
+  "Colombia__vs__Portugal": {
+    "events": [
+      {
+        "minute": "86'",
+        "type": "yellow",
+        "player": "Gustavo Puerta",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-06-28T01:54:11+00:00"
   }
 }
