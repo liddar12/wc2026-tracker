@@ -4414,9 +4414,36 @@
           0.5176
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 1.12384,
+          "logloss": 1.63476
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.83244,
+          "logloss": 1.36024
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.92119,
+          "logloss": 1.46318
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.9397,
+          "logloss": 1.47973
+        },
+        "polymarket": {
+          "correct": 0,
+          "brier": 0.91191,
+          "logloss": 1.44308
+        }
+      },
+      "scored": true,
+      "actual_score": "0-0"
     },
     "DR Congo__vs__Uzbekistan": {
       "match_number": 72,
@@ -4452,9 +4479,36 @@
           0.1741
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.46082,
+          "logloss": 0.80744
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.45844,
+          "logloss": 0.80341
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.26972,
+          "logloss": 0.54835
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.38923,
+          "logloss": 0.71213
+        },
+        "polymarket": {
+          "correct": 1,
+          "brier": 0.26439,
+          "logloss": 0.54111
+        }
+      },
+      "scored": true,
+      "actual_score": "3-1"
     },
     "Algeria__vs__Austria": {
       "match_number": 69,
@@ -4533,43 +4587,43 @@
       "scored": false
     }
   },
-  "updated_at": "2026-06-27T23:56:02+00:00",
+  "updated_at": "2026-06-28T02:46:03+00:00",
   "summary": {
-    "matches_scored": 68,
+    "matches_scored": 70,
     "model": {
-      "correct": 45,
-      "total": 68,
+      "correct": 46,
+      "total": 70,
       "measured": true,
-      "brier": 0.5039,
-      "logloss": 0.9016
+      "brier": 0.5122,
+      "logloss": 0.9107
     },
     "dt": {
-      "correct": 43,
-      "total": 68,
+      "correct": 44,
+      "total": 70,
       "measured": true,
-      "brier": 0.5001,
-      "logloss": 0.8565
+      "brier": 0.5042,
+      "logloss": 0.8629
     },
     "market": {
-      "correct": 45,
-      "total": 68,
+      "correct": 46,
+      "total": 70,
       "measured": true,
-      "brier": 0.4945,
-      "logloss": 0.8389
+      "brier": 0.4973,
+      "logloss": 0.8437
     },
     "polymarket": {
-      "correct": 44,
-      "total": 64,
+      "correct": 45,
+      "total": 66,
       "measured": true,
-      "brier": 0.4923,
-      "logloss": 0.834
+      "brier": 0.4952,
+      "logloss": 0.8387
     },
     "hybrid": {
-      "correct": 44,
-      "total": 68,
+      "correct": 45,
+      "total": 70,
       "measured": true,
-      "brier": 0.4912,
-      "logloss": 0.8449
+      "brier": 0.4961,
+      "logloss": 0.8521
     }
   }
 }
