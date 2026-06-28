@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-28T02:45:49+00:00",
+    "updated_at": "2026-06-28T04:56:05+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2580,7 +2580,7 @@
         "team": "Ghana"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   },
   "Panama__vs__England": {
     "events": [
@@ -2615,7 +2615,7 @@
         "team": "Panama"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   },
   "DR Congo__vs__Uzbekistan": {
     "events": [
@@ -2674,7 +2674,7 @@
         "team": "DR Congo"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   },
   "Colombia__vs__Portugal": {
     "events": [
@@ -2685,7 +2685,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   },
   "Algeria__vs__Austria": {
     "events": [
@@ -2700,9 +2700,39 @@
         "type": "goal",
         "player": "Marko Arnautovic",
         "team": "Austria"
+      },
+      {
+        "minute": "45'",
+        "type": "goal",
+        "player": "Rafik Belghali",
+        "team": "Algeria"
+      },
+      {
+        "minute": "55'",
+        "type": "goal",
+        "player": "Marcel Sabitzer",
+        "team": "Austria"
+      },
+      {
+        "minute": "60'",
+        "type": "goal",
+        "player": "Riyad Mahrez",
+        "team": "Algeria"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "goal",
+        "player": "Riyad Mahrez",
+        "team": "Algeria"
+      },
+      {
+        "minute": "90'+6'",
+        "type": "goal",
+        "player": "Sasa Kalajdzic",
+        "team": "Austria"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   },
   "Jordan__vs__Argentina": {
     "events": [
@@ -2723,8 +2753,32 @@
         "type": "pen-goal",
         "player": "Lautaro Martínez",
         "team": "Argentina"
+      },
+      {
+        "minute": "55'",
+        "type": "goal",
+        "player": "Mousa Al-Tamari",
+        "team": "Jordan"
+      },
+      {
+        "minute": "64'",
+        "type": "yellow",
+        "player": "Yazan Al-Arab",
+        "team": "Jordan"
+      },
+      {
+        "minute": "80'",
+        "type": "goal",
+        "player": "Lionel Messi",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "yellow",
+        "player": "Mohammed Abu Zraiq",
+        "team": "Jordan"
       }
     ],
-    "updated_at": "2026-06-28T02:45:49+00:00"
+    "updated_at": "2026-06-28T04:56:05+00:00"
   }
 }
