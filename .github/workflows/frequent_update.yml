@@ -72,6 +72,12 @@ jobs:
       - name: Reconcile kickoff times from ESPN
         run: python scripts/reconcile_schedule.py
         continue-on-error: true
+      # Fill knockout bracket slots (1A/2B/W74/3 ABCDF) with the actual qualified
+      # teams from ESPN's resolved fixtures — reconcile skips placeholders, so
+      # without this the schedule + knockout pages freeze on placeholders (RCA 6/28).
+      - name: Resolve knockout fixtures from ESPN
+        run: python scripts/resolve_knockouts.py
+        continue-on-error: true
       - name: Fill US broadcast / streaming per match
         run: python scripts/scrape_broadcast.py
         continue-on-error: true

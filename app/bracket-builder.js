@@ -209,6 +209,19 @@ export function effectiveBestThirds(data, picks) {
   return actualThirds.slice(0, 8).map((r) => r.team);
 }
 
+// R32 bracket SLOT labels ("2A","1E","3 ABCDF") live in match_id
+// ("M073__2A__vs__2B") so they survive after team_a/team_b are filled with the
+// actual qualified teams — which the schedule, live-score merge, and result
+// recording all need. Returns {team_a, team_b} slot text, or null to fall back
+// to the row's team_a/team_b (e.g. legacy team-based match_ids).
+function slotLabelsFromMatchId(matchId) {
+  const m = String(matchId || '').match(/^M\d+__(.+)$/);
+  if (!m) return null;
+  const parts = m[1].split('__vs__');
+  if (parts.length !== 2) return null;
+  return { team_a: parts[0].replace(/_/g, ' '), team_b: parts[1].replace(/_/g, ' ') };
+}
+
 export function buildR32Seeding(data, opts = {}) {
   const sf = data?.scheduleFull || [];
   const r32 = sf
@@ -232,8 +245,9 @@ export function buildR32Seeding(data, opts = {}) {
   // Collect the "3 …" slots and bipartite-match them in one pass.
   const thirdSlots = [];
   for (const m of r32) {
+    const slots = slotLabelsFromMatchId(m.match_id) || { team_a: m.team_a, team_b: m.team_b };
     for (const side of ['team_a', 'team_b']) {
-      const text = m[side];
+      const text = slots[side];
       const thirdMatch = typeof text === 'string' && text.match(/^3 ([A-L]+)$/);
       if (thirdMatch) {
         thirdSlots.push({
@@ -249,8 +263,9 @@ export function buildR32Seeding(data, opts = {}) {
 
   return r32.map((m) => {
     const out = { match_number: m.match_number, kickoff_utc: m.kickoff_utc };
+    const slots = slotLabelsFromMatchId(m.match_id) || { team_a: m.team_a, team_b: m.team_b };
     for (const side of ['team_a', 'team_b']) {
-      const text = m[side];
+      const text = slots[side];
       if (typeof text !== 'string') { out[side] = text; continue; }
       // 1A / 2B style: defer to per-group resolver against effective picks
       const groupRank = text.match(/^(\d)([A-L])$/);

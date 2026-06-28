@@ -57,14 +57,17 @@ test.describe('Play funnel — Stage 1 / 2 / 3', () => {
     await expect(tile.locator('.pw-team-rank')).toHaveCount(0);
   });
 
-  test('Submit button disabled when nothing is picked; what\'s-left lists all three stages', async ({ page }) => {
+  test('Submit button disabled when nothing is picked; what\'s-left lists the incomplete stage(s)', async ({ page }) => {
     await page.goto('/#/play', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="play-submit-bar"]')).toBeVisible({ timeout: 10_000 });
     const submit = page.locator('[data-testid="play-submit"]');
     await expect(submit).toBeDisabled();
     const checklist = page.locator('.pw-submit-checklist');
-    await expect(checklist).toContainText('Stage 1');
-    await expect(checklist).toContainText('Stage 2');
+    // Phase-aware: Stage 3 (knockout bracket) is always incomplete when nothing
+    // is picked. Stage 1 (group ranks) + Stage 2 (best-thirds) only appear here
+    // BEFORE the group stage finishes — once results land, the R11 fallback
+    // auto-resolves them from actual standings, so "what's left" is Stage 3 only.
+    await expect(checklist).toContainText("What's left");
     await expect(checklist).toContainText('Stage 3');
   });
 
