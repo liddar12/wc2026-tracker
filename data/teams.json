@@ -92,13 +92,13 @@
     "espn_rank": 45,
     "elo_raw": 1720,
     "tmv_musd": 50,
-    "composite": 60.1,
+    "composite": 60.0,
     "sub_ratings": {
       "mine": 59.0,
-      "elo_scaled": 63.7,
+      "elo_scaled": 62.9,
       "tmv_scaled": 63.1,
       "qual_scaled": 55.7,
-      "form_scaled": 78.2
+      "form_scaled": 73.1
     },
     "boosts": {
       "continental": 0.0,
@@ -126,7 +126,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 41,
-    "elo_current": 1730
+    "elo_current": 1718
   },
   "Czechia": {
     "name": "Czechia",
@@ -181,10 +181,10 @@
     "composite": 69.8,
     "sub_ratings": {
       "mine": 70.6,
-      "elo_scaled": 66.9,
+      "elo_scaled": 67.7,
       "tmv_scaled": 74.2,
       "qual_scaled": 59.7,
-      "form_scaled": 74.5
+      "form_scaled": 79.7
     },
     "boosts": {
       "continental": 0.0,
@@ -212,7 +212,7 @@
     "is_host": true,
     "continental_champion": false,
     "power_rank": 28,
-    "elo_current": 1778
+    "elo_current": 1790
   },
   "Switzerland": {
     "name": "Switzerland",
@@ -227,7 +227,7 @@
       "elo_scaled": 76.3,
       "tmv_scaled": 82.0,
       "qual_scaled": 71.0,
-      "form_scaled": 81.7
+      "form_scaled": 81.6
     },
     "boosts": {
       "continental": 0.0,
@@ -393,10 +393,10 @@
     "espn_rank": 13,
     "elo_raw": 1860,
     "tmv_musd": 320,
-    "composite": 80.3,
+    "composite": 80.4,
     "sub_ratings": {
       "mine": 73.2,
-      "elo_scaled": 74.2,
+      "elo_scaled": 75.2,
       "tmv_scaled": 79.6,
       "qual_scaled": 78.0,
       "form_scaled": 87.8
@@ -427,7 +427,7 @@
     "is_host": false,
     "continental_champion": true,
     "power_rank": 9,
-    "elo_current": 1888
+    "elo_current": 1903
   },
   "Scotland": {
     "name": "Scotland",
@@ -611,7 +611,7 @@
     "composite": 63.9,
     "sub_ratings": {
       "mine": 65.0,
-      "elo_scaled": 67.7,
+      "elo_scaled": 68.8,
       "tmv_scaled": 68.4,
       "qual_scaled": 56.7,
       "form_scaled": 74.5
@@ -642,7 +642,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 38,
-    "elo_current": 1790
+    "elo_current": 1807
   },
   "Turkiye": {
     "name": "Turkiye",
@@ -657,7 +657,7 @@
       "elo_scaled": 71.8,
       "tmv_scaled": 80.4,
       "qual_scaled": 65.3,
-      "form_scaled": 63.1
+      "form_scaled": 63.2
     },
     "boosts": {
       "continental": 0.0,
@@ -694,10 +694,10 @@
     "espn_rank": 8,
     "elo_raw": 1910,
     "tmv_musd": 896,
-    "composite": 82.2,
+    "composite": 82.1,
     "sub_ratings": {
       "mine": 81.0,
-      "elo_scaled": 76.2,
+      "elo_scaled": 75.1,
       "tmv_scaled": 88.7,
       "qual_scaled": 73.7,
       "form_scaled": 80.2
@@ -728,7 +728,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 7,
-    "elo_current": 1918
+    "elo_current": 1901
   },
   "Ecuador": {
     "name": "Ecuador",
@@ -869,7 +869,7 @@
     "composite": 83.2,
     "sub_ratings": {
       "mine": 78.4,
-      "elo_scaled": 80.5,
+      "elo_scaled": 79.5,
       "tmv_scaled": 88.6,
       "qual_scaled": 77.7,
       "form_scaled": 83.4
@@ -900,7 +900,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 6,
-    "elo_current": 1982
+    "elo_current": 1967
   },
   "Japan": {
     "name": "Japan",
@@ -1130,7 +1130,7 @@
       "elo_scaled": 68.2,
       "tmv_scaled": 70.1,
       "qual_scaled": 70.3,
-      "form_scaled": 79.7
+      "form_scaled": 79.6
     },
     "boosts": {
       "continental": 0.0,
@@ -1216,7 +1216,7 @@
       "elo_scaled": 92.8,
       "tmv_scaled": 89.8,
       "qual_scaled": 76.7,
-      "form_scaled": 74.3
+      "form_scaled": 74.2
     },
     "boosts": {
       "continental": 3.0,
@@ -1517,7 +1517,7 @@
       "elo_scaled": 58.3,
       "tmv_scaled": 55.9,
       "qual_scaled": 59.3,
-      "form_scaled": 63.0
+      "form_scaled": 63.1
     },
     "boosts": {
       "continental": 0.0,

@@ -400,13 +400,15 @@
       "score_a": 2,
       "score_b": 1,
       "kickoff_utc": "2026-06-27T21:00Z",
-      "status": "STATUS_FULL_TIME"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Croatia"
     },
     "Panama__vs__England": {
       "score_a": 0,
       "score_b": 2,
       "kickoff_utc": "2026-06-27T21:00Z",
-      "status": "STATUS_FULL_TIME"
+      "status": "STATUS_FULL_TIME",
+      "winner": "England"
     },
     "Colombia__vs__Portugal": {
       "score_a": 0,
@@ -418,7 +420,8 @@
       "score_a": 3,
       "score_b": 1,
       "kickoff_utc": "2026-06-27T23:30Z",
-      "status": "STATUS_FULL_TIME"
+      "status": "STATUS_FULL_TIME",
+      "winner": "DR Congo"
     },
     "Algeria__vs__Austria": {
       "score_a": 3,
@@ -430,7 +433,8 @@
       "score_a": 1,
       "score_b": 3,
       "kickoff_utc": "2026-06-28T02:00Z",
-      "status": "STATUS_FULL_TIME"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Argentina"
     }
   },
   "round_of_32": {
@@ -438,7 +442,8 @@
       "score_a": 2,
       "score_b": 1,
       "kickoff_utc": "2026-06-29T17:00Z",
-      "status": "STATUS_FULL_TIME"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Brazil"
     },
     "Germany__vs__Paraguay": {
       "score_a": 1,
@@ -446,6 +451,7 @@
       "kickoff_utc": "2026-06-29T20:30Z",
       "status": "STATUS_FINAL_PEN",
       "winner": "Paraguay",
+      "method": "pens",
       "shootout_a": 3,
       "shootout_b": 4
     },
@@ -455,6 +461,7 @@
       "kickoff_utc": "2026-06-30T01:00Z",
       "status": "STATUS_FINAL_PEN",
       "winner": "Morocco",
+      "method": "pens",
       "shootout_a": 2,
       "shootout_b": 3
     },
@@ -462,7 +469,7 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-06-30T17:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "France__vs__Sweden": {
       "score_a": 0,
@@ -525,5 +532,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-30T16:33:05+00:00"
+  "last_updated": "2026-06-30T17:06:33+00:00"
 }
