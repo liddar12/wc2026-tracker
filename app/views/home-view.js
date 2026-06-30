@@ -21,6 +21,7 @@ import { getFavoriteTeam, setFavoriteTeam, allTeamNames, favoriteTeamGroup } fro
 import { topMovers as eloTopMovers } from '../live-elo.js';
 import { loadGroupPicks, isStage1Complete, isStage2Complete } from '../group-picks-builder.js';
 import { loadBracketDraft } from '../bracket-builder.js';
+import { currentPhase } from '../lib/phase.js';
 
 const OPENING_KEY = 'opening_match';
 
@@ -60,6 +61,12 @@ export function renderHome(root, data) {
     root.appendChild(p);
     return;
   }
+  // Phase is the single source of truth for "where is the tournament?" — tag
+  // the view so phase-dependent visibility/ordering (CSS hooks, the pre-vs-live
+  // hero, the knockout MOTD) keys off one consistent answer instead of each
+  // section re-deriving it from raw kickoffs.
+  const phase = currentPhase(data);
+  root.dataset.phase = phase.phase;
   // Tournament-mode order (owner spec, June 11): Your team → Today's match
   // cards → Don't miss → Full schedule → Recent results → Jump to → Live Elo
   // movers. Hero + Play CTA stay on top as page chrome / the core action;
@@ -500,12 +507,7 @@ function renderTodaySection(data) {
 
   // B3 + favorite reorder: LIVE > favorite > everything else (by time).
   const fav = getFavoriteTeam();
-  const isLive = (m) => {
-    const k = Date.parse(m.kickoff_utc || '');
-    if (!Number.isFinite(k)) return false;
-    const now = Date.now();
-    return k <= now && k + 2 * 3600 * 1000 > now;
-  };
+  const isLive = (m) => isLiveWindow(m);
   const reorderedList = [
     ...upcoming.filter(isLive),
     ...upcoming.filter((m) => !isLive(m) && fav && (m.team_a === fav || m.team_b === fav)),
@@ -526,6 +528,8 @@ function renderTodaySection(data) {
     list.appendChild(largeMatchCard(enriched, {
       ...(found ? { actual: found.actual } : {}),
       ...(found?.mode ? { mode: found.mode } : {}),
+      ...(found?.winner ? { winner: found.winner } : {}),
+      ...(found?.method ? { method: found.method } : {}),
       onTap: (match) => {
         if (match.team_a && match.team_b && !isPlaceholder(match.team_a) && !isPlaceholder(match.team_b)) {
           location.hash = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
@@ -591,30 +595,66 @@ function renderFullScheduleCard() {
   return wrap;
 }
 
-function renderMatchOfTheDayChip(data) {
-  // Score each "today" match by upset risk × stage weight × composite-gap inverse
-  // (close games + late stage + high upset signal = high importance).
-  const todayIso = etDateISO(new Date().toISOString());
-  const candidates = (data.scheduleFull || [])
-    .filter((m) => etDateISO(m.kickoff_utc) === todayIso && m.stage === 'group');
+// Stage-aware "is this match live right now?" window. Group games run ~2h;
+// knockouts can run to extra time + penalties, so give them a ~3h window so a
+// just-finished-ET game still surfaces as live in the Today reorder.
+function isLiveWindow(m, now = Date.now()) {
+  const k = Date.parse(m?.kickoff_utc || '');
+  if (!Number.isFinite(k)) return false;
+  const windowMs = (m?.stage === 'group') ? 2 * 3600 * 1000 : 3 * 3600 * 1000;
+  return k <= now && k + windowMs > now;
+}
+
+const MOTD_STAGE_WEIGHT = {
+  group: 1, round_of_32: 2, round_of_16: 3,
+  quarterfinals: 4, semifinals: 5, third_place: 4, final: 6,
+};
+
+/**
+ * Pick today's Match-of-the-Day candidate, PURE + stage-agnostic.
+ * Scores each of today's fixtures by closeness (inverse composite gap) × stage
+ * weight × upset signal, sourcing the forecast row from group_matchups for
+ * group games and from data.knockoutMatchups for knockout games. The old code
+ * hard-filtered to stage==='group', so the chip vanished the moment the bracket
+ * began — knockout days, the most important ones, showed nothing.
+ * @returns {{ m, match, score }|null} the winning candidate, or null when none.
+ */
+export function selectMatchOfTheDay(data, nowMs = Date.now()) {
+  const todayIso = etDateISO(new Date(nowMs).toISOString());
+  const candidates = (data?.scheduleFull || [])
+    .filter((m) => etDateISO(m.kickoff_utc) === todayIso);
   if (!candidates.length) return null;
-  const stageWeight = { group: 1, round_of_32: 2, round_of_16: 3, quarterfinals: 4, semifinals: 5, third_place: 4, final: 6 };
-  const scored = candidates.map((m) => {
-    // Pull the group_matchups composite gap if available
-    const gm = data.groupMatchups?.[m.group];
-    const match = gm?.matches?.find((x) =>
+
+  const koRows = Array.isArray(data?.knockoutMatchups) ? data.knockoutMatchups : [];
+  const findRow = (m) => {
+    const same = (x) =>
       (x.team_a === m.team_a && x.team_b === m.team_b) ||
-      (x.team_a === m.team_b && x.team_b === m.team_a));
-    if (!match) return { m, score: 0 };
+      (x.team_a === m.team_b && x.team_b === m.team_a);
+    if (m.stage === 'group') {
+      return data?.groupMatchups?.[m.group]?.matches?.find(same) || null;
+    }
+    // Knockout: prefer match_id, fall back to the team pair (either orientation).
+    return koRows.find((x) => x.match_id && x.match_id === m.match_id)
+        || koRows.find(same) || null;
+  };
+
+  const scored = candidates.map((m) => {
+    const match = findRow(m);
+    if (!match) return { m, match: null, score: 0 };
     const gap = Math.abs(match.gap || 5);
     const closeness = 1 / (gap + 1);  // smaller gap → higher score
     const upsetIndicators = match.upset_risk?.indicators?.length || 0;
-    const sw = stageWeight[m.stage] || 1;
+    const sw = MOTD_STAGE_WEIGHT[m.stage] || 1;
     return { m, match, score: closeness * sw * (1 + 0.4 * upsetIndicators) };
   });
   scored.sort((a, b) => b.score - a.score);
   const best = scored[0];
-  if (!best || best.score === 0) return null;
+  return (best && best.score > 0) ? best : null;
+}
+
+function renderMatchOfTheDayChip(data) {
+  const best = selectMatchOfTheDay(data);
+  if (!best) return null;
   const m = best.m;
   const wrap = document.createElement('section');
   wrap.className = 'home-card motd-card';
@@ -622,11 +662,16 @@ function renderMatchOfTheDayChip(data) {
   const t = new Date(m.kickoff_utc);
   const time = isNaN(t) ? 'TBA' : t.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   const upsetLabel = best.match?.upset_risk?.indicators?.[0]?.label || 'Toss-up';
+  // Group games read "Group D"; knockout games read their round ("Quarterfinal")
+  // — the old "Group ?" was nonsense once the bracket started.
+  const stageLabel = m.stage === 'group'
+    ? `Group ${escapeHtml(m.group || '?')}`
+    : escapeHtml(prettyStage(m));
   wrap.innerHTML = `
     <h2 class="home-card-title">⭐ Don't miss <span class="muted home-card-meta">${escapeHtml(upsetLabel)}</span></h2>
     <div class="motd-row">
       <div class="motd-teams">${flagFor(m.team_a)} <strong>${escapeHtml(m.team_a)}</strong> vs <strong>${escapeHtml(m.team_b)}</strong> ${flagFor(m.team_b)}</div>
-      <div class="motd-meta muted">${escapeHtml(time)} · Group ${escapeHtml(m.group || '?')}</div>
+      <div class="motd-meta muted">${escapeHtml(time)} · ${stageLabel}</div>
     </div>
   `;
   wrap.addEventListener('click', () => {

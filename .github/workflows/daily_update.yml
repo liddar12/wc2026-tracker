@@ -15,8 +15,13 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
+# SINGLE cross-workflow concurrency group shared by all four data-writing crons
+# (daily / frequent / live / pre-kickoff). They all commit to data/ on main, so
+# serializing them here means only one runs at a time — eliminating the
+# push-race window where a rebase clobbered a sibling cron's just-committed data
+# (RCA bugs 4–5). cancel-in-progress:false queues runs instead of dropping them.
 concurrency:
-  group: daily-update
+  group: data-writers
   cancel-in-progress: false
 
 jobs:
@@ -127,9 +132,16 @@ jobs:
         run: python scripts/compute_fatigue.py
       - name: Compute model xG
         run: python scripts/compute_xg.py
+      # Build the knockout-stage matchup rows (data/knockout_matchups.json) from
+      # the resolved bracket + xG. Must run AFTER resolve_knockouts (fills the
+      # bracket slots) and compute_xg (provides the knockout xG keys) and BEFORE
+      # validate (which gates on knockout coverage in --strict mode).
+      - name: Build knockout matchups
+        run: python scripts/build_knockout_matchups.py
+        continue-on-error: true
 
       - name: Validate refreshed data
-        run: python3 scripts/validate_data.py
+        run: python3 scripts/validate_data.py --strict
 
       # P0-A2: alert if model inputs (teams/players) stop moving mid-tournament.
       # Non-blocking (always exits 0); opens a deduped stale-data issue.
@@ -149,15 +161,30 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: daily data refresh"
-            # Four cron workflows push to main concurrently — rebase + retry so
-            # a race loses a few seconds, not the whole cycle's data. On data
-            # conflicts prefer OUR freshly-generated files (-X theirs replays
-            # our commit's version during rebase).
+            # The data-writers concurrency group serializes the four crons, so a
+            # push race is rare; the rebase+retry is just belt-and-suspenders.
+            # PLAIN 'git pull --rebase' (no '-X theirs'): '-X theirs' silently
+            # DISCARDED the sibling cron's just-committed data on any overlap
+            # (RCA bugs 4–5). A genuine conflict instead re-runs the
+            # deterministic generators so both crons' inputs are reconciled
+            # before we re-stage only data/ and retry.
             n=0
             until git push; do
               n=$((n+1))
               if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
-              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+              if ! git pull --rebase origin main; then
+                git rebase --abort || true
+                # Reconcile against the freshly-pulled sibling data, then
+                # regenerate our deterministic outputs on top of it.
+                git reset --hard origin/main
+                python3 scripts/rebuild_composite.py || true
+                python3 scripts/build_knockout_matchups.py || true
+                python3 scripts/build_hybrid.py || true
+                python3 scripts/compute_xg.py || true
+                git add data/
+                git commit -m "chore: daily data refresh (reconciled)" || true
+                sleep 5
+              fi
             done
           fi
 

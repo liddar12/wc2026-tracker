@@ -14,7 +14,10 @@ export function confidenceBar(match, { title = 'Model prediction', showTip = tru
     wrap.appendChild(heading);
   }
 
-  const { team_a_wins, draw, team_b_wins } = match.probabilities;
+  // A model-less row (e.g. an unmodeled knockout fixture) carries no
+  // probabilities — default to zeros so the bar renders empty instead of
+  // throwing (defense in depth; callers normally gate on hasModel first).
+  const { team_a_wins = 0, draw = 0, team_b_wins = 0 } = match.probabilities || {};
   const bars = document.createElement('div');
   bars.className = 'bars';
   bars.setAttribute('role', 'img');

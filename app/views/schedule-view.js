@@ -142,6 +142,8 @@ export function renderScheduleView(root, data, params) {
     const card = largeMatchCard(enriched, {
       ...(found ? { actual: found.actual } : {}),
       ...(found?.mode ? { mode: found.mode } : {}),
+      ...(found?.winner ? { winner: found.winner } : {}),
+      ...(found?.method ? { method: found.method } : {}),
       favorite: fav,
       extraMeta: channelLabel,
       onTap: (mm) => {
@@ -169,8 +171,11 @@ function scheduleCard(match, venueById, fav) {
   card.className = 'schedule-card';
   const isFav = !!fav && (match.team_a === fav || match.team_b === fav);
   if (isFav) card.classList.add('is-fav');
-  const isGroup = match.stage === 'group' && match.team_a && match.team_b;
-  if (isGroup) {
+  // Link ANY fixture whose teams are real (not slot placeholders), regardless of
+  // stage — a resolved knockout tie (e.g. Argentina v France) is just as
+  // clickable as a group game. is-tba stays only for true placeholders (W73/3 ABC).
+  const resolved = !isSlotPlaceholder(match.team_a) && !isSlotPlaceholder(match.team_b);
+  if (resolved) {
     card.href = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
   } else {
     card.href = '#/schedule';

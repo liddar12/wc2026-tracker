@@ -43,9 +43,13 @@ def load(name: str):
 
 
 def save(name: str, data) -> None:
-    (DATA_DIR / name).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    # Atomic + ASCII (repo on-disk convention; staleness watchdog compares diffs).
+    path = DATA_DIR / name
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(
+        json.dumps(data, ensure_ascii=True, indent=2) + "\n", encoding="utf-8"
     )
+    tmp.replace(path)
 
 
 def slugify(name: str) -> str:
@@ -95,9 +99,20 @@ def main() -> int:
     if not isinstance(mrefs, dict):
         mrefs = {}
 
+    # Snapshot the ref + assignment data (excluding __meta__) so we only bump
+    # updated_at when something actually changed — a no-op bump would make
+    # referees.json look perpetually fresh and defeat the staleness watchdog.
+    before_refs = {k: v for k, v in refs.items() if k != "__meta__"}
+    before_mrefs = dict(mrefs)
+
     n = try_wikipedia(refs)
     if n:
         log(f"refs: refreshed {n} entries from Wikipedia")
+
+    after_refs = {k: v for k, v in refs.items() if k != "__meta__"}
+    if after_refs == before_refs and mrefs == before_mrefs:
+        log("refs: no data change; leaving updated_at untouched")
+        return 0
 
     refs.setdefault("__meta__", {})
     refs["__meta__"]["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")

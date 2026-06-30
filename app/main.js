@@ -73,6 +73,14 @@ import { extractJoinCodeFromPath } from './competition-rules.js';
 import { defaultGroup } from './favorites.js';
 import { initToolbarAuth } from './toolbar-auth.js';
 
+// B1/Epic-F: the 30s live-refresh re-renders the WHOLE view (innerHTML='' +
+// scrollTo(0,0)), which yanked the reader to the top mid-match. A live-refresh
+// is NOT a route change, so we preserve the scroll position across it. The
+// `data:live-refresh` handler sets this flag right before it triggers the
+// re-render; renderView() reads + clears it to restore scrollY instead of
+// jumping home.
+let pendingLiveRefresh = false;
+
 const TITLES = {
   home: 'WC26',
   play: 'Play',
@@ -103,6 +111,15 @@ const TITLES = {
 function renderView() {
   const state = getState();
   const root = document.getElementById('view');
+  // A live-refresh re-render must NOT scroll the reader back to the top (it
+  // fires every 30s during a match). Capture the current scroll so we can
+  // restore it after the re-render; a real route change leaves the flag false
+  // and keeps the scroll-to-top below.
+  const isLiveRefresh = pendingLiveRefresh;
+  pendingLiveRefresh = false;
+  const savedScrollY = isLiveRefresh
+    ? (window.scrollY ?? window.pageYOffset ?? 0)
+    : 0;
   // Apply nav hiding on every path (incl. the pre-data skeleton) so flagged
   // tabs never flash visible before data loads.
   applyHiddenFeatures(document);
@@ -199,7 +216,10 @@ function renderView() {
   }
   // Reversible nav/feature hiding: remove flagged tabs + in-content entry points.
   applyHiddenFeatures(document);
-  window.scrollTo(0, 0);
+  // Route change → scroll to top (the new view starts at its top). Live-refresh
+  // → restore where the reader was so the page doesn't jump mid-match.
+  if (isLiveRefresh) window.scrollTo(0, savedScrollY);
+  else window.scrollTo(0, 0);
 }
 
 // R6 stubs — full views ship in T2 and T3.
@@ -299,7 +319,12 @@ initTeamSkin();
 // current view re-renders with updated scores.
 window.addEventListener('data:live-refresh', (e) => {
   const fresh = e.detail?.data;
-  if (fresh) setData(fresh);
+  if (fresh) {
+    // Mark the upcoming re-render as a live-refresh so renderView() preserves
+    // scrollY instead of jumping the reader to the top every 30s.
+    pendingLiveRefresh = true;
+    setData(fresh);
+  }
 });
 initSettingsPrefs();
 initCountdownBadge({ title: 'WC26 Tracker' });

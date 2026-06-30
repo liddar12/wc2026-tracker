@@ -28,6 +28,11 @@ const REQUIRED_FILES = [
 const OPTIONAL_FILES = [
   { file: 'venues.json',         fallback: [] },
   { file: 'schedule_full.json',  fallback: [] },
+  // Epic-A contract: knockout-stage match rows (mirror group_matchups rows +
+  // advance_pct_a/b, is_knockout, stage, match_id, kickoff_utc). An ARRAY like
+  // venues/schedule_full — default [] so knockout-aware views (home MOTD, etc.)
+  // degrade to "none yet" rather than crashing before the bracket exists.
+  { file: 'knockout_matchups.json', fallback: [] },
   { file: 'lineups.json',        fallback: {} },
   { file: 'referees.json',       fallback: {} },
   { file: 'match_referees.json', fallback: {} },
@@ -107,6 +112,12 @@ async function loadAll(forceRefresh = false) {
     out[fileToKey(f)] = json;
   }
 
+  // Track which optional feeds fell back to their hard-coded default (file
+  // genuinely absent / unfetchable + no cache) vs. loaded a real payload that
+  // happens to be empty. Both still surface the same `fallback` VALUE to keep
+  // existing consumers untouched; the marker just lets a caller (e.g. a
+  // knockout-aware view) tell "no bracket file yet" from "bracket file is []".
+  const fellBack = {};
   for (const { file, fallback } of OPTIONAL_FILES) {
     let json = (isFresh && file !== 'markets.json') ? readCache(file) : null;
     if (!json || forceRefresh) {
@@ -115,11 +126,16 @@ async function loadAll(forceRefresh = false) {
         writeCache(file, json);
       } catch {
         json = readCache(file);
-        if (!json) json = fallback;
+        if (!json) { json = fallback; fellBack[fileToKey(file)] = true; }
       }
     }
     out[fileToKey(file)] = json;
   }
+  // Non-enumerable so it never shows up in JSON.stringify / Object.keys passes
+  // that walk `out` as data — opt-in lookup only.
+  Object.defineProperty(out, '__optionalFallbacks__', {
+    value: fellBack, enumerable: false, configurable: true,
+  });
 
   writeCache('meta.json', meta);
   localStorage.setItem(LS_VERSION_KEY, meta.data_version);
@@ -145,6 +161,7 @@ function fileToKey(file) {
     case 'actual_results.json':  return 'actualResults';
     case 'venues.json':          return 'venues';
     case 'schedule_full.json':   return 'scheduleFull';
+    case 'knockout_matchups.json': return 'knockoutMatchups';
     case 'lineups.json':         return 'lineups';
     case 'referees.json':        return 'referees';
     case 'match_referees.json':  return 'matchReferees';

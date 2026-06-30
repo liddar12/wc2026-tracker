@@ -176,6 +176,17 @@ def load_prev() -> dict:
         return {}
 
 
+def _payload_signature(feed: dict) -> str:
+    """Canonical string of the substantive injury data, ignoring the volatile
+    __meta__ timestamps (updated_at / apifootball_updated_at) that change every
+    run regardless of content. Used to skip no-op rewrites + updated_at bumps."""
+    meta = dict(feed.get("__meta__") or {})
+    meta.pop("updated_at", None)
+    meta.pop("apifootball_updated_at", None)
+    sig = {"by_team": feed.get("by_team") or {}, "count": feed.get("count"), "__meta__": meta}
+    return json.dumps(sig, sort_keys=True, ensure_ascii=True)
+
+
 def prev_af_entries(prev: dict) -> dict[str, list]:
     """Carry forward previously-fetched API-Football entries (when throttled)."""
     out: dict[str, list] = {}
@@ -302,7 +313,22 @@ def main():
     if args.selftest:
         return selftest()
     feed = build()
-    OUT.write_text(json.dumps(feed, ensure_ascii=False, indent=2) + "\n")
+
+    # Only rewrite + bump updated_at when the substantive payload changed.
+    # build() always stamps __meta__.updated_at with `now`, so comparing the
+    # whole feed would always differ; compare everything EXCEPT the volatile
+    # timestamps. A no-op bump would make injuries.json look fresh forever and
+    # defeat the staleness watchdog.
+    prev = load_prev()
+    if _payload_signature(prev) == _payload_signature(feed):
+        m = prev.get("__meta__") or {}
+        log("injuries: no data change; leaving updated_at untouched")
+        return 0
+
+    # Atomic + ASCII write (repo on-disk convention; crash-safe swap).
+    tmp = OUT.with_suffix(OUT.suffix + ".tmp")
+    tmp.write_text(json.dumps(feed, ensure_ascii=True, indent=2) + "\n")
+    tmp.replace(OUT)
     m = feed["__meta__"]
     log(f"injuries: {m['espn_entries']} ESPN + {m['apifootball_entries']} API-Football "
         f"({m['apifootball_status']}) across {len(feed['by_team'])} team(s)")

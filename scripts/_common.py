@@ -84,11 +84,18 @@ def load_json(name: str) -> Any:
 
 
 def save_json(name: str, data: Any) -> None:
-    """Atomically write JSON, sorted? No — preserve dict order from data."""
+    """Atomically write JSON (tmp + os.replace), preserving dict order from data.
+
+    ensure_ascii=True matches the on-disk encoding of every data/*.json file
+    (the repo convention) — non-ASCII team/player names are stored as \\uXXXX
+    escapes, so a co-writer using ensure_ascii=False would churn the diff and
+    fight the other writers of the same file. The tmp+replace swap means a crash
+    mid-write never leaves a truncated/half-written JSON behind.
+    """
     path = DATA_DIR / name
     tmp = path.with_suffix(path.suffix + ".tmp")
     with tmp.open("w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
+        json.dump(data, f, ensure_ascii=True, indent=2)
         f.write("\n")
     tmp.replace(path)
     log(f"wrote {name}")

@@ -598,6 +598,26 @@ body {
   text-align: center;
   padding: 32px 16px;
 }
+/* Hook classes emitted by app/lib/empty-state.js (icon + primary + detail).
+ * Centralized here so every empty section reads consistently. */
+.empty-state-icon {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+  margin-bottom: 10px;
+  opacity: 0.75;
+}
+.empty-state-message {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+.empty-state-detail {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--text-muted);
+}
 
 /* Pick history */
 .pick-list { display: grid; gap: 8px; }
@@ -2505,6 +2525,51 @@ body.search-open { overflow: hidden; }
   font-size: 12px;
   color: var(--text-muted);
   letter-spacing: 0.08em;
+}
+/* Past-kickoff match with no recorded result yet — neutral, never a phantom
+ * score. Reuses .lcard-vs sizing. */
+.lcard-pending {
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+}
+
+/* Winner highlight (final cards). The accent color + bold weight is the primary
+ * cue; the trailing ✓ via ::after guarantees the cue is NOT color-only, so it
+ * survives color-blindness and grayscale (ADA / WCAG 1.4.1). */
+.lcard-team.is-winner .lcard-team-name {
+  color: var(--accent);
+  font-weight: 800;
+}
+.lcard-team.is-winner .lcard-team-name::after {
+  content: " ✓";
+  color: var(--good);
+  font-weight: 700;
+  /* keep the check on the baseline next to the name */
+  font-size: 0.85em;
+}
+/* The team-b name sits before its flag and is right-aligned; the check still
+ * reads correctly trailing the name. */
+
+/* Method-of-victory tag in the FINAL eyebrow (FT / AET / pens). Small pill so a
+ * knockout decided in extra time or on penalties is unambiguous. */
+.lcard-method {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+/* AET/pens get the accent tint — they're the noteworthy, non-regulation
+ * resolutions. */
+.lcard-method[data-method="aet"],
+.lcard-method[data-method="pens"] {
+  background: color-mix(in srgb, var(--accent) 16%, transparent);
+  color: var(--accent);
 }
 .lcard-meta {
   margin-top: 10px;

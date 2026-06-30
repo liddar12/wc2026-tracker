@@ -21,15 +21,69 @@ import os
 import sys
 import urllib.request
 from datetime import datetime, timezone
+from pathlib import Path
 
-WATCH = ["data/teams.json", "data/players.json"]
+# Commit-age watch: model-strength inputs that SHOULD move during the
+# tournament. players.json is intentionally NOT here — rosters are locked once
+# the tournament starts (frozen since 2026-05-27 is expected, not a fault), so
+# age-alarming it produced a permanent false positive. Its emptiness is still
+# guarded below.
+WATCH = ["data/teams.json"]
+
+# Emptiness watch: volatile, fan-facing feeds whose scrapers fail silently under
+# continue-on-error. An EMPTY feed mid-tournament is the real failure mode (the
+# file's commit timestamp can look fresh while its payload is {}), so we read
+# the local file and alarm on emptiness regardless of commit age.
+EMPTY_WATCH = [
+    "data/teams.json",
+    "data/players.json",
+    "data/scorers.json",
+    "data/markets.json",
+    "data/form.json",
+]
 THRESHOLD_HOURS = 36
 TOURNAMENT_START = "2026-06-11"
 TOURNAMENT_END = "2026-07-20"
 LABEL = "stale-data"
 
+ROOT = Path(__file__).resolve().parent.parent
+
 
 def log(m): print(f"[staleness] {m}", file=sys.stderr, flush=True)
+
+
+def _payload_count(name: str, obj) -> int:
+    """Count the substantive rows in a data file, ignoring __meta__ wrappers.
+
+    Returns the number of real entries so 0 == empty feed (the failure mode).
+    markets.json keys off its tournament_winner list; dict/list feeds count
+    their non-__meta__ entries."""
+    if name.endswith("markets.json") and isinstance(obj, dict):
+        return len(obj.get("tournament_winner") or [])
+    if isinstance(obj, dict):
+        return len([k for k in obj if k != "__meta__"])
+    if isinstance(obj, list):
+        return len(obj)
+    return 0
+
+
+def empty_feeds(now):
+    """Local-file emptiness scan. Returns [(path, reason), ...] for empty feeds
+    during the tournament window. Needs no GitHub token (runs anywhere)."""
+    out = []
+    for rel in EMPTY_WATCH:
+        p = ROOT / rel
+        if not p.exists():
+            out.append((rel, "missing"))
+            continue
+        try:
+            obj = json.loads(p.read_text(encoding="utf-8"))
+        except Exception as e:  # noqa: BLE001
+            out.append((rel, f"unreadable ({e})"))
+            continue
+        if _payload_count(rel, obj) == 0:
+            out.append((rel, "empty payload"))
+    return out
 
 
 def api(url, token, method="GET", body=None):
@@ -66,10 +120,17 @@ def main():
     for path in WATCH:
         age = last_commit_age_hours(repo, path, token, now)
         if age is not None and age > THRESHOLD_HOURS:
-            stale.append((path, round(age, 1)))
+            stale.append((path, f"{round(age, 1)}h stale"))
             log(f"STALE: {path} unchanged {age:.1f}h (> {THRESHOLD_HOURS}h)")
         elif age is not None:
             log(f"ok: {path} {age:.1f}h")
+
+    # Emptiness is the real failure mode (a silently-failing scraper leaves a
+    # fresh-timestamped but EMPTY feed) — flag it even when the commit looks new.
+    for path, reason in empty_feeds(now):
+        stale.append((path, reason))
+        log(f"EMPTY: {path} — {reason}")
+
     if not stale:
         log("all watched inputs fresh")
         return 0
@@ -86,10 +147,11 @@ def main():
     except Exception as e:  # noqa: BLE001
         log(f"dedupe check failed: {e}")
 
-    body = ("Model inputs have not updated within "
-            f"{THRESHOLD_HOURS}h during the tournament — predictions may be stale:\n\n"
-            + "\n".join(f"- `{p}` — {h}h stale" for p, h in stale)
-            + "\n\nLikely a dead rating source. See docs/POSTMORTEM_2026-06-19.md.")
+    body = ("Model inputs are stale or empty during the tournament — predictions "
+            "may be frozen / fan-facing feeds blank:\n\n"
+            + "\n".join(f"- `{p}` — {reason}" for p, reason in stale)
+            + "\n\nLikely a dead rating source or a silently-failing scraper. "
+            "See docs/POSTMORTEM_2026-06-19.md.")
     try:
         api(f"https://api.github.com/repos/{repo}/issues", token, method="POST",
             body={"title": "🟠 Model inputs stale (analytics not moving)", "body": body, "labels": [LABEL, "pipeline-alert"]})

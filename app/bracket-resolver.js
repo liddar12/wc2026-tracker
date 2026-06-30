@@ -3,6 +3,14 @@
    bracket-view (projected/model). Keeps slot semantics ("1A", "2B",
    "3 ABCDF", "W74", "L101") in one place. */
 
+// Status gating comes from the shared match-status lib so the knockout-only
+// resolutions — extra time (STATUS_FINAL_AET) and penalty shootout
+// (STATUS_FINAL_PEN) — are treated as final identically here and in the scoring
+// gate. Standings/winner-advancement consume ONLY final records: a halftime 1-0
+// (STATUS_FIRST_HALF) must not advance the current leader mid-match. Records
+// without a status field (manual/legacy) read as final.
+import { isFinalStatus } from './lib/match-status.js';
+
 export const STAGE_LABELS = {
   round_of_32:   'Round of 32',
   round_of_16:   'Round of 16',
@@ -16,22 +24,9 @@ export const STAGE_ORDER = [
   'round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final',
 ];
 
-// ESPN statuses meaning the match is over. scrape_live_results.py also writes
-// IN-PROGRESS records (so match cards can show live scores) — standings and
-// winner-advancement must only consume FINAL results, or a halftime 1-0 counts
-// as a played win and the bracket advances the current leader mid-match.
-// Records without a status field (manual/legacy) are treated as final.
-// AET/PEN = knockout resolutions (extra time / penalty shootout): the score is
-// the regulation score and the advancing team is in rec.winner — without these
-// a finished penalty knockout never advanced the bracket.
-const FINAL_STATUSES = new Set([
-  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
-  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
-]);
-
-export function isFinalResultRecord(rec) {
-  return !rec?.status || FINAL_STATUSES.has(rec.status);
-}
+// Re-exported under the historical name so the many call sites in this module
+// (and any importers) stay unchanged; the membership now lives in the lib.
+export const isFinalResultRecord = isFinalStatus;
 
 const SLOT_RE = /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/;
 

@@ -37,6 +37,22 @@ def load(f):
     return json.load(open(dpath(f)))
 
 
+def save_atomic(f, data):
+    """Atomic JSON write (tmp + os.replace) with ensure_ascii=True.
+
+    Atomic so a crash mid-write never leaves group_matchups.json truncated for
+    the next cron / the live UI. ensure_ascii=True matches the on-disk encoding
+    of every data/*.json (the repo convention) and keeps the diff stable so this
+    co-writer doesn't fight rebuild_composite over the same file.
+    """
+    path = dpath(f)
+    tmp = path + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as fh:
+        json.dump(data, fh, ensure_ascii=True, indent=2)
+        fh.write("\n")
+    os.replace(tmp, path)
+
+
 W = (1 / 3, 1 / 3, 1 / 3)          # J5L, DT, Kalshi (default; meta.hybrid_weights overrides)
 MU, BETA, LAMBDA3, PEN_BETA = 0.30, 0.70, 0.12, 0.35
 N_SIMS, SEED = 20000, 2026
@@ -203,7 +219,11 @@ def main():
             else:
                 m["predicted_winner"] = m["team_b"]; m["win_confidence_pct"] = round(pb * 100, 1)
             changed += 1
-    json.dump(gm, open(dpath("group_matchups.json"), "w"), indent=2)
+    # Atomic swap: the full ⅓ blend is computed in-memory above, so we only
+    # overwrite group_matchups.json once the WHOLE blend succeeded. A crash
+    # mid-loop (above) raises before this line and leaves the previous file
+    # intact — no half-blended probabilities, no predicted_winner flicker.
+    save_atomic("group_matchups.json", gm)
 
     # --- Monte-Carlo bracket → forecast.json (group→bracket→finals) ---
     gmap = OrderedDict()
@@ -243,7 +263,7 @@ def main():
         "bracket_simulation": {"iterations": N_SIMS, "seed": SEED},
         "teams": rows,
     }
-    json.dump(forecast, open(dpath("forecast.json"), "w"), indent=2)
+    save_atomic("forecast.json", forecast)
     print(f"hybrid: group bars updated ({changed}) · forecast champion top="
           f"{rows[0]['team']} {rows[0]['champion'] * 100:.1f}% · champ sum "
           f"{sum(r['champion'] for r in rows):.3f}")

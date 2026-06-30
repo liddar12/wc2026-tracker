@@ -25,11 +25,16 @@ export function matchupCard(match, data) {
   const predLabel = predictionLabel(match);
   const predClass = predictionClass(match);
 
+  // A model-less row (unmodeled knockout fixture) has no win_confidence_pct —
+  // show '—%' instead of throwing on .toFixed (defense in depth).
+  const confPct = Number.isFinite(match.win_confidence_pct)
+    ? match.win_confidence_pct.toFixed(0) + '%'
+    : '—%';
   const vs = document.createElement('div');
   vs.className = 'vs';
   vs.innerHTML = `
     <span class="pred ${predClass}">${escapeHtml(predLabel)}</span>
-    <span>${match.win_confidence_pct.toFixed(0)}%${hasHighSeverity(match.upset_risk?.indicators) ? ' <span class="upset-dot" title="Upset risk"></span>' : ''}</span>
+    <span>${confPct}${hasHighSeverity(match.upset_risk?.indicators) ? ' <span class="upset-dot" title="Upset risk"></span>' : ''}</span>
   `;
   const div = divergenceLine(markets, match);
   if (div) vs.appendChild(div);

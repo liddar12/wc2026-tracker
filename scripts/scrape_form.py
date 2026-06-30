@@ -35,9 +35,13 @@ def load(name: str):
 
 
 def save(name: str, data) -> None:
-    (DATA_DIR / name).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    # Atomic + ASCII (repo on-disk convention; staleness watchdog compares diffs).
+    path = DATA_DIR / name
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(
+        json.dumps(data, ensure_ascii=True, indent=2) + "\n", encoding="utf-8"
     )
+    tmp.replace(path)
 
 
 def main() -> int:
@@ -47,6 +51,12 @@ def main() -> int:
         out = {}
     if not isinstance(teams, dict):
         return 0
+
+    # Snapshot the team rows (excluding __meta__) so we only bump updated_at —
+    # and only rewrite the file — when real form data actually changed. A
+    # no-op bump would otherwise make form.json look fresh forever and defeat
+    # the staleness watchdog (P0-A2).
+    before = {k: v for k, v in out.items() if k != "__meta__"}
 
     refreshed = 0
     for team in teams:
@@ -111,6 +121,10 @@ def main() -> int:
             out[team] = rows[:5]
             refreshed += 1
 
+    after = {k: v for k, v in out.items() if k != "__meta__"}
+    if after == before:
+        log("form: no data change; leaving updated_at untouched")
+        return 0
     out.setdefault("__meta__", {})
     out["__meta__"]["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     save("form.json", out)

@@ -9,6 +9,8 @@
    Cached per data_version; cheap to recompute (<50ms for a tournament).
 */
 
+import { FINAL_STATUSES } from './lib/match-status.js';
+
 const K_GROUP = 30;     // K-factor for group stage
 const K_KO = 40;        // higher K for knockouts (higher stakes)
 const HOME_BONUS = 100; // host bonus for USA/Mexico/Canada — bumps expected score
@@ -31,7 +33,10 @@ export function recomputeElo(data) {
   // (was counting them as draws). Iterate ALL knockout tiers — the old code
   // read a knockouts key this structure never had, so KO games never counted —
   // chronologically so the result matches the server (scripts/compute_elo.py).
-  const FINAL = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+  // Use the CANONICAL FINAL set from match-status.js: the old local set omitted
+  // STATUS_FINAL_AET / STATUS_FINAL_PEN, so a knockout decided in extra time or
+  // on penalties was skipped here and never moved the client Elo / movers card.
+  const FINAL = FINAL_STATUSES;
   const KO_TIERS = ['round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final'];
   const matches = [];
   for (const [tier, k] of [['group_stage', K_GROUP], ...KO_TIERS.map((t) => [t, K_KO])]) {
@@ -74,9 +79,13 @@ function applyEloUpdate(elo, a, b, rec, k) {
   if (scoreA > scoreB) { actualA = 1; actualB = 0; }
   else if (scoreA < scoreB) { actualA = 0; actualB = 1; }
   else {
-    // Penalty winner (knockouts) — give the winner ~75% credit, loser 25%
-    if (rec?.penalty_winner === a) { actualA = 0.75; actualB = 0.25; }
-    else if (rec?.penalty_winner === b) { actualA = 0.25; actualB = 0.75; }
+    // Knockout tie broken by extra time / penalties: the regulation score is a
+    // draw, so the winner lives in rec.winner (the canonical advancing team —
+    // the field the scraper actually writes). The old code read a winner field
+    // that nothing populated, so shootout/ET winners silently scored as
+    // 0.5/0.5 draws. Give the winner ~75% credit, the loser 25%.
+    if (rec?.winner === a) { actualA = 0.75; actualB = 0.25; }
+    else if (rec?.winner === b) { actualA = 0.25; actualB = 0.75; }
     else { actualA = 0.5; actualB = 0.5; }
   }
 

@@ -20,16 +20,21 @@ schedule. We only need a comparable per-team xG so the matchup-detail view
 can show "Spain 1.8 xG vs Croatia 1.1 xG" alongside the existing composite
 breakdown.
 
-Inputs:  data/teams.json, data/group_matchups.json,
+It also covers KNOCKOUT fixtures: schedule_full.json's resolved knockout rows
+(stage != group, real team names) get the SAME per-side xG under a
+"TeamA__vs__TeamB" key, so the matchup-detail view has xG for a R32+ game too.
+
+Inputs:  data/teams.json, data/group_matchups.json, data/schedule_full.json,
          optionally data/form.json (treated as missing if empty)
-Output:  data/xg.json keyed by match_id:
-         { match_id: { team_a_xg, team_b_xg, formula_version } }
+Output:  data/xg.json keyed by match_id / "TeamA__vs__TeamB":
+         { key: { team_a_xg, team_b_xg, formula_version } }
 
 Pure stdlib. No network. Idempotent.
 """
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -41,6 +46,18 @@ FORM_COEF = 0.04
 XG_MIN = 0.2
 XG_MAX = 4.5
 FORMULA_VERSION = "v1"
+
+KNOCKOUT_STAGES = {
+    "round_of_32", "round_of_16", "quarterfinals",
+    "semifinals", "third_place", "final",
+}
+# Bracket-slot placeholders ("1A","2B","3_ABCDF","W73","L101","RU-A"…) — these
+# fixtures have no real teams yet, so skip them until resolve_knockouts fills in.
+PLACEHOLDER_RE = re.compile(r"^\d[A-L]$|^[A-L]\d|^3[A-L/_]|^3 |^W\d|^L\d|^1[A-L]|^2[A-L]|^RU", re.I)
+
+
+def is_placeholder(name) -> bool:
+    return not name or bool(PLACEHOLDER_RE.match(str(name).strip()))
 
 
 def load(name: str):
@@ -84,11 +101,34 @@ def clamp(x: float, lo: float, hi: float) -> float:
     return max(lo, min(hi, x))
 
 
+def side_xg(a: str, b: str, comp_a: float, comp_b: float, form: dict) -> dict:
+    """Per-side xG row for teams a/b given their composites. Shared by the group
+    and knockout loops so both use the identical formula (gap + recent form)."""
+    gap = (comp_a or 0) - (comp_b or 0)
+    xa = BASE_XG + GAP_COEF * gap
+    xb = BASE_XG - GAP_COEF * gap
+    fa = form_points(form.get(a))
+    fb = form_points(form.get(b))
+    if fa is not None:
+        xa += (fa - FORM_NEUTRAL) * FORM_COEF
+    if fb is not None:
+        xb += (fb - FORM_NEUTRAL) * FORM_COEF
+    return {
+        "team_a": a,
+        "team_b": b,
+        "team_a_xg": round(clamp(xa, XG_MIN, XG_MAX), 2),
+        "team_b_xg": round(clamp(xb, XG_MIN, XG_MAX), 2),
+        "formula_version": FORMULA_VERSION,
+        "used_form_a": fa is not None,
+        "used_form_b": fb is not None,
+    }
+
+
 def main() -> int:
     gm = load("group_matchups.json") or {}
     form = load("form.json") or {}
     schedule = load("schedule_full.json") or []
-    by_mid = {r["match_id"]: r for r in schedule if r.get("team_a") and r.get("team_b")}
+    teams = load("teams.json") or {}
 
     out: dict[str, dict] = {}
     for group, info in gm.items():
@@ -96,24 +136,28 @@ def main() -> int:
             a = m["team_a"]
             b = m["team_b"]
             mid = m.get("match_id") or f"{a}__vs__{b}"
-            gap = (m.get("composite_a") or 0) - (m.get("composite_b") or 0)
-            xa = BASE_XG + GAP_COEF * gap
-            xb = BASE_XG - GAP_COEF * gap
-            fa = form_points(form.get(a))
-            fb = form_points(form.get(b))
-            if fa is not None:
-                xa += (fa - FORM_NEUTRAL) * FORM_COEF
-            if fb is not None:
-                xb += (fb - FORM_NEUTRAL) * FORM_COEF
-            out[mid] = {
-                "team_a": a,
-                "team_b": b,
-                "team_a_xg": round(clamp(xa, XG_MIN, XG_MAX), 2),
-                "team_b_xg": round(clamp(xb, XG_MIN, XG_MAX), 2),
-                "formula_version": FORMULA_VERSION,
-                "used_form_a": fa is not None,
-                "used_form_b": fb is not None,
-            }
+            out[mid] = side_xg(a, b, m.get("composite_a"), m.get("composite_b"), form)
+
+    # Knockout fixtures: schedule_full's resolved (real-name) knockout rows get
+    # a "TeamA__vs__TeamB" key, same format as the group keys. Composites come
+    # from teams.json (the knockout schedule row carries no composite).
+    knockout = 0
+    for m in schedule:
+        if m.get("stage") not in KNOCKOUT_STAGES:
+            continue
+        a = m.get("team_a")
+        b = m.get("team_b")
+        if is_placeholder(a) or is_placeholder(b):
+            continue
+        ta = teams.get(a)
+        tb = teams.get(b)
+        if not ta or not tb:
+            continue
+        key = f"{a}__vs__{b}"
+        if key in out:  # already covered (shouldn't collide with group keys)
+            continue
+        out[key] = side_xg(a, b, ta.get("composite"), tb.get("composite"), form)
+        knockout += 1
 
     out["__meta__"] = {
         "formula_version": FORMULA_VERSION,
@@ -125,7 +169,7 @@ def main() -> int:
         "computed_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
     save("xg.json", out)
-    print(f"compute_xg: wrote xg.json with {len(out) - 1} matches")
+    print(f"compute_xg: wrote xg.json with {len(out) - 1} matches ({knockout} knockout)")
     return 0
 
 

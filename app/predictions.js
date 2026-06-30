@@ -15,8 +15,18 @@ export function modelChoice(match) {
   return null;
 }
 
+// Knockout tiers carry their results outside group_stage (keyed by the same
+// "TeamA__vs__TeamB" form). Read the row's own stage so a knockout matchup
+// scores against its tier, not only the group stage.
+const TIER_FOR_STAGE = {
+  round_of_32: 'round_of_32', round_of_16: 'round_of_16',
+  quarterfinals: 'quarterfinals', semifinals: 'semifinals',
+  third_place: 'third_place', final: 'final',
+};
+
 export function actualChoice(match, actualResults) {
-  const stage = actualResults?.group_stage || {};
+  const tierKey = TIER_FOR_STAGE[match?.stage] || 'group_stage';
+  const stage = actualResults?.[tierKey] || {};
   const key1 = `${match.team_a}__vs__${match.team_b}`;
   const key2 = `${match.team_b}__vs__${match.team_a}`;
   const rec = stage[key1] || stage[key2];

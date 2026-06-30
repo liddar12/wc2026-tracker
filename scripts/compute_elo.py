@@ -35,7 +35,13 @@ SCALE = DATA / "elo_scale.json"
 
 K_GROUP, K_KO, HOME_BONUS = 30, 40, 100
 HOSTS = {"USA", "Mexico", "Canada"}
-FINAL = {"STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME"}
+# AET/PEN are knockout finals (extra time / penalty shootout): they must count
+# in the Elo replay — the regulation score is a draw, so apply_update reads
+# rec.winner (the advancing team) to credit the shootout/ET result.
+FINAL = {
+    "STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME",
+    "STATUS_FINAL_AET", "STATUS_FINAL_PEN",
+}
 KO_TIERS = ("round_of_32", "round_of_16", "quarterfinals", "semifinals", "third_place", "final")
 
 

@@ -77,14 +77,79 @@ def stage_for_match_number(num):
     return None
 
 def find_target_dates():
-    """Return UTC dates [yesterday, +2 days] in YYYYMMDD form to query."""
+    """Return UTC dates [-3 days, +2 days] in YYYYMMDD form to query.
+
+    The lookback is widened to 3 days so a final that was MISSED on its match
+    day (GitHub throttles the crons heavily — a finished knockout could go
+    unscraped for a day or more) is still re-fetched and recorded on a later run.
+    """
     now = datetime.now(timezone.utc)
-    return [
-        (now - timedelta(days=1)).strftime("%Y%m%d"),
-        now.strftime("%Y%m%d"),
-        (now + timedelta(days=1)).strftime("%Y%m%d"),
-        (now + timedelta(days=2)).strftime("%Y%m%d"),
-    ]
+    days = range(-3, 3)  # yesterday-3 .. +2
+    return [(now + timedelta(days=d)).strftime("%Y%m%d") for d in days]
+
+
+def parse_result(sched_a, sched_b, t1, t2, score_1, score_2, status_type, comp1, comp2, kickoff):
+    """Build the actual_results record for one finished/in-progress match.
+
+    Pure (no network): given the schedule's team_a/team_b orientation, the two
+    ESPN competitors (t1/t2 normalized names, scores, and their full competitor
+    dicts), and the status, return the rec dict or None if scores are missing.
+
+    Knockout winners: ESPN exposes a per-competitor "winner" boolean. We record
+    rec["winner"] for ANY completed knockout — a regulation win too, not only a
+    penalty tie (the old `and sa == sb` gate dropped regulation winners, so the
+    bracket could not score/advance a R32 game won 2-1 in normal time). The
+    shootout tally is still captured when ESPN provides it.
+    """
+    # Map ESPN scores to schedule team_a/team_b orientation.
+    if t1 == sched_a and t2 == sched_b:
+        score_a, score_b = score_1, score_2
+        c_a, c_b = comp1, comp2
+    elif t1 == sched_b and t2 == sched_a:
+        score_a, score_b = score_2, score_1
+        c_a, c_b = comp2, comp1
+    else:
+        return None
+
+    try:
+        sa = int(score_a) if score_a is not None else None
+        sb = int(score_b) if score_b is not None else None
+    except (TypeError, ValueError):
+        sa = sb = None
+    if sa is None or sb is None:
+        return None
+
+    rec = {
+        "score_a": sa,
+        "score_b": sb,
+        "kickoff_utc": kickoff,
+        "status": status_type,
+    }
+
+    if status_type in STATUS_COMPLETE:
+        # Winner: prefer ESPN's per-competitor boolean (set for ALL completed
+        # knockouts incl. regulation wins), fall back to comparing the scores.
+        wa = bool(c_a.get("winner"))
+        wb = bool(c_b.get("winner"))
+        if wa:
+            rec["winner"] = sched_a
+        elif wb:
+            rec["winner"] = sched_b
+        elif sa > sb:
+            rec["winner"] = sched_a
+        elif sb > sa:
+            rec["winner"] = sched_b
+        # Method of victory: AET / penalty shootout when ESPN flags it.
+        if status_type == "STATUS_FINAL_PEN":
+            rec["method"] = "pens"
+        elif status_type == "STATUS_FINAL_AET":
+            rec["method"] = "aet"
+        # Shootout tally (oriented to schedule team_a/team_b) when present.
+        so_a = c_a.get("shootoutScore")
+        so_b = c_b.get("shootoutScore")
+        if so_a is not None and so_b is not None:
+            rec["shootout_a"], rec["shootout_b"] = so_a, so_b
+    return rec
 
 def main():
     schedule = json.loads(SCHEDULE_FULL.read_text())
@@ -134,45 +199,17 @@ def main():
             if not sched: continue
             stage = stage_for_match_number(sched.get("match_number", 0)) or "group_stage"
 
-            # Map both team names to schedule's team_a / team_b orientation
+            # Map both team names to schedule's team_a / team_b orientation and
+            # build the record (winner/method/shootout) via the pure helper.
             sched_a = sched["team_a"]; sched_b = sched["team_b"]
-            if t1 == sched_a and t2 == sched_b:
-                score_a, score_b = score_1, score_2
-            elif t1 == sched_b and t2 == sched_a:
-                score_a, score_b = score_2, score_1
-            else:
-                # Order mismatch (shouldn't happen with normalize), skip
+            rec = parse_result(
+                sched_a, sched_b, t1, t2, score_1, score_2, status_type,
+                competitors[0], competitors[1], kickoff,
+            )
+            if rec is None:
                 continue
 
-            try:
-                sa = int(score_a) if score_a is not None else None
-                sb = int(score_b) if score_b is not None else None
-            except Exception:
-                sa = sb = None
-            if sa is None or sb is None: continue
-
             key_match = f"{sched_a}__vs__{sched_b}"
-            rec = {
-                "score_a": sa,
-                "score_b": sb,
-                "kickoff_utc": kickoff,
-                "status": status_type,
-            }
-            # Knockout penalty winner: ESPN sets a "winner" boolean per competitor
-            # (the score stays the regulation tie). Capture the advancing team and
-            # the shootout tally (oriented to the schedule's team_a/team_b).
-            if status_type in STATUS_COMPLETE and sa == sb:
-                w1 = competitors[0].get("winner")
-                w2 = competitors[1].get("winner")
-                if w1: rec["winner"] = t1
-                elif w2: rec["winner"] = t2
-                so1 = competitors[0].get("shootoutScore")
-                so2 = competitors[1].get("shootoutScore")
-                if so1 is not None and so2 is not None:
-                    if t1 == sched_a:
-                        rec["shootout_a"], rec["shootout_b"] = so1, so2
-                    else:
-                        rec["shootout_a"], rec["shootout_b"] = so2, so1
             prev = actual.get(stage, {}).get(key_match)
             if prev != rec:
                 actual.setdefault(stage, {})[key_match] = rec

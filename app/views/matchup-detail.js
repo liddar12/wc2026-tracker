@@ -30,6 +30,7 @@ import { xgSection } from '../components/xg.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
 import { hybridProb } from '../hybrid-model.js';
+import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
 
 export function renderMatchupDetail(root, data, params) {
   const match = resolveMatch(data, params.team_a, params.team_b);
@@ -82,21 +83,31 @@ export function renderMatchupDetail(root, data, params) {
   // Real result (final or in-progress): show the score between the teams
   // instead of a bare "vs" — the detail page previously never displayed it.
   const found = actualForCard(data.actualResults, { stage: match.stage || 'group', team_a: match.team_a, team_b: match.team_b });
+  // The raw record carries status + winner (the regulation score is a tie for an
+  // ET/pen knockout). Use match-status helpers for the real result label (FT /
+  // AET / pens + shootout suffix) and the winning side (for the .is-winner tag),
+  // instead of the previous hardcoded "FT".
+  const rec = resultRecord(data.actualResults, match);
+  const mov = found?.mode === 'final' ? methodOfVictory(rec) : null;
+  const winner = found?.mode === 'final' ? winnerFromRecord(rec, match.team_a, match.team_b) : null;
+  const finalLabel = mov ? `<small>${escapeHtml(mov.label)}${escapeHtml(mov.suffix)}</small>` : '';
   const liveLabel = found?.mode === 'live'
     ? `<small class="detail-score-live" data-testid="detail-live">LIVE${found.actual.minute ? ' ' + escapeHtml(String(found.actual.minute)) + "'" : ''}</small>`
     : '';
   const centre = found
     ? `<span class="detail-score" data-testid="detail-score">${found.actual.score_a}&thinsp;–&thinsp;${found.actual.score_b}${
-        found.mode === 'final' ? '<small>FT</small>' : liveLabel}</span>`
+        found.mode === 'final' ? finalLabel : liveLabel}</span>`
     : '<span class="muted">vs</span>';
+  const winA = winner === match.team_a ? ' is-winner' : '';
+  const winB = winner === match.team_b ? ' is-winner' : '';
   teamsRow.innerHTML = `
     <a class="team-link" href="#/team/name/${encodeURIComponent(match.team_a)}" style="display:flex;align-items:center;gap:8px;" aria-label="${escapeHtml(match.team_a)} team page">
       <span class="flag" aria-hidden="true" style="font-size:32px;">${flagFor(match.team_a)}</span>
-      <strong>${escapeHtml(match.team_a)}</strong>
+      <strong class="team-name${winA}">${escapeHtml(match.team_a)}</strong>
     </a>
     ${centre}
     <a class="team-link team-link-rtl" href="#/team/name/${encodeURIComponent(match.team_b)}" style="display:flex;align-items:center;gap:8px;" aria-label="${escapeHtml(match.team_b)} team page">
-      <strong>${escapeHtml(match.team_b)}</strong>
+      <strong class="team-name${winB}">${escapeHtml(match.team_b)}</strong>
       <span class="flag" aria-hidden="true" style="font-size:32px;">${flagFor(match.team_b)}</span>
     </a>
   `;
@@ -118,49 +129,63 @@ export function renderMatchupDetail(root, data, params) {
   // thing they see after the matchup.
   root.appendChild(whenWhereWatch(match, data.scheduleFull, data.venues));
 
-  // Model + Market grid — only group-stage matches carry per-match model
-  // predictions (composite gap, win %, upset signals). Knockout fixtures have
-  // none, so render the grid only when the model data is present; the
-  // team-keyed sections below still render for every match.
-  if (hasModel) {
+  // Model + Market grid. The market column renders for EVERY match (decoupled
+  // from the model gate — model-less rows fall back to the tournament-winner
+  // odds). The model column adapts: knockout rows lead with a "to advance %"
+  // headline + the regulation W/D/L bar; group rows keep the full composite /
+  // why / upset breakdown; an unmodeled row contributes no model column.
+  const isKnockout = match.is_knockout === true || (!!match.stage && match.stage !== 'group');
+  const hasAdvance = Number.isFinite(match.advance_pct_a) || Number.isFinite(match.advance_pct_b);
+  if (hasModel || hasAdvance) {
     const grid = document.createElement('div');
     grid.className = 'match-prediction-grid';
 
     const modelCol = document.createElement('div');
     modelCol.className = 'model-col';
-    modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
-    modelCol.appendChild(hybridPill(match, data.markets));
 
-    const compSec = document.createElement('div');
-    compSec.className = 'section model-section';
-    compSec.appendChild(sectionHeading('Composite breakdown', 'composite'));
-    const compGrid = document.createElement('div');
-    compGrid.className = 'composite-grid';
-    compGrid.appendChild(compositeCol(teamA, match.composite_a));
-    compGrid.appendChild(compositeCol(teamB, match.composite_b));
-    compSec.appendChild(compGrid);
-    modelCol.appendChild(compSec);
+    if (isKnockout && hasModel) {
+      // Knockout headline: each side's to-advance % (single-elimination, so the
+      // model question is "who reaches the next round"), with the regulation
+      // W/D/L bar underneath for the 90-minute outcome.
+      modelCol.appendChild(advanceHeadline(match));
+      modelCol.appendChild(confidenceBar(match, { title: 'Regulation result (W / D / L)' }));
+      modelCol.appendChild(hybridPill(match, data.markets));
+    } else if (hasModel) {
+      modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
+      modelCol.appendChild(hybridPill(match, data.markets));
 
-    const reason = document.createElement('div');
-    reason.className = 'section model-section';
-    reason.innerHTML = `<h2>Why this prediction</h2><p>${escapeHtml(describePrediction(match, data.teams))}</p>`;
-    modelCol.appendChild(reason);
+      const compSec = document.createElement('div');
+      compSec.className = 'section model-section';
+      compSec.appendChild(sectionHeading('Composite breakdown', 'composite'));
+      const compGrid = document.createElement('div');
+      compGrid.className = 'composite-grid';
+      compGrid.appendChild(compositeCol(teamA, match.composite_a));
+      compGrid.appendChild(compositeCol(teamB, match.composite_b));
+      compSec.appendChild(compGrid);
+      modelCol.appendChild(compSec);
 
-    const upsets = document.createElement('div');
-    upsets.className = 'section model-section';
-    upsets.appendChild(sectionHeading('Upset risk signals', 'upset'));
-    const legend = document.createElement('p');
-    legend.className = 'upset-legend muted';
-    legend.textContent = 'These flag scenarios where the underdog could outperform — not a pick against the favorite.';
-    upsets.appendChild(legend);
-    upsets.appendChild(upsetBadges(match.upset_risk?.indicators));
-    modelCol.appendChild(upsets);
+      const reason = document.createElement('div');
+      reason.className = 'section model-section';
+      reason.innerHTML = `<h2>Why this prediction</h2><p>${escapeHtml(describePrediction(match, data.teams))}</p>`;
+      modelCol.appendChild(reason);
+
+      const upsets = document.createElement('div');
+      upsets.className = 'section model-section';
+      upsets.appendChild(sectionHeading('Upset risk signals', 'upset'));
+      const legend = document.createElement('p');
+      legend.className = 'upset-legend muted';
+      legend.textContent = 'These flag scenarios where the underdog could outperform — not a pick against the favorite.';
+      upsets.appendChild(legend);
+      upsets.appendChild(upsetBadges(match.upset_risk?.indicators));
+      modelCol.appendChild(upsets);
+    }
 
     const marketCol = document.createElement('div');
     marketCol.className = 'market-col';
     marketCol.appendChild(marketOddsSection(match, data.markets));
 
-    grid.append(modelCol, marketCol);
+    if (modelCol.childNodes.length) grid.append(modelCol, marketCol);
+    else grid.append(marketCol);
     root.appendChild(grid);
   }
 
@@ -184,33 +209,32 @@ export function renderMatchupDetail(root, data, params) {
   root.appendChild(travelRestSection(match, data.fatigue));
   root.appendChild(xgSection(match, data.xg));
 
-  // Actual result if known
-  const actual = actualChoice(match, data.actualResults);
-  if (actual) {
+  // Actual result if known. Drive the winner + method from the match-status
+  // helpers so EVERY final knockout outcome shows — a regulation win (FT), an
+  // extra-time win (AET), or a shootout (pens, with the tally suffix) — not only
+  // ties broken by ET/pens. Group draws still read "Drawn".
+  const finalRec = resultRecord(data.actualResults, match);
+  if (finalRec && isFinalStatus(finalRec)) {
+    const w = winnerFromRecord(finalRec, match.team_a, match.team_b);
+    const mv = methodOfVictory(finalRec);
+    let label;
+    if (w) {
+      // 'FT' is implied for a regulation win; only annotate ET/pens.
+      const how = mv.method === 'pens' ? ` on penalties${mv.suffix}`
+        : mv.method === 'aet' ? ' after extra time'
+        : '';
+      label = `${w} won${how}`;
+    } else {
+      const actual = actualChoice(match, data.actualResults);
+      label = actual === 'team_a' ? `${match.team_a} won`
+        : actual === 'team_b' ? `${match.team_b} won`
+        : 'Drawn';
+    }
     const res = document.createElement('div');
     res.className = 'section';
-    const label = actual === 'team_a' ? `${match.team_a} won`
-      : actual === 'team_b' ? `${match.team_b} won`
-      : 'Drawn';
+    res.dataset.testid = 'final-result';
     res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
     root.appendChild(res);
-  } else if (match.stage && match.stage !== 'group') {
-    // Knockout result — actualChoice only reads group_stage. Read the record
-    // directly so a winner decided by penalties / extra time shows (the
-    // regulation score is a tie, so the winner is only in rec.winner).
-    const tier = data.actualResults?.[match.stage] || {};
-    const rec = tier[`${match.team_a}__vs__${match.team_b}`] || tier[`${match.team_b}__vs__${match.team_a}`];
-    if (rec?.winner) {
-      const res = document.createElement('div');
-      res.className = 'section';
-      let label = `${rec.winner} won`;
-      const sa = rec.shootout_a, sb = rec.shootout_b;
-      if (Number.isFinite(sa) && Number.isFinite(sb)) {
-        label += ` on penalties (${Math.max(sa, sb)}–${Math.min(sa, sb)})`;
-      }
-      res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
-      root.appendChild(res);
-    }
   }
 }
 
@@ -296,6 +320,33 @@ function compositeCol(team, fallbackComposite) {
 
 function num(v) { return typeof v === 'number' ? v.toFixed(1) : '—'; }
 
+// Knockout headline — each side's model probability of ADVANCING (reaching the
+// next round). Single-elimination has no draw outcome, so this leads the model
+// column; the regulation W/D/L bar renders beneath it.
+function advanceHeadline(match) {
+  const sec = document.createElement('div');
+  sec.className = 'section model-section advance-headline';
+  sec.dataset.testid = 'advance-headline';
+  const pa = Number.isFinite(match.advance_pct_a) ? `${match.advance_pct_a.toFixed(0)}%` : '—';
+  const pb = Number.isFinite(match.advance_pct_b) ? `${match.advance_pct_b.toFixed(0)}%` : '—';
+  sec.innerHTML = `
+    <h2>To advance</h2>
+    <div class="advance-row">
+      <span class="advance-side">
+        <span class="flag" aria-hidden="true">${flagFor(match.team_a)}</span>
+        <span class="advance-team">${escapeHtml(match.team_a)}</span>
+        <strong class="advance-pct">${pa}</strong>
+      </span>
+      <span class="advance-side advance-side-rtl">
+        <strong class="advance-pct">${pb}</strong>
+        <span class="advance-team">${escapeHtml(match.team_b)}</span>
+        <span class="flag" aria-hidden="true">${flagFor(match.team_b)}</span>
+      </span>
+    </div>
+  `;
+  return sec;
+}
+
 function prettyStageName(stage) {
   return {
     round_of_32: 'Round of 32',
@@ -307,11 +358,30 @@ function prettyStageName(stage) {
   }[stage] || 'Knockout stage';
 }
 
+// actual_results is keyed by tier; group fixtures live under group_stage, knockout
+// fixtures under their stage token. Return the raw record (with status + winner)
+// for THIS match, either team orientation, so the header can name the winner and
+// the result method via the match-status helpers.
+const RESULT_TIER_FOR_STAGE = {
+  round_of_32: 'round_of_32', round_of_16: 'round_of_16',
+  quarterfinals: 'quarterfinals', semifinals: 'semifinals',
+  third_place: 'third_place', final: 'final',
+};
+function resultRecord(actualResults, match) {
+  const tierKey = RESULT_TIER_FOR_STAGE[match?.stage] || 'group_stage';
+  const tier = actualResults?.[tierKey] || {};
+  return tier[`${match.team_a}__vs__${match.team_b}`]
+    || tier[`${match.team_b}__vs__${match.team_a}`]
+    || null;
+}
+
 // Resolve a matchup by team names. Group-stage matches live in groupMatchups
 // (keyed by group letter, carrying the model-prediction fields). Knockout
-// fixtures are NOT in groupMatchups — once resolve_knockouts.py fills them with
-// real teams they only exist in scheduleFull — so fall back to the schedule.
-// The returned knockout row has no model fields; the view gates those out.
+// fixtures with a model live in knockoutMatchups (an array of match rows mirroring
+// group rows plus advance_pct_a/_b) — scan it BEFORE the schedule so a resolved
+// knockout pair carries its model fields (hasModel true → the model+market grid
+// renders). Only fall back to scheduleFull for fixtures with no modeled row; that
+// fallback row has no model fields and the view gates those out.
 export function resolveMatch(data, a, b) {
   if (!a || !b) return null;
   const groupMatchups = data?.groupMatchups || {};
@@ -320,6 +390,11 @@ export function resolveMatch(data, a, b) {
       if ((m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a)) {
         return { ...m, group: g };
       }
+    }
+  }
+  for (const m of (data?.knockoutMatchups || [])) {
+    if ((m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a)) {
+      return { ...m };
     }
   }
   for (const row of (data?.scheduleFull || [])) {

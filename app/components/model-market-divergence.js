@@ -4,6 +4,10 @@ import { getMatchOutcome, modelOutcomeProb, marketOutcomeProb, formatDivergence 
 export function divergenceLine(markets, match) {
   const outcome = getMatchOutcome(markets, match);
   if (!outcome) return null;
+  // Model-less rows (unmodeled knockout fixtures) carry no probabilities — there
+  // is no model side to compare against the market, so skip the divergence line
+  // rather than let modelOutcomeProb throw on undefined match.probabilities.
+  if (!match?.probabilities) return null;
   const pick = modelOutcomeProb(match);
   const marketProb = marketOutcomeProb(outcome, pick.side);
   if (marketProb == null) return null;

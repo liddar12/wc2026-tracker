@@ -30,7 +30,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -70,18 +70,57 @@ ACTUAL_RESULT_STAGES = (
 )
 
 
+# Volatile, fan-facing feeds that must NOT be empty during the tournament. Each
+# entry maps a data file to a callable returning its substantive row count
+# (ignoring the __meta__ wrapper). A scraper failing silently under
+# continue-on-error leaves a fresh-timestamped but empty file — strict mode
+# turns that into a hard failure so the cron gate catches it.
+TOURNAMENT_START = "2026-06-11"
+TOURNAMENT_END = "2026-07-20"
+
+# Knockout stages whose resolved real-team fixtures must be covered by both
+# xg.json and knockout_matchups.json (Epic B's data contract).
+KNOCKOUT_STAGES = {
+    "round_of_32", "round_of_16", "quarterfinals", "semifinals",
+    "third_place", "final",
+    # legacy short names, in case schedule_full still carries them
+    "r32", "r16", "qf", "sf",
+}
+
+
 class Validator:
-    def __init__(self, data_dir: Path) -> None:
+    def __init__(self, data_dir: Path, *, strict: bool = False,
+                 now: str | None = None, check_feed_freshness: bool = True) -> None:
         self.data_dir = data_dir
         self.errors: list[str] = []
         self.warnings: list[str] = []
         self._files: dict[str, Any] = {}
+        # Strict mode escalates the tournament-window freshness/coverage checks
+        # from warnings to hard errors (the real cron gate). Off by default so
+        # the standalone regression command stays green even while a volatile
+        # feed is momentarily empty or Epic B's knockout file hasn't shipped.
+        self.strict = strict
+        self.now = now  # YYYY-MM-DD override for deterministic tests
+        self.check_feed_freshness = check_feed_freshness
 
     def err(self, msg: str) -> None:
         self.errors.append(msg)
 
     def warn(self, msg: str) -> None:
         self.warnings.append(msg)
+
+    def gate(self, msg: str) -> None:
+        """Hard error in --strict mode (the cron gate), loud warning otherwise.
+
+        Used for the tournament-window freshness + knockout-coverage checks: the
+        default regression command stays green (warn) while the cron pipeline
+        runs --strict so a silently-empty feed or missing knockout row fails
+        the build with a non-zero exit code."""
+        (self.err if self.strict else self.warn)(msg)
+
+    def _in_tournament_window(self) -> bool:
+        today = self.now or datetime.now(timezone.utc).strftime("%Y-%m-%d")
+        return TOURNAMENT_START <= today <= TOURNAMENT_END
 
     def load(self, name: str) -> Any:
         if name in self._files:
@@ -475,6 +514,158 @@ class Validator:
         if bm is not None and not isinstance(bm, list):
             self.err("markets.json: biggest_movers must be a list")
 
+    # ----- tournament-window freshness + knockout coverage (Epic A) -----
+
+    def check_feed_emptiness(self) -> None:
+        """During the tournament, volatile fan-facing feeds must not be empty.
+
+        A scraper failing silently under continue-on-error leaves a
+        fresh-timestamped but empty file (RCA bug 6/9). In --strict mode an
+        empty volatile feed is a hard failure; otherwise it is a loud warning."""
+        if not self.check_feed_freshness or not self._in_tournament_window():
+            return
+
+        def rows(name, payload):
+            if name == "markets.json" and isinstance(payload, dict):
+                return len(payload.get("tournament_winner") or [])
+            if isinstance(payload, dict):
+                return len([k for k in payload if k != "__meta__"])
+            if isinstance(payload, list):
+                return len(payload)
+            return 0
+
+        # scorers.json has no reliable World Cup upstream (ESPN serves no WC
+        # scorer feed); it is KNOWN-DARK, tracked by check_staleness, and must
+        # NOT hard-fail the cron gate — warn only, even in --strict. markets.json
+        # (Kalshi tournament markets) IS expected populated and stays gated.
+        KNOWN_DARK = {"scorers.json"}
+        for name in ("scorers.json", "markets.json"):
+            payload = self.load(name)
+            if payload is None:
+                continue
+            report = self.warn if name in KNOWN_DARK else self.gate
+            if rows(name, payload) == 0:
+                report(
+                    f"{name}: volatile feed is EMPTY during the tournament "
+                    f"window ({TOURNAMENT_START}..{TOURNAMENT_END}) — a scraper "
+                    f"likely failed silently"
+                )
+            # Freshness: an updated_at that predates the tournament is stale.
+            ua = (payload.get("__meta__") or {}).get("updated_at") if isinstance(payload, dict) else None
+            if isinstance(ua, str):
+                try:
+                    dt = datetime.fromisoformat(ua.replace("Z", "+00:00"))
+                except ValueError:
+                    report(f"{name}: __meta__.updated_at {ua!r} not ISO-8601")
+                else:
+                    if dt.strftime("%Y-%m-%d") < TOURNAMENT_START:
+                        report(
+                            f"{name}: __meta__.updated_at {ua} predates the "
+                            f"tournament — feed is stale"
+                        )
+
+    def check_knockout_coverage(self, team_names: set[str]) -> None:
+        """Every RESOLVED real-team knockout fixture in schedule_full.json must
+        have an xg.json key AND a row in knockout_matchups.json (Epic B's data
+        contract). Placeholder slots (1A/W74/3 ABCDF) are skipped — they aren't
+        resolved yet. Strict: hard failure; otherwise: loud warning.
+
+        Guarded so a run BEFORE Epic B's knockout_matchups.json exists doesn't
+        explode in default mode (it warns); strict mode (the cron gate) fails."""
+        sched = self.load("schedule_full.json")
+        if not isinstance(sched, list):
+            return
+
+        resolved = []
+        for row in sched:
+            if not isinstance(row, dict):
+                continue
+            if row.get("stage") not in KNOCKOUT_STAGES:
+                continue
+            a, b = row.get("team_a"), row.get("team_b")
+            # only resolved real-team fixtures (both sides are canonical teams)
+            if not a or not b or _is_knockout_slot(a) or _is_knockout_slot(b):
+                continue
+            if team_names and (a not in team_names or b not in team_names):
+                continue
+            resolved.append(row)
+
+        if not resolved:
+            return  # nothing to cover yet (e.g. group stage / unresolved bracket)
+
+        xg = self.load("xg.json")
+        xg_keys = set(xg.keys()) if isinstance(xg, dict) else set()
+
+        km = self.load("knockout_matchups.json")
+        if km is None:
+            self.gate(
+                "knockout_matchups.json: missing, but schedule_full has "
+                f"{len(resolved)} resolved knockout fixture(s) requiring rows"
+            )
+            km_pairs: set[frozenset[str]] = set()
+        elif not isinstance(km, list):
+            self.err("knockout_matchups.json: expected an array of match rows")
+            km_pairs = set()
+        else:
+            km_pairs = set()
+            for idx, r in enumerate(km):
+                if not isinstance(r, dict):
+                    self.err(f"knockout_matchups.json[{idx}]: not an object")
+                    continue
+                ta, tb = r.get("team_a"), r.get("team_b")
+                if ta and tb:
+                    km_pairs.add(frozenset((ta, tb)))
+
+        for row in resolved:
+            a, b = row["team_a"], row["team_b"]
+            key, rev = f"{a}__vs__{b}", f"{b}__vs__{a}"
+            if xg_keys and key not in xg_keys and rev not in xg_keys:
+                self.gate(
+                    f"xg.json: resolved knockout fixture {a} vs {b} "
+                    f"({row.get('match_id')}) has no xg key"
+                )
+            if frozenset((a, b)) not in km_pairs:
+                self.gate(
+                    f"knockout_matchups.json: resolved knockout fixture {a} vs "
+                    f"{b} ({row.get('match_id')}) has no matchup row"
+                )
+
+    def check_past_kickoff_results(self) -> None:
+        """Warn when a past-kickoff fixture lacks a FINAL actual_results entry
+        (the durable scoring record lagging behind real time)."""
+        if not self._in_tournament_window():
+            return
+        sched = self.load("schedule_full.json")
+        results = self.load("actual_results.json")
+        if not isinstance(sched, list) or not isinstance(results, dict):
+            return
+        now_s = (self.now or datetime.now(timezone.utc).strftime("%Y-%m-%d"))
+        # collect all recorded "TeamA__vs__TeamB" keys across stages
+        keys = set()
+        for stage, block in results.items():
+            if isinstance(block, dict):
+                keys |= set(block.keys())
+        for row in sched:
+            if not isinstance(row, dict):
+                continue
+            a, b = row.get("team_a"), row.get("team_b")
+            if not a or not b or _is_knockout_slot(a) or _is_knockout_slot(b):
+                continue
+            koff = row.get("kickoff_utc")
+            if not isinstance(koff, str):
+                continue
+            try:
+                day = datetime.fromisoformat(koff.replace("Z", "+00:00")).strftime("%Y-%m-%d")
+            except ValueError:
+                continue
+            if day >= now_s:
+                continue  # not kicked off yet (by date)
+            if f"{a}__vs__{b}" not in keys and f"{b}__vs__{a}" not in keys:
+                self.warn(
+                    f"actual_results: past-kickoff fixture {a} vs {b} "
+                    f"({row.get('match_id')}, {day}) has no recorded result"
+                )
+
     # ----- orchestration -----
 
     def run(self) -> int:
@@ -501,6 +692,10 @@ class Validator:
         self.check_fatigue()
         self.check_markets()
         self.check_consensus_odds()
+        # Epic A: tournament-window freshness + knockout-coverage gates.
+        self.check_feed_emptiness()
+        self.check_knockout_coverage(team_names)
+        self.check_past_kickoff_results()
 
         if self.warnings:
             for w in self.warnings:
@@ -528,8 +723,31 @@ def main() -> int:
         default=str(Path(__file__).resolve().parent.parent / "data"),
         help="Directory containing the JSON data files (default: ../data)",
     )
+    ap.add_argument(
+        "--strict",
+        action="store_true",
+        help="Escalate tournament-window freshness + knockout-coverage checks "
+             "from warnings to hard errors (the cron data gate).",
+    )
+    ap.add_argument(
+        "--now",
+        default=None,
+        metavar="YYYY-MM-DD",
+        help="Override 'today' for the tournament-window checks (tests).",
+    )
+    ap.add_argument(
+        "--skip-feed-freshness",
+        action="store_true",
+        help="Skip the volatile-feed emptiness/freshness check (keeps the "
+             "knockout-coverage gate when feeds are intentionally empty).",
+    )
     args = ap.parse_args()
-    return Validator(Path(args.data_dir)).run()
+    return Validator(
+        Path(args.data_dir),
+        strict=args.strict,
+        now=args.now,
+        check_feed_freshness=not args.skip_feed_freshness,
+    ).run()
 
 
 if __name__ == "__main__":

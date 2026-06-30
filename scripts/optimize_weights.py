@@ -48,6 +48,13 @@ def log(m): print(f"[optimize] {m}", file=sys.stderr, flush=True)
 def clip(p): return float(min(1 - EPS, max(EPS, p)))
 
 
+def _write_atomic(path: Path, obj) -> None:
+    """tmp + os.replace JSON write, ensure_ascii=True (repo on-disk convention)."""
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(json.dumps(obj, ensure_ascii=True, indent=2) + "\n")
+    tmp.replace(path)
+
+
 # ---- group W/D/L bivariate-Poisson (mirrors rebuild_composite.win_probs) -----
 def win_probs(gap, mu, beta):
     sup = beta * gap
@@ -246,8 +253,11 @@ def main():
     if bl and bl["adopted"]:
         meta["hybrid_weights"] = [bl["weights"]["j5l"], bl["weights"]["dt"], bl["weights"]["kalshi"]]
 
-    (DATA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2) + "\n")
-    (DATA / "model_tuning.json").write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n")
+    # Atomic + ASCII writes: ensure_ascii=True matches the on-disk encoding of
+    # data/*.json (repo convention; meta.json is also written by other crons),
+    # and the tmp+os.replace swap means a crash never half-writes meta.json.
+    _write_atomic(DATA / "meta.json", meta)
+    _write_atomic(DATA / "model_tuning.json", report)
     log(f"group adopted={grp and grp['adopted']} blend adopted={bl and bl['adopted']} (games={len(rows)})")
     return 0
 

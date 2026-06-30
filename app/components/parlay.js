@@ -14,6 +14,7 @@
  */
 import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
+import { emptyState } from '../lib/empty-state.js';
 
 const isPlaceholder = (n) => !n || /^\d[A-L]$|^[A-L]\d|^3[A-L/ ]|^W\d|^L\d|^1[A-L]|^2[A-L]|^RU/i.test(String(n));
 
@@ -27,20 +28,28 @@ function todayMatches(data) {
   });
 }
 
-// model W/D/L (fractions) for a match, from group_matchups; null if absent.
+// model W/D/L (fractions) for a match, oriented to our team_a. Scans the
+// group_matchups buckets first, then the flat knockout_matchups array (which
+// mirrors a group match row) — so knockout pairs still yield a Moneyline leg
+// once the tournament leaves the group stage. Null if neither has the pair.
+function modelFromRow(m, a, b) {
+  const p = m.probabilities; if (!p) return null;
+  const flip = m.team_a !== a;
+  return {
+    a: (flip ? p.team_b_wins : p.team_a_wins) / 100,
+    d: p.draw / 100,
+    b: (flip ? p.team_a_wins : p.team_b_wins) / 100,
+  };
+}
 function modelWDL(data, a, b) {
+  const matches = (m) => (m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a);
   for (const g of Object.values(data?.groupMatchups || {})) {
     for (const m of g.matches || []) {
-      if ((m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a)) {
-        const p = m.probabilities; if (!p) return null;
-        const flip = m.team_a !== a;
-        return {
-          a: (flip ? p.team_b_wins : p.team_a_wins) / 100,
-          d: p.draw / 100,
-          b: (flip ? p.team_a_wins : p.team_b_wins) / 100,
-        };
-      }
+      if (matches(m)) return modelFromRow(m, a, b);
     }
+  }
+  for (const m of (Array.isArray(data?.knockoutMatchups) ? data.knockoutMatchups : [])) {
+    if (matches(m)) return modelFromRow(m, a, b);
   }
   return null;
 }
@@ -193,7 +202,21 @@ function agoLabel(iso) {
 
 export function renderParlayOfDay(data) {
   const p = parlayOfTheDay(data);
-  if (!p) return document.createDocumentFragment();
+  if (!p) {
+    // No parlay, but real-team games ARE on today (e.g. knockout lines not yet
+    // modeled) → surface an empty-state rather than a silent blank fragment.
+    // Truly no games today → nothing to say, stay empty.
+    if (todayMatches(data).length) {
+      const sec = document.createElement('section');
+      sec.className = 'home-card parlay-card';
+      sec.dataset.testid = 'parlay-of-day';
+      sec.appendChild(emptyState("Parlay returns once today's matches are priced", {
+        detail: 'Knockout lines are being modeled',
+      }));
+      return sec;
+    }
+    return document.createDocumentFragment();
+  }
   const sec = document.createElement('section');
   sec.className = 'home-card parlay-card';
   sec.dataset.testid = 'parlay-of-day';

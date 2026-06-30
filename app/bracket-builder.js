@@ -395,10 +395,27 @@ export function buildKnockoutFeeds(data) {
     const m = typeof slot === 'string' && slot.match(/^W(\d+)$/);
     return m ? parseInt(m[1], 10) : null;
   };
+  // The feed graph lives in the STABLE match_id ("M090__W73__vs__W75"), which
+  // survives resolution. resolve_knockouts overwrites team_a/team_b with the
+  // real advancing team once a fixture is decided, erasing its "W##" slots — so
+  // reading feeds from team_a/team_b collapsed the whole graph to null the
+  // moment any R16 game finished (the projected bracket then silently fell back
+  // to the wrong index pairing). Prefer the id; fall back to the team slots for
+  // any legacy/missing id.
+  const feedsFromId = (id) => {
+    const parts = typeof id === 'string' ? id.split('__') : [];
+    if (parts.length >= 4 && parts[2] === 'vs') return [parseW(parts[1]), parseW(parts[3])];
+    return [null, null];
+  };
   for (const m of sf) {
     const label = STAGE_LABEL[m.stage];
     if (!label) continue;
-    byRound[label].push({ match_number: m.match_number, feedA: parseW(m.team_a), feedB: parseW(m.team_b) });
+    const [idA, idB] = feedsFromId(m.match_id);
+    byRound[label].push({
+      match_number: m.match_number,
+      feedA: idA ?? parseW(m.team_a),
+      feedB: idB ?? parseW(m.team_b),
+    });
   }
   for (const k of Object.keys(byRound)) byRound[k].sort((x, y) => (x.match_number || 0) - (y.match_number || 0));
   const all = [...byRound.R16, ...byRound.QF, ...byRound.SF, ...byRound.Final];

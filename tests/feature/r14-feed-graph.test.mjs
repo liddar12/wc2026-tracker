@@ -20,6 +20,19 @@ test('R14: buildKnockoutFeeds parses the real W-feed graph from the schedule', (
   assert.deepEqual([f.Final[0].feedA, f.Final[0].feedB], [101, 102]);
 });
 
+test('R14: feed graph still parses after an R16 fixture resolves to real teams (id is the stable source)', () => {
+  // Regression: resolve_knockouts overwrites team_a/team_b with the advancing
+  // team once a KO game finishes, erasing its "W##" slots. Parsing feeds from
+  // team_a/team_b made buildKnockoutFeeds return null the moment any R16 game
+  // was decided; the stable match_id must keep the graph intact.
+  const resolved = JSON.parse(fs.readFileSync('data/schedule_full.json', 'utf8')).map((m) =>
+    m.match_number === 89 ? { ...m, team_a: 'Brazil', team_b: 'Japan' } : m);
+  const f = buildKnockoutFeeds({ scheduleFull: resolved });
+  assert.ok(f, 'feeds parse even when M89 has resolved to real team names');
+  const m89 = f.R16.find((x) => x.match_number === 89);
+  assert.deepEqual([m89.feedA, m89.feedB], [74, 77], 'feeds from the stable match_id, not the resolved teams');
+});
+
 test('R14: computeRounds(data) wires R16 from the real feeders, not index pairs', () => {
   const r32 = [];
   for (let mn = 73; mn <= 88; mn++) r32.push({ match_number: mn, team_a: `A${mn}`, team_b: `B${mn}` });

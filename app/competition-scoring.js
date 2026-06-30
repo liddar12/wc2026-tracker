@@ -1,3 +1,11 @@
+// Status gating comes from the shared match-status lib so the knockout-only
+// resolutions — extra time (STATUS_FINAL_AET) and penalty shootout
+// (STATUS_FINAL_PEN) — count as final identically here and in the bracket gate.
+// Scoring must ignore IN-PROGRESS records (scrape_live_results.py writes live
+// scores for the match cards) or pool points would swing mid-match and count
+// half-played games. Records without a status field (manual/legacy) read final.
+import { isFinalStatus } from './lib/match-status.js';
+
 // Weighted-by-round scoring per docs/QA_STORIES_BRACKETOLOGY.md (BKT-008).
 // R32=1, R16=2, QF=4, SF=8, Final=16. Champion correct adds a +16 bonus.
 // Max possible = 1*16 + 2*8 + 4*4 + 8*2 + 16*1 + 16 = 16+16+16+16+16+16 = 96.
@@ -19,21 +27,9 @@ const STAGE_TO_ROUND = {
   final: 'Final',
 };
 
-// ESPN statuses that mean a match is OVER. scrape_live_results.py also writes
-// IN-PROGRESS records (live scores for the match cards) — scoring must ignore
-// those or pool points would swing mid-match and count half-played games.
-// Records without a status field (manual/legacy) are treated as final.
-// AET/PEN = knockout extra-time / penalty-shootout finals: the score is the
-// regulation score (often a tie) and the winner is in rec.winner, so a correct
-// shootout pick scores instead of being dropped as unfinished.
-const FINAL_STATUSES = new Set([
-  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
-  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
-]);
-
-function isFinalRecord(rec) {
-  return !rec?.status || FINAL_STATUSES.has(rec.status);
-}
+// Aliased to the shared lib helper so the scoring gate and the bracket gate
+// agree on what "final" means (see the import comment above).
+const isFinalRecord = isFinalStatus;
 
 function actualResultsToTierMap(data) {
   // Knockout tiers FIRST: picks are team-pair keyed, and the 2026 format allows

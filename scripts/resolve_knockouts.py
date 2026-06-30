@@ -32,6 +32,13 @@ import urllib.request
 from datetime import date, datetime, timezone
 from pathlib import Path
 
+try:
+    from zoneinfo import ZoneInfo
+except ImportError:  # pragma: no cover - py<3.9
+    ZoneInfo = None
+
+ET_TZ = "America/New_York"
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 SCHED = DATA / "schedule_full.json"
@@ -128,6 +135,42 @@ def _norm_kickoff(iso):
         return None
 
 
+def _local_iso(kickoff_utc, tzname):
+    """kickoff_utc (…Z) + IANA tz name -> local ISO string ('…±HH:MM'), or None.
+
+    Used to refresh kickoff_local_et / kickoff_local_venue after we overwrite
+    kickoff_utc, so the stored local times don't go stale (ESPN may move a
+    knockout's kickoff vs the pre-tournament placeholder)."""
+    if not (ZoneInfo and kickoff_utc and tzname):
+        return None
+    try:
+        dt = datetime.fromisoformat(str(kickoff_utc).replace("Z", "+00:00")).astimezone(timezone.utc)
+        return dt.astimezone(ZoneInfo(tzname)).isoformat()
+    except (ValueError, KeyError):  # bad tz / bad timestamp
+        return None
+
+
+def refresh_local_times(m):
+    """Recompute m's kickoff_local_et / kickoff_local_venue from m['kickoff_utc'].
+
+    Recomputes a field only when it was already present (so we don't invent new
+    keys) and a value can be derived; if zoneinfo is unavailable or the tz can't
+    resolve, a now-stale field is dropped rather than left wrong."""
+    ko = m.get("kickoff_utc")
+    if "kickoff_local_et" in m:
+        et = _local_iso(ko, ET_TZ)
+        if et:
+            m["kickoff_local_et"] = et
+        else:
+            m.pop("kickoff_local_et", None)
+    if "kickoff_local_venue" in m:
+        ven = _local_iso(ko, m.get("venue_timezone"))
+        if ven:
+            m["kickoff_local_venue"] = ven
+        else:
+            m.pop("kickoff_local_venue", None)
+
+
 def _days_apart(a, b):
     try:
         return abs((date.fromisoformat(a) - date.fromisoformat(b)).days)
@@ -158,6 +201,8 @@ def resolve(rows, fixtures_by_date, team_names):
         ko = _norm_kickoff(fx["kickoff"])
         if ko:
             m["kickoff_utc"] = ko
+            # kickoff moved — refresh the stored local times so they don't go stale
+            refresh_local_times(m)
         changes.append((m.get("match_id"), f"{fx['home']} vs {fx['away']}"))
     return changes
 
@@ -219,13 +264,19 @@ def selftest():
     check("days apart", _days_apart("2026-06-30", "2026-06-29") == 1 and _days_apart("2026-06-29", "2026-06-29") == 0)
 
     rows = [
-        {"match_id": "M076__1C__vs__2F", "stage": "round_of_32", "kickoff_utc": "2026-06-29T17:00:00Z", "venue_id": "nrg", "team_a": "1C", "team_b": "2F"},
+        {"match_id": "M076__1C__vs__2F", "stage": "round_of_32", "kickoff_utc": "2026-06-29T17:00:00Z",
+         "venue_id": "nrg", "venue_timezone": "America/Chicago", "team_a": "1C", "team_b": "2F",
+         "kickoff_local_et": "STALE", "kickoff_local_venue": "STALE"},
         {"match_id": "G01", "stage": "group_stage", "kickoff_utc": "2026-06-29T17:00:00Z", "venue_id": "nrg", "team_a": "Brazil", "team_b": "Japan"},
     ]
-    fbd = {"2026-06-29": [{"venue_id": "nrg", "date": "2026-06-29", "kickoff": "2026-06-29T17:00Z", "home": "Brazil", "away": "Japan"}]}
+    fbd = {"2026-06-29": [{"venue_id": "nrg", "date": "2026-06-29", "kickoff": "2026-06-29T19:30Z", "home": "Brazil", "away": "Japan"}]}
     ch = resolve(rows, fbd, {"Brazil", "Japan"})
     check("resolves placeholder by (venue,date)", rows[0]["team_a"] == "Brazil" and rows[0]["team_b"] == "Japan")
-    check("rewrites kickoff from ESPN", rows[0]["kickoff_utc"] == "2026-06-29T17:00:00Z")
+    check("rewrites kickoff from ESPN", rows[0]["kickoff_utc"] == "2026-06-29T19:30:00Z")
+    # local times must follow the new kickoff (19:30Z → 15:30 ET / 14:30 Chicago), not stay STALE
+    if ZoneInfo:
+        check("refreshes kickoff_local_et from new kickoff", rows[0]["kickoff_local_et"] == "2026-06-29T15:30:00-04:00")
+        check("refreshes kickoff_local_venue from new kickoff", rows[0]["kickoff_local_venue"] == "2026-06-29T14:30:00-05:00")
     check("leaves group/real rows untouched", rows[1]["team_a"] == "Brazil" and len(ch) == 1)
     # unknown team → leave placeholder
     rows2 = [{"match_id": "X", "stage": "final", "kickoff_utc": "2026-07-19T19:00:00Z", "venue_id": "nrg", "team_a": "W101", "team_b": "W102"}]

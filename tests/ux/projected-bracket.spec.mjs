@@ -16,7 +16,10 @@ test.describe('Projected bracket + hidden nav', () => {
     // GS stage shows the standings → seeding view
     await page.locator('[data-testid="eb-stage-gs"]').click();
     await expect(page.locator('[data-testid="eb-group-seeding"]')).toBeVisible();
-    expect(await page.locator('.eb-gs-row').count()).toBeGreaterThan(20); // 12 groups × ~4 teams
+    // Auto-wait for the seeding rows to populate (12 groups × ~4 teams ≈ 48). A
+    // bare count() raced the post-click re-render and intermittently saw < 21;
+    // asserting the 21st row is attached retries until the rows exist.
+    await expect(page.locator('.eb-gs-row').nth(20)).toBeVisible({ timeout: 10_000 });
     await expect(page).toHaveURL(/#\/projected/);
 
     // back to a round + zoom fit (stays on /projected)
@@ -40,10 +43,19 @@ test.describe('Projected bracket + hidden nav', () => {
   test('BR-6 what-if: tap a team to override a winner → reset appears', async ({ page }) => {
     await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 15_000 });
-    // tap the NON-winner team in the first R32 match to flip it
-    const first = page.locator('.eb-col[data-round="r32"] .eb-match').first();
-    const loser = first.locator('.eb-team.eb-tappable:not(.eb-win)').first();
-    await loser.click();
+    // Tap the non-winner team in the first OVERRIDABLE R32 match. A match with a
+    // real result (e.g. South Africa–Canada, now decided) is locked to the actual
+    // winner and cannot be what-if'd — skip those and use the first undecided one.
+    const r32 = page.locator('.eb-col[data-round="r32"] .eb-match');
+    const n = await r32.count();
+    let overrode = false;
+    for (let i = 0; i < n; i++) {
+      const loser = r32.nth(i).locator('.eb-team.eb-tappable:not(.eb-win)').first();
+      if ((await loser.count()) === 0) continue;
+      await loser.click();
+      if ((await page.locator('.eb-match[data-overridden]').count()) > 0) { overrode = true; break; }
+    }
+    expect(overrode, 'an undecided R32 match accepts a what-if override').toBe(true);
     // an override marker + reset control appear
     await expect(page.locator('.eb-match[data-overridden]').first()).toBeVisible({ timeout: 5_000 });
     await expect(page.locator('[data-testid="eb-reset"]')).toBeVisible();

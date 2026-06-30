@@ -33,9 +33,13 @@ def load(name: str):
 
 
 def save(name: str, data) -> None:
-    (DATA_DIR / name).write_text(
-        json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    # Atomic + ASCII (repo on-disk convention; staleness watchdog compares diffs).
+    path = DATA_DIR / name
+    tmp = path.with_suffix(path.suffix + ".tmp")
+    tmp.write_text(
+        json.dumps(data, ensure_ascii=True, indent=2) + "\n", encoding="utf-8"
     )
+    tmp.replace(path)
 
 
 def main() -> int:
@@ -46,15 +50,17 @@ def main() -> int:
     if not isinstance(teams, dict):
         return 0
 
+    # Snapshot the team rows (excluding __meta__) so we only bump updated_at —
+    # and only rewrite the file — when real scorer data changed. A no-op bump
+    # would make scorers.json look fresh forever and defeat the staleness check.
+    before = {k: v for k, v in out.items() if k != "__meta__"}
+
     # Gate to the tournament window (FIFA cron-side does this too but
     # double-guard so manual `workflow_dispatch` runs during normal weeks
     # don't pollute the file with junk).
     today = datetime.now(timezone.utc).date()
     if today < datetime(2026, 6, 11, tzinfo=timezone.utc).date():
-        log("scorers: pre-tournament; leaving file empty")
-        out.setdefault("__meta__", {})
-        out["__meta__"]["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
-        save("scorers.json", out)
+        log("scorers: pre-tournament; leaving file empty (no updated_at bump)")
         return 0
 
     refreshed = 0
@@ -108,6 +114,10 @@ def main() -> int:
             out[team] = scorers[:3]
             refreshed += 1
 
+    after = {k: v for k, v in out.items() if k != "__meta__"}
+    if after == before:
+        log("scorers: no data change; leaving updated_at untouched")
+        return 0
     out.setdefault("__meta__", {})
     out["__meta__"]["updated_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     save("scorers.json", out)

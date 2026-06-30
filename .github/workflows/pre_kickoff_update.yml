@@ -17,9 +17,15 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
+# SHARED data-writers group across all four data-writing crons. Serializing
+# them eliminates the cross-cron push race that let a rebase clobber a sibling's
+# data (RCA bugs 4–5). cancel-in-progress must be false here too: this cron
+# commits to data/ (lineups + refs), and cancelling a queued run mid-group
+# would drop its commit. The */10 gate keeps actual work rare (only near
+# kickoffs), so queueing costs nothing.
 concurrency:
-  group: pre-kickoff-update
-  cancel-in-progress: true
+  group: data-writers
+  cancel-in-progress: false
 
 jobs:
   prekickoff:
@@ -104,11 +110,15 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: pre-kickoff refresh (lineups + refs)"
-            # Rebase + retry so a cross-cron push race doesn't drop the cycle.
+            # PLAIN 'git pull --rebase' (no '-X theirs'): the data-writers
+            # concurrency group serializes the crons; '-X theirs' silently
+            # DISCARDED a sibling cron's data on overlap (RCA 4–5). This cron
+            # only touches lineups/refs/match_events, so on a genuine conflict a
+            # plain rebase reconciles cleanly; abort + retry as a fallback.
             n=0
             until git push; do
               n=$((n+1))
               if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
-              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+              git pull --rebase origin main || { git rebase --abort || true; git reset --hard origin/main; sleep 5; }
             done
           fi

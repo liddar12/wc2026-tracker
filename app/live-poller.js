@@ -11,6 +11,12 @@ import { fetchLiveOdds } from './live-odds.js';
 
 const POLL_INTERVAL_MS = 30 * 1000;   // 30s during live windows
 const FULL_REFRESH_EVERY = 5;         // full data refetch every 5th tick (2.5 min)
+// Resilience: after this many CONSECUTIVE failed ESPN fetches, stop hammering
+// the endpoint every 30s (a sustained ESPN outage / offline device) and back
+// off to a slower cadence, emitting a 'scores delayed' signal so the UI can
+// say so. A single success resets both.
+const FAILURES_BEFORE_BACKOFF = 3;
+const BACKOFF_INTERVAL_MS = 2 * 60 * 1000;   // 2 min while degraded
 // 3.5h (was 2h): a 90-min match + halftime + stoppage runs ~1h50m, and ESPN
 // posts FULL_TIME a bit later — plus fans check the score well after the final
 // whistle. The 2h window stopped polling before a just-finished game's final
@@ -20,6 +26,8 @@ const LIVE_WINDOW_MS = 3.5 * 3600 * 1000;
 let intervalId = null;
 let currentData = null;
 let tickCount = 0;
+let consecutiveFailures = 0;   // resets to 0 on any successful ESPN fetch
+let backoffActive = false;     // true while we're polling on the slow cadence
 
 export function startLivePollerForData(data) {
   stopLivePoller();
@@ -41,6 +49,38 @@ export function stopLivePoller() {
     clearInterval(intervalId);
     intervalId = null;
   }
+  consecutiveFailures = 0;
+  backoffActive = false;
+}
+
+// Emit a 'scores delayed' signal so the UI can show a "scores may be delayed"
+// hint (and clear it on recovery). `delayed` true = degraded (backoff engaged).
+function emitScoresDelayed(delayed) {
+  if (typeof window === 'undefined') return;
+  window.dispatchEvent(new CustomEvent('data:scores-delayed', {
+    detail: { delayed, consecutiveFailures },
+  }));
+}
+
+// After repeated consecutive ESPN failures, slow the poll cadence so we stop
+// hammering a dead endpoint every 30s. A later success calls resetBackoff().
+function enterBackoff() {
+  if (backoffActive) return;
+  backoffActive = true;
+  if (intervalId != null) clearInterval(intervalId);
+  intervalId = setInterval(pollOnce, BACKOFF_INTERVAL_MS);
+  emitScoresDelayed(true);
+}
+
+// Recovery: a successful fetch clears the failure streak and, if we were backed
+// off, restores the fast 30s cadence and clears the 'delayed' signal.
+function resetBackoff() {
+  consecutiveFailures = 0;
+  if (!backoffActive) return;
+  backoffActive = false;
+  if (intervalId != null) clearInterval(intervalId);
+  intervalId = setInterval(pollOnce, POLL_INTERVAL_MS);
+  emitScoresDelayed(false);
 }
 
 function nearestLiveStart(scheduleFull) {
@@ -79,7 +119,14 @@ async function pollOnce() {
       try {
         const board = await fetchEspnLive();
         mergeLiveScores(currentData, board);
-      } catch { /* ESPN blip — the slow lane below still flows */ }
+        // Success — clear any failure streak / backoff and the delayed signal.
+        resetBackoff();
+      } catch {
+        // ESPN blip — the slow lane below still flows. Track the streak and, if
+        // it's sustained, back off so we stop hammering every 30s.
+        consecutiveFailures++;
+        if (consecutiveFailures >= FAILURES_BEFORE_BACKOFF) enterBackoff();
+      }
       emitLiveRefresh();
     }
     // Slow lane every Nth tick: full static-feed refresh + near-real-time

@@ -26,8 +26,11 @@ permissions:
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
+# SINGLE cross-workflow concurrency group shared by all four data-writing crons
+# (daily / frequent / live / pre-kickoff). Serializing them eliminates the
+# cross-cron push race that let a rebase clobber a sibling's data (RCA bugs 4–5).
 concurrency:
-  group: frequent-update
+  group: data-writers
   cancel-in-progress: false
 
 jobs:
@@ -118,6 +121,11 @@ jobs:
       - name: Recompute model xG (Golden Boot scoring environment)
         run: python scripts/compute_xg.py
         continue-on-error: true
+      # Build knockout-stage matchup rows from the resolved bracket + xG. After
+      # resolve_knockouts + compute_xg, before validate (which gates coverage).
+      - name: Build knockout matchups
+        run: python scripts/build_knockout_matchups.py
+        continue-on-error: true
       - name: Rebuild DT model (Elo + market value blend)
         run: python scripts/build_dt_model.py
         continue-on-error: true
@@ -134,22 +142,19 @@ jobs:
       # burning a Netlify deploy per hour for nothing.
       - name: Bump meta.data_version (only if data changed)
         run: |
+          # Content-aware: only bump when a NON-meta data file actually changed,
+          # so a no-op hourly run stops committing+pushing and burning a Netlify
+          # deploy for nothing (RCA bug 10). Inline python3 -c (replaces the
+          # prior heredoc) writes ensure_ascii=True to match data/*.json encoding.
           if [ -n "$(git status --porcelain data/ | grep -v 'data/meta.json' || true)" ]; then
-            python3 - <<'PYEOF'
-          import json, datetime, pathlib
-          p = pathlib.Path('data/meta.json')
-          m = json.loads(p.read_text())
-          m['data_version'] = datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00')
-          p.write_text(json.dumps(m, indent=2) + '\n')
-          print('meta.data_version ->', m['data_version'])
-          PYEOF
+            python3 -c "import json,datetime,pathlib; p=pathlib.Path('data/meta.json'); m=json.loads(p.read_text()); m['data_version']=datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S+00:00'); p.write_text(json.dumps(m, ensure_ascii=True, indent=2)+'\n'); print('meta.data_version ->', m['data_version'])"
           else
             git checkout -- data/meta.json 2>/dev/null || true
             echo "No real data changes — skipping version bump."
           fi
 
       - name: Validate refreshed data
-        run: python3 scripts/validate_data.py
+        run: python3 scripts/validate_data.py --strict
 
       - name: Commit and push
         run: |
@@ -160,12 +165,26 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: frequent data refresh (players/injuries/teams/power-rank/kalshi/weather/lineups)"
-            # Rebase + retry: four crons push to main concurrently; don't drop the cycle.
+            # PLAIN 'git pull --rebase' (no '-X theirs'): the data-writers
+            # concurrency group already serializes the crons; '-X theirs'
+            # silently discarded a sibling cron's data on overlap (RCA 4–5). A
+            # genuine conflict re-runs the deterministic generators and re-stages
+            # only data/ so neither cron's inputs are lost.
             n=0
             until git push; do
               n=$((n+1))
               if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
-              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+              if ! git pull --rebase origin main; then
+                git rebase --abort || true
+                git reset --hard origin/main
+                python3 scripts/rebuild_composite.py || true
+                python3 scripts/build_knockout_matchups.py || true
+                python3 scripts/build_hybrid.py || true
+                python3 scripts/compute_xg.py || true
+                git add data/
+                git commit -m "chore: frequent data refresh (reconciled)" || true
+                sleep 5
+              fi
             done
           fi
 

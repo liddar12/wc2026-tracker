@@ -13,6 +13,12 @@
    pipeline) remains the durable source of truth — the client merge is a
    display-freshness overlay that the next full refresh naturally agrees with. */
 
+// FINAL = the result is settled and must not be overwritten by a later poll.
+// Sourced from the shared match-status lib so the knockout-only resolutions
+// (STATUS_FINAL_AET / STATUS_FINAL_PEN) stay identical to the scoring/bracket
+// gates — a status that's "final" here must be "final" everywhere.
+import { FINAL_STATUSES } from './lib/match-status.js';
+
 const SCOREBOARD = 'https://site.api.espn.com/apis/site/v2/sports/soccer/fifa.world/scoreboard';
 
 // ESPN display names → canonical teams.json keys (kept in sync with the
@@ -39,15 +45,6 @@ const TIER_BY_STAGE = {
   quarterfinals: 'quarterfinals', semifinals: 'semifinals',
   third_place: 'third_place', final: 'final',
 };
-
-// FINAL = the result is settled and must not be overwritten by a later poll.
-// Includes knockout-only resolutions: extra time (AET) and penalty shootout
-// (PEN) — for those ESPN's score is the regulation score and the status is how
-// the tie was broken.
-const FINAL_STATUSES = [
-  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
-  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
-];
 
 // ESPN groups scoreboard days by US/Eastern dates.
 function etDate(d = new Date()) {
@@ -143,8 +140,8 @@ export function mergeLiveScores(data, board) {
     const tier = (actual[tierKey] = actual[tierKey] || {});
     const key = `${a}__vs__${b}`;
     const prev = tier[key] || tier[`${b}__vs__${a}`];
-    const prevFinal = prev?.status && FINAL_STATUSES.includes(prev.status);
-    const nextFinal = FINAL_STATUSES.includes(hit.status);
+    const prevFinal = prev?.status && FINAL_STATUSES.has(prev.status);
+    const nextFinal = FINAL_STATUSES.has(hit.status);
     if (prevFinal && !nextFinal) continue;
     const rec = {
       score_a: hit.teams[a], score_b: hit.teams[b],

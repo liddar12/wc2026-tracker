@@ -15,12 +15,15 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
 
 concurrency:
-  group: live-update
+  # SHARED data-writers group across all four data-writing crons (daily /
+  # frequent / live / pre-kickoff). Serializing them eliminates the cross-cron
+  # push race that let a rebase clobber a sibling's data (RCA bugs 4–5).
   # QUEUE, don't cancel: with ~3-4 min runs on a 15-min cadence plus GitHub's
   # scheduler drift, cancel-in-progress killed most runs BEFORE their commit
   # step — live results only landed every ~2h on June 12 (07:15/10:43/12:55).
   # Cancellation isn't failure(), so the watchdog never fired. Queued runs
   # execute back-to-back at worst.
+  group: data-writers
   cancel-in-progress: false
 
 jobs:
@@ -98,6 +101,13 @@ jobs:
       - name: Recompute xG
         if: steps.gate.outputs.go == '1'
         run: python scripts/compute_xg.py
+      # Build knockout-stage matchup rows from the resolved bracket + xG. After
+      # resolve_knockouts (run in the schedule crons) + compute_xg, before
+      # validate (which gates knockout coverage in --strict mode).
+      - name: Build knockout matchups
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/build_knockout_matchups.py
+        continue-on-error: true
       # scrape_kalshi REMOVED from the live cycle (it alone took ~45s of rate-
       # limited fetches): the hourly frequent_update refreshes markets.json and
       # build_hybrid blends whatever's latest. Shorter runs = no more overlap.
@@ -116,7 +126,7 @@ jobs:
 
       - name: Validate refreshed data
         if: steps.gate.outputs.go == '1'
-        run: python3 scripts/validate_data.py
+        run: python3 scripts/validate_data.py --strict
 
       - name: Commit and push
         if: steps.gate.outputs.go == '1'
@@ -128,13 +138,27 @@ jobs:
             echo "No data changes; nothing to commit."
           else
             git commit -m "chore: live results update"
-            # Rebase + retry: live results are the most important payload —
-            # never drop a cycle to a cross-cron push race.
+            # PLAIN 'git pull --rebase' (no '-X theirs'): live results are the
+            # most important payload, and '-X theirs' silently DISCARDED a
+            # sibling cron's data on overlap (RCA 4–5). The data-writers
+            # concurrency group already serializes the crons; on a genuine
+            # conflict, re-run the deterministic generators and re-stage data/.
             n=0
             until git push; do
               n=$((n+1))
               if [ "$n" -ge 3 ]; then echo "push failed after $n retries"; exit 1; fi
-              git pull --rebase -X theirs origin main || { git rebase --abort || true; sleep 5; }
+              if ! git pull --rebase origin main; then
+                git rebase --abort || true
+                git reset --hard origin/main
+                python scripts/scrape_live_results.py || true
+                python scripts/rebuild_composite.py || true
+                python scripts/build_knockout_matchups.py || true
+                python scripts/build_hybrid.py || true
+                python scripts/compute_xg.py || true
+                git add data/
+                git commit -m "chore: live results update (reconciled)" || true
+                sleep 5
+              fi
             done
           fi
 

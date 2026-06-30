@@ -152,7 +152,7 @@ test('June-12 follow-ups: clock strip, home venue label, cron queueing, fresh JS
   assert.match(hv, /venue_label: `\$\{venue\.name\}, \$\{venue\.city\}`/, 'home enriches venue label');
   // Live cron queues instead of canceling (starvation dropped commits to ~2h).
   const lu = read('.github/workflows/live_update.yml');
-  assert.match(lu, /group: live-update[\s\S]{0,500}cancel-in-progress: false/, 'live cron queues');
+  assert.match(lu, /group: data-writers[\s\S]{0,500}cancel-in-progress: false/, 'live cron queues (shared data-writers group serializes all crons)');
   assert.ok(!/run:\s*python\s+scripts\/scrape_kalshi\.py/.test(lu), 'kalshi off the live cycle');
   // Deploys reach open tabs in minutes, not a day.
   const h = read('_headers');

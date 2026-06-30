@@ -34,6 +34,7 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 import time
 import urllib.parse
@@ -191,19 +192,41 @@ def odds_response_bookmakers(payload: dict[str, Any] | None) -> list[dict[str, A
     return resp[0].get("bookmakers") or []
 
 
+# Bracket-slot placeholders ("1A","2B","3_ABCDF","W73","L101","RU-A"…) — a
+# knockout fixture with these isn't a real matchup yet, so it can't be oriented.
+_KNOCKOUT_STAGES = {"round_of_32", "round_of_16", "quarterfinals", "semifinals", "third_place", "final"}
+_PLACEHOLDER_RE = re.compile(r"^\d[A-L]$|^[A-L]\d|^3[A-L/_]|^3 |^W\d|^L\d|^1[A-L]|^2[A-L]|^RU", re.I)
+
+
+def _is_placeholder(name: str | None) -> bool:
+    return not name or bool(_PLACEHOLDER_RE.match(str(name).strip()))
+
+
 def canonical_matchups() -> dict[frozenset, tuple[str, str]]:
-    """team-set → (team_a, team_b) orientation from group_matchups.json so our
-    keys/orientation match the app (parlay looks up team_a__vs__team_b)."""
+    """team-set → (team_a, team_b) orientation so our keys/orientation match the
+    app (parlay looks up team_a__vs__team_b). Covers BOTH the group fixtures
+    (group_matchups.json) and the resolved KNOCKOUT fixtures (schedule_full.json,
+    real-name rows only) so consensus odds can orient a knockout game too."""
+    out: dict[frozenset, tuple[str, str]] = {}
     try:
         gm = json.loads((DATA / "group_matchups.json").read_text())
     except Exception:  # noqa: BLE001
-        return {}
-    out: dict[frozenset, tuple[str, str]] = {}
+        gm = {}
     for g in gm.values():
         for m in (g.get("matches") or []):
             a, b = m.get("team_a"), m.get("team_b")
             if a and b:
                 out[frozenset((a, b))] = (a, b)
+    try:
+        sched = json.loads((DATA / "schedule_full.json").read_text())
+    except Exception:  # noqa: BLE001
+        sched = []
+    for m in sched:
+        if m.get("stage") not in _KNOCKOUT_STAGES:
+            continue
+        a, b = m.get("team_a"), m.get("team_b")
+        if a and b and not _is_placeholder(a) and not _is_placeholder(b):
+            out.setdefault(frozenset((a, b)), (a, b))
     return out
 
 
@@ -329,6 +352,15 @@ def selftest() -> int:
     check("no books → None", devig_match_winner([]) is None)
     check("malformed odds ignored", devig_match_winner(
         [{"bets": [{"id": 1, "values": [{"value": "Home", "odd": "x"}]}]}]) is None)
+
+    # placeholder detection + knockout coverage in canonical_matchups
+    check("placeholder slots detected", all(_is_placeholder(x) for x in ("1A", "2B", "W73", "L101", "3_ABCDF")))
+    check("real teams not placeholders", not _is_placeholder("Belgium") and not _is_placeholder("Cote d'Ivoire"))
+    canon = canonical_matchups()
+    # at least one resolved knockout pair should be canonicalized (real data on disk)
+    has_knockout = any(frozenset(p) in canon for p in
+                       (("Belgium", "Senegal"), ("Mexico", "Ecuador"), ("Brazil", "Japan")))
+    check("canonical_matchups covers a resolved knockout pair", has_knockout)
 
     print(f"selftest: {'PASS' if not fail else f'{fail} FAILURE(S)'}")
     return 1 if fail else 0
