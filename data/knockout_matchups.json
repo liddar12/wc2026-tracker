@@ -197,33 +197,33 @@
     "team_a": "France",
     "team_b": "Sweden",
     "composite_a": 86.9,
-    "composite_b": 72.3,
-    "gap": 14.6,
+    "composite_b": 72.2,
+    "gap": 14.7,
     "probabilities": {
-      "team_a_wins": 72.9,
-      "draw": 17.1,
-      "team_b_wins": 10.0
+      "team_a_wins": 73.1,
+      "draw": 17.0,
+      "team_b_wins": 9.9
     },
     "expected_points": {
       "team_a": 2.36,
       "team_b": 0.47
     },
     "predicted_winner": "France",
-    "win_confidence_pct": 88.0,
+    "win_confidence_pct": 88.1,
     "upset_risk": {
       "favored": "France",
       "underdog": "Sweden",
-      "gap": 14.6,
+      "gap": 14.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 72.9,
-      "draw": 17.1,
-      "team_b_wins": 10.0
+      "team_a_wins": 73.1,
+      "draw": 17.0,
+      "team_b_wins": 9.9
     },
-    "hybrid_gap": 14.6,
-    "advance_pct_a": 88.0,
-    "advance_pct_b": 12.0,
+    "hybrid_gap": 14.7,
+    "advance_pct_a": 88.1,
+    "advance_pct_b": 11.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M077__1I__vs__3_CDFGH",

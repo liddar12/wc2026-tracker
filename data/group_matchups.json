@@ -1426,8 +1426,8 @@
         "team_a": "Netherlands",
         "team_b": "Sweden",
         "composite_a": 83.8,
-        "composite_b": 72.3,
-        "gap": 11.5,
+        "composite_b": 72.2,
+        "gap": 11.6,
         "probabilities": {
           "team_a_wins": 53.4,
           "draw": 22.7,
@@ -1442,14 +1442,14 @@
         "upset_risk": {
           "favored": "Netherlands",
           "underdog": "Sweden",
-          "gap": 11.5,
+          "gap": 11.6,
           "indicators": []
         },
         "match_id": "Netherlands__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 65.6,
-          "draw": 20.4,
-          "team_b_wins": 14.0
+          "team_a_wins": 65.9,
+          "draw": 20.3,
+          "team_b_wins": 13.9
         },
         "hybrid_gap": 1.317
       },
@@ -1488,23 +1488,23 @@
         "team_a": "Japan",
         "team_b": "Sweden",
         "composite_a": 78.9,
-        "composite_b": 72.3,
-        "gap": 6.6,
+        "composite_b": 72.2,
+        "gap": 6.7,
         "probabilities": {
-          "team_a_wins": 44.3,
-          "draw": 25.3,
-          "team_b_wins": 30.4
+          "team_a_wins": 44.4,
+          "draw": 25.2,
+          "team_b_wins": 30.3
         },
         "expected_points": {
           "team_a": 1.58,
           "team_b": 1.16
         },
         "predicted_winner": "Japan",
-        "win_confidence_pct": 44.3,
+        "win_confidence_pct": 44.4,
         "upset_risk": {
           "favored": "Japan",
           "underdog": "Sweden",
-          "gap": 6.6,
+          "gap": 6.7,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1516,9 +1516,9 @@
         },
         "match_id": "Japan__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 53.3,
-          "draw": 24.5,
-          "team_b_wins": 22.3
+          "team_a_wins": 53.5,
+          "draw": 24.4,
+          "team_b_wins": 22.1
         },
         "hybrid_gap": 0.61
       },
@@ -1526,23 +1526,23 @@
         "team_a": "Tunisia",
         "team_b": "Sweden",
         "composite_a": 66.8,
-        "composite_b": 72.3,
-        "gap": 5.5,
+        "composite_b": 72.2,
+        "gap": 5.4,
         "probabilities": {
           "team_a_wins": 28.8,
           "draw": 25.0,
-          "team_b_wins": 46.3
+          "team_b_wins": 46.2
         },
         "expected_points": {
-          "team_a": 1.11,
+          "team_a": 1.12,
           "team_b": 1.64
         },
         "predicted_winner": "Sweden",
-        "win_confidence_pct": 46.3,
+        "win_confidence_pct": 46.2,
         "upset_risk": {
           "favored": "Sweden",
           "underdog": "Tunisia",
-          "gap": 5.5,
+          "gap": 5.4,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -1560,9 +1560,9 @@
         },
         "match_id": "Tunisia__vs__Sweden",
         "j5l_probabilities": {
-          "team_a_wins": 24.4,
+          "team_a_wins": 24.6,
           "draw": 25.2,
-          "team_b_wins": 50.4
+          "team_b_wins": 50.2
         },
         "hybrid_gap": -0.835
       }
