@@ -35,7 +35,7 @@
     "updated_at": "2026-06-12T20:31:46+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-30T02:31:14+00:00",
+    "updated_at": "2026-06-30T04:38:15+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2522,5 +2522,110 @@
       "formation": "4-4-2"
     },
     "updated_at": "2026-06-28T23:46:04+00:00"
+  },
+  "Brazil__vs__Japan": {
+    "team_a": {
+      "xi": [
+        "Alisson Becker",
+        "Gabriel Magalhães",
+        "Marquinhos",
+        "Douglas Santos",
+        "Danilo",
+        "Casemiro",
+        "Lucas Paquetá",
+        "Bruno Guimarães",
+        "Matheus Cunha",
+        "Vinícius Júnior",
+        "Rayan"
+      ],
+      "formation": "4-3-3"
+    },
+    "team_b": {
+      "xi": [
+        "Zion Suzuki",
+        "Shogo Taniguchi",
+        "Hiroki Ito",
+        "Takehiro Tomiyasu",
+        "Daichi Kamada",
+        "Kaishu Sano",
+        "Keito Nakamura",
+        "Ritsu Doan",
+        "Ayase Ueda",
+        "Daizen Maeda",
+        "Junya Ito"
+      ],
+      "formation": "3-4-2-1"
+    },
+    "updated_at": "2026-06-30T04:38:15+00:00"
+  },
+  "Germany__vs__Paraguay": {
+    "team_a": {
+      "xi": [
+        "Manuel Neuer",
+        "Antonio Rüdiger",
+        "Jonathan Tah",
+        "Nathaniel Brown",
+        "Joshua Kimmich",
+        "Aleksandar Pavlovic",
+        "Felix Nmecha",
+        "Florian Wirtz",
+        "Leroy Sané",
+        "Deniz Undav",
+        "Kai Havertz"
+      ],
+      "formation": "4-4-2"
+    },
+    "team_b": {
+      "xi": [
+        "Orlando Gill",
+        "José Canale",
+        "Gustavo Gómez",
+        "Júnior Alonso",
+        "Juan Jose Cáceres",
+        "Andrés Cubas",
+        "Damián Bobadilla",
+        "Matías Galarza",
+        "Miguel Almirón",
+        "Julio Enciso",
+        "Gabriel Ávalos"
+      ],
+      "formation": "4-4-2"
+    },
+    "updated_at": "2026-06-30T04:38:15+00:00"
+  },
+  "Netherlands__vs__Morocco": {
+    "team_a": {
+      "xi": [
+        "Bart Verbruggen",
+        "Virgil van Dijk",
+        "Nathan Aké",
+        "Jan Paul van Hecke",
+        "Frenkie de Jong",
+        "Ryan Gravenberch",
+        "Micky van de Ven",
+        "Denzel Dumfries",
+        "Brian Brobbey",
+        "Cody Gakpo",
+        "Crysencio Summerville"
+      ],
+      "formation": "3-4-2-1"
+    },
+    "team_b": {
+      "xi": [
+        "Yassine Bounou",
+        "Chadi Riad",
+        "Issa Diop",
+        "Noussair Mazraoui",
+        "Achraf Hakimi",
+        "Azzedine Ounahi",
+        "Neil El Aynaoui",
+        "Ayyoub Bouaddi",
+        "Ismael Saibari",
+        "Bilal El Khannouss",
+        "Brahim Díaz"
+      ],
+      "formation": "4-2-3-1"
+    },
+    "updated_at": "2026-06-30T04:38:15+00:00"
   }
 }

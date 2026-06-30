@@ -433,11 +433,84 @@
       "status": "STATUS_FULL_TIME"
     }
   },
-  "round_of_32": {},
+  "round_of_32": {
+    "Brazil__vs__Japan": {
+      "score_a": 2,
+      "score_b": 1,
+      "kickoff_utc": "2026-06-29T17:00Z",
+      "status": "STATUS_FULL_TIME"
+    },
+    "Germany__vs__Paraguay": {
+      "score_a": 1,
+      "score_b": 1,
+      "kickoff_utc": "2026-06-29T20:30Z",
+      "status": "STATUS_FINAL_PEN"
+    },
+    "Netherlands__vs__Morocco": {
+      "score_a": 1,
+      "score_b": 1,
+      "kickoff_utc": "2026-06-30T01:00Z",
+      "status": "STATUS_FINAL_PEN"
+    },
+    "Cote d'Ivoire__vs__Norway": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-30T17:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "France__vs__Sweden": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-06-30T21:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Mexico__vs__Ecuador": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-01T01:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "England__vs__DR Congo": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-01T16:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Belgium__vs__Senegal": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-01T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "USA__vs__Bosnia and Herzegovina": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-02T00:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Spain__vs__Austria": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-02T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Portugal__vs__Croatia": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-02T23:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Switzerland__vs__Algeria": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-03T03:00Z",
+      "status": "STATUS_SCHEDULED"
+    }
+  },
   "round_of_16": {},
   "quarterfinals": {},
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-30T02:31:13+00:00"
+  "last_updated": "2026-06-30T04:36:55+00:00"
 }

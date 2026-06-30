@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-06-30T02:31:13+00:00",
+    "updated_at": "2026-06-30T04:38:19+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2780,5 +2780,122 @@
       }
     ],
     "updated_at": "2026-06-28T23:45:59+00:00"
+  },
+  "Brazil__vs__Japan": {
+    "events": [
+      {
+        "minute": "12'",
+        "type": "yellow",
+        "player": "Kaishu Sano",
+        "team": "Japan"
+      },
+      {
+        "minute": "14'",
+        "type": "yellow",
+        "player": "Casemiro",
+        "team": "Brazil"
+      },
+      {
+        "minute": "29'",
+        "type": "goal",
+        "player": "Kaishu Sano",
+        "team": "Japan"
+      },
+      {
+        "minute": "45'",
+        "type": "yellow",
+        "player": "Daichi Kamada",
+        "team": "Japan"
+      },
+      {
+        "minute": "48'",
+        "type": "yellow",
+        "player": "Danilo",
+        "team": "Brazil"
+      },
+      {
+        "minute": "56'",
+        "type": "goal",
+        "player": "Casemiro",
+        "team": "Brazil"
+      },
+      {
+        "minute": "84'",
+        "type": "yellow",
+        "player": "Junnosuke Suzuki",
+        "team": "Japan"
+      },
+      {
+        "minute": "90'+5'",
+        "type": "goal",
+        "player": "Gabriel Martinelli",
+        "team": "Brazil"
+      }
+    ],
+    "updated_at": "2026-06-30T04:38:19+00:00"
+  },
+  "Germany__vs__Paraguay": {
+    "events": [
+      {
+        "minute": "42'",
+        "type": "goal",
+        "player": "Julio Enciso",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "54'",
+        "type": "goal",
+        "player": "Kai Havertz",
+        "team": "Germany"
+      },
+      {
+        "minute": "65'",
+        "type": "yellow",
+        "player": "Andrés Cubas",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "106'",
+        "type": "yellow",
+        "player": "Kai Havertz",
+        "team": "Germany"
+      },
+      {
+        "minute": "115'",
+        "type": "yellow",
+        "player": "Jamal Musiala",
+        "team": "Germany"
+      },
+      {
+        "minute": "117'",
+        "type": "yellow",
+        "player": "Matías Galarza",
+        "team": "Paraguay"
+      }
+    ],
+    "updated_at": "2026-06-30T04:38:19+00:00"
+  },
+  "Netherlands__vs__Morocco": {
+    "events": [
+      {
+        "minute": "47'",
+        "type": "yellow",
+        "player": "Issa Diop",
+        "team": "Morocco"
+      },
+      {
+        "minute": "72'",
+        "type": "goal",
+        "player": "Cody Gakpo",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "90'+1'",
+        "type": "goal",
+        "player": "Issa Diop",
+        "team": "Morocco"
+      }
+    ],
+    "updated_at": "2026-06-30T04:38:19+00:00"
   }
 }
