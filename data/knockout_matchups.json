@@ -645,5 +645,41 @@
     "stage": "round_of_16",
     "match_id": "M090__W73__vs__W75",
     "kickoff_utc": "2026-07-04T17:00:00Z"
+  },
+  {
+    "team_a": "Brazil",
+    "team_b": "Norway",
+    "composite_a": 78.3,
+    "composite_b": 81.8,
+    "gap": 3.5,
+    "probabilities": {
+      "team_a_wins": 28.6,
+      "draw": 26.1,
+      "team_b_wins": 45.3
+    },
+    "expected_points": {
+      "team_a": 1.12,
+      "team_b": 1.62
+    },
+    "predicted_winner": "Norway",
+    "win_confidence_pct": 61.3,
+    "upset_risk": {
+      "favored": "Norway",
+      "underdog": "Brazil",
+      "gap": 3.5,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 28.6,
+      "draw": 26.1,
+      "team_b_wins": 45.3
+    },
+    "hybrid_gap": 3.5,
+    "advance_pct_a": 38.7,
+    "advance_pct_b": 61.3,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M091__W76__vs__W78",
+    "kickoff_utc": "2026-07-05T20:00:00Z"
   }
 ]
