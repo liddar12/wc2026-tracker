@@ -38,41 +38,41 @@
   {
     "team_a": "Brazil",
     "team_b": "Japan",
-    "composite_a": 78.2,
+    "composite_a": 78.3,
     "composite_b": 78.4,
-    "gap": 0.2,
+    "gap": 0.1,
     "probabilities": {
-      "team_a_wins": 36.1,
+      "team_a_wins": 36.4,
       "draw": 26.8,
-      "team_b_wins": 37.1
+      "team_b_wins": 36.9
     },
     "expected_points": {
-      "team_a": 1.35,
-      "team_b": 1.38
+      "team_a": 1.36,
+      "team_b": 1.37
     },
     "predicted_winner": "Japan",
-    "win_confidence_pct": 50.7,
+    "win_confidence_pct": 50.3,
     "upset_risk": {
       "favored": "Japan",
       "underdog": "Brazil",
-      "gap": 0.2,
+      "gap": 0.1,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 0.2 points"
+          "detail": "Composite gap only 0.1 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 36.1,
+      "team_a_wins": 36.4,
       "draw": 26.8,
-      "team_b_wins": 37.1
+      "team_b_wins": 36.9
     },
-    "hybrid_gap": 0.2,
-    "advance_pct_a": 49.3,
-    "advance_pct_b": 50.7,
+    "hybrid_gap": 0.1,
+    "advance_pct_a": 49.7,
+    "advance_pct_b": 50.3,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M076__1C__vs__2F",
