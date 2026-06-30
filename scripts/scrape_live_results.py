@@ -46,8 +46,15 @@ TEAM_RENAMES = {
     "Iran":                             "Iran",
 }
 
-# ESPN status types
-STATUS_COMPLETE = {"STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME"}
+# ESPN status types. AET/PEN are knockout finishes (extra time / penalty
+# shootout): the score is the regulation score (a tie for PEN) and the advancing
+# team is in ESPN's per-competitor "winner" flag — without them a finished
+# penalty knockout was never marked complete, so its winner was never recorded
+# and the bracket could not advance it.
+STATUS_COMPLETE = {
+    "STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME",
+    "STATUS_FINAL_AET", "STATUS_FINAL_PEN",
+}
 STATUS_IN_PROGRESS = {"STATUS_IN_PROGRESS", "STATUS_HALFTIME", "STATUS_END_PERIOD"}
 
 def fetch(url):
@@ -152,11 +159,20 @@ def main():
                 "status": status_type,
             }
             # Knockout penalty winner: ESPN sets a "winner" boolean per competitor
+            # (the score stays the regulation tie). Capture the advancing team and
+            # the shootout tally (oriented to the schedule's team_a/team_b).
             if status_type in STATUS_COMPLETE and sa == sb:
                 w1 = competitors[0].get("winner")
                 w2 = competitors[1].get("winner")
                 if w1: rec["winner"] = t1
                 elif w2: rec["winner"] = t2
+                so1 = competitors[0].get("shootoutScore")
+                so2 = competitors[1].get("shootoutScore")
+                if so1 is not None and so2 is not None:
+                    if t1 == sched_a:
+                        rec["shootout_a"], rec["shootout_b"] = so1, so2
+                    else:
+                        rec["shootout_a"], rec["shootout_b"] = so2, so1
             prev = actual.get(stage, {}).get(key_match)
             if prev != rec:
                 actual.setdefault(stage, {})[key_match] = rec

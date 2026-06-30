@@ -21,7 +21,13 @@ export const STAGE_ORDER = [
 // winner-advancement must only consume FINAL results, or a halftime 1-0 counts
 // as a played win and the bracket advances the current leader mid-match.
 // Records without a status field (manual/legacy) are treated as final.
-const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+// AET/PEN = knockout resolutions (extra time / penalty shootout): the score is
+// the regulation score and the advancing team is in rec.winner — without these
+// a finished penalty knockout never advanced the bracket.
+const FINAL_STATUSES = new Set([
+  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
+  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
+]);
 
 export function isFinalResultRecord(rec) {
   return !rec?.status || FINAL_STATUSES.has(rec.status);

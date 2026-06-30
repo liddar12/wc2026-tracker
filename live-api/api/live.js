@@ -42,14 +42,26 @@ export function parseScoreboard(data) {
     const competitors = comp.competitors || [];
     if (competitors.length !== 2) continue;
     const teams = {};
+    let winner = null;
+    const shootout = {};
     for (const c of competitors) {
       const name = norm(c.team?.displayName || c.team?.name);
       const score = Number(c.score);
-      if (name) teams[name] = Number.isFinite(score) ? score : 0;
+      if (!name) continue;
+      teams[name] = Number.isFinite(score) ? score : 0;
+      // Knockout matches decided in extra time / pens carry the regulation
+      // score (often a tie) — the advancing team is in ESPN's `winner` flag and
+      // the shootout tally in `shootoutScore`.
+      if (c.winner === true) winner = name;
+      const so = Number(c.shootoutScore);
+      if (Number.isFinite(so)) shootout[name] = so;
     }
     if (Object.keys(teams).length !== 2) continue;
     const rawClock = (st.state === 'in' && (comp.status?.displayClock || ev.status?.displayClock)) || '';
-    out.push({ teams, status: st.name || '', minute: String(rawClock).replace(/'+$/, '') });
+    const entry = { teams, status: st.name || '', minute: String(rawClock).replace(/'+$/, '') };
+    if (winner) entry.winner = winner;
+    if (Object.keys(shootout).length === 2) entry.shootout = shootout;
+    out.push(entry);
   }
   return out;
 }

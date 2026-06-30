@@ -194,6 +194,23 @@ export function renderMatchupDetail(root, data, params) {
       : 'Drawn';
     res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
     root.appendChild(res);
+  } else if (match.stage && match.stage !== 'group') {
+    // Knockout result — actualChoice only reads group_stage. Read the record
+    // directly so a winner decided by penalties / extra time shows (the
+    // regulation score is a tie, so the winner is only in rec.winner).
+    const tier = data.actualResults?.[match.stage] || {};
+    const rec = tier[`${match.team_a}__vs__${match.team_b}`] || tier[`${match.team_b}__vs__${match.team_a}`];
+    if (rec?.winner) {
+      const res = document.createElement('div');
+      res.className = 'section';
+      let label = `${rec.winner} won`;
+      const sa = rec.shootout_a, sb = rec.shootout_b;
+      if (Number.isFinite(sa) && Number.isFinite(sb)) {
+        label += ` on penalties (${Math.max(sa, sb)}–${Math.min(sa, sb)})`;
+      }
+      res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
+      root.appendChild(res);
+    }
   }
 }
 

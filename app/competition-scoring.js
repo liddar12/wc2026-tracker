@@ -23,7 +23,13 @@ const STAGE_TO_ROUND = {
 // IN-PROGRESS records (live scores for the match cards) — scoring must ignore
 // those or pool points would swing mid-match and count half-played games.
 // Records without a status field (manual/legacy) are treated as final.
-const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+// AET/PEN = knockout extra-time / penalty-shootout finals: the score is the
+// regulation score (often a tie) and the winner is in rec.winner, so a correct
+// shootout pick scores instead of being dropped as unfinished.
+const FINAL_STATUSES = new Set([
+  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
+  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
+]);
 
 function isFinalRecord(rec) {
   return !rec?.status || FINAL_STATUSES.has(rec.status);
