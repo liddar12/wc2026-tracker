@@ -21,7 +21,10 @@
  * Inputs are plain JSON; no DOM. UI rendering happens in components/referee.js.
  */
 
-const LEAGUE_CARDS_MEAN = 2.9;   // intentional simple priors (~3 yellows/match)
+// Intentional simple priors. Kept module-private; the renderer consumes the
+// ready-made *_delta_pct fields teamHistory() returns instead of importing these
+// constants (keeps the priors in one place).
+const LEAGUE_CARDS_MEAN = 2.9;   // ~3 yellows/match
 const LEAGUE_CARDS_STD = 1.4;
 const LEAGUE_PENS_MEAN = 0.22;
 const LEAGUE_PENS_STD = 0.18;
@@ -64,7 +67,17 @@ export function teamHistory(refHistory, team) {
   const meanPens = avg(pens);
   const zCards = n ? (meanCards - LEAGUE_CARDS_MEAN) / LEAGUE_CARDS_STD : null;
   const zPens = n ? (meanPens - LEAGUE_PENS_MEAN) / LEAGUE_PENS_STD : null;
-  return { team, n, mean_cards: meanCards, mean_pens: meanPens, z_cards: zCards, z_pens: zPens, confidence };
+  // Additive plain-language fields: "% vs average" the renderer shows above the
+  // σ rows. Null when n===0 (no sample) — existing consumers/tests unaffected.
+  const cardsDeltaPct = n ? ((meanCards - LEAGUE_CARDS_MEAN) / LEAGUE_CARDS_MEAN) * 100 : null;
+  const pensDeltaPct = n ? ((meanPens - LEAGUE_PENS_MEAN) / LEAGUE_PENS_MEAN) * 100 : null;
+  return {
+    team, n,
+    mean_cards: meanCards, mean_pens: meanPens,
+    z_cards: zCards, z_pens: zPens,
+    cards_delta_pct: cardsDeltaPct, pens_delta_pct: pensDeltaPct,
+    confidence,
+  };
 }
 
 export function confederationLean(refHistory, refConfederation, teamConfedLookup) {

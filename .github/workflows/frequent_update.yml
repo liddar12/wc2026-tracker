@@ -136,6 +136,18 @@ jobs:
         run: python scripts/snapshot_backtest.py
         continue-on-error: true
 
+      # RJ30.1-D: AI match previews/recaps. Runs AFTER the model rebuild so the
+      # prompt sees fresh probs, BEFORE the version bump/validate so a fresh
+      # previews.json is committed. Ships DORMANT — with no ANTHROPIC_API_KEY it
+      # logs "unset", exits 0, leaves previews.json untouched. The skip-if-
+      # unchanged content hash keeps hourly cost near-zero; continue-on-error so
+      # an API hiccup never reds the hourly refresh.
+      - name: Generate AI match previews/recaps (dormant without key)
+        run: python3 scripts/generate_previews.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        continue-on-error: true
+
       # ---- Bump meta.data_version ONLY when real data changed ----
       # Was unconditional: every hourly run committed + pushed + redeployed even
       # with zero data changes, maximizing the cross-cron push-race window and

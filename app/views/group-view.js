@@ -1,5 +1,6 @@
 /* group-view.js — standings + 6 cards for a single group, with group switcher. */
 import { escapeHtml } from '../lib/escape.js';
+import { t, fmtNumber } from '../lib/i18n.js';
 import { matchupCard } from '../components/matchup-card.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
@@ -9,7 +10,7 @@ export function renderGroupView(root, data, params) {
   const group = params.group || 'D';
   const info = data.groupMatchups[group];
   if (!info) {
-    root.innerHTML = '<p class="loading">Group not found.</p>';
+    root.innerHTML = `<p class="loading">${escapeHtml(t('group.notFound'))}</p>`;
     return;
   }
 
@@ -17,9 +18,9 @@ export function renderGroupView(root, data, params) {
   const filter = document.createElement('div');
   filter.className = 'filter-bar';
   filter.innerHTML = `
-    <label>Group
+    <label>${escapeHtml(t('group.label'))}
       <select id="filter-group">
-        ${groups.map(g => `<option value="${g}" ${g === group ? 'selected' : ''}>Group ${g}</option>`).join('')}
+        ${groups.map(g => `<option value="${g}" ${g === group ? 'selected' : ''}>${escapeHtml(t('group.label'))} ${g}</option>`).join('')}
       </select>
     </label>
   `;
@@ -34,16 +35,16 @@ export function renderGroupView(root, data, params) {
   table.className = 'standings';
   table.innerHTML = `
     <thead><tr>
-      <th>#</th><th>Team</th><th class="num">xPts</th><th class="num">xGF</th><th class="num">Adv%</th>
+      <th>#</th><th>${escapeHtml(t('group.team'))}</th><th class="num">xPts</th><th class="num">xGF</th><th class="num">Adv%</th>
     </tr></thead>
     <tbody>
       ${standings.map((s, i) => `
         <tr>
           <td>${i + 1}</td>
           <td class="team-cell"><a class="team-link" href="#/team/name/${encodeURIComponent(s.team)}"><span class="flag" aria-hidden="true">${flagFor(s.team)}</span> ${escapeHtml(s.team)}</a></td>
-          <td class="num">${s.xpts.toFixed(2)}</td>
-          <td class="num">${s.xgd > 0 ? '+' : ''}${s.xgd.toFixed(1)}</td>
-          <td class="num">${(s.advProb * 100).toFixed(0)}%</td>
+          <td class="num">${fmtNumber(s.xpts, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</td>
+          <td class="num">${s.xgd > 0 ? '+' : ''}${fmtNumber(s.xgd, { minimumFractionDigits: 1, maximumFractionDigits: 1 })}</td>
+          <td class="num">${fmtNumber(s.advProb * 100, { maximumFractionDigits: 0 })}%</td>
         </tr>
       `).join('')}
     </tbody>

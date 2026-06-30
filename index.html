@@ -14,6 +14,16 @@
 <meta name="theme-color" content="#0D1117" media="(prefers-color-scheme: dark)">
 <base id="app-base" href="/">
 <script>
+// RJ30.1-B i18n: pre-paint language sync. Set <html lang> from the persisted
+// wc26.lang BEFORE any app module (or font/CSS paint) runs so VoiceOver and the
+// first chrome the user sees are already in the right language (no flash). The
+// i18n module re-affirms this on boot; this just wins the race for the attribute.
+(function prePaintLang() {
+  try {
+    var l = localStorage.getItem('wc26.lang');
+    if (l === 'es' || l === 'en') document.documentElement.setAttribute('lang', l);
+  } catch (e) { /* private mode / disabled storage: stay with the static lang */ }
+})();
 (function setBaseHref() {
   const parts = location.pathname.split('/').filter(Boolean);
   const last = parts[parts.length - 1];

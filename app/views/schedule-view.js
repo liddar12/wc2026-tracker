@@ -8,6 +8,7 @@
  *           selected day with venue + local-time kickoff + broadcast tag.
  */
 import { escapeHtml } from '../lib/escape.js';
+import { t, fmtDate } from '../lib/i18n.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
@@ -22,7 +23,7 @@ export function renderScheduleView(root, data, params) {
   if (!schedule.length) {
     const empty = document.createElement('p');
     empty.className = 'empty-state';
-    empty.textContent = 'Full tournament schedule is not yet published.';
+    empty.textContent = t('schedule.empty');
     root.appendChild(empty);
     return;
   }
@@ -72,7 +73,7 @@ export function renderScheduleView(root, data, params) {
     toolbar.className = 'sched-toolbar';
     toolbar.innerHTML = `
       <button type="button" class="watch-filter sched-mine ${mineOnly ? 'is-active' : ''}" aria-pressed="${mineOnly}">
-        <span class="flag" aria-hidden="true">${flagFor(fav)}</span> ${mineOnly ? 'Showing' : 'My matches'}: ${escapeHtml(fav)}
+        <span class="flag" aria-hidden="true">${flagFor(fav)}</span> ${escapeHtml(mineOnly ? t('schedule.showing') : t('schedule.myMatches'))}: ${escapeHtml(fav)}
       </button>
     `;
     toolbar.querySelector('.sched-mine').addEventListener('click', () => {
@@ -96,8 +97,8 @@ export function renderScheduleView(root, data, params) {
     btn.dataset.date = d;
     const [y, m, day] = d.split('-').map(Number);
     const dateObj = new Date(y, m - 1, day);
-    const dow = dateObj.toLocaleDateString(undefined, { weekday: 'short' });
-    const md = dateObj.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
+    const dow = fmtDate(dateObj, { weekday: 'short' });
+    const md = fmtDate(dateObj, { month: 'short', day: 'numeric' });
     const favDot = playsToday ? '<span class="fav-dot" aria-label="Your team plays" title="Your team plays">★</span>' : '';
     btn.innerHTML = `<span class="dow">${escapeHtml(dow)}</span><span class="md">${escapeHtml(md)}</span><span class="cnt">${byDate.get(d).length}</span>${favDot}`;
     btn.addEventListener('click', () => setRoute('schedule', mineOnly ? { date: d, mine: '1' } : { date: d }));
@@ -113,9 +114,10 @@ export function renderScheduleView(root, data, params) {
     }
   });
 
-  // Heading — render the local-date as a friendly long string.
+  // Heading — render the local-date as a friendly long string, localized to the
+  // selected language (fmtDate → es-MX when Spanish, en-US otherwise).
   const [ay, am, ad] = active.split('-').map(Number);
-  const headingDate = new Date(ay, am - 1, ad).toLocaleDateString(undefined, {
+  const headingDate = fmtDate(new Date(ay, am - 1, ad), {
     weekday: 'long', month: 'long', day: 'numeric', year: 'numeric'
   });
   const heading = document.createElement('h2');

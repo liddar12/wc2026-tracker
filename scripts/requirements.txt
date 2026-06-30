@@ -2,3 +2,7 @@ requests>=2.32
 beautifulsoup4>=4.12
 lxml>=5.0
 numpy>=1.24
+# Only scripts/generate_previews.py imports this, behind a try/except ImportError,
+# and only when ANTHROPIC_API_KEY is set — the rest of the pipeline is unaffected
+# if it's missing (the previews step stays dormant). See docs/rj30.1/D-*.md.
+anthropic>=0.40

@@ -33,6 +33,9 @@ import { describePrediction, actualChoice } from '../predictions.js';
 import { hybridProb } from '../hybrid-model.js';
 import { mergedMarkets } from '../markets.js';
 import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
+import { t } from '../lib/i18n.js';
+import { previewSection } from '../components/match-preview.js';
+import { buildMatchShareUrl, tryShareViaNavigator } from '../share-match.js';
 
 export function renderMatchupDetail(root, data, params) {
   const match = resolveMatch(data, params.team_a, params.team_b);
@@ -78,6 +81,7 @@ export function renderMatchupDetail(root, data, params) {
 
   const starRow = document.createElement('div');
   starRow.className = 'detail-star-row';
+  starRow.appendChild(shareButton(match));
   starRow.appendChild(watchlistStar(match));
   bodyWrap.appendChild(starRow);
   const teamsRow = document.createElement('div');
@@ -191,6 +195,12 @@ export function renderMatchupDetail(root, data, params) {
     root.appendChild(grid);
   }
 
+  // AI match preview / recap — mounts near the model grid (where a preview
+  // belongs) and ships DORMANT: previewSection returns an empty
+  // DocumentFragment when data.previews has no entry for this pair, so this is
+  // invisible/silent until scripts/generate_previews.py writes previews.json.
+  root.appendChild(previewSection(match, data));
+
   // RJ30-5: live win-probability timeline. Pure display — renders nothing
   // unless the match is live AND the row carries a model prior (group
   // `probabilities` or knockout `advance_pct_*`). Reuses the `found` computed
@@ -201,7 +211,7 @@ export function renderMatchupDetail(root, data, params) {
   // Picks (full width below grid)
   const picks = document.createElement('div');
   picks.className = 'section';
-  picks.innerHTML = `<h2>Your pick</h2>`;
+  picks.innerHTML = `<h2>${escapeHtml(t('matchup.yourPick'))}</h2>`;
   picks.appendChild(renderPickRow(match));
   root.appendChild(picks);
 
@@ -242,7 +252,7 @@ export function renderMatchupDetail(root, data, params) {
     const res = document.createElement('div');
     res.className = 'section';
     res.dataset.testid = 'final-result';
-    res.innerHTML = `<h2>Final result</h2><p><strong>${escapeHtml(label)}</strong></p>`;
+    res.innerHTML = `<h2>${escapeHtml(t('matchup.finalResult'))}</h2><p><strong>${escapeHtml(label)}</strong></p>`;
     root.appendChild(res);
   }
 }
@@ -275,6 +285,34 @@ function availabilitySection(match, data) {
     <p class="muted" style="font-size:11px;margin:6px 0 0;">From match cards (red / two accumulated yellows). ESPN publishes no World Cup injury data.</p>
   `;
   return sec;
+}
+
+// Share this matchup — mirrors the bracket Share button. Emits the real
+// `/m/<A>__vs__<B>` OG path via buildMatchShareUrl and hands it to
+// tryShareViaNavigator (navigator.share → clipboard fallback). `.icon-btn` has
+// no project CSS, so the 44px touch target + neutral chrome are set inline; no
+// transition/animation → reduced-motion safe by construction.
+function shareButton(match) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'icon-btn';
+  btn.setAttribute('aria-label', 'Share this matchup');
+  btn.style.cssText = 'appearance:none;background:transparent;border:0;'
+    + 'min-width:44px;min-height:44px;padding:4px;display:inline-flex;'
+    + 'align-items:center;justify-content:center;color:var(--text-muted);'
+    + 'cursor:pointer;font-size:18px;line-height:1;'
+    + '-webkit-tap-highlight-color:transparent;touch-action:manipulation;';
+  // Unicode share glyph; decorative (the aria-label carries the meaning).
+  btn.innerHTML = '<span aria-hidden="true">↗︎</span>';
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    tryShareViaNavigator(
+      buildMatchShareUrl(match.team_a, match.team_b),
+      `${match.team_a} vs ${match.team_b}`,
+    );
+  });
+  return btn;
 }
 
 function renderPickRow(match) {

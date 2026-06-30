@@ -14,6 +14,15 @@
   to = "/.netlify/functions/share-card?token=:splat"
   status = 200
 
+# RJ30.1 (C-1): server-rendered OG/Twitter card for a single matchup link.
+# Same rationale as /s/* — the team pair lives in the URL fragment of the
+# in-app `#/matchup/…` route, which crawlers never see, so this real `/m/<pair>`
+# path is served by the match-card function. MUST precede the SPA catch-all.
+[[redirects]]
+  from = "/m/*"
+  to = "/.netlify/functions/match-card?pair=:splat"
+  status = 200
+
 [[redirects]]
   from = "/join/*"
   to = "/index.html"

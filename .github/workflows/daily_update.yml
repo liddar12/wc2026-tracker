@@ -140,6 +140,17 @@ jobs:
         run: python scripts/build_knockout_matchups.py
         continue-on-error: true
 
+      # RJ30.1-D: AI match previews/recaps. Runs AFTER the model rebuild so the
+      # prompt sees fresh probs, BEFORE validate. Ships DORMANT — with no
+      # ANTHROPIC_API_KEY secret it logs "unset", exits 0, and leaves
+      # previews.json untouched. continue-on-error so an API hiccup never reds
+      # the daily refresh.
+      - name: Generate AI match previews/recaps (dormant without key)
+        run: python3 scripts/generate_previews.py
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        continue-on-error: true
+
       - name: Validate refreshed data
         run: python3 scripts/validate_data.py --strict
 

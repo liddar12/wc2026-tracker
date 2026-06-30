@@ -8,6 +8,7 @@
 
 import { escapeHtml } from '../lib/escape.js';
 import { setRoute } from '../state.js';
+import { t, getLang, setLang } from '../lib/i18n.js';
 import { flagFor } from '../components/team-flag.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames } from '../favorites.js';
 import { getCompetitionState, signOut, isSupabaseConfigured } from '../competition.js';
@@ -21,6 +22,10 @@ export function renderSettingsView(root, data) {
 
   // --- Favorite team
   root.appendChild(renderFavoriteCard(data));
+
+  // --- RJ30.1-B: Language (en / es). Placed directly under Favorite per spec so
+  // the very first preference is "who/what language", before alerts + theme.
+  root.appendChild(renderLanguageCard());
 
   // --- RJ30-3: Match alerts (Web Push). Placed after Favorite so "who" (the
   // team) precedes "alerts" (notifications for that team).
@@ -62,7 +67,7 @@ function renderFavoriteCard(data) {
   const current = getFavoriteTeam();
   const teams = allTeamNames(data);
   card.innerHTML = `
-    <h2 class="home-card-title">Favorite team</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.favorite'))}</h2>
     <p class="muted" style="margin:0 0 10px; font-size:13px;">Defaults the Matches and Groups tabs to your team. Highlights their matches in lists and the bracket. Recolors the app accent.</p>
     <div class="settings-current">
       ${current ? `
@@ -105,6 +110,45 @@ function renderFavoriteCard(data) {
   return card;
 }
 
+// RJ30.1-B: Language card — switches the app between English and Spanish (es-MX).
+// Reuses the Theme card's .home-card + .settings-radio-group + .settings-radio
+// tokens (no new CSS, iOS-first 390px-safe). On change → setLang(value), which
+// persists wc26.lang, sets <html lang>, and fires `lang:change`; main.js's
+// listener re-localizes the shell + re-renders the current view (incl. this one),
+// so no manual re-render is needed here.
+function renderLanguageCard() {
+  const card = document.createElement('section');
+  card.className = 'home-card';
+  card.style.marginBottom = '12px';
+  card.dataset.testid = 'settings-language';
+  const current = getLang();
+  const langs = [
+    { value: 'en', label: t('settings.english') },
+    { value: 'es', label: t('settings.spanish') },
+  ];
+  card.innerHTML = `
+    <h2 class="home-card-title">${escapeHtml(t('settings.language'))}</h2>
+    <div class="settings-radio-group">
+      ${langs.map((l) => `
+        <label class="settings-radio ${current === l.value ? 'is-active' : ''}">
+          <input type="radio" name="settings-lang" value="${l.value}" ${current === l.value ? 'checked' : ''}>
+          <span>${escapeHtml(l.label)}</span>
+        </label>
+      `).join('')}
+    </div>
+  `;
+  card.addEventListener('change', (e) => {
+    const v = e.target?.value;
+    if (!v || (v !== 'en' && v !== 'es')) return;
+    // Reflect active state immediately; lang:change will re-render the full view
+    // a beat later, but this keeps the radio visually consistent in the interim.
+    card.querySelectorAll('.settings-radio').forEach((r) =>
+      r.classList.toggle('is-active', r.querySelector('input').value === v));
+    setLang(v);
+  });
+  return card;
+}
+
 function renderThemeCard() {
   const card = document.createElement('section');
   card.className = 'home-card';
@@ -113,7 +157,7 @@ function renderThemeCard() {
     try { return localStorage.getItem('wc26.theme') || 'auto'; } catch { return 'auto'; }
   })();
   card.innerHTML = `
-    <h2 class="home-card-title">Theme</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.theme'))}</h2>
     <div class="settings-radio-group">
       ${['auto', 'light', 'dark'].map((t) => `
         <label class="settings-radio ${current === t ? 'is-active' : ''}">
@@ -149,7 +193,7 @@ function renderMotionCard() {
     try { return localStorage.getItem(LS_REDUCE_MOTION) === '1'; } catch { return false; }
   })();
   card.innerHTML = `
-    <h2 class="home-card-title">Motion</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.motion'))}</h2>
     <label class="settings-toggle">
       <span>
         <strong style="font-size:14px;">Reduce motion</strong>
@@ -173,7 +217,7 @@ function renderAccountCard() {
   const comp = getCompetitionState();
   const user = comp?.user;
   card.innerHTML = `
-    <h2 class="home-card-title">Account</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.account'))}</h2>
     ${user ? `
       <p class="muted" style="font-size:13px; margin:0 0 10px;">Signed in as <strong>${escapeHtml(comp.profile?.username || user.email || 'user')}</strong></p>
       <button class="pick-btn pick-btn-secondary" id="settings-signout">Sign out</button>
@@ -204,7 +248,7 @@ function renderModelSettingsCard() {
   card.style.marginBottom = '12px';
   // Async load: import the active-model lib + backtest JSON, then render.
   card.innerHTML = `
-    <h2 class="home-card-title">Model & Analytics</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.model'))}</h2>
     <p class="muted" style="font-size:13px; margin: 0 0 10px;">Pick which forecast drives Play tile analytics, the Bracket Projected view, and Auto-fill suggestions. You can override per-page from the model picker at the top of each view.</p>
     <div id="settings-model-radios">Loading…</div>
     <details id="settings-model-explain" style="margin-top: 12px;">
@@ -274,7 +318,7 @@ function renderPipelineStatusCard() {
   card.className = 'home-card';
   card.style.marginBottom = '12px';
   card.innerHTML = `
-    <h2 class="home-card-title">Pipeline status</h2>
+    <h2 class="home-card-title">${escapeHtml(t('settings.pipeline'))}</h2>
     <p class="muted" style="margin:0 0 10px; font-size:13px;">Freshness of each data feed plus any validation warnings — a quick check that the numbers are live.</p>
     <button class="pick-btn pick-btn-secondary" id="settings-pipeline-status" data-testid="settings-pipeline-status">View data health →</button>
   `;

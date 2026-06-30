@@ -11,7 +11,7 @@
  *     meta, teams, players, groupMatchups, schedule, actualResults,
  *     venues, scheduleFull, lineups, referees, matchReferees,
  *     h2h, form, scorers, weather, fatigue, xg, markets, injuries,
- *     consensusOdds
+ *     consensusOdds, previews
  *   }
  */
 
@@ -62,7 +62,11 @@ const OPTIONAL_FILES = [
   { file: 'polymarket_odds.json', fallback: {} },
   // Committed steady-state pipeline health (validate report + feed freshness)
   // surfaced on the Status view.
-  { file: 'pipeline_status.json', fallback: {} }
+  { file: 'pipeline_status.json', fallback: {} },
+  // RJ30.1-D: AI match previews/recaps. Ships DORMANT — the empty stub keeps
+  // the loader fetch a 200; entries only appear once the ANTHROPIC_API_KEY repo
+  // secret is set and generate_previews.py runs in the cron.
+  { file: 'previews.json',       fallback: {} }
 ];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
@@ -193,6 +197,7 @@ function fileToKey(file) {
     case 'match_events.json':    return 'matchEvents';
     case 'polymarket_odds.json': return 'polymarketOdds';
     case 'pipeline_status.json': return 'pipelineStatus';
+    case 'previews.json':        return 'previews';
     default: return file.replace('.json', '');
   }
 }

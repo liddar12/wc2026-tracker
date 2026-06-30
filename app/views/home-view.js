@@ -2,6 +2,7 @@
    today's matches, recent results, auth/group preview, Kalshi top movers,
    quick links to other tabs. */
 import { escapeHtml } from '../lib/escape.js';
+import { t } from '../lib/i18n.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { largeMatchCard, actualForCard } from '../components/large-match-card.js';
@@ -57,7 +58,7 @@ export function renderHome(root, data) {
   if (!data) {
     const p = document.createElement('p');
     p.className = 'loading';
-    p.textContent = 'Loading…';
+    p.textContent = t('home.loading');
     root.appendChild(p);
     return;
   }
@@ -114,13 +115,13 @@ function renderHero(data) {
   wrap.innerHTML = `
     <div class="home-hero-top">
       <div class="home-hero-eyebrow">FIFA World Cup 2026</div>
-      <div class="home-hero-title">${escapeHtml(meta.dates || '11 June – 19 July 2026')}</div>
-      <div class="home-hero-sub">${escapeHtml(meta.hosts?.join(' · ') || 'USA · Canada · Mexico')}</div>
+      <div class="home-hero-title">${escapeHtml(meta.dates || t('home.datesFallback'))}</div>
+      <div class="home-hero-sub">${escapeHtml(meta.hosts?.join(' · ') || t('home.hostsFallback'))}</div>
     </div>
     ${showCountdown ? renderCountdownShell(opening) : ''}
     <button class="home-hero-updated" id="home-updated-btn" type="button" aria-haspopup="dialog" aria-expanded="false">
       <span class="home-hero-dot" aria-hidden="true"></span>
-      Data updated <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
+      ${escapeHtml(t('home.dataUpdated'))} <strong>${escapeHtml(formatLastUpdated(freshestIso))}</strong>
       <span class="home-hero-info" aria-hidden="true">ⓘ</span>
     </button>
     <div class="home-hero-freshness" id="home-freshness-popover" hidden role="dialog" aria-label="Per-feed freshness"></div>
@@ -194,12 +195,12 @@ function renderCountdownShell(opening) {
   // Numbers populated by startCountdownTicker — initial values are placeholders.
   return `
     <div class="home-countdown" role="timer" aria-label="Time until opening match" aria-live="off">
-      <div class="home-countdown-label" data-cd="label">Kicks off in</div>
+      <div class="home-countdown-label" data-cd="label">${escapeHtml(t('home.kicksOffIn'))}</div>
       <div class="home-countdown-cells">
-        <div class="cd-cell"><div class="cd-num" data-cd="d">—</div><div class="cd-lbl">days</div></div>
-        <div class="cd-cell"><div class="cd-num" data-cd="h">—</div><div class="cd-lbl">hrs</div></div>
-        <div class="cd-cell"><div class="cd-num" data-cd="m">—</div><div class="cd-lbl">min</div></div>
-        <div class="cd-cell"><div class="cd-num" data-cd="s">—</div><div class="cd-lbl">sec</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="d">—</div><div class="cd-lbl">${escapeHtml(t('unit.days'))}</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="h">—</div><div class="cd-lbl">${escapeHtml(t('unit.hrs'))}</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="m">—</div><div class="cd-lbl">${escapeHtml(t('unit.min'))}</div></div>
+        <div class="cd-cell"><div class="cd-num" data-cd="s">—</div><div class="cd-lbl">${escapeHtml(t('unit.sec'))}</div></div>
       </div>
       <div class="home-countdown-game muted">${escapeHtml(matchTitle)}${venue}</div>
     </div>
@@ -268,9 +269,9 @@ function startCountdownTicker(wrap, openingIso) {
   const tick = () => {
     const cd = computeCountdown(openingIso);
     if (cd.elapsed) {
-      label.textContent = 'Tournament started';
+      label.textContent = t('home.tournamentStarted');
     } else {
-      label.textContent = 'Kicks off in';
+      label.textContent = t('home.kicksOffIn');
     }
     // Days uncapped (no zero-pad for readability); time units zero-padded.
     dEl.textContent = String(cd.days);
@@ -386,7 +387,7 @@ function renderFavoriteTeamSection(data) {
   if (!fav) {
     wrap.innerHTML = `
       <div class="home-card home-card-favorite">
-        <h2 class="home-card-title">Pick your favorite team</h2>
+        <h2 class="home-card-title">${escapeHtml(t('home.pickFavorite'))}</h2>
         <p class="muted" style="margin: 0 0 8px;">When set, Matches and Groups default to this team's group.</p>
         <button class="pick-btn" id="fav-open">Choose team →</button>
       </div>
@@ -397,7 +398,7 @@ function renderFavoriteTeamSection(data) {
 
   wrap.innerHTML = `
     <div class="home-card home-card-favorite">
-      <h2 class="home-card-title">Your team</h2>
+      <h2 class="home-card-title">${escapeHtml(t('home.yourTeam'))}</h2>
       <div class="fav-current">
         <span class="fav-flag" aria-hidden="true">${flagFor(fav)}</span>
         <div class="fav-meta">
@@ -435,7 +436,7 @@ function openTeamPicker(wrap, data) {
   // Reuse the same card slot — render a search + grid.
   const card = wrap.querySelector('.home-card-favorite') || wrap;
   card.innerHTML = `
-    <h2 class="home-card-title">Pick your favorite team</h2>
+    <h2 class="home-card-title">${escapeHtml(t('home.pickFavorite'))}</h2>
     <input id="fav-search" class="auth-input" placeholder="Search teams…" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
     <div class="fav-grid" id="fav-grid" role="listbox" aria-label="Teams"></div>
     <div style="display:flex; justify-content: flex-end; margin-top: 8px;">
@@ -490,9 +491,9 @@ function renderTodaySection(data) {
         .filter((m) => m.kickoff_utc && new Date(m.kickoff_utc).getTime() >= Date.now())
         .sort((a, b) => String(a.kickoff_utc).localeCompare(String(b.kickoff_utc)))
         .slice(0, 3);
-  const heading = todays.length ? "Today's matches" : 'Up next';
+  const heading = todays.length ? t('home.today') : t('home.upNext');
   if (!upcoming.length) {
-    wrap.innerHTML = `<div class="home-card"><h2 class="home-card-title">${heading}</h2><p class="muted">No upcoming matches in schedule.</p></div>`;
+    wrap.innerHTML = `<div class="home-card"><h2 class="home-card-title">${escapeHtml(heading)}</h2><p class="muted">No upcoming matches in schedule.</p></div>`;
     return wrap;
   }
 
@@ -502,7 +503,7 @@ function renderTodaySection(data) {
   const head = document.createElement('div');
   head.className = 'home-card';
   head.style.marginBottom = '12px';
-  head.innerHTML = `<h2 class="home-card-title">${heading}</h2>`;
+  head.innerHTML = `<h2 class="home-card-title">${escapeHtml(heading)}</h2>`;
   wrap.appendChild(head);
 
   // B3 + favorite reorder: LIVE > favorite > everything else (by time).
@@ -582,9 +583,9 @@ function renderFullScheduleCard() {
   wrap.className = 'home-section';
   wrap.innerHTML = `
     <div class="home-card">
-      <h2 class="home-card-title">Full schedule</h2>
+      <h2 class="home-card-title">${escapeHtml(t('home.fullSchedule'))}</h2>
       <div class="home-card-cta">
-        <button class="pick-btn pick-btn-secondary" data-go="schedule">All 104 matches →</button>
+        <button class="pick-btn pick-btn-secondary" data-go="schedule">${escapeHtml(t('home.allMatches'))} →</button>
       </div>
     </div>
   `;
@@ -659,8 +660,8 @@ function renderMatchOfTheDayChip(data) {
   const wrap = document.createElement('section');
   wrap.className = 'home-card motd-card';
   wrap.style.marginBottom = '12px';
-  const t = new Date(m.kickoff_utc);
-  const time = isNaN(t) ? 'TBA' : t.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+  const kt = new Date(m.kickoff_utc);
+  const time = isNaN(kt) ? 'TBA' : kt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
   const upsetLabel = best.match?.upset_risk?.indicators?.[0]?.label || 'Toss-up';
   // Group games read "Group D"; knockout games read their round ("Quarterfinal")
   // — the old "Group ?" was nonsense once the bracket started.
@@ -668,7 +669,7 @@ function renderMatchOfTheDayChip(data) {
     ? `Group ${escapeHtml(m.group || '?')}`
     : escapeHtml(prettyStage(m));
   wrap.innerHTML = `
-    <h2 class="home-card-title">⭐ Don't miss <span class="muted home-card-meta">${escapeHtml(upsetLabel)}</span></h2>
+    <h2 class="home-card-title">⭐ ${escapeHtml(t('home.dontMiss'))} <span class="muted home-card-meta">${escapeHtml(upsetLabel)}</span></h2>
     <div class="motd-row">
       <div class="motd-teams">${flagFor(m.team_a)} <strong>${escapeHtml(m.team_a)}</strong> vs <strong>${escapeHtml(m.team_b)}</strong> ${flagFor(m.team_b)}</div>
       <div class="motd-meta muted">${escapeHtml(time)} · ${stageLabel}</div>
@@ -786,8 +787,8 @@ function renderRecentSection(data) {
   if (!recents.length) {
     wrap.innerHTML = `
       <div class="home-card">
-        <h2 class="home-card-title">Recent results</h2>
-        <p class="muted">No matches played yet. Tournament begins ${escapeHtml(data.schedule?.opening_match?.date || '11 June 2026')}.</p>
+        <h2 class="home-card-title">${escapeHtml(t('home.recentResults'))}</h2>
+        <p class="muted">${escapeHtml(t('home.noneYet'))}. Tournament begins ${escapeHtml(data.schedule?.opening_match?.date || '11 June 2026')}.</p>
       </div>
     `;
     return wrap;
@@ -796,7 +797,7 @@ function renderRecentSection(data) {
   const top = recents.slice(0, 5);
   wrap.innerHTML = `
     <div class="home-card">
-      <h2 class="home-card-title">Recent results</h2>
+      <h2 class="home-card-title">${escapeHtml(t('home.recentResults'))}</h2>
       <div class="home-match-list">
         ${top.map((r) => `
           <div class="home-match-row">
@@ -848,7 +849,7 @@ function renderQuickLinks() {
   wrap.className = 'home-section';
   wrap.innerHTML = `
     <div class="home-card">
-      <h2 class="home-card-title">Jump to</h2>
+      <h2 class="home-card-title">${escapeHtml(t('home.jumpTo'))}</h2>
       <div class="home-grid">
         <button class="home-link" data-go="play">${chip('play')}<span>Play</span></button>
         <button class="home-link" data-go="matchups">${chip('ball')}<span>Matches</span></button>

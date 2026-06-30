@@ -4550,3 +4550,279 @@ html, body { overflow-x: hidden; }
 .best-third-row.is-out .bt-status { color: var(--text-muted); }
 /* 8th/9th cutoff: a divider line (not color alone) marks who's in vs out. */
 .best-third-row.cutoff-after { border-top: 2px solid var(--bad, #c9252d); padding-top: 10px; }
+
+/* ==========================================================================
+   RJ30.1 — Wave-2 integration (append-only, disjoint blocks)
+   Formation pitch · H2H expansion · AI match-preview · ref-bias spacing ·
+   global reduced-motion backstop · accent-fill focus rings.
+   Reuses the existing token set; adds only the three theme-aware pitch greens.
+   ========================================================================== */
+
+/* New theme-aware pitch tokens (second :root block — additive, last-wins;
+   does not touch the canonical token block at the top of the file). Light: a
+   muted grass green that keeps white tokens legible. Dark: a deep desaturated
+   green. */
+:root {
+  --pitch-green: #2e7d4f;
+  --pitch-green-2: #29714766;   /* stripe overlay (alpha) */
+  --pitch-line: rgba(255, 255, 255, 0.55);
+}
+:root[data-theme='dark'] {
+  --pitch-green: #1f5538;
+  --pitch-green-2: #1a4a3066;
+  --pitch-line: rgba(255, 255, 255, 0.42);
+}
+
+/* -------------------------------------------------- Formation pitch (Item A1) */
+.fp-wrap { margin-top: 8px; min-width: 0; }
+/* Segmented team toggle — reuses the pill radius; ≥44px tap targets. */
+.fp-toggle {
+  display: flex;
+  gap: 4px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 3px;
+  margin-bottom: 8px;
+}
+.fp-toggle-btn {
+  flex: 1 1 0;
+  min-height: 44px;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.fp-toggle-btn[aria-selected='true'],
+.fp-toggle-btn.is-active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: var(--shadow);
+}
+.fp-pitches { min-width: 0; }
+.fp-panel[hidden] { display: none; }
+.fp-team {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* The pitch: a portrait green box with subtle stripes, center line + circle.
+   aspect-ratio bounds the height; min-height is the older-WebKit fallback. */
+.fp-pitch {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 5 / 7;
+  min-height: 320px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--pitch-green);
+  background-image: repeating-linear-gradient(
+    0deg, transparent 0, transparent 12.4%, var(--pitch-green-2) 12.5%, var(--pitch-green-2) 25%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 14px 8px;
+  overflow: hidden;
+}
+/* Halfway line + centre circle (decorative, drawn with pseudo-elements). */
+.fp-pitch::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 0;
+  border-top: 1px solid var(--pitch-line);
+}
+.fp-pitch::after {
+  content: '';
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 64px; height: 64px;
+  transform: translate(-50%, -50%);
+  border: 1px solid var(--pitch-line);
+  border-radius: 50%;
+}
+/* Rows stacked attack(top) → GK(bottom); each row spreads its players. */
+.fp-row {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 4px;
+}
+.fp-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  max-width: 72px;
+  text-align: center;
+}
+/* Jersey-style number token: surface chip on green. */
+.fp-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+/* Surname: white over green, text-shadow for legibility, ellipsis to bound width. */
+.fp-name {
+  margin-top: 3px;
+  max-width: 100%;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/* Fallback path keeps the existing numbered list look. */
+.fp-fallback .xi-list { font-size: 12px; }
+
+/* ------------------------------------------------------ H2H expansion (Item A2) */
+.h2h-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  margin: 8px 0 4px;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.h2h-played { color: var(--text-muted); }
+.h2h-wdl { display: inline-flex; gap: 6px; font-weight: 700; }
+.h2h-wdl .h2h-w { color: var(--good); }
+.h2h-wdl .h2h-d { color: var(--warn); }
+.h2h-wdl .h2h-l { color: var(--bad); }
+.h2h-goals { color: var(--text-muted); font-weight: 600; }
+
+.h2h-table { width: 100%; margin: 6px 0 0; font-size: 12px; }
+.h2h-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-top: 1px solid var(--border);
+  font-variant-numeric: tabular-nums;
+  /* left tint border is set by the winner-side modifiers below */
+  border-left: 3px solid transparent;
+}
+.h2h-row:first-child { border-top: 0; }
+.h2h-date { color: var(--text-muted); white-space: nowrap; }
+.h2h-comp {
+  color: var(--text-muted);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.h2h-score { font-weight: 700; white-space: nowrap; }
+/* Winner tint — never color alone: the winning side's score is bold (above) AND
+   the row carries a tinted left border + faint bg. Draws stay neutral. */
+.h2h-row.is-winner-a {
+  border-left-color: var(--good);
+  background: color-mix(in srgb, var(--good) 8%, transparent);
+}
+.h2h-row.is-winner-b {
+  border-left-color: var(--bad);
+  background: color-mix(in srgb, var(--bad) 8%, transparent);
+}
+.h2h-row.is-draw { border-left-color: var(--border); }
+.h2h-biggest { margin: 6px 0 0; font-size: 12px; color: var(--text-muted); }
+
+/* ------------------------------------------- AI match preview / recap (Item D1) */
+/* Dormant by default (the component returns an empty fragment when there's no
+   entry), so these rules only ever apply once the feature is enabled. Reuses the
+   .section rhythm + muted tokens — no new palette. */
+.ai-preview-section .ai-preview-text {
+  margin: 6px 0 4px;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.ai-preview-section .ai-preview-caption {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.ai-pill {
+  display: inline-flex;
+  align-items: center;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* ---------------------------------------------- Ref-bias spacing (Item D2, minor) */
+/* referee.js carries its own inline sizing; these just bound the rhythm of the
+   additive plain-language line + the collapsed "no history yet" note. */
+.ref-bias-card .bias-plain { margin: 2px 0 6px; line-height: 1.35; }
+.ref-bias-empty { margin: 8px 0 0; font-size: 12px; }
+
+/* ==========================================================================
+   Accessibility — global reduced-motion backstop (Item C-2, gap #3)
+   The 11 targeted @media blocks above encode intent for known animations; this
+   is the catch-all so ANY future transition/animation is also neutralized for
+   users who asked for less motion. 0.001ms (not 0ms) is deliberate: it still
+   fires transitionend listeners so no flow can hang (none exist today — grep
+   confirmed — but this keeps the net safe going forward).
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  /* Targeted pitch zero-out (per docs/rj30.1/A task 3): these have no
+     transitionend-dependent flow, so a hard `transition: none` (computed 0s) is
+     safe and is what the formation-pitch reduced-motion contract asserts —
+     wins over the 0.001ms backstop above for these specific nodes. */
+  .fp-player, .fp-pitch, .fp-toggle-btn, .fp-toggle button {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Accent-fill focus rings (Item C-2, gap #4): on controls whose own background
+   IS the accent/picked color, a 2px accent outline can vanish against the fill.
+   Add an offset white→accent box-shadow ring so the keyboard focus stays visible
+   on the dark default theme. Additive; does not alter the resting appearance. */
+.tab.is-active:focus-visible,
+.pick-btn.is-picked:focus-visible,
+.fp-toggle-btn[aria-selected='true']:focus-visible,
+.fp-toggle-btn.is-active:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
+}

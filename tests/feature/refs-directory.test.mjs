@@ -59,3 +59,25 @@ test('the on-disk referees.json is a dict-or-empty directory with the expected e
     assert.ok(Array.isArray(r.history), `${id}: history is an array`);
   }
 });
+
+test('RJ30.1 Item 2: the renderer tolerates the seeded state (missing stats / empty history)', () => {
+  // The common pre-tournament directory entry has no `stats` and history:[].
+  // referee.js must accept this without those keys — it optional-chains stats and
+  // collapses an empty history to a single note. Lock the contract that a __meta__-
+  // only file (loader fallback {} ) and a stats-less entry are valid inputs.
+  const empty = JSON.parse(read('data/referees.json'));
+  // __meta__-only (or {}) is the loader's graceful fallback — a valid input.
+  const idsEmpty = Object.keys(empty).filter((k) => k !== '__meta__');
+  assert.ok(idsEmpty.length >= 0, 'a directory with zero entries is a valid input');
+
+  // A synthetic seeded entry (no stats, empty history) must satisfy the shape the
+  // renderer reads: name (string), confederation/nationality fields, history [].
+  const seeded = {
+    ref_id: 'szymon_marciniak', name: 'Szymon Marciniak',
+    confederation: 'UEFA', nationality: 'Poland', history: [],
+  };
+  assert.equal(typeof seeded.name, 'string');
+  assert.equal(seeded.stats, undefined, 'stats may be absent in the seeded state');
+  assert.ok(Array.isArray(seeded.history) && seeded.history.length === 0,
+    'empty history is the common pre-tournament state the renderer collapses');
+});

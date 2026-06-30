@@ -7,6 +7,7 @@
    scoring writes; re-renders on data:live-refresh like any view.
 */
 import { escapeHtml } from '../lib/escape.js';
+import { t, fmtNumber } from '../lib/i18n.js';
 import { setRoute } from '../state.js';
 import { flagFor } from '../components/team-flag.js';
 import { emptyState } from '../lib/empty-state.js';
@@ -14,11 +15,14 @@ import { currentPhase } from '../lib/phase.js';
 import { groupTable, bestThirds, qualificationScenario } from '../lib/standings.js';
 import { groupProbabilities } from '../group-monte-carlo.js';
 
-const ADVANCE_LABEL = {
-  auto: 'Advanced',
-  third: 'Best third?',
-  out: 'Out',
-};
+// Resolved at render-time (not import-time) so a language switch re-translates.
+// 'out' has no catalog key (kept English/empty as today's '' for unmapped).
+function advanceLabel(kind) {
+  if (kind === 'auto') return t('standings.advanced');
+  if (kind === 'third') return t('standings.bestThird');
+  if (kind === 'out') return 'Out';
+  return '';
+}
 
 export function renderStandingsView(root, data, params) {
   const groups = Object.keys(data.groupMatchups || {}).sort();
@@ -33,9 +37,9 @@ export function renderStandingsView(root, data, params) {
   const filter = document.createElement('div');
   filter.className = 'filter-bar standings-filter';
   filter.innerHTML = `
-    <label>Group
+    <label>${escapeHtml(t('standings.group'))}
       <select id="filter-group">
-        ${groups.map((g) => `<option value="${g}" ${g === group ? 'selected' : ''}>Group ${g}</option>`).join('')}
+        ${groups.map((g) => `<option value="${g}" ${g === group ? 'selected' : ''}>${escapeHtml(t('standings.group'))} ${g}</option>`).join('')}
       </select>
     </label>
   `;
@@ -61,7 +65,7 @@ export function renderStandingsView(root, data, params) {
   const probs = complete ? null : groupProbabilities(data, group);
   const section = document.createElement('div');
   section.className = 'section';
-  section.innerHTML = `<h2>Standings — Group ${group}</h2>`;
+  section.innerHTML = `<h2>${escapeHtml(t('standings.heading'))} — ${escapeHtml(t('standings.group'))} ${group}</h2>`;
 
   const wrap = document.createElement('div');
   wrap.className = 'standings-scroll';
@@ -73,7 +77,7 @@ export function renderStandingsView(root, data, params) {
     : '<th class="num" title="Chance to advance">Adv%</th>';
   tbl.innerHTML = `
     <thead><tr>
-      <th>#</th><th>Team</th>
+      <th>#</th><th>${escapeHtml(t('standings.team'))}</th>
       <th class="num" title="Played">Pld</th>
       <th class="num" title="Won">W</th>
       <th class="num" title="Drawn">D</th>
@@ -130,7 +134,7 @@ export function renderStandingsView(root, data, params) {
   const btSec = document.createElement('div');
   btSec.className = 'section';
   btSec.setAttribute('data-testid', 'best-thirds');
-  btSec.innerHTML = `<h2>Best third-placed teams</h2>`;
+  btSec.innerHTML = `<h2>${escapeHtml(t('standings.bestThirds'))}</h2>`;
   const bt = bestThirds(data);
   if (bt.ranked.length) {
     const note = document.createElement('p');
@@ -149,7 +153,7 @@ export function renderStandingsView(root, data, params) {
       li.innerHTML = `
         <span class="bt-rank">${i + 1}</span>
         <span class="flag" aria-hidden="true">${flagFor(r.team)}</span>
-        <span class="bt-team"><strong>${escapeHtml(r.team)}</strong> <span class="muted">Group ${escapeHtml(r.group)}</span></span>
+        <span class="bt-team"><strong>${escapeHtml(r.team)}</strong> <span class="muted">${escapeHtml(t('standings.group'))} ${escapeHtml(r.group)}</span></span>
         <span class="bt-pts num">${r.points} pts</span>
         <span class="bt-status">${r.in ? 'In' : 'Out'}</span>
       `;
@@ -164,7 +168,7 @@ export function renderStandingsView(root, data, params) {
 
 function rowHtml(r, probs) {
   const advCell = (r.advanced)
-    ? `<td class="num"><span class="adv-badge" data-advanced="${escapeHtml(r.advanced)}">${escapeHtml(ADVANCE_LABEL[r.advanced] || '')}</span></td>`
+    ? `<td class="num"><span class="adv-badge" data-advanced="${escapeHtml(r.advanced)}">${escapeHtml(advanceLabel(r.advanced))}</span></td>`
     : `<td class="num">${advPct(r, probs)}</td>`;
   return `
     <tr data-rank="${r.rank}">
@@ -186,15 +190,17 @@ function rowHtml(r, probs) {
 function advPct(r, probs) {
   const p = probs?.[r.team];
   if (!p || !Number.isFinite(p.pAdvance)) return '—';
-  return `${Math.round(p.pAdvance * 100)}%`;
+  return `${fmtNumber(Math.round(p.pAdvance * 100))}%`;
 }
 
 function statusLabel(status) {
+  // Resolved at render-time so language switches re-translate. Only the keys
+  // present in the catalog are localized; the rest keep today's English copy.
+  if (status === 'in-best-third') return t('standings.bestThirdShort');
+  if (status === 'eliminated') return t('standings.eliminated');
   return {
     'qualified-1st': 'Qualified 1st',
     'qualified-2nd': 'Qualified 2nd',
-    'in-best-third': 'Best third',
-    eliminated: 'Eliminated',
     alive: 'Alive',
   }[status] || status;
 }

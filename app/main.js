@@ -28,6 +28,7 @@ try {
 }
 
 import { loadData, formatLastUpdated } from './data-loader.js';
+import { initI18n, getLang, t, _setCatalogES } from './lib/i18n.js';
 import { getState, setData, setRoute, parseHash } from './state.js';
 import { initTheme } from './theme.js';
 import { renderMatchupList } from './views/matchup-list.js';
@@ -114,6 +115,58 @@ const TITLES = {
   status: 'Status'
 };
 
+// RJ30.1-B i18n: the subset of `view` names the EN/ES catalog carries a
+// `title.*` key for. For these we localize via t(); every other view (team,
+// venue, winner, status, aliases…) keeps its English TITLES label so we never
+// surface a humanize() fallback as a user-facing browser-tab title.
+const LOCALIZED_TITLE_VIEWS = new Set([
+  'home', 'play', 'bracket', 'pools', 'my-brackets', 'my-picks', 'schedule',
+  'projected', 'venues', 'matches', 'matchup', 'group', 'settings',
+  'standings-group',
+]);
+
+function localizedTitle(view) {
+  if (LOCALIZED_TITLE_VIEWS.has(view)) return t(`title.${view}`);
+  return TITLES[view] || 'WC26';
+}
+
+// RJ30.1-B i18n: localize the static shell (nav tab labels + header aria-labels)
+// that lives in index.html and is NOT re-rendered by renderView(). Called once
+// at boot (after initI18n) and again on every `lang:change`. Pure textContent /
+// aria-label writes keyed by data-route / element id — never touches `.hidden`
+// (applyHiddenFeatures owns that) so the reversible nav-hiding stays intact.
+const NAV_TAB_KEYS = {
+  home: 'nav.home',
+  schedule: 'nav.schedule',
+  projected: 'nav.projected',
+  play: 'nav.play',
+  bracket: 'nav.bracket',
+  pools: 'nav.pools',
+  'my-brackets': 'nav.myBrackets',
+  'my-picks': 'nav.myPicks',
+  venues: 'nav.venues',
+  matches: 'nav.matches',
+};
+
+function localizeShell() {
+  try {
+    for (const tab of document.querySelectorAll('.tab-bar .tab[data-route]')) {
+      const key = NAV_TAB_KEYS[tab.dataset.route];
+      if (key) tab.textContent = t(key);
+    }
+    const setAria = (id, key) => {
+      const el = document.getElementById(id);
+      if (el) el.setAttribute('aria-label', t(key));
+    };
+    setAria('back-btn', 'aria.back');
+    setAria('settings-btn', 'aria.settings');
+    setAria('auth-toolbar-btn', 'aria.account');
+    setAria('app-title', 'aria.app');
+    const footer = document.getElementById('data-version');
+    if (footer) footer.setAttribute('aria-label', t('aria.dataUpdated'));
+  } catch { /* defensive: never let shell-localize break boot */ }
+}
+
 function renderView() {
   const state = getState();
   const root = document.getElementById('view');
@@ -182,7 +235,11 @@ function renderView() {
   // indicator already tells users which section they're viewing. The
   // document.title is still set so the browser tab + iOS standalone
   // task-switcher label stay accurate.
-  document.title = `${TITLES[view] || 'WC26'} · WC26 Tracker`;
+  // RJ30.1-B i18n: prefer the localized catalog title (t('title.'+view)); the
+  // i18n fallback chain returns humanize(key) for cataloged-but-missing keys, so
+  // we only call t() for views the EN catalog actually carries and otherwise use
+  // the existing English TITLES map (team / venue / winner / status / aliases).
+  document.title = `${localizedTitle(view)} · ${t('title.suffix')}`;
 
   switch (view) {
     case 'home':         renderHome(root, state.data, params); break;
@@ -319,6 +376,32 @@ window.addEventListener('competition:state-change', () => {
   updateFooter();
 });
 
+// RJ30.1-B i18n: when the language changes (Settings Language card → setLang),
+// re-localize the static shell (nav tabs + header aria-labels) and re-render the
+// current view so every t()-driven string repaints in the new language. setLang
+// also fires `state:change`, but that only re-renders the view body — the shell
+// chrome lives in index.html and needs localizeShell() explicitly.
+//
+// CRITICAL: setLang() only flips the in-memory language; it does NOT load the
+// Spanish catalog (only initI18n() lazy-imports it, at boot, for an es seed). A
+// session that STARTED in English has ES=null, so switching to es at runtime
+// would leave t() falling back to English. We therefore lazy-load + inject the
+// catalog here (via the _setCatalogES seam) BEFORE re-localizing, so the very
+// first repaint after the toggle is fully Spanish.
+let _esCatalogLoaded = false;
+window.addEventListener('lang:change', async (e) => {
+  const lang = e?.detail?.lang || getLang();
+  if (lang === 'es' && !_esCatalogLoaded) {
+    try {
+      const mod = await import('./lib/strings.es.js');
+      _setCatalogES(mod.ES || null);
+      _esCatalogLoaded = true;
+    } catch { /* keep English fallback if the catalog fails to load */ }
+  }
+  localizeShell();
+  renderView();
+});
+
 // R12: theme button was removed from the header. initTheme still runs so
 // the stored wc26.theme preference is applied at boot; the user toggles
 // it from Settings now.
@@ -401,7 +484,22 @@ function shouldOpenPicksForJoin() {
   return Boolean(extractJoinCodeFromPath(location.pathname));
 }
 
-loadData()
+// RJ30.1-B i18n: gate the first data load / render on initI18n() so the very
+// first chrome the user sees is already in the resolved language (no flash of
+// English). initI18n() sets <html lang> and, for es, awaits the Spanish catalog
+// before resolving; localizeShell() then paints the static nav/header strings
+// BEFORE setData() triggers the first renderView(). Failure is non-fatal — the
+// catch degrades to English (the t() fallback chain) so boot never blocks.
+(async function bootI18n() {
+  try {
+    await initI18n();
+    // initI18n() already lazy-loaded the ES catalog when booting from an es
+    // seed; record that so the runtime lang:change handler doesn't re-import it.
+    if (getLang() === 'es') _esCatalogLoaded = true;
+  } catch { /* degrade to English; t() fallback handles it */ }
+  localizeShell();
+})()
+  .then(() => loadData())
   .then(async (data) => {
     setData(data);
     initToolbarAuth(data);
