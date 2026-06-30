@@ -32,11 +32,16 @@ import { describePrediction, actualChoice } from '../predictions.js';
 import { hybridProb } from '../hybrid-model.js';
 
 export function renderMatchupDetail(root, data, params) {
-  const match = findMatch(data.groupMatchups, params.team_a, params.team_b);
+  const match = resolveMatch(data, params.team_a, params.team_b);
   if (!match) {
     root.innerHTML = '<p class="loading">Matchup not found.</p>';
     return;
   }
+  // Knockout fixtures (from scheduleFull) carry no model-prediction fields —
+  // gate the model/market grid so we render the team-keyed sections (score,
+  // when/where, lineups, refs, H2H, form, weather, xG) without throwing on the
+  // missing prediction data.
+  const hasModel = Number.isFinite(match.win_confidence_pct);
 
   const teamA = data.teams[match.team_a];
   const teamB = data.teams[match.team_b];
@@ -76,7 +81,7 @@ export function renderMatchupDetail(root, data, params) {
   teamsRow.style.cssText = 'display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;';
   // Real result (final or in-progress): show the score between the teams
   // instead of a bare "vs" — the detail page previously never displayed it.
-  const found = actualForCard(data.actualResults, { stage: 'group', team_a: match.team_a, team_b: match.team_b });
+  const found = actualForCard(data.actualResults, { stage: match.stage || 'group', team_a: match.team_a, team_b: match.team_b });
   const liveLabel = found?.mode === 'live'
     ? `<small class="detail-score-live" data-testid="detail-live">LIVE${found.actual.minute ? ' ' + escapeHtml(String(found.actual.minute)) + "'" : ''}</small>`
     : '';
@@ -99,7 +104,10 @@ export function renderMatchupDetail(root, data, params) {
   const groupLine = document.createElement('div');
   groupLine.className = 'muted';
   groupLine.style.fontSize = '12px';
-  groupLine.textContent = `Group ${match.group || teamA?.group || '?'}`;
+  // Group matches show "Group X"; knockout matches show the round name.
+  groupLine.textContent = (match.stage && match.stage !== 'group')
+    ? prettyStageName(match.stage)
+    : `Group ${match.group || teamA?.group || '?'}`;
   bodyWrap.appendChild(groupLine);
   header.appendChild(bodyWrap);
   root.appendChild(header);
@@ -110,46 +118,51 @@ export function renderMatchupDetail(root, data, params) {
   // thing they see after the matchup.
   root.appendChild(whenWhereWatch(match, data.scheduleFull, data.venues));
 
-  // Model + Market grid
-  const grid = document.createElement('div');
-  grid.className = 'match-prediction-grid';
+  // Model + Market grid — only group-stage matches carry per-match model
+  // predictions (composite gap, win %, upset signals). Knockout fixtures have
+  // none, so render the grid only when the model data is present; the
+  // team-keyed sections below still render for every match.
+  if (hasModel) {
+    const grid = document.createElement('div');
+    grid.className = 'match-prediction-grid';
 
-  const modelCol = document.createElement('div');
-  modelCol.className = 'model-col';
-  modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
-  modelCol.appendChild(hybridPill(match, data.markets));
+    const modelCol = document.createElement('div');
+    modelCol.className = 'model-col';
+    modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
+    modelCol.appendChild(hybridPill(match, data.markets));
 
-  const compSec = document.createElement('div');
-  compSec.className = 'section model-section';
-  compSec.appendChild(sectionHeading('Composite breakdown', 'composite'));
-  const compGrid = document.createElement('div');
-  compGrid.className = 'composite-grid';
-  compGrid.appendChild(compositeCol(teamA, match.composite_a));
-  compGrid.appendChild(compositeCol(teamB, match.composite_b));
-  compSec.appendChild(compGrid);
-  modelCol.appendChild(compSec);
+    const compSec = document.createElement('div');
+    compSec.className = 'section model-section';
+    compSec.appendChild(sectionHeading('Composite breakdown', 'composite'));
+    const compGrid = document.createElement('div');
+    compGrid.className = 'composite-grid';
+    compGrid.appendChild(compositeCol(teamA, match.composite_a));
+    compGrid.appendChild(compositeCol(teamB, match.composite_b));
+    compSec.appendChild(compGrid);
+    modelCol.appendChild(compSec);
 
-  const reason = document.createElement('div');
-  reason.className = 'section model-section';
-  reason.innerHTML = `<h2>Why this prediction</h2><p>${escapeHtml(describePrediction(match, data.teams))}</p>`;
-  modelCol.appendChild(reason);
+    const reason = document.createElement('div');
+    reason.className = 'section model-section';
+    reason.innerHTML = `<h2>Why this prediction</h2><p>${escapeHtml(describePrediction(match, data.teams))}</p>`;
+    modelCol.appendChild(reason);
 
-  const upsets = document.createElement('div');
-  upsets.className = 'section model-section';
-  upsets.appendChild(sectionHeading('Upset risk signals', 'upset'));
-  const legend = document.createElement('p');
-  legend.className = 'upset-legend muted';
-  legend.textContent = 'These flag scenarios where the underdog could outperform — not a pick against the favorite.';
-  upsets.appendChild(legend);
-  upsets.appendChild(upsetBadges(match.upset_risk?.indicators));
-  modelCol.appendChild(upsets);
+    const upsets = document.createElement('div');
+    upsets.className = 'section model-section';
+    upsets.appendChild(sectionHeading('Upset risk signals', 'upset'));
+    const legend = document.createElement('p');
+    legend.className = 'upset-legend muted';
+    legend.textContent = 'These flag scenarios where the underdog could outperform — not a pick against the favorite.';
+    upsets.appendChild(legend);
+    upsets.appendChild(upsetBadges(match.upset_risk?.indicators));
+    modelCol.appendChild(upsets);
 
-  const marketCol = document.createElement('div');
-  marketCol.className = 'market-col';
-  marketCol.appendChild(marketOddsSection(match, data.markets));
+    const marketCol = document.createElement('div');
+    marketCol.className = 'market-col';
+    marketCol.appendChild(marketOddsSection(match, data.markets));
 
-  grid.append(modelCol, marketCol);
-  root.appendChild(grid);
+    grid.append(modelCol, marketCol);
+    root.appendChild(grid);
+  }
 
   // Picks (full width below grid)
   const picks = document.createElement('div');
@@ -266,13 +279,35 @@ function compositeCol(team, fallbackComposite) {
 
 function num(v) { return typeof v === 'number' ? v.toFixed(1) : '—'; }
 
-function findMatch(groupMatchups, a, b) {
+function prettyStageName(stage) {
+  return {
+    round_of_32: 'Round of 32',
+    round_of_16: 'Round of 16',
+    quarterfinals: 'Quarterfinal',
+    semifinals: 'Semifinal',
+    third_place: 'Third-place play-off',
+    final: 'Final',
+  }[stage] || 'Knockout stage';
+}
+
+// Resolve a matchup by team names. Group-stage matches live in groupMatchups
+// (keyed by group letter, carrying the model-prediction fields). Knockout
+// fixtures are NOT in groupMatchups — once resolve_knockouts.py fills them with
+// real teams they only exist in scheduleFull — so fall back to the schedule.
+// The returned knockout row has no model fields; the view gates those out.
+export function resolveMatch(data, a, b) {
   if (!a || !b) return null;
+  const groupMatchups = data?.groupMatchups || {};
   for (const [g, info] of Object.entries(groupMatchups)) {
-    for (const m of info.matches) {
+    for (const m of (info?.matches || [])) {
       if ((m.team_a === a && m.team_b === b) || (m.team_a === b && m.team_b === a)) {
         return { ...m, group: g };
       }
+    }
+  }
+  for (const row of (data?.scheduleFull || [])) {
+    if ((row.team_a === a && row.team_b === b) || (row.team_a === b && row.team_b === a)) {
+      return { ...row };
     }
   }
   return null;

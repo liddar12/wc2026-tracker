@@ -31,6 +31,9 @@ export function actualChoice(match, actualResults) {
 
 export function describePrediction(match, teams) {
   const a = match.team_a, b = match.team_b;
+  // Knockout fixtures carry no per-match model prediction — nothing to describe
+  // (and win_confidence_pct/gap are absent, which would otherwise throw).
+  if (!Number.isFinite(match.win_confidence_pct) && match.predicted_winner == null) return '';
   const ga = teams[a], gb = teams[b];
   const sentences = [];
   const gap = Math.abs(match.gap);

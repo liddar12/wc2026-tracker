@@ -165,7 +165,15 @@ const TIER_BY_STAGE = {
   quarterfinals: 'quarterfinals', semifinals: 'semifinals',
   third_place: 'third_place', final: 'final',
 };
-const FINAL_STATUSES = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME']);
+// Knockout matches can end after extra time (STATUS_FINAL_AET) or a penalty
+// shootout (STATUS_FINAL_PEN) — ESPN's score field holds the regulation score
+// (e.g. 1-1) and the status carries the resolution. These never occur in the
+// group stage, so they were missing here; without them a finished knockout
+// card fell through to a bare "vs" with no time and no score.
+const FINAL_STATUSES = new Set([
+  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
+  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
+]);
 // ESPN soccer uses HALF-specific statuses live (verified June 12: a 26'-minute
 // game reports STATUS_FIRST_HALF, not STATUS_IN_PROGRESS) — missing them made
 // the lookup reject live records entirely (no score, no clock).

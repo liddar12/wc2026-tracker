@@ -40,6 +40,15 @@ const TIER_BY_STAGE = {
   third_place: 'third_place', final: 'final',
 };
 
+// FINAL = the result is settled and must not be overwritten by a later poll.
+// Includes knockout-only resolutions: extra time (AET) and penalty shootout
+// (PEN) — for those ESPN's score is the regulation score and the status is how
+// the tie was broken.
+const FINAL_STATUSES = [
+  'STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME',
+  'STATUS_FINAL_AET', 'STATUS_FINAL_PEN',
+];
+
 // ESPN groups scoreboard days by US/Eastern dates.
 function etDate(d = new Date()) {
   const et = new Date(d.getTime() - 4 * 3600 * 1000); // EDT during the tournament
@@ -121,8 +130,8 @@ export function mergeLiveScores(data, board) {
     const tier = (actual[tierKey] = actual[tierKey] || {});
     const key = `${a}__vs__${b}`;
     const prev = tier[key] || tier[`${b}__vs__${a}`];
-    const prevFinal = prev?.status && ['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME'].includes(prev.status);
-    const nextFinal = ['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME'].includes(hit.status);
+    const prevFinal = prev?.status && FINAL_STATUSES.includes(prev.status);
+    const nextFinal = FINAL_STATUSES.includes(hit.status);
     if (prevFinal && !nextFinal) continue;
     const rec = {
       score_a: hit.teams[a], score_b: hit.teams[b],
