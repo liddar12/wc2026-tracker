@@ -17,12 +17,23 @@ export function weatherSection(match, scheduleFull, weather) {
   sec.className = 'section';
   sec.innerHTML = '<h2>Weather</h2>';
 
-  const row = (scheduleFull || []).find((r) => r.match_id === `${match.team_a}__vs__${match.team_b}` || r.match_id === `${match.team_b}__vs__${match.team_a}`);
+  // Match by match_id first (group/named rows), then fall back to the resolved
+  // team pair. Knockout rows keep a placeholder match_id (e.g. "M084__1H__vs__2J")
+  // even after team_a/team_b are filled in, so a team-pair match is needed to
+  // surface the venue for a resolved knockout fixture.
+  const a = match.team_a;
+  const b = match.team_b;
+  const row = (scheduleFull || []).find((r) =>
+    r.match_id === `${a}__vs__${b}` || r.match_id === `${b}__vs__${a}`
+    || (r.team_a === a && r.team_b === b)
+    || (r.team_a === b && r.team_b === a));
   if (!row || !row.venue_id || !row.kickoff_utc) {
     sec.appendChild(emptyLine('No venue assigned — weather unavailable.'));
     return sec;
   }
-  const date = row.kickoff_utc.slice(0, 10);
+  // Key by the VENUE-LOCAL match day (the scraper keys forecasts the same way,
+  // by kickoff_local_venue) so a late-UTC kickoff resolves to the right day.
+  const date = (row.kickoff_local_venue || row.kickoff_utc).slice(0, 10);
   const block = (weather || {})[row.venue_id] || {};
   const w = block[date];
   if (!w) {

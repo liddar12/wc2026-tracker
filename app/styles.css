@@ -4470,3 +4470,83 @@ html, body { overflow-x: hidden; }
 .pw-podium-status[data-kind="success"] { color: var(--good, #2f7d32); }
 .pw-podium-status[data-kind="error"] { color: var(--bad, #c9252d); }
 .pw-podium-status[data-kind="pending"] { color: var(--text-muted); }
+
+/* ===== RJ30-5: live win-probability widget ===== */
+.live-win-prob { margin-top: 14px; }
+.live-win-prob .bar-title .live-indicator {
+  font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
+  color: var(--bad, #c9252d); margin-left: 4px;
+}
+.live-win-prob .bars div { transition: width 0.4s ease; }
+.live-win-prob[data-reduced-motion="true"] .bars div { transition: none; }
+.live-win-prob .labels span { font-variant-numeric: tabular-nums; }
+.win-prob-trend {
+  display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 11px;
+}
+.win-prob-spark { color: var(--primary); flex: 0 0 auto; }
+@media (prefers-reduced-motion: reduce) {
+  .live-win-prob .bars div { transition: none; }
+}
+
+/* ===== RJ30-6: real standings + qualification scenarios ===== */
+.standings-filter {
+  position: sticky; top: var(--safe-top, 0); z-index: 4;
+  background: var(--bg, var(--surface)); padding-top: 6px;
+}
+.standings-intro { font-size: 12px; margin: 2px 0 10px; }
+/* 8-column FIFA table must fit 390px: condense padding + numerals. */
+.standings-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 0 -4px; }
+.standings-real { width: 100%; table-layout: fixed; }
+.standings-real th, .standings-real td {
+  padding: 8px 3px; font-size: 12px; font-variant-numeric: tabular-nums;
+  white-space: nowrap; text-align: center;
+}
+.standings-real th:nth-child(2), .standings-real td:nth-child(2) { text-align: left; }
+.standings-real .team-cell { font-size: 11px; }
+.standings-real .team-cell .flag { font-size: 14px; }
+.standings-real .num { text-align: center; }
+.adv-badge {
+  display: inline-block; font-size: 9px; font-weight: 800; padding: 1px 5px;
+  border-radius: 999px; line-height: 1.5; white-space: nowrap;
+}
+.adv-badge[data-advanced="auto"] { background: color-mix(in srgb, var(--good, #2f7d32) 22%, transparent); color: var(--good, #2f7d32); }
+.adv-badge[data-advanced="third"] { background: color-mix(in srgb, var(--primary) 18%, transparent); color: var(--primary); }
+.adv-badge[data-advanced="out"] { background: var(--surface-2); color: var(--text-muted); }
+.standings-foot { font-size: 11px; margin-top: 6px; }
+.standings-link-btn {
+  margin-top: 10px; display: inline-flex; align-items: center; gap: 4px;
+  background: none; border: 1px solid var(--border); color: var(--primary);
+  font-weight: 600; font-size: 13px; padding: 8px 12px; border-radius: 10px;
+  min-height: 40px; cursor: pointer;
+}
+.scenario-list, .best-thirds-list { list-style: none; margin: 8px 0 0; padding: 0; }
+.scenario-row {
+  display: flex; align-items: center; gap: 8px; min-height: 44px;
+  padding: 6px 0; border-bottom: 1px solid var(--border);
+}
+.scenario-row .flag { font-size: 20px; flex: 0 0 auto; }
+.scenario-body { flex: 1 1 auto; display: flex; flex-direction: column; min-width: 0; }
+.scenario-needs { font-size: 11px; }
+.scenario-badge {
+  flex: 0 0 auto; font-size: 9px; font-weight: 800; padding: 2px 6px;
+  border-radius: 999px; background: var(--surface-2); color: var(--text-muted);
+}
+.scenario-badge[data-status="qualified-1st"], .scenario-badge[data-status="qualified-2nd"] {
+  background: color-mix(in srgb, var(--good, #2f7d32) 20%, transparent); color: var(--good, #2f7d32);
+}
+.scenario-badge[data-status="in-best-third"] { background: color-mix(in srgb, var(--primary) 18%, transparent); color: var(--primary); }
+.scenario-badge[data-status="eliminated"] { background: color-mix(in srgb, var(--bad, #c9252d) 16%, transparent); color: var(--bad, #c9252d); }
+.best-third-row {
+  display: flex; align-items: center; gap: 8px; min-height: 44px;
+  padding: 6px 0; font-variant-numeric: tabular-nums;
+}
+.best-third-row .flag { font-size: 18px; flex: 0 0 auto; }
+.bt-rank { width: 20px; color: var(--text-muted); text-align: right; }
+.bt-team { flex: 1 1 auto; min-width: 0; }
+.bt-pts { flex: 0 0 auto; }
+.bt-status { flex: 0 0 auto; font-size: 10px; font-weight: 800; }
+.best-third-row.is-in .bt-status { color: var(--good, #2f7d32); }
+.best-third-row.is-out { opacity: 0.6; }
+.best-third-row.is-out .bt-status { color: var(--text-muted); }
+/* 8th/9th cutoff: a divider line (not color alone) marks who's in vs out. */
+.best-third-row.cutoff-after { border-top: 2px solid var(--bad, #c9252d); padding-top: 10px; }

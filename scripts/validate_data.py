@@ -478,6 +478,70 @@ class Validator:
                 if key not in rec:
                     self.err(f"consensus_odds.json.match_outcomes[{k}]: missing {key!r}")
 
+    def check_polymarket_odds(self) -> None:
+        """Polymarket per-match odds (overlaid under Kalshi in the UI).
+
+        WARN-ONLY (never self.errors): the feed is KNOWN-DARK until the
+        scrape_polymarket_odds cron lands real prices, and the matchup market
+        bar degrades gracefully to Kalshi-only when it is empty. Mirrors the
+        check_consensus_odds shape (source + updated_at + match_outcomes)."""
+        v = self.load("polymarket_odds.json")
+        if v is None:
+            return  # absent file already handled by the optional-loader fallback
+        if not isinstance(v, dict):
+            self.warn("polymarket_odds.json: expected an object")
+            return
+        if v.get("source") != "polymarket":
+            self.warn("polymarket_odds.json: source should be 'polymarket'")
+        ua = v.get("updated_at")
+        if isinstance(ua, str):
+            try:
+                datetime.fromisoformat(ua.replace("Z", "+00:00"))
+            except ValueError:
+                self.warn(f"polymarket_odds.json: updated_at {ua!r} not ISO-8601")
+        mo = v.get("match_outcomes")
+        if mo is None or not isinstance(mo, dict):
+            self.warn("polymarket_odds.json: match_outcomes should be an object")
+        elif not mo:
+            # Empty is the KNOWN-DARK steady state until the cron captures prices.
+            self.warn(
+                "polymarket_odds.json: match_outcomes is EMPTY (KNOWN-DARK until "
+                "the scrape_polymarket_odds cron captures live prices)"
+            )
+
+    def check_weather_coverage(self) -> None:
+        """Warn (never error) when weather.json has no venue covered.
+
+        weather.json is keyed by venue id -> date -> forecast metrics. Open-Meteo
+        can fail under continue-on-error; an all-empty feed is a soft signal, not
+        a deploy blocker (the weather section on matchup-detail just renders
+        nothing)."""
+        v = self.load("weather.json")
+        if v is None or not isinstance(v, dict):
+            return  # shape already covered by check_dict_or_empty
+        covered = [k for k, val in v.items() if k != "__meta__" and isinstance(val, dict) and val]
+        if not covered:
+            self.warn(
+                "weather.json: no venue has any forecast rows — the weather "
+                "scraper likely failed (Open-Meteo)"
+            )
+
+    def check_form_coverage(self) -> None:
+        """Warn (never error) when form.json covers no team.
+
+        form.json is keyed by team name -> list of recent matches. An empty feed
+        means the recent-form computation produced nothing; the form section
+        degrades gracefully, so this is warn-only."""
+        v = self.load("form.json")
+        if v is None or not isinstance(v, dict):
+            return  # shape already covered by check_dict_or_empty
+        covered = [k for k, val in v.items() if k != "__meta__" and isinstance(val, list) and val]
+        if not covered:
+            self.warn(
+                "form.json: no team has any recent-form rows — compute_form_recent "
+                "likely produced nothing"
+            )
+
     def check_markets(self) -> None:
         v = self.load("markets.json")
         if not isinstance(v, dict):
@@ -692,6 +756,11 @@ class Validator:
         self.check_fatigue()
         self.check_markets()
         self.check_consensus_odds()
+        # RJ30 warn-only feed checks (never block a deploy — the UI degrades
+        # gracefully for each when its feed is empty/dark).
+        self.check_polymarket_odds()
+        self.check_weather_coverage()
+        self.check_form_coverage()
         # Epic A: tournament-window freshness + knockout-coverage gates.
         self.check_feed_emptiness()
         self.check_knockout_coverage(team_names)
@@ -741,13 +810,44 @@ def main() -> int:
         help="Skip the volatile-feed emptiness/freshness check (keeps the "
              "knockout-coverage gate when feeds are intentionally empty).",
     )
+    ap.add_argument(
+        "--json-report",
+        default=None,
+        metavar="PATH",
+        help="Additionally dump a machine-readable {generated_at, errors, "
+             "warnings, files_checked} report to PATH after running. Purely "
+             "additive — exit codes + stderr output are unchanged (the cron "
+             "gate + status builder both rely on the default behavior).",
+    )
     args = ap.parse_args()
-    return Validator(
+    v = Validator(
         Path(args.data_dir),
         strict=args.strict,
         now=args.now,
         check_feed_freshness=not args.skip_feed_freshness,
-    ).run()
+    )
+    code = v.run()
+    if args.json_report:
+        # Additive sidecar for the pipeline-status builder — never affects the
+        # exit code or stderr (the regression gate stays byte-for-byte stable).
+        report = {
+            "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "errors": v.errors,
+            "warnings": v.warnings,
+            "files_checked": len(v._files),
+        }
+        try:
+            p = Path(args.json_report)
+            tmp = p.with_suffix(p.suffix + ".tmp")
+            tmp.write_text(
+                json.dumps(report, ensure_ascii=True, indent=2) + "\n",
+                encoding="utf-8",
+            )
+            tmp.replace(p)
+        except OSError as e:
+            print(f"validate_data.py: could not write --json-report {args.json_report}: {e}",
+                  file=sys.stderr)
+    return code
 
 
 if __name__ == "__main__":

@@ -25,6 +25,26 @@ export function getMatchOutcome(markets, match) {
   return outcomes[key] || outcomes[rev] || null;
 }
 
+/* mergedMarkets(data) — the markets object the matchup-detail market bar +
+ * divergence read, with Polymarket per-match outcomes overlaid UNDER Kalshi
+ * (Kalshi wins on conflict — it's the attributed source in the UI). This lights
+ * up the bar for Polymarket-only fixtures while keeping Kalshi authoritative
+ * where both price a match. Top-level markets fields (tournament_winner, source,
+ * updated_at) are preserved so the rest of the detail UI is unchanged. Safe when
+ * either feed is absent. */
+export function mergedMarkets(data) {
+  const markets = data?.markets && typeof data.markets === 'object' ? data.markets : {};
+  const poly = data?.polymarketOdds?.match_outcomes;
+  const kalshi = markets.match_outcomes;
+  if (!poly || typeof poly !== 'object') return markets;
+  // Polymarket first, Kalshi second → Kalshi overwrites on conflicting keys.
+  const match_outcomes = {
+    ...poly,
+    ...(kalshi && typeof kalshi === 'object' ? kalshi : {}),
+  };
+  return { ...markets, match_outcomes };
+}
+
 export function modelOutcomeProb(match) {
   const p = match.probabilities;
   if (match.predicted_winner === 'draw_likely') return { side: 'draw', prob: p.draw };

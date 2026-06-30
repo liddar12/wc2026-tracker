@@ -20,6 +20,7 @@ import { lineupsSection } from '../components/lineups.js';
 import { matchEventsSection } from '../components/match-events.js';
 import { suspendedForMatch } from '../lib/availability.js';
 import { actualForCard } from '../components/large-match-card.js';
+import { liveWinProbability } from '../components/win-probability.js';
 import { refereeSection } from '../components/referee.js';
 import { h2hSection } from '../components/h2h.js';
 import { formSection } from '../components/form.js';
@@ -30,6 +31,7 @@ import { xgSection } from '../components/xg.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
 import { hybridProb } from '../hybrid-model.js';
+import { mergedMarkets } from '../markets.js';
 import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
 
 export function renderMatchupDetail(root, data, params) {
@@ -182,12 +184,19 @@ export function renderMatchupDetail(root, data, params) {
 
     const marketCol = document.createElement('div');
     marketCol.className = 'market-col';
-    marketCol.appendChild(marketOddsSection(match, data.markets));
+    marketCol.appendChild(marketOddsSection(match, mergedMarkets(data)));
 
     if (modelCol.childNodes.length) grid.append(modelCol, marketCol);
     else grid.append(marketCol);
     root.appendChild(grid);
   }
+
+  // RJ30-5: live win-probability timeline. Pure display — renders nothing
+  // unless the match is live AND the row carries a model prior (group
+  // `probabilities` or knockout `advance_pct_*`). Reuses the `found` computed
+  // above; updates on every `data:live-refresh` re-render (scrollY preserved by
+  // pendingLiveRefresh). Never touches the scoring/bracket path.
+  root.appendChild(liveWinProbability(match, found));
 
   // Picks (full width below grid)
   const picks = document.createElement('div');

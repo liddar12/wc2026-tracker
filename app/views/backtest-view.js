@@ -39,6 +39,7 @@ export async function renderBacktestView(root) {
   head.innerHTML = `
     <h2 class="home-card-title">Backtest</h2>
     <p class="muted" style="font-size:13px; margin: 0 0 8px;">How the models would have done on prior tournaments.</p>
+    <p style="margin:0 0 8px;"><a href="#/model-accuracy" class="backtest-accuracy-link" data-testid="model-accuracy-link" style="font-size:13px; font-weight:600;">See per-match accuracy →</a></p>
     <p class="backtest-disclaimer">
       <strong>Only the Euro 2024 Market figure is measured</strong> (from Polymarket per-match odds).
       The J5L / DT / Hybrid rows are <em>estimates</em> — the app's models can't be re-run on past

@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
-"""Recent form scraper — last 5 international results per qualified team.
+"""RETIRED (RJ30-8) — flaky ESPN recent-form scraper, NO LONGER WIRED.
 
-Source: ESPN's public soccer-team JSON. Same caveats as other scrapers — it
-4xxs at random and the response shape is undocumented. We probe, parse what
-we can, and leave existing data alone on any failure.
+This scraper depended on ESPN's `fifa.world/teams?search=` lookup + `/schedule`
+endpoints, which 4xx at random with an undocumented shape — it produced an empty
+data/form.json for the whole tournament. It has been REPLACED by
+`scripts/compute_form_recent.py`, which derives the identical last-5 W/D/L shape
+from the tournament's own record (data/actual_results.json) with zero network.
 
-Output:
-  data/form.json — { "Team Name": [
-      { date, opponent, score_a, score_b, result }, ...
-    ] }
+It is kept in-tree for reference but is UNWIRED from every cron
+(daily/frequent/live_update.yml). It is GUARDED below so an accidental run is a
+safe no-op: it will NOT overwrite the results-derived form.json. Pass
+`--force` only if you deliberately want the legacy ESPN path.
 
 continue-on-error friendly. Rate-limited.
 """
@@ -140,6 +142,12 @@ def _to_int(v):
 
 
 if __name__ == "__main__":
+    # RETIRED: results-derived compute_form_recent.py owns form.json now. Refuse
+    # to run (and clobber it) unless explicitly forced.
+    if "--force" not in sys.argv:
+        log("scrape_form.py is RETIRED (RJ30-8); use compute_form_recent.py. "
+            "No-op. Pass --force to run the legacy ESPN path anyway.")
+        raise SystemExit(0)
     try:
         raise SystemExit(main())
     except Exception as e:

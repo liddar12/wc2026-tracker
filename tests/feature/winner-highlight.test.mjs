@@ -181,3 +181,21 @@ test('rendered card markup carries .is-winner + method tag (browser-only)', { sk
   assert.match(html, /is-winner/, 'winning team carries .is-winner');
   assert.match(html, /lcard-method/, 'method tag present');
 });
+
+test('ET/pen card: only the advancing side is .is-winner + eyebrow reads pens (3–2) (browser-only)', { skip: typeof document === 'undefined' }, async () => {
+  const { largeMatchCard } = await import('../../app/components/large-match-card.js');
+  // Netherlands 1–1 Morocco, Morocco through on penalties (2–3 → en-dash 3–2).
+  const card = largeMatchCard(
+    { team_a: 'Netherlands', team_b: 'Morocco', stage: 'round_of_32', kickoff_utc: '2026-06-30T01:00:00Z' },
+    {
+      mode: 'final', actual: { score_a: 1, score_b: 1 }, winner: 'Morocco',
+      method: methodOfVictory({ status: 'STATUS_FINAL_PEN', shootout_a: 2, shootout_b: 3 }),
+    },
+  );
+  const html = card.outerHTML;
+  // Morocco is side b → only lcard-team-b is highlighted.
+  assert.match(html, /lcard-team-b[^"]*is-winner/, 'Morocco (side b) carries .is-winner');
+  assert.ok(!/lcard-team-a[^"]*is-winner/.test(html), 'Netherlands (side a) is NOT highlighted');
+  // Eyebrow tag includes the en-dash shootout suffix.
+  assert.match(html, /pens \(3–2\)/, 'eyebrow reads "pens (3–2)" with the en-dash suffix');
+});

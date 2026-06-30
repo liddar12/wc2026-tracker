@@ -72,8 +72,11 @@ export function largeMatchCard(match, opts = {}) {
   } else if (mode === 'final') {
     // Append the method tag (FT/AET/pens) so a knockout decided in ET or on
     // penalties reads correctly — and so the cue is not score-only.
+    // Include the shootout suffix (e.g. " (3–2)", en-dash hi–lo) so a pen
+    // knockout reads "pens (3–2)" on the card eyebrow, matching the
+    // matchup-detail view and methodOfVictory()'s suffix.
     const tag = methodTag
-      ? ` <span class="lcard-method" data-method="${escapeHtml(methodTag.method || 'reg')}">${escapeHtml(methodTag.label)}</span>`
+      ? ` <span class="lcard-method" data-method="${escapeHtml(methodTag.method || 'reg')}">${escapeHtml(methodTag.label)}${escapeHtml(methodTag.suffix || '')}</span>`
       : '';
     eyebrow = `FINAL${tag} · ${escapeHtml(stage)}`;
   } else if (mode === 'pending') {

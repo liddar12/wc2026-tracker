@@ -180,16 +180,24 @@ export function liveGoalsByPlayer(data) {
 
   const me = data?.matchEvents;
   if (me && typeof me === 'object') {
-    const acc = {};
+    // Accumulate by NORMALIZED name so accent spelling variants of the same
+    // scorer across matches (ESPN "Julián Quiñones" vs "Julian Quinones") SUM
+    // into one tally rather than landing in two raw buckets that the later
+    // MAX-merge would collapse to a single match's count. Keep a first-seen raw
+    // display name for credit() to key on.
+    const acc = {}; // normKey → { name (first-seen raw), goals }
     for (const [k, rec] of Object.entries(me)) {
       if (k === '__meta__' || !Array.isArray(rec?.events)) continue;
       for (const e of rec.events) {
         if ((e.type === 'goal' || e.type === 'pen-goal') && e.player) {
-          acc[e.player] = (acc[e.player] || 0) + 1;
+          const nk = normPlayerName(e.player);
+          if (!nk) continue;
+          if (!(nk in acc)) acc[nk] = { name: e.player, goals: 0 };
+          acc[nk].goals += 1;
         }
       }
     }
-    for (const [k, v] of Object.entries(acc)) credit(k, v);
+    for (const { name, goals } of Object.values(acc)) credit(name, goals);
   }
 
   const out = {};

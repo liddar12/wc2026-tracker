@@ -52,6 +52,13 @@ export function renderGroupView(root, data, params) {
   standingsWrap.className = 'section';
   standingsWrap.innerHTML = `<h2>Projected standings</h2>`;
   standingsWrap.appendChild(table);
+  // RJ30-6: link to the real-results standings + qualification scenarios view.
+  const realLink = document.createElement('button');
+  realLink.type = 'button';
+  realLink.className = 'standings-link-btn';
+  realLink.textContent = 'Standings & scenarios →';
+  realLink.addEventListener('click', () => setRoute('standings-group', { group }));
+  standingsWrap.appendChild(realLink);
   root.appendChild(standingsWrap);
 
   // Matches

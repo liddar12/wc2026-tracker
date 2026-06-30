@@ -71,6 +71,7 @@ function marketWDL(data, a, b) {
     if (w.away === a) return { a: w.b, d: w.d, b: w.a };
   }
   return outcomeWDL(data?.consensusOdds?.match_outcomes, a, b)
+      || outcomeWDL(data?.polymarketOdds?.match_outcomes, a, b)
       || outcomeWDL(data?.markets?.match_outcomes, a, b);
 }
 function liveOU(data, a, b) {
@@ -114,32 +115,37 @@ function legsForMatch(data, m) {
       { sel: `${b} to win`, p: blend('b'), mp: mkt?.b, modelP: mdl.b },
     ].sort((x, y) => y.p - x.p);
     const top = outs[0];
-    legs.push({ mid, label, type: 'Moneyline', market: 'Moneyline', selection: top.sel, prob: top.p, ev: top.mp ? top.modelP / Math.max(top.mp, 0.02) : 1, estimated: !mkt });
+    // EV = expected return per unit staked at the market price (model edge):
+    // modelP / marketP − 1. A POSITIVE value is a model edge over the market; a
+    // FAIR price (model == market) yields 0; with no posted market price there is
+    // no measurable edge → 0. Drives the "Best value" parlay's byEv sort.
+    const ev = (mkt && top.mp) ? (top.modelP / Math.max(top.mp, 0.02)) - 1 : 0;
+    legs.push({ mid, label, type: 'Moneyline', market: 'Moneyline', selection: top.sel, prob: top.p, ev, estimated: !mkt });
   }
   // Over/Under: prefer the live book line; else model (xG → Poisson) at 2.5.
   const xg = xgFor(data, a, b);
   const lou = liveOU(data, a, b);
   if (lou && typeof lou.over === 'number') {
     legs.push(lou.over >= 0.5
-      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: `Over ${lou.line} goals`, prob: lou.over, ev: 1 }
-      : { mid, label, type: 'Total goals', market: 'Total goals', selection: `Under ${lou.line} goals`, prob: 1 - lou.over, ev: 1 });
+      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: `Over ${lou.line} goals`, prob: lou.over, ev: 0 }
+      : { mid, label, type: 'Total goals', market: 'Total goals', selection: `Under ${lou.line} goals`, prob: 1 - lou.over, ev: 0 });
   } else if (xg) {
     const ov = pTotalOver(xg.la, xg.lb, 2.5);
     legs.push(ov >= 0.5
-      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Over 2.5 goals', prob: ov, ev: 1, estimated: true }
-      : { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Under 2.5 goals', prob: 1 - ov, ev: 1, estimated: true });
+      ? { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Over 2.5 goals', prob: ov, ev: 0, estimated: true }
+      : { mid, label, type: 'Total goals', market: 'Total goals', selection: 'Under 2.5 goals', prob: 1 - ov, ev: 0, estimated: true });
   }
   if (xg) {
     const y = pBTTS(xg.la, xg.lb);
     legs.push(y >= 0.5
-      ? { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'Yes', prob: y, ev: 1, estimated: true }
-      : { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'No', prob: 1 - y, ev: 1, estimated: true });
+      ? { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'Yes', prob: y, ev: 0, estimated: true }
+      : { mid, label, type: 'Both teams to score', market: 'Both teams to score', selection: 'No', prob: 1 - y, ev: 0, estimated: true });
     // Anytime goalscorer (player prop): top-rated forward on the higher-xG side.
     // No real book line yet → a clearly-tagged model estimate (upgrades to a real
     // line once the API-Football prop feed is live). "estimated" drives the tag.
     const strong = xg.la >= xg.lb ? a : b, lam = Math.max(xg.la, xg.lb);
     const fwd = topForward(data, strong);
-    if (fwd) legs.push({ mid, label, type: 'Anytime goalscorer', market: 'Anytime goalscorer', selection: `${fwd} to score`, prob: 1 - Math.exp(-lam * 0.5), ev: 1, estimated: true });
+    if (fwd) legs.push({ mid, label, type: 'Anytime goalscorer', market: 'Anytime goalscorer', selection: `${fwd} to score`, prob: 1 - Math.exp(-lam * 0.5), ev: 0, estimated: true });
   }
   return legs.filter((l) => l.prob > 0 && l.prob < 0.995);
 }

@@ -12,6 +12,7 @@ import { flagFor } from '../components/team-flag.js';
 import { getFavoriteTeam, setFavoriteTeam, allTeamNames } from '../favorites.js';
 import { getCompetitionState, signOut, isSupabaseConfigured } from '../competition.js';
 import { openAuth } from '../auth-modal.js';
+import { renderPushCard } from './settings-push-card.js';
 
 const LS_REDUCE_MOTION = 'wc26.prefs.reduceMotion';
 
@@ -20,6 +21,10 @@ export function renderSettingsView(root, data) {
 
   // --- Favorite team
   root.appendChild(renderFavoriteCard(data));
+
+  // --- RJ30-3: Match alerts (Web Push). Placed after Favorite so "who" (the
+  // team) precedes "alerts" (notifications for that team).
+  root.appendChild(renderPushCard(data));
 
   // --- Theme
   root.appendChild(renderThemeCard());
@@ -34,6 +39,9 @@ export function renderSettingsView(root, data) {
 
   // --- R12b: Model & Analytics (default forecast model + backtest summary)
   root.appendChild(renderModelSettingsCard());
+
+  // --- RJ30-12: Pipeline status (utility link, off the tab bar)
+  root.appendChild(renderPipelineStatusCard());
 
   // --- R12: Reset app data
   root.appendChild(renderResetCard());
@@ -255,6 +263,22 @@ function renderModelSettingsCard() {
         `<p class="muted" style="font-size:11px; margin: 10px 0 0;">Note: backtest figures are seed estimates pending the historical-probability backfill (data/backtest.json __meta__).</p>`);
     }
   })();
+  return card;
+}
+
+// RJ30-12: Pipeline status — a utility link row (off the tab bar) into the
+// #/status data-health view. Kept here, in Settings, so it doesn't add nav
+// chrome to the primary tab bar.
+function renderPipelineStatusCard() {
+  const card = document.createElement('section');
+  card.className = 'home-card';
+  card.style.marginBottom = '12px';
+  card.innerHTML = `
+    <h2 class="home-card-title">Pipeline status</h2>
+    <p class="muted" style="margin:0 0 10px; font-size:13px;">Freshness of each data feed plus any validation warnings — a quick check that the numbers are live.</p>
+    <button class="pick-btn pick-btn-secondary" id="settings-pipeline-status" data-testid="settings-pipeline-status">View data health →</button>
+  `;
+  card.querySelector('#settings-pipeline-status').addEventListener('click', () => setRoute('status', {}));
   return card;
 }
 

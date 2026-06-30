@@ -151,6 +151,37 @@ check_json_shape "/manifest.json" \
   "assert data.get('name') and data.get('start_url') and data.get('icons'), data" \
   "manifest.json"
 
+# RJ30: syntax-check the service worker + push Netlify functions, and run the
+# pure (no-network) self-tests for the new pipeline scripts. set -e is active, so
+# instead of letting a non-zero abort the run, route each through the FAILED
+# counter for a consistent final summary + exit code.
+echo "smoke: node syntax checks (sw + push functions)"
+SMOKE_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+node_check() {
+  local f="$1"
+  if node --check "$SMOKE_ROOT/$f" 2>/tmp/wc26_smoke_node_err; then
+    ok "node --check $f"
+  else
+    fail "node --check $f: $(cat /tmp/wc26_smoke_node_err)"
+  fi
+}
+node_check "sw.js"
+node_check "netlify/functions/push-notify.mjs"
+node_check "netlify/functions/_lib/push-diff-core.mjs"
+node_check "netlify/functions/_lib/web-push.mjs"
+
+echo "smoke: python script self-tests"
+py_self_test() {
+  local script="$1"
+  if python3 "$SMOKE_ROOT/$script" --self-test >/dev/null 2>/tmp/wc26_smoke_py_err; then
+    ok "python3 $script --self-test"
+  else
+    fail "python3 $script --self-test: $(cat /tmp/wc26_smoke_py_err)"
+  fi
+}
+py_self_test "scripts/refresh_players.py"
+py_self_test "scripts/scrape_live_results.py"
+
 if (( FAILED > 0 )); then
   echo "smoke: FAILED ($FAILED check(s))"
   exit 1

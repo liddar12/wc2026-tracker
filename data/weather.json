@@ -5,24 +5,193 @@
       "condition_code": 55,
       "humidity_pct": 100,
       "wind_kph": 20.9
+    },
+    "2026-06-30": {
+      "temp_c": 20.9,
+      "condition_code": 96,
+      "humidity_pct": 93,
+      "wind_kph": 29.9
+    },
+    "2026-07-05": {
+      "temp_c": 22.2,
+      "condition_code": 51,
+      "humidity_pct": 89,
+      "wind_kph": 24.1
     }
   },
   "akron": {},
-  "sofi": {},
-  "bc_place": {},
-  "bmo_field": {},
-  "metlife": {},
-  "gillette": {},
-  "lincoln": {},
-  "mercedes": {},
-  "hardrock": {},
-  "arrowhead": {},
-  "att": {},
-  "nrg": {},
-  "lumen": {},
-  "levis": {},
+  "sofi": {
+    "2026-07-02": {
+      "temp_c": 22.2,
+      "condition_code": 3,
+      "humidity_pct": 94,
+      "wind_kph": 70.6
+    },
+    "2026-07-10": {
+      "temp_c": 25.4,
+      "condition_code": 1,
+      "humidity_pct": 75,
+      "wind_kph": 63.7
+    }
+  },
+  "bc_place": {
+    "2026-07-02": {
+      "temp_c": 19.1,
+      "condition_code": 51,
+      "humidity_pct": 80,
+      "wind_kph": 55.8
+    },
+    "2026-07-07": {
+      "temp_c": 21.7,
+      "condition_code": 3,
+      "humidity_pct": 76,
+      "wind_kph": 42.1
+    }
+  },
+  "bmo_field": {
+    "2026-07-02": {
+      "temp_c": 35.9,
+      "condition_code": 96,
+      "humidity_pct": 95,
+      "wind_kph": 81.0
+    }
+  },
+  "metlife": {
+    "2026-06-30": {
+      "temp_c": 32.9,
+      "condition_code": 3,
+      "humidity_pct": 75,
+      "wind_kph": 77.4
+    },
+    "2026-07-05": {
+      "temp_c": 33.4,
+      "condition_code": 3,
+      "humidity_pct": 84,
+      "wind_kph": 67.7
+    }
+  },
+  "gillette": {
+    "2026-07-09": {
+      "temp_c": 33.9,
+      "condition_code": 51,
+      "humidity_pct": 98,
+      "wind_kph": 58.3
+    }
+  },
+  "lincoln": {
+    "2026-07-04": {
+      "temp_c": 39.5,
+      "condition_code": 95,
+      "humidity_pct": 75,
+      "wind_kph": 58.7
+    }
+  },
+  "mercedes": {
+    "2026-07-01": {
+      "temp_c": 36.6,
+      "condition_code": 95,
+      "humidity_pct": 73,
+      "wind_kph": 49.0
+    },
+    "2026-07-07": {
+      "temp_c": 33.5,
+      "condition_code": 3,
+      "humidity_pct": 70,
+      "wind_kph": 67.3
+    },
+    "2026-07-15": {
+      "temp_c": 34.7,
+      "condition_code": 3,
+      "humidity_pct": 78,
+      "wind_kph": 58.0
+    }
+  },
+  "hardrock": {
+    "2026-07-03": {
+      "temp_c": 34.2,
+      "condition_code": 51,
+      "humidity_pct": 68,
+      "wind_kph": 83.5
+    },
+    "2026-07-11": {
+      "temp_c": 35.6,
+      "condition_code": 95,
+      "humidity_pct": 65,
+      "wind_kph": 103.7
+    }
+  },
+  "arrowhead": {
+    "2026-07-03": {
+      "temp_c": 31.6,
+      "condition_code": 95,
+      "humidity_pct": 93,
+      "wind_kph": 86.0
+    },
+    "2026-07-11": {
+      "temp_c": 26.2,
+      "condition_code": 95,
+      "humidity_pct": 98,
+      "wind_kph": 69.8
+    }
+  },
+  "att": {
+    "2026-06-30": {
+      "temp_c": 35.4,
+      "condition_code": 0,
+      "humidity_pct": 85,
+      "wind_kph": 73.8
+    },
+    "2026-07-03": {
+      "temp_c": 37.6,
+      "condition_code": 51,
+      "humidity_pct": 71,
+      "wind_kph": 79.2
+    },
+    "2026-07-06": {
+      "temp_c": 36.0,
+      "condition_code": 51,
+      "humidity_pct": 82,
+      "wind_kph": 52.2
+    },
+    "2026-07-14": {
+      "temp_c": 31.1,
+      "condition_code": 51,
+      "humidity_pct": 77,
+      "wind_kph": 78.5
+    }
+  },
+  "nrg": {
+    "2026-07-04": {
+      "temp_c": 36.6,
+      "condition_code": 3,
+      "humidity_pct": 88,
+      "wind_kph": 85.3
+    }
+  },
+  "lumen": {
+    "2026-07-01": {
+      "temp_c": 19.9,
+      "condition_code": 3,
+      "humidity_pct": 90,
+      "wind_kph": 49.0
+    },
+    "2026-07-06": {
+      "temp_c": 28.0,
+      "condition_code": 3,
+      "humidity_pct": 89,
+      "wind_kph": 59.0
+    }
+  },
+  "levis": {
+    "2026-07-01": {
+      "temp_c": 25.6,
+      "condition_code": 1,
+      "humidity_pct": 88,
+      "wind_kph": 71.3
+    }
+  },
   "bbva": {},
   "__meta__": {
-    "updated_at": "2026-06-30T19:14:52+00:00"
+    "updated_at": "2026-06-30T21:01:26+00:00"
   }
 }

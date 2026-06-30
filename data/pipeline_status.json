@@ -1,0 +1,64 @@
+{
+  "generated_at": "2026-06-30T21:00:00+00:00",
+  "health": "degraded",
+  "feeds": [
+    {
+      "name": "teams.json",
+      "updated_at": null,
+      "age_hours": null,
+      "rows": 48,
+      "status": "ok"
+    },
+    {
+      "name": "players.json",
+      "updated_at": null,
+      "age_hours": null,
+      "rows": 1197,
+      "status": "ok"
+    },
+    {
+      "name": "scorers.json",
+      "updated_at": "2026-06-30T21:00:00+00:00",
+      "age_hours": 0.0,
+      "rows": 47,
+      "status": "ok"
+    },
+    {
+      "name": "markets.json",
+      "updated_at": "2026-06-30T19:14:51+00:00",
+      "age_hours": 1.8,
+      "rows": 48,
+      "status": "ok"
+    },
+    {
+      "name": "form.json",
+      "updated_at": "2026-06-30T21:00:00+00:00",
+      "age_hours": 0.0,
+      "rows": 48,
+      "status": "ok"
+    },
+    {
+      "name": "schedule_full.json",
+      "updated_at": null,
+      "age_hours": null,
+      "rows": 104,
+      "status": "ok"
+    },
+    {
+      "name": "actual_results.json",
+      "updated_at": null,
+      "age_hours": null,
+      "rows": 8,
+      "status": "ok"
+    },
+    {
+      "name": "referees.json",
+      "updated_at": "2026-06-30T16:33:05+00:00",
+      "age_hours": 4.4,
+      "rows": 0,
+      "status": "empty"
+    }
+  ],
+  "warnings": [],
+  "warning_count": 0
+}

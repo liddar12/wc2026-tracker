@@ -20,18 +20,33 @@ import sys
 
 from _common import load_json, log, save_json, update_meta
 
+# Small non-zero floor for the in-tournament form weight (RJ30-8). The optimizer
+# (optimize_weights.py) owns the MAGNITUDE — its walk-forward CV best estimate is
+# ~0.0037, effectively inert. We do NOT hand-jam a bigger number (that would
+# overfit); we only guarantee the term is never EXACTLY zero so in-tournament
+# performance always nudges the composite. The optimizer's value wins whenever it
+# exceeds this floor.
+FORM_WEIGHT_FLOOR = 0.01
+
 
 def composite(team: dict, weights: dict) -> float:
     sub = team.get("sub_ratings", {})
-    # form is the in-tournament signal (compute_form.py); weight defaults to 0 so
-    # the term is inert until optimize_weights tunes it in.
+    # form is the in-tournament signal (compute_form.py). The optimizer-tuned
+    # weight (~0.0037, near-inert) is FLOORED to FORM_WEIGHT_FLOOR so the term is
+    # never EXACTLY zero — in-tournament performance always nudges the composite,
+    # while the optimizer still owns any magnitude above the floor. Written as the
+    # optimizer term + a floor top-up so the canonical optimizer expression
+    # (weights.get("form", 0) * sub.get("form_scaled")) stays visible.
+    form_top_up = max(0.0, FORM_WEIGHT_FLOOR - weights.get("form", 0)) * sub.get("form_scaled", 0)
     base = (
         weights["mine"] * sub.get("mine", 0)
         + weights["elo"] * sub.get("elo_scaled", 0)
         + weights["tmv"] * sub.get("tmv_scaled", 0)
         + weights["qual"] * sub.get("qual_scaled", 0)
         + weights.get("form", 0) * sub.get("form_scaled", 0)
+        + form_top_up
     )
+    # Equivalent to max(weights.get("form", 0), FORM_WEIGHT_FLOOR) * form_scaled.
     boosts = team.get("boosts", {})
     if team.get("continental_champion"):
         base += boosts.get("continental", 0)

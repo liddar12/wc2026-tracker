@@ -88,7 +88,7 @@ def find_target_dates():
     return [(now + timedelta(days=d)).strftime("%Y%m%d") for d in days]
 
 
-def parse_result(sched_a, sched_b, t1, t2, score_1, score_2, status_type, comp1, comp2, kickoff):
+def parse_result(sched_a, sched_b, t1, t2, score_1, score_2, status_type, comp1, comp2, kickoff, display_clock=None):
     """Build the actual_results record for one finished/in-progress match.
 
     Pure (no network): given the schedule's team_a/team_b orientation, the two
@@ -100,6 +100,14 @@ def parse_result(sched_a, sched_b, t1, t2, score_1, score_2, status_type, comp1,
     penalty tie (the old `and sa == sb` gate dropped regulation winners, so the
     bracket could not score/advance a R32 game won 2-1 in normal time). The
     shootout tally is still captured when ESPN provides it.
+
+    Live minute (RJ30-9c): for an IN-PROGRESS match we also persist the game
+    clock as rec["minute"] (e.g. "67"), stripped of ESPN's trailing apostrophe —
+    mirroring live.js / live-scores.js formatting — so a fan who loads the page
+    before the client live-poller fires still sees the minute from the committed
+    record. The minute is added ONLY for STATUS_IN_PROGRESS statuses (never on a
+    FINAL record, which shows FT/method, not a clock); a missing displayClock
+    simply yields no `minute` field.
     """
     # Map ESPN scores to schedule team_a/team_b orientation.
     if t1 == sched_a and t2 == sched_b:
@@ -149,6 +157,13 @@ def parse_result(sched_a, sched_b, t1, t2, score_1, score_2, status_type, comp1,
         so_b = c_b.get("shootoutScore")
         if so_a is not None and so_b is not None:
             rec["shootout_a"], rec["shootout_b"] = so_a, so_b
+    elif status_type in STATUS_IN_PROGRESS and display_clock:
+        # Persist the live game clock (display-only) for in-progress matches.
+        # Strip ESPN's trailing apostrophe(s) — "90'+8'" → "90'+8", "67'" → "67"
+        # — matching live.js's `String(rawClock).replace(/'+$/, '')`.
+        minute = str(display_clock).rstrip("'")
+        if minute:
+            rec["minute"] = minute
     return rec
 
 def main():
@@ -186,7 +201,12 @@ def main():
             if not t1 or not t2: continue
             score_1 = competitors[0].get("score")
             score_2 = competitors[1].get("score")
-            status_type = (comps.get("status", {}).get("type", {}) or {}).get("name", "")
+            status_block = comps.get("status", {}) or {}
+            status_type = (status_block.get("type", {}) or {}).get("name", "")
+            # ESPN exposes the game clock under status.displayClock (and/or
+            # status.type.displayClock); mirror live.js which reads
+            # comp.status?.displayClock with a type fallback.
+            display_clock = status_block.get("displayClock") or (status_block.get("type", {}) or {}).get("displayClock")
             kickoff = ev.get("date")
 
             # Find matching schedule entry to determine stage
@@ -204,7 +224,7 @@ def main():
             sched_a = sched["team_a"]; sched_b = sched["team_b"]
             rec = parse_result(
                 sched_a, sched_b, t1, t2, score_1, score_2, status_type,
-                competitors[0], competitors[1], kickoff,
+                competitors[0], competitors[1], kickoff, display_clock,
             )
             if rec is None:
                 continue
@@ -220,5 +240,42 @@ def main():
     print(f"updated {updated_count} match record(s); wrote {ACTUAL}")
     return 0
 
+def _self_test():
+    """RJ30-9c — pure self-test of parse_result()'s minute persistence + winner.
+
+    Run: python3 scripts/scrape_live_results.py --self-test
+    Exercises the in-progress minute strip, the FINAL no-clock rule, and the
+    graceful missing-displayClock case, plus the orientation-safe winner.
+    """
+    A, B = "Spain", "Italy"
+    c0 = {"winner": False}
+    c1 = {"winner": False}
+
+    # 1) IN-PROGRESS with "67'" → minute == "67"
+    rec = parse_result(A, B, A, B, "1", "0", "STATUS_IN_PROGRESS", c0, c1, "k", "67'")
+    assert rec["minute"] == "67", rec
+    # 2) FINAL with "90'+5'" → no minute (final shows FT/method, not a clock)
+    rec = parse_result(A, B, A, B, "2", "0", "STATUS_FULL_TIME", c0, c1, "k", "90'+5'")
+    assert "minute" not in rec, rec
+    assert rec["winner"] == A, rec
+    # 3) IN-PROGRESS with no displayClock → no minute (graceful)
+    rec = parse_result(A, B, A, B, "1", "0", "STATUS_IN_PROGRESS", c0, c1, "k", None)
+    assert "minute" not in rec, rec
+    # 4) HALFTIME with "45'" → minute == "45"
+    rec = parse_result(A, B, A, B, "1", "1", "STATUS_HALFTIME", c0, c1, "k", "45'")
+    assert rec["minute"] == "45", rec
+    # 5) PEN final: explicit winner + shootout tally, no minute
+    cw = {"winner": False, "shootoutScore": 2}
+    cl = {"winner": True, "shootoutScore": 3}
+    rec = parse_result(A, B, A, B, "1", "1", "STATUS_FINAL_PEN", cw, cl, "k", "120'")
+    assert "minute" not in rec, rec
+    assert rec["winner"] == B and rec["method"] == "pens", rec
+    assert rec["shootout_a"] == 2 and rec["shootout_b"] == 3, rec
+    print("scrape_live_results self-test: OK")
+    return 0
+
+
 if __name__ == "__main__":
+    if "--self-test" in sys.argv:
+        sys.exit(_self_test())
     sys.exit(main())

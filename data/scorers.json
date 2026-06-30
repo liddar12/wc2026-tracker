@@ -1,5 +1,679 @@
 {
+  "Mexico": [
+    {
+      "name": "Julian Quinones",
+      "goals": 2,
+      "club": "Al-Qadsiah"
+    },
+    {
+      "name": "Luis Romo",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Mateo Ch\u00e1vez",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Czechia": [
+    {
+      "name": "Ladislav Krejci",
+      "goals": 1,
+      "club": "Girona"
+    },
+    {
+      "name": "Michal Sadilek",
+      "goals": 1,
+      "club": "Twente"
+    }
+  ],
+  "Korea Republic": [
+    {
+      "name": "Hwang Inbeom",
+      "goals": 1,
+      "club": "Feyenoord"
+    },
+    {
+      "name": "Oh Hyeongyu",
+      "goals": 1,
+      "club": "Besiktas"
+    }
+  ],
+  "Bosnia and Herzegovina": [
+    {
+      "name": "Ermin Mahmic",
+      "goals": 2,
+      "club": "Slovan Liberec"
+    },
+    {
+      "name": "Jovo Lukic",
+      "goals": 1,
+      "club": "Universitatea Cluj"
+    },
+    {
+      "name": "Kerim Alajbegovic",
+      "goals": 1,
+      "club": "RB Salzburg"
+    }
+  ],
+  "Canada": [
+    {
+      "name": "Jonathan David",
+      "goals": 3,
+      "club": "Juventus"
+    },
+    {
+      "name": "Cyle Larin",
+      "goals": 2,
+      "club": "Mallorca"
+    },
+    {
+      "name": "Nathan Saliba",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "USA": [
+    {
+      "name": "Folarin Balogun",
+      "goals": 2,
+      "club": "Monaco"
+    },
+    {
+      "name": "Alex Freeman",
+      "goals": 1,
+      "club": "Villarreal"
+    },
+    {
+      "name": "Auston Trusty",
+      "goals": 1,
+      "club": "Celtic"
+    }
+  ],
+  "Paraguay": [
+    {
+      "name": "Julio Enciso",
+      "goals": 1,
+      "club": "Ipswich Town"
+    },
+    {
+      "name": "Mat\u00edas Galarza",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Maur\u00edcio",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Switzerland": [
+    {
+      "name": "Johan Manzambi",
+      "goals": 3,
+      "club": "SC Freiburg"
+    },
+    {
+      "name": "Ruben Vargas",
+      "goals": 2,
+      "club": "Sevilla"
+    },
+    {
+      "name": "Breel Embolo",
+      "goals": 1,
+      "club": "Rennes"
+    }
+  ],
+  "Morocco": [
+    {
+      "name": "Ismael Saibari",
+      "goals": 3,
+      "club": "PSV"
+    },
+    {
+      "name": "Achraf Hakimi",
+      "goals": 1,
+      "club": "PSG"
+    },
+    {
+      "name": "Gessime Yassine",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Brazil": [
+    {
+      "name": "Vinicius Junior",
+      "goals": 4,
+      "club": "Real Madrid"
+    },
+    {
+      "name": "Matheus Cunha",
+      "goals": 3,
+      "club": "Manchester United"
+    },
+    {
+      "name": "Casemiro",
+      "goals": 1,
+      "club": "Manchester United"
+    }
+  ],
+  "Scotland": [
+    {
+      "name": "John McGinn",
+      "goals": 1,
+      "club": "Aston Villa"
+    }
+  ],
+  "Australia": [
+    {
+      "name": "Connor Metcalfe",
+      "goals": 1,
+      "club": "St. Pauli"
+    },
+    {
+      "name": "Nestory Irankunda",
+      "goals": 1,
+      "club": "Watford"
+    }
+  ],
+  "Germany": [
+    {
+      "name": "Deniz Undav",
+      "goals": 3,
+      "club": null
+    },
+    {
+      "name": "Kai Havertz",
+      "goals": 3,
+      "club": "Arsenal"
+    },
+    {
+      "name": "Felix Nmecha",
+      "goals": 1,
+      "club": "Borussia Dortmund"
+    }
+  ],
+  "Curacao": [
+    {
+      "name": "Livano Comenencia",
+      "goals": 1,
+      "club": "FC Zurich"
+    }
+  ],
+  "Netherlands": [
+    {
+      "name": "Brian Brobbey",
+      "goals": 3,
+      "club": "Ajax"
+    },
+    {
+      "name": "Cody Gakpo",
+      "goals": 3,
+      "club": "Liverpool"
+    },
+    {
+      "name": "Crysencio Summerville",
+      "goals": 2,
+      "club": "Atalanta"
+    }
+  ],
+  "Japan": [
+    {
+      "name": "Ayase Ueda",
+      "goals": 2,
+      "club": null
+    },
+    {
+      "name": "Daichi Kamada",
+      "goals": 2,
+      "club": null
+    },
+    {
+      "name": "Daizen Maeda",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Cote d'Ivoire": [
+    {
+      "name": "Amad Diallo",
+      "goals": 2,
+      "club": "Manchester United"
+    },
+    {
+      "name": "Nicolas Pepe",
+      "goals": 2,
+      "club": "Villarreal"
+    },
+    {
+      "name": "Franck Kessie",
+      "goals": 1,
+      "club": "Al-Ahli"
+    }
+  ],
+  "Sweden": [
+    {
+      "name": "Anthony Elanga",
+      "goals": 2,
+      "club": "Newcastle United"
+    },
+    {
+      "name": "Yasin Ayari",
+      "goals": 2,
+      "club": "Brighton"
+    },
+    {
+      "name": "Alexander Isak",
+      "goals": 1,
+      "club": "Liverpool"
+    }
+  ],
+  "Tunisia": [
+    {
+      "name": "Hazem Mastouri",
+      "goals": 1,
+      "club": "Dynamo Makhachkala"
+    },
+    {
+      "name": "Omar Rekik",
+      "goals": 1,
+      "club": "NK Maribor"
+    }
+  ],
+  "Egypt": [
+    {
+      "name": "Emam Ashour",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Mahmoud Saber",
+      "goals": 1,
+      "club": "Al-Ahly"
+    },
+    {
+      "name": "Mohamed Salah",
+      "goals": 1,
+      "club": "Liverpool"
+    }
+  ],
+  "Saudi Arabia": [
+    {
+      "name": "Abdulelah Al-Amri",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Uruguay": [
+    {
+      "name": "Maxi Ara\u00fajo",
+      "goals": 2,
+      "club": null
+    },
+    {
+      "name": "Agustin Canobbio",
+      "goals": 1,
+      "club": "Athletico Paranaense"
+    }
+  ],
+  "New Zealand": [
+    {
+      "name": "Elijah Just",
+      "goals": 3,
+      "club": null
+    },
+    {
+      "name": "Finn Surman",
+      "goals": 1,
+      "club": "Portland Timbers"
+    }
+  ],
+  "Iran": [
+    {
+      "name": "Ramin Rezaeian",
+      "goals": 2,
+      "club": null
+    },
+    {
+      "name": "Mohammad Mohebbi",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "France": [
+    {
+      "name": "Kylian Mbappe",
+      "goals": 4,
+      "club": "Real Madrid"
+    },
+    {
+      "name": "Ousmane Dembele",
+      "goals": 4,
+      "club": "PSG"
+    },
+    {
+      "name": "Bradley Barcola",
+      "goals": 1,
+      "club": "PSG"
+    }
+  ],
+  "Senegal": [
+    {
+      "name": "Ismaila Sarr",
+      "goals": 3,
+      "club": "Crystal Palace"
+    },
+    {
+      "name": "Pape Gueye",
+      "goals": 2,
+      "club": "Villarreal"
+    },
+    {
+      "name": "Habib Diarra",
+      "goals": 1,
+      "club": "Sunderland"
+    }
+  ],
+  "Norway": [
+    {
+      "name": "Erling Haaland",
+      "goals": 5,
+      "club": "Manchester City"
+    },
+    {
+      "name": "Antonio Nusa",
+      "goals": 1,
+      "club": "RB Leipzig"
+    },
+    {
+      "name": "Leo \u00d8stigard",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Iraq": [
+    {
+      "name": "Aymen Hussein",
+      "goals": 1,
+      "club": "Sepahan"
+    }
+  ],
+  "Argentina": [
+    {
+      "name": "Lionel Messi",
+      "goals": 6,
+      "club": "Inter Miami"
+    },
+    {
+      "name": "Giovani Lo Celso",
+      "goals": 1,
+      "club": "Real Betis"
+    },
+    {
+      "name": "Lautaro Martinez",
+      "goals": 1,
+      "club": "Inter Milan"
+    }
+  ],
+  "Austria": [
+    {
+      "name": "Marko Arnautovic",
+      "goals": 2,
+      "club": "Crvena Zvezda"
+    },
+    {
+      "name": "Marcel Sabitzer",
+      "goals": 1,
+      "club": "Borussia Dortmund"
+    },
+    {
+      "name": "Romano Schmid",
+      "goals": 1,
+      "club": "Werder Bremen"
+    }
+  ],
+  "Jordan": [
+    {
+      "name": "Ali Olwan",
+      "goals": 1,
+      "club": "Al-Salt"
+    },
+    {
+      "name": "Mousa Al-Tamari",
+      "goals": 1,
+      "club": "Rennes"
+    },
+    {
+      "name": "Nizar Al-Rashdan",
+      "goals": 1,
+      "club": "Al-Faisaly"
+    }
+  ],
+  "Portugal": [
+    {
+      "name": "Cristiano Ronaldo",
+      "goals": 2,
+      "club": "Al-Nassr"
+    },
+    {
+      "name": "Joao Neves",
+      "goals": 1,
+      "club": "PSG"
+    },
+    {
+      "name": "Nuno Mendes",
+      "goals": 1,
+      "club": "PSG"
+    }
+  ],
+  "DR Congo": [
+    {
+      "name": "Yoane Wissa",
+      "goals": 3,
+      "club": "Newcastle United"
+    },
+    {
+      "name": "Fiston Mayele",
+      "goals": 1,
+      "club": "Pyramids"
+    }
+  ],
+  "England": [
+    {
+      "name": "Harry Kane",
+      "goals": 3,
+      "club": "Bayern Munich"
+    },
+    {
+      "name": "Jude Bellingham",
+      "goals": 2,
+      "club": "Real Madrid"
+    },
+    {
+      "name": "Marcus Rashford",
+      "goals": 1,
+      "club": "Barcelona"
+    }
+  ],
+  "Croatia": [
+    {
+      "name": "Ante Budimir",
+      "goals": 1,
+      "club": "Osasuna"
+    },
+    {
+      "name": "Martin Baturina",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Nikola Vlasic",
+      "goals": 1,
+      "club": "Torino"
+    }
+  ],
+  "Ghana": [
+    {
+      "name": "Caleb Yirenkyi",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Derrick Luckassen",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Colombia": [
+    {
+      "name": "Daniel Munoz",
+      "goals": 2,
+      "club": "Crystal Palace"
+    },
+    {
+      "name": "J\u00e1minton Campaz",
+      "goals": 1,
+      "club": null
+    },
+    {
+      "name": "Luis Diaz",
+      "goals": 1,
+      "club": "Liverpool"
+    }
+  ],
+  "Uzbekistan": [
+    {
+      "name": "Abbosbek Fayzullaev",
+      "goals": 1,
+      "club": "CSKA Moscow"
+    },
+    {
+      "name": "Eldor Shomurodov",
+      "goals": 1,
+      "club": "Spezia"
+    }
+  ],
+  "South Africa": [
+    {
+      "name": "Teboho Mokoena",
+      "goals": 1,
+      "club": "Mamelodi Sundowns"
+    },
+    {
+      "name": "Thapelo Maseko",
+      "goals": 1,
+      "club": "Sundowns"
+    }
+  ],
+  "Spain": [
+    {
+      "name": "Mikel Oyarzabal",
+      "goals": 2,
+      "club": "Real Sociedad"
+    },
+    {
+      "name": "Alex Baena",
+      "goals": 1,
+      "club": "Atletico Madrid"
+    },
+    {
+      "name": "Lamine Yamal",
+      "goals": 1,
+      "club": "Barcelona"
+    }
+  ],
+  "Cabo Verde": [
+    {
+      "name": "Helio Varela",
+      "goals": 1,
+      "club": "Maccabi Tel Aviv"
+    },
+    {
+      "name": "Kevin Pina",
+      "goals": 1,
+      "club": "Krasnodar"
+    }
+  ],
+  "Algeria": [
+    {
+      "name": "Riyad Mahrez",
+      "goals": 2,
+      "club": "Al-Ahli"
+    },
+    {
+      "name": "Amine Gouiri",
+      "goals": 1,
+      "club": "Marseille"
+    },
+    {
+      "name": "Nadhir Benbouali",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Qatar": [
+    {
+      "name": "Hassan Al-Haydos",
+      "goals": 1,
+      "club": "Al-Sadd"
+    }
+  ],
+  "Haiti": [
+    {
+      "name": "Wilson Isidor",
+      "goals": 1,
+      "club": "Sunderland"
+    }
+  ],
+  "Ecuador": [
+    {
+      "name": "Gonzalo Plata",
+      "goals": 1,
+      "club": "Flamengo"
+    },
+    {
+      "name": "Nilson Angulo",
+      "goals": 1,
+      "club": "Anderlecht"
+    }
+  ],
+  "Turkiye": [
+    {
+      "name": "Arda Guler",
+      "goals": 1,
+      "club": "Real Madrid"
+    },
+    {
+      "name": "Baris Alper Yilmaz",
+      "goals": 1,
+      "club": "Galatasaray"
+    },
+    {
+      "name": "Kaan Ayhan",
+      "goals": 1,
+      "club": null
+    }
+  ],
+  "Belgium": [
+    {
+      "name": "Leandro Trossard",
+      "goals": 2,
+      "club": "Arsenal"
+    },
+    {
+      "name": "Alexis Saelemaekers",
+      "goals": 1,
+      "club": "AC Milan"
+    },
+    {
+      "name": "Kevin De Bruyne",
+      "goals": 1,
+      "club": "Napoli"
+    }
+  ],
   "__meta__": {
-    "updated_at": "2026-06-30T15:10:26+00:00"
+    "updated_at": "2026-06-30T21:00:00+00:00"
   }
 }

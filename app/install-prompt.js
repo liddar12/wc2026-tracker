@@ -1,6 +1,10 @@
 /* install-prompt.js — A7: first-visit iOS Add-to-Home-Screen banner.
    Only fires on iOS Safari when NOT already running as a standalone PWA.
-   Dismissed state persists in localStorage so we don't nag. */
+   Dismissed state persists in localStorage so we don't nag.
+   RJ30-3: the standalone + iOS-Safari predicates are now shared with the push
+   opt-in card via lib/pwa-install.js (single source of truth). */
+
+import { isStandalonePWA, isIOSSafari } from './lib/pwa-install.js';
 
 const LS_DISMISSED = 'wc26.installPrompt.dismissed';
 const DISMISS_TTL_DAYS = 14;
@@ -9,15 +13,11 @@ export function maybeShowInstallPrompt() {
   if (typeof window === 'undefined') return;
 
   // Already installed as a PWA? Skip.
-  if (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) return;
-  if (window.navigator?.standalone) return;
+  if (isStandalonePWA()) return;
 
   // iOS Safari only — other browsers / OSes handle PWA install differently
   // (Android Chrome uses beforeinstallprompt; not handling here).
-  const ua = window.navigator.userAgent || '';
-  const isIOS = /iPad|iPhone|iPod/.test(ua) && !window.MSStream;
-  const isSafari = /Safari/.test(ua) && !/CriOS|FxiOS|EdgiOS/.test(ua);
-  if (!isIOS || !isSafari) return;
+  if (!isIOSSafari()) return;
 
   // Dismissed recently?
   try {

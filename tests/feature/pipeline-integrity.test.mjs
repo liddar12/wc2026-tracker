@@ -200,7 +200,7 @@ test('build_hybrid writes group_matchups + forecast atomically (no clobber on cr
 // 6. Staleness: scrapers only bump on real change; watchdog alarms on emptiness
 // ---------------------------------------------------------------------------
 test('scrapers only bump __meta__.updated_at when real data changed', () => {
-  for (const f of ['scripts/scrape_form.py', 'scripts/scrape_scorers.py', 'scripts/scrape_referees.py']) {
+  for (const f of ['scripts/scrape_form.py', 'scripts/derive_scorers.py', 'scripts/scrape_referees.py']) {
     const s = read(f);
     // Snapshot the payload before the scrape and early-return (no updated_at
     // bump, no rewrite) when it's unchanged — a no-op bump would make the feed

@@ -123,7 +123,7 @@ test('schedule-view: links any fixture with real teams, regardless of stage', as
   const { readFileSync } = await import('node:fs');
   const src = readFileSync(new URL('../../app/views/schedule-view.js', import.meta.url), 'utf8');
   // The onTap handler gates the matchup link on isSlotPlaceholder for both teams.
-  assert.match(src, /onTap:[\s\S]*?!isSlotPlaceholder\(mm\.team_a\)[\s\S]*?!isSlotPlaceholder\(mm\.team_b\)[\s\S]*?#\/matchup\/team_a/,
+  assert.match(src, /onTap:[\s\S]*?!isSlotPlaceholder\(match\.team_a\)[\s\S]*?!isSlotPlaceholder\(match\.team_b\)[\s\S]*?#\/matchup\/team_a/,
     'onTap links resolved fixtures to the matchup route');
   // The card-href gate no longer hard-codes the group stage.
   assert.ok(!/stage === 'group' && match\.team_a/.test(src), 'no stage==="group" gate left on the card href');

@@ -20,7 +20,7 @@ test('scrape_injuries uses the correct ESPN endpoint, not the dead story URL', (
 test('injuries.json has a valid honest shape (fresh meta, not a dead 404)', () => {
   const d = J('data/injuries.json');
   assert.ok(d.__meta__?.updated_at, 'fresh timestamp');
-  assert.equal(d.__meta__.source, 'espn-team-injuries');
+  assert.match(d.__meta__.source, /^espn-team-injuries/, 'honest ESPN source label (may append +api-football when the key is set)');
   assert.ok('note' in d.__meta__, 'documents that ESPN WC injury data is empty');
   assert.equal(typeof d.by_team, 'object');
 });

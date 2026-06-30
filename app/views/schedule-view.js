@@ -146,9 +146,9 @@ export function renderScheduleView(root, data, params) {
       ...(found?.method ? { method: found.method } : {}),
       favorite: fav,
       extraMeta: channelLabel,
-      onTap: (mm) => {
-        if (!isSlotPlaceholder(mm.team_a) && !isSlotPlaceholder(mm.team_b)) {
-          location.hash = `#/matchup/team_a/${encodeURIComponent(mm.team_a)}/team_b/${encodeURIComponent(mm.team_b)}`;
+      onTap: (match) => {
+        if (!isSlotPlaceholder(match.team_a) && !isSlotPlaceholder(match.team_b)) {
+          location.hash = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
         }
       },
     });
@@ -166,82 +166,11 @@ function isSlotPlaceholder(s) {
   return /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/.test(s);
 }
 
-function scheduleCard(match, venueById, fav) {
-  const card = document.createElement('a');
-  card.className = 'schedule-card';
-  const isFav = !!fav && (match.team_a === fav || match.team_b === fav);
-  if (isFav) card.classList.add('is-fav');
-  // Link ANY fixture whose teams are real (not slot placeholders), regardless of
-  // stage — a resolved knockout tie (e.g. Argentina v France) is just as
-  // clickable as a group game. is-tba stays only for true placeholders (W73/3 ABC).
-  const resolved = !isSlotPlaceholder(match.team_a) && !isSlotPlaceholder(match.team_b);
-  if (resolved) {
-    card.href = `#/matchup/team_a/${encodeURIComponent(match.team_a)}/team_b/${encodeURIComponent(match.team_b)}`;
-  } else {
-    card.href = '#/schedule';
-    card.classList.add('is-tba');
-  }
-
-  const venue = venueById.get(match.venue_id);
-  const kickoff = formatKickoffLocal(match.kickoff_utc, venue?.timezone);
-  // Days are bucketed by UTC date, but kickoff times are shown in the viewer's
-  // local zone. When those disagree (e.g. a 02:00 UTC kickoff that's the night
-  // before locally), surface the local date so the time isn't misread.
-  const localDayHint = (utcDateISO(match.kickoff_utc) !== toLocalDateISO(match.kickoff_utc))
-    ? shortLocalDate(match.kickoff_utc) : '';
-  const broadcast = match.broadcast?.us || {};
-  const channelLabel = broadcast.english_channel || broadcast.spanish_channel || 'Channel TBA';
-  const stageLabel = match.stage === 'group'
-    ? `Group ${match.group || '?'}`
-    : prettyStage(match.stage);
-
-  const aTeam = match.team_a || 'TBA';
-  const bTeam = match.team_b || 'TBA';
-  const favBadge = '<span class="fav-badge" aria-label="Your team" title="Your team">★</span>';
-  card.innerHTML = `
-    <div class="sched-time">
-      <div class="time">${escapeHtml(kickoff.time)}</div>
-      <div class="muted tz">${escapeHtml(kickoff.tz)}</div>
-      ${localDayHint ? `<div class="muted sched-localday">${escapeHtml(localDayHint)}</div>` : ''}
-    </div>
-    <div class="sched-teams">
-      <div class="line${fav && aTeam === fav ? ' is-fav-team' : ''}"><span class="flag" aria-hidden="true">${flagFor(aTeam)}</span>${escapeHtml(aTeam)}${fav && aTeam === fav ? favBadge : ''}</div>
-      <div class="line${fav && bTeam === fav ? ' is-fav-team' : ''}"><span class="flag" aria-hidden="true">${flagFor(bTeam)}</span>${escapeHtml(bTeam)}${fav && bTeam === fav ? favBadge : ''}</div>
-    </div>
-    <div class="sched-meta">
-      <div class="stage">${escapeHtml(stageLabel)}</div>
-      <div class="muted venue">${escapeHtml(venue?.city || 'Venue TBA')}</div>
-      <div class="muted channel">${escapeHtml(channelLabel)}</div>
-    </div>
-  `;
-  return card;
-}
-
-function prettyStage(s) {
-  switch (s) {
-    case 'r32': return 'Round of 32';
-    case 'r16': return 'Round of 16';
-    case 'qf': return 'Quarterfinal';
-    case 'sf': return 'Semifinal';
-    case 'third_place': return 'Third place';
-    case 'final': return 'Final';
-    default: return s || '';
-  }
-}
-
-function formatKickoffLocal(iso, _tz) {
-  // Render in the user's browser timezone, regardless of venue tz. The QA
-  // spec mandates `Intl.DateTimeFormat(undefined, { timeStyle: 'short' })`.
-  try {
-    const d = new Date(iso);
-    if (Number.isNaN(d.getTime())) return { time: '?', tz: '' };
-    const time = new Intl.DateTimeFormat(undefined, { timeStyle: 'short' }).format(d);
-    const tz = (Intl.DateTimeFormat(undefined).resolvedOptions().timeZone || '').split('/').pop();
-    return { time, tz: tz || '' };
-  } catch {
-    return { time: '?', tz: '' };
-  }
-}
+// NOTE: scheduleCard() / prettyStage() / formatKickoffLocal() were removed here
+// (RJ30-9b) — they were dead code with no call sites in this file. The active
+// renderScheduleView() uses largeMatchCard + actualForCard. The date helpers
+// below (utcDateISO / shortLocalDate / toLocalDateISO / formatLocalDateISO) ARE
+// still used by renderScheduleView and are retained.
 
 function utcDateISO(iso) {
   // YYYY-MM-DD of the kickoff in EASTERN TIME — FIFA's canonical "match day".

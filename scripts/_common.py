@@ -28,6 +28,16 @@ MIN_INTERVAL = 5.0  # seconds between requests to the same host
 _last_request: dict[str, float] = {}
 _robots: dict[str, urllib.robotparser.RobotFileParser] = {}
 
+# Hosts that are explicitly public, free, programmatic-use APIs. Their robots.txt
+# is written for web CRAWLERS (e.g. api.open-meteo.com serves "Disallow: /"),
+# which would block our single, rate-limited, documented API call — even though
+# the service's whole purpose is to be hit by code. robots.txt governs crawling,
+# not sanctioned API consumption, so we skip the robots check for these hosts
+# only. We still honor the 5s/host rate limit + identifying User-Agent.
+_ROBOTS_ALLOWLIST: frozenset[str] = frozenset({
+    "api.open-meteo.com",  # free weather API; robots.txt is Disallow:/ for crawlers
+})
+
 
 class ScrapeError(Exception):
     pass
@@ -43,6 +53,12 @@ def _host(url: str) -> str:
 
 def _robots_ok(url: str) -> bool:
     host = _host(url)
+    # Allowlisted public APIs (intended programmatic use) bypass the robots
+    # check — their Disallow:/ targets crawlers, not sanctioned API calls. This
+    # is what lets scrape_weather.py reach api.open-meteo.com in CI (its
+    # robots.txt is Disallow:/, which previously refused the fetch).
+    if host in _ROBOTS_ALLOWLIST:
+        return True
     if host not in _robots:
         rp = urllib.robotparser.RobotFileParser()
         rp.set_url(f"https://{host}/robots.txt")

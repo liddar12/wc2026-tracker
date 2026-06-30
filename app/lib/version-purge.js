@@ -5,7 +5,7 @@
 
 // Keep this in sync with sw.js VERSION so a manual SW bump also triggers
 // a state migration check.
-export const APP_VERSION = 'wc26-v16';
+export const APP_VERSION = 'wc26-v17';
 const STORAGE_KEY = 'wc26.app.version';
 
 // R16 (Phase 3): anonymous-session cache expiry. Anonymous users' local drafts

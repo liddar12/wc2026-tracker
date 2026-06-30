@@ -6,9 +6,9 @@ import { readFileSync } from 'node:fs';
 const sw = readFileSync('sw.js', 'utf8');
 const vp = readFileSync('app/lib/version-purge.js', 'utf8');
 
-test('R16 #SW1: SW + APP_VERSION are both wc26-v16 (lockstep)', () => {
-  assert.match(sw, /const VERSION = 'wc26-v16'/, 'sw.js VERSION must be wc26-v16');
-  assert.match(vp, /APP_VERSION = 'wc26-v16'/, 'APP_VERSION must be wc26-v16');
+test('R16 #SW1: SW + APP_VERSION are both wc26-v17 (lockstep)', () => {
+  assert.match(sw, /const VERSION = 'wc26-v17'/, 'sw.js VERSION must be wc26-v17');
+  assert.match(vp, /APP_VERSION = 'wc26-v17'/, 'APP_VERSION must be wc26-v17');
 });
 
 test('R16 #SW2: no precache and no fetch caching (network-only)', () => {

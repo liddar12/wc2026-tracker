@@ -24,11 +24,13 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 # Commit-age watch: model-strength inputs that SHOULD move during the
-# tournament. players.json is intentionally NOT here — rosters are locked once
-# the tournament starts (frozen since 2026-05-27 is expected, not a fault), so
-# age-alarming it produced a permanent false positive. Its emptiness is still
-# guarded below.
-WATCH = ["data/teams.json"]
+# tournament. players.json is now actively refreshed daily from free ESPN rosters
+# (scripts/refresh_players.py, RJ30-7) for active teams, so an aged players.json
+# is a REAL "refresh stopped" signal rather than the old expected-frozen false
+# positive — it is age-watched here. (THRESHOLD_HOURS=36 tolerates the daily
+# cadence and the safety-floor no-op runs that keep prior rows when ESPN and the
+# squad snapshot diverge.) Its emptiness is still guarded below.
+WATCH = ["data/teams.json", "data/players.json"]
 
 # Emptiness watch: volatile, fan-facing feeds whose scrapers fail silently under
 # continue-on-error. An EMPTY feed mid-tournament is the real failure mode (the

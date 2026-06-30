@@ -1,5 +1,1179 @@
 {
+  "Mexico": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Czechia",
+      "score_a": 3,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "Korea Republic",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-11",
+      "opponent": "South Africa",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "South Africa": [
+    {
+      "date": "2026-06-28",
+      "opponent": "Canada",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Korea Republic",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Czechia",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-11",
+      "opponent": "Mexico",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    }
+  ],
+  "Korea Republic": [
+    {
+      "date": "2026-06-25",
+      "opponent": "South Africa",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "Mexico",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-12",
+      "opponent": "Czechia",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Czechia": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Mexico",
+      "score_a": 0,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "South Africa",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-12",
+      "opponent": "Korea Republic",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    }
+  ],
+  "USA": [
+    {
+      "date": "2026-06-26",
+      "opponent": "Turkiye",
+      "score_a": 2,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "Australia",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "Paraguay",
+      "score_a": 4,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Paraguay": [
+    {
+      "date": "2026-06-29",
+      "opponent": "Germany",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-26",
+      "opponent": "Australia",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Turkiye",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "USA",
+      "score_a": 1,
+      "score_b": 4,
+      "result": "L"
+    }
+  ],
+  "Qatar": [
+    {
+      "date": "2026-06-24",
+      "opponent": "Bosnia and Herzegovina",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Canada",
+      "score_a": 0,
+      "score_b": 6,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "Switzerland",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Switzerland": [
+    {
+      "date": "2026-06-24",
+      "opponent": "Canada",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Bosnia and Herzegovina",
+      "score_a": 4,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "Qatar",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Brazil": [
+    {
+      "date": "2026-06-29",
+      "opponent": "Japan",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-24",
+      "opponent": "Scotland",
+      "score_a": 3,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Haiti",
+      "score_a": 3,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "Morocco",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Morocco": [
+    {
+      "date": "2026-06-30",
+      "opponent": "Netherlands",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-24",
+      "opponent": "Haiti",
+      "score_a": 4,
+      "score_b": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "Scotland",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-13",
+      "opponent": "Brazil",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Haiti": [
+    {
+      "date": "2026-06-24",
+      "opponent": "Morocco",
+      "score_a": 2,
+      "score_b": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Brazil",
+      "score_a": 0,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Scotland",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    }
+  ],
+  "Scotland": [
+    {
+      "date": "2026-06-24",
+      "opponent": "Brazil",
+      "score_a": 0,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "Morocco",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Haiti",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "Australia": [
+    {
+      "date": "2026-06-26",
+      "opponent": "Paraguay",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-19",
+      "opponent": "USA",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Turkiye",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "Turkiye": [
+    {
+      "date": "2026-06-26",
+      "opponent": "USA",
+      "score_a": 3,
+      "score_b": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Paraguay",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Australia",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    }
+  ],
+  "Germany": [
+    {
+      "date": "2026-06-29",
+      "opponent": "Paraguay",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Ecuador",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Cote d'Ivoire",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Curacao",
+      "score_a": 7,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Curacao": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Cote d'Ivoire",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Ecuador",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Germany",
+      "score_a": 1,
+      "score_b": 7,
+      "result": "L"
+    }
+  ],
+  "Netherlands": [
+    {
+      "date": "2026-06-30",
+      "opponent": "Morocco",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Tunisia",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Sweden",
+      "score_a": 5,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Japan",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    }
+  ],
+  "Japan": [
+    {
+      "date": "2026-06-29",
+      "opponent": "Brazil",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Sweden",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Tunisia",
+      "score_a": 4,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Netherlands",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    }
+  ],
+  "Cote d'Ivoire": [
+    {
+      "date": "2026-06-30",
+      "opponent": "Norway",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-25",
+      "opponent": "Curacao",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Germany",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Ecuador",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "Ecuador": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Germany",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Curacao",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-14",
+      "opponent": "Cote d'Ivoire",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    }
+  ],
+  "Sweden": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Japan",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-20",
+      "opponent": "Netherlands",
+      "score_a": 1,
+      "score_b": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Tunisia",
+      "score_a": 5,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Tunisia": [
+    {
+      "date": "2026-06-25",
+      "opponent": "Netherlands",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Japan",
+      "score_a": 0,
+      "score_b": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Sweden",
+      "score_a": 1,
+      "score_b": 5,
+      "result": "L"
+    }
+  ],
+  "Canada": [
+    {
+      "date": "2026-06-28",
+      "opponent": "South Africa",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-24",
+      "opponent": "Switzerland",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Qatar",
+      "score_a": 6,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-12",
+      "opponent": "Bosnia and Herzegovina",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Bosnia and Herzegovina": [
+    {
+      "date": "2026-06-24",
+      "opponent": "Qatar",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Switzerland",
+      "score_a": 1,
+      "score_b": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-12",
+      "opponent": "Canada",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Spain": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Uruguay",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Saudi Arabia",
+      "score_a": 4,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Cabo Verde",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    }
+  ],
+  "Cabo Verde": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Saudi Arabia",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Uruguay",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Spain",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    }
+  ],
+  "Belgium": [
+    {
+      "date": "2026-06-27",
+      "opponent": "New Zealand",
+      "score_a": 5,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Iran",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Egypt",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Egypt": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Iran",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "New Zealand",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Belgium",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Saudi Arabia": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Cabo Verde",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Spain",
+      "score_a": 0,
+      "score_b": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Uruguay",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Uruguay": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Spain",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Cabo Verde",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-15",
+      "opponent": "Saudi Arabia",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "Iran": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Egypt",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-21",
+      "opponent": "Belgium",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "New Zealand",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    }
+  ],
+  "New Zealand": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Belgium",
+      "score_a": 1,
+      "score_b": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "Egypt",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "Iran",
+      "score_a": 2,
+      "score_b": 2,
+      "result": "D"
+    }
+  ],
+  "France": [
+    {
+      "date": "2026-06-26",
+      "opponent": "Norway",
+      "score_a": 4,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "Iraq",
+      "score_a": 3,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "Senegal",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Senegal": [
+    {
+      "date": "2026-06-26",
+      "opponent": "Iraq",
+      "score_a": 5,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Norway",
+      "score_a": 2,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "France",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    }
+  ],
+  "Iraq": [
+    {
+      "date": "2026-06-26",
+      "opponent": "Senegal",
+      "score_a": 0,
+      "score_b": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "France",
+      "score_a": 0,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "Norway",
+      "score_a": 1,
+      "score_b": 4,
+      "result": "L"
+    }
+  ],
+  "Norway": [
+    {
+      "date": "2026-06-30",
+      "opponent": "Cote d'Ivoire",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-26",
+      "opponent": "France",
+      "score_a": 1,
+      "score_b": 4,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Senegal",
+      "score_a": 3,
+      "score_b": 2,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-16",
+      "opponent": "Iraq",
+      "score_a": 4,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Argentina": [
+    {
+      "date": "2026-06-28",
+      "opponent": "Jordan",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "Austria",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Algeria",
+      "score_a": 3,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "Algeria": [
+    {
+      "date": "2026-06-28",
+      "opponent": "Austria",
+      "score_a": 3,
+      "score_b": 3,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Jordan",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Argentina",
+      "score_a": 0,
+      "score_b": 3,
+      "result": "L"
+    }
+  ],
+  "Austria": [
+    {
+      "date": "2026-06-28",
+      "opponent": "Algeria",
+      "score_a": 3,
+      "score_b": 3,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-22",
+      "opponent": "Argentina",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Jordan",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
+  "Jordan": [
+    {
+      "date": "2026-06-28",
+      "opponent": "Argentina",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Algeria",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Austria",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    }
+  ],
+  "Portugal": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Colombia",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Uzbekistan",
+      "score_a": 5,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "DR Congo",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "DR Congo": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Uzbekistan",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-24",
+      "opponent": "Colombia",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Portugal",
+      "score_a": 1,
+      "score_b": 1,
+      "result": "D"
+    }
+  ],
+  "England": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Panama",
+      "score_a": 2,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Ghana",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Croatia",
+      "score_a": 4,
+      "score_b": 2,
+      "result": "W"
+    }
+  ],
+  "Croatia": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Ghana",
+      "score_a": 2,
+      "score_b": 1,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Panama",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "England",
+      "score_a": 2,
+      "score_b": 4,
+      "result": "L"
+    }
+  ],
+  "Ghana": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Croatia",
+      "score_a": 1,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "England",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Panama",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    }
+  ],
+  "Panama": [
+    {
+      "date": "2026-06-27",
+      "opponent": "England",
+      "score_a": 0,
+      "score_b": 2,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Croatia",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-17",
+      "opponent": "Ghana",
+      "score_a": 0,
+      "score_b": 1,
+      "result": "L"
+    }
+  ],
+  "Uzbekistan": [
+    {
+      "date": "2026-06-27",
+      "opponent": "DR Congo",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-23",
+      "opponent": "Portugal",
+      "score_a": 0,
+      "score_b": 5,
+      "result": "L"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Colombia",
+      "score_a": 1,
+      "score_b": 3,
+      "result": "L"
+    }
+  ],
+  "Colombia": [
+    {
+      "date": "2026-06-27",
+      "opponent": "Portugal",
+      "score_a": 0,
+      "score_b": 0,
+      "result": "D"
+    },
+    {
+      "date": "2026-06-24",
+      "opponent": "DR Congo",
+      "score_a": 1,
+      "score_b": 0,
+      "result": "W"
+    },
+    {
+      "date": "2026-06-18",
+      "opponent": "Uzbekistan",
+      "score_a": 3,
+      "score_b": 1,
+      "result": "W"
+    }
+  ],
   "__meta__": {
-    "updated_at": "2026-06-30T09:24:14+00:00"
+    "updated_at": "2026-06-30T21:00:00+00:00"
   }
 }

@@ -55,11 +55,24 @@ const OPTIONAL_FILES = [
   // gives the freshness popover a real timestamp instead of "never").
   { file: 'team_colors.json',    fallback: {} },
   // Per-match goals + cards timeline (ESPN summary keyEvents).
-  { file: 'match_events.json',   fallback: {} }
+  { file: 'match_events.json',   fallback: {} },
+  // Polymarket per-match outcome odds — overlaid UNDER Kalshi in the matchup
+  // market bar (see app/markets.js mergedMarkets). In-play, so force-fetched
+  // below (never served stale). Empty match_outcomes until the cron runs.
+  { file: 'polymarket_odds.json', fallback: {} },
+  // Committed steady-state pipeline health (validate report + feed freshness)
+  // surfaced on the Status view.
+  { file: 'pipeline_status.json', fallback: {} }
 ];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
 const LS_DATA_PREFIX = 'wc26.data.';
+
+// In-play feeds that must never be served stale from localStorage — always
+// re-fetch even when meta.data_version is unchanged. markets.json (Kalshi) was
+// already forced; polymarket_odds.json (live per-match odds) joins it so the
+// matchup market bar reflects current prices, not a cached snapshot.
+const FORCE_FETCH_FILES = new Set(['markets.json', 'polymarket_odds.json']);
 
 async function fetchJson(file) {
   const res = await fetch(`data/${file}`, { cache: 'no-cache' });
@@ -119,7 +132,7 @@ async function loadAll(forceRefresh = false) {
   // knockout-aware view) tell "no bracket file yet" from "bracket file is []".
   const fellBack = {};
   for (const { file, fallback } of OPTIONAL_FILES) {
-    let json = (isFresh && file !== 'markets.json') ? readCache(file) : null;
+    let json = (isFresh && !FORCE_FETCH_FILES.has(file)) ? readCache(file) : null;
     if (!json || forceRefresh) {
       try {
         json = await fetchJson(file);
@@ -178,6 +191,8 @@ function fileToKey(file) {
     case 'forecast.json':        return 'forecast';
     case 'team_colors.json':     return 'teamColors';
     case 'match_events.json':    return 'matchEvents';
+    case 'polymarket_odds.json': return 'polymarketOdds';
+    case 'pipeline_status.json': return 'pipelineStatus';
     default: return file.replace('.json', '');
   }
 }

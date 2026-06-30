@@ -61,6 +61,9 @@ import { renderSharedBracketView } from './views/shared-bracket-view.js';
 import { renderHotPicksView } from './views/hot-picks-view.js';
 import { renderBacktestView } from './views/backtest-view.js';
 import { renderAccuracyScoreboardView } from './views/accuracy-scoreboard-view.js';
+import { renderStandingsView } from './views/standings-view.js';
+import { renderModelAccuracyView } from './views/model-accuracy-view.js';
+import { renderStatusView } from './views/status-view.js';
 import { maybeShowInstallPrompt } from './install-prompt.js';
 import { initCountdownBadge } from './countdown-badge.js';
 import { showConfetti } from './confetti.js';
@@ -105,7 +108,10 @@ const TITLES = {
   backtest: 'Backtest',
   leaderboard: 'Leaderboard',
   injuries: 'Injuries',
-  winner: 'Winner Odds'
+  winner: 'Winner Odds',
+  'standings-group': 'Standings',
+  'model-accuracy': 'Model Accuracy',
+  status: 'Status'
 };
 
 function renderView() {
@@ -132,7 +138,7 @@ function renderView() {
   const { view, params } = state.route;
 
   const backBtn = document.getElementById('back-btn');
-  const showBack = ['matchup', 'team', 'group', 'venue', 'winner', 'create-group', 'settings'].includes(view);
+  const showBack = ['matchup', 'team', 'group', 'venue', 'winner', 'create-group', 'settings', 'standings-group', 'model-accuracy', 'status'].includes(view);
   backBtn.hidden = !showBack;
 
   const tabMap = {
@@ -142,6 +148,7 @@ function renderView() {
     brackets: 'bracket',         // legacy alias
     pools: 'pools',
     standings: 'pools',
+    'standings-group': 'play',
     'golden-boot': 'home',
     'golden-awards': 'home',
     'create-group': 'pools',
@@ -185,6 +192,9 @@ function renderView() {
     case 'brackets':     renderBracketShim(root, state.data, params); break;
     case 'pools':        renderPoolsView(root, state.data, params); break;
     case 'standings':    renderPoolStandingsView(root, state.data, params); break;
+    case 'standings-group': renderStandingsView(root, state.data, params); break;
+    case 'model-accuracy': renderModelAccuracyView(root, state.data, params); break;
+    case 'status':       renderStatusView(root, state.data, params); break;
     case 'golden-boot':
     case 'golden-awards': renderGoldenAwardsView(root, state.data, params); break;
     case 'my-brackets':  renderMyBracketsView(root, state.data, params); break;
@@ -327,6 +337,12 @@ window.addEventListener('data:live-refresh', (e) => {
   }
 });
 initSettingsPrefs();
+// RJ30: re-save the push subscription when the SW reports a
+// pushsubscriptionchange (endpoints rotate). Guarded dynamic import so a
+// missing/failing push module never blocks boot.
+import('./push.js')
+  .then((m) => m?.bindResubscribeListener?.())
+  .catch(() => {});
 initCountdownBadge({ title: 'WC26 Tracker' });
 // Wire the gear icon in the header to navigate to /#/settings
 document.getElementById('settings-btn')?.addEventListener('click', () => setRoute('settings', {}));
