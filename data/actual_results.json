@@ -444,13 +444,19 @@
       "score_a": 1,
       "score_b": 1,
       "kickoff_utc": "2026-06-29T20:30Z",
-      "status": "STATUS_FINAL_PEN"
+      "status": "STATUS_FINAL_PEN",
+      "winner": "Paraguay",
+      "shootout_a": 3,
+      "shootout_b": 4
     },
     "Netherlands__vs__Morocco": {
       "score_a": 1,
       "score_b": 1,
       "kickoff_utc": "2026-06-30T01:00Z",
-      "status": "STATUS_FINAL_PEN"
+      "status": "STATUS_FINAL_PEN",
+      "winner": "Morocco",
+      "shootout_a": 2,
+      "shootout_b": 3
     },
     "Cote d'Ivoire__vs__Norway": {
       "score_a": 0,
@@ -512,5 +518,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-06-30T04:36:55+00:00"
+  "last_updated": "2026-06-30T04:53:05+00:00"
 }
