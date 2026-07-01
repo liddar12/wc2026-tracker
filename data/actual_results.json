@@ -488,10 +488,9 @@
     },
     "England__vs__DR Congo": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-07-01T16:00Z",
-      "status": "STATUS_IN_PROGRESS",
-      "minute": "1"
+      "status": "STATUS_FIRST_HALF"
     },
     "Belgium__vs__Senegal": {
       "score_a": 0,
@@ -554,5 +553,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-01T16:01:41+00:00"
+  "last_updated": "2026-07-01T16:42:04+00:00"
 }
