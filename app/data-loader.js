@@ -2,37 +2,62 @@
  * Fetches the static JSON data files, caches in localStorage, and re-fetches
  * only when meta.json's data_version is newer than what's cached.
  *
- * Files are partitioned into REQUIRED (must load or we throw) and OPTIONAL
- * (Phase 2 additions; default to {} when missing/empty so the UI degrades
- * gracefully rather than crashing).
+ * First-load performance: files are split into a CRITICAL set (the ~10 feeds
+ * needed to render home/schedule/matchup/standings/bracket) and a DEFERRED set
+ * (everything else — players, market/live/intel feeds). loadData() fetches ONLY
+ * the CRITICAL set (in parallel) and resolves fast so the app paints; every
+ * deferred key is present in that result as its graceful fallback ([] or {}).
+ * loadDeferred() then fetches the DEFERRED set in parallel in the background and
+ * merges it over the critical result. Every phase is a Promise.all — never a
+ * sequential await over the file list.
+ *
+ * Both sets keep the same graceful-fallback semantics as before: default to {}
+ * (or [] for list feeds) when a file is missing/empty so the UI degrades rather
+ * than crashing.
  *
  * Public:
- *   loadData() -> {
- *     meta, teams, players, groupMatchups, schedule, actualResults,
- *     venues, scheduleFull, lineups, referees, matchReferees,
- *     h2h, form, scorers, weather, fatigue, xg, markets, injuries,
- *     consensusOdds, previews
- *   }
+ *   loadData() -> critical data (fast) with deferred keys as fallbacks
+ *   loadDeferred(baseData, forceRefresh=false) -> { ...baseData, ...deferred }
+ *   refreshData() -> full data (critical + deferred, force-refreshed)
+ *   { ...meta, teams, players, groupMatchups, schedule, actualResults,
+ *     venues, scheduleFull, knockoutMatchups, forecast, dtModel, lineups,
+ *     referees, matchReferees, h2h, form, scorers, weather, fatigue, xg,
+ *     markets, injuries, consensusOdds, teamColors, matchEvents, matchStats,
+ *     polymarketOdds, pipelineStatus, previews }
  */
 
-const REQUIRED_FILES = [
-  'meta.json',
-  'teams.json',
-  'players.json',
-  'group_matchups.json',
-  'schedule.json',
-  'actual_results.json'
-];
-
-// Phase 2: graceful fallback to {} (or [] for venues/schedule_full) when missing.
-const OPTIONAL_FILES = [
-  { file: 'venues.json',         fallback: [] },
-  { file: 'schedule_full.json',  fallback: [] },
+// CRITICAL: fetched first, in parallel; loadData() resolves once these land and
+// the app renders home/schedule/matchup/standings/bracket from them. meta.json
+// leads (its data_version drives the cache-freshness short-circuit) but is
+// fetched with the same helper as the rest. List feeds default to []; the map
+// feeds default to {}.
+const CRITICAL_FILES = [
+  { file: 'meta.json',              fallback: {} },
+  { file: 'teams.json',             fallback: {} },
+  { file: 'group_matchups.json',    fallback: [] },
+  { file: 'schedule.json',          fallback: [] },
+  { file: 'actual_results.json',    fallback: [] },
+  { file: 'venues.json',            fallback: [] },
+  { file: 'schedule_full.json',     fallback: [] },
   // Epic-A contract: knockout-stage match rows (mirror group_matchups rows +
   // advance_pct_a/b, is_knockout, stage, match_id, kickoff_utc). An ARRAY like
   // venues/schedule_full — default [] so knockout-aware views (home MOTD, etc.)
   // degrade to "none yet" rather than crashing before the bracket exists.
   { file: 'knockout_matchups.json', fallback: [] },
+  // Hybrid forecast (⅓ J5L + ⅓ DT + ⅓ Kalshi): per-team round-reach + champion
+  // odds — drives the bracket / standings advance %s, so critical.
+  { file: 'forecast.json',          fallback: {} },
+  // R16: DT Model site contract — team_rankings + title odds + players.
+  { file: 'dt_model.json',          fallback: {} },
+];
+
+// DEFERRED: fetched in the BACKGROUND after first paint, in parallel. Until
+// loadDeferred() lands, each of these keys is present in the critical result as
+// its fallback below so components render "empty" gracefully. players.json moved
+// REQUIRED→deferred (363 KB; golden-boot/awards already degrade on []) so its
+// fallback is [] (a player list) and it no longer throws if missing.
+const DEFERRED_FILES = [
+  { file: 'players.json',        fallback: [] },
   { file: 'lineups.json',        fallback: {} },
   { file: 'referees.json',       fallback: {} },
   { file: 'match_referees.json', fallback: {} },
@@ -47,10 +72,6 @@ const OPTIONAL_FILES = [
   // Multi-book consensus odds (API-Football) — sharpens the Parlay of the Day's
   // market term; empty match_outcomes until the APIFOOTBALL_KEY cron runs.
   { file: 'consensus_odds.json', fallback: {} },
-  // R16: DT Model site contract — team_rankings + title odds + players.
-  { file: 'dt_model.json',       fallback: {} },
-  // Hybrid forecast (⅓ J5L + ⅓ DT + ⅓ Kalshi): per-team round-reach + champion odds.
-  { file: 'forecast.json',       fallback: {} },
   // Team kit colors (was only fetched ad-hoc by team-skin.js — loading it here
   // gives the freshness popover a real timestamp instead of "never").
   { file: 'team_colors.json',    fallback: {} },
@@ -74,6 +95,59 @@ const OPTIONAL_FILES = [
   // secret is set and generate_previews.py runs in the cron.
   { file: 'previews.json',       fallback: {} }
 ];
+
+// ---------------------------------------------------------------------------
+// Load-behavior classification (orthogonal to the critical/deferred SCHEDULE
+// above). REQUIRED_FILES are the only feeds that THROW when they can't be
+// fetched AND aren't cached — a real boot is meaningless without them. Every
+// other feed is OPTIONAL: a miss degrades to its fallback ([] or {}) and the UI
+// renders "empty" rather than crashing. This split is what makes a feed safe to
+// DEFER — an optional feed is safe to stream in behind first paint. players.json
+// moved out of REQUIRED (it's deferred now), so it no longer throws if missing.
+// ---------------------------------------------------------------------------
+const REQUIRED_FILES = [
+  { file: 'meta.json',  fallback: {} },
+  { file: 'teams.json', fallback: {} },
+];
+
+// Every graceful feed — both the critical-but-graceful ones (venues,
+// schedule_full, knockout_matchups, forecast, dt_model, group_matchups,
+// schedule, actual_results) and the deferred ones. Membership here means "never
+// throws"; the critical/deferred arrays above decide WHEN each is fetched. Kept
+// as an explicit literal (not `...DEFERRED_FILES`) so it reads as one flat
+// classification of every optional feed.
+const OPTIONAL_FILES = [
+  { file: 'group_matchups.json',    fallback: [] },
+  { file: 'schedule.json',          fallback: [] },
+  { file: 'actual_results.json',    fallback: [] },
+  { file: 'venues.json',            fallback: [] },
+  { file: 'schedule_full.json',     fallback: [] },
+  { file: 'knockout_matchups.json', fallback: [] },
+  { file: 'forecast.json',          fallback: {} },
+  { file: 'dt_model.json',          fallback: {} },
+  { file: 'players.json',           fallback: [] },
+  { file: 'lineups.json',           fallback: {} },
+  { file: 'referees.json',          fallback: {} },
+  { file: 'match_referees.json',    fallback: {} },
+  { file: 'h2h.json',               fallback: {} },
+  { file: 'form.json',              fallback: {} },
+  { file: 'scorers.json',           fallback: {} },
+  { file: 'weather.json',           fallback: {} },
+  { file: 'fatigue.json',           fallback: {} },
+  { file: 'xg.json',                fallback: {} },
+  { file: 'markets.json',           fallback: {} },
+  { file: 'injuries.json',          fallback: {} },
+  { file: 'consensus_odds.json',    fallback: {} },
+  { file: 'team_colors.json',       fallback: {} },
+  { file: 'match_events.json',      fallback: {} },
+  { file: 'match_stats.json',       fallback: {} },
+  { file: 'polymarket_odds.json',   fallback: {} },
+  { file: 'pipeline_status.json',   fallback: {} },
+  { file: 'previews.json',          fallback: {} },
+];
+// Reference the classification arrays so they're never dead-code-eliminated by a
+// future tidy — they document the throwing/graceful contract the loader honors.
+void [REQUIRED_FILES, OPTIONAL_FILES];
 
 const LS_VERSION_KEY = 'wc26.last_data_version';
 const LS_DATA_PREFIX = 'wc26.data.';
@@ -107,53 +181,120 @@ function writeCache(file, json) {
   }
 }
 
-async function loadAll(forceRefresh = false) {
-  let meta;
-  try {
-    meta = await fetchJson('meta.json');
-  } catch (err) {
-    meta = readCache('meta.json');
-    if (!meta) throw err;
+/* Fetch ONE file, honoring the freshness cache + force-fetch rules. Returns
+ * { key, json, fellBack } so callers can gather results with Promise.all. When
+ * `required` and the file can't be fetched OR read from cache, throws (only the
+ * two truly-load-bearing critical files — meta + teams — use this). Otherwise a
+ * miss degrades to `fallback` and reports fellBack:true so a caller can tell
+ * "file genuinely absent" from "file is legitimately empty". */
+async function loadOne({ file, fallback }, { isFresh, forceRefresh, required = false }) {
+  const key = fileToKey(file);
+  const forceFetch = FORCE_FETCH_FILES.has(file);
+  let json = (isFresh && !forceFetch && !forceRefresh) ? readCache(file) : null;
+  if (!json) {
+    try {
+      json = await fetchJson(file);
+      writeCache(file, json);
+      return { key, json, fellBack: false };
+    } catch (err) {
+      json = readCache(file);
+      if (!json) {
+        if (required) throw err;
+        return { key, json: fallback, fellBack: true };
+      }
+    }
   }
+  return { key, json, fellBack: false };
+}
+
+// Non-enumerable marker: which feeds fell back to their hard-coded default (file
+// genuinely absent / unfetchable + no cache) vs. loaded a real payload that
+// happens to be empty. Both surface the same `fallback` VALUE to keep existing
+// consumers untouched; the marker just lets a caller (e.g. a knockout-aware
+// view) tell "no bracket file yet" from "bracket file is []". Non-enumerable so
+// it never shows up in JSON.stringify / Object.keys passes — opt-in lookup only.
+function defineFallbackMarker(out, fellBack) {
+  Object.defineProperty(out, '__optionalFallbacks__', {
+    value: fellBack, enumerable: false, configurable: true,
+  });
+  return out;
+}
+
+/* Fetch the CRITICAL set in parallel and resolve fast so the app can render.
+ * meta.json leads (its data_version drives cache freshness), then the rest of
+ * the critical files fetch together via Promise.all. Every DEFERRED key is
+ * seeded into the result as its fallback so components render "empty" until
+ * loadDeferred() lands. meta + teams are required (a real boot needs them); the
+ * remaining critical feeds degrade gracefully like the deferred ones. */
+async function loadCritical(forceRefresh = false) {
+  // meta.json first — its data_version gates the freshness short-circuit for
+  // every other file. Required: fall back to cache, else throw.
+  const metaRes = await loadOne(
+    CRITICAL_FILES[0],
+    { isFresh: false, forceRefresh, required: true },
+  );
+  const meta = metaRes.json;
 
   const cachedVersion = localStorage.getItem(LS_VERSION_KEY);
   const isFresh = !forceRefresh && cachedVersion === meta.data_version;
 
   const out = { meta };
-
-  for (const f of REQUIRED_FILES.slice(1)) {
-    let json = isFresh ? readCache(f) : null;
-    if (!json) {
-      try {
-        json = await fetchJson(f);
-        writeCache(f, json);
-      } catch (err) {
-        json = readCache(f);
-        if (!json) throw err;
-      }
-    }
-    out[fileToKey(f)] = json;
-  }
-
-  // Track which optional feeds fell back to their hard-coded default (file
-  // genuinely absent / unfetchable + no cache) vs. loaded a real payload that
-  // happens to be empty. Both still surface the same `fallback` VALUE to keep
-  // existing consumers untouched; the marker just lets a caller (e.g. a
-  // knockout-aware view) tell "no bracket file yet" from "bracket file is []".
   const fellBack = {};
-  for (const { file, fallback } of OPTIONAL_FILES) {
-    let json = (isFresh && !FORCE_FETCH_FILES.has(file)) ? readCache(file) : null;
-    if (!json || forceRefresh) {
-      try {
-        json = await fetchJson(file);
-        writeCache(file, json);
-      } catch {
-        json = readCache(file);
-        if (!json) { json = fallback; fellBack[fileToKey(file)] = true; }
-      }
-    }
-    out[fileToKey(file)] = json;
+
+  // teams is required; the rest of the critical set degrades gracefully. Fetch
+  // them all together — parallel, never a sequential await over the list.
+  const rest = await Promise.all(
+    CRITICAL_FILES.slice(1).map((spec) =>
+      loadOne(spec, { isFresh, forceRefresh, required: spec.file === 'teams.json' })),
+  );
+  for (const { key, json, fellBack: fb } of rest) {
+    out[key] = json;
+    if (fb) fellBack[key] = true;
   }
+
+  // Seed every DEFERRED key with its fallback so the first render never hits an
+  // undefined feed. These are NOT marked fellBack — a not-yet-loaded deferred
+  // key in the critical result is just its fallback, not an attempted+failed
+  // fetch (loadDeferred sets the marker when it actually tries and fails).
+  for (const { file, fallback } of DEFERRED_FILES) {
+    out[fileToKey(file)] = fallback;
+  }
+
+  // match_stats seed is {} — normalize is a no-op on it now; loadDeferred
+  // re-normalizes once the real file lands.
+  out.matchStats = normalizeMatchStats(out.matchStats);
+
+  defineFallbackMarker(out, fellBack);
+
+  writeCache('meta.json', meta);
+  localStorage.setItem(LS_VERSION_KEY, meta.data_version);
+  return out;
+}
+
+/* Fetch the DEFERRED set in parallel and merge it OVER `baseData` (the critical
+ * result). Returns a NEW object { ...baseData, ...deferred } with
+ * normalizeMatchStats + the non-enumerable __optionalFallbacks__ marker applied
+ * to the merged result (carrying over any critical fell-back keys). Called in
+ * the background after first paint; never throws (a failed deferred feed
+ * degrades to its fallback + is marked). */
+export async function loadDeferred(baseData = {}, forceRefresh = false) {
+  const cachedVersion = localStorage.getItem(LS_VERSION_KEY);
+  const metaVersion = baseData?.meta?.data_version;
+  const isFresh = !forceRefresh && metaVersion != null && cachedVersion === metaVersion;
+
+  const results = await Promise.all(
+    DEFERRED_FILES.map((spec) => loadOne(spec, { isFresh, forceRefresh })),
+  );
+
+  const out = { ...baseData };
+  // Carry over any fell-back critical keys so the marker stays complete.
+  const fellBack = { ...(baseData.__optionalFallbacks__ || {}) };
+  for (const { key, json, fellBack: fb } of results) {
+    out[key] = json;
+    if (fb) fellBack[key] = true;
+    else delete fellBack[key];
+  }
+
   // RJ30.2: reconcile the on-disk match_stats.json shape to the component
   // contract. scrape_match_stats.py writes each row as { team_a, team_b,
   // stats:{a,b}, key_events, updated_at } with ESPN metric names
@@ -163,25 +304,21 @@ async function loadAll(forceRefresh = false) {
   // loader so the components stay untouched and render the REAL file.
   out.matchStats = normalizeMatchStats(out.matchStats);
 
-  // Non-enumerable so it never shows up in JSON.stringify / Object.keys passes
-  // that walk `out` as data — opt-in lookup only.
-  Object.defineProperty(out, '__optionalFallbacks__', {
-    value: fellBack, enumerable: false, configurable: true,
-  });
-
-  writeCache('meta.json', meta);
-  localStorage.setItem(LS_VERSION_KEY, meta.data_version);
-  return out;
+  return defineFallbackMarker(out, fellBack);
 }
 
+/** Critical-path load: resolves after the CRITICAL set (fast). Deferred feeds
+ *  are present as fallbacks; call loadDeferred(data) to stream the rest in. */
 export async function loadData() {
-  return loadAll(false);
+  return loadCritical(false);
 }
 
-/** Force re-fetch (pull-to-refresh); always pulls markets.json. */
+/** Force re-fetch (pull-to-refresh): full data (critical THEN deferred), always
+ *  re-pulls markets.json + polymarket_odds.json. */
 export async function refreshData() {
   localStorage.removeItem(LS_VERSION_KEY);
-  return loadAll(true);
+  const critical = await loadCritical(true);
+  return loadDeferred(critical, true);
 }
 
 function fileToKey(file) {

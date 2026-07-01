@@ -27,7 +27,7 @@ try {
   console.warn('[r16] anon-cache expiry failed', err?.message || err);
 }
 
-import { loadData, formatLastUpdated } from './data-loader.js';
+import { loadData, loadDeferred, formatLastUpdated } from './data-loader.js';
 import { initI18n, getLang, t, _setCatalogES } from './lib/i18n.js';
 import { getState, setData, setRoute, parseHash } from './state.js';
 import { initTheme } from './theme.js';
@@ -502,6 +502,21 @@ function shouldOpenPicksForJoin() {
   .then(() => loadData())
   .then(async (data) => {
     setData(data);
+    // First-load performance: setData(data) above just triggered the first
+    // render from the CRITICAL set (fast). Stream the DEFERRED feeds (players,
+    // markets, intel, …) in behind it — on resolve, flag the re-render as a
+    // live-refresh so renderView() PRESERVES SCROLL (reuses the 30s live-refresh
+    // path) instead of jumping to top, then setData(full). Non-fatal: a deferred
+    // failure logs and keeps the critical data on screen. initCompetition +
+    // routing below run on the critical data (they don't need deferred feeds).
+    loadDeferred(data)
+      .then((full) => {
+        pendingLiveRefresh = true;
+        setData(full);
+      })
+      .catch((err) => {
+        console.warn('[data-loader] deferred load failed; keeping critical data', err);
+      });
     initToolbarAuth(data);
     // Toast user when data is newer than their last visit (A11 enhanced
     // version computes a meaningful diff below).

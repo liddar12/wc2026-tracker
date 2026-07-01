@@ -43,19 +43,32 @@ test.describe('Projected bracket + hidden nav', () => {
   test('BR-6 what-if: tap a team to override a winner → reset appears', async ({ page }) => {
     await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 15_000 });
-    // Tap the non-winner team in the first OVERRIDABLE R32 match. A match with a
-    // real result (e.g. South Africa–Canada, now decided) is locked to the actual
-    // winner and cannot be what-if'd — skip those and use the first undecided one.
-    const r32 = page.locator('.eb-col[data-round="r32"] .eb-match');
-    const n = await r32.count();
-    let overrode = false;
-    for (let i = 0; i < n; i++) {
-      const loser = r32.nth(i).locator('.eb-team.eb-tappable:not(.eb-win)').first();
-      if ((await loser.count()) === 0) continue;
-      await loser.click();
-      if ((await page.locator('.eb-match[data-overridden]').count()) > 0) { overrode = true; break; }
-    }
-    expect(overrode, 'an undecided R32 match accepts a what-if override').toBe(true);
+    // Critical-path loading paints the bracket from the CRITICAL feeds, then a
+    // couple of re-renders follow within ~1-2s: the DEFERRED feeds stream in, and
+    // (during a live match) the live-poller's first tick. Each rebuilds
+    // root.innerHTML, swapping the bracket DOM + its delegated tap listener out
+    // from under a click landing in that window. Rather than wait a fixed time
+    // (the test budget is 15s), retry the whole scan web-first: tap the non-winner
+    // of the first OVERRIDABLE (undecided) R32 match, and if a stray re-render ate
+    // the tap this pass, toPass re-runs after it settles. An already-overridden
+    // match is skipped so a second tap never toggles it back off; a DECIDED match
+    // is locked to its real winner and silently ignores the what-if.
+    await expect(async () => {
+      // Success if an override already stuck (this pass or a prior one — the
+      // override is module state that survives re-renders).
+      if ((await page.locator('.eb-match[data-overridden]').count()) > 0) return;
+      const r32 = page.locator('.eb-col[data-round="r32"] .eb-match');
+      const n = await r32.count();
+      for (let i = 0; i < n; i++) {
+        const m = r32.nth(i);
+        if (await m.getAttribute('data-overridden')) continue; // don't toggle it off
+        const loser = m.locator('.eb-team.eb-tappable:not(.eb-win)').first();
+        if ((await loser.count()) === 0) continue;
+        await loser.click();
+        if ((await page.locator('.eb-match[data-overridden]').count()) > 0) return; // stuck
+      }
+      throw new Error('no undecided R32 match accepted a what-if override yet');
+    }).toPass({ timeout: 10_000 });
     // an override marker + reset control appear
     await expect(page.locator('.eb-match[data-overridden]').first()).toBeVisible({ timeout: 5_000 });
     await expect(page.locator('[data-testid="eb-reset"]')).toBeVisible();
