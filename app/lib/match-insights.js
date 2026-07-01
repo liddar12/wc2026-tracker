@@ -48,8 +48,9 @@ export function insightsFor(row, xgRow = null, modelRow = null) {
   const sa = stats.a, sb = stats.b;
   const out = [];
 
-  // 1) Possession dominance (>=58%).
-  const pa = Number(sa.possessionPct), pb = Number(sb.possessionPct);
+  // 1) Possession dominance (>=58%). Tolerant of the short key the data-loader
+  //    emits for the flat component shape (possessionPct → possession).
+  const pa = Number(sa.possessionPct ?? sa.possession), pb = Number(sb.possessionPct ?? sb.possession);
   let possLine = null;
   if (Number.isFinite(pa) && pa >= 58) possLine = `${a} dominating possession (${round(pa)}%)`;
   else if (Number.isFinite(pb) && pb >= 58) possLine = `${b} dominating possession (${round(pb)}%)`;
@@ -95,4 +96,21 @@ export function insightsFor(row, xgRow = null, modelRow = null) {
     if (line && out.length < 3) out.push(line);
   }
   return out;
+}
+
+/**
+ * Component-facing adapter. `app/components/match-stats.js` resolves a match to a
+ * flat, correctly-oriented row ({ team_a, team_b, stats_a, stats_b, key_events })
+ * and passes render options ({ xg, model }). Bridge that to insightsFor's nested
+ * shape + positional args so the free insight lines actually render.
+ * @param {object} row  { team_a, team_b, stats_a, stats_b, key_events } (or nested `stats`)
+ * @param {object} [opts] { xg?, model? }
+ * @returns {string[]}
+ */
+export function matchInsights(row, opts = {}) {
+  if (!row || typeof row !== 'object') return [];
+  const a = row.stats_a || (row.stats && row.stats.a) || {};
+  const b = row.stats_b || (row.stats && row.stats.b) || {};
+  const adapted = { team_a: row.team_a, team_b: row.team_b, stats: { a, b }, key_events: row.key_events };
+  return insightsFor(adapted, opts.xg || opts.xgRow || null, opts.model || opts.modelRow || null);
 }

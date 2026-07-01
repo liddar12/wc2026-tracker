@@ -8,7 +8,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
-import { insightsFor, goalsFromEvents } from '../../app/lib/match-insights.js';
+import { insightsFor, goalsFromEvents, matchInsights } from '../../app/lib/match-insights.js';
 
 const root = new URL('../../', import.meta.url);
 const read = (p) => readFileSync(new URL(p, root), 'utf8');
@@ -110,6 +110,27 @@ test('insightsFor: xG read — out-shooting the lower-xG side', () => {
   const lines = insightsFor(flatRow, xgRow, null);
   assert.ok(lines.some((l) => /out-shooting/.test(l) && /Spain/.test(l)),
     `got: ${JSON.stringify(lines)}`);
+});
+
+test('matchInsights adapter: the exact component call shape (flat short-key stats + {xg,model}) renders lines', () => {
+  // Regression for the shipped bug: match-stats.js calls matchInsights(row,{xg,model})
+  // with FLAT stats_a/stats_b using the data-loader's SHORT keys (possessionPct→
+  // possession). The lib exported only insightsFor(row,xgRow,modelRow) with NESTED
+  // stats + possessionPct → 0 lines always. The adapter must bridge both.
+  const s = {
+    team_a: 'France', team_b: 'Sweden',
+    stats_a: { possession: 61, totalShots: 10, shotsOnTarget: 3 },
+    stats_b: { possession: 39, totalShots: 6, shotsOnTarget: 2 },
+    key_events: [],
+  };
+  const lines = matchInsights(s, {
+    xg: { team_a: 'France', team_b: 'Sweden', team_a_xg: 1.5, team_b_xg: 0.8 },
+    model: { predicted_winner: 'France' },
+  });
+  assert.ok(lines.some((l) => /France/.test(l) && /possession/i.test(l) && /61%/.test(l)),
+    `expected a France possession line, got: ${JSON.stringify(lines)}`);
+  assert.deepEqual(matchInsights(null), [], 'safe on null');
+  assert.deepEqual(matchInsights({}), [], 'safe on empty');
 });
 
 /* ---- scraper structure + data-file shape ---- */

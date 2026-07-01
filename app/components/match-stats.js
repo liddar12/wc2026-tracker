@@ -230,7 +230,11 @@ export function renderMatchStats(match, data) {
   // ---- free computed insights (deterministic, $0, safe when stats missing) ----
   let lines = [];
   try {
-    lines = matchInsights({ team_a: s.team_a, team_b: s.team_b, stats_a: sa, stats_b: sb }, { xg }) || [];
+    // Pass the full resolved row (incl. key_events for the clinical-finishing
+    // read) + the model row (`match` carries predicted_winner/upset_risk for
+    // knockout/group fixtures) so possession, clinical, model-agreement and the
+    // xG read can all fire.
+    lines = matchInsights({ team_a: s.team_a, team_b: s.team_b, stats_a: sa, stats_b: sb, key_events: s.key_events }, { xg, model: match }) || [];
   } catch { lines = []; }
   if (Array.isArray(lines) && lines.length) {
     const ins = document.createElement('ul');
