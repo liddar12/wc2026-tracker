@@ -263,7 +263,7 @@
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M079__1A__vs__3_CEFHI",
-    "kickoff_utc": "2026-07-01T01:00:00Z"
+    "kickoff_utc": "2026-07-01T02:00:00Z"
   },
   {
     "team_a": "England",
@@ -645,6 +645,42 @@
     "stage": "round_of_16",
     "match_id": "M090__W73__vs__W75",
     "kickoff_utc": "2026-07-04T17:00:00Z"
+  },
+  {
+    "team_a": "Paraguay",
+    "team_b": "France",
+    "composite_a": 64.4,
+    "composite_b": 86.9,
+    "gap": 22.5,
+    "probabilities": {
+      "team_a_wins": 3.5,
+      "draw": 8.9,
+      "team_b_wins": 87.6
+    },
+    "expected_points": {
+      "team_a": 0.19,
+      "team_b": 2.72
+    },
+    "predicted_winner": "France",
+    "win_confidence_pct": 96.2,
+    "upset_risk": {
+      "favored": "France",
+      "underdog": "Paraguay",
+      "gap": 22.5,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 3.5,
+      "draw": 8.9,
+      "team_b_wins": 87.6
+    },
+    "hybrid_gap": 22.5,
+    "advance_pct_a": 3.8,
+    "advance_pct_b": 96.2,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M089__W74__vs__W77",
+    "kickoff_utc": "2026-07-04T21:00:00Z"
   },
   {
     "team_a": "Brazil",
