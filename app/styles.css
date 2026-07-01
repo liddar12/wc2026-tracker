@@ -4826,3 +4826,201 @@ html, body { overflow-x: hidden; }
   outline-offset: 2px;
   box-shadow: 0 0 0 2px var(--surface), 0 0 0 4px var(--accent);
 }
+
+/* ============================================================================
+   RJ30.2 — Match Intelligence: Match Stats panel + Momentum strip
+   (app/components/match-stats.js + app/components/momentum-chart.js)
+
+   Reuses the shared .home-card surface and the existing color tokens
+   (--primary / --accent for the two sides, --text-muted, --border). Tuned for
+   iOS 390px: the possession bar and stat grid use % widths / grid columns so
+   nothing overflows; numeric cells carry .tnum (tabular-nums) so digits don't
+   jitter. No new design language — same card chrome as the rest of the page.
+   ========================================================================== */
+
+/* tabular figures for every numeric cell so columns stay aligned + stable */
+.match-stats-card .tnum,
+.momentum-card .tnum,
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+.match-stats-card,
+.momentum-card {
+  margin-top: 14px;
+  /* respect the notch on the sides when the card reaches the viewport edge */
+  padding-left: max(14px, var(--safe-left, 0px));
+  padding-right: max(14px, var(--safe-right, 0px));
+}
+
+.ms-title,
+.mm-title {
+  margin: 0 0 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ---- possession: two-sided bar summing ~100 ---- */
+.ms-possession { margin-bottom: 12px; }
+.ms-poss-head {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+.ms-poss-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.ms-poss-vals {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.ms-poss-a { color: var(--primary); }
+.ms-poss-b { color: var(--accent); }
+.ms-poss-bar {
+  display: flex;
+  width: 100%;
+  height: 8px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.ms-poss-seg { height: 100%; }
+.ms-seg-a { background: var(--primary); }
+.ms-seg-b { background: var(--accent); }
+
+/* ---- team name header for the stat columns ---- */
+.ms-cols {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+.ms-col-a { text-align: left; }
+.ms-col-b { text-align: right; }
+.ms-col-mid { min-width: 0; }
+
+/* ---- stat grid: A | label | B rows ---- */
+.ms-stat-grid { display: flex; flex-direction: column; }
+.ms-stat-row {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 0;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+}
+.ms-stat-row:first-child { border-top: 0; }
+.ms-stat-a { text-align: left; font-weight: 600; color: var(--text); }
+.ms-stat-b { text-align: right; font-weight: 600; color: var(--text); }
+.ms-stat-label {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---- shots vs MODEL xG line ---- */
+.ms-xg-line {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+.ms-xg-label {
+  display: block;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.ms-xg-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.ms-xg-a { text-align: left; color: var(--primary); }
+.ms-xg-b { text-align: right; color: var(--accent); }
+
+/* ---- computed insight lines (English, $0) ---- */
+.ms-insights {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.ms-insight {
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--text);
+  padding-left: 16px;
+  position: relative;
+}
+.ms-insight::before {
+  content: '›';
+  position: absolute;
+  left: 2px;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+/* ---- momentum strip: sparkline + goal markers pinned by minute ---- */
+.mm-strip {
+  position: relative;
+  width: 100%;
+  padding: 6px 0 14px;
+  /* entrance fade the reduced-motion block below suppresses */
+  animation: mm-fade-in 320ms ease-out both;
+}
+.mm-spark {
+  display: block;
+  width: 100%;
+  height: auto;
+  color: var(--text-muted);
+}
+.mm-goals {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 14px;
+}
+.mm-goal {
+  position: absolute;
+  bottom: 0;
+  transform: translateX(-50%);
+  font-size: 11px;
+  line-height: 1;
+  filter: grayscale(0.1);
+}
+.mm-goal-a { color: var(--primary); }
+.mm-goal-b { color: var(--accent); }
+.mm-goal-x { color: var(--text-muted); }
+
+@keyframes mm-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Reduced-motion: suppress the momentum entrance animation entirely (both the
+   media query AND the component's own data flag, so either path is honored). */
+@media (prefers-reduced-motion: reduce) {
+  .mm-strip { animation: none; }
+}
+.momentum-card[data-reduced-motion='true'] .mm-strip { animation: none; }

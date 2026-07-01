@@ -542,6 +542,49 @@ class Validator:
                 "likely produced nothing"
             )
 
+    def check_match_stats_coverage(self) -> None:
+        """RJ30.2: warn (never error) on the match_stats.json feed.
+
+        match_stats.json is keyed by `${team_a}__vs__${team_b}` (plus a
+        `__meta__` row) -> { team_a, team_b, stats:{a,b}, key_events, updated_at }
+        from ESPN boxscores. WARN-ONLY (never self.errors): the feed only fills
+        as real matches are played, and the match-stats / momentum components
+        render nothing for pairs with no row, so an empty/thin feed is a soft
+        signal, not a deploy blocker. Mirrors check_form_coverage / the other
+        RJ30 warn-only coverage checks."""
+        v = self.load("match_stats.json")
+        if v is None:
+            return  # absent file already handled by the optional-loader fallback
+        if not isinstance(v, dict):
+            self.warn("match_stats.json: expected an object")
+            return
+        rows = [k for k in v if k != "__meta__"]
+        if not rows:
+            self.warn(
+                "match_stats.json: no fixtures covered — scrape_match_stats.py "
+                "produced nothing yet (fills as matches are played)"
+            )
+            return
+        for key in rows:
+            row = v.get(key)
+            if not isinstance(row, dict):
+                self.warn(f"match_stats.json[{key!r}]: not an object")
+                continue
+            stats = row.get("stats")
+            has_flat = isinstance(row.get("stats_a"), dict) or isinstance(row.get("stats_b"), dict)
+            has_nested = (
+                isinstance(stats, dict)
+                and (isinstance(stats.get("a"), dict) or isinstance(stats.get("b"), dict))
+            )
+            if not has_flat and not has_nested:
+                self.warn(
+                    f"match_stats.json[{key!r}]: no stats.a/stats.b (or flat "
+                    f"stats_a/stats_b) — row carries no boxscore"
+                )
+            ke = row.get("key_events")
+            if ke is not None and not isinstance(ke, list):
+                self.warn(f"match_stats.json[{key!r}]: key_events must be a list")
+
     def check_markets(self) -> None:
         v = self.load("markets.json")
         if not isinstance(v, dict):
@@ -761,6 +804,7 @@ class Validator:
         self.check_polymarket_odds()
         self.check_weather_coverage()
         self.check_form_coverage()
+        self.check_match_stats_coverage()
         # Epic A: tournament-window freshness + knockout-coverage gates.
         self.check_feed_emptiness()
         self.check_knockout_coverage(team_names)

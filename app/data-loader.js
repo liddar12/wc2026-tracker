@@ -56,6 +56,12 @@ const OPTIONAL_FILES = [
   { file: 'team_colors.json',    fallback: {} },
   // Per-match goals + cards timeline (ESPN summary keyEvents).
   { file: 'match_events.json',   fallback: {} },
+  // RJ30.2 Match Intelligence: per-fixture ESPN boxscore stats + key_events,
+  // keyed by `${team_a}__vs__${team_b}`. Ships with a handful of real matches;
+  // the match-stats / momentum components render nothing for pairs with no row.
+  // NORMALIZED post-load (see normalizeMatchStats) so match-stats.js reads flat
+  // stats_a / stats_b regardless of the on-disk nested `stats:{a,b}` shape.
+  { file: 'match_stats.json',    fallback: {} },
   // Polymarket per-match outcome odds — overlaid UNDER Kalshi in the matchup
   // market bar (see app/markets.js mergedMarkets). In-play, so force-fetched
   // below (never served stale). Empty match_outcomes until the cron runs.
@@ -148,6 +154,15 @@ async function loadAll(forceRefresh = false) {
     }
     out[fileToKey(file)] = json;
   }
+  // RJ30.2: reconcile the on-disk match_stats.json shape to the component
+  // contract. scrape_match_stats.py writes each row as { team_a, team_b,
+  // stats:{a,b}, key_events, updated_at } with ESPN metric names
+  // (possessionPct, foulsCommitted, effectiveTackles, totalCrosses, …); the
+  // render components (app/components/match-stats.js) read FLAT stats_a/stats_b
+  // with short keys (possession, fouls, tackles, crosses, …). Normalize in the
+  // loader so the components stay untouched and render the REAL file.
+  out.matchStats = normalizeMatchStats(out.matchStats);
+
   // Non-enumerable so it never shows up in JSON.stringify / Object.keys passes
   // that walk `out` as data — opt-in lookup only.
   Object.defineProperty(out, '__optionalFallbacks__', {
@@ -195,11 +210,75 @@ function fileToKey(file) {
     case 'forecast.json':        return 'forecast';
     case 'team_colors.json':     return 'teamColors';
     case 'match_events.json':    return 'matchEvents';
+    case 'match_stats.json':     return 'matchStats';
     case 'polymarket_odds.json': return 'polymarketOdds';
     case 'pipeline_status.json': return 'pipelineStatus';
     case 'previews.json':        return 'previews';
     default: return file.replace('.json', '');
   }
+}
+
+/* RJ30.2: map ESPN boxscore metric names (as written by scrape_match_stats.py
+ * into the nested stats.{a,b}) onto the short keys the render components read.
+ * Any already-short key (from a hand-authored / flat row or a test fixture) is
+ * passed through untouched, so both shapes work. */
+const MATCH_STATS_KEY_MAP = {
+  possessionPct: 'possession',
+  totalShots: 'totalShots',
+  shotsOnTarget: 'shotsOnTarget',
+  blockedShots: 'blockedShots',
+  passPct: 'passPct',
+  accuratePasses: 'accuratePasses',
+  totalPasses: 'totalPasses',
+  saves: 'saves',
+  effectiveTackles: 'tackles',
+  foulsCommitted: 'fouls',
+  offsides: 'offsides',
+  totalCrosses: 'crosses',
+  wonCorners: 'corners',
+};
+
+/** Translate one side's stat object from ESPN metric names → component keys. */
+function normalizeStatSide(side) {
+  if (!side || typeof side !== 'object') return {};
+  const out = {};
+  for (const [k, v] of Object.entries(side)) {
+    const mapped = MATCH_STATS_KEY_MAP[k];
+    // Keep the mapped short key; also preserve any key that is already short
+    // (i.e. is itself a target name) so pre-normalized fixtures pass through.
+    if (mapped) out[mapped] = v;
+    else out[k] = v;
+  }
+  return out;
+}
+
+/**
+ * Reconcile match_stats.json to the render contract. Given the loaded object
+ * (keyed by `${team_a}__vs__${team_b}`, plus an optional `__meta__` row), add
+ * a flat `stats_a` / `stats_b` to every fixture row from its nested `stats.a` /
+ * `stats.b` (or leave existing flat fields as-is), keeping the original nested
+ * `stats`, `key_events`, and `updated_at` intact. Returns a NEW object; the
+ * `__meta__` row and non-object entries are passed through unchanged. Never
+ * throws — a malformed row degrades to empty sides.
+ */
+export function normalizeMatchStats(raw) {
+  if (!raw || typeof raw !== 'object') return {};
+  const out = {};
+  for (const [key, row] of Object.entries(raw)) {
+    if (key === '__meta__' || !row || typeof row !== 'object') {
+      out[key] = row;
+      continue;
+    }
+    const nested = row.stats && typeof row.stats === 'object' ? row.stats : null;
+    // Prefer an already-flat stats_a/stats_b (test fixtures / hand-authored);
+    // otherwise derive it from the nested ESPN shape.
+    const stats_a = row.stats_a ? normalizeStatSide(row.stats_a)
+      : nested ? normalizeStatSide(nested.a) : {};
+    const stats_b = row.stats_b ? normalizeStatSide(row.stats_b)
+      : nested ? normalizeStatSide(nested.b) : {};
+    out[key] = { ...row, stats_a, stats_b };
+  }
+  return out;
 }
 
 export function formatLastUpdated(isoString) {

@@ -1,0 +1,196 @@
+{
+  "Cote d'Ivoire__vs__Norway": {
+    "team_a": "Cote d'Ivoire",
+    "team_b": "Norway",
+    "stats": {
+      "a": {
+        "possessionPct": 47.1,
+        "totalShots": 14,
+        "shotsOnTarget": 5,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 401,
+        "passPct": 80.0,
+        "accuratePasses": 339,
+        "saves": 1,
+        "effectiveTackles": 18,
+        "foulsCommitted": 6,
+        "offsides": 2,
+        "totalCrosses": 29,
+        "wonCorners": 14
+      },
+      "b": {
+        "possessionPct": 52.9,
+        "totalShots": 9,
+        "shotsOnTarget": 4,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 473,
+        "passPct": 90.0,
+        "accuratePasses": 415,
+        "saves": 4,
+        "effectiveTackles": 11,
+        "foulsCommitted": 7,
+        "offsides": 2,
+        "totalCrosses": 10,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "39",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "45'+1",
+        "type": "yellow",
+        "team": "Norway"
+      },
+      {
+        "minute": "74",
+        "type": "goal",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "86",
+        "type": "goal",
+        "team": "Norway"
+      }
+    ],
+    "updated_at": "2026-07-01T04:54:37+00:00"
+  },
+  "France__vs__Sweden": {
+    "team_a": "France",
+    "team_b": "Sweden",
+    "stats": {
+      "a": {
+        "possessionPct": 61,
+        "totalShots": 25,
+        "shotsOnTarget": 12,
+        "blockedShots": 4,
+        "shotPct": 50.0,
+        "totalPasses": 551,
+        "passPct": 90.0,
+        "accuratePasses": 484,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 14,
+        "offsides": 3,
+        "totalCrosses": 17,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 39,
+        "totalShots": 8,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 350,
+        "passPct": 80.0,
+        "accuratePasses": 278,
+        "saves": 9,
+        "effectiveTackles": 9,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 11,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "45",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "53",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "74",
+        "type": "goal",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-01T04:54:37+00:00"
+  },
+  "Mexico__vs__Ecuador": {
+    "team_a": "Mexico",
+    "team_b": "Ecuador",
+    "stats": {
+      "a": {
+        "possessionPct": 43.2,
+        "totalShots": 15,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 319,
+        "passPct": 80.0,
+        "accuratePasses": 249,
+        "saves": 1,
+        "effectiveTackles": 5,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 7,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 56.8,
+        "totalShots": 7,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 10.0,
+        "totalPasses": 407,
+        "passPct": 80.0,
+        "accuratePasses": 340,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 14,
+        "offsides": 1,
+        "totalCrosses": 25,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "22",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "31",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "45'+1",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "90'+5",
+        "type": "red",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "90'+9",
+        "type": "yellow",
+        "team": "Ecuador"
+      }
+    ],
+    "updated_at": "2026-07-01T04:54:37+00:00"
+  },
+  "__meta__": {
+    "updated_at": "2026-07-01T04:54:37+00:00",
+    "source": "espn-summary",
+    "matches": 3,
+    "last_run_updated": 3
+  }
+}

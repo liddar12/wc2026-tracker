@@ -28,6 +28,8 @@ import { scorersSection } from '../components/scorers.js';
 import { weatherSection } from '../components/weather.js';
 import { travelRestSection } from '../components/travel-rest.js';
 import { xgSection } from '../components/xg.js';
+import { renderMatchStats } from '../components/match-stats.js';
+import { renderMomentum } from '../components/momentum-chart.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
 import { hybridProb } from '../hybrid-model.js';
@@ -194,6 +196,15 @@ export function renderMatchupDetail(root, data, params) {
     else grid.append(marketCol);
     root.appendChild(grid);
   }
+
+  // RJ30.2 Match Intelligence — REAL ESPN boxscore stats + a momentum strip,
+  // mounted next to the model/xG grid (where match analysis belongs). Both
+  // return an empty DocumentFragment for fixtures with no data.matchStats row
+  // (the vast majority pre-tournament), so nothing renders until a match has
+  // stats. Stats first (possession / shots / passing / shots-vs-model-xG +
+  // computed insights), momentum after (shot-pressure sparkline + goal markers).
+  root.appendChild(renderMatchStats(match, data));
+  root.appendChild(renderMomentum(match, data));
 
   // AI match preview / recap — mounts near the model grid (where a preview
   // belongs) and ships DORMANT: previewSection returns an empty

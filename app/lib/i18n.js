@@ -126,6 +126,24 @@ export const EN = {
   'matchup.weather': 'Weather',
   'matchup.finalResult': 'Final result',
 
+  // RJ30.2 Match Intelligence — stat labels (match-stats.js) + momentum title.
+  // The render components currently emit these as English literals; these keys
+  // are the localized source the labels will read once the components adopt
+  // t(). Computed insight lines stay English per scope (not translated here).
+  'matchStats.title': 'Match stats',
+  'matchStats.possession': 'Possession',
+  'matchStats.shots': 'Shots',
+  'matchStats.onTarget': 'On target',
+  'matchStats.passingPct': 'Passing %',
+  'matchStats.saves': 'Saves',
+  'matchStats.tackles': 'Tackles',
+  'matchStats.fouls': 'Fouls',
+  'matchStats.offsides': 'Offsides',
+  'matchStats.crosses': 'Crosses',
+  'matchStats.blocked': 'Blocked',
+  'matchStats.shotsVsXg': 'Shots vs model xG',
+  'momentum.title': 'Momentum',
+
   // settings card titles + language card
   'settings.language': 'Language',
   'settings.english': 'English',

@@ -227,6 +227,14 @@ def collect_inputs(match_id, kind, *, feeds):
             out["final_status"] = rec.get("status")
             if rec.get("winner"):
                 out["final_winner"] = rec["winner"]
+        # RJ30.2 — stats-aware recap: fold in the real ESPN boxscore for this
+        # match (possession/shots/passing) when data/match_stats.json has it, so
+        # an active AI recap can read what actually happened, not just the score.
+        # Absent stats simply omit these keys (no zero-fill). Still $0 for
+        # dormant runs — this only enriches the typed prompt, never adds a call.
+        stat_fields = _match_stats_summary(
+            feeds.get("match_stats", {}), match_id, team_a, team_b)
+        out.update(stat_fields)
     else:
         venue = sched.get("venue_id")
         wx = (feeds["weather"] or {}).get(venue) if venue else None
@@ -241,6 +249,64 @@ def collect_inputs(match_id, kind, *, feeds):
                                                "stage", "group")]
     if not signal_keys:
         return None
+    return out
+
+
+# Canonical ESPN boxscore stat names we surface to the recap prompt (a curated
+# subset — the highest-signal, fan-legible numbers). Kept small to bound prompt
+# size + cost. Extra stats A writes are simply ignored here.
+_STAT_KEYS = ("possessionPct", "totalShots", "shotsOnTarget", "passPct")
+
+
+def _stats_for_match(match_stats: dict, match_id: str):
+    """Return the per-match stats record from data/match_stats.json, tolerant of
+    a top-level '__meta__' and of the file simply not existing yet (Wave-1 A owns
+    that scraper). None when absent."""
+    if not isinstance(match_stats, dict):
+        return None
+    rec = match_stats.get(match_id)
+    return rec if isinstance(rec, dict) else None
+
+
+# Accepted side-key aliases per canonical side. Covers snake_case, camelCase,
+# and terse forms A might emit for the two teams in a match_stats record.
+_SIDE_ALIASES = {
+    "team_a": ("team_a", "teamA", "home", "a"),
+    "team_b": ("team_b", "teamB", "away", "b"),
+}
+
+
+def _side_stats(rec: dict, side_key: str):
+    """Pull one team's stat dict out of a match_stats record, tolerant of a few
+    plausible shapes A may emit: {'team_a': {...}} / {'teamA': {...}} /
+    {'stats': {'team_a': {...}}} / {'home': {...}}. Returns a dict (may be empty)."""
+    if not isinstance(rec, dict):
+        return {}
+    container = rec.get("stats") if isinstance(rec.get("stats"), dict) else rec
+    for alias in _SIDE_ALIASES.get(side_key, (side_key,)):
+        v = container.get(alias)
+        if isinstance(v, dict):
+            return v
+    return {}
+
+
+def _match_stats_summary(match_stats: dict, match_id: str, team_a, team_b) -> dict:
+    """Flat typed stat fields for the recap prompt, or {} when no stats exist.
+
+    Emits e.g. stats_possessionPct_a / stats_possessionPct_b for the curated
+    _STAT_KEYS, keyed to the schedule's team_a/team_b orientation. Missing
+    individual stats are omitted (never zero-filled). Purely typed numeric/enum
+    values — no free text reaches the model. $0: no network, no API call."""
+    rec = _stats_for_match(match_stats, match_id)
+    if rec is None:
+        return {}
+    out: dict = {}
+    for side in ("a", "b"):
+        side_stats = _side_stats(rec, f"team_{side}")
+        for key in _STAT_KEYS:
+            val = side_stats.get(key)
+            if isinstance(val, (int, float)):
+                out[f"stats_{key}_{side}"] = val
     return out
 
 
@@ -276,6 +342,16 @@ def build_prompt(kind: str, inputs: dict):
         "Use the data only. No betting advice. No markdown. No hashtags. "
         "Plain text only."
     )
+    # RJ30.2 — for recaps, nudge the model to read the real ESPN boxscore stats
+    # (possession/shots/passing, the stats_* fields) when present. The text stays
+    # STATIC per verb, so the ephemeral prompt-cache on the system block is
+    # preserved (one cacheable variant per kind, unchanged for previews).
+    if kind == "recap":
+        system_text += (
+            " If possession, shots, shots-on-target, or passing stats are "
+            "given, ground the recap in what those numbers show (e.g. "
+            "dominance, clinical finishing)."
+        )
     lines = []
     for k, v in inputs.items():
         if k == "kind" or v is None:
@@ -327,6 +403,10 @@ def _build_feeds():
         "xg": _meta_stripped(load("xg.json")),
         "scorers": _meta_stripped(load("scorers.json")),
         "weather": _meta_stripped(load("weather.json")),
+        # RJ30.2 — real ESPN boxscore stats (Wave-1 A's data/match_stats.json).
+        # load() is lenient: a missing file yields {} so this stays fully
+        # dormant-safe before that scraper first runs.
+        "match_stats": _meta_stripped(load("match_stats.json")),
     }
 
 
@@ -511,6 +591,31 @@ def _self_test() -> int:
     # _clamp_text strips markdown + clamps length.
     assert _clamp_text("**bold** text") == "bold text"
     assert len(_clamp_text("x" * 500)) <= MAX_TEXT_CHARS
+
+    # RJ30.2 — stats-aware recap enrichment (pure, no network). Present stats
+    # produce typed stats_* fields oriented to team_a/team_b; absent stats or a
+    # missing file yield {} (never zero-fill), keeping the file dormant-safe.
+    ms = {
+        "A__vs__B": {"team_a": {"possessionPct": 62, "totalShots": 15,
+                                "shotsOnTarget": 6, "passPct": 88},
+                     "team_b": {"possessionPct": 38, "totalShots": 5,
+                                "shotsOnTarget": 2, "passPct": 74}},
+    }
+    s = _match_stats_summary(ms, "A__vs__B", "A", "B")
+    assert s["stats_possessionPct_a"] == 62 and s["stats_possessionPct_b"] == 38, s
+    assert s["stats_totalShots_a"] == 15 and s["stats_shotsOnTarget_b"] == 2, s
+    assert _match_stats_summary(ms, "NO__vs__MATCH", "N", "M") == {}, "absent match → {}"
+    assert _match_stats_summary({}, "A__vs__B", "A", "B") == {}, "empty file → {}"
+    assert _match_stats_summary(None, "A__vs__B", "A", "B") == {}, "no file → {}"
+    # camelCase side-key tolerance (teamA/teamB shape).
+    ms2 = {"A__vs__B": {"teamA": {"possessionPct": 55}, "teamB": {"possessionPct": 45}}}
+    s2 = _match_stats_summary(ms2, "A__vs__B", "A", "B")
+    assert s2.get("stats_possessionPct_a") == 55, s2
+    # Recap system prompt references stats; preview prompt does NOT (cache-stable).
+    rsys, _ = build_prompt("recap", {"team_a": "A", "team_b": "B"})
+    psys, _ = build_prompt("preview", {"team_a": "A", "team_b": "B"})
+    assert "passing" in rsys.lower() or "possession" in rsys.lower(), rsys
+    assert "possession" not in psys.lower(), "preview system text stays static"
 
     print("selftest: PASS")
     return 0

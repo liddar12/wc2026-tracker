@@ -108,6 +108,22 @@ export const ES = {
   'matchup.weather': 'Clima',
   'matchup.finalResult': 'Resultado final',
 
+  // RJ30.2 Match Intelligence — stat labels (es-MX) + momentum title. Mirrors
+  // the EN key set (ES ⊆ EN). Computed insight lines stay English per scope.
+  'matchStats.title': 'Estadísticas',
+  'matchStats.possession': 'Posesión',
+  'matchStats.shots': 'Tiros',
+  'matchStats.onTarget': 'A puerta',
+  'matchStats.passingPct': '% de pases',
+  'matchStats.saves': 'Atajadas',
+  'matchStats.tackles': 'Entradas',
+  'matchStats.fouls': 'Faltas',
+  'matchStats.offsides': 'Fueras de lugar',
+  'matchStats.crosses': 'Centros',
+  'matchStats.blocked': 'Bloqueos',
+  'matchStats.shotsVsXg': 'Tiros vs xG del modelo',
+  'momentum.title': 'Impulso',
+
   // settings card titles + language card
   'settings.language': 'Idioma',
   'settings.english': 'English',
