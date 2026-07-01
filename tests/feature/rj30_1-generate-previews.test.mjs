@@ -14,15 +14,22 @@ import { resolve, dirname } from 'node:path';
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../../');
 const read = (p) => readFileSync(resolve(ROOT, p), 'utf8');
 
-test('data/previews.json is a valid dormant stub (no entries, meta-only)', () => {
+test('data/previews.json has a valid shape (dormant stub OR active)', () => {
+  // ANTHROPIC_API_KEY is now set in prod, so this file is legitimately populated
+  // by the cron. Lock the invariant for BOTH states rather than pinning dormant.
   const j = JSON.parse(read('data/previews.json'));
   assert.equal(typeof j, 'object');
   assert.ok(!Array.isArray(j), 'previews.json is an object map, not a list');
   assert.ok('__meta__' in j, 'carries a __meta__ block');
-  assert.equal(j.__meta__.updated_at, null, 'dormant stub has updated_at === null');
   assert.equal(j.__meta__.generator_version, 'v1');
   const entries = Object.keys(j).filter((k) => k !== '__meta__');
-  assert.equal(entries.length, 0, 'shipped dormant state has no match entries');
+  const ua = j.__meta__.updated_at;
+  if (entries.length === 0) {
+    assert.equal(ua, null, 'dormant stub (no entries) has updated_at === null');
+  } else {
+    assert.equal(typeof ua, 'string', 'active state stamps an ISO updated_at');
+    assert.ok(j.__meta__.model, 'active state records the model');
+  }
 });
 
 test('any populated entry obeys the documented shape', () => {

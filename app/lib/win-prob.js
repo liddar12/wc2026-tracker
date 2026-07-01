@@ -138,24 +138,114 @@ export function liveWinProb({ pa, pd, pb, scoreA, scoreB, minute, stage } = {}) 
 
 const STAGE_FOR_SERIES = (found) => found?.stage || found?.actual?.stage || 'group';
 
+// A row is a knockout fixture when it flags itself (is_knockout) or its stage is
+// anything other than the group phase. Mirrors matchup-detail.js's isKnockout.
+function matchIsKnockout(match) {
+  if (!match) return false;
+  if (match.is_knockout === true) return true;
+  const s = match.stage;
+  return !!s && s !== 'group' && s !== 'group_stage';
+}
+
 /** Extract the (pa,pd,pb) prior fractions from a matchup row. Group rows carry
  *  `probabilities {team_a_wins,draw,team_b_wins}` (percent); knockout rows carry
- *  `advance_pct_a/_b` (percent, no draw). Returns null when no prior exists. */
+ *  `advance_pct_a/_b` (percent, no draw — the "to advance" prior). For a knockout
+ *  we force pd=0 and PREFER advance_pct (the real to-advance prior) over the raw
+ *  regulation win/draw/win probabilities, falling back to probabilities when
+ *  advance_pct is absent. Returns null when no prior exists. */
 export function priorFromMatch(match) {
   if (!match) return null;
+  const knockout = matchIsKnockout(match);
+
+  // Knockout: prefer the to-advance prior (advance_pct_a/_b ÷ 100, no draw).
+  if (knockout && (Number.isFinite(match.advance_pct_a) || Number.isFinite(match.advance_pct_b))) {
+    const pa = (match.advance_pct_a || 0) / 100;
+    const pb = (match.advance_pct_b || 0) / 100;
+    if (pa + pb > 0) return { pa, pd: 0, pb, knockout: true };
+  }
+
   const pr = match.probabilities;
   if (pr && (Number.isFinite(pr.team_a_wins) || Number.isFinite(pr.team_b_wins))) {
     const pa = (pr.team_a_wins || 0) / 100;
-    const pd = (pr.draw || 0) / 100;
+    const pd = knockout ? 0 : (pr.draw || 0) / 100;
     const pb = (pr.team_b_wins || 0) / 100;
-    if (pa + pd + pb > 0) return { pa, pd, pb, knockout: false };
+    if (pa + pd + pb > 0) return { pa, pd, pb, knockout };
   }
+
+  // Non-knockout fallthrough to advance_pct (legacy rows), still two-way.
   if (Number.isFinite(match.advance_pct_a) || Number.isFinite(match.advance_pct_b)) {
     const pa = (match.advance_pct_a || 0) / 100;
     const pb = (match.advance_pct_b || 0) / 100;
     if (pa + pb > 0) return { pa, pd: 0, pb, knockout: true };
   }
   return null;
+}
+
+/**
+ * Deterministic estimate of how likely a KNOCKOUT match reaches extra time / then
+ * penalties, from the current score margin + minute. Pure display heuristic — no
+ * randomness, NaN-safe, clamped. Group games (or any non-knockout stage) return
+ * {etPct:0, pkPct:0}: there is no ET/PK in the group phase.
+ *
+ * Intuition:
+ *   - Level scoreline, late  ⇒ high chance of ET (nobody's broken the tie yet).
+ *   - Level scoreline, early ⇒ moderate — plenty of time for a decisive goal.
+ *   - Not level              ⇒ ET only if the trailer equalizes by 90'; that
+ *                              chance shrinks as the clock runs and the margin grows.
+ *   - pkPct ≈ a fraction of etPct (of the games that reach ET, some stay level
+ *     through both added periods and go to spot-kicks).
+ *
+ * @param {object} p
+ * @param {number} p.pa unused reserved (prior a) — accepted for call-site symmetry.
+ * @param {number} p.pb unused reserved (prior b).
+ * @param {number} p.scoreA current goals for team_a.
+ * @param {number} p.scoreB current goals for team_b.
+ * @param {number} p.minute current match minute (may be NaN/missing).
+ * @param {string} p.stage 'group' ⇒ {0,0}; any knockout stage ⇒ real estimate.
+ * @returns {{etPct:number, pkPct:number}} integer percents in [0,100].
+ */
+export function estimateExtraTime({ scoreA, scoreB, minute, stage } = {}) {
+  if (!isKnockoutStage(stage)) return { etPct: 0, pkPct: 0 };
+
+  const sa = Number(scoreA) || 0;
+  const sb = Number(scoreB) || 0;
+  const margin = Math.abs(sa - sb);
+  // Regulation minute clamped to [0,90] for the ET calc (ET itself is 90→120,
+  // handled implicitly). A missing/NaN clock is treated as mid-second-half.
+  const mRaw = Number(minute);
+  const m = clamp(Number.isFinite(mRaw) ? mRaw : 50, 0, 120);
+  // Fraction of regulation remaining (0 at/after 90').
+  const remain = clamp((90 - m) / 90, 0, 1);
+
+  let et;
+  if (margin === 0) {
+    // Level: as the clock runs and no one leads, ET grows. Early it's uncertain
+    // (someone likely scores), late it's near-inevitable. Base 0.30 → ~0.90.
+    et = 0.30 + 0.60 * (1 - remain);
+  } else {
+    // Not level: ET needs the trailer to erase the margin by 90'. Each goal of
+    // deficit roughly halves the shrinking base equalize chance; less time ⇒ less
+    // chance. A decided margin late collapses toward 0.
+    const base = 0.55 * remain;                 // 0 once regulation is over
+    et = base / Math.pow(2, margin - 1);        // 1-goal: base; 2-goal: base/2; …
+    // A 2+ goal lead in the final 10' is effectively dead: force ~0.
+    if (margin >= 2 && m >= 80) et = Math.min(et, 0.02);
+  }
+  et = clamp(et, 0, 0.97);
+
+  // Of the ties that reach ET, a fraction stay level through both periods and go
+  // to penalties. ~0.55 of ET games historically go to PKs; scale off etPct.
+  const pk = et * 0.55;
+
+  const etPct = clampInt(Math.round(et * 100), 0, 100);
+  const pkPct = clampInt(Math.round(pk * 100), 0, 100);
+  return { etPct, pkPct };
+}
+
+function clampInt(v, lo, hi) {
+  const n = Math.round(Number(v));
+  if (!Number.isFinite(n)) return lo;
+  return Math.max(lo, Math.min(hi, n));
 }
 
 /**

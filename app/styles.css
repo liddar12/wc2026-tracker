@@ -4473,17 +4473,53 @@ html, body { overflow-x: hidden; }
 
 /* ===== RJ30-5: live win-probability widget ===== */
 .live-win-prob { margin-top: 14px; }
+/* FIX (RCA b): the LIVE indicator was red text on the base .live-indicator's red
+   pill background → invisible. Strip the pill here so it reads as clean red text;
+   the base ::before dot stays (recolored to --bad so it's visible on --bg). */
 .live-win-prob .bar-title .live-indicator {
+  background: transparent;
+  padding: 0;
+  color: var(--bad, #c9252d);
   font-size: 11px; font-weight: 800; letter-spacing: 0.04em;
-  color: var(--bad, #c9252d); margin-left: 4px;
+  margin-left: 4px;
+}
+.live-win-prob .bar-title .live-indicator::before {
+  background: var(--bad, #c9252d);
 }
 .live-win-prob .bars div { transition: width 0.4s ease; }
 .live-win-prob[data-reduced-motion="true"] .bars div { transition: none; }
 .live-win-prob .labels span { font-variant-numeric: tabular-nums; }
-.win-prob-trend {
-  display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 11px;
+
+/* Knockout "to advance" caption under the primary bar. */
+.wp-advance-note { margin-top: 4px; font-size: 11px; font-variant-numeric: tabular-nums; }
+
+/* Two thin stacked bars: Now (live) vs Pre-match (model) — shows the shift. */
+.wp-stacks { margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.wp-stack-row { display: flex; flex-direction: column; gap: 3px; }
+.wp-stack-cap { font-size: 10px; letter-spacing: 0.02em; }
+.wp-stacks .bars { height: 6px; border-radius: 4px; }
+
+/* Knockout extra-time / penalties likelihood line. */
+.live-win-prob .et-pk {
+  margin-top: 8px; font-size: 11px; font-variant-numeric: tabular-nums;
 }
-.win-prob-spark { color: var(--primary); flex: 0 0 auto; }
+
+/* Larger labeled trend sparkline with a 50% baseline + goal markers. */
+.win-prob-trend {
+  display: flex; flex-direction: column; gap: 4px; margin-top: 10px; font-size: 11px;
+}
+.win-prob-trend-note { font-variant-numeric: tabular-nums; }
+.win-prob-spark-wrap {
+  position: relative; width: 120px; height: 28px; flex: 0 0 auto;
+}
+.win-prob-spark-wrap > svg { position: absolute; inset: 0; }
+.win-prob-spark { color: var(--primary); }
+.win-prob-baseline {
+  stroke: var(--text-muted, #8a8f98);
+  stroke-width: 1; stroke-dasharray: 3 3; opacity: 0.5;
+}
+.win-prob-goal-mark { fill: var(--bad, #c9252d); opacity: 0.85; }
+
 @media (prefers-reduced-motion: reduce) {
   .live-win-prob .bars div { transition: none; }
 }

@@ -31,7 +31,14 @@ export function whenWhereWatch(match, scheduleFull, venues) {
   section.className = 'section';
   section.innerHTML = '<h2>When &amp; where &amp; how to watch</h2>';
 
-  const row = (scheduleFull || []).find((r) => r.match_id === `${match.team_a}__vs__${match.team_b}` || r.match_id === `${match.team_b}__vs__${match.team_a}`);
+  // Match by TEAM NAMES (both orientations), NOT by a team-pair match_id: group
+  // schedule rows are keyed by team pair, but KNOCKOUT rows are keyed by slot ids
+  // (e.g. "M080__1L__vs__3_EHIJK") even though they still carry team_a/team_b once
+  // resolved — so a match_id lookup silently misses every knockout fixture and
+  // buries the kickoff/venue/broadcast that DO exist on the row.
+  const row = (scheduleFull || []).find((r) =>
+    (r.team_a === match.team_a && r.team_b === match.team_b)
+    || (r.team_a === match.team_b && r.team_b === match.team_a));
   const venue = row && (venues || []).find((v) => v.id === row.venue_id);
   const body = document.createElement('div');
   body.className = 'when-where-watch';

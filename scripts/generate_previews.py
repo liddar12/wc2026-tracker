@@ -105,6 +105,12 @@ def _is_final(results: dict, match_id: str) -> bool:
     return rec.get("status") in FINAL_STATUSES
 
 
+def _is_knockout_stage(stage) -> bool:
+    """A stage is a knockout (can go to extra time / penalties) unless it's the
+    group phase. Mirrors app/lib/win-prob.js isKnockoutStage."""
+    return bool(stage) and stage not in ("group", "group_stage")
+
+
 def select_matches(now, *, schedule_full, results, lookahead_h, lookback_h, cap):
     """Candidate match_ids = upcoming-within-lookahead (not final) + final-within-lookback.
 
@@ -191,6 +197,27 @@ def collect_inputs(match_id, kind, *, feeds):
     if row.get("advance_pct_a") is not None:
         out["advance_pct_a"] = row["advance_pct_a"]
         out["advance_pct_b"] = row.get("advance_pct_b")
+
+    # Knockout fixtures can go beyond 90'. Add a short, TYPED note so an active AI
+    # narrative can mention the extra-time / penalties possibility for a knockout.
+    # This is a static, deterministic string per knockout row — it flows into the
+    # user block (not the cacheable system prompt), so the preview cache stays
+    # stable and dormant runs are still $0 (no key → no call, file untouched).
+    if _is_knockout_stage(stage):
+        note = ("knockout — level after 90' goes to extra time, then penalties; "
+                "mention the extra-time/penalties possibility if the sides are "
+                "evenly matched")
+        adv_a = out.get("advance_pct_a")
+        adv_b = out.get("advance_pct_b")
+        if adv_a is not None and adv_b is not None:
+            try:
+                gap = abs(float(adv_a) - float(adv_b))
+                # A tight to-advance split ⇒ a level tie / shootout is more likely.
+                if gap <= 15:
+                    note += " (tight to-advance split — a shootout is live)"
+            except (TypeError, ValueError):
+                pass
+        out["ot_note"] = note
 
     xg = feeds["xg"].get(match_id) or feeds["xg"].get(
         f"{team_b}__vs__{team_a}") or {}

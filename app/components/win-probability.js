@@ -1,19 +1,26 @@
 /* win-probability.js — RJ30-5: the DOM-emitting live win-probability widget.
    Pure display: it reads the static pre-match prior off the matchup row and the
    live score/minute off actualForCard()'s `found`, runs the pure model in
-   app/lib/win-prob.js, and renders a tri-/two-segment probability bar (reusing
-   the .confidence-bar tokens so it rhymes with the model bar above it) plus a
-   reused SVG sparkline of the leader's win% trajectory. Never writes to
-   actualResults, never advances a bracket, never awards points.
+   app/lib/win-prob.js, and renders:
+     - GROUP: a 3-way win/draw/win bar.
+     - KNOCKOUT: a 2-segment "to advance" bar (team-colored, NO draw segment)
+       plus a deterministic "extra time / penalties" likelihood line.
+     - BOTH: two thin stacked bars — "Now (live)" (the live-blended probs) and
+       "Pre-match (model)" (the static prior) — so the shift from kickoff is
+       visible at a glance.
+     - a LARGER labeled sparkline of the leader's win% trajectory since kickoff,
+       with a 50% baseline reference + goal markers.
+   Never writes to actualResults, never advances a bracket, never awards points.
 
    Returns an EMPTY fragment unless found.mode === 'live' AND a prior exists, so
    upcoming/pending/final/no-prior rows render nothing (Story B).
 */
 import { escapeHtml } from '../lib/escape.js';
 import { sparklineSvg } from './sparkline.js';
-import { liveWinProb, winProbSeries, priorFromMatch } from '../lib/win-prob.js';
+import { liveWinProb, winProbSeries, priorFromMatch, estimateExtraTime } from '../lib/win-prob.js';
 
 const SERIES_CAP = 40;
+const SVGNS = 'http://www.w3.org/2000/svg';
 
 function prefersReducedMotion() {
   try {
@@ -70,6 +77,35 @@ function observedSeries(match, found) {
   return prev.slice();
 }
 
+// A thin two/three-segment probability bar. `probs` is [{cls,width,pct?}...].
+function thinBar(probs, ariaLabel, reduced) {
+  const bars = document.createElement('div');
+  bars.className = 'bars';
+  bars.setAttribute('role', 'img');
+  bars.setAttribute('aria-label', ariaLabel);
+  for (const p of probs) {
+    const seg = document.createElement('div');
+    seg.className = p.cls;
+    seg.style.width = `${p.width}%`;
+    if (reduced) seg.style.transition = 'none';
+    bars.appendChild(seg);
+  }
+  return bars;
+}
+
+// One labeled stacked mini-bar row: a caption ("Now (live)" / "Pre-match (model)")
+// above a thin segment bar. Keeps the shift from kickoff visible.
+function stackedBarRow(caption, probs, ariaLabel, reduced) {
+  const wrap = document.createElement('div');
+  wrap.className = 'wp-stack-row';
+  const cap = document.createElement('span');
+  cap.className = 'wp-stack-cap muted';
+  cap.textContent = caption;
+  wrap.appendChild(cap);
+  wrap.appendChild(thinBar(probs, ariaLabel, reduced));
+  return wrap;
+}
+
 /**
  * Build the live win-probability widget for a matchup.
  * @param {object} match - the matchup row (carries the static prior).
@@ -86,17 +122,28 @@ export function liveWinProbability(match, found, opts = {}) {
   const scoreA = Number(actual.score_a) || 0;
   const scoreB = Number(actual.score_b) || 0;
   const minuteRaw = actual.minute;
-  const stage = prior.knockout ? (match.stage && match.stage !== 'group' ? match.stage : 'round_of_16') : 'group';
+  const ko = prior.knockout;
+  const stage = ko ? (match.stage && match.stage !== 'group' ? match.stage : 'round_of_16') : 'group';
+  const reduced = prefersReducedMotion();
 
-  const r = liveWinProb({
+  // LIVE (blended) probabilities.
+  const live = liveWinProb({
     pa: prior.pa, pd: prior.pd, pb: prior.pb,
     scoreA, scoreB, minute: Number(minuteRaw), stage,
   });
+  // PRE-MATCH (static prior) probabilities — the same model at kickoff (minute 0,
+  // 0-0), so the two bars share a scale and the shift reads cleanly.
+  const pre = liveWinProb({
+    pa: prior.pa, pd: prior.pd, pb: prior.pb,
+    scoreA: 0, scoreB: 0, minute: 0, stage,
+  });
 
-  const ko = prior.knockout;
-  const parts = ko ? [r.a, r.b] : [r.a, r.d, r.b];
-  const pct = roundTo100(parts);
-  const [pa, pmid, pb] = ko ? [pct[0], null, pct[1]] : pct;
+  const liveParts = ko ? [live.a, live.b] : [live.a, live.d, live.b];
+  const preParts = ko ? [pre.a, pre.b] : [pre.a, pre.d, pre.b];
+  const livePct = roundTo100(liveParts);
+  const prePct = roundTo100(preParts);
+  const [pa, pmid, pb] = ko ? [livePct[0], null, livePct[1]] : livePct;
+  const [prea, , preb] = ko ? [prePct[0], null, prePct[1]] : prePct;
 
   const minuteLabel = (minuteRaw != null && String(minuteRaw).trim() !== '')
     ? ` ${escapeHtml(String(minuteRaw))}'` : '';
@@ -104,39 +151,21 @@ export function liveWinProbability(match, found, opts = {}) {
   const sec = document.createElement('div');
   sec.className = 'section live-win-prob confidence-bar';
   sec.setAttribute('data-testid', 'live-win-prob');
-  if (prefersReducedMotion()) sec.setAttribute('data-reduced-motion', 'true');
+  if (reduced) sec.setAttribute('data-reduced-motion', 'true');
 
   const heading = document.createElement('div');
   heading.className = 'bar-title';
-  heading.innerHTML = `Live win probability <small class="live-indicator">LIVE${minuteLabel}</small>`;
+  heading.innerHTML = `Win probability <small class="live-indicator">LIVE${minuteLabel}</small>`;
   sec.appendChild(heading);
 
-  // Tri/two-segment bar reusing the .confidence-bar .bars tokens.
-  const bars = document.createElement('div');
-  bars.className = 'bars';
-  bars.setAttribute('role', 'img');
-  bars.setAttribute('aria-label', ko
+  // ---- Primary (live) bar — 3-way for group, 2-way "to advance" for knockout.
+  const primaryAria = ko
     ? `${match.team_a} ${pa} percent to advance, ${match.team_b} ${pb} percent`
-    : `${match.team_a} ${pa} percent, draw ${pmid} percent, ${match.team_b} ${pb} percent`);
-  const segA = document.createElement('div');
-  segA.className = 'seg-a';
-  segA.style.width = `${r.a * 100}%`;
-  bars.appendChild(segA);
-  if (!ko) {
-    const segD = document.createElement('div');
-    segD.className = 'seg-d';
-    segD.style.width = `${r.d * 100}%`;
-    bars.appendChild(segD);
-  }
-  const segB = document.createElement('div');
-  segB.className = 'seg-b';
-  segB.style.width = `${r.b * 100}%`;
-  bars.appendChild(segB);
-  // Respect reduced motion: no width transition when the user opted out.
-  if (prefersReducedMotion()) {
-    for (const s of bars.children) s.style.transition = 'none';
-  }
-  sec.appendChild(bars);
+    : `${match.team_a} ${pa} percent, draw ${pmid} percent, ${match.team_b} ${pb} percent`;
+  const primaryProbs = ko
+    ? [{ cls: 'seg-a', width: live.a * 100 }, { cls: 'seg-b', width: live.b * 100 }]
+    : [{ cls: 'seg-a', width: live.a * 100 }, { cls: 'seg-d', width: live.d * 100 }, { cls: 'seg-b', width: live.b * 100 }];
+  sec.appendChild(thinBar(primaryProbs, primaryAria, reduced));
 
   const labels = document.createElement('div');
   labels.className = 'labels';
@@ -148,19 +177,122 @@ export function liveWinProbability(match, found, opts = {}) {
        <span data-side="b">${escapeHtml(match.team_b)} <strong>${pb}%</strong></span>`;
   sec.appendChild(labels);
 
-  // Reused sparkline (60×16 for 390px legibility) of the leader's win% movement.
+  // For knockout, an explicit "to advance" caption under the labels.
+  if (ko) {
+    const advNote = document.createElement('div');
+    advNote.className = 'muted wp-advance-note';
+    advNote.textContent = `${match.team_a} ${pa}% to advance · ${match.team_b} ${pb}%`;
+    sec.appendChild(advNote);
+  }
+
+  // ---- Two stacked thin bars: Now (live) vs Pre-match (model) — the shift.
+  const stack = document.createElement('div');
+  stack.className = 'wp-stacks';
+  const liveStackAria = ko
+    ? `Now, ${match.team_a} ${pa} percent to advance, ${match.team_b} ${pb} percent`
+    : `Now, ${match.team_a} ${pa} percent, draw ${pmid} percent, ${match.team_b} ${pb} percent`;
+  const preStackAria = ko
+    ? `Pre-match, ${match.team_a} ${prea} percent to advance, ${match.team_b} ${preb} percent`
+    : `Pre-match, ${match.team_a} ${prePct[0]} percent, draw ${prePct[1]} percent, ${match.team_b} ${prePct[2]} percent`;
+  stack.appendChild(stackedBarRow('Now (live)', primaryProbs, liveStackAria, reduced));
+  const preProbs = ko
+    ? [{ cls: 'seg-a', width: pre.a * 100 }, { cls: 'seg-b', width: pre.b * 100 }]
+    : [{ cls: 'seg-a', width: pre.a * 100 }, { cls: 'seg-d', width: pre.d * 100 }, { cls: 'seg-b', width: pre.b * 100 }];
+  stack.appendChild(stackedBarRow('Pre-match (model)', preProbs, preStackAria, reduced));
+  sec.appendChild(stack);
+
+  // ---- Knockout extra-time / penalties likelihood line.
+  if (ko) {
+    const { etPct, pkPct } = estimateExtraTime({
+      pa: prior.pa, pb: prior.pb, scoreA, scoreB, minute: Number(minuteRaw), stage,
+    });
+    if (etPct > 0 || pkPct > 0) {
+      const etpk = document.createElement('div');
+      etpk.className = 'et-pk muted';
+      etpk.setAttribute('data-testid', 'et-pk');
+      etpk.textContent = `≈ ${etPct}% extra time · ${pkPct}% penalties`;
+      sec.appendChild(etpk);
+    }
+  }
+
+  // ---- Larger labeled trend sparkline with a 50% baseline + goal markers.
   const series = observedSeries(match, found);
   if (series.length >= 2) {
-    const trend = document.createElement('div');
-    trend.className = 'win-prob-trend';
-    const lead = scoreA >= scoreB ? match.team_a : match.team_b;
-    const note = document.createElement('span');
-    note.className = 'muted win-prob-trend-note';
-    note.textContent = `${lead} win% since kickoff`;
-    trend.appendChild(note);
-    trend.appendChild(sparklineSvg(series, { width: 60, height: 16, className: 'sparkline win-prob-spark' }));
-    sec.appendChild(trend);
+    const lead = scoreA > scoreB ? match.team_a
+      : scoreB > scoreA ? match.team_b
+      : (prior.pa >= prior.pb ? match.team_a : match.team_b);
+    sec.appendChild(trendPanel(series, lead, reduced));
   }
 
   return sec;
+}
+
+// Larger labeled trend: title + a wrapped sparkline with a 50% baseline reference
+// line and goal markers at the minutes where the leader-win% jumped (a proxy for a
+// score change), reusing sparklineSvg for the trajectory line itself.
+function trendPanel(series, leadName, reduced) {
+  const W = 120;
+  const H = 28;
+  const trend = document.createElement('div');
+  trend.className = 'win-prob-trend';
+
+  const title = document.createElement('span');
+  title.className = 'muted win-prob-trend-note';
+  title.textContent = `Win probability since kickoff — ${leadName} leading`;
+  trend.appendChild(title);
+
+  const wrap = document.createElement('div');
+  wrap.className = 'win-prob-spark-wrap';
+
+  // Baseline (50%) + markers overlay. Drawn as its own tiny SVG behind the line so
+  // we don't have to modify the shared sparklineSvg. If SVG isn't available (test
+  // shim without createElementNS), skip the overlay gracefully.
+  if (typeof document.createElementNS === 'function') {
+    const overlay = document.createElementNS(SVGNS, 'svg');
+    overlay.setAttribute('width', String(W));
+    overlay.setAttribute('height', String(H));
+    overlay.setAttribute('viewBox', `0 0 ${W} ${H}`);
+    overlay.setAttribute('class', 'win-prob-spark-overlay');
+    overlay.setAttribute('aria-hidden', 'true');
+
+    // 50% baseline reference.
+    const base = document.createElementNS(SVGNS, 'line');
+    const yMid = (H / 2).toFixed(1);
+    base.setAttribute('x1', '0');
+    base.setAttribute('y1', yMid);
+    base.setAttribute('x2', String(W));
+    base.setAttribute('y2', yMid);
+    base.setAttribute('class', 'win-prob-baseline');
+    overlay.appendChild(base);
+
+    // Goal markers: minutes where the leader-win% moved sharply (a score change).
+    const markerIdx = goalMarkerIndices(series);
+    const stepX = series.length > 1 ? W / (series.length - 1) : W;
+    for (const i of markerIdx) {
+      const dot = document.createElementNS(SVGNS, 'circle');
+      dot.setAttribute('cx', (i * stepX).toFixed(1));
+      dot.setAttribute('cy', yMid);
+      dot.setAttribute('r', '2.2');
+      dot.setAttribute('class', 'win-prob-goal-mark');
+      overlay.appendChild(dot);
+    }
+    wrap.appendChild(overlay);
+  }
+
+  const spark = sparklineSvg(series, { width: W, height: H, className: 'sparkline win-prob-spark' });
+  if (reduced && spark && spark.setAttribute) spark.setAttribute('data-reduced-motion', 'true');
+  wrap.appendChild(spark);
+
+  trend.appendChild(wrap);
+  return trend;
+}
+
+// Indices where the series jumps by ≥8 points between consecutive samples — a
+// proxy for the minute a goal changed the picture. Empty when the line is flat.
+function goalMarkerIndices(series, threshold = 8) {
+  const out = [];
+  for (let i = 1; i < series.length; i++) {
+    if (Math.abs(Number(series[i]) - Number(series[i - 1])) >= threshold) out.push(i);
+  }
+  return out;
 }
