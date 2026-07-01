@@ -304,41 +304,34 @@
   {
     "team_a": "Belgium",
     "team_b": "Senegal",
-    "composite_a": 79.7,
+    "composite_a": 79.8,
     "composite_b": 76.8,
-    "gap": 2.9,
+    "gap": 3.0,
     "probabilities": {
-      "team_a_wins": 43.8,
+      "team_a_wins": 44.0,
       "draw": 26.3,
-      "team_b_wins": 29.9
+      "team_b_wins": 29.7
     },
     "expected_points": {
       "team_a": 1.58,
-      "team_b": 1.16
+      "team_b": 1.15
     },
     "predicted_winner": "Belgium",
-    "win_confidence_pct": 59.4,
+    "win_confidence_pct": 59.7,
     "upset_risk": {
       "favored": "Belgium",
       "underdog": "Senegal",
-      "gap": 2.9,
-      "indicators": [
-        {
-          "type": "close_gap",
-          "severity": "high",
-          "label": "Toss-up game",
-          "detail": "Composite gap only 2.9 points"
-        }
-      ]
+      "gap": 3.0,
+      "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 43.8,
+      "team_a_wins": 44.0,
       "draw": 26.3,
-      "team_b_wins": 29.9
+      "team_b_wins": 29.7
     },
-    "hybrid_gap": 2.9,
-    "advance_pct_a": 59.4,
-    "advance_pct_b": 40.6,
+    "hybrid_gap": 3.0,
+    "advance_pct_a": 59.7,
+    "advance_pct_b": 40.3,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M082__1G__vs__3_AEHIJ",

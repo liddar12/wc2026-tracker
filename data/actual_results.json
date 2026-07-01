@@ -494,11 +494,12 @@
       "winner": "England"
     },
     "Belgium__vs__Senegal": {
-      "score_a": 2,
+      "score_a": 3,
       "score_b": 2,
       "kickoff_utc": "2026-07-01T20:00Z",
-      "status": "STATUS_IN_PROGRESS",
-      "minute": "120'+5"
+      "status": "STATUS_FINAL_AET",
+      "winner": "Belgium",
+      "method": "aet"
     },
     "USA__vs__Bosnia and Herzegovina": {
       "score_a": 0,
@@ -555,5 +556,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-01T22:42:49+00:00"
+  "last_updated": "2026-07-01T23:09:53+00:00"
 }

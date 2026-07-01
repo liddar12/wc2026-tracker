@@ -1618,11 +1618,11 @@
       {
         "team_a": "Belgium",
         "team_b": "Iran",
-        "composite_a": 79.7,
+        "composite_a": 79.8,
         "composite_b": 68.7,
-        "gap": 11.0,
+        "gap": 11.1,
         "probabilities": {
-          "team_a_wins": 67.2,
+          "team_a_wins": 67.3,
           "draw": 19.3,
           "team_b_wins": 13.5
         },
@@ -1631,65 +1631,65 @@
           "team_b": 0.6
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 67.2,
+        "win_confidence_pct": 67.3,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Iran",
-          "gap": 11.0,
+          "gap": 11.1,
           "indicators": []
         },
         "match_id": "Belgium__vs__Iran",
         "j5l_probabilities": {
-          "team_a_wins": 64.4,
-          "draw": 20.8,
-          "team_b_wins": 14.7
+          "team_a_wins": 64.7,
+          "draw": 20.7,
+          "team_b_wins": 14.6
         },
         "hybrid_gap": 1.504
       },
       {
         "team_a": "Belgium",
         "team_b": "Egypt",
-        "composite_a": 79.7,
+        "composite_a": 79.8,
         "composite_b": 69.8,
-        "gap": 9.9,
+        "gap": 10.0,
         "probabilities": {
-          "team_a_wins": 65.0,
+          "team_a_wins": 65.1,
           "draw": 20.1,
-          "team_b_wins": 14.9
+          "team_b_wins": 14.8
         },
         "expected_points": {
           "team_a": 2.15,
           "team_b": 0.65
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 65.0,
+        "win_confidence_pct": 65.1,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "Egypt",
-          "gap": 9.9,
+          "gap": 10.0,
           "indicators": []
         },
         "match_id": "Belgium__vs__Egypt",
         "j5l_probabilities": {
-          "team_a_wins": 61.7,
-          "draw": 21.9,
-          "team_b_wins": 16.4
+          "team_a_wins": 61.9,
+          "draw": 21.8,
+          "team_b_wins": 16.3
         },
         "hybrid_gap": 1.243
       },
       {
         "team_a": "Belgium",
         "team_b": "New Zealand",
-        "composite_a": 79.7,
+        "composite_a": 79.8,
         "composite_b": 60.1,
-        "gap": 19.6,
+        "gap": 19.7,
         "probabilities": {
           "team_a_wins": 76.9,
           "draw": 14.7,
           "team_b_wins": 8.4
         },
         "expected_points": {
-          "team_a": 2.45,
+          "team_a": 2.46,
           "team_b": 0.4
         },
         "predicted_winner": "Belgium",
@@ -1697,14 +1697,14 @@
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "New Zealand",
-          "gap": 19.6,
+          "gap": 19.7,
           "indicators": []
         },
         "match_id": "Belgium__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 82.9,
-          "draw": 11.8,
-          "team_b_wins": 5.3
+          "team_a_wins": 83.1,
+          "draw": 11.7,
+          "team_b_wins": 5.2
         },
         "hybrid_gap": 2.048
       },
