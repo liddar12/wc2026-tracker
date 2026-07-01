@@ -6,10 +6,10 @@
     "espn_rank": 24,
     "elo_raw": 1810,
     "tmv_musd": 175,
-    "composite": 74.5,
+    "composite": 74.6,
     "sub_ratings": {
       "mine": 67.2,
-      "elo_scaled": 71.5,
+      "elo_scaled": 73.3,
       "tmv_scaled": 74.2,
       "qual_scaled": 66.0,
       "form_scaled": 93.1
@@ -40,7 +40,7 @@
     "is_host": true,
     "continental_champion": true,
     "power_rank": 18,
-    "elo_current": 1847
+    "elo_current": 1875
   },
   "Korea Republic": {
     "name": "Korea Republic",
@@ -55,7 +55,7 @@
       "elo_scaled": 65.9,
       "tmv_scaled": 76.3,
       "qual_scaled": 70.7,
-      "form_scaled": 69.6
+      "form_scaled": 69.8
     },
     "boosts": {
       "continental": 0.0,
@@ -98,7 +98,7 @@
       "elo_scaled": 62.9,
       "tmv_scaled": 63.1,
       "qual_scaled": 55.7,
-      "form_scaled": 73.3
+      "form_scaled": 73.4
     },
     "boosts": {
       "continental": 0.0,
@@ -184,7 +184,7 @@
       "elo_scaled": 67.7,
       "tmv_scaled": 74.2,
       "qual_scaled": 59.7,
-      "form_scaled": 79.9
+      "form_scaled": 79.8
     },
     "boosts": {
       "continental": 0.0,
@@ -227,7 +227,7 @@
       "elo_scaled": 76.3,
       "tmv_scaled": 82.0,
       "qual_scaled": 71.0,
-      "form_scaled": 81.8
+      "form_scaled": 81.7
     },
     "boosts": {
       "continental": 0.0,
@@ -270,7 +270,7 @@
       "elo_scaled": 56.3,
       "tmv_scaled": 61.2,
       "qual_scaled": 50,
-      "form_scaled": 67.8
+      "form_scaled": 68.0
     },
     "boosts": {
       "continental": 2.25,
@@ -313,7 +313,7 @@
       "elo_scaled": 66.4,
       "tmv_scaled": 74.2,
       "qual_scaled": 64.7,
-      "form_scaled": 73.7
+      "form_scaled": 73.8
     },
     "boosts": {
       "continental": 0.0,
@@ -356,7 +356,7 @@
       "elo_scaled": 82.3,
       "tmv_scaled": 90.5,
       "qual_scaled": 60.6,
-      "form_scaled": 84.9
+      "form_scaled": 84.7
     },
     "boosts": {
       "continental": 0.0,
@@ -399,7 +399,7 @@
       "elo_scaled": 75.2,
       "tmv_scaled": 79.6,
       "qual_scaled": 78.0,
-      "form_scaled": 88.0
+      "form_scaled": 87.7
     },
     "boosts": {
       "continental": 2.25,
@@ -442,7 +442,7 @@
       "elo_scaled": 67.3,
       "tmv_scaled": 74.5,
       "qual_scaled": 65.3,
-      "form_scaled": 70.0
+      "form_scaled": 70.2
     },
     "boosts": {
       "continental": 0.0,
@@ -485,7 +485,7 @@
       "elo_scaled": 58.5,
       "tmv_scaled": 64.0,
       "qual_scaled": 51.3,
-      "form_scaled": 62.5
+      "form_scaled": 62.9
     },
     "boosts": {
       "continental": 0.0,
@@ -528,7 +528,7 @@
       "elo_scaled": 69.3,
       "tmv_scaled": 81.1,
       "qual_scaled": 65.3,
-      "form_scaled": 87.1
+      "form_scaled": 86.8
     },
     "boosts": {
       "continental": 0.75,
@@ -657,7 +657,7 @@
       "elo_scaled": 71.8,
       "tmv_scaled": 80.4,
       "qual_scaled": 65.3,
-      "form_scaled": 63.2
+      "form_scaled": 63.6
     },
     "boosts": {
       "continental": 0.0,
@@ -737,13 +737,13 @@
     "espn_rank": 16,
     "elo_raw": 1933,
     "tmv_musd": 230,
-    "composite": 69.4,
+    "composite": 69.3,
     "sub_ratings": {
       "mine": 67.5,
-      "elo_scaled": 76.4,
+      "elo_scaled": 74.5,
       "tmv_scaled": 76.7,
       "qual_scaled": 58.0,
-      "form_scaled": 67.6
+      "form_scaled": 62.4
     },
     "boosts": {
       "continental": 0.0,
@@ -771,7 +771,7 @@
     "is_host": false,
     "continental_champion": false,
     "power_rank": 32,
-    "elo_current": 1920
+    "elo_current": 1893
   },
   "Cote d'Ivoire": {
     "name": "Cote d'Ivoire",
@@ -829,7 +829,7 @@
       "elo_scaled": 58.0,
       "tmv_scaled": 59.2,
       "qual_scaled": 58.3,
-      "form_scaled": 69.2
+      "form_scaled": 69.4
     },
     "boosts": {
       "continental": 0.0,
@@ -872,7 +872,7 @@
       "elo_scaled": 79.5,
       "tmv_scaled": 88.6,
       "qual_scaled": 77.7,
-      "form_scaled": 83.6
+      "form_scaled": 83.4
     },
     "boosts": {
       "continental": 0.0,
@@ -958,7 +958,7 @@
       "elo_scaled": 61.6,
       "tmv_scaled": 68.8,
       "qual_scaled": 64.7,
-      "form_scaled": 58.5
+      "form_scaled": 59.0
     },
     "boosts": {
       "continental": 0.0,
@@ -1001,7 +1001,7 @@
       "elo_scaled": 69.0,
       "tmv_scaled": 79.6,
       "qual_scaled": 60.7,
-      "form_scaled": 73.5
+      "form_scaled": 73.6
     },
     "boosts": {
       "continental": 0.0,
@@ -1044,7 +1044,7 @@
       "elo_scaled": 72.2,
       "tmv_scaled": 85.5,
       "qual_scaled": 71.7,
-      "form_scaled": 75.3
+      "form_scaled": 75.4
     },
     "boosts": {
       "continental": 0.0,
@@ -1087,7 +1087,7 @@
       "elo_scaled": 66.4,
       "tmv_scaled": 66.1,
       "qual_scaled": 73.0,
-      "form_scaled": 70.1
+      "form_scaled": 70.3
     },
     "boosts": {
       "continental": 0.0,
@@ -1173,7 +1173,7 @@
       "elo_scaled": 59.1,
       "tmv_scaled": 60.7,
       "qual_scaled": 58.3,
-      "form_scaled": 63.7
+      "form_scaled": 64.0
     },
     "boosts": {
       "continental": 0.0,
@@ -1216,7 +1216,7 @@
       "elo_scaled": 92.8,
       "tmv_scaled": 89.8,
       "qual_scaled": 76.7,
-      "form_scaled": 74.4
+      "form_scaled": 74.5
     },
     "boosts": {
       "continental": 3.0,
@@ -1302,7 +1302,7 @@
       "elo_scaled": 73.1,
       "tmv_scaled": 80.1,
       "qual_scaled": 57.4,
-      "form_scaled": 62.6
+      "form_scaled": 63.0
     },
     "boosts": {
       "continental": 0.0,
@@ -1345,7 +1345,7 @@
       "elo_scaled": 62.0,
       "tmv_scaled": 60.0,
       "qual_scaled": 60.0,
-      "form_scaled": 72.8
+      "form_scaled": 72.9
     },
     "boosts": {
       "continental": 0.0,
@@ -1388,7 +1388,7 @@
       "elo_scaled": 88.8,
       "tmv_scaled": 93.7,
       "qual_scaled": 77.7,
-      "form_scaled": 91.1
+      "form_scaled": 90.7
     },
     "boosts": {
       "continental": 0.0,
@@ -1431,7 +1431,7 @@
       "elo_scaled": 72.4,
       "tmv_scaled": 79.3,
       "qual_scaled": 68.0,
-      "form_scaled": 71.1
+      "form_scaled": 71.2
     },
     "boosts": {
       "continental": 2.25,
@@ -1474,7 +1474,7 @@
       "elo_scaled": 77.9,
       "tmv_scaled": 84.9,
       "qual_scaled": 81.0,
-      "form_scaled": 84.8
+      "form_scaled": 84.6
     },
     "boosts": {
       "continental": 0.0,
@@ -1517,7 +1517,7 @@
       "elo_scaled": 58.3,
       "tmv_scaled": 55.9,
       "qual_scaled": 59.3,
-      "form_scaled": 63.1
+      "form_scaled": 63.5
     },
     "boosts": {
       "continental": 0.0,
@@ -1560,7 +1560,7 @@
       "elo_scaled": 90.4,
       "tmv_scaled": 89.2,
       "qual_scaled": 67.4,
-      "form_scaled": 87.0
+      "form_scaled": 86.7
     },
     "boosts": {
       "continental": 3.0,
@@ -1689,7 +1689,7 @@
       "elo_scaled": 62.4,
       "tmv_scaled": 53.0,
       "qual_scaled": 59.7,
-      "form_scaled": 60.6
+      "form_scaled": 61.0
     },
     "boosts": {
       "continental": 0.75,
@@ -1732,7 +1732,7 @@
       "elo_scaled": 80.4,
       "tmv_scaled": 88.3,
       "qual_scaled": 82.7,
-      "form_scaled": 73.7
+      "form_scaled": 73.8
     },
     "boosts": {
       "continental": 0.0,
@@ -1775,7 +1775,7 @@
       "elo_scaled": 67.1,
       "tmv_scaled": 72.6,
       "qual_scaled": 61.3,
-      "form_scaled": 82.5
+      "form_scaled": 82.4
     },
     "boosts": {
       "continental": 0.0,
@@ -1818,7 +1818,7 @@
       "elo_scaled": 61.4,
       "tmv_scaled": 67.3,
       "qual_scaled": 60.7,
-      "form_scaled": 60.5
+      "form_scaled": 60.9
     },
     "boosts": {
       "continental": 0.0,
@@ -1861,7 +1861,7 @@
       "elo_scaled": 82.4,
       "tmv_scaled": 80.6,
       "qual_scaled": 56.9,
-      "form_scaled": 81.3
+      "form_scaled": 81.2
     },
     "boosts": {
       "continental": 1.5,
@@ -1904,7 +1904,7 @@
       "elo_scaled": 85.2,
       "tmv_scaled": 95.2,
       "qual_scaled": 79.3,
-      "form_scaled": 79.2
+      "form_scaled": 79.1
     },
     "boosts": {
       "continental": 1.5,
@@ -1947,7 +1947,7 @@
       "elo_scaled": 77.2,
       "tmv_scaled": 83.2,
       "qual_scaled": 68.3,
-      "form_scaled": 78.7
+      "form_scaled": 78.6
     },
     "boosts": {
       "continental": 0.0,
@@ -1990,7 +1990,7 @@
       "elo_scaled": 66.3,
       "tmv_scaled": 77.6,
       "qual_scaled": 61.3,
-      "form_scaled": 81.6
+      "form_scaled": 81.4
     },
     "boosts": {
       "continental": 0.0,
@@ -2033,7 +2033,7 @@
       "elo_scaled": 61.0,
       "tmv_scaled": 62.2,
       "qual_scaled": 55.0,
-      "form_scaled": 63.2
+      "form_scaled": 63.6
     },
     "boosts": {
       "continental": 0.0,
