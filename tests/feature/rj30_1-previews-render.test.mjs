@@ -90,6 +90,22 @@ test('recap entry → Recap heading + data-kind=recap', () => {
   assert.doesNotMatch(node.outerHTML, />Preview</, 'not labeled Preview');
 });
 
+test('schedule match_id-keyed entry resolves (real generate_previews shape)', () => {
+  // Regression: generate_previews.py keys entries by the SCHEDULE match_id
+  // (e.g. "M082__1G__vs__3_AEHIJ"), NOT the team pair. The component must try
+  // match.match_id first — else live previews never render on the matchup page.
+  const matchWithId = { team_a: 'Mexico', team_b: 'South Africa', match_id: 'M082__1G__vs__3_AEHIJ' };
+  const previews = {
+    'M082__1G__vs__3_AEHIJ': {
+      kind: 'preview', text: 'Mexico favored to advance.',
+      model: 'claude-haiku-4-5-20251001', generated_at: '2026-07-01T14:31:12+00:00',
+    },
+  };
+  const node = previewSection(matchWithId, { previews });
+  assert.equal(node.getAttribute('data-testid'), 'ai-preview', 'resolves by schedule match_id');
+  assert.match(node.outerHTML, /Mexico favored to advance/);
+});
+
 test('reverse-orientation match_id resolves', () => {
   // Entry keyed B__vs__A; match is A vs B.
   const previews = {

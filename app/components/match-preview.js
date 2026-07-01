@@ -22,9 +22,12 @@ import { formatLastUpdated } from '../data-loader.js';
 
 export function previewSection(match, data) {
   const previews = (data && data.previews) || {};
+  // generate_previews.py keys entries by the SCHEDULE match_id (e.g.
+  // "M082__1G__vs__3_AEHIJ"), which the resolved match row carries — try that
+  // first, then fall back to the canonical team-pair (either orientation).
   const fwdId = `${match.team_a}__vs__${match.team_b}`;
   const revId = `${match.team_b}__vs__${match.team_a}`;
-  const p = previews[fwdId] || previews[revId];
+  const p = (match.match_id && previews[match.match_id]) || previews[fwdId] || previews[revId];
 
   // Dormant / absent → no section at all (empty fragment, never an empty-state).
   if (!p || !p.text || typeof p.text !== 'string') {
