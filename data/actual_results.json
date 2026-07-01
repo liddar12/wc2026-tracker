@@ -490,7 +490,8 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-07-01T16:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_IN_PROGRESS",
+      "minute": "1"
     },
     "Belgium__vs__Senegal": {
       "score_a": 0,
@@ -553,5 +554,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-01T14:29:42+00:00"
+  "last_updated": "2026-07-01T16:01:41+00:00"
 }
