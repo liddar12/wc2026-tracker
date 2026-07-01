@@ -717,5 +717,41 @@
     "stage": "round_of_16",
     "match_id": "M091__W76__vs__W78",
     "kickoff_utc": "2026-07-05T20:00:00Z"
+  },
+  {
+    "team_a": "Mexico",
+    "team_b": "England",
+    "composite_a": 74.6,
+    "composite_b": 89.5,
+    "gap": 14.9,
+    "probabilities": {
+      "team_a_wins": 9.6,
+      "draw": 16.8,
+      "team_b_wins": 73.6
+    },
+    "expected_points": {
+      "team_a": 0.46,
+      "team_b": 2.37
+    },
+    "predicted_winner": "England",
+    "win_confidence_pct": 88.4,
+    "upset_risk": {
+      "favored": "England",
+      "underdog": "Mexico",
+      "gap": 14.9,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 9.6,
+      "draw": 16.8,
+      "team_b_wins": 73.6
+    },
+    "hybrid_gap": 14.9,
+    "advance_pct_a": 11.6,
+    "advance_pct_b": 88.4,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M092__W79__vs__W80",
+    "kickoff_utc": "2026-07-06T00:00:00Z"
   }
 ]
