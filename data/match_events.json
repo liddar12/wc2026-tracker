@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-01T16:43:27+00:00",
+    "updated_at": "2026-07-01T18:15:04+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2925,7 +2925,7 @@
         "team": "Norway"
       }
     ],
-    "updated_at": "2026-07-01T16:43:27+00:00"
+    "updated_at": "2026-07-01T18:15:04+00:00"
   },
   "France__vs__Sweden": {
     "events": [
@@ -2948,7 +2948,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-01T16:43:27+00:00"
+    "updated_at": "2026-07-01T18:15:04+00:00"
   },
   "Mexico__vs__Ecuador": {
     "events": [
@@ -2989,7 +2989,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-07-01T16:43:27+00:00"
+    "updated_at": "2026-07-01T18:15:04+00:00"
   },
   "England__vs__DR Congo": {
     "events": [
@@ -3010,8 +3010,20 @@
         "type": "yellow",
         "player": "Noah Sadiki",
         "team": "DR Congo"
+      },
+      {
+        "minute": "75'",
+        "type": "goal",
+        "player": "Harry Kane",
+        "team": "England"
+      },
+      {
+        "minute": "86'",
+        "type": "goal",
+        "player": "Harry Kane",
+        "team": "England"
       }
     ],
-    "updated_at": "2026-07-01T16:43:27+00:00"
+    "updated_at": "2026-07-01T18:15:04+00:00"
   }
 }

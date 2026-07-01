@@ -2693,8 +2693,8 @@
         "team_a": "Portugal",
         "team_b": "DR Congo",
         "composite_a": 85.7,
-        "composite_b": 67.9,
-        "gap": 17.8,
+        "composite_b": 67.8,
+        "gap": 17.9,
         "probabilities": {
           "team_a_wins": 71.5,
           "draw": 17.1,
@@ -2709,13 +2709,13 @@
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "DR Congo",
-          "gap": 17.8,
+          "gap": 17.9,
           "indicators": []
         },
         "match_id": "Portugal__vs__DR Congo",
         "j5l_probabilities": {
-          "team_a_wins": 79.6,
-          "draw": 13.7,
+          "team_a_wins": 79.8,
+          "draw": 13.6,
           "team_b_wins": 6.7
         },
         "hybrid_gap": 1.817
@@ -2792,24 +2792,24 @@
       {
         "team_a": "DR Congo",
         "team_b": "Uzbekistan",
-        "composite_a": 67.9,
+        "composite_a": 67.8,
         "composite_b": 64.4,
-        "gap": 3.5,
+        "gap": 3.4,
         "probabilities": {
           "team_a_wins": 53.7,
           "draw": 23.2,
-          "team_b_wins": 23.0
+          "team_b_wins": 23.1
         },
         "expected_points": {
           "team_a": 1.84,
-          "team_b": 0.92
+          "team_b": 0.93
         },
         "predicted_winner": "DR Congo",
         "win_confidence_pct": 53.7,
         "upset_risk": {
           "favored": "DR Congo",
           "underdog": "Uzbekistan",
-          "gap": 3.5,
+          "gap": 3.4,
           "indicators": [
             {
               "type": "close_gap",
@@ -2821,20 +2821,20 @@
         },
         "match_id": "DR Congo__vs__Uzbekistan",
         "j5l_probabilities": {
-          "team_a_wins": 45.3,
+          "team_a_wins": 45.1,
           "draw": 26.1,
-          "team_b_wins": 28.6
+          "team_b_wins": 28.8
         },
         "hybrid_gap": 0.734
       },
       {
         "team_a": "DR Congo",
         "team_b": "Colombia",
-        "composite_a": 67.9,
+        "composite_a": 67.8,
         "composite_b": 73.3,
-        "gap": 5.4,
+        "gap": 5.5,
         "probabilities": {
-          "team_a_wins": 21.5,
+          "team_a_wins": 21.4,
           "draw": 22.9,
           "team_b_wins": 55.7
         },
@@ -2847,7 +2847,7 @@
         "upset_risk": {
           "favored": "Colombia",
           "underdog": "DR Congo",
-          "gap": 5.4,
+          "gap": 5.5,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -2871,9 +2871,9 @@
         },
         "match_id": "DR Congo__vs__Colombia",
         "j5l_probabilities": {
-          "team_a_wins": 24.6,
+          "team_a_wins": 24.4,
           "draw": 25.2,
-          "team_b_wins": 50.2
+          "team_b_wins": 50.4
         },
         "hybrid_gap": -0.932
       },

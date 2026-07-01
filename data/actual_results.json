@@ -487,10 +487,11 @@
       "winner": "Mexico"
     },
     "England__vs__DR Congo": {
-      "score_a": 0,
+      "score_a": 2,
       "score_b": 1,
       "kickoff_utc": "2026-07-01T16:00Z",
-      "status": "STATUS_FIRST_HALF"
+      "status": "STATUS_FULL_TIME",
+      "winner": "England"
     },
     "Belgium__vs__Senegal": {
       "score_a": 0,
@@ -553,5 +554,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-01T16:42:04+00:00"
+  "last_updated": "2026-07-01T18:15:03+00:00"
 }
