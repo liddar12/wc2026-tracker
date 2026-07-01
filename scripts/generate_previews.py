@@ -42,7 +42,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from _common import save_json, log, DATA_DIR  # type: ignore
 
-MODEL = "claude-haiku-4-5"
+# Pinned to the exact Haiku 4.5 snapshot (cheapest current model) so activation
+# can't fail on alias resolution. Override with WC26_PREVIEW_MODEL if needed.
+MODEL = os.environ.get("WC26_PREVIEW_MODEL", "claude-haiku-4-5-20251001").strip()
 GENERATOR_VERSION = "v1"
 MAX_TEXT_CHARS = 240
 
