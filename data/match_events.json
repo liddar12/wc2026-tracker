@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-01T20:58:55+00:00",
+    "updated_at": "2026-07-01T21:56:59+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -2948,7 +2948,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-01T20:58:55+00:00"
+    "updated_at": "2026-07-01T21:56:59+00:00"
   },
   "Mexico__vs__Ecuador": {
     "events": [
@@ -2989,7 +2989,7 @@
         "team": "Ecuador"
       }
     ],
-    "updated_at": "2026-07-01T20:58:55+00:00"
+    "updated_at": "2026-07-01T21:56:59+00:00"
   },
   "England__vs__DR Congo": {
     "events": [
@@ -3024,7 +3024,7 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-01T20:58:55+00:00"
+    "updated_at": "2026-07-01T21:56:59+00:00"
   },
   "Belgium__vs__Senegal": {
     "events": [
@@ -3033,8 +3033,38 @@
         "type": "goal",
         "player": "Habib Diarra",
         "team": "Senegal"
+      },
+      {
+        "minute": "51'",
+        "type": "goal",
+        "player": "Ismaïla Sarr",
+        "team": "Senegal"
+      },
+      {
+        "minute": "64'",
+        "type": "yellow",
+        "player": "Brandon Mechele",
+        "team": "Belgium"
+      },
+      {
+        "minute": "67'",
+        "type": "yellow",
+        "player": "Lamine Camara",
+        "team": "Senegal"
+      },
+      {
+        "minute": "86'",
+        "type": "goal",
+        "player": "Romelu Lukaku",
+        "team": "Belgium"
+      },
+      {
+        "minute": "89'",
+        "type": "goal",
+        "player": "Youri Tielemans",
+        "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-01T20:58:55+00:00"
+    "updated_at": "2026-07-01T21:56:59+00:00"
   }
 }
