@@ -4844,7 +4844,7 @@
       "team_a": "Spain",
       "team_b": "Austria",
       "kickoff_utc": "2026-07-02T19:00:00Z",
-      "captured_at": "2026-07-02T09:37:09+00:00",
+      "captured_at": "2026-07-02T10:30:16+00:00",
       "preds": {
         "model": [
           0.6763,
@@ -4877,7 +4877,7 @@
       "team_a": "Portugal",
       "team_b": "Croatia",
       "kickoff_utc": "2026-07-02T23:00:00Z",
-      "captured_at": "2026-07-02T09:37:09+00:00",
+      "captured_at": "2026-07-02T10:30:16+00:00",
       "preds": {
         "model": [
           0.6017,
@@ -4910,7 +4910,7 @@
       "team_a": "Switzerland",
       "team_b": "Algeria",
       "kickoff_utc": "2026-07-03T03:00:00Z",
-      "captured_at": "2026-07-02T09:37:09+00:00",
+      "captured_at": "2026-07-02T10:30:16+00:00",
       "preds": {
         "model": [
           0.5052,
@@ -4943,7 +4943,7 @@
       "team_a": "Australia",
       "team_b": "Egypt",
       "kickoff_utc": "2026-07-03T18:00:00Z",
-      "captured_at": "2026-07-02T09:37:09+00:00",
+      "captured_at": "2026-07-02T10:30:16+00:00",
       "preds": {
         "model": [
           0.3003,
@@ -4969,9 +4969,42 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M086__1J__vs__2H": {
+      "match_number": 86,
+      "stage": "round_of_32",
+      "team_a": "Argentina",
+      "team_b": "Cabo Verde",
+      "kickoff_utc": "2026-07-03T22:00:00Z",
+      "captured_at": "2026-07-02T10:30:16+00:00",
+      "preds": {
+        "model": [
+          0.869,
+          0.0918,
+          0.0392
+        ],
+        "dt": [
+          0.9399,
+          0.0455,
+          0.0146
+        ],
+        "market": [
+          0.9305,
+          0.052,
+          0.0175
+        ],
+        "hybrid": [
+          0.9131,
+          0.0631,
+          0.0238
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-02T09:37:09+00:00",
+  "updated_at": "2026-07-02T10:30:16+00:00",
   "summary": {
     "matches_scored": 72,
     "model": {
