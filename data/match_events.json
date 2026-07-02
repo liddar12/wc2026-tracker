@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-02T01:28:51+00:00",
+    "updated_at": "2026-07-02T04:37:19+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3024,12 +3024,12 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-02T01:28:51+00:00"
+    "updated_at": "2026-07-02T04:37:19+00:00"
   },
   "Belgium__vs__Senegal": {
     "events": [
       {
-        "minute": "25'",
+        "minute": "24'",
         "type": "goal",
         "player": "Habib Diarra",
         "team": "Senegal"
@@ -3071,7 +3071,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-02T01:28:51+00:00"
+    "updated_at": "2026-07-02T04:37:19+00:00"
   },
   "USA__vs__Bosnia and Herzegovina": {
     "events": [
@@ -3080,8 +3080,26 @@
         "type": "goal",
         "player": "Folarin Balogun",
         "team": "USA"
+      },
+      {
+        "minute": "64'",
+        "type": "red",
+        "player": "Folarin Balogun",
+        "team": "USA"
+      },
+      {
+        "minute": "80'",
+        "type": "yellow",
+        "player": "Stjepan Radeljic",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "82'",
+        "type": "goal",
+        "player": "Malik Tillman",
+        "team": "USA"
       }
     ],
-    "updated_at": "2026-07-02T01:28:51+00:00"
+    "updated_at": "2026-07-02T04:37:19+00:00"
   }
 }

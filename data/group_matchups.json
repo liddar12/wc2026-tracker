@@ -350,10 +350,10 @@
         "team_a": "Canada",
         "team_b": "Bosnia and Herzegovina",
         "composite_a": 70.3,
-        "composite_b": 69.5,
-        "gap": 0.8,
+        "composite_b": 69.4,
+        "gap": 0.9,
         "probabilities": {
-          "team_a_wins": 31.1,
+          "team_a_wins": 31.2,
           "draw": 24.8,
           "team_b_wins": 44.1
         },
@@ -366,7 +366,7 @@
         "upset_risk": {
           "favored": "Canada",
           "underdog": "Bosnia and Herzegovina",
-          "gap": 0.8,
+          "gap": 0.9,
           "indicators": [
             {
               "type": "close_gap",
@@ -384,9 +384,9 @@
         },
         "match_id": "Canada__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 38.6,
+          "team_a_wins": 38.8,
           "draw": 26.7,
-          "team_b_wins": 34.7
+          "team_b_wins": 34.5
         },
         "hybrid_gap": -0.118
       },
@@ -432,23 +432,23 @@
         "team_a": "Switzerland",
         "team_b": "Bosnia and Herzegovina",
         "composite_a": 77.3,
-        "composite_b": 69.5,
-        "gap": 7.8,
+        "composite_b": 69.4,
+        "gap": 7.9,
         "probabilities": {
-          "team_a_wins": 47.6,
+          "team_a_wins": 47.7,
           "draw": 24.0,
-          "team_b_wins": 28.3
+          "team_b_wins": 28.2
         },
         "expected_points": {
           "team_a": 1.67,
           "team_b": 1.09
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 47.6,
+        "win_confidence_pct": 47.7,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Bosnia and Herzegovina",
-          "gap": 7.8,
+          "gap": 7.9,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -460,9 +460,9 @@
         },
         "match_id": "Switzerland__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 56.4,
-          "draw": 23.6,
-          "team_b_wins": 20.0
+          "team_a_wins": 56.6,
+          "draw": 23.5,
+          "team_b_wins": 19.8
         },
         "hybrid_gap": 0.655
       },
@@ -470,23 +470,23 @@
         "team_a": "Qatar",
         "team_b": "Bosnia and Herzegovina",
         "composite_a": 59.8,
-        "composite_b": 69.5,
-        "gap": 9.7,
+        "composite_b": 69.4,
+        "gap": 9.6,
         "probabilities": {
           "team_a_wins": 15.0,
-          "draw": 20.3,
-          "team_b_wins": 64.7
+          "draw": 20.4,
+          "team_b_wins": 64.6
         },
         "expected_points": {
           "team_a": 0.65,
           "team_b": 2.14
         },
         "predicted_winner": "Bosnia and Herzegovina",
-        "win_confidence_pct": 64.7,
+        "win_confidence_pct": 64.6,
         "upset_risk": {
           "favored": "Bosnia and Herzegovina",
           "underdog": "Qatar",
-          "gap": 9.7,
+          "gap": 9.6,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -498,9 +498,9 @@
         },
         "match_id": "Qatar__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 16.8,
-          "draw": 22.0,
-          "team_b_wins": 61.2
+          "team_a_wins": 16.9,
+          "draw": 22.1,
+          "team_b_wins": 60.9
         },
         "hybrid_gap": -1.311
       }
@@ -1681,30 +1681,30 @@
         "team_a": "Belgium",
         "team_b": "New Zealand",
         "composite_a": 79.8,
-        "composite_b": 60.1,
-        "gap": 19.7,
+        "composite_b": 60.2,
+        "gap": 19.6,
         "probabilities": {
-          "team_a_wins": 76.6,
+          "team_a_wins": 76.5,
           "draw": 14.9,
-          "team_b_wins": 8.5
+          "team_b_wins": 8.6
         },
         "expected_points": {
-          "team_a": 2.45,
-          "team_b": 0.4
+          "team_a": 2.44,
+          "team_b": 0.41
         },
         "predicted_winner": "Belgium",
-        "win_confidence_pct": 76.6,
+        "win_confidence_pct": 76.5,
         "upset_risk": {
           "favored": "Belgium",
           "underdog": "New Zealand",
-          "gap": 19.7,
+          "gap": 19.6,
           "indicators": []
         },
         "match_id": "Belgium__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 83.1,
-          "draw": 11.7,
-          "team_b_wins": 5.2
+          "team_a_wins": 82.9,
+          "draw": 11.8,
+          "team_b_wins": 5.3
         },
         "hybrid_gap": 2.048
       },
@@ -1750,30 +1750,30 @@
         "team_a": "Iran",
         "team_b": "New Zealand",
         "composite_a": 68.7,
-        "composite_b": 60.1,
-        "gap": 8.6,
+        "composite_b": 60.2,
+        "gap": 8.5,
         "probabilities": {
-          "team_a_wins": 48.1,
-          "draw": 24.4,
-          "team_b_wins": 27.4
+          "team_a_wins": 48.0,
+          "draw": 24.5,
+          "team_b_wins": 27.5
         },
         "expected_points": {
           "team_a": 1.69,
           "team_b": 1.07
         },
         "predicted_winner": "Iran",
-        "win_confidence_pct": 48.1,
+        "win_confidence_pct": 48.0,
         "upset_risk": {
           "favored": "Iran",
           "underdog": "New Zealand",
-          "gap": 8.6,
+          "gap": 8.5,
           "indicators": []
         },
         "match_id": "Iran__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 58.4,
-          "draw": 23.0,
-          "team_b_wins": 18.6
+          "team_a_wins": 58.1,
+          "draw": 23.1,
+          "team_b_wins": 18.8
         },
         "hybrid_gap": 0.543
       },
@@ -1781,30 +1781,30 @@
         "team_a": "Egypt",
         "team_b": "New Zealand",
         "composite_a": 69.8,
-        "composite_b": 60.1,
-        "gap": 9.7,
+        "composite_b": 60.2,
+        "gap": 9.6,
         "probabilities": {
-          "team_a_wins": 50.3,
+          "team_a_wins": 50.2,
           "draw": 23.8,
           "team_b_wins": 25.9
         },
         "expected_points": {
           "team_a": 1.75,
-          "team_b": 1.01
+          "team_b": 1.02
         },
         "predicted_winner": "Egypt",
-        "win_confidence_pct": 50.3,
+        "win_confidence_pct": 50.2,
         "upset_risk": {
           "favored": "Egypt",
           "underdog": "New Zealand",
-          "gap": 9.7,
+          "gap": 9.6,
           "indicators": []
         },
         "match_id": "Egypt__vs__New Zealand",
         "j5l_probabilities": {
-          "team_a_wins": 61.2,
-          "draw": 22.0,
-          "team_b_wins": 16.8
+          "team_a_wins": 60.9,
+          "draw": 22.1,
+          "team_b_wins": 16.9
         },
         "hybrid_gap": 0.804
       }

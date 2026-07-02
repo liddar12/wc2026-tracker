@@ -341,33 +341,33 @@
     "team_a": "USA",
     "team_b": "Bosnia and Herzegovina",
     "composite_a": 77.1,
-    "composite_b": 69.5,
-    "gap": 7.6,
+    "composite_b": 69.4,
+    "gap": 7.7,
     "probabilities": {
-      "team_a_wins": 55.8,
-      "draw": 23.8,
-      "team_b_wins": 20.4
+      "team_a_wins": 56.1,
+      "draw": 23.7,
+      "team_b_wins": 20.2
     },
     "expected_points": {
-      "team_a": 1.91,
-      "team_b": 0.85
+      "team_a": 1.92,
+      "team_b": 0.84
     },
     "predicted_winner": "USA",
-    "win_confidence_pct": 73.3,
+    "win_confidence_pct": 73.5,
     "upset_risk": {
       "favored": "USA",
       "underdog": "Bosnia and Herzegovina",
-      "gap": 7.6,
+      "gap": 7.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 55.8,
-      "draw": 23.8,
-      "team_b_wins": 20.4
+      "team_a_wins": 56.1,
+      "draw": 23.7,
+      "team_b_wins": 20.2
     },
-    "hybrid_gap": 7.6,
-    "advance_pct_a": 73.3,
-    "advance_pct_b": 26.7,
+    "hybrid_gap": 7.7,
+    "advance_pct_a": 73.5,
+    "advance_pct_b": 26.5,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M081__1D__vs__3_BEFIJ",
