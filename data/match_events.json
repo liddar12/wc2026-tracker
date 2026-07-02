@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-02T19:56:33+00:00",
+    "updated_at": "2026-07-02T20:55:20+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3071,7 +3071,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-02T19:56:33+00:00"
+    "updated_at": "2026-07-02T20:55:20+00:00"
   },
   "USA__vs__Bosnia and Herzegovina": {
     "events": [
@@ -3100,7 +3100,7 @@
         "team": "USA"
       }
     ],
-    "updated_at": "2026-07-02T19:56:33+00:00"
+    "updated_at": "2026-07-02T20:55:20+00:00"
   },
   "Spain__vs__Austria": {
     "events": [
@@ -3109,8 +3109,26 @@
         "type": "goal",
         "player": "Mikel Oyarzabal",
         "team": "Spain"
+      },
+      {
+        "minute": "66'",
+        "type": "goal",
+        "player": "Pedro Porro",
+        "team": "Spain"
+      },
+      {
+        "minute": "83'",
+        "type": "yellow",
+        "player": "Stefan Posch",
+        "team": "Austria"
+      },
+      {
+        "minute": "89'",
+        "type": "goal",
+        "player": "Mikel Oyarzabal",
+        "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-02T19:56:33+00:00"
+    "updated_at": "2026-07-02T20:55:20+00:00"
   }
 }
