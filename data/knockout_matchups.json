@@ -376,34 +376,34 @@
   {
     "team_a": "Spain",
     "team_b": "Austria",
-    "composite_a": 87.8,
+    "composite_a": 87.9,
     "composite_b": 76.2,
-    "gap": 11.6,
+    "gap": 11.7,
     "probabilities": {
-      "team_a_wins": 65.9,
-      "draw": 20.3,
-      "team_b_wins": 13.9
+      "team_a_wins": 66.1,
+      "draw": 20.2,
+      "team_b_wins": 13.7
     },
     "expected_points": {
-      "team_a": 2.18,
-      "team_b": 0.62
+      "team_a": 2.19,
+      "team_b": 0.61
     },
     "predicted_winner": "Spain",
-    "win_confidence_pct": 82.6,
+    "win_confidence_pct": 82.8,
     "upset_risk": {
       "favored": "Spain",
       "underdog": "Austria",
-      "gap": 11.6,
+      "gap": 11.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 65.9,
-      "draw": 20.3,
-      "team_b_wins": 13.9
+      "team_a_wins": 66.1,
+      "draw": 20.2,
+      "team_b_wins": 13.7
     },
-    "hybrid_gap": 11.6,
-    "advance_pct_a": 82.6,
-    "advance_pct_b": 17.4,
+    "hybrid_gap": 11.7,
+    "advance_pct_a": 82.8,
+    "advance_pct_b": 17.2,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M084__1H__vs__2J",
