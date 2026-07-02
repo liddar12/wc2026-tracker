@@ -505,7 +505,7 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-07-02T00:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FIRST_HALF"
     },
     "Spain__vs__Austria": {
       "score_a": 0,
@@ -551,10 +551,23 @@
       "status": "STATUS_SCHEDULED"
     }
   },
-  "round_of_16": {},
+  "round_of_16": {
+    "Canada__vs__Morocco": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-04T17:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Paraguay__vs__France": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-04T21:00Z",
+      "status": "STATUS_SCHEDULED"
+    }
+  },
   "quarterfinals": {},
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-01T23:15:17+00:00"
+  "last_updated": "2026-07-02T00:19:59+00:00"
 }
