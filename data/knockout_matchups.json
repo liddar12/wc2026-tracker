@@ -746,5 +746,48 @@
     "stage": "round_of_16",
     "match_id": "M092__W79__vs__W80",
     "kickoff_utc": "2026-07-06T00:00:00Z"
+  },
+  {
+    "team_a": "USA",
+    "team_b": "Belgium",
+    "composite_a": 77.1,
+    "composite_b": 79.8,
+    "gap": 2.7,
+    "probabilities": {
+      "team_a_wins": 30.4,
+      "draw": 26.4,
+      "team_b_wins": 43.3
+    },
+    "expected_points": {
+      "team_a": 1.17,
+      "team_b": 1.56
+    },
+    "predicted_winner": "Belgium",
+    "win_confidence_pct": 58.8,
+    "upset_risk": {
+      "favored": "Belgium",
+      "underdog": "USA",
+      "gap": 2.7,
+      "indicators": [
+        {
+          "type": "close_gap",
+          "severity": "high",
+          "label": "Toss-up game",
+          "detail": "Composite gap only 2.7 points"
+        }
+      ]
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 30.4,
+      "draw": 26.4,
+      "team_b_wins": 43.3
+    },
+    "hybrid_gap": 2.7,
+    "advance_pct_a": 41.2,
+    "advance_pct_b": 58.8,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M094__W81__vs__W82",
+    "kickoff_utc": "2026-07-07T00:00:00Z"
   }
 ]

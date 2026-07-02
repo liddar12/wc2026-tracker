@@ -827,6 +827,15 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "USA__vs__Belgium": {
+    "team_a": "USA",
+    "team_b": "Belgium",
+    "team_a_xg": 1.27,
+    "team_b_xg": 1.47,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -837,6 +846,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-02T04:37:26+00:00"
+    "computed_at": "2026-07-02T06:13:40+00:00"
   }
 }
