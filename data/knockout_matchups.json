@@ -412,34 +412,34 @@
   {
     "team_a": "Portugal",
     "team_b": "Croatia",
-    "composite_a": 85.7,
+    "composite_a": 85.8,
     "composite_b": 77.0,
-    "gap": 8.7,
+    "gap": 8.8,
     "probabilities": {
-      "team_a_wins": 58.7,
-      "draw": 22.9,
-      "team_b_wins": 18.4
+      "team_a_wins": 58.9,
+      "draw": 22.8,
+      "team_b_wins": 18.3
     },
     "expected_points": {
-      "team_a": 1.99,
+      "team_a": 2.0,
       "team_b": 0.78
     },
     "predicted_winner": "Portugal",
-    "win_confidence_pct": 76.1,
+    "win_confidence_pct": 76.3,
     "upset_risk": {
       "favored": "Portugal",
       "underdog": "Croatia",
-      "gap": 8.7,
+      "gap": 8.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 58.7,
-      "draw": 22.9,
-      "team_b_wins": 18.4
+      "team_a_wins": 58.9,
+      "draw": 22.8,
+      "team_b_wins": 18.3
     },
-    "hybrid_gap": 8.7,
-    "advance_pct_a": 76.1,
-    "advance_pct_b": 23.9,
+    "hybrid_gap": 8.8,
+    "advance_pct_a": 76.3,
+    "advance_pct_b": 23.7,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M083__2K__vs__2L",
@@ -746,6 +746,49 @@
     "stage": "round_of_16",
     "match_id": "M092__W79__vs__W80",
     "kickoff_utc": "2026-07-06T00:00:00Z"
+  },
+  {
+    "team_a": "Portugal",
+    "team_b": "Spain",
+    "composite_a": 85.8,
+    "composite_b": 87.9,
+    "gap": 2.1,
+    "probabilities": {
+      "team_a_wins": 31.7,
+      "draw": 26.5,
+      "team_b_wins": 41.8
+    },
+    "expected_points": {
+      "team_a": 1.22,
+      "team_b": 1.52
+    },
+    "predicted_winner": "Spain",
+    "win_confidence_pct": 56.9,
+    "upset_risk": {
+      "favored": "Spain",
+      "underdog": "Portugal",
+      "gap": 2.1,
+      "indicators": [
+        {
+          "type": "close_gap",
+          "severity": "high",
+          "label": "Toss-up game",
+          "detail": "Composite gap only 2.1 points"
+        }
+      ]
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 31.7,
+      "draw": 26.5,
+      "team_b_wins": 41.8
+    },
+    "hybrid_gap": 2.1,
+    "advance_pct_a": 43.1,
+    "advance_pct_b": 56.9,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M093__W83__vs__W84",
+    "kickoff_utc": "2026-07-06T19:00:00Z"
   },
   {
     "team_a": "USA",

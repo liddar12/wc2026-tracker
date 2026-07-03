@@ -749,8 +749,8 @@
   "Portugal__vs__Croatia": {
     "team_a": "Portugal",
     "team_b": "Croatia",
-    "team_a_xg": 1.74,
-    "team_b_xg": 1.0,
+    "team_a_xg": 1.75,
+    "team_b_xg": 0.99,
     "formula_version": "v1",
     "used_form_a": true,
     "used_form_b": true
@@ -827,6 +827,15 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "Portugal__vs__Spain": {
+    "team_a": "Portugal",
+    "team_b": "Spain",
+    "team_a_xg": 1.26,
+    "team_b_xg": 1.52,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "USA__vs__Belgium": {
     "team_a": "USA",
     "team_b": "Belgium",
@@ -846,6 +855,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-03T00:18:16+00:00"
+    "computed_at": "2026-07-03T04:13:48+00:00"
   }
 }

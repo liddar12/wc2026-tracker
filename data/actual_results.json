@@ -516,16 +516,17 @@
       "winner": "Spain"
     },
     "Portugal__vs__Croatia": {
-      "score_a": 0,
+      "score_a": 2,
       "score_b": 1,
       "kickoff_utc": "2026-07-02T23:00Z",
-      "status": "STATUS_SECOND_HALF"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Portugal"
     },
     "Switzerland__vs__Algeria": {
-      "score_a": 0,
+      "score_a": 2,
       "score_b": 0,
       "kickoff_utc": "2026-07-03T03:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_SECOND_HALF"
     },
     "South Africa__vs__Canada": {
       "score_a": 0,
@@ -583,5 +584,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-03T00:18:12+00:00"
+  "last_updated": "2026-07-03T04:12:08+00:00"
 }
