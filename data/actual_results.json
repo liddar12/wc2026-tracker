@@ -538,9 +538,10 @@
     },
     "Australia__vs__Egypt": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-07-03T18:00Z",
-      "status": "STATUS_FIRST_HALF"
+      "status": "STATUS_HALFTIME",
+      "minute": "45'+5"
     },
     "Argentina__vs__Cabo Verde": {
       "score_a": 0,
@@ -585,5 +586,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-03T18:08:55+00:00"
+  "last_updated": "2026-07-03T19:03:04+00:00"
 }
