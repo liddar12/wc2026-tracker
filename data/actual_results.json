@@ -540,7 +540,11 @@
       "score_a": 1,
       "score_b": 1,
       "kickoff_utc": "2026-07-03T18:00Z",
-      "status": "STATUS_END_OF_EXTRATIME"
+      "status": "STATUS_FINAL_PEN",
+      "winner": "Egypt",
+      "method": "pens",
+      "shootout_a": 2,
+      "shootout_b": 4
     },
     "Argentina__vs__Cabo Verde": {
       "score_a": 0,
@@ -585,5 +589,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-03T20:45:53+00:00"
+  "last_updated": "2026-07-03T21:34:32+00:00"
 }
