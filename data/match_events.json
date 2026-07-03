@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-03T04:23:28+00:00",
+    "updated_at": "2026-07-03T07:42:42+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3129,7 +3129,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-03T04:23:28+00:00"
+    "updated_at": "2026-07-03T07:42:42+00:00"
   },
   "Portugal__vs__Croatia": {
     "events": [
@@ -3170,7 +3170,7 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-07-03T04:23:28+00:00"
+    "updated_at": "2026-07-03T07:42:42+00:00"
   },
   "Switzerland__vs__Algeria": {
     "events": [
@@ -3191,8 +3191,14 @@
         "type": "goal",
         "player": "Dan Ndoye",
         "team": "Switzerland"
+      },
+      {
+        "minute": "72'",
+        "type": "yellow",
+        "player": "Hicham Boudaoui",
+        "team": "Algeria"
       }
     ],
-    "updated_at": "2026-07-03T04:23:28+00:00"
+    "updated_at": "2026-07-03T07:42:42+00:00"
   }
 }

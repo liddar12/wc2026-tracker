@@ -448,34 +448,34 @@
   {
     "team_a": "Switzerland",
     "team_b": "Algeria",
-    "composite_a": 77.3,
-    "composite_b": 72.2,
-    "gap": 5.1,
+    "composite_a": 77.4,
+    "composite_b": 72.1,
+    "gap": 5.3,
     "probabilities": {
-      "team_a_wins": 49.4,
-      "draw": 25.4,
-      "team_b_wins": 25.2
+      "team_a_wins": 49.9,
+      "draw": 25.3,
+      "team_b_wins": 24.8
     },
     "expected_points": {
-      "team_a": 1.74,
-      "team_b": 1.01
+      "team_a": 1.75,
+      "team_b": 1.0
     },
     "predicted_winner": "Switzerland",
-    "win_confidence_pct": 66.2,
+    "win_confidence_pct": 66.8,
     "upset_risk": {
       "favored": "Switzerland",
       "underdog": "Algeria",
-      "gap": 5.1,
+      "gap": 5.3,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 49.4,
-      "draw": 25.4,
-      "team_b_wins": 25.2
+      "team_a_wins": 49.9,
+      "draw": 25.3,
+      "team_b_wins": 24.8
     },
-    "hybrid_gap": 5.1,
-    "advance_pct_a": 66.2,
-    "advance_pct_b": 33.8,
+    "hybrid_gap": 5.3,
+    "advance_pct_a": 66.8,
+    "advance_pct_b": 33.2,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M085__1B__vs__3_EFGIJ",
