@@ -118,6 +118,12 @@
       "condition_code": 95,
       "humidity_pct": 65,
       "wind_kph": 103.7
+    },
+    "2026-07-18": {
+      "temp_c": 33.7,
+      "condition_code": 2,
+      "humidity_pct": 70,
+      "wind_kph": 76.3
     }
   },
   "arrowhead": {
@@ -192,6 +198,6 @@
   },
   "bbva": {},
   "__meta__": {
-    "updated_at": "2026-06-30T21:01:26+00:00"
+    "updated_at": "2026-07-03T13:15:50+00:00"
   }
 }
