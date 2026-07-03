@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-03T20:21:48+00:00",
+    "updated_at": "2026-07-03T20:45:41+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3129,7 +3129,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-03T20:21:48+00:00"
+    "updated_at": "2026-07-03T20:45:41+00:00"
   },
   "Portugal__vs__Croatia": {
     "events": [
@@ -3170,7 +3170,7 @@
         "team": "Croatia"
       }
     ],
-    "updated_at": "2026-07-03T20:21:48+00:00"
+    "updated_at": "2026-07-03T20:45:41+00:00"
   },
   "Switzerland__vs__Algeria": {
     "events": [
@@ -3199,7 +3199,7 @@
         "team": "Algeria"
       }
     ],
-    "updated_at": "2026-07-03T20:21:48+00:00"
+    "updated_at": "2026-07-03T20:45:41+00:00"
   },
   "Australia__vs__Egypt": {
     "events": [
@@ -3220,8 +3220,14 @@
         "type": "yellow",
         "player": "Haissem Hassan",
         "team": "Egypt"
+      },
+      {
+        "minute": "120'",
+        "type": "yellow",
+        "player": "Yasser Ibrahim",
+        "team": "Egypt"
       }
     ],
-    "updated_at": "2026-07-03T20:21:48+00:00"
+    "updated_at": "2026-07-03T20:45:41+00:00"
   }
 }
