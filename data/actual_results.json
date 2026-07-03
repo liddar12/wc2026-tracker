@@ -517,10 +517,9 @@
     },
     "Portugal__vs__Croatia": {
       "score_a": 0,
-      "score_b": 0,
+      "score_b": 1,
       "kickoff_utc": "2026-07-02T23:00Z",
-      "status": "STATUS_IN_PROGRESS",
-      "minute": "32"
+      "status": "STATUS_SECOND_HALF"
     },
     "Switzerland__vs__Algeria": {
       "score_a": 0,
@@ -566,11 +565,23 @@
       "score_b": 0,
       "kickoff_utc": "2026-07-04T21:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Brazil__vs__Norway": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-05T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "Mexico__vs__England": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-06T00:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "quarterfinals": {},
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-02T23:32:25+00:00"
+  "last_updated": "2026-07-03T00:18:12+00:00"
 }
