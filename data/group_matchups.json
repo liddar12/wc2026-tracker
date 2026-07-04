@@ -598,8 +598,8 @@
         "composite_b": 70.9,
         "gap": 7.9,
         "probabilities": {
-          "team_a_wins": 72.1,
-          "draw": 16.5,
+          "team_a_wins": 72.2,
+          "draw": 16.4,
           "team_b_wins": 11.4
         },
         "expected_points": {
@@ -607,7 +607,7 @@
           "team_b": 0.51
         },
         "predicted_winner": "Brazil",
-        "win_confidence_pct": 72.1,
+        "win_confidence_pct": 72.2,
         "upset_risk": {
           "favored": "Brazil",
           "underdog": "Scotland",
@@ -643,7 +643,7 @@
         "gap": 19.6,
         "probabilities": {
           "team_a_wins": 85.6,
-          "draw": 10.1,
+          "draw": 10.0,
           "team_b_wins": 4.4
         },
         "expected_points": {
@@ -822,7 +822,7 @@
         "composite_b": 66.9,
         "gap": 10.2,
         "probabilities": {
-          "team_a_wins": 67.0,
+          "team_a_wins": 66.9,
           "draw": 18.8,
           "team_b_wins": 14.3
         },
@@ -831,7 +831,7 @@
           "team_b": 0.62
         },
         "predicted_winner": "USA",
-        "win_confidence_pct": 67.0,
+        "win_confidence_pct": 66.9,
         "upset_risk": {
           "favored": "USA",
           "underdog": "Australia",
@@ -1864,8 +1864,8 @@
         "composite_b": 63.1,
         "gap": 24.8,
         "probabilities": {
-          "team_a_wins": 91.9,
-          "draw": 6.0,
+          "team_a_wins": 92.0,
+          "draw": 5.9,
           "team_b_wins": 2.1
         },
         "expected_points": {
@@ -1873,7 +1873,7 @@
           "team_b": 0.12
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 91.9,
+        "win_confidence_pct": 92.0,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Cabo Verde",
@@ -2696,16 +2696,16 @@
         "composite_b": 67.8,
         "gap": 18.0,
         "probabilities": {
-          "team_a_wins": 71.4,
-          "draw": 17.1,
-          "team_b_wins": 11.5
+          "team_a_wins": 71.1,
+          "draw": 17.2,
+          "team_b_wins": 11.7
         },
         "expected_points": {
           "team_a": 2.31,
           "team_b": 0.52
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 71.4,
+        "win_confidence_pct": 71.1,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "DR Congo",
@@ -2727,16 +2727,16 @@
         "composite_b": 64.4,
         "gap": 21.4,
         "probabilities": {
-          "team_a_wins": 84.8,
-          "draw": 10.5,
-          "team_b_wins": 4.7
+          "team_a_wins": 84.6,
+          "draw": 10.6,
+          "team_b_wins": 4.8
         },
         "expected_points": {
           "team_a": 2.65,
           "team_b": 0.25
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 84.8,
+        "win_confidence_pct": 84.6,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "Uzbekistan",
@@ -2758,16 +2758,16 @@
         "composite_b": 73.3,
         "gap": 12.5,
         "probabilities": {
-          "team_a_wins": 52.8,
+          "team_a_wins": 52.6,
           "draw": 23.2,
-          "team_b_wins": 24.0
+          "team_b_wins": 24.2
         },
         "expected_points": {
-          "team_a": 1.82,
-          "team_b": 0.95
+          "team_a": 1.81,
+          "team_b": 0.96
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 52.8,
+        "win_confidence_pct": 52.6,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "Colombia",
@@ -3053,7 +3053,7 @@
         "composite_b": 59.9,
         "gap": 29.6,
         "probabilities": {
-          "team_a_wins": 91.3,
+          "team_a_wins": 91.2,
           "draw": 6.3,
           "team_b_wins": 2.4
         },
@@ -3062,7 +3062,7 @@
           "team_b": 0.14
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 91.3,
+        "win_confidence_pct": 91.2,
         "upset_risk": {
           "favored": "England",
           "underdog": "Panama",
