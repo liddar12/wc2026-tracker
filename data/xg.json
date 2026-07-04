@@ -606,7 +606,7 @@
     "team_a": "England",
     "team_b": "Ghana",
     "team_a_xg": 2.28,
-    "team_b_xg": 0.46,
+    "team_b_xg": 0.45,
     "formula_version": "v1",
     "used_form_a": true,
     "used_form_b": true
@@ -785,8 +785,8 @@
   "Colombia__vs__Ghana": {
     "team_a": "Colombia",
     "team_b": "Ghana",
-    "team_a_xg": 1.55,
-    "team_b_xg": 1.19,
+    "team_a_xg": 1.56,
+    "team_b_xg": 1.18,
     "formula_version": "v1",
     "used_form_a": true,
     "used_form_b": true
@@ -845,6 +845,24 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "Argentina__vs__Egypt": {
+    "team_a": "Argentina",
+    "team_b": "Egypt",
+    "team_a_xg": 2.15,
+    "team_b_xg": 0.71,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
+  "Switzerland__vs__Colombia": {
+    "team_a": "Switzerland",
+    "team_b": "Colombia",
+    "team_a_xg": 1.61,
+    "team_b_xg": 1.25,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -855,6 +873,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-04T01:15:32+00:00"
+    "computed_at": "2026-07-04T04:06:15+00:00"
   }
 }

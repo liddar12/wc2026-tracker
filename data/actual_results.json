@@ -555,10 +555,11 @@
       "method": "aet"
     },
     "Colombia__vs__Ghana": {
-      "score_a": 0,
+      "score_a": 1,
       "score_b": 0,
       "kickoff_utc": "2026-07-04T01:30Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Colombia"
     }
   },
   "round_of_16": {
@@ -603,5 +604,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-04T01:19:38+00:00"
+  "last_updated": "2026-07-04T04:05:01+00:00"
 }

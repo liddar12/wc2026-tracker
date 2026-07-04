@@ -564,40 +564,40 @@
     "team_a": "Colombia",
     "team_b": "Ghana",
     "composite_a": 73.3,
-    "composite_b": 70.6,
-    "gap": 2.7,
+    "composite_b": 70.5,
+    "gap": 2.8,
     "probabilities": {
-      "team_a_wins": 43.3,
-      "draw": 26.4,
-      "team_b_wins": 30.4
+      "team_a_wins": 43.5,
+      "draw": 26.3,
+      "team_b_wins": 30.1
     },
     "expected_points": {
-      "team_a": 1.56,
+      "team_a": 1.57,
       "team_b": 1.17
     },
     "predicted_winner": "Colombia",
-    "win_confidence_pct": 58.8,
+    "win_confidence_pct": 59.1,
     "upset_risk": {
       "favored": "Colombia",
       "underdog": "Ghana",
-      "gap": 2.7,
+      "gap": 2.8,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.7 points"
+          "detail": "Composite gap only 2.8 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 43.3,
-      "draw": 26.4,
-      "team_b_wins": 30.4
+      "team_a_wins": 43.5,
+      "draw": 26.3,
+      "team_b_wins": 30.1
     },
-    "hybrid_gap": 2.7,
-    "advance_pct_a": 58.8,
-    "advance_pct_b": 41.2,
+    "hybrid_gap": 2.8,
+    "advance_pct_a": 59.1,
+    "advance_pct_b": 40.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M087__1K__vs__3_DEIJL",
@@ -832,5 +832,77 @@
     "stage": "round_of_16",
     "match_id": "M094__W81__vs__W82",
     "kickoff_utc": "2026-07-07T00:00:00Z"
+  },
+  {
+    "team_a": "Argentina",
+    "team_b": "Egypt",
+    "composite_a": 84.0,
+    "composite_b": 69.8,
+    "gap": 14.2,
+    "probabilities": {
+      "team_a_wins": 72.0,
+      "draw": 17.6,
+      "team_b_wins": 10.4
+    },
+    "expected_points": {
+      "team_a": 2.34,
+      "team_b": 0.49
+    },
+    "predicted_winner": "Argentina",
+    "win_confidence_pct": 87.3,
+    "upset_risk": {
+      "favored": "Argentina",
+      "underdog": "Egypt",
+      "gap": 14.2,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 72.0,
+      "draw": 17.6,
+      "team_b_wins": 10.4
+    },
+    "hybrid_gap": 14.2,
+    "advance_pct_a": 87.3,
+    "advance_pct_b": 12.7,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M095__W86__vs__W88",
+    "kickoff_utc": "2026-07-07T16:00:00Z"
+  },
+  {
+    "team_a": "Switzerland",
+    "team_b": "Colombia",
+    "composite_a": 77.4,
+    "composite_b": 73.3,
+    "gap": 4.1,
+    "probabilities": {
+      "team_a_wins": 46.8,
+      "draw": 25.9,
+      "team_b_wins": 27.3
+    },
+    "expected_points": {
+      "team_a": 1.66,
+      "team_b": 1.08
+    },
+    "predicted_winner": "Switzerland",
+    "win_confidence_pct": 63.2,
+    "upset_risk": {
+      "favored": "Switzerland",
+      "underdog": "Colombia",
+      "gap": 4.1,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 46.8,
+      "draw": 25.9,
+      "team_b_wins": 27.3
+    },
+    "hybrid_gap": 4.1,
+    "advance_pct_a": 63.2,
+    "advance_pct_b": 36.8,
+    "is_knockout": true,
+    "stage": "round_of_16",
+    "match_id": "M096__W85__vs__W87",
+    "kickoff_utc": "2026-07-07T20:00:00Z"
   }
 ]

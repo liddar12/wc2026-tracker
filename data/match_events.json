@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-04T01:19:26+00:00",
+    "updated_at": "2026-07-04T04:06:12+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3228,7 +3228,7 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-07-04T01:19:26+00:00"
+    "updated_at": "2026-07-04T04:06:12+00:00"
   },
   "Argentina__vs__Cabo Verde": {
     "events": [
@@ -3275,6 +3275,47 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-04T01:19:26+00:00"
+    "updated_at": "2026-07-04T04:06:12+00:00"
+  },
+  "Colombia__vs__Ghana": {
+    "events": [
+      {
+        "minute": "12'",
+        "type": "yellow",
+        "player": "Jhon Arias",
+        "team": "Colombia"
+      },
+      {
+        "minute": "14'",
+        "type": "goal",
+        "player": "Jhon Arias",
+        "team": "Colombia"
+      },
+      {
+        "minute": "49'",
+        "type": "yellow",
+        "player": "Caleb Yirenkyi",
+        "team": "Ghana"
+      },
+      {
+        "minute": "66'",
+        "type": "yellow",
+        "player": "Fatawu Issahaku",
+        "team": "Ghana"
+      },
+      {
+        "minute": "76'",
+        "type": "yellow",
+        "player": "Alidu Seidu",
+        "team": "Ghana"
+      },
+      {
+        "minute": "78'",
+        "type": "yellow",
+        "player": "Richard Ríos",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-04T04:06:12+00:00"
   }
 }
