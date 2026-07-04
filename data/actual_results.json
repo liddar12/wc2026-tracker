@@ -547,10 +547,12 @@
       "shootout_b": 4
     },
     "Argentina__vs__Cabo Verde": {
-      "score_a": 1,
-      "score_b": 1,
+      "score_a": 3,
+      "score_b": 2,
       "kickoff_utc": "2026-07-03T22:00Z",
-      "status": "STATUS_SECOND_HALF"
+      "status": "STATUS_FINAL_AET",
+      "winner": "Argentina",
+      "method": "aet"
     },
     "Colombia__vs__Ghana": {
       "score_a": 0,
@@ -583,11 +585,23 @@
       "score_b": 0,
       "kickoff_utc": "2026-07-06T00:00Z",
       "status": "STATUS_SCHEDULED"
+    },
+    "Portugal__vs__Spain": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-06T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    },
+    "USA__vs__Belgium": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-07T00:00Z",
+      "status": "STATUS_SCHEDULED"
     }
   },
   "quarterfinals": {},
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-03T23:41:16+00:00"
+  "last_updated": "2026-07-04T01:15:25+00:00"
 }

@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-03T23:41:16+00:00",
+    "updated_at": "2026-07-04T01:15:25+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3228,7 +3228,7 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-07-03T23:41:16+00:00"
+    "updated_at": "2026-07-04T01:15:25+00:00"
   },
   "Argentina__vs__Cabo Verde": {
     "events": [
@@ -3249,8 +3249,32 @@
         "type": "yellow",
         "player": "Kevin Pina",
         "team": "Cabo Verde"
+      },
+      {
+        "minute": "92'",
+        "type": "goal",
+        "player": "Lisandro Martínez",
+        "team": "Argentina"
+      },
+      {
+        "minute": "103'",
+        "type": "goal",
+        "player": "Sidny Lopes Cabral",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "111'",
+        "type": "own-goal",
+        "player": "Diney Borges",
+        "team": "Argentina"
+      },
+      {
+        "minute": "115'",
+        "type": "yellow",
+        "player": "Gonzalo Montiel",
+        "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-03T23:41:16+00:00"
+    "updated_at": "2026-07-04T01:15:25+00:00"
   }
 }
