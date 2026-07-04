@@ -3,33 +3,33 @@
     "team_a": "South Africa",
     "team_b": "Canada",
     "composite_a": 60.5,
-    "composite_b": 70.3,
-    "gap": 9.8,
+    "composite_b": 70.2,
+    "gap": 9.7,
     "probabilities": {
-      "team_a_wins": 16.6,
+      "team_a_wins": 16.8,
       "draw": 22.0,
-      "team_b_wins": 61.4
+      "team_b_wins": 61.2
     },
     "expected_points": {
       "team_a": 0.72,
       "team_b": 2.06
     },
     "predicted_winner": "Canada",
-    "win_confidence_pct": 78.7,
+    "win_confidence_pct": 78.5,
     "upset_risk": {
       "favored": "Canada",
       "underdog": "South Africa",
-      "gap": 9.8,
+      "gap": 9.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 16.6,
+      "team_a_wins": 16.8,
       "draw": 22.0,
-      "team_b_wins": 61.4
+      "team_b_wins": 61.2
     },
-    "hybrid_gap": 9.8,
-    "advance_pct_a": 21.3,
-    "advance_pct_b": 78.7,
+    "hybrid_gap": 9.7,
+    "advance_pct_a": 21.5,
+    "advance_pct_b": 78.5,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M073__2A__vs__2B",
@@ -118,40 +118,40 @@
     "team_a": "Netherlands",
     "team_b": "Morocco",
     "composite_a": 83.8,
-    "composite_b": 80.9,
-    "gap": 2.9,
+    "composite_b": 81.0,
+    "gap": 2.8,
     "probabilities": {
-      "team_a_wins": 43.8,
+      "team_a_wins": 43.5,
       "draw": 26.3,
-      "team_b_wins": 29.9
+      "team_b_wins": 30.1
     },
     "expected_points": {
-      "team_a": 1.58,
-      "team_b": 1.16
+      "team_a": 1.57,
+      "team_b": 1.17
     },
     "predicted_winner": "Netherlands",
-    "win_confidence_pct": 59.4,
+    "win_confidence_pct": 59.1,
     "upset_risk": {
       "favored": "Netherlands",
       "underdog": "Morocco",
-      "gap": 2.9,
+      "gap": 2.8,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.9 points"
+          "detail": "Composite gap only 2.8 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 43.8,
+      "team_a_wins": 43.5,
       "draw": 26.3,
-      "team_b_wins": 29.9
+      "team_b_wins": 30.1
     },
-    "hybrid_gap": 2.9,
-    "advance_pct_a": 59.4,
-    "advance_pct_b": 40.6,
+    "hybrid_gap": 2.8,
+    "advance_pct_a": 59.1,
+    "advance_pct_b": 40.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M075__1F__vs__2C",
@@ -606,34 +606,34 @@
   {
     "team_a": "Canada",
     "team_b": "Morocco",
-    "composite_a": 70.3,
-    "composite_b": 80.9,
-    "gap": 10.6,
+    "composite_a": 70.2,
+    "composite_b": 81.0,
+    "gap": 10.8,
     "probabilities": {
-      "team_a_wins": 15.4,
-      "draw": 21.2,
-      "team_b_wins": 63.4
+      "team_a_wins": 15.0,
+      "draw": 21.0,
+      "team_b_wins": 63.9
     },
     "expected_points": {
-      "team_a": 0.67,
-      "team_b": 2.12
+      "team_a": 0.66,
+      "team_b": 2.13
     },
     "predicted_winner": "Morocco",
-    "win_confidence_pct": 80.5,
+    "win_confidence_pct": 80.9,
     "upset_risk": {
       "favored": "Morocco",
       "underdog": "Canada",
-      "gap": 10.6,
+      "gap": 10.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 15.4,
-      "draw": 21.2,
-      "team_b_wins": 63.4
+      "team_a_wins": 15.0,
+      "draw": 21.0,
+      "team_b_wins": 63.9
     },
-    "hybrid_gap": 10.6,
-    "advance_pct_a": 19.5,
-    "advance_pct_b": 80.5,
+    "hybrid_gap": 10.8,
+    "advance_pct_a": 19.1,
+    "advance_pct_b": 80.9,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M090__W73__vs__W75",
