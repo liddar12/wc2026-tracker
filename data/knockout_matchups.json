@@ -904,5 +904,41 @@
     "stage": "round_of_16",
     "match_id": "M096__W85__vs__W87",
     "kickoff_utc": "2026-07-07T20:00:00Z"
+  },
+  {
+    "team_a": "France",
+    "team_b": "Morocco",
+    "composite_a": 86.9,
+    "composite_b": 81.0,
+    "gap": 5.9,
+    "probabilities": {
+      "team_a_wins": 51.5,
+      "draw": 24.9,
+      "team_b_wins": 23.6
+    },
+    "expected_points": {
+      "team_a": 1.79,
+      "team_b": 0.96
+    },
+    "predicted_winner": "France",
+    "win_confidence_pct": 68.6,
+    "upset_risk": {
+      "favored": "France",
+      "underdog": "Morocco",
+      "gap": 5.9,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 51.5,
+      "draw": 24.9,
+      "team_b_wins": 23.6
+    },
+    "hybrid_gap": 5.9,
+    "advance_pct_a": 68.6,
+    "advance_pct_b": 31.4,
+    "is_knockout": true,
+    "stage": "quarterfinals",
+    "match_id": "M097__W89__vs__W90",
+    "kickoff_utc": "2026-07-09T20:00:00Z"
   }
 ]

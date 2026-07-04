@@ -863,6 +863,15 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "France__vs__Morocco": {
+    "team_a": "France",
+    "team_b": "Morocco",
+    "team_a_xg": 1.78,
+    "team_b_xg": 1.28,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -873,6 +882,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-04T22:25:42+00:00"
+    "computed_at": "2026-07-04T23:18:45+00:00"
   }
 }

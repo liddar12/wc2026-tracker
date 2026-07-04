@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-04T22:25:32+00:00",
+    "updated_at": "2026-07-04T23:18:41+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3275,7 +3275,7 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-04T22:25:32+00:00"
+    "updated_at": "2026-07-04T23:18:41+00:00"
   },
   "Colombia__vs__Ghana": {
     "events": [
@@ -3316,7 +3316,7 @@
         "team": "Colombia"
       }
     ],
-    "updated_at": "2026-07-04T22:25:32+00:00"
+    "updated_at": "2026-07-04T23:18:41+00:00"
   },
   "Canada__vs__Morocco": {
     "events": [
@@ -3387,7 +3387,7 @@
         "team": "Morocco"
       }
     ],
-    "updated_at": "2026-07-04T22:25:32+00:00"
+    "updated_at": "2026-07-04T23:18:41+00:00"
   },
   "Paraguay__vs__France": {
     "events": [
@@ -3396,8 +3396,26 @@
         "type": "yellow",
         "player": "Bradley Barcola",
         "team": "France"
+      },
+      {
+        "minute": "70'",
+        "type": "pen-goal",
+        "player": "Kylian Mbappé",
+        "team": "France"
+      },
+      {
+        "minute": "81'",
+        "type": "yellow",
+        "player": "Manu Koné",
+        "team": "France"
+      },
+      {
+        "minute": "90'+7'",
+        "type": "yellow",
+        "player": "Michael Olise",
+        "team": "France"
       }
     ],
-    "updated_at": "2026-07-04T22:25:32+00:00"
+    "updated_at": "2026-07-04T23:18:41+00:00"
   }
 }
