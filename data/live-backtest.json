@@ -5042,7 +5042,7 @@
       "team_a": "Canada",
       "team_b": "Morocco",
       "kickoff_utc": "2026-07-04T17:00:00Z",
-      "captured_at": "2026-07-04T11:49:37+00:00",
+      "captured_at": "2026-07-04T13:01:19+00:00",
       "preds": {
         "model": [
           0.1489,
@@ -5075,7 +5075,7 @@
       "team_a": "Paraguay",
       "team_b": "France",
       "kickoff_utc": "2026-07-04T21:00:00Z",
-      "captured_at": "2026-07-04T11:49:37+00:00",
+      "captured_at": "2026-07-04T13:01:19+00:00",
       "preds": {
         "model": [
           0.0304,
@@ -5108,7 +5108,7 @@
       "team_a": "Brazil",
       "team_b": "Norway",
       "kickoff_utc": "2026-07-05T20:00:00Z",
-      "captured_at": "2026-07-04T11:49:37+00:00",
+      "captured_at": "2026-07-04T13:01:19+00:00",
       "preds": {
         "model": [
           0.2843,
@@ -5134,9 +5134,42 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M092__W79__vs__W80": {
+      "match_number": 92,
+      "stage": "round_of_16",
+      "team_a": "Mexico",
+      "team_b": "England",
+      "kickoff_utc": "2026-07-06T00:00:00Z",
+      "captured_at": "2026-07-04T13:01:19+00:00",
+      "preds": {
+        "model": [
+          0.0908,
+          0.1551,
+          0.754
+        ],
+        "dt": [
+          0.0639,
+          0.1259,
+          0.8102
+        ],
+        "market": [
+          0.3403,
+          0.2573,
+          0.4024
+        ],
+        "hybrid": [
+          0.165,
+          0.1795,
+          0.6555
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-04T11:49:37+00:00",
+  "updated_at": "2026-07-04T13:01:19+00:00",
   "summary": {
     "matches_scored": 72,
     "model": {
