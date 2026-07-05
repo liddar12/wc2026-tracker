@@ -581,7 +581,8 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-07-05T20:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_IN_PROGRESS",
+      "minute": "2"
     },
     "Mexico__vs__England": {
       "score_a": 0,
@@ -618,5 +619,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-05T19:57:16+00:00"
+  "last_updated": "2026-07-05T20:02:14+00:00"
 }
