@@ -38,41 +38,41 @@
   {
     "team_a": "Brazil",
     "team_b": "Japan",
-    "composite_a": 78.8,
+    "composite_a": 78.7,
     "composite_b": 78.9,
-    "gap": 0.1,
+    "gap": 0.2,
     "probabilities": {
-      "team_a_wins": 36.4,
+      "team_a_wins": 36.1,
       "draw": 26.8,
-      "team_b_wins": 36.9
+      "team_b_wins": 37.1
     },
     "expected_points": {
-      "team_a": 1.36,
-      "team_b": 1.37
+      "team_a": 1.35,
+      "team_b": 1.38
     },
     "predicted_winner": "Japan",
-    "win_confidence_pct": 50.3,
+    "win_confidence_pct": 50.7,
     "upset_risk": {
       "favored": "Japan",
       "underdog": "Brazil",
-      "gap": 0.1,
+      "gap": 0.2,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 0.1 points"
+          "detail": "Composite gap only 0.2 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 36.4,
+      "team_a_wins": 36.1,
       "draw": 26.8,
-      "team_b_wins": 36.9
+      "team_b_wins": 37.1
     },
-    "hybrid_gap": 0.1,
-    "advance_pct_a": 49.7,
-    "advance_pct_b": 50.3,
+    "hybrid_gap": 0.2,
+    "advance_pct_a": 49.3,
+    "advance_pct_b": 50.7,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M076__1C__vs__2F",
@@ -678,34 +678,34 @@
   {
     "team_a": "Brazil",
     "team_b": "Norway",
-    "composite_a": 78.8,
+    "composite_a": 78.7,
     "composite_b": 82.4,
-    "gap": 3.6,
+    "gap": 3.7,
     "probabilities": {
-      "team_a_wins": 28.4,
-      "draw": 26.1,
-      "team_b_wins": 45.6
+      "team_a_wins": 28.2,
+      "draw": 26.0,
+      "team_b_wins": 45.8
     },
     "expected_points": {
-      "team_a": 1.11,
+      "team_a": 1.1,
       "team_b": 1.63
     },
     "predicted_winner": "Norway",
-    "win_confidence_pct": 61.6,
+    "win_confidence_pct": 61.9,
     "upset_risk": {
       "favored": "Norway",
       "underdog": "Brazil",
-      "gap": 3.6,
+      "gap": 3.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 28.4,
-      "draw": 26.1,
-      "team_b_wins": 45.6
+      "team_a_wins": 28.2,
+      "draw": 26.0,
+      "team_b_wins": 45.8
     },
-    "hybrid_gap": 3.6,
-    "advance_pct_a": 38.4,
-    "advance_pct_b": 61.6,
+    "hybrid_gap": 3.7,
+    "advance_pct_a": 38.1,
+    "advance_pct_b": 61.9,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M091__W76__vs__W78",

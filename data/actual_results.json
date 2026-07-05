@@ -578,10 +578,11 @@
       "winner": "France"
     },
     "Brazil__vs__Norway": {
-      "score_a": 0,
+      "score_a": 1,
       "score_b": 2,
       "kickoff_utc": "2026-07-05T20:00Z",
-      "status": "STATUS_SECOND_HALF"
+      "status": "STATUS_FULL_TIME",
+      "winner": "Norway"
     },
     "Mexico__vs__England": {
       "score_a": 0,
@@ -618,5 +619,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-05T21:53:03+00:00"
+  "last_updated": "2026-07-05T22:16:09+00:00"
 }
