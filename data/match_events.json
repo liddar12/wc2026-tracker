@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-05T23:58:01+00:00",
+    "updated_at": "2026-07-06T03:22:17+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3445,6 +3445,83 @@
         "team": "Brazil"
       }
     ],
-    "updated_at": "2026-07-05T23:58:01+00:00"
+    "updated_at": "2026-07-06T03:22:17+00:00"
+  },
+  "Mexico__vs__England": {
+    "events": [
+      {
+        "minute": "1'",
+        "type": "yellow",
+        "player": "Declan Rice",
+        "team": "England"
+      },
+      {
+        "minute": "36'",
+        "type": "goal",
+        "player": "Jude Bellingham",
+        "team": "England"
+      },
+      {
+        "minute": "38'",
+        "type": "goal",
+        "player": "Jude Bellingham",
+        "team": "England"
+      },
+      {
+        "minute": "42'",
+        "type": "goal",
+        "player": "Julián Quiñones",
+        "team": "Mexico"
+      },
+      {
+        "minute": "54'",
+        "type": "red",
+        "player": "Jarell Quansah",
+        "team": "England"
+      },
+      {
+        "minute": "60'",
+        "type": "pen-goal",
+        "player": "Harry Kane",
+        "team": "England"
+      },
+      {
+        "minute": "68'",
+        "type": "yellow",
+        "player": "Marc Guéhi",
+        "team": "England"
+      },
+      {
+        "minute": "69'",
+        "type": "pen-goal",
+        "player": "Raúl Jiménez",
+        "team": "Mexico"
+      },
+      {
+        "minute": "71'",
+        "type": "yellow",
+        "player": "Jorge Sánchez",
+        "team": "Mexico"
+      },
+      {
+        "minute": "72'",
+        "type": "yellow",
+        "player": "Nico O'Reilly",
+        "team": "England"
+      },
+      {
+        "minute": "90'+8'",
+        "type": "yellow",
+        "player": "Johan Vásquez",
+        "team": "Mexico"
+      },
+      {
+        "minute": "90'+8'",
+        "type": "yellow",
+        "player": "Jordan Henderson",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-06T03:22:17+00:00"
   }
 }

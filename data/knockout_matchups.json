@@ -232,34 +232,34 @@
   {
     "team_a": "Mexico",
     "team_b": "Ecuador",
-    "composite_a": 74.6,
+    "composite_a": 74.5,
     "composite_b": 69.3,
-    "gap": 5.3,
+    "gap": 5.2,
     "probabilities": {
-      "team_a_wins": 49.9,
+      "team_a_wins": 49.7,
       "draw": 25.3,
-      "team_b_wins": 24.8
+      "team_b_wins": 25.0
     },
     "expected_points": {
-      "team_a": 1.75,
+      "team_a": 1.74,
       "team_b": 1.0
     },
     "predicted_winner": "Mexico",
-    "win_confidence_pct": 66.8,
+    "win_confidence_pct": 66.5,
     "upset_risk": {
       "favored": "Mexico",
       "underdog": "Ecuador",
-      "gap": 5.3,
+      "gap": 5.2,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 49.9,
+      "team_a_wins": 49.7,
       "draw": 25.3,
-      "team_b_wins": 24.8
+      "team_b_wins": 25.0
     },
-    "hybrid_gap": 5.3,
-    "advance_pct_a": 66.8,
-    "advance_pct_b": 33.2,
+    "hybrid_gap": 5.2,
+    "advance_pct_a": 66.5,
+    "advance_pct_b": 33.5,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M079__1A__vs__3_CEFHI",
@@ -268,12 +268,12 @@
   {
     "team_a": "England",
     "team_b": "DR Congo",
-    "composite_a": 89.5,
+    "composite_a": 89.6,
     "composite_b": 67.8,
-    "gap": 21.7,
+    "gap": 21.8,
     "probabilities": {
-      "team_a_wins": 86.4,
-      "draw": 9.7,
+      "team_a_wins": 86.6,
+      "draw": 9.6,
       "team_b_wins": 3.9
     },
     "expected_points": {
@@ -285,15 +285,15 @@
     "upset_risk": {
       "favored": "England",
       "underdog": "DR Congo",
-      "gap": 21.7,
+      "gap": 21.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 86.4,
-      "draw": 9.7,
+      "team_a_wins": 86.6,
+      "draw": 9.6,
       "team_b_wins": 3.9
     },
-    "hybrid_gap": 21.7,
+    "hybrid_gap": 21.8,
     "advance_pct_a": 95.7,
     "advance_pct_b": 4.3,
     "is_knockout": true,
@@ -714,34 +714,34 @@
   {
     "team_a": "Mexico",
     "team_b": "England",
-    "composite_a": 74.6,
-    "composite_b": 89.5,
-    "gap": 14.9,
+    "composite_a": 74.5,
+    "composite_b": 89.6,
+    "gap": 15.1,
     "probabilities": {
-      "team_a_wins": 9.6,
-      "draw": 16.8,
-      "team_b_wins": 73.6
+      "team_a_wins": 9.4,
+      "draw": 16.6,
+      "team_b_wins": 74.0
     },
     "expected_points": {
-      "team_a": 0.46,
-      "team_b": 2.37
+      "team_a": 0.45,
+      "team_b": 2.39
     },
     "predicted_winner": "England",
-    "win_confidence_pct": 88.4,
+    "win_confidence_pct": 88.7,
     "upset_risk": {
       "favored": "England",
       "underdog": "Mexico",
-      "gap": 14.9,
+      "gap": 15.1,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 9.6,
-      "draw": 16.8,
-      "team_b_wins": 73.6
+      "team_a_wins": 9.4,
+      "draw": 16.6,
+      "team_b_wins": 74.0
     },
-    "hybrid_gap": 14.9,
-    "advance_pct_a": 11.6,
-    "advance_pct_b": 88.4,
+    "hybrid_gap": 15.1,
+    "advance_pct_a": 11.3,
+    "advance_pct_b": 88.7,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M092__W79__vs__W80",
