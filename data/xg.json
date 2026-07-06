@@ -872,6 +872,15 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "Norway__vs__England": {
+    "team_a": "Norway",
+    "team_b": "England",
+    "team_a_xg": 1.19,
+    "team_b_xg": 1.75,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -882,6 +891,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-06T03:22:25+00:00"
+    "computed_at": "2026-07-06T04:43:58+00:00"
   }
 }

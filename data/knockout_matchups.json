@@ -940,5 +940,41 @@
     "stage": "quarterfinals",
     "match_id": "M097__W89__vs__W90",
     "kickoff_utc": "2026-07-09T20:00:00Z"
+  },
+  {
+    "team_a": "Norway",
+    "team_b": "England",
+    "composite_a": 82.4,
+    "composite_b": 89.6,
+    "gap": 7.2,
+    "probabilities": {
+      "team_a_wins": 21.1,
+      "draw": 24.1,
+      "team_b_wins": 54.8
+    },
+    "expected_points": {
+      "team_a": 0.87,
+      "team_b": 1.89
+    },
+    "predicted_winner": "England",
+    "win_confidence_pct": 72.2,
+    "upset_risk": {
+      "favored": "England",
+      "underdog": "Norway",
+      "gap": 7.2,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 21.1,
+      "draw": 24.1,
+      "team_b_wins": 54.8
+    },
+    "hybrid_gap": 7.2,
+    "advance_pct_a": 27.8,
+    "advance_pct_b": 72.2,
+    "is_knockout": true,
+    "stage": "quarterfinals",
+    "match_id": "M099__W91__vs__W92",
+    "kickoff_utc": "2026-07-11T21:00:00Z"
   }
 ]
