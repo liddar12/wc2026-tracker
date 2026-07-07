@@ -1012,5 +1012,41 @@
     "stage": "quarterfinals",
     "match_id": "M099__W91__vs__W92",
     "kickoff_utc": "2026-07-11T21:00:00Z"
+  },
+  {
+    "team_a": "Argentina",
+    "team_b": "Switzerland",
+    "composite_a": 84.0,
+    "composite_b": 77.4,
+    "gap": 6.6,
+    "probabilities": {
+      "team_a_wins": 53.3,
+      "draw": 24.5,
+      "team_b_wins": 22.3
+    },
+    "expected_points": {
+      "team_a": 1.84,
+      "team_b": 0.91
+    },
+    "predicted_winner": "Argentina",
+    "win_confidence_pct": 70.5,
+    "upset_risk": {
+      "favored": "Argentina",
+      "underdog": "Switzerland",
+      "gap": 6.6,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 53.3,
+      "draw": 24.5,
+      "team_b_wins": 22.3
+    },
+    "hybrid_gap": 6.6,
+    "advance_pct_a": 70.5,
+    "advance_pct_b": 29.5,
+    "is_knockout": true,
+    "stage": "quarterfinals",
+    "match_id": "M100__W95__vs__W96",
+    "kickoff_utc": "2026-07-12T01:00:00Z"
   }
 ]

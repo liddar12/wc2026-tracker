@@ -616,7 +616,11 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-07-07T20:00Z",
-      "status": "STATUS_OVERTIME"
+      "status": "STATUS_FINAL_PEN",
+      "winner": "Switzerland",
+      "method": "pens",
+      "shootout_a": 4,
+      "shootout_b": 3
     }
   },
   "quarterfinals": {
@@ -630,5 +634,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-07T22:21:28+00:00"
+  "last_updated": "2026-07-07T23:17:00+00:00"
 }

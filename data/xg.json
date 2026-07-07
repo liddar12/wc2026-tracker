@@ -890,6 +890,15 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "Argentina__vs__Switzerland": {
+    "team_a": "Argentina",
+    "team_b": "Switzerland",
+    "team_a_xg": 1.81,
+    "team_b_xg": 1.13,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -900,6 +909,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-07T22:21:32+00:00"
+    "computed_at": "2026-07-07T23:18:05+00:00"
   }
 }
