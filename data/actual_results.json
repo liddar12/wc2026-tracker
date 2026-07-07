@@ -602,7 +602,8 @@
       "score_a": 0,
       "score_b": 0,
       "kickoff_utc": "2026-07-07T00:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_IN_PROGRESS",
+      "minute": "7"
     },
     "Argentina__vs__Egypt": {
       "score_a": 0,
@@ -617,9 +618,16 @@
       "status": "STATUS_SCHEDULED"
     }
   },
-  "quarterfinals": {},
+  "quarterfinals": {
+    "France__vs__Morocco": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-09T20:00Z",
+      "status": "STATUS_SCHEDULED"
+    }
+  },
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-06T23:00:54+00:00"
+  "last_updated": "2026-07-07T00:07:53+00:00"
 }
