@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-07T15:58:48+00:00",
+    "updated_at": "2026-07-07T17:31:29+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3551,7 +3551,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-07T15:58:48+00:00"
+    "updated_at": "2026-07-07T17:31:29+00:00"
   },
   "USA__vs__Belgium": {
     "events": [
@@ -3598,6 +3598,23 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-07T15:58:48+00:00"
+    "updated_at": "2026-07-07T17:31:29+00:00"
+  },
+  "Argentina__vs__Egypt": {
+    "events": [
+      {
+        "minute": "15'",
+        "type": "goal",
+        "player": "Yasser Ibrahim",
+        "team": "Egypt"
+      },
+      {
+        "minute": "61'",
+        "type": "yellow",
+        "player": "Mostafa Zico",
+        "team": "Egypt"
+      }
+    ],
+    "updated_at": "2026-07-07T17:31:29+00:00"
   }
 }
