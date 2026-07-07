@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-07T17:31:29+00:00",
+    "updated_at": "2026-07-07T17:52:27+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3551,7 +3551,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-07T17:31:29+00:00"
+    "updated_at": "2026-07-07T17:52:27+00:00"
   },
   "USA__vs__Belgium": {
     "events": [
@@ -3598,7 +3598,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-07T17:31:29+00:00"
+    "updated_at": "2026-07-07T17:52:27+00:00"
   },
   "Argentina__vs__Egypt": {
     "events": [
@@ -3609,12 +3609,24 @@
         "team": "Egypt"
       },
       {
-        "minute": "61'",
-        "type": "yellow",
+        "minute": "67'",
+        "type": "goal",
         "player": "Mostafa Zico",
         "team": "Egypt"
+      },
+      {
+        "minute": "79'",
+        "type": "goal",
+        "player": "Cristian Romero",
+        "team": "Argentina"
+      },
+      {
+        "minute": "83'",
+        "type": "goal",
+        "player": "Lionel Messi",
+        "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-07T17:31:29+00:00"
+    "updated_at": "2026-07-07T17:52:27+00:00"
   }
 }
