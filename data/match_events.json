@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-07T21:10:05+00:00",
+    "updated_at": "2026-07-07T21:48:29+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3657,6 +3657,29 @@
         "team": "Egypt"
       }
     ],
-    "updated_at": "2026-07-07T21:10:05+00:00"
+    "updated_at": "2026-07-07T21:48:29+00:00"
+  },
+  "Switzerland__vs__Colombia": {
+    "events": [
+      {
+        "minute": "51'",
+        "type": "yellow",
+        "player": "Granit Xhaka",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "59'",
+        "type": "yellow",
+        "player": "Denis Zakaria",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "60'",
+        "type": "yellow",
+        "player": "Luis Suárez",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-07T21:48:29+00:00"
   }
 }
