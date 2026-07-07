@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-07T00:07:54+00:00",
+    "updated_at": "2026-07-07T01:11:49+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3551,6 +3551,35 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-07T00:07:54+00:00"
+    "updated_at": "2026-07-07T01:11:49+00:00"
+  },
+  "USA__vs__Belgium": {
+    "events": [
+      {
+        "minute": "9'",
+        "type": "goal",
+        "player": "Charles De Ketelaere",
+        "team": "Belgium"
+      },
+      {
+        "minute": "31'",
+        "type": "goal",
+        "player": "Malik Tillman",
+        "team": "USA"
+      },
+      {
+        "minute": "33'",
+        "type": "goal",
+        "player": "Charles De Ketelaere",
+        "team": "Belgium"
+      },
+      {
+        "minute": "35'",
+        "type": "yellow",
+        "player": "Weston McKennie",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-07-07T01:11:49+00:00"
   }
 }

@@ -599,11 +599,10 @@
       "winner": "Spain"
     },
     "USA__vs__Belgium": {
-      "score_a": 0,
-      "score_b": 0,
+      "score_a": 1,
+      "score_b": 2,
       "kickoff_utc": "2026-07-07T00:00Z",
-      "status": "STATUS_IN_PROGRESS",
-      "minute": "7"
+      "status": "STATUS_SECOND_HALF"
     },
     "Argentina__vs__Egypt": {
       "score_a": 0,
@@ -629,5 +628,5 @@
   "semifinals": {},
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-07T00:07:53+00:00"
+  "last_updated": "2026-07-07T01:10:41+00:00"
 }
