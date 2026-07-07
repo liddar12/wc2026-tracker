@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-07T17:52:27+00:00",
+    "updated_at": "2026-07-07T19:42:20+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3551,7 +3551,7 @@
         "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-07T17:52:27+00:00"
+    "updated_at": "2026-07-07T19:42:20+00:00"
   },
   "USA__vs__Belgium": {
     "events": [
@@ -3598,7 +3598,7 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-07T17:52:27+00:00"
+    "updated_at": "2026-07-07T19:42:20+00:00"
   },
   "Argentina__vs__Egypt": {
     "events": [
@@ -3625,8 +3625,38 @@
         "type": "goal",
         "player": "Lionel Messi",
         "team": "Argentina"
+      },
+      {
+        "minute": "90'+2'",
+        "type": "goal",
+        "player": "Enzo Fernández",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Mostafa Shoubir",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "yellow",
+        "player": "Hamdy Fathy",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+8'",
+        "type": "yellow",
+        "player": "Marawan Attia",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+12'",
+        "type": "yellow",
+        "player": "Haissem Hassan",
+        "team": "Egypt"
       }
     ],
-    "updated_at": "2026-07-07T17:52:27+00:00"
+    "updated_at": "2026-07-07T19:42:20+00:00"
   }
 }
