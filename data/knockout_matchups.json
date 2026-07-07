@@ -942,6 +942,42 @@
     "kickoff_utc": "2026-07-09T20:00:00Z"
   },
   {
+    "team_a": "Spain",
+    "team_b": "Belgium",
+    "composite_a": 87.9,
+    "composite_b": 79.9,
+    "gap": 8.0,
+    "probabilities": {
+      "team_a_wins": 56.9,
+      "draw": 23.5,
+      "team_b_wins": 19.7
+    },
+    "expected_points": {
+      "team_a": 1.94,
+      "team_b": 0.82
+    },
+    "predicted_winner": "Spain",
+    "win_confidence_pct": 74.3,
+    "upset_risk": {
+      "favored": "Spain",
+      "underdog": "Belgium",
+      "gap": 8.0,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 56.9,
+      "draw": 23.5,
+      "team_b_wins": 19.7
+    },
+    "hybrid_gap": 8.0,
+    "advance_pct_a": 74.3,
+    "advance_pct_b": 25.7,
+    "is_knockout": true,
+    "stage": "quarterfinals",
+    "match_id": "M098__W93__vs__W94",
+    "kickoff_utc": "2026-07-10T19:00:00Z"
+  },
+  {
     "team_a": "Norway",
     "team_b": "England",
     "composite_a": 82.5,
