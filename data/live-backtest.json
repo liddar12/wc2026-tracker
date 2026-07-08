@@ -5299,9 +5299,42 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M097__W89__vs__W90": {
+      "match_number": 97,
+      "stage": "quarterfinals",
+      "team_a": "France",
+      "team_b": "Morocco",
+      "kickoff_utc": "2026-07-09T20:00:00Z",
+      "captured_at": "2026-07-08T09:12:17+00:00",
+      "preds": {
+        "model": [
+          0.5265,
+          0.2389,
+          0.2346
+        ],
+        "dt": [
+          0.7322,
+          0.1656,
+          0.1022
+        ],
+        "market": [
+          0.6876,
+          0.1855,
+          0.1269
+        ],
+        "hybrid": [
+          0.6488,
+          0.1967,
+          0.1546
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-08T06:42:04+00:00",
+  "updated_at": "2026-07-08T09:12:17+00:00",
   "summary": {
     "matches_scored": 72,
     "model": {
