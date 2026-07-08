@@ -1655,7 +1655,7 @@
         "probabilities": {
           "team_a_wins": 67.9,
           "draw": 18.7,
-          "team_b_wins": 13.4
+          "team_b_wins": 13.3
         },
         "expected_points": {
           "team_a": 2.23,
@@ -2176,16 +2176,16 @@
         "composite_b": 82.5,
         "gap": 4.4,
         "probabilities": {
-          "team_a_wins": 55.9,
-          "draw": 23.1,
-          "team_b_wins": 21.0
+          "team_a_wins": 56.1,
+          "draw": 23.0,
+          "team_b_wins": 20.9
         },
         "expected_points": {
           "team_a": 1.91,
           "team_b": 0.86
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 55.9,
+        "win_confidence_pct": 56.1,
         "upset_risk": {
           "favored": "France",
           "underdog": "Norway",
@@ -2259,15 +2259,15 @@
         "gap": 5.7,
         "probabilities": {
           "team_a_wins": 16.8,
-          "draw": 18.7,
-          "team_b_wins": 64.5
+          "draw": 18.8,
+          "team_b_wins": 64.4
         },
         "expected_points": {
           "team_a": 0.69,
           "team_b": 2.12
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 64.5,
+        "win_confidence_pct": 64.4,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Senegal",
@@ -2333,16 +2333,16 @@
         "composite_b": 58.2,
         "gap": 24.3,
         "probabilities": {
-          "team_a_wins": 77.7,
-          "draw": 13.4,
-          "team_b_wins": 8.8
+          "team_a_wins": 77.5,
+          "draw": 13.5,
+          "team_b_wins": 9.0
         },
         "expected_points": {
-          "team_a": 2.47,
+          "team_a": 2.46,
           "team_b": 0.4
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 77.7,
+        "win_confidence_pct": 77.5,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Iraq",
