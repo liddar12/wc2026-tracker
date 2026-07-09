@@ -29,10 +29,11 @@ export const MODEL_DESCRIPTIONS = {
   // the DT pipeline README), Monte-Carlo'd into title odds.
   dt: 'Elo + squad market value blend (0.6/0.4), bivariate-Poisson Monte-Carlo title odds (20k sims).',
   kalshi: 'Live tournament-winner odds from prediction markets.',
-  hybrid: 'Equal ⅓ blend of J5L + DT + Markets, run through the Poisson Monte-Carlo bracket. The default forecast across the app.',
+  hybrid: 'Equal ⅓ blend of J5L + DT + Markets, run through the Poisson Monte-Carlo bracket.',
   // R17: "J5L AI Enhanced" — an ML-calibrated blend of J5L + DT whose weight is
   // re-fit from this tournament's played results every data refresh (data/stacker.json).
-  stack: 'ML-calibrated blend of J5L + DT, learning from this World Cup — the J5L/DT weight is re-fit from played results each update.',
+  // Now the DEFAULT forecast across the app.
+  stack: 'The default forecast: an ML-calibrated blend of J5L + DT, learning from this World Cup — the J5L/DT weight is re-fit from played results each update.',
 };
 
 // The bracket-autofill.js module already uses single-token keys for the
@@ -50,12 +51,12 @@ const LS_DEFAULT = 'wc26.settings.defaultModel';
 
 export function getDefaultModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
-  if (!storage) return 'hybrid';
+  if (!storage) return 'stack';
   try {
     const v = storage.getItem(LS_DEFAULT);
     if (v && MODELS.includes(v)) return v;
   } catch {}
-  return 'hybrid';
+  return 'stack';
 }
 
 export function setDefaultModel(model, storage) {
@@ -71,7 +72,7 @@ export function setDefaultModel(model, storage) {
 
 export function getActiveModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
-  if (!storage) return 'hybrid';
+  if (!storage) return 'stack';
   try {
     const v = storage.getItem(LS_ACTIVE);
     if (v && MODELS.includes(v)) return v;

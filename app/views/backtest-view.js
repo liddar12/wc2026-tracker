@@ -13,7 +13,7 @@ const PANEL_TITLES = {
 };
 
 const LIVE_LABELS = {
-  model: 'J5L', dt: 'DT', market: 'Market (Kalshi)', polymarket: 'Polymarket', hybrid: 'Hybrid (⅓·⅓·⅓)',
+  stack: 'J5L AI Enhanced', model: 'J5L', dt: 'DT', market: 'Market (Kalshi)', polymarket: 'Polymarket', hybrid: 'Hybrid (⅓·⅓·⅓)',
 };
 
 export async function renderBacktestView(root) {
@@ -112,7 +112,7 @@ function renderLivePanel(live) {
   const section = document.createElement('section');
   section.className = 'home-card';
   section.style.marginBottom = '12px';
-  const rows = ['model', 'dt', 'market', 'polymarket', 'hybrid']
+  const rows = ['stack', 'model', 'dt', 'market', 'polymarket', 'hybrid']
     .map((k) => (live[k] ? renderRow(LIVE_LABELS[k] || k, { ...live[k], measured: true }) : ''))
     .join('');
   section.innerHTML = `

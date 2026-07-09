@@ -42,7 +42,7 @@ UA = {"User-Agent": "wc26-tracker/1.0 (live-backtest)", "Accept": "application/j
 CAPTURE_LEAD_HRS = 36        # start (and keep refreshing) the snapshot this long before kickoff
 FINAL_STATUS = {"STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME"}
 STAGES = ["group_stage", "round_of_32", "round_of_16", "quarterfinals", "semifinals", "third_place", "final"]
-MODELS = ["model", "dt", "market", "polymarket", "hybrid"]
+MODELS = ["model", "dt", "market", "polymarket", "hybrid", "stack"]
 EPS = 1e-6
 
 # Polymarket / display team name → canonical teams.json key.
@@ -108,7 +108,9 @@ def build_signals():
             jp = m.get("j5l_probabilities") or m.get("probabilities")
             if jp:
                 j5lp[(m["team_a"], m["team_b"])] = jp
-    return dict(idx=idx, z_j5l=z_j5l, z_dt=z_dt, z_kal=z_kal, mo=mo, j5lp=j5lp)
+    # "J5L AI Enhanced" (stack): learned alpha weight on z(J5L) vs z(DT).
+    stack_alpha = float((bh.load("stacker.json") or {}).get("alpha", 0.68))
+    return dict(idx=idx, z_j5l=z_j5l, z_dt=z_dt, z_kal=z_kal, mo=mo, j5lp=j5lp, stack_alpha=stack_alpha)
 
 
 def model_preds(a, b, sig):
@@ -141,7 +143,12 @@ def model_preds(a, b, sig):
     h = [(j[i] + d[i] + k[i]) / 3 for i in range(3)]
     t = sum(h) or 1.0
     h = [x / t for x in h]
-    return {"model": list(j), "dt": list(d), "market": list(k), "hybrid": h}
+    # Stack ("J5L AI Enhanced") — learned alpha blend of the z(J5L)/z(DT) gaps,
+    # run through the same bivariate-Poisson as the deployed data/stacker.json.
+    al = sig["stack_alpha"]
+    st = bh.wdl(al * float(sig["z_j5l"][ia] - sig["z_j5l"][ib])
+                + (1 - al) * float(sig["z_dt"][ia] - sig["z_dt"][ib]))
+    return {"model": list(j), "dt": list(d), "market": list(k), "hybrid": h, "stack": list(st)}
 
 
 # ---- Polymarket live per-match ---------------------------------------------

@@ -10,9 +10,9 @@ import { escapeHtml } from '../lib/escape.js';
 import { emptyState } from '../lib/empty-state.js';
 
 // Same label map as backtest-view.js LIVE_LABELS — keep in sync.
-const MODELS = ['model', 'dt', 'market', 'polymarket', 'hybrid'];
+const MODELS = ['stack', 'model', 'dt', 'market', 'polymarket', 'hybrid'];
 const LABELS = {
-  model: 'J5L', dt: 'DT', market: 'Market', polymarket: 'Polymarket', hybrid: 'Hybrid',
+  stack: 'J5L AI Enhanced', model: 'J5L', dt: 'DT', market: 'Market', polymarket: 'Polymarket', hybrid: 'Hybrid',
 };
 const ACTUAL_LABEL = {
   team_a_wins: 'a', draw: 'draw', team_b_wins: 'b',

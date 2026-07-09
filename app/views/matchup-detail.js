@@ -32,7 +32,8 @@ import { renderMatchStats } from '../components/match-stats.js';
 import { renderMomentum } from '../components/momentum-chart.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
-import { hybridProb } from '../hybrid-model.js';
+import { modelPickForMatch } from '../lib/model-pick.js';
+import { getActiveModel, MODEL_LABELS } from '../lib/active-model.js';
 import { mergedMarkets } from '../markets.js';
 import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
 import { t } from '../lib/i18n.js';
@@ -157,10 +158,10 @@ export function renderMatchupDetail(root, data, params) {
       // W/D/L bar underneath for the 90-minute outcome.
       modelCol.appendChild(advanceHeadline(match));
       modelCol.appendChild(confidenceBar(match, { title: 'Regulation result (W / D / L)' }));
-      modelCol.appendChild(hybridPill(match, data.markets));
+      modelCol.appendChild(pickPill(match, data));
     } else if (hasModel) {
       modelCol.appendChild(confidenceBar(match, { title: 'Model' }));
-      modelCol.appendChild(hybridPill(match, data.markets));
+      modelCol.appendChild(pickPill(match, data));
 
       const compSec = document.createElement('div');
       compSec.className = 'section model-section';
@@ -463,10 +464,14 @@ export function resolveMatch(data, a, b) {
   return null;
 }
 
-function hybridPill(match, markets) {
+// The headline pick follows the ACTIVE forecast model (default: "J5L AI
+// Enhanced"), not a hard-coded hybrid — so switching the model in the picker (or
+// the app default) changes this pick too.
+function pickPill(match, data) {
   const wrap = document.createElement('div');
   wrap.className = 'hybrid-pill';
-  const hp = hybridProb(match, markets);
+  const model = getActiveModel();
+  const hp = modelPickForMatch(match, data);
   if (!hp) {
     wrap.hidden = true;
     return wrap;
@@ -474,12 +479,19 @@ function hybridPill(match, markets) {
   const sideLabel = hp.side === 'team_a' ? match.team_a
     : hp.side === 'team_b' ? match.team_b
     : 'Draw';
-  const sourceLabel = hp.source === 'hybrid' ? 'hybrid + live match market' : 'hybrid (⅓ J5L+DT+Markets)';
+  const label = `${MODEL_LABELS[model] || 'Model'} pick`;
+  const srcMap = {
+    stack: 'ML J5L+DT blend (learning)',
+    hybrid: hp.source === 'hybrid' ? 'hybrid + live match market' : 'hybrid (⅓ J5L+DT+Markets)',
+    j5l: 'J5L composite',
+    dt: 'DT rating',
+    kalshi: 'market win odds',
+  };
   wrap.innerHTML = `
-    <span class="hybrid-pill-label">Hybrid pick</span>
+    <span class="hybrid-pill-label">${escapeHtml(label)}</span>
     <strong>${escapeHtml(sideLabel)}</strong>
     <span class="hybrid-pill-pct">${hp.prob_pct}%</span>
-    <span class="muted hybrid-pill-src">${escapeHtml(sourceLabel)}</span>
+    <span class="muted hybrid-pill-src">${escapeHtml(srcMap[model] || '')}</span>
   `;
   return wrap;
 }
