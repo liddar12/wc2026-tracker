@@ -1,0 +1,48 @@
+{
+  "n_matches": 72,
+  "objective": "multiclass logloss (LOO on locked pre-kickoff preds)",
+  "results": {
+    "equal_thirds": {
+      "n": 72,
+      "acc": 0.6389,
+      "brier": 0.4921,
+      "logloss": 0.8453
+    },
+    "current_hybrid_weights": {
+      "n": 72,
+      "acc": 0.6389,
+      "brier": 0.4913,
+      "logloss": 0.8436
+    },
+    "solo_model": {
+      "n": 72,
+      "acc": 0.6528,
+      "brier": 0.5098,
+      "logloss": 0.9053
+    },
+    "solo_dt": {
+      "n": 72,
+      "acc": 0.625,
+      "brier": 0.5023,
+      "logloss": 0.8589
+    },
+    "solo_market": {
+      "n": 72,
+      "acc": 0.6667,
+      "brier": 0.4898,
+      "logloss": 0.8329
+    },
+    "stacker_logistic": {
+      "n": 72,
+      "acc": 0.6528,
+      "brier": 0.498,
+      "logloss": 0.8208
+    },
+    "stacker_gbm": {
+      "n": 72,
+      "acc": 0.6111,
+      "brier": 0.5826,
+      "logloss": 1.0319
+    }
+  }
+}

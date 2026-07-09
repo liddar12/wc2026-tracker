@@ -1,0 +1,26 @@
+{
+  "note": "ranking vs actual 2026 progression (rounds reached)",
+  "n_teams": 48,
+  "models": {
+    "J5L_composite": {
+      "spearman": 0.712,
+      "p_at_8": 0.625,
+      "p_at_16": 0.688
+    },
+    "DT_rating": {
+      "spearman": 0.673,
+      "p_at_8": 0.5,
+      "p_at_16": 0.625
+    },
+    "Hybrid_champodds": {
+      "spearman": 0.629,
+      "p_at_8": 1.0,
+      "p_at_16": 0.688
+    },
+    "J5L_ext_talentcoach": {
+      "spearman": 0.711,
+      "p_at_8": 0.625,
+      "p_at_16": 0.688
+    }
+  }
+}
