@@ -36,6 +36,10 @@ jobs:
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python3 scripts/proto/llm_qf_explain.py || true
+      - name: Print results to the run log (so they're readable without the artifact)
+        run: |
+          echo "===== context_report.json ====="; cat data/proto/context_report.json || true
+          echo "===== qf_explanations.json ====="; cat data/proto/qf_explanations.json || true
       - name: Upload results
         uses: actions/upload-artifact@v4
         with:
