@@ -8,6 +8,8 @@ python3 scripts/proto/backfill_talent_coach.py     # -> data/proto/talent_coach.
 python3 scripts/proto/stack_models.py              # -> data/proto/stacker_report.json
 python3 scripts/proto/run_prototypes.py            # -> data/proto/prototype_report.json  (A + B)
 python3 scripts/proto/ranking_eval.py              # -> data/proto/ranking_report.json
+python3 scripts/proto/context_adjust.py --backend rule   # -> data/proto/context_report.json (LLM/context layer)
+python3 scripts/proto/build_stacker.py             # -> data/proto/stacker.json (ship-ready artifact)
 ```
 
 Everything is evaluated **leak-safe** on the 2026 matches actually played
@@ -24,7 +26,8 @@ on training folds (`TimeSeriesSplit(5)` OOF or LOO). No fit-then-report-the-same
 | Backfill the dormant player-talent + coaching data? | **Done** — but it was already on disk (`players.json`, `position_ratings`, `coach.experience`). The prototype derives a best-XI **talent** signal + a **coach pedigree** signal and scales them into new sub-ratings. |
 | (A) Add talent+coach to the J5L composite? | **No measurable gain.** Talent correlates 0.81 with TMV (already the dominant input); the optimizer hands the new features ~0.04 weight and log-loss does not improve. |
 | (B) GBM match model instead of the Poisson composite? | **Worse** at this sample size (n=96): OOF acc 0.54 vs 0.73 for the composite. Trees overfit; the calibrated bivariate-Poisson wins. |
-| Combine DT + J5L (+market) with ML? | **Logistic stacker helps modestly** — group log-loss 0.844 → **0.821** (~3%). GBM stacker overfits (1.03). No accuracy gain. |
+| Combine DT + J5L (+market) with ML? | **Logistic stacker helps modestly** — group log-loss 0.844 → **0.821** (~3%). GBM stacker overfits (1.03). No accuracy gain. Exported ship-ready (`stacker.json` + `app/stack-model.js`). |
+| AI/LLM context layer for knockouts? | **No gain — data-limited, not method-limited.** Injuries dark; fatigue/H2H not keyed to KO; only derived rest-days available; n=24 too small. Claude backend built + dormant, pending a KO-context backfill. |
 | Projected-winners ranking near 90%? | **Already there for the elite tier** — the Hybrid champion-odds top-8 = the actual QF-8 exactly (**precision@8 = 1.00**). |
 | Knockout per-match accuracy near 90%? | Currently **~79% (19/24)**. At n=24 the gap to 90% is within noise; no variant reliably beats it. |
 
@@ -115,11 +118,51 @@ meets the 90% aspiration for the elite tier; talent+coach do not move it.
 
 ---
 
+## AI context layer for knockouts — `context_adjust.py`
+
+Per the "combine with AI, target the knockout rounds" ask. Two backends behind
+one interface: a deterministic **rule** nudge (backtested) and a **Claude** brief
+(built, dormant until `ANTHROPIC_API_KEY` is set — mirrors `generate_previews.py`).
+The layer adjusts the base J5L knockout probabilities with signals the composite
+never sees: rest days, travel, head-to-head.
+
+**Measured (LOO on the 24 played knockout matches):**
+
+| Variant | acc | brier | logloss |
+|---|---|---|---|
+| base J5L (Poisson) | **0.792** | **0.403** | **0.718** |
+| base, LOO-refit | 0.750 | 0.443 | 0.807 |
+| base + context (rest/travel/h2h) | 0.708 | 0.475 | 0.863 |
+
+**It does not help — and the reason is data, not method.** Two hard limits:
+
+1. **Coverage.** `injuries.json` is globally empty; `fatigue.json`/`h2h.json` are
+   keyed only to *group* fixtures (0 knockout coverage). The only KO context we
+   could get is **rest days**, which this prototype *derives* from the kickoff
+   chronology (full 24/24 coverage) — travel and H2H stay dark for KO.
+2. **Sample size.** 24 knockout matches is far too few to fit any adjustment; the
+   LOO refit overfits and loses to the calibrated Poisson base.
+
+An LLM layer would hit the same wall: thin inputs + 24 validation matches. The
+Claude backend is wired and ready, but shipping it should wait on the prerequisite
+**backfill of KO-keyed fatigue / H2H / injuries** — otherwise it can only echo the
+base model. This is the honest answer to "would AI push knockouts toward 90%": not
+at current data coverage.
+
+## Ship-ready stacker artifact — `build_stacker.py` + `app/stack-model.js`
+
+The logistic stacker is exported to `data/proto/stacker.json` (coefficients +
+intercept + LOO metrics). `app/stack-model.js` is a ~15-line pure function that
+applies it client-side (no Python at request time); `tests/feature/proto-stacker.
+test.mjs` locks the JS softmax against the sklearn fit (matches to 1e-4). Fitted
+LOO log-loss **0.821** vs equal-thirds 0.845. Wiring it as a live model source is
+a Gate-4 step (model-picker + cron + deploy) and is intentionally left for your OK.
+
 ## Recommendation
 
 1. **Ship the logistic stacker** as an optional blend source (the only measured
-   win). Keep it behind the existing model-picker; it does not disturb the other
-   models.
+   win). The artifact + client-side apply are ready; wiring is a Gate-4 step.
+   Keep it behind the existing model-picker; it does not disturb the other models.
 2. **Do not** wire talent+coach into the composite — redundant with TMV; keep the
    backfill as a data asset / matchup-detail enrichment instead.
 3. **Do not** replace the Poisson composite with a GBM at this sample size.

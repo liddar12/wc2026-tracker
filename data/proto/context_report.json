@@ -1,0 +1,27 @@
+{
+  "n_knockout": 24,
+  "context_coverage": {
+    "rest": 24,
+    "travel": 0,
+    "h2h": 0
+  },
+  "backend": "rule",
+  "base": {
+    "n": 24,
+    "acc": 0.7917,
+    "brier": 0.4029,
+    "logloss": 0.7179
+  },
+  "base_refit_loo": {
+    "n": 24,
+    "acc": 0.75,
+    "brier": 0.4428,
+    "logloss": 0.8067
+  },
+  "base_plus_context_loo": {
+    "n": 24,
+    "acc": 0.7083,
+    "brier": 0.4746,
+    "logloss": 0.8625
+  }
+}
