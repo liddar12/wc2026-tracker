@@ -24,7 +24,7 @@ function mockStorage(seed = {}) {
 }
 
 test('R12b/R16: MODELS list contains the documented models incl. DT', () => {
-  assert.deepEqual(MODELS, ['j5l', 'dt', 'kalshi', 'hybrid', 'consensus']);
+  assert.deepEqual(MODELS, ['j5l', 'dt', 'kalshi', 'hybrid', 'stack']);
   for (const m of MODELS) {
     assert.ok(MODEL_LABELS[m], `missing label for ${m}`);
     assert.ok(MODEL_TO_AUTOFILL_SOURCE[m], `missing autofill mapping for ${m}`);
@@ -49,8 +49,8 @@ test('R12b: setDefaultModel + getActiveModel chain', () => {
   // Active picks default when no explicit active is set
   assert.equal(getActiveModel(s), 'hybrid');
   // Setting active overrides default
-  setActiveModel('consensus', s);
-  assert.equal(getActiveModel(s), 'consensus');
+  setActiveModel('stack', s);
+  assert.equal(getActiveModel(s), 'stack');
   assert.equal(getDefaultModel(s), 'hybrid');
 });
 
@@ -59,7 +59,7 @@ test('R12b: modelToAutofillSource maps to bracket-autofill ids', () => {
   assert.equal(modelToAutofillSource('dt'), 'dt');
   assert.equal(modelToAutofillSource('kalshi'), 'kalshi');
   assert.equal(modelToAutofillSource('hybrid'), 'hybrid');
-  assert.equal(modelToAutofillSource('consensus'), 'consensus');
+  assert.equal(modelToAutofillSource('stack'), 'stack');
 });
 
 test('R12b: teamAnalytics returns sensible structure for each model', () => {
@@ -80,8 +80,12 @@ test('R12b: teamAnalytics returns sensible structure for each model', () => {
   assert.equal(hybrid.primary.label, 'Hybrid');
   assert.equal(hybrid.primary.value, '40'); // round((75.5 + 5.2)/2) = 40
 
-  const consensus = teamAnalytics('USA', data, 'consensus');
-  assert.equal(consensus.primary.label, 'Consensus');
+  // "J5L AI Enhanced" (stack): learned J5L+DT blend; chip shows the J5L composite
+  // headline under an "AI Blend" label, and ranks by the stacker strength.
+  const stackData = { ...data, stacker: { strengths: { USA: 1.4 } } };
+  const stack = teamAnalytics('USA', stackData, 'stack');
+  assert.equal(stack.primary.label, 'AI Blend');
+  assert.equal(stack.primary.value, '75.5');
 });
 
 test('R12b: rankTeamsByModel sorts by chosen signal', () => {

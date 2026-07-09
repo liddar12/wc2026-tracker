@@ -21,6 +21,7 @@ const SOURCE_LABELS = {
   dt: 'DT Model',
   kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
+  stack: 'J5L AI Enhanced',
   consensus: 'Public consensus',
 };
 

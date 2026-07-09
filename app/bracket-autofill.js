@@ -18,6 +18,7 @@ export const FILL_SOURCES = {
   dt:        { label: 'DT',        description: 'DT Model rating (player-talent + coaching, Elo-anchored)' },
   kalshi:    { label: 'Markets',    description: 'Market tournament-winner probability per team' },
   hybrid:    { label: '⅓·⅓·⅓',     description: 'Equal blend of J5L + DT + Markets (forecast hybrid strength)' },
+  stack:     { label: 'J5L AI Enhanced', description: 'ML-calibrated J5L + DT blend, weight re-fit from played results' },
   consensus: { label: 'Consensus', description: 'Most-picked team across all public pools' },
 };
 
@@ -81,6 +82,20 @@ function makeWinnerFn(data, source, consensusMap) {
         const sa = 0.5 * (teams[a]?.composite || 0) + 0.5 * (kalshiByTeam[a] || 0);
         const sb = 0.5 * (teams[b]?.composite || 0) + 0.5 * (kalshiByTeam[b] || 0);
         return sa >= sb ? a : b;
+      };
+    }
+    case 'stack': {
+      // "J5L AI Enhanced": compare the learned J5L+DT blend strength per team
+      // (data/stacker.json, weight re-fit each cron). Mirrors the hybrid source's
+      // strength comparison; falls back to the composite winner if absent.
+      const ss = data?.stacker?.strengths || {};
+      return (a, b) => {
+        if (a in ss || b in ss) {
+          const sa = ss[a] ?? -Infinity;
+          const sb = ss[b] ?? -Infinity;
+          return sa >= sb ? a : b;
+        }
+        return modelWinner(teams, a, b);
       };
     }
     case 'consensus':

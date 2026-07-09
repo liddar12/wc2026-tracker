@@ -41,6 +41,7 @@ const PAYLOADS = {
   'knockout_matchups.json': [{ stage: 'R32' }],
   'forecast.json': { teams: [{ team: 'Brazil', champion_pct: 0.2 }] },
   'dt_model.json': { team_rankings: [{ team: 'Brazil' }] },
+  'stacker.json': { alpha: 0.68, strengths: { Brazil: 1.2 } },
   // deferred
   'players.json': [{ name: 'Neymar', team: 'Brazil', position: 'FWD' }],
   'lineups.json': { 'A__vs__B': {} },
@@ -72,7 +73,7 @@ const PAYLOADS = {
 // The exact key set the partition must produce.
 const CRITICAL_KEYS = [
   'meta', 'teams', 'groupMatchups', 'schedule', 'actualResults',
-  'venues', 'scheduleFull', 'knockoutMatchups', 'forecast', 'dtModel',
+  'venues', 'scheduleFull', 'knockoutMatchups', 'forecast', 'dtModel', 'stacker',
 ];
 const DEFERRED_KEYS = [
   'players', 'lineups', 'referees', 'matchReferees', 'h2h', 'form',
