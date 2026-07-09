@@ -98,6 +98,14 @@
       "measured": true,
       "brier": 0.4921,
       "logloss": 0.8453
+    },
+    "stack": {
+      "correct": 47,
+      "total": 72,
+      "measured": true,
+      "brier": 0.4922,
+      "logloss": 0.8414,
+      "note": "Post-hoc for pre-R17 captures (current ratings); as-of going forward."
     }
   }
 }

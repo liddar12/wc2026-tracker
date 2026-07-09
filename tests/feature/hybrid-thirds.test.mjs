@@ -32,10 +32,11 @@ test('group bars are the hybrid; J5L preserved under j5l_probabilities', () => {
   assert.equal(j5l, n, 'every match keeps its J5L probabilities');
 });
 
-test('hybrid is the default model + documented as 1/3', () => {
+test('stack ("J5L AI Enhanced") is the default model; hybrid still documented as 1/3', () => {
   const am = read('app/lib/active-model.js');
-  assert.match(am, /if \(!storage\) return 'hybrid'/, 'default model is hybrid');
-  assert.match(am, /⅓ blend of J5L \+ DT \+ Markets/, 'hybrid description updated');
+  // R17: the app default is now the stack model, not hybrid.
+  assert.match(am, /if \(!storage\) return 'stack'/, 'default model is stack');
+  assert.match(am, /⅓ blend of J5L \+ DT \+ Markets/, 'hybrid still documented');
   const dl = read('app/data-loader.js');
   assert.match(dl, /forecast\.json/, 'data-loader registers forecast.json');
   assert.match(dl, /case 'forecast\.json':\s*return 'forecast'/, 'fileToKey maps forecast');

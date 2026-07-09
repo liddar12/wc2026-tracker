@@ -2,7 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { buildAutofill } from '../../app/bracket-autofill.js';
-import { MODELS, MODEL_LABELS, modelToAutofillSource } from '../../app/lib/active-model.js';
+import { MODELS, MODEL_LABELS, modelToAutofillSource, getActiveModel } from '../../app/lib/active-model.js';
+import { modelPickForMatch } from '../../app/lib/model-pick.js';
 
 const read = (p) => readFileSync(p, 'utf8');
 const json = (p) => JSON.parse(read(p));
@@ -42,6 +43,32 @@ test('bracket-autofill stack source advances the higher stacker strength', () =>
   const m1 = picks.find((p) => p.matchNumber === 1);
   assert.ok(m1, 'R32 pick produced');
   assert.equal(m1.team, 'Beta', 'higher stacker strength (Beta) advances, not the higher composite (Alpha)');
+});
+
+test('stack is the DEFAULT model when no storage is set', () => {
+  assert.equal(getActiveModel(null), 'stack');
+});
+
+test('modelPickForMatch defaults to the stack pick (higher blend strength wins)', () => {
+  const data = { stacker: { strengths: { France: 1.79, Morocco: -0.2 } }, markets: {} };
+  const match = { team_a: 'France', team_b: 'Morocco', probabilities: { team_a_wins: 52, draw: 24, team_b_wins: 24 } };
+  const pick = modelPickForMatch(match, data); // no model arg → active/default = stack
+  assert.equal(pick.source, 'stack');
+  assert.equal(pick.side, 'team_a');
+  assert.ok(pick.prob_pct > 52, 'stack confidence reflects the blend gap, not the raw J5L bar');
+});
+
+test('backtest.json live2026 carries a measured stack row', () => {
+  const bt = json('data/backtest.json');
+  const s = bt.live2026 && bt.live2026.stack;
+  assert.ok(s && typeof s.total === 'number' && s.total > 0, 'stack scored in live2026');
+  assert.ok(typeof s.logloss === 'number', 'stack has a logloss');
+});
+
+test('backtest + model-accuracy views list the stack model', () => {
+  assert.match(read('app/views/backtest-view.js'), /stack: 'J5L AI Enhanced'/, 'backtest LIVE_LABELS has stack');
+  assert.match(read('app/views/backtest-view.js'), /\['stack',/, 'live panel renders stack first');
+  assert.match(read('app/views/model-accuracy-view.js'), /'stack'/, 'model-accuracy lists stack');
 });
 
 test('build_stacker.py + data-loader + bracket-autofill are wired for stack', () => {

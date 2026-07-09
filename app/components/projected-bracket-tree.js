@@ -59,7 +59,7 @@ function paint() {
   const root = _root, data = _data, params = _params;
   root.innerHTML = '';
   let model = params.model && MODELS.includes(params.model) ? params.model : getActiveModel();
-  if (!MODELS.includes(model)) model = 'hybrid';
+  if (!MODELS.includes(model)) model = 'stack';
   const source = modelToAutofillSource(model);
   const stage = STAGES.some((s) => s.key === params.stage) ? params.stage : 'r32';
   const zoom = Number(params.zoom) || 1;
