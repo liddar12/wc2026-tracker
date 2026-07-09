@@ -402,7 +402,7 @@
           "team_b_wins": 7.1
         },
         "expected_points": {
-          "team_a": 2.51,
+          "team_a": 2.52,
           "team_b": 0.35
         },
         "predicted_winner": "Switzerland",
@@ -566,7 +566,7 @@
         },
         "expected_points": {
           "team_a": 1.07,
-          "team_b": 1.73
+          "team_b": 1.74
         },
         "predicted_winner": "Morocco",
         "win_confidence_pct": 51.2,
@@ -2134,7 +2134,7 @@
         "probabilities": {
           "team_a_wins": 78.3,
           "draw": 13.1,
-          "team_b_wins": 8.6
+          "team_b_wins": 8.7
         },
         "expected_points": {
           "team_a": 2.48,
@@ -2178,7 +2178,7 @@
         "probabilities": {
           "team_a_wins": 55.8,
           "draw": 23.1,
-          "team_b_wins": 21.0
+          "team_b_wins": 21.1
         },
         "expected_points": {
           "team_a": 1.91,
