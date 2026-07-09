@@ -9,8 +9,14 @@ test.describe('Projected bracket + hidden nav', () => {
     // stage nav (GS/R32/.../F) + the bracket tree render
     await expect(page.locator('[data-testid="eb-stage-nav"]')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible();
-    // tree has connector-line matches + at least one confidence badge
+    // tree has connector-line matches + at least one confidence badge. The
+    // bracket CONTAINER paints before its matches stream in from the critical
+    // feeds, so a bare count() right after toBeVisible() races to 0 under a slow
+    // (CI) server. Web-first-wait for the 21st match + a confidence badge to be
+    // attached before counting — retries until the tree has populated.
+    await expect(page.locator('.eb-match').nth(20)).toBeVisible({ timeout: 10_000 });
     expect(await page.locator('.eb-match').count()).toBeGreaterThan(20);
+    await expect(page.locator('.eb-conf').first()).toBeVisible({ timeout: 10_000 });
     expect(await page.locator('.eb-conf').count()).toBeGreaterThan(0);
 
     // GS stage shows the standings → seeding view
