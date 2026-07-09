@@ -119,6 +119,10 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/build_hybrid.py
         continue-on-error: true
+      - name: Rebuild stacker (J5L AI Enhanced blend, weight re-fit from results)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/build_stacker.py
+        continue-on-error: true
       - name: Capture + score live backtest (4 models + Kalshi + Polymarket)
         if: steps.gate.outputs.go == '1'
         run: python scripts/snapshot_backtest.py
@@ -154,6 +158,7 @@ jobs:
                 python scripts/rebuild_composite.py || true
                 python scripts/build_knockout_matchups.py || true
                 python scripts/build_hybrid.py || true
+                python scripts/build_stacker.py || true
                 python scripts/compute_xg.py || true
                 git add data/
                 git commit -m "chore: live results update (reconciled)" || true

@@ -49,6 +49,9 @@ const CRITICAL_FILES = [
   { file: 'forecast.json',          fallback: {} },
   // R16: DT Model site contract — team_rankings + title odds + players.
   { file: 'dt_model.json',          fallback: {} },
+  // R17: "J5L AI Enhanced" per-team learned-blend strengths (data/stacker.json);
+  // drives the `stack` model source in the projected bracket, so critical.
+  { file: 'stacker.json',           fallback: {} },
 ];
 
 // DEFERRED: fetched in the BACKGROUND after first paint, in parallel. Until
@@ -125,6 +128,7 @@ const OPTIONAL_FILES = [
   { file: 'knockout_matchups.json', fallback: [] },
   { file: 'forecast.json',          fallback: {} },
   { file: 'dt_model.json',          fallback: {} },
+  { file: 'stacker.json',           fallback: {} },
   { file: 'players.json',           fallback: [] },
   { file: 'lineups.json',           fallback: {} },
   { file: 'referees.json',          fallback: {} },

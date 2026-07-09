@@ -68,7 +68,7 @@ export const HELP_COPY = {
     intro: 'The tournament as it stands — and how the models see it. This is read-only; make your own picks in Play.',
     points: [
       'Live shows the real bracket and group standings as results come in.',
-      'Projected compares Live against the model, a hybrid, market odds, and public consensus.',
+      'Projected compares Live against the J5L model, a hybrid, market odds, and an AI-enhanced J5L+DT blend.',
       'Switch the projection source to see where the forecasts disagree.',
       'Tap any matchup for the head-to-head detail.',
     ],

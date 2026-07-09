@@ -5,20 +5,21 @@
    - My Brackets autofill (still exists for power users)
 
    Models:
-     'j5l'       → user's composite power ranking (data/teams.json composite)
-     'kalshi'    → Kalshi tournament-winner + per-match odds
-     'hybrid'    → 50/50 average of j5l + kalshi
-     'consensus' → most-picked across public-pool brackets
+     'j5l'    → user's composite power ranking (data/teams.json composite)
+     'kalshi' → Kalshi tournament-winner + per-match odds
+     'hybrid' → ⅓ J5L + ⅓ DT + ⅓ Markets (forecast hybrid strength)
+     'stack'  → "J5L AI Enhanced": ML-calibrated J5L+DT blend whose weight is
+                re-fit from this tournament's played results (data/stacker.json)
 */
 
-export const MODELS = ['j5l', 'dt', 'kalshi', 'hybrid', 'consensus'];
+export const MODELS = ['j5l', 'dt', 'kalshi', 'hybrid', 'stack'];
 
 export const MODEL_LABELS = {
   j5l: 'J5L Model',
   dt: 'DT Model',
   kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
-  consensus: 'Public Consensus',
+  stack: 'J5L AI Enhanced',
 };
 
 export const MODEL_DESCRIPTIONS = {
@@ -29,7 +30,9 @@ export const MODEL_DESCRIPTIONS = {
   dt: 'Elo + squad market value blend (0.6/0.4), bivariate-Poisson Monte-Carlo title odds (20k sims).',
   kalshi: 'Live tournament-winner odds from prediction markets.',
   hybrid: 'Equal ⅓ blend of J5L + DT + Markets, run through the Poisson Monte-Carlo bracket. The default forecast across the app.',
-  consensus: 'The most-picked team at each slot across every public-pool bracket.',
+  // R17: "J5L AI Enhanced" — an ML-calibrated blend of J5L + DT whose weight is
+  // re-fit from this tournament's played results every data refresh (data/stacker.json).
+  stack: 'ML-calibrated blend of J5L + DT, learning from this World Cup — the J5L/DT weight is re-fit from played results each update.',
 };
 
 // The bracket-autofill.js module already uses single-token keys for the
@@ -39,7 +42,7 @@ export const MODEL_TO_AUTOFILL_SOURCE = {
   dt: 'dt',
   kalshi: 'kalshi',
   hybrid: 'hybrid',
-  consensus: 'consensus',
+  stack: 'stack',
 };
 
 const LS_ACTIVE = 'wc26.activeModel';

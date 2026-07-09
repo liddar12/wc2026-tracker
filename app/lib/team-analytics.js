@@ -45,6 +45,9 @@ export function teamAnalytics(team, data, model) {
     hybridPct = Math.round((composite + kalshiPct) / 2);
   }
 
+  // Stack ("J5L AI Enhanced"): the learned J5L+DT blend strength (data/stacker.json).
+  const stackStrength = (data?.stacker?.strengths || {})[team] ?? null;
+
   let primary;
   let secondary = [];
   switch (model) {
@@ -66,6 +69,15 @@ export function teamAnalytics(team, data, model) {
       if (composite != null) secondary.push({ label: 'J5L', value: composite.toFixed(1) });
       if (dtRating != null) secondary.push({ label: 'DT', value: dtRating.toFixed(1) });
       if (kalshiPct != null) secondary.push({ label: 'Markets', value: `${kalshiPct.toFixed(1)}%` });
+      break;
+    }
+    case 'stack': {
+      // "J5L AI Enhanced" — an ML-tuned J5L+DT blend. Show the familiar J5L
+      // composite as the headline (the dominant, on-scale component) with the DT
+      // rating alongside; the blend weight itself lives in data/stacker.json.
+      primary = { label: 'AI Blend', value: composite != null ? composite.toFixed(1) : '—', hint: 'ML J5L+DT (learning)' };
+      if (dtRating != null) secondary.push({ label: 'DT', value: dtRating.toFixed(1) });
+      if (powerRank != null) secondary.push({ label: 'Power', value: `#${powerRank}` });
       break;
     }
     case 'consensus': {
@@ -100,8 +112,11 @@ export function rankTeamsByModel(teams, data, model) {
       // rank by the ⅓ blended strength (forecast.json); fall back to J5L+Kalshi mean
       score = a.hybridStrength != null ? a.hybridStrength
         : (a.composite != null && a.kalshiPct != null ? (a.composite + a.kalshiPct) / 2 : (a.composite ?? a.kalshiPct ?? 0));
+    } else if (model === 'stack') {
+      // rank by the learned J5L+DT blend strength (data/stacker.json)
+      score = (data?.stacker?.strengths || {})[t] ?? a.composite ?? 0;
     } else {
-      // j5l + consensus default to composite
+      // j5l defaults to composite
       score = a.composite ?? 0;
     }
     return { team: t, score };
