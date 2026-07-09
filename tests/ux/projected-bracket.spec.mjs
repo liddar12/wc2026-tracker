@@ -9,8 +9,14 @@ test.describe('Projected bracket + hidden nav', () => {
     // stage nav (GS/R32/.../F) + the bracket tree render
     await expect(page.locator('[data-testid="eb-stage-nav"]')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible();
-    // tree has connector-line matches + at least one confidence badge
+    // tree has connector-line matches + at least one confidence badge. The
+    // bracket CONTAINER paints before its matches stream in from the critical
+    // feeds, so a bare count() right after toBeVisible() races to 0 under a slow
+    // (CI) server. Web-first-wait for the 21st match + a confidence badge to be
+    // attached before counting — retries until the tree has populated.
+    await expect(page.locator('.eb-match').nth(20)).toBeVisible({ timeout: 10_000 });
     expect(await page.locator('.eb-match').count()).toBeGreaterThan(20);
+    await expect(page.locator('.eb-conf').first()).toBeVisible({ timeout: 10_000 });
     expect(await page.locator('.eb-conf').count()).toBeGreaterThan(0);
 
     // GS stage shows the standings → seeding view
@@ -57,17 +63,22 @@ test.describe('Projected bracket + hidden nav', () => {
       // Success if an override already stuck (this pass or a prior one — the
       // override is module state that survives re-renders).
       if ((await page.locator('.eb-match[data-overridden]').count()) > 0) return;
-      const r32 = page.locator('.eb-col[data-round="r32"] .eb-match');
-      const n = await r32.count();
+      // Scan EVERY round, not just R32: as the tournament advances the earlier
+      // rounds become DECIDED (locked to their real winner, no tappable loser),
+      // so the first OVERRIDABLE match migrates forward (QF/SF/F). A decided
+      // match exposes no `.eb-team.eb-tappable:not(.eb-win)`, so it is skipped
+      // naturally; we just need any one undecided match to accept the tap.
+      const matches = page.locator('.eb-match');
+      const n = await matches.count();
       for (let i = 0; i < n; i++) {
-        const m = r32.nth(i);
+        const m = matches.nth(i);
         if (await m.getAttribute('data-overridden')) continue; // don't toggle it off
         const loser = m.locator('.eb-team.eb-tappable:not(.eb-win)').first();
         if ((await loser.count()) === 0) continue;
         await loser.click();
         if ((await page.locator('.eb-match[data-overridden]').count()) > 0) return; // stuck
       }
-      throw new Error('no undecided R32 match accepted a what-if override yet');
+      throw new Error('no undecided match accepted a what-if override yet');
     }).toPass({ timeout: 10_000 });
     // an override marker + reset control appear
     await expect(page.locator('.eb-match[data-overridden]').first()).toBeVisible({ timeout: 5_000 });

@@ -30,17 +30,25 @@ test('populated venue-day → Weather card shows Forecast + Temp (°C and °F) +
   await expect(block).toContainText('°F');
 });
 
-test('no populated forecast → graceful empty state, never a broken/.weather-block card', async ({ page }) => {
-  // The Final (metlife, 2026-07-19) is well beyond the 15-day forecast window,
-  // so its venue-day has no cell → the empty state shows, not a forecast card.
+test('unpopulated/late fixture → complete card OR graceful empty state, never a broken card', async ({ page }) => {
+  // The Final placeholder (W101/W102) may or may not have a populated venue-day
+  // depending on how far out it is: >15 days → no cell (empty state); once it
+  // falls inside the 15-day forecast window a real card appears. Either is valid
+  // — the invariant this test locks is "never a partially-built .weather-block".
   await page.goto('/#/matchup/team_a/W101/team_b/W102', { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(1500);
   const sec = weatherSection(page);
   if (await sec.count()) {
-    // No forecast card may render; if the section is present it must be the
-    // graceful empty state (never a partially-built .weather-block).
-    await expect(sec.locator('.weather-block')).toHaveCount(0);
-    await expect(sec).toContainText(/not yet available|weather unavailable|No venue/i);
+    const block = sec.locator('.weather-block');
+    if ((await block.count()) === 0) {
+      await expect(sec).toContainText(/not yet available|weather unavailable|No venue/i);
+    } else {
+      // A card rendered (venue-day now inside the forecast window) — it must be
+      // COMPLETE, never partial: four labelled rows + both temperature units.
+      await expect(block.locator('.kv')).toHaveCount(4);
+      await expect(block).toContainText('°C');
+      await expect(block).toContainText('°F');
+    }
   }
 });
 
