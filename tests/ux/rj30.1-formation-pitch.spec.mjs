@@ -60,16 +60,18 @@ test('reduced-motion: no transition on the player token', async ({ browser }) =>
   await ctx.close();
 });
 
-test('pre-match fixture (no lineup) shows TBA copy, no pitch tokens', async ({ page }) => {
-  // Spain vs Austria — a scheduled R32 fixture with no lineup key in data.
+test('formation pitch never renders a broken/partial XI', async ({ page }) => {
+  // Spain vs Austria was an unplayed R32 fixture when this was written and
+  // asserted the pre-match "TBA" empty state. That state is transient: as the
+  // tournament advances a fixture moves pre-match → lineup posted → played, and
+  // a snapshot may show a played match with no lineup cell at all — so neither
+  // the "TBA" copy nor a full XI is guaranteed for any pinned fixture. The
+  // durable invariant is that the pitch is NEVER a partial/broken XI: the
+  // visible panel draws either zero tokens (no lineup) or a complete 11.
   await page.goto('/#/matchup/team_a/Spain/team_b/Austria', { waitUntil: 'domcontentloaded' });
   await expect(page.getByText('Matchup not found')).toHaveCount(0);
   const sec = lineupsSection(page);
   await expect(sec).toBeVisible({ timeout: 10_000 });
-  // The section is collapsed (TBA) — the muted copy is in the DOM (not "visible"
-  // inside the closed <details>); no pitch tokens drawn (never a broken pitch box).
-  await expect(sec.getByText(/posted ~75 minutes before kickoff/i)).toHaveCount(1);
-  // The "— TBA" affordance shows in the summary.
-  await expect(sec.locator('summary')).toContainText('TBA');
-  await expect(page.locator('[data-testid="formation-pitch"] .fp-player')).toHaveCount(0);
+  const n = await page.locator('.fp-panel:not([hidden]) [data-testid="formation-pitch"] .fp-player').count();
+  expect([0, 11]).toContain(n);
 });

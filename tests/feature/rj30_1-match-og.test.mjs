@@ -65,7 +65,12 @@ test('AC1 group match: dynamic title + model pick + 1200x630 contract', async ()
   const body = await res.text();
   assert.equal(res.status, 200);
   assert.match(body, /og:title" content="[^"]*Mexico[^"]*Korea Republic/);
-  assert.match(body, /og:description" content="[^"]*Mexico[^"]*%/);   // pick %
+  // The description carries the model pick + confidence %. Assert the pick %
+  // generically (not "Mexico") — the favoured side drifts with live form data
+  // (e.g. a once-favoured fixture can become a draw_likely pick mid-tournament),
+  // and pinning the team name made this a data-drift flake. The title above
+  // already locks both team names; here we only need the pick % to be present.
+  assert.match(body, /og:description" content="[^"]*%/);   // model pick %
   // group rows carry no kickoff_utc → looked up in schedule_full
   assert.match(body, /og:description" content="[^"]*UTC/);
   assert.match(body, /og:image:width" content="1200"/);
