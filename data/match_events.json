@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-09T20:15:00+00:00",
+    "updated_at": "2026-07-09T21:46:43+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3693,5 +3693,28 @@
       }
     ],
     "updated_at": "2026-07-08T20:57:16+00:00"
+  },
+  "France__vs__Morocco": {
+    "events": [
+      {
+        "minute": "60'",
+        "type": "goal",
+        "player": "Kylian Mbappé",
+        "team": "France"
+      },
+      {
+        "minute": "63'",
+        "type": "yellow",
+        "player": "Issa Diop",
+        "team": "Morocco"
+      },
+      {
+        "minute": "66'",
+        "type": "goal",
+        "player": "Ousmane Dembélé",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-09T21:46:43+00:00"
   }
 }
