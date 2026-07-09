@@ -61,7 +61,7 @@
     "note": "All rows are estimates \u2014 Polymarket ran no per-match WC 2022 markets and its winner market is too thin to have price history, so even the market leg can't be measured here."
   },
   "live2026": {
-    "generated_at": "2026-07-09T18:26:12+00:00",
+    "generated_at": "2026-07-09T20:07:58+00:00",
     "note": "72 matches scored live. Pre-kickoff predictions locked from all models + markets, scored on the regulation result.",
     "matches_scored": 72,
     "model": {
@@ -104,8 +104,7 @@
       "total": 72,
       "measured": true,
       "brier": 0.4922,
-      "logloss": 0.8414,
-      "note": "Post-hoc for pre-R17 captures (current ratings); as-of going forward."
+      "logloss": 0.8414
     }
   }
 }
