@@ -1,0 +1,46 @@
+name: LLM Projection Analysis (manual)
+
+# PROTOTYPE, manual-dispatch only. Runs the LLM context layer where the
+# ANTHROPIC_API_KEY secret is available (it is NOT visible to interactive
+# sessions). Produces two artifacts and commits NOTHING to the app/data:
+#   * context_report.json  — empirical backtest of the LLM nudge on the 24 played
+#     knockout matches (does context help? honest, small-sample)
+#   * qf_explanations.json  — forward-looking LLM explanations for the upcoming QFs
+# Nothing here runs on push/schedule, so it has zero effect on the live product.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  llm-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install deps
+        run: pip install -r scripts/requirements.txt scikit-learn scipy
+      - name: Derive prototype inputs (talent/coach + KO rest context)
+        run: |
+          python3 scripts/proto/backfill_talent_coach.py
+          python3 scripts/proto/backfill_ko_context.py
+      - name: Empirical LLM context backtest (24 played knockout matches)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/proto/context_adjust.py --backend llm || true
+      - name: LLM quarterfinal explanations (forward-looking)
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python3 scripts/proto/llm_qf_explain.py || true
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: llm-analysis
+          path: |
+            data/proto/context_report.json
+            data/proto/qf_explanations.json
+          if-no-files-found: warn
