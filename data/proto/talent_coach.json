@@ -1,0 +1,975 @@
+{
+  "__meta__": {
+    "generated": "prototype",
+    "method": "player-derived talent (players.json best-XI spine) + curated coach.experience",
+    "scale": {
+      "a": 0.0667213906465503,
+      "b": -51.7669346788085,
+      "clamp_lo": 56.3,
+      "clamp_hi": 93.1,
+      "r2": 0.99999
+    },
+    "enrich_wiki": false,
+    "n_teams": 48
+  },
+  "Mexico": {
+    "talent": {
+      "squad_overall": 65.19,
+      "star_power": 78.3,
+      "attack": 68.03,
+      "midfield": 69.9,
+      "defense": 60.25,
+      "gk": 52.0,
+      "depth": 59.26,
+      "talent_raw": 65.55
+    },
+    "coach": {
+      "coach_name": "Javier Aguirre",
+      "experience": 85.0,
+      "pedigree_raw": 85.0,
+      "source": "experience"
+    },
+    "talent_scaled": 70.4,
+    "coach_scaled": 82.6
+  },
+  "Korea Republic": {
+    "talent": {
+      "squad_overall": 70.66,
+      "star_power": 84.1,
+      "attack": 67.03,
+      "midfield": 78.7,
+      "defense": 62.65,
+      "gk": 53.6,
+      "depth": 63.42,
+      "talent_raw": 68.91
+    },
+    "coach": {
+      "coach_name": "Hong Myung-bo",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 75.5,
+    "coach_scaled": 73.2
+  },
+  "South Africa": {
+    "talent": {
+      "squad_overall": 58.92,
+      "star_power": 70.4,
+      "attack": 64.0,
+      "midfield": 56.6,
+      "defense": 55.48,
+      "gk": 53.6,
+      "depth": 55.09,
+      "talent_raw": 58.99
+    },
+    "coach": {
+      "coach_name": "Hugo Broos",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 60.4,
+    "coach_scaled": 79.4
+  },
+  "Czechia": {
+    "talent": {
+      "squad_overall": 66.52,
+      "star_power": 87.7,
+      "attack": 72.83,
+      "midfield": 62.73,
+      "defense": 59.7,
+      "gk": 71.6,
+      "depth": 60.92,
+      "talent_raw": 66.94
+    },
+    "coach": {
+      "coach_name": "Miroslav Koubek",
+      "experience": 55.0,
+      "pedigree_raw": 55.0,
+      "source": "experience"
+    },
+    "talent_scaled": 72.5,
+    "coach_scaled": 63.8
+  },
+  "Canada": {
+    "talent": {
+      "squad_overall": 71.44,
+      "star_power": 87.7,
+      "attack": 78.77,
+      "midfield": 68.77,
+      "defense": 70.3,
+      "gk": 58.1,
+      "depth": 64.48,
+      "talent_raw": 72.21
+    },
+    "coach": {
+      "coach_name": "Jesse Marsch",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 80.5,
+    "coach_scaled": 73.2
+  },
+  "Switzerland": {
+    "talent": {
+      "squad_overall": 71.59,
+      "star_power": 78.7,
+      "attack": 71.07,
+      "midfield": 72.23,
+      "defense": 68.62,
+      "gk": 73.9,
+      "depth": 67.64,
+      "talent_raw": 71.33
+    },
+    "coach": {
+      "coach_name": "Murat Yakin",
+      "experience": 75.0,
+      "pedigree_raw": 75.0,
+      "source": "experience"
+    },
+    "talent_scaled": 79.2,
+    "coach_scaled": 76.3
+  },
+  "Qatar": {
+    "talent": {
+      "squad_overall": 60.15,
+      "star_power": 71.6,
+      "attack": 67.4,
+      "midfield": 51.27,
+      "defense": 56.08,
+      "gk": 60.5,
+      "depth": 56.38,
+      "talent_raw": 59.39
+    },
+    "coach": {
+      "coach_name": "Julen Lopetegui",
+      "experience": 85.0,
+      "pedigree_raw": 85.0,
+      "source": "experience"
+    },
+    "talent_scaled": 61.1,
+    "coach_scaled": 82.6
+  },
+  "Bosnia and Herzegovina": {
+    "talent": {
+      "squad_overall": 62.8,
+      "star_power": 73.6,
+      "attack": 66.97,
+      "midfield": 59.5,
+      "defense": 63.62,
+      "gk": 55.7,
+      "depth": 59.35,
+      "talent_raw": 63.23
+    },
+    "coach": {
+      "coach_name": "Sergej Barbarez",
+      "experience": 50.0,
+      "pedigree_raw": 50.0,
+      "source": "experience"
+    },
+    "talent_scaled": 66.9,
+    "coach_scaled": 60.7
+  },
+  "Brazil": {
+    "talent": {
+      "squad_overall": 75.41,
+      "star_power": 85.2,
+      "attack": 80.63,
+      "midfield": 73.57,
+      "defense": 69.85,
+      "gk": 65.0,
+      "depth": 67.86,
+      "talent_raw": 74.65
+    },
+    "coach": {
+      "coach_name": "Carlo Ancelotti",
+      "experience": 99.0,
+      "pedigree_raw": 99.0,
+      "source": "experience"
+    },
+    "talent_scaled": 84.2,
+    "coach_scaled": 91.3
+  },
+  "Morocco": {
+    "talent": {
+      "squad_overall": 73.85,
+      "star_power": 84.4,
+      "attack": 71.4,
+      "midfield": 76.67,
+      "defense": 72.42,
+      "gk": 55.7,
+      "depth": 69.42,
+      "talent_raw": 72.49
+    },
+    "coach": {
+      "coach_name": "Mohamed Ouahbi",
+      "experience": 55.0,
+      "pedigree_raw": 55.0,
+      "source": "experience"
+    },
+    "talent_scaled": 80.9,
+    "coach_scaled": 63.8
+  },
+  "Scotland": {
+    "talent": {
+      "squad_overall": 71.48,
+      "star_power": 84.7,
+      "attack": 63.63,
+      "midfield": 78.2,
+      "defense": 70.28,
+      "gk": 69.1,
+      "depth": 66.44,
+      "talent_raw": 70.98
+    },
+    "coach": {
+      "coach_name": "Steve Clarke",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 78.6,
+    "coach_scaled": 73.2
+  },
+  "Haiti": {
+    "talent": {
+      "squad_overall": 60.85,
+      "star_power": 67.1,
+      "attack": 65.73,
+      "midfield": 54.2,
+      "defense": 58.88,
+      "gk": 55.7,
+      "depth": 57.74,
+      "talent_raw": 59.86
+    },
+    "coach": {
+      "coach_name": "Sebastien Migne",
+      "experience": 50.0,
+      "pedigree_raw": 50.0,
+      "source": "experience"
+    },
+    "talent_scaled": 61.8,
+    "coach_scaled": 60.7
+  },
+  "USA": {
+    "talent": {
+      "squad_overall": 74.22,
+      "star_power": 89.8,
+      "attack": 76.0,
+      "midfield": 78.93,
+      "defense": 68.05,
+      "gk": 61.2,
+      "depth": 69.42,
+      "talent_raw": 74.07
+    },
+    "coach": {
+      "coach_name": "Mauricio Pochettino",
+      "experience": 88.0,
+      "pedigree_raw": 88.0,
+      "source": "experience"
+    },
+    "talent_scaled": 83.3,
+    "coach_scaled": 84.4
+  },
+  "Australia": {
+    "talent": {
+      "squad_overall": 60.09,
+      "star_power": 64.7,
+      "attack": 61.0,
+      "midfield": 60.13,
+      "defense": 56.9,
+      "gk": 64.7,
+      "depth": 57.97,
+      "talent_raw": 60.13
+    },
+    "coach": {
+      "coach_name": "Tony Popovic",
+      "experience": 60.0,
+      "pedigree_raw": 60.0,
+      "source": "experience"
+    },
+    "talent_scaled": 62.2,
+    "coach_scaled": 67.0
+  },
+  "Paraguay": {
+    "talent": {
+      "squad_overall": 66.59,
+      "star_power": 76.8,
+      "attack": 69.23,
+      "midfield": 70.3,
+      "defense": 61.15,
+      "gk": 58.1,
+      "depth": 62.2,
+      "talent_raw": 66.75
+    },
+    "coach": {
+      "coach_name": "Gustavo Alfaro",
+      "experience": 75.0,
+      "pedigree_raw": 75.0,
+      "source": "experience"
+    },
+    "talent_scaled": 72.2,
+    "coach_scaled": 76.3
+  },
+  "Turkiye": {
+    "talent": {
+      "squad_overall": 74.08,
+      "star_power": 81.5,
+      "attack": 69.07,
+      "midfield": 78.93,
+      "defense": 69.53,
+      "gk": 73.9,
+      "depth": 70.22,
+      "talent_raw": 73.03
+    },
+    "coach": {
+      "coach_name": "Vincenzo Montella",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 81.7,
+    "coach_scaled": 79.4
+  },
+  "Germany": {
+    "talent": {
+      "squad_overall": 79.04,
+      "star_power": 87.7,
+      "attack": 81.37,
+      "midfield": 82.6,
+      "defense": 73.38,
+      "gk": 64.6,
+      "depth": 74.3,
+      "talent_raw": 78.47
+    },
+    "coach": {
+      "coach_name": "Julian Nagelsmann",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 90.0,
+    "coach_scaled": 79.4
+  },
+  "Ecuador": {
+    "talent": {
+      "squad_overall": 63.82,
+      "star_power": 76.3,
+      "attack": 59.47,
+      "midfield": 64.57,
+      "defense": 66.08,
+      "gk": 53.6,
+      "depth": 58.52,
+      "talent_raw": 62.96
+    },
+    "coach": {
+      "coach_name": "Sebastian Beccacece",
+      "experience": 55.0,
+      "pedigree_raw": 55.0,
+      "source": "experience"
+    },
+    "talent_scaled": 66.5,
+    "coach_scaled": 63.8
+  },
+  "Cote d'Ivoire": {
+    "talent": {
+      "squad_overall": 71.35,
+      "star_power": 76.0,
+      "attack": 73.6,
+      "midfield": 70.07,
+      "defense": 68.62,
+      "gk": 61.2,
+      "depth": 66.44,
+      "talent_raw": 70.37
+    },
+    "coach": {
+      "coach_name": "Emerse Fae",
+      "experience": 65.0,
+      "pedigree_raw": 65.0,
+      "source": "experience"
+    },
+    "talent_scaled": 77.7,
+    "coach_scaled": 70.1
+  },
+  "Curacao": {
+    "talent": {
+      "squad_overall": 59.16,
+      "star_power": 66.7,
+      "attack": 59.73,
+      "midfield": 59.6,
+      "defense": 59.05,
+      "gk": 53.6,
+      "depth": 57.17,
+      "talent_raw": 59.28
+    },
+    "coach": {
+      "coach_name": "Fred Rutten",
+      "experience": 60.0,
+      "pedigree_raw": 60.0,
+      "source": "experience"
+    },
+    "talent_scaled": 60.9,
+    "coach_scaled": 67.0
+  },
+  "Netherlands": {
+    "talent": {
+      "squad_overall": 75.61,
+      "star_power": 85.2,
+      "attack": 77.23,
+      "midfield": 78.7,
+      "defense": 71.22,
+      "gk": 69.4,
+      "depth": 69.61,
+      "talent_raw": 75.72
+    },
+    "coach": {
+      "coach_name": "Ronald Koeman",
+      "experience": 90.0,
+      "pedigree_raw": 90.0,
+      "source": "experience"
+    },
+    "talent_scaled": 85.8,
+    "coach_scaled": 85.7
+  },
+  "Japan": {
+    "talent": {
+      "squad_overall": 73.32,
+      "star_power": 84.1,
+      "attack": 76.37,
+      "midfield": 74.57,
+      "defense": 69.7,
+      "gk": 59.4,
+      "depth": 68.18,
+      "talent_raw": 72.98
+    },
+    "coach": {
+      "coach_name": "Hajime Moriyasu",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 81.7,
+    "coach_scaled": 79.4
+  },
+  "Tunisia": {
+    "talent": {
+      "squad_overall": 63.61,
+      "star_power": 74.5,
+      "attack": 66.4,
+      "midfield": 66.43,
+      "defense": 60.62,
+      "gk": 53.6,
+      "depth": 59.35,
+      "talent_raw": 64.1
+    },
+    "coach": {
+      "coach_name": "Sabri Lamouchi",
+      "experience": 65.0,
+      "pedigree_raw": 65.0,
+      "source": "experience"
+    },
+    "talent_scaled": 68.2,
+    "coach_scaled": 70.1
+  },
+  "Sweden": {
+    "talent": {
+      "squad_overall": 73.14,
+      "star_power": 85.2,
+      "attack": 82.9,
+      "midfield": 66.8,
+      "defense": 69.85,
+      "gk": 55.7,
+      "depth": 65.81,
+      "talent_raw": 72.62
+    },
+    "coach": {
+      "coach_name": "Graham Potter",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 81.1,
+    "coach_scaled": 73.2
+  },
+  "Belgium": {
+    "talent": {
+      "squad_overall": 74.95,
+      "star_power": 86.2,
+      "attack": 79.47,
+      "midfield": 74.77,
+      "defense": 69.22,
+      "gk": 69.6,
+      "depth": 70.21,
+      "talent_raw": 74.85
+    },
+    "coach": {
+      "coach_name": "Rudi Garcia",
+      "experience": 75.0,
+      "pedigree_raw": 75.0,
+      "source": "experience"
+    },
+    "talent_scaled": 84.5,
+    "coach_scaled": 76.3
+  },
+  "Iran": {
+    "talent": {
+      "squad_overall": 64.5,
+      "star_power": 78.1,
+      "attack": 71.83,
+      "midfield": 66.93,
+      "defense": 56.92,
+      "gk": 56.3,
+      "depth": 60.55,
+      "talent_raw": 65.35
+    },
+    "coach": {
+      "coach_name": "Amir Ghalenoei",
+      "experience": 60.0,
+      "pedigree_raw": 60.0,
+      "source": "experience"
+    },
+    "talent_scaled": 70.1,
+    "coach_scaled": 67.0
+  },
+  "Egypt": {
+    "talent": {
+      "squad_overall": 64.31,
+      "star_power": 86.2,
+      "attack": 79.17,
+      "midfield": 60.03,
+      "defense": 56.33,
+      "gk": 52.0,
+      "depth": 59.42,
+      "talent_raw": 65.51
+    },
+    "coach": {
+      "coach_name": "Hossam Hassan",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 70.3,
+    "coach_scaled": 73.2
+  },
+  "New Zealand": {
+    "talent": {
+      "squad_overall": 60.69,
+      "star_power": 76.2,
+      "attack": 62.87,
+      "midfield": 62.93,
+      "defense": 57.3,
+      "gk": 55.7,
+      "depth": 57.59,
+      "talent_raw": 61.32
+    },
+    "coach": {
+      "coach_name": "Darren Bazeley",
+      "experience": 50.0,
+      "pedigree_raw": 50.0,
+      "source": "experience"
+    },
+    "talent_scaled": 64.0,
+    "coach_scaled": 60.7
+  },
+  "Spain": {
+    "talent": {
+      "squad_overall": 80.79,
+      "star_power": 87.7,
+      "attack": 79.07,
+      "midfield": 85.57,
+      "defense": 73.9,
+      "gk": 73.9,
+      "depth": 76.88,
+      "talent_raw": 79.57
+    },
+    "coach": {
+      "coach_name": "Luis de la Fuente",
+      "experience": 90.0,
+      "pedigree_raw": 90.0,
+      "source": "experience"
+    },
+    "talent_scaled": 91.6,
+    "coach_scaled": 85.7
+  },
+  "Cabo Verde": {
+    "talent": {
+      "squad_overall": 59.79,
+      "star_power": 64.7,
+      "attack": 61.07,
+      "midfield": 59.07,
+      "defense": 60.4,
+      "gk": 55.7,
+      "depth": 57.24,
+      "talent_raw": 60.0
+    },
+    "coach": {
+      "coach_name": "Bubista",
+      "experience": 50.0,
+      "pedigree_raw": 50.0,
+      "source": "experience"
+    },
+    "talent_scaled": 62.0,
+    "coach_scaled": 60.7
+  },
+  "Uruguay": {
+    "talent": {
+      "squad_overall": 70.61,
+      "star_power": 84.7,
+      "attack": 64.5,
+      "midfield": 74.27,
+      "defense": 70.43,
+      "gk": 68.6,
+      "depth": 63.36,
+      "talent_raw": 70.12
+    },
+    "coach": {
+      "coach_name": "Marcelo Bielsa",
+      "experience": 95.0,
+      "pedigree_raw": 95.0,
+      "source": "experience"
+    },
+    "talent_scaled": 77.3,
+    "coach_scaled": 88.8
+  },
+  "Saudi Arabia": {
+    "talent": {
+      "squad_overall": 63.83,
+      "star_power": 69.1,
+      "attack": 67.33,
+      "midfield": 63.6,
+      "defense": 61.92,
+      "gk": 59.4,
+      "depth": 60.62,
+      "talent_raw": 64.2
+    },
+    "coach": {
+      "coach_name": "Georgios Donis",
+      "experience": 55.0,
+      "pedigree_raw": 55.0,
+      "source": "experience"
+    },
+    "talent_scaled": 68.3,
+    "coach_scaled": 63.8
+  },
+  "France": {
+    "talent": {
+      "squad_overall": 78.76,
+      "star_power": 95.8,
+      "attack": 84.3,
+      "midfield": 78.27,
+      "defense": 75.62,
+      "gk": 76.2,
+      "depth": 74.16,
+      "talent_raw": 79.98
+    },
+    "coach": {
+      "coach_name": "Didier Deschamps",
+      "experience": 99.0,
+      "pedigree_raw": 99.0,
+      "source": "experience"
+    },
+    "talent_scaled": 92.3,
+    "coach_scaled": 91.3
+  },
+  "Senegal": {
+    "talent": {
+      "squad_overall": 69.64,
+      "star_power": 76.0,
+      "attack": 72.77,
+      "midfield": 72.4,
+      "defense": 65.05,
+      "gk": 64.6,
+      "depth": 65.6,
+      "talent_raw": 70.03
+    },
+    "coach": {
+      "coach_name": "Pape Thiaw",
+      "experience": 55.0,
+      "pedigree_raw": 55.0,
+      "source": "experience"
+    },
+    "talent_scaled": 77.2,
+    "coach_scaled": 63.8
+  },
+  "Norway": {
+    "talent": {
+      "squad_overall": 70.72,
+      "star_power": 88.5,
+      "attack": 69.83,
+      "midfield": 71.27,
+      "defense": 63.65,
+      "gk": 53.6,
+      "depth": 63.08,
+      "talent_raw": 68.18
+    },
+    "coach": {
+      "coach_name": "Stale Solbakken",
+      "experience": 65.0,
+      "pedigree_raw": 65.0,
+      "source": "experience"
+    },
+    "talent_scaled": 74.4,
+    "coach_scaled": 70.1
+  },
+  "Iraq": {
+    "talent": {
+      "squad_overall": 62.15,
+      "star_power": 69.5,
+      "attack": 65.7,
+      "midfield": 62.3,
+      "defense": 58.58,
+      "gk": 58.1,
+      "depth": 59.29,
+      "talent_raw": 62.33
+    },
+    "coach": {
+      "coach_name": "Graham Arnold",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 65.5,
+    "coach_scaled": 73.2
+  },
+  "Argentina": {
+    "talent": {
+      "squad_overall": 78.62,
+      "star_power": 87.7,
+      "attack": 82.53,
+      "midfield": 79.83,
+      "defense": 68.73,
+      "gk": 64.4,
+      "depth": 70.32,
+      "talent_raw": 76.87
+    },
+    "coach": {
+      "coach_name": "Lionel Scaloni",
+      "experience": 99.0,
+      "pedigree_raw": 99.0,
+      "source": "experience"
+    },
+    "talent_scaled": 87.6,
+    "coach_scaled": 91.3
+  },
+  "Algeria": {
+    "talent": {
+      "squad_overall": 70.11,
+      "star_power": 78.7,
+      "attack": 70.77,
+      "midfield": 74.5,
+      "defense": 63.02,
+      "gk": 61.2,
+      "depth": 64.48,
+      "talent_raw": 69.35
+    },
+    "coach": {
+      "coach_name": "Vladimir Petkovic",
+      "experience": 85.0,
+      "pedigree_raw": 85.0,
+      "source": "experience"
+    },
+    "talent_scaled": 76.2,
+    "coach_scaled": 82.6
+  },
+  "Austria": {
+    "talent": {
+      "squad_overall": 70.25,
+      "star_power": 81.5,
+      "attack": 62.6,
+      "midfield": 76.4,
+      "defense": 67.58,
+      "gk": 61.2,
+      "depth": 65.69,
+      "talent_raw": 68.67
+    },
+    "coach": {
+      "coach_name": "Ralf Rangnick",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 75.1,
+    "coach_scaled": 79.4
+  },
+  "Jordan": {
+    "talent": {
+      "squad_overall": 62.97,
+      "star_power": 80.5,
+      "attack": 72.7,
+      "midfield": 59.8,
+      "defense": 56.9,
+      "gk": 55.7,
+      "depth": 59.15,
+      "talent_raw": 63.64
+    },
+    "coach": {
+      "coach_name": "Jamal Sellami",
+      "experience": 50.0,
+      "pedigree_raw": 50.0,
+      "source": "experience"
+    },
+    "talent_scaled": 67.5,
+    "coach_scaled": 60.7
+  },
+  "Portugal": {
+    "talent": {
+      "squad_overall": 78.27,
+      "star_power": 86.2,
+      "attack": 80.33,
+      "midfield": 82.17,
+      "defense": 73.4,
+      "gk": 69.1,
+      "depth": 71.29,
+      "talent_raw": 78.31
+    },
+    "coach": {
+      "coach_name": "Carlos Queiroz",
+      "experience": 90.0,
+      "pedigree_raw": 90.0,
+      "source": "experience"
+    },
+    "talent_scaled": 89.7,
+    "coach_scaled": 85.7
+  },
+  "DR Congo": {
+    "talent": {
+      "squad_overall": 64.91,
+      "star_power": 85.2,
+      "attack": 72.33,
+      "midfield": 62.6,
+      "defense": 60.9,
+      "gk": 55.7,
+      "depth": 61.21,
+      "talent_raw": 65.59
+    },
+    "coach": {
+      "coach_name": "Sebastien Desabre",
+      "experience": 65.0,
+      "pedigree_raw": 65.0,
+      "source": "experience"
+    },
+    "talent_scaled": 70.5,
+    "coach_scaled": 70.1
+  },
+  "Uzbekistan": {
+    "talent": {
+      "squad_overall": 62.84,
+      "star_power": 69.5,
+      "attack": 64.33,
+      "midfield": 65.67,
+      "defense": 58.33,
+      "gk": 54.6,
+      "depth": 59.58,
+      "talent_raw": 62.53
+    },
+    "coach": {
+      "coach_name": "Fabio Cannavaro",
+      "experience": 80.0,
+      "pedigree_raw": 80.0,
+      "source": "experience"
+    },
+    "talent_scaled": 65.8,
+    "coach_scaled": 79.4
+  },
+  "Colombia": {
+    "talent": {
+      "squad_overall": 68.29,
+      "star_power": 87.7,
+      "attack": 62.57,
+      "midfield": 69.7,
+      "defense": 67.38,
+      "gk": 55.7,
+      "depth": 61.23,
+      "talent_raw": 66.49
+    },
+    "coach": {
+      "coach_name": "Nestor Lorenzo",
+      "experience": 70.0,
+      "pedigree_raw": 70.0,
+      "source": "experience"
+    },
+    "talent_scaled": 71.8,
+    "coach_scaled": 73.2
+  },
+  "England": {
+    "talent": {
+      "squad_overall": 78.24,
+      "star_power": 90.0,
+      "attack": 84.63,
+      "midfield": 79.1,
+      "defense": 73.35,
+      "gk": 69.6,
+      "depth": 74.11,
+      "talent_raw": 78.95
+    },
+    "coach": {
+      "coach_name": "Thomas Tuchel",
+      "experience": 90.0,
+      "pedigree_raw": 90.0,
+      "source": "experience"
+    },
+    "talent_scaled": 90.7,
+    "coach_scaled": 85.7
+  },
+  "Croatia": {
+    "talent": {
+      "squad_overall": 71.86,
+      "star_power": 79.6,
+      "attack": 62.93,
+      "midfield": 77.27,
+      "defense": 70.33,
+      "gk": 67.2,
+      "depth": 64.99,
+      "talent_raw": 70.2
+    },
+    "coach": {
+      "coach_name": "Zlatko Dalic",
+      "experience": 95.0,
+      "pedigree_raw": 95.0,
+      "source": "experience"
+    },
+    "talent_scaled": 77.4,
+    "coach_scaled": 88.8
+  },
+  "Ghana": {
+    "talent": {
+      "squad_overall": 66.63,
+      "star_power": 77.1,
+      "attack": 68.6,
+      "midfield": 68.3,
+      "defense": 65.0,
+      "gk": 58.1,
+      "depth": 62.63,
+      "talent_raw": 67.0
+    },
+    "coach": {
+      "coach_name": "Otto Addo",
+      "experience": 60.0,
+      "pedigree_raw": 60.0,
+      "source": "experience"
+    },
+    "talent_scaled": 72.6,
+    "coach_scaled": 67.0
+  },
+  "Panama": {
+    "talent": {
+      "squad_overall": 58.81,
+      "star_power": 66.6,
+      "attack": 63.1,
+      "midfield": 62.47,
+      "defense": 50.98,
+      "gk": 50.4,
+      "depth": 54.85,
+      "talent_raw": 58.76
+    },
+    "coach": {
+      "coach_name": "Thomas Christiansen",
+      "experience": 65.0,
+      "pedigree_raw": 65.0,
+      "source": "experience"
+    },
+    "talent_scaled": 60.1,
+    "coach_scaled": 70.1
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "n_matches_total": 96,
+  "n_matches_evaluated_oof": 80,
+  "cv": "TimeSeriesSplit(5), out-of-fold pooled",
+  "objective": "multiclass logloss; acc/brier reported; knockout split",
+  "weights": {
+    "current_5feat": {
+      "mine": 1.0,
+      "elo_scaled": 0.0,
+      "tmv_scaled": 0.0,
+      "qual_scaled": 0.0,
+      "form_scaled": 0.0
+    },
+    "tuned_5feat": {
+      "mine": 0.0657,
+      "elo_scaled": 0.277,
+      "tmv_scaled": 0.4577,
+      "qual_scaled": 0.1652,
+      "form_scaled": 0.0345
+    },
+    "tuned_7feat": {
+      "mine": 0.0497,
+      "elo_scaled": 0.2455,
+      "tmv_scaled": 0.429,
+      "qual_scaled": 0.1559,
+      "form_scaled": 0.0288,
+      "talent_scaled": 0.0432,
+      "coach_scaled": 0.048
+    }
+  },
+  "results": {
+    "J5L_current": {
+      "all": {
+        "n": 80,
+        "acc": 0.725,
+        "brier": 0.4436,
+        "logloss": 0.7753
+      },
+      "knockout": {
+        "n": 24,
+        "acc": 0.7917,
+        "brier": 0.4029,
+        "logloss": 0.7179
+      },
+      "group": {
+        "n": 56,
+        "acc": 0.6964,
+        "brier": 0.4611,
+        "logloss": 0.7999
+      }
+    },
+    "A_5feat_tuned": {
+      "all": {
+        "n": 80,
+        "acc": 0.7375,
+        "brier": 0.4441,
+        "logloss": 0.7755
+      },
+      "knockout": {
+        "n": 24,
+        "acc": 0.7917,
+        "brier": 0.3902,
+        "logloss": 0.6992
+      },
+      "group": {
+        "n": 56,
+        "acc": 0.7143,
+        "brier": 0.4672,
+        "logloss": 0.8083
+      }
+    },
+    "A_7feat_tuned": {
+      "all": {
+        "n": 80,
+        "acc": 0.7375,
+        "brier": 0.4458,
+        "logloss": 0.7781
+      },
+      "knockout": {
+        "n": 24,
+        "acc": 0.7917,
+        "brier": 0.398,
+        "logloss": 0.7094
+      },
+      "group": {
+        "n": 56,
+        "acc": 0.7143,
+        "brier": 0.4663,
+        "logloss": 0.8076
+      }
+    },
+    "B_gbm": {
+      "all": {
+        "n": 80,
+        "acc": 0.5375,
+        "brier": 0.545,
+        "logloss": 0.9357
+      },
+      "knockout": {
+        "n": 24,
+        "acc": 0.6667,
+        "brier": 0.4682,
+        "logloss": 0.8185
+      },
+      "group": {
+        "n": 56,
+        "acc": 0.4821,
+        "brier": 0.5779,
+        "logloss": 0.986
+      }
+    }
+  }
+}
