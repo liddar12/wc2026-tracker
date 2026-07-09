@@ -10,7 +10,21 @@ python3 scripts/proto/run_prototypes.py            # -> data/proto/prototype_rep
 python3 scripts/proto/ranking_eval.py              # -> data/proto/ranking_report.json
 python3 scripts/proto/context_adjust.py --backend rule   # -> data/proto/context_report.json (LLM/context layer)
 python3 scripts/proto/build_stacker.py             # -> data/proto/stacker.json (ship-ready artifact)
+python3 scripts/proto/backfill_ko_context.py       # -> data/proto/ko_context.json (KO rest/travel, no paid key)
 ```
+
+### On "wire the stacker into J5L to improve it"
+
+The stacker **cannot** fold into J5L without redefining J5L: its inputs are
+`[J5L, DT, market]`, so injecting it back into "J5L" just re-derives the Hybrid
+under the J5L name (J5L is by definition a *pure* composite, no betting market).
+Separately, **no prototype variant robustly beat the current live model for the
+remaining knockout matches** — GBM worse, context worse, talent/coach neutral; the
+calibrated Poisson is already best. So there is nothing safe to deploy that would
+"improve" the live projections now. The stacker's measured win is a *group-stage*
+blend improvement, and the group stage is complete — hence: bank it, enable next
+tournament. `backfill_ko_context.py` derives rest-days for the remaining QFs (a
+displayable context signal), no paid key, written to `data/proto/` only.
 
 Everything is evaluated **leak-safe** on the 2026 matches actually played
 (as of the QFs: 72 group + 24 knockout = 96 FINAL matches, status-gated). Elo and

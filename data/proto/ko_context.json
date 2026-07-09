@@ -1,0 +1,426 @@
+{
+  "__meta__": {
+    "method": "derived rest/travel for KO fixtures (offline, no paid key)",
+    "n_ko_fixtures": 52
+  },
+  "South Africa__vs__Canada": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-28T19:00Z",
+    "played": true,
+    "team_a": {
+      "team": "South Africa",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Canada",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Brazil__vs__Japan": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-29T17:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Brazil",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Japan",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Germany__vs__Paraguay": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-29T20:30Z",
+    "played": true,
+    "team_a": {
+      "team": "Germany",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Paraguay",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Netherlands__vs__Morocco": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-30T01:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Netherlands",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Morocco",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Cote d'Ivoire__vs__Norway": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-30T17:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Cote d'Ivoire",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Norway",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "France__vs__Sweden": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-06-30T21:00Z",
+    "played": true,
+    "team_a": {
+      "team": "France",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Sweden",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Mexico__vs__Ecuador": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-01T02:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Mexico",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Ecuador",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "England__vs__DR Congo": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-01T16:00Z",
+    "played": true,
+    "team_a": {
+      "team": "England",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "DR Congo",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Belgium__vs__Senegal": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-01T20:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Belgium",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Senegal",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "USA__vs__Bosnia and Herzegovina": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-02T00:00Z",
+    "played": true,
+    "team_a": {
+      "team": "USA",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Bosnia and Herzegovina",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Spain__vs__Austria": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-02T19:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Spain",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Austria",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Portugal__vs__Croatia": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-02T23:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Portugal",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Croatia",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Switzerland__vs__Algeria": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-03T03:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Switzerland",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Algeria",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Australia__vs__Egypt": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-03T18:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Australia",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Egypt",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Argentina__vs__Cabo Verde": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-03T22:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Argentina",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Cabo Verde",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Colombia__vs__Ghana": {
+    "tier": "round_of_32",
+    "kickoff_utc": "2026-07-04T01:30Z",
+    "played": true,
+    "team_a": {
+      "team": "Colombia",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Ghana",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Canada__vs__Morocco": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-04T17:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Canada",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Morocco",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Paraguay__vs__France": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-04T21:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Paraguay",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "France",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Brazil__vs__Norway": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-05T20:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Brazil",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Norway",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Mexico__vs__England": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-06T01:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Mexico",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "England",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Portugal__vs__Spain": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-06T19:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Portugal",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Spain",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "USA__vs__Belgium": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-07T00:00Z",
+    "played": true,
+    "team_a": {
+      "team": "USA",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Belgium",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Argentina__vs__Egypt": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-07T16:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Argentina",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Egypt",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "Switzerland__vs__Colombia": {
+    "tier": "round_of_16",
+    "kickoff_utc": "2026-07-07T20:00Z",
+    "played": true,
+    "team_a": {
+      "team": "Switzerland",
+      "rest_days": 0,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Colombia",
+      "rest_days": 0,
+      "travel_km": null
+    }
+  },
+  "France__vs__Morocco": {
+    "tier": "quarterfinals",
+    "kickoff_utc": "2026-07-09T20:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "France",
+      "rest_days": 4,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Morocco",
+      "rest_days": 5,
+      "travel_km": null
+    }
+  },
+  "Spain__vs__Belgium": {
+    "tier": "quarterfinals",
+    "kickoff_utc": "2026-07-10T19:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "Spain",
+      "rest_days": 4,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Belgium",
+      "rest_days": 3,
+      "travel_km": null
+    }
+  },
+  "Norway__vs__England": {
+    "tier": "quarterfinals",
+    "kickoff_utc": "2026-07-11T21:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "Norway",
+      "rest_days": 6,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "England",
+      "rest_days": 5,
+      "travel_km": null
+    }
+  },
+  "Argentina__vs__Switzerland": {
+    "tier": "quarterfinals",
+    "kickoff_utc": "2026-07-12T01:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "Argentina",
+      "rest_days": 4,
+      "travel_km": null
+    },
+    "team_b": {
+      "team": "Switzerland",
+      "rest_days": 4,
+      "travel_km": null
+    }
+  }
+}
