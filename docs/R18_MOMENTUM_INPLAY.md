@@ -51,6 +51,32 @@ the live who-wins prediction.
    (SoT 0.55, shots 0.30, possession swing 0.15), clamped to [-1,1]. Non-live
    fixtures keep the cron-fed RJ30.2 strip unchanged.
 
+## R19 — self-learning loops (added same day)
+
+All picks now sit on cron-driven learning loops, each never-regress:
+
+| Loop | Cadence | What it learns |
+|---|---|---|
+| `build_stacker.py` | hourly + live | The J5L/DT blend weight (pregame picks) |
+| `optimize_weights.py` | daily (**by design** — hourly would churn commits/probabilities; model-optimizer.test.mjs locks this) | Composite weights + Poisson calibration + hybrid blend |
+| `tune_inplay.py` (new) | hourly + live | The in-play red-card multipliers, re-fit from played goal/red timelines → `data/inplay_params.json` → `configureInplay()` on the client. First fit already adopted: (0.65, 1.25) → **(0.85, 1.00)**, red-checkpoint Brier 0.055 → 0.042 — this tournament's red cards swing matches less than the literature default assumed. Writes only on real change (anti-churn). SoT tilt cap stays static until the live sampler accrues shot timelines. |
+
+### Noise-reduction study (data/proto/noise_reduction_report.json)
+
+- **Draw-as-win framing (owner ask):** scoring a pick as correct on win-or-draw
+  puts the default model at **94.9%** on played matches (strict 3-way: 70.1%).
+  Fitting "unbeaten" directly beats deriving it from the 3-way (Brier 0.0966 vs
+  0.1006) — a small real gain for double-chance display. A draw-propensity
+  feature did NOT help the 3-way model (0.768→0.771).
+- **Late-stage weighting (owner ask):** group-performance carry into knockout
+  predictions made things WORSE (0.742→0.832 logloss) — current strength already
+  contains it. Up-weighting in-tournament Elo ×3 moved logloss by only −0.07%
+  (noise). Not adopted.
+- **ML sweep (LOO, n=96):** every generic family (SVC 0.829, logistic 0.888,
+  RF 0.902, MLP 0.911, XGBoost 0.926, GBM 0.951, KNN 1.061, NB 2.177) LOSES to
+  the calibrated stack baseline (0.799). The parametric engine + self-tuned
+  weights remain the right architecture at ~100 matches.
+
 ## Guardrails
 
 - Display + prediction only: never writes actualResults, never advances a
