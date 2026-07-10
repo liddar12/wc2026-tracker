@@ -1048,5 +1048,48 @@
     "stage": "quarterfinals",
     "match_id": "M100__W95__vs__W96",
     "kickoff_utc": "2026-07-12T01:00:00Z"
+  },
+  {
+    "team_a": "France",
+    "team_b": "Spain",
+    "composite_a": 87.0,
+    "composite_b": 87.9,
+    "gap": 0.9,
+    "probabilities": {
+      "team_a_wins": 34.5,
+      "draw": 26.7,
+      "team_b_wins": 38.8
+    },
+    "expected_points": {
+      "team_a": 1.3,
+      "team_b": 1.43
+    },
+    "predicted_winner": "Spain",
+    "win_confidence_pct": 53.0,
+    "upset_risk": {
+      "favored": "Spain",
+      "underdog": "France",
+      "gap": 0.9,
+      "indicators": [
+        {
+          "type": "close_gap",
+          "severity": "high",
+          "label": "Toss-up game",
+          "detail": "Composite gap only 0.9 points"
+        }
+      ]
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 34.5,
+      "draw": 26.7,
+      "team_b_wins": 38.8
+    },
+    "hybrid_gap": 0.9,
+    "advance_pct_a": 47.0,
+    "advance_pct_b": 53.0,
+    "is_knockout": true,
+    "stage": "semifinals",
+    "match_id": "M101__W97__vs__W98",
+    "kickoff_utc": "2026-07-14T19:00:00Z"
   }
 ]
