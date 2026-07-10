@@ -6164,7 +6164,7 @@
       "team_a": "Spain",
       "team_b": "Belgium",
       "kickoff_utc": "2026-07-10T19:00:00Z",
-      "captured_at": "2026-07-10T08:02:24+00:00",
+      "captured_at": "2026-07-10T11:16:54+00:00",
       "preds": {
         "model": [
           0.5828,
@@ -6177,14 +6177,14 @@
           0.0807
         ],
         "market": [
-          0.653,
-          0.1994,
-          0.1476
+          0.6546,
+          0.1988,
+          0.1466
         ],
         "hybrid": [
-          0.67,
-          0.1894,
-          0.1406
+          0.6706,
+          0.1891,
+          0.1403
         ],
         "stack": [
           0.6582,
@@ -6195,9 +6195,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M099__W91__vs__W92": {
+      "match_number": 99,
+      "stage": "quarterfinals",
+      "team_a": "Norway",
+      "team_b": "England",
+      "kickoff_utc": "2026-07-11T21:00:00Z",
+      "captured_at": "2026-07-10T11:16:54+00:00",
+      "preds": {
+        "model": [
+          0.2106,
+          0.2306,
+          0.5588
+        ],
+        "dt": [
+          0.177,
+          0.2159,
+          0.607
+        ],
+        "market": [
+          0.2545,
+          0.2444,
+          0.5011
+        ],
+        "hybrid": [
+          0.214,
+          0.2303,
+          0.5556
+        ],
+        "stack": [
+          0.1978,
+          0.2255,
+          0.5767
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-10T08:02:24+00:00",
+  "updated_at": "2026-07-10T11:16:54+00:00",
   "summary": {
     "matches_scored": 72,
     "model": {
