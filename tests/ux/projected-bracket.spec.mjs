@@ -9,15 +9,16 @@ test.describe('Projected bracket + hidden nav', () => {
     // stage nav (GS/R32/.../F) + the bracket tree render
     await expect(page.locator('[data-testid="eb-stage-nav"]')).toBeVisible({ timeout: 15_000 });
     await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible();
-    // tree has connector-line matches + at least one confidence badge. The
-    // bracket CONTAINER paints before its matches stream in from the critical
-    // feeds, so a bare count() right after toBeVisible() races to 0 under a slow
-    // (CI) server. Web-first-wait for the 21st match + a confidence badge to be
-    // attached before counting — retries until the tree has populated.
-    await expect(page.locator('.eb-match').nth(20)).toBeVisible({ timeout: 10_000 });
-    expect(await page.locator('.eb-match').count()).toBeGreaterThan(20);
-    await expect(page.locator('.eb-conf').first()).toBeVisible({ timeout: 10_000 });
-    expect(await page.locator('.eb-conf').count()).toBeGreaterThan(0);
+    // tree has connector-line matches + at least one confidence badge. Two races
+    // guard this: (1) the bracket CONTAINER paints before its matches stream in
+    // from the critical feeds, and (2) during a LIVE match the poller re-renders
+    // root.innerHTML every ~30s, so even a count() taken right after a passing
+    // visibility wait can catch the mid-rebuild instant and see 0. expect.poll
+    // retries the COUNT itself through both races until it holds.
+    await expect.poll(() => page.locator('.eb-match').count(), { timeout: 15_000 })
+      .toBeGreaterThan(20);
+    await expect.poll(() => page.locator('.eb-conf').count(), { timeout: 10_000 })
+      .toBeGreaterThan(0);
 
     // GS stage shows the standings → seeding view
     await page.locator('[data-testid="eb-stage-gs"]').click();
