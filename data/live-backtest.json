@@ -6164,7 +6164,7 @@
       "team_a": "Spain",
       "team_b": "Belgium",
       "kickoff_utc": "2026-07-10T19:00:00Z",
-      "captured_at": "2026-07-10T11:22:34+00:00",
+      "captured_at": "2026-07-10T13:22:44+00:00",
       "preds": {
         "model": [
           0.5828,
@@ -6202,7 +6202,7 @@
       "team_a": "Norway",
       "team_b": "England",
       "kickoff_utc": "2026-07-11T21:00:00Z",
-      "captured_at": "2026-07-10T11:22:34+00:00",
+      "captured_at": "2026-07-10T13:22:44+00:00",
       "preds": {
         "model": [
           0.2106,
@@ -6233,9 +6233,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M100__W95__vs__W96": {
+      "match_number": 100,
+      "stage": "quarterfinals",
+      "team_a": "Argentina",
+      "team_b": "Switzerland",
+      "kickoff_utc": "2026-07-12T01:00:00Z",
+      "captured_at": "2026-07-10T13:22:44+00:00",
+      "preds": {
+        "model": [
+          0.5453,
+          0.2342,
+          0.2204
+        ],
+        "dt": [
+          0.6895,
+          0.1847,
+          0.1258
+        ],
+        "market": [
+          0.6816,
+          0.188,
+          0.1304
+        ],
+        "hybrid": [
+          0.6388,
+          0.2023,
+          0.1589
+        ],
+        "stack": [
+          0.6001,
+          0.2182,
+          0.1817
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-10T11:22:34+00:00",
+  "updated_at": "2026-07-10T13:22:44+00:00",
   "summary": {
     "matches_scored": 72,
     "model": {
