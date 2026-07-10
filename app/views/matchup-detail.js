@@ -29,7 +29,8 @@ import { weatherSection } from '../components/weather.js';
 import { travelRestSection } from '../components/travel-rest.js';
 import { xgSection } from '../components/xg.js';
 import { renderMatchStats } from '../components/match-stats.js';
-import { renderMomentum } from '../components/momentum-chart.js';
+// R18: live matches get the 10s extremes sampler; others the cron-fed strip.
+import { momentumSection } from '../live-momentum.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
 import { modelPickForMatch } from '../lib/model-pick.js';
@@ -205,7 +206,7 @@ export function renderMatchupDetail(root, data, params) {
   // stats. Stats first (possession / shots / passing / shots-vs-model-xG +
   // computed insights), momentum after (shot-pressure sparkline + goal markers).
   root.appendChild(renderMatchStats(match, data));
-  root.appendChild(renderMomentum(match, data));
+  root.appendChild(momentumSection(match, data));
 
   // AI match preview / recap — mounts near the model grid (where a preview
   // belongs) and ships DORMANT: previewSection returns an empty

@@ -188,9 +188,6417 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-01T04:54:37+00:00",
+    "updated_at": "2026-07-10T16:43:40+00:00",
     "source": "espn-summary",
-    "matches": 3,
-    "last_run_updated": 3
+    "matches": 96,
+    "last_run_updated": 1
+  },
+  "Mexico__vs__South Africa": {
+    "team_a": "Mexico",
+    "team_b": "South Africa",
+    "stats": {
+      "a": {
+        "possessionPct": 60.5,
+        "totalShots": 16,
+        "shotsOnTarget": 4,
+        "blockedShots": 5,
+        "shotPct": 30.0,
+        "totalPasses": 520,
+        "passPct": 90.0,
+        "accuratePasses": 467,
+        "saves": 2,
+        "effectiveTackles": 6,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 12,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 39.5,
+        "totalShots": 3,
+        "shotsOnTarget": 2,
+        "blockedShots": 0,
+        "shotPct": 70.0,
+        "totalPasses": 334,
+        "passPct": 80.0,
+        "accuratePasses": 272,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 8,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "9",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "17",
+        "type": "yellow",
+        "team": "South Africa"
+      },
+      {
+        "minute": "23",
+        "type": "yellow",
+        "team": "Mexico"
+      },
+      {
+        "minute": "49",
+        "type": "red",
+        "team": "South Africa"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "74",
+        "type": "yellow",
+        "team": "South Africa"
+      },
+      {
+        "minute": "84",
+        "type": "red",
+        "team": "South Africa"
+      },
+      {
+        "minute": "90'+2",
+        "type": "red",
+        "team": "Mexico"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Korea Republic__vs__Czechia": {
+    "team_a": "Korea Republic",
+    "team_b": "Czechia",
+    "stats": {
+      "a": {
+        "possessionPct": 61.5,
+        "totalShots": 15,
+        "shotsOnTarget": 6,
+        "blockedShots": 4,
+        "shotPct": 40.0,
+        "totalPasses": 541,
+        "passPct": 90.0,
+        "accuratePasses": 469,
+        "saves": 3,
+        "effectiveTackles": 4,
+        "foulsCommitted": 9,
+        "offsides": 2,
+        "totalCrosses": 12,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 38.5,
+        "totalShots": 7,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 327,
+        "passPct": 70.0,
+        "accuratePasses": 230,
+        "saves": 4,
+        "effectiveTackles": 7,
+        "foulsCommitted": 16,
+        "offsides": 2,
+        "totalCrosses": 15,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "59",
+        "type": "goal",
+        "team": "Czechia"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "Korea Republic"
+      },
+      {
+        "minute": "80",
+        "type": "goal",
+        "team": "Korea Republic"
+      },
+      {
+        "minute": "90'+6",
+        "type": "yellow",
+        "team": "Korea Republic"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Canada__vs__Bosnia and Herzegovina": {
+    "team_a": "Canada",
+    "team_b": "Bosnia and Herzegovina",
+    "stats": {
+      "a": {
+        "possessionPct": 61.1,
+        "totalShots": 13,
+        "shotsOnTarget": 4,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 421,
+        "passPct": 70.0,
+        "accuratePasses": 310,
+        "saves": 2,
+        "effectiveTackles": 15,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 24,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 38.9,
+        "totalShots": 8,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 271,
+        "passPct": 60.0,
+        "accuratePasses": 172,
+        "saves": 1,
+        "effectiveTackles": 12,
+        "foulsCommitted": 20,
+        "offsides": 0,
+        "totalCrosses": 10,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "11",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "45",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "45'+1",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "53",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "78",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Australia__vs__Turkiye": {
+    "team_a": "Australia",
+    "team_b": "Turkiye",
+    "stats": {
+      "a": {
+        "possessionPct": 28.4,
+        "totalShots": 9,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 271,
+        "passPct": 70.0,
+        "accuratePasses": 201,
+        "saves": 8,
+        "effectiveTackles": 5,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 14,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 71.6,
+        "totalShots": 30,
+        "shotsOnTarget": 8,
+        "blockedShots": 12,
+        "shotPct": 30.0,
+        "totalPasses": 704,
+        "passPct": 90.0,
+        "accuratePasses": 635,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 4,
+        "offsides": 3,
+        "totalCrosses": 26,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "27",
+        "type": "goal",
+        "team": "Australia"
+      },
+      {
+        "minute": "75",
+        "type": "goal",
+        "team": "Australia"
+      },
+      {
+        "minute": "86",
+        "type": "yellow",
+        "team": "Turkiye"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Qatar__vs__Switzerland": {
+    "team_a": "Qatar",
+    "team_b": "Switzerland",
+    "stats": {
+      "a": {
+        "possessionPct": 32,
+        "totalShots": 6,
+        "shotsOnTarget": 3,
+        "blockedShots": 0,
+        "shotPct": 50.0,
+        "totalPasses": 278,
+        "passPct": 70.0,
+        "accuratePasses": 200,
+        "saves": 5,
+        "effectiveTackles": 9,
+        "foulsCommitted": 12,
+        "offsides": 0,
+        "totalCrosses": 9,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 68,
+        "totalShots": 26,
+        "shotsOnTarget": 7,
+        "blockedShots": 9,
+        "shotPct": 30.0,
+        "totalPasses": 576,
+        "passPct": 90.0,
+        "accuratePasses": 527,
+        "saves": 3,
+        "effectiveTackles": 6,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 35,
+        "wonCorners": 10
+      }
+    },
+    "key_events": [
+      {
+        "minute": "16",
+        "type": "yellow",
+        "team": "Qatar"
+      },
+      {
+        "minute": "17",
+        "type": "pen-goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "23",
+        "type": "yellow",
+        "team": "Qatar"
+      },
+      {
+        "minute": "42",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "90'+4",
+        "type": "own-goal",
+        "team": "Qatar"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Brazil__vs__Morocco": {
+    "team_a": "Brazil",
+    "team_b": "Morocco",
+    "stats": {
+      "a": {
+        "possessionPct": 51.4,
+        "totalShots": 12,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 514,
+        "passPct": 90.0,
+        "accuratePasses": 449,
+        "saves": 2,
+        "effectiveTackles": 13,
+        "foulsCommitted": 16,
+        "offsides": 0,
+        "totalCrosses": 16,
+        "wonCorners": 6
+      },
+      "b": {
+        "possessionPct": 48.6,
+        "totalShots": 14,
+        "shotsOnTarget": 3,
+        "blockedShots": 6,
+        "shotPct": 20.0,
+        "totalPasses": 486,
+        "passPct": 90.0,
+        "accuratePasses": 419,
+        "saves": 4,
+        "effectiveTackles": 18,
+        "foulsCommitted": 14,
+        "offsides": 1,
+        "totalCrosses": 15,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "32",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "37",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Brazil"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Haiti__vs__Scotland": {
+    "team_a": "Haiti",
+    "team_b": "Scotland",
+    "stats": {
+      "a": {
+        "possessionPct": 53.7,
+        "totalShots": 15,
+        "shotsOnTarget": 2,
+        "blockedShots": 4,
+        "shotPct": 10.0,
+        "totalPasses": 431,
+        "passPct": 90.0,
+        "accuratePasses": 367,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 23,
+        "offsides": 3,
+        "totalCrosses": 23,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 46.3,
+        "totalShots": 9,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 374,
+        "passPct": 80.0,
+        "accuratePasses": 307,
+        "saves": 2,
+        "effectiveTackles": 5,
+        "foulsCommitted": 21,
+        "offsides": 1,
+        "totalCrosses": 14,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "28",
+        "type": "goal",
+        "team": "Scotland"
+      },
+      {
+        "minute": "39",
+        "type": "yellow",
+        "team": "Haiti"
+      },
+      {
+        "minute": "46",
+        "type": "yellow",
+        "team": "Scotland"
+      },
+      {
+        "minute": "90'+1",
+        "type": "yellow",
+        "team": "Scotland"
+      },
+      {
+        "minute": "90'+5",
+        "type": "yellow",
+        "team": "Scotland"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Germany__vs__Curacao": {
+    "team_a": "Germany",
+    "team_b": "Curacao",
+    "stats": {
+      "a": {
+        "possessionPct": 64.6,
+        "totalShots": 26,
+        "shotsOnTarget": 12,
+        "blockedShots": 8,
+        "shotPct": 50.0,
+        "totalPasses": 637,
+        "passPct": 90.0,
+        "accuratePasses": 554,
+        "saves": 1,
+        "effectiveTackles": 13,
+        "foulsCommitted": 18,
+        "offsides": 0,
+        "totalCrosses": 12,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 35.4,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 0,
+        "shotPct": 30.0,
+        "totalPasses": 343,
+        "passPct": 80.0,
+        "accuratePasses": 282,
+        "saves": 4,
+        "effectiveTackles": 8,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 7,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "6",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Curacao"
+      },
+      {
+        "minute": "38",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "45'+5",
+        "type": "pen-goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "47",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "68",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "78",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "88",
+        "type": "goal",
+        "team": "Germany"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Netherlands__vs__Japan": {
+    "team_a": "Netherlands",
+    "team_b": "Japan",
+    "stats": {
+      "a": {
+        "possessionPct": 59.8,
+        "totalShots": 10,
+        "shotsOnTarget": 6,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 524,
+        "passPct": 90.0,
+        "accuratePasses": 463,
+        "saves": 1,
+        "effectiveTackles": 5,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 21,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 40.2,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 341,
+        "passPct": 80.0,
+        "accuratePasses": 286,
+        "saves": 4,
+        "effectiveTackles": 10,
+        "foulsCommitted": 7,
+        "offsides": 0,
+        "totalCrosses": 23,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "51",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "57",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "61",
+        "type": "yellow",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "64",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "83",
+        "type": "yellow",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "89",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "90'+1",
+        "type": "yellow",
+        "team": "Netherlands"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Cote d'Ivoire__vs__Ecuador": {
+    "team_a": "Cote d'Ivoire",
+    "team_b": "Ecuador",
+    "stats": {
+      "a": {
+        "possessionPct": 48.4,
+        "totalShots": 15,
+        "shotsOnTarget": 4,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 470,
+        "passPct": 80.0,
+        "accuratePasses": 397,
+        "saves": 1,
+        "effectiveTackles": 9,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 8,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 51.6,
+        "totalShots": 12,
+        "shotsOnTarget": 1,
+        "blockedShots": 3,
+        "shotPct": 10.0,
+        "totalPasses": 492,
+        "passPct": 90.0,
+        "accuratePasses": 419,
+        "saves": 3,
+        "effectiveTackles": 15,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 14,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "28",
+        "type": "yellow",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "38",
+        "type": "yellow",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "40",
+        "type": "yellow",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "73",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "90",
+        "type": "goal",
+        "team": "Cote d'Ivoire"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Sweden__vs__Tunisia": {
+    "team_a": "Sweden",
+    "team_b": "Tunisia",
+    "stats": {
+      "a": {
+        "possessionPct": 48.7,
+        "totalShots": 13,
+        "shotsOnTarget": 7,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 356,
+        "passPct": 80.0,
+        "accuratePasses": 278,
+        "saves": 1,
+        "effectiveTackles": 9,
+        "foulsCommitted": 10,
+        "offsides": 3,
+        "totalCrosses": 12,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 51.3,
+        "totalShots": 6,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 371,
+        "passPct": 80.0,
+        "accuratePasses": 292,
+        "saves": 1,
+        "effectiveTackles": 12,
+        "foulsCommitted": 8,
+        "offsides": 6,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "30",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "43",
+        "type": "goal",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "54",
+        "type": "yellow",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "59",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "84",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "90'+6",
+        "type": "goal",
+        "team": "Sweden"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Spain__vs__Cabo Verde": {
+    "team_a": "Spain",
+    "team_b": "Cabo Verde",
+    "stats": {
+      "a": {
+        "possessionPct": 74.3,
+        "totalShots": 27,
+        "shotsOnTarget": 7,
+        "blockedShots": 8,
+        "shotPct": 30.0,
+        "totalPasses": 800,
+        "passPct": 90.0,
+        "accuratePasses": 734,
+        "saves": 1,
+        "effectiveTackles": 12,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 36,
+        "wonCorners": 11
+      },
+      "b": {
+        "possessionPct": 25.7,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 278,
+        "passPct": 70.0,
+        "accuratePasses": 205,
+        "saves": 7,
+        "effectiveTackles": 11,
+        "foulsCommitted": 1,
+        "offsides": 3,
+        "totalCrosses": 4,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "16",
+        "type": "yellow",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Spain"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Belgium__vs__Egypt": {
+    "team_a": "Belgium",
+    "team_b": "Egypt",
+    "stats": {
+      "a": {
+        "possessionPct": 53.6,
+        "totalShots": 15,
+        "shotsOnTarget": 3,
+        "blockedShots": 5,
+        "shotPct": 20.0,
+        "totalPasses": 455,
+        "passPct": 90.0,
+        "accuratePasses": 391,
+        "saves": 2,
+        "effectiveTackles": 11,
+        "foulsCommitted": 15,
+        "offsides": 0,
+        "totalCrosses": 16,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 46.4,
+        "totalShots": 14,
+        "shotsOnTarget": 3,
+        "blockedShots": 7,
+        "shotPct": 20.0,
+        "totalPasses": 398,
+        "passPct": 80.0,
+        "accuratePasses": 323,
+        "saves": 3,
+        "effectiveTackles": 17,
+        "foulsCommitted": 15,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "13",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "14",
+        "type": "yellow",
+        "team": "Belgium"
+      },
+      {
+        "minute": "20",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "34",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "66",
+        "type": "own-goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Saudi Arabia__vs__Uruguay": {
+    "team_a": "Saudi Arabia",
+    "team_b": "Uruguay",
+    "stats": {
+      "a": {
+        "possessionPct": 33.2,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 322,
+        "passPct": 70.0,
+        "accuratePasses": 236,
+        "saves": 9,
+        "effectiveTackles": 8,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 6,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 66.8,
+        "totalShots": 27,
+        "shotsOnTarget": 10,
+        "blockedShots": 7,
+        "shotPct": 40.0,
+        "totalPasses": 612,
+        "passPct": 90.0,
+        "accuratePasses": 540,
+        "saves": 2,
+        "effectiveTackles": 2,
+        "foulsCommitted": 6,
+        "offsides": 6,
+        "totalCrosses": 47,
+        "wonCorners": 14
+      }
+    },
+    "key_events": [
+      {
+        "minute": "41",
+        "type": "goal",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "44",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "80",
+        "type": "goal",
+        "team": "Uruguay"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Iran__vs__New Zealand": {
+    "team_a": "Iran",
+    "team_b": "New Zealand",
+    "stats": {
+      "a": {
+        "possessionPct": 48.5,
+        "totalShots": 17,
+        "shotsOnTarget": 4,
+        "blockedShots": 5,
+        "shotPct": 20.0,
+        "totalPasses": 409,
+        "passPct": 80.0,
+        "accuratePasses": 314,
+        "saves": 6,
+        "effectiveTackles": 10,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 19,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 51.5,
+        "totalShots": 14,
+        "shotsOnTarget": 8,
+        "blockedShots": 2,
+        "shotPct": 60.0,
+        "totalPasses": 446,
+        "passPct": 80.0,
+        "accuratePasses": 376,
+        "saves": 2,
+        "effectiveTackles": 10,
+        "foulsCommitted": 8,
+        "offsides": 0,
+        "totalCrosses": 12,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "32",
+        "type": "goal",
+        "team": "Iran"
+      },
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "64",
+        "type": "goal",
+        "team": "Iran"
+      },
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "Iran"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Austria__vs__Jordan": {
+    "team_a": "Austria",
+    "team_b": "Jordan",
+    "stats": {
+      "a": {
+        "possessionPct": 63.2,
+        "totalShots": 11,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 580,
+        "passPct": 80.0,
+        "accuratePasses": 487,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 12,
+        "offsides": 3,
+        "totalCrosses": 17,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 36.8,
+        "totalShots": 11,
+        "shotsOnTarget": 4,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 332,
+        "passPct": 70.0,
+        "accuratePasses": 241,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 15,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Austria"
+      },
+      {
+        "minute": "50",
+        "type": "goal",
+        "team": "Jordan"
+      },
+      {
+        "minute": "76",
+        "type": "own-goal",
+        "team": "Austria"
+      },
+      {
+        "minute": "77",
+        "type": "yellow",
+        "team": "Austria"
+      },
+      {
+        "minute": "90'+12",
+        "type": "pen-goal",
+        "team": "Austria"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "France__vs__Senegal": {
+    "team_a": "France",
+    "team_b": "Senegal",
+    "stats": {
+      "a": {
+        "possessionPct": 53.4,
+        "totalShots": 11,
+        "shotsOnTarget": 8,
+        "blockedShots": 2,
+        "shotPct": 70.0,
+        "totalPasses": 575,
+        "passPct": 90.0,
+        "accuratePasses": 505,
+        "saves": 2,
+        "effectiveTackles": 14,
+        "foulsCommitted": 5,
+        "offsides": 1,
+        "totalCrosses": 9,
+        "wonCorners": 6
+      },
+      "b": {
+        "possessionPct": 46.6,
+        "totalShots": 6,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 502,
+        "passPct": 90.0,
+        "accuratePasses": 430,
+        "saves": 5,
+        "effectiveTackles": 10,
+        "foulsCommitted": 9,
+        "offsides": 3,
+        "totalCrosses": 9,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "66",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "90'+5",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "90'+6",
+        "type": "goal",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Iraq__vs__Norway": {
+    "team_a": "Iraq",
+    "team_b": "Norway",
+    "stats": {
+      "a": {
+        "possessionPct": 38.7,
+        "totalShots": 11,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 10.0,
+        "totalPasses": 334,
+        "passPct": 80.0,
+        "accuratePasses": 271,
+        "saves": 2,
+        "effectiveTackles": 13,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 61.3,
+        "totalShots": 12,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 537,
+        "passPct": 90.0,
+        "accuratePasses": 477,
+        "saves": 0,
+        "effectiveTackles": 10,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 17,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "29",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "39",
+        "type": "goal",
+        "team": "Iraq"
+      },
+      {
+        "minute": "43",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "76",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "86",
+        "type": "yellow",
+        "team": "Iraq"
+      },
+      {
+        "minute": "90'+6",
+        "type": "own-goal",
+        "team": "Norway"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Argentina__vs__Algeria": {
+    "team_a": "Argentina",
+    "team_b": "Algeria",
+    "stats": {
+      "a": {
+        "possessionPct": 47.8,
+        "totalShots": 10,
+        "shotsOnTarget": 6,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 561,
+        "passPct": 90.0,
+        "accuratePasses": 504,
+        "saves": 0,
+        "effectiveTackles": 19,
+        "foulsCommitted": 13,
+        "offsides": 3,
+        "totalCrosses": 6,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 52.2,
+        "totalShots": 7,
+        "shotsOnTarget": 1,
+        "blockedShots": 3,
+        "shotPct": 0,
+        "totalPasses": 609,
+        "passPct": 90.0,
+        "accuratePasses": 563,
+        "saves": 3,
+        "effectiveTackles": 10,
+        "foulsCommitted": 8,
+        "offsides": 1,
+        "totalCrosses": 9,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "17",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "60",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "76",
+        "type": "goal",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Portugal__vs__DR Congo": {
+    "team_a": "Portugal",
+    "team_b": "DR Congo",
+    "stats": {
+      "a": {
+        "possessionPct": 75.4,
+        "totalShots": 7,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 10.0,
+        "totalPasses": 783,
+        "passPct": 90.0,
+        "accuratePasses": 724,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 9,
+        "offsides": 3,
+        "totalCrosses": 23,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 24.6,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 249,
+        "passPct": 80.0,
+        "accuratePasses": 195,
+        "saves": 0,
+        "effectiveTackles": 9,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 10,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "6",
+        "type": "goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "13",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "32",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "45'+5",
+        "type": "goal",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "88",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "90'+2",
+        "type": "yellow",
+        "team": "Portugal"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "England__vs__Croatia": {
+    "team_a": "England",
+    "team_b": "Croatia",
+    "stats": {
+      "a": {
+        "possessionPct": 51.7,
+        "totalShots": 22,
+        "shotsOnTarget": 11,
+        "blockedShots": 5,
+        "shotPct": 50.0,
+        "totalPasses": 474,
+        "passPct": 90.0,
+        "accuratePasses": 406,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 48.3,
+        "totalShots": 10,
+        "shotsOnTarget": 5,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 443,
+        "passPct": 90.0,
+        "accuratePasses": 381,
+        "saves": 7,
+        "effectiveTackles": 8,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "12",
+        "type": "pen-goal",
+        "team": "England"
+      },
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "42",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "45'+5",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "47",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "85",
+        "type": "goal",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Ghana__vs__Panama": {
+    "team_a": "Ghana",
+    "team_b": "Panama",
+    "stats": {
+      "a": {
+        "possessionPct": 38,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 352,
+        "passPct": 80.0,
+        "accuratePasses": 292,
+        "saves": 4,
+        "effectiveTackles": 9,
+        "foulsCommitted": 9,
+        "offsides": 4,
+        "totalCrosses": 16,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 62,
+        "totalShots": 11,
+        "shotsOnTarget": 4,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 583,
+        "passPct": 90.0,
+        "accuratePasses": 503,
+        "saves": 2,
+        "effectiveTackles": 11,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 21,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "16",
+        "type": "yellow",
+        "team": "Ghana"
+      },
+      {
+        "minute": "72",
+        "type": "yellow",
+        "team": "Panama"
+      },
+      {
+        "minute": "90'+5",
+        "type": "goal",
+        "team": "Ghana"
+      },
+      {
+        "minute": "90'+9",
+        "type": "yellow",
+        "team": "Panama"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Uzbekistan__vs__Colombia": {
+    "team_a": "Uzbekistan",
+    "team_b": "Colombia",
+    "stats": {
+      "a": {
+        "possessionPct": 38.6,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 319,
+        "passPct": 80.0,
+        "accuratePasses": 243,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 14,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 61.4,
+        "totalShots": 15,
+        "shotsOnTarget": 4,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 519,
+        "passPct": 90.0,
+        "accuratePasses": 444,
+        "saves": 1,
+        "effectiveTackles": 3,
+        "foulsCommitted": 11,
+        "offsides": 3,
+        "totalCrosses": 16,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "yellow",
+        "team": "Colombia"
+      },
+      {
+        "minute": "34",
+        "type": "yellow",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "40",
+        "type": "goal",
+        "team": "Colombia"
+      },
+      {
+        "minute": "60",
+        "type": "goal",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "65",
+        "type": "goal",
+        "team": "Colombia"
+      },
+      {
+        "minute": "90'+9",
+        "type": "goal",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Czechia__vs__South Africa": {
+    "team_a": "Czechia",
+    "team_b": "South Africa",
+    "stats": {
+      "a": {
+        "possessionPct": 38.3,
+        "totalShots": 14,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 341,
+        "passPct": 80.0,
+        "accuratePasses": 272,
+        "saves": 3,
+        "effectiveTackles": 4,
+        "foulsCommitted": 12,
+        "offsides": 2,
+        "totalCrosses": 16,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 61.7,
+        "totalShots": 17,
+        "shotsOnTarget": 4,
+        "blockedShots": 8,
+        "shotPct": 20.0,
+        "totalPasses": 563,
+        "passPct": 90.0,
+        "accuratePasses": 508,
+        "saves": 2,
+        "effectiveTackles": 11,
+        "foulsCommitted": 10,
+        "offsides": 3,
+        "totalCrosses": 17,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "6",
+        "type": "goal",
+        "team": "Czechia"
+      },
+      {
+        "minute": "33",
+        "type": "yellow",
+        "team": "South Africa"
+      },
+      {
+        "minute": "40",
+        "type": "yellow",
+        "team": "South Africa"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Czechia"
+      },
+      {
+        "minute": "83",
+        "type": "pen-goal",
+        "team": "South Africa"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Switzerland__vs__Bosnia and Herzegovina": {
+    "team_a": "Switzerland",
+    "team_b": "Bosnia and Herzegovina",
+    "stats": {
+      "a": {
+        "possessionPct": 62.3,
+        "totalShots": 13,
+        "shotsOnTarget": 7,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 586,
+        "passPct": 90.0,
+        "accuratePasses": 516,
+        "saves": 2,
+        "effectiveTackles": 13,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 23,
+        "wonCorners": 7
+      },
+      "b": {
+        "possessionPct": 37.7,
+        "totalShots": 5,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 354,
+        "passPct": 80.0,
+        "accuratePasses": 287,
+        "saves": 3,
+        "effectiveTackles": 3,
+        "foulsCommitted": 18,
+        "offsides": 1,
+        "totalCrosses": 12,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "59",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "61",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "65",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "74",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "80",
+        "type": "red",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "84",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "90",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "90'+3",
+        "type": "goal",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "90'+7",
+        "type": "pen-goal",
+        "team": "Switzerland"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Canada__vs__Qatar": {
+    "team_a": "Canada",
+    "team_b": "Qatar",
+    "stats": {
+      "a": {
+        "possessionPct": 79,
+        "totalShots": 32,
+        "shotsOnTarget": 10,
+        "blockedShots": 14,
+        "shotPct": 30.0,
+        "totalPasses": 567,
+        "passPct": 90.0,
+        "accuratePasses": 515,
+        "saves": 0,
+        "effectiveTackles": 5,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 55,
+        "wonCorners": 19
+      },
+      "b": {
+        "possessionPct": 21,
+        "totalShots": 2,
+        "shotsOnTarget": 0,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 162,
+        "passPct": 60.0,
+        "accuratePasses": 104,
+        "saves": 4,
+        "effectiveTackles": 10,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 3,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "9",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "16",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "29",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "33",
+        "type": "red",
+        "team": "Qatar"
+      },
+      {
+        "minute": "45'+3",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "53",
+        "type": "red",
+        "team": "Qatar"
+      },
+      {
+        "minute": "62",
+        "type": "yellow",
+        "team": "Qatar"
+      },
+      {
+        "minute": "64",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "75",
+        "type": "own-goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "90'+2",
+        "type": "goal",
+        "team": "Canada"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Mexico__vs__Korea Republic": {
+    "team_a": "Mexico",
+    "team_b": "Korea Republic",
+    "stats": {
+      "a": {
+        "possessionPct": 42.4,
+        "totalShots": 8,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 50.0,
+        "totalPasses": 427,
+        "passPct": 80.0,
+        "accuratePasses": 349,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 9,
+        "offsides": 3,
+        "totalCrosses": 6,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 57.6,
+        "totalShots": 9,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 578,
+        "passPct": 80.0,
+        "accuratePasses": 488,
+        "saves": 3,
+        "effectiveTackles": 10,
+        "foulsCommitted": 7,
+        "offsides": 6,
+        "totalCrosses": 9,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "4",
+        "type": "yellow",
+        "team": "Korea Republic"
+      },
+      {
+        "minute": "50",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "58",
+        "type": "yellow",
+        "team": "Korea Republic"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "USA__vs__Australia": {
+    "team_a": "USA",
+    "team_b": "Australia",
+    "stats": {
+      "a": {
+        "possessionPct": 61.9,
+        "totalShots": 10,
+        "shotsOnTarget": 2,
+        "blockedShots": 6,
+        "shotPct": 20.0,
+        "totalPasses": 523,
+        "passPct": 80.0,
+        "accuratePasses": 444,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 14,
+        "wonCorners": 7
+      },
+      "b": {
+        "possessionPct": 38.1,
+        "totalShots": 5,
+        "shotsOnTarget": 2,
+        "blockedShots": 0,
+        "shotPct": 40.0,
+        "totalPasses": 310,
+        "passPct": 70.0,
+        "accuratePasses": 219,
+        "saves": 1,
+        "effectiveTackles": 11,
+        "foulsCommitted": 16,
+        "offsides": 0,
+        "totalCrosses": 19,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "11",
+        "type": "own-goal",
+        "team": "USA"
+      },
+      {
+        "minute": "16",
+        "type": "yellow",
+        "team": "Australia"
+      },
+      {
+        "minute": "32",
+        "type": "yellow",
+        "team": "Australia"
+      },
+      {
+        "minute": "43",
+        "type": "goal",
+        "team": "USA"
+      },
+      {
+        "minute": "56",
+        "type": "yellow",
+        "team": "USA"
+      },
+      {
+        "minute": "88",
+        "type": "yellow",
+        "team": "Australia"
+      },
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "USA"
+      },
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "Australia"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Scotland__vs__Morocco": {
+    "team_a": "Scotland",
+    "team_b": "Morocco",
+    "stats": {
+      "a": {
+        "possessionPct": 41.1,
+        "totalShots": 6,
+        "shotsOnTarget": 0,
+        "blockedShots": 3,
+        "shotPct": 0,
+        "totalPasses": 456,
+        "passPct": 90.0,
+        "accuratePasses": 388,
+        "saves": 1,
+        "effectiveTackles": 12,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 58.9,
+        "totalShots": 12,
+        "shotsOnTarget": 2,
+        "blockedShots": 4,
+        "shotPct": 20.0,
+        "totalPasses": 670,
+        "passPct": 90.0,
+        "accuratePasses": 600,
+        "saves": 0,
+        "effectiveTackles": 6,
+        "foulsCommitted": 8,
+        "offsides": 0,
+        "totalCrosses": 10,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "2",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "23",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "65",
+        "type": "yellow",
+        "team": "Scotland"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Brazil__vs__Haiti": {
+    "team_a": "Brazil",
+    "team_b": "Haiti",
+    "stats": {
+      "a": {
+        "possessionPct": 56.7,
+        "totalShots": 8,
+        "shotsOnTarget": 5,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 525,
+        "passPct": 90.0,
+        "accuratePasses": 462,
+        "saves": 3,
+        "effectiveTackles": 10,
+        "foulsCommitted": 13,
+        "offsides": 8,
+        "totalCrosses": 9,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 43.3,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 399,
+        "passPct": 80.0,
+        "accuratePasses": 332,
+        "saves": 2,
+        "effectiveTackles": 10,
+        "foulsCommitted": 14,
+        "offsides": 4,
+        "totalCrosses": 11,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "4",
+        "type": "yellow",
+        "team": "Haiti"
+      },
+      {
+        "minute": "23",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "45'+3",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "45'+4",
+        "type": "yellow",
+        "team": "Haiti"
+      },
+      {
+        "minute": "65",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "72",
+        "type": "yellow",
+        "team": "Haiti"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Turkiye__vs__Paraguay": {
+    "team_a": "Turkiye",
+    "team_b": "Paraguay",
+    "stats": {
+      "a": {
+        "possessionPct": 78.5,
+        "totalShots": 32,
+        "shotsOnTarget": 5,
+        "blockedShots": 12,
+        "shotPct": 20.0,
+        "totalPasses": 629,
+        "passPct": 90.0,
+        "accuratePasses": 559,
+        "saves": 1,
+        "effectiveTackles": 11,
+        "foulsCommitted": 14,
+        "offsides": 2,
+        "totalCrosses": 42,
+        "wonCorners": 12
+      },
+      "b": {
+        "possessionPct": 21.5,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 178,
+        "passPct": 50.0,
+        "accuratePasses": 96,
+        "saves": 5,
+        "effectiveTackles": 15,
+        "foulsCommitted": 15,
+        "offsides": 3,
+        "totalCrosses": 6,
+        "wonCorners": 0
+      }
+    },
+    "key_events": [
+      {
+        "minute": "2",
+        "type": "goal",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "4",
+        "type": "yellow",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "45'+3",
+        "type": "red",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "71",
+        "type": "yellow",
+        "team": "Turkiye"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Tunisia__vs__Japan": {
+    "team_a": "Tunisia",
+    "team_b": "Japan",
+    "stats": {
+      "a": {
+        "possessionPct": 37.9,
+        "totalShots": 2,
+        "shotsOnTarget": 0,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 354,
+        "passPct": 80.0,
+        "accuratePasses": 284,
+        "saves": 1,
+        "effectiveTackles": 16,
+        "foulsCommitted": 8,
+        "offsides": 1,
+        "totalCrosses": 10,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 62.1,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 583,
+        "passPct": 90.0,
+        "accuratePasses": 521,
+        "saves": 0,
+        "effectiveTackles": 12,
+        "foulsCommitted": 15,
+        "offsides": 1,
+        "totalCrosses": 11,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "4",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "31",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "69",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "83",
+        "type": "goal",
+        "team": "Japan"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Netherlands__vs__Sweden": {
+    "team_a": "Netherlands",
+    "team_b": "Sweden",
+    "stats": {
+      "a": {
+        "possessionPct": 50.9,
+        "totalShots": 10,
+        "shotsOnTarget": 7,
+        "blockedShots": 1,
+        "shotPct": 70.0,
+        "totalPasses": 449,
+        "passPct": 90.0,
+        "accuratePasses": 398,
+        "saves": 7,
+        "effectiveTackles": 8,
+        "foulsCommitted": 9,
+        "offsides": 3,
+        "totalCrosses": 16,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 49.1,
+        "totalShots": 16,
+        "shotsOnTarget": 8,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 425,
+        "passPct": 80.0,
+        "accuratePasses": 361,
+        "saves": 2,
+        "effectiveTackles": 9,
+        "foulsCommitted": 12,
+        "offsides": 3,
+        "totalCrosses": 21,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "5",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "17",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "47",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "53",
+        "type": "yellow",
+        "team": "Sweden"
+      },
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "59",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Sweden"
+      },
+      {
+        "minute": "80",
+        "type": "yellow",
+        "team": "Sweden"
+      },
+      {
+        "minute": "89",
+        "type": "goal",
+        "team": "Netherlands"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Germany__vs__Cote d'Ivoire": {
+    "team_a": "Germany",
+    "team_b": "Cote d'Ivoire",
+    "stats": {
+      "a": {
+        "possessionPct": 59.5,
+        "totalShots": 16,
+        "shotsOnTarget": 7,
+        "blockedShots": 4,
+        "shotPct": 40.0,
+        "totalPasses": 624,
+        "passPct": 90.0,
+        "accuratePasses": 555,
+        "saves": 1,
+        "effectiveTackles": 17,
+        "foulsCommitted": 5,
+        "offsides": 0,
+        "totalCrosses": 21,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 40.5,
+        "totalShots": 9,
+        "shotsOnTarget": 2,
+        "blockedShots": 5,
+        "shotPct": 20.0,
+        "totalPasses": 431,
+        "passPct": 90.0,
+        "accuratePasses": 367,
+        "saves": 5,
+        "effectiveTackles": 11,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 9,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "30",
+        "type": "goal",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "68",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "90'+4",
+        "type": "goal",
+        "team": "Germany"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Ecuador__vs__Curacao": {
+    "team_a": "Ecuador",
+    "team_b": "Curacao",
+    "stats": {
+      "a": {
+        "possessionPct": 74.6,
+        "totalShots": 27,
+        "shotsOnTarget": 15,
+        "blockedShots": 2,
+        "shotPct": 60.0,
+        "totalPasses": 644,
+        "passPct": 90.0,
+        "accuratePasses": 581,
+        "saves": 3,
+        "effectiveTackles": 11,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 33,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 25.4,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 227,
+        "passPct": 70.0,
+        "accuratePasses": 159,
+        "saves": 15,
+        "effectiveTackles": 7,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 1,
+        "wonCorners": 0
+      }
+    },
+    "key_events": [
+      {
+        "minute": "38",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "39",
+        "type": "yellow",
+        "team": "Curacao"
+      },
+      {
+        "minute": "53",
+        "type": "yellow",
+        "team": "Curacao"
+      },
+      {
+        "minute": "56",
+        "type": "yellow",
+        "team": "Curacao"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Curacao"
+      },
+      {
+        "minute": "90'+1",
+        "type": "yellow",
+        "team": "Curacao"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Spain__vs__Saudi Arabia": {
+    "team_a": "Spain",
+    "team_b": "Saudi Arabia",
+    "stats": {
+      "a": {
+        "possessionPct": 67.1,
+        "totalShots": 22,
+        "shotsOnTarget": 8,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 726,
+        "passPct": 90.0,
+        "accuratePasses": 668,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 25,
+        "wonCorners": 6
+      },
+      "b": {
+        "possessionPct": 32.9,
+        "totalShots": 3,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 364,
+        "passPct": 80.0,
+        "accuratePasses": 294,
+        "saves": 5,
+        "effectiveTackles": 12,
+        "foulsCommitted": 2,
+        "offsides": 3,
+        "totalCrosses": 5,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "10",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "24",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "30",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "49",
+        "type": "own-goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "60",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Belgium__vs__Iran": {
+    "team_a": "Belgium",
+    "team_b": "Iran",
+    "stats": {
+      "a": {
+        "possessionPct": 70.1,
+        "totalShots": 23,
+        "shotsOnTarget": 7,
+        "blockedShots": 6,
+        "shotPct": 30.0,
+        "totalPasses": 621,
+        "passPct": 90.0,
+        "accuratePasses": 533,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 32,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 29.9,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 270,
+        "passPct": 70.0,
+        "accuratePasses": 198,
+        "saves": 7,
+        "effectiveTackles": 11,
+        "foulsCommitted": 9,
+        "offsides": 4,
+        "totalCrosses": 8,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "3",
+        "type": "yellow",
+        "team": "Belgium"
+      },
+      {
+        "minute": "33",
+        "type": "yellow",
+        "team": "Iran"
+      },
+      {
+        "minute": "66",
+        "type": "red",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Uruguay__vs__Cabo Verde": {
+    "team_a": "Uruguay",
+    "team_b": "Cabo Verde",
+    "stats": {
+      "a": {
+        "possessionPct": 65.2,
+        "totalShots": 17,
+        "shotsOnTarget": 2,
+        "blockedShots": 7,
+        "shotPct": 10.0,
+        "totalPasses": 511,
+        "passPct": 80.0,
+        "accuratePasses": 420,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 11,
+        "offsides": 3,
+        "totalCrosses": 29,
+        "wonCorners": 11
+      },
+      "b": {
+        "possessionPct": 34.8,
+        "totalShots": 12,
+        "shotsOnTarget": 4,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 278,
+        "passPct": 70.0,
+        "accuratePasses": 205,
+        "saves": 0,
+        "effectiveTackles": 15,
+        "foulsCommitted": 4,
+        "offsides": 0,
+        "totalCrosses": 7,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "5",
+        "type": "yellow",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "20",
+        "type": "yellow",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "44",
+        "type": "goal",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "45'+6",
+        "type": "goal",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "58",
+        "type": "yellow",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "61",
+        "type": "goal",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Cabo Verde"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "New Zealand__vs__Egypt": {
+    "team_a": "New Zealand",
+    "team_b": "Egypt",
+    "stats": {
+      "a": {
+        "possessionPct": 44.4,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 421,
+        "passPct": 80.0,
+        "accuratePasses": 337,
+        "saves": 4,
+        "effectiveTackles": 6,
+        "foulsCommitted": 14,
+        "offsides": 3,
+        "totalCrosses": 15,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 55.6,
+        "totalShots": 19,
+        "shotsOnTarget": 7,
+        "blockedShots": 6,
+        "shotPct": 40.0,
+        "totalPasses": 526,
+        "passPct": 90.0,
+        "accuratePasses": 460,
+        "saves": 4,
+        "effectiveTackles": 13,
+        "foulsCommitted": 8,
+        "offsides": 0,
+        "totalCrosses": 22,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "15",
+        "type": "goal",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "17",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "20",
+        "type": "yellow",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "34",
+        "type": "yellow",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "58",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "Egypt"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Argentina__vs__Austria": {
+    "team_a": "Argentina",
+    "team_b": "Austria",
+    "stats": {
+      "a": {
+        "possessionPct": 53.6,
+        "totalShots": 12,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 554,
+        "passPct": 90.0,
+        "accuratePasses": 494,
+        "saves": 1,
+        "effectiveTackles": 11,
+        "foulsCommitted": 13,
+        "offsides": 2,
+        "totalCrosses": 4,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 46.4,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 0,
+        "shotPct": 20.0,
+        "totalPasses": 468,
+        "passPct": 90.0,
+        "accuratePasses": 401,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 17,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "9",
+        "type": "pen-miss",
+        "team": "Argentina"
+      },
+      {
+        "minute": "38",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "40",
+        "type": "yellow",
+        "team": "Austria"
+      },
+      {
+        "minute": "76",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "76",
+        "type": "yellow",
+        "team": "Austria"
+      },
+      {
+        "minute": "90'+2",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+5",
+        "type": "goal",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "France__vs__Iraq": {
+    "team_a": "France",
+    "team_b": "Iraq",
+    "stats": {
+      "a": {
+        "possessionPct": 55.6,
+        "totalShots": 19,
+        "shotsOnTarget": 5,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 603,
+        "passPct": 90.0,
+        "accuratePasses": 540,
+        "saves": 0,
+        "effectiveTackles": 9,
+        "foulsCommitted": 8,
+        "offsides": 1,
+        "totalCrosses": 14,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 44.4,
+        "totalShots": 4,
+        "shotsOnTarget": 0,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 481,
+        "passPct": 90.0,
+        "accuratePasses": 413,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 4,
+        "offsides": 0,
+        "totalCrosses": 9,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "6",
+        "type": "yellow",
+        "team": "Iraq"
+      },
+      {
+        "minute": "14",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "66",
+        "type": "goal",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Norway__vs__Senegal": {
+    "team_a": "Norway",
+    "team_b": "Senegal",
+    "stats": {
+      "a": {
+        "possessionPct": 41.7,
+        "totalShots": 13,
+        "shotsOnTarget": 7,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 353,
+        "passPct": 80.0,
+        "accuratePasses": 282,
+        "saves": 2,
+        "effectiveTackles": 9,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 10,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 58.3,
+        "totalShots": 16,
+        "shotsOnTarget": 4,
+        "blockedShots": 5,
+        "shotPct": 30.0,
+        "totalPasses": 489,
+        "passPct": 90.0,
+        "accuratePasses": 430,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 5,
+        "offsides": 4,
+        "totalCrosses": 23,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "43",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "48",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "53",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "58",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "90'+3",
+        "type": "goal",
+        "team": "Senegal"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Jordan__vs__Algeria": {
+    "team_a": "Jordan",
+    "team_b": "Algeria",
+    "stats": {
+      "a": {
+        "possessionPct": 27.9,
+        "totalShots": 8,
+        "shotsOnTarget": 4,
+        "blockedShots": 0,
+        "shotPct": 50.0,
+        "totalPasses": 251,
+        "passPct": 70.0,
+        "accuratePasses": 181,
+        "saves": 6,
+        "effectiveTackles": 17,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 5,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 72.1,
+        "totalShots": 17,
+        "shotsOnTarget": 8,
+        "blockedShots": 5,
+        "shotPct": 50.0,
+        "totalPasses": 641,
+        "passPct": 90.0,
+        "accuratePasses": 561,
+        "saves": 3,
+        "effectiveTackles": 18,
+        "foulsCommitted": 6,
+        "offsides": 0,
+        "totalCrosses": 21,
+        "wonCorners": 10
+      }
+    },
+    "key_events": [
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "Jordan"
+      },
+      {
+        "minute": "44",
+        "type": "yellow",
+        "team": "Algeria"
+      },
+      {
+        "minute": "64",
+        "type": "yellow",
+        "team": "Jordan"
+      },
+      {
+        "minute": "69",
+        "type": "goal",
+        "team": "Algeria"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "Algeria"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Portugal__vs__Uzbekistan": {
+    "team_a": "Portugal",
+    "team_b": "Uzbekistan",
+    "stats": {
+      "a": {
+        "possessionPct": 65.9,
+        "totalShots": 17,
+        "shotsOnTarget": 9,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 624,
+        "passPct": 90.0,
+        "accuratePasses": 561,
+        "saves": 2,
+        "effectiveTackles": 10,
+        "foulsCommitted": 14,
+        "offsides": 2,
+        "totalCrosses": 22,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 34.1,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 327,
+        "passPct": 80.0,
+        "accuratePasses": 262,
+        "saves": 4,
+        "effectiveTackles": 13,
+        "foulsCommitted": 15,
+        "offsides": 2,
+        "totalCrosses": 8,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "6",
+        "type": "goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "14",
+        "type": "yellow",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "17",
+        "type": "goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "39",
+        "type": "goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "60",
+        "type": "own-goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "68",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "87",
+        "type": "goal",
+        "team": "Portugal"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "England__vs__Ghana": {
+    "team_a": "England",
+    "team_b": "Ghana",
+    "stats": {
+      "a": {
+        "possessionPct": 78.9,
+        "totalShots": 19,
+        "shotsOnTarget": 3,
+        "blockedShots": 6,
+        "shotPct": 20.0,
+        "totalPasses": 633,
+        "passPct": 90.0,
+        "accuratePasses": 586,
+        "saves": 0,
+        "effectiveTackles": 7,
+        "foulsCommitted": 14,
+        "offsides": 2,
+        "totalCrosses": 30,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 21.1,
+        "totalShots": 2,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 50.0,
+        "totalPasses": 172,
+        "passPct": 70.0,
+        "accuratePasses": 127,
+        "saves": 3,
+        "effectiveTackles": 17,
+        "foulsCommitted": 24,
+        "offsides": 2,
+        "totalCrosses": 5,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "41",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "60",
+        "type": "yellow",
+        "team": "Ghana"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Panama__vs__Croatia": {
+    "team_a": "Panama",
+    "team_b": "Croatia",
+    "stats": {
+      "a": {
+        "possessionPct": 42,
+        "totalShots": 8,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 10.0,
+        "totalPasses": 352,
+        "passPct": 80.0,
+        "accuratePasses": 277,
+        "saves": 1,
+        "effectiveTackles": 5,
+        "foulsCommitted": 19,
+        "offsides": 1,
+        "totalCrosses": 31,
+        "wonCorners": 7
+      },
+      "b": {
+        "possessionPct": 58,
+        "totalShots": 6,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 512,
+        "passPct": 80.0,
+        "accuratePasses": 432,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 12,
+        "offsides": 2,
+        "totalCrosses": 18,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "61",
+        "type": "yellow",
+        "team": "Panama"
+      },
+      {
+        "minute": "90'+2",
+        "type": "yellow",
+        "team": "Croatia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Colombia__vs__DR Congo": {
+    "team_a": "Colombia",
+    "team_b": "DR Congo",
+    "stats": {
+      "a": {
+        "possessionPct": 63.5,
+        "totalShots": 20,
+        "shotsOnTarget": 9,
+        "blockedShots": 6,
+        "shotPct": 50.0,
+        "totalPasses": 541,
+        "passPct": 90.0,
+        "accuratePasses": 473,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 12,
+        "offsides": 7,
+        "totalCrosses": 12,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 36.5,
+        "totalShots": 7,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 10.0,
+        "totalPasses": 299,
+        "passPct": 80.0,
+        "accuratePasses": 226,
+        "saves": 8,
+        "effectiveTackles": 10,
+        "foulsCommitted": 16,
+        "offsides": 0,
+        "totalCrosses": 14,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "56",
+        "type": "yellow",
+        "team": "Colombia"
+      },
+      {
+        "minute": "76",
+        "type": "goal",
+        "team": "Colombia"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Switzerland__vs__Canada": {
+    "team_a": "Switzerland",
+    "team_b": "Canada",
+    "stats": {
+      "a": {
+        "possessionPct": 55.3,
+        "totalShots": 6,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 70.0,
+        "totalPasses": 443,
+        "passPct": 80.0,
+        "accuratePasses": 369,
+        "saves": 6,
+        "effectiveTackles": 7,
+        "foulsCommitted": 19,
+        "offsides": 1,
+        "totalCrosses": 6,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 44.7,
+        "totalShots": 13,
+        "shotsOnTarget": 7,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 339,
+        "passPct": 80.0,
+        "accuratePasses": 271,
+        "saves": 2,
+        "effectiveTackles": 5,
+        "foulsCommitted": 13,
+        "offsides": 3,
+        "totalCrosses": 26,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "32",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "32",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "46",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "57",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "76",
+        "type": "goal",
+        "team": "Canada"
+      },
+      {
+        "minute": "87",
+        "type": "yellow",
+        "team": "Canada"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Bosnia and Herzegovina__vs__Qatar": {
+    "team_a": "Bosnia and Herzegovina",
+    "team_b": "Qatar",
+    "stats": {
+      "a": {
+        "possessionPct": 54.4,
+        "totalShots": 14,
+        "shotsOnTarget": 5,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 515,
+        "passPct": 90.0,
+        "accuratePasses": 452,
+        "saves": 2,
+        "effectiveTackles": 9,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 22,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 45.6,
+        "totalShots": 9,
+        "shotsOnTarget": 3,
+        "blockedShots": 0,
+        "shotPct": 30.0,
+        "totalPasses": 434,
+        "passPct": 90.0,
+        "accuratePasses": 371,
+        "saves": 3,
+        "effectiveTackles": 5,
+        "foulsCommitted": 14,
+        "offsides": 3,
+        "totalCrosses": 17,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "29",
+        "type": "goal",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "34",
+        "type": "own-goal",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "42",
+        "type": "goal",
+        "team": "Qatar"
+      },
+      {
+        "minute": "78",
+        "type": "yellow",
+        "team": "Qatar"
+      },
+      {
+        "minute": "80",
+        "type": "goal",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "82",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Scotland__vs__Brazil": {
+    "team_a": "Scotland",
+    "team_b": "Brazil",
+    "stats": {
+      "a": {
+        "possessionPct": 46,
+        "totalShots": 14,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 500,
+        "passPct": 90.0,
+        "accuratePasses": 450,
+        "saves": 5,
+        "effectiveTackles": 8,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 23,
+        "wonCorners": 7
+      },
+      "b": {
+        "possessionPct": 54,
+        "totalShots": 21,
+        "shotsOnTarget": 9,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 605,
+        "passPct": 90.0,
+        "accuratePasses": 564,
+        "saves": 5,
+        "effectiveTackles": 6,
+        "foulsCommitted": 11,
+        "offsides": 1,
+        "totalCrosses": 12,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "45'+3",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "60",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "62",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "82",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "Scotland"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Morocco__vs__Haiti": {
+    "team_a": "Morocco",
+    "team_b": "Haiti",
+    "stats": {
+      "a": {
+        "possessionPct": 69.1,
+        "totalShots": 22,
+        "shotsOnTarget": 11,
+        "blockedShots": 5,
+        "shotPct": 50.0,
+        "totalPasses": 541,
+        "passPct": 90.0,
+        "accuratePasses": 477,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 10,
+        "offsides": 5,
+        "totalCrosses": 22,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 30.9,
+        "totalShots": 9,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 247,
+        "passPct": 80.0,
+        "accuratePasses": 198,
+        "saves": 8,
+        "effectiveTackles": 12,
+        "foulsCommitted": 18,
+        "offsides": 0,
+        "totalCrosses": 3,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "10",
+        "type": "own-goal",
+        "team": "Haiti"
+      },
+      {
+        "minute": "39",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "43",
+        "type": "goal",
+        "team": "Haiti"
+      },
+      {
+        "minute": "45'+1",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "78",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "79",
+        "type": "yellow",
+        "team": "Haiti"
+      },
+      {
+        "minute": "80",
+        "type": "yellow",
+        "team": "Haiti"
+      },
+      {
+        "minute": "89",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Haiti"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Czechia__vs__Mexico": {
+    "team_a": "Czechia",
+    "team_b": "Mexico",
+    "stats": {
+      "a": {
+        "possessionPct": 51.9,
+        "totalShots": 13,
+        "shotsOnTarget": 1,
+        "blockedShots": 4,
+        "shotPct": 10.0,
+        "totalPasses": 398,
+        "passPct": 80.0,
+        "accuratePasses": 333,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 26,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 48.1,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 386,
+        "passPct": 90.0,
+        "accuratePasses": 330,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 12,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "55",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "61",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "64",
+        "type": "yellow",
+        "team": "Mexico"
+      },
+      {
+        "minute": "90'+4",
+        "type": "goal",
+        "team": "Mexico"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "South Africa__vs__Korea Republic": {
+    "team_a": "South Africa",
+    "team_b": "Korea Republic",
+    "stats": {
+      "a": {
+        "possessionPct": 31.6,
+        "totalShots": 13,
+        "shotsOnTarget": 4,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 340,
+        "passPct": 80.0,
+        "accuratePasses": 277,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 8,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 68.4,
+        "totalShots": 8,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 719,
+        "passPct": 90.0,
+        "accuratePasses": 641,
+        "saves": 3,
+        "effectiveTackles": 9,
+        "foulsCommitted": 9,
+        "offsides": 0,
+        "totalCrosses": 34,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "63",
+        "type": "goal",
+        "team": "South Africa"
+      },
+      {
+        "minute": "73",
+        "type": "yellow",
+        "team": "South Africa"
+      },
+      {
+        "minute": "79",
+        "type": "yellow",
+        "team": "Korea Republic"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Curacao__vs__Cote d'Ivoire": {
+    "team_a": "Curacao",
+    "team_b": "Cote d'Ivoire",
+    "stats": {
+      "a": {
+        "possessionPct": 36.7,
+        "totalShots": 11,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 355,
+        "passPct": 80.0,
+        "accuratePasses": 295,
+        "saves": 1,
+        "effectiveTackles": 11,
+        "foulsCommitted": 11,
+        "offsides": 2,
+        "totalCrosses": 15,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 63.3,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 624,
+        "passPct": 90.0,
+        "accuratePasses": 558,
+        "saves": 2,
+        "effectiveTackles": 9,
+        "foulsCommitted": 6,
+        "offsides": 1,
+        "totalCrosses": 16,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "35",
+        "type": "yellow",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "64",
+        "type": "goal",
+        "team": "Cote d'Ivoire"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Curacao"
+      },
+      {
+        "minute": "83",
+        "type": "yellow",
+        "team": "Curacao"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Ecuador__vs__Germany": {
+    "team_a": "Ecuador",
+    "team_b": "Germany",
+    "stats": {
+      "a": {
+        "possessionPct": 38.9,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 378,
+        "passPct": 80.0,
+        "accuratePasses": 312,
+        "saves": 2,
+        "effectiveTackles": 16,
+        "foulsCommitted": 15,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 61.1,
+        "totalShots": 11,
+        "shotsOnTarget": 3,
+        "blockedShots": 5,
+        "shotPct": 30.0,
+        "totalPasses": 592,
+        "passPct": 90.0,
+        "accuratePasses": 517,
+        "saves": 1,
+        "effectiveTackles": 13,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 16,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "2",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "9",
+        "type": "goal",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "44",
+        "type": "yellow",
+        "team": "Germany"
+      },
+      {
+        "minute": "50",
+        "type": "yellow",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "77",
+        "type": "goal",
+        "team": "Ecuador"
+      },
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "Ecuador"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Japan__vs__Sweden": {
+    "team_a": "Japan",
+    "team_b": "Sweden",
+    "stats": {
+      "a": {
+        "possessionPct": 52.3,
+        "totalShots": 8,
+        "shotsOnTarget": 3,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 445,
+        "passPct": 80.0,
+        "accuratePasses": 378,
+        "saves": 4,
+        "effectiveTackles": 7,
+        "foulsCommitted": 20,
+        "offsides": 3,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 47.7,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 395,
+        "passPct": 80.0,
+        "accuratePasses": 312,
+        "saves": 2,
+        "effectiveTackles": 3,
+        "foulsCommitted": 11,
+        "offsides": 2,
+        "totalCrosses": 16,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "32",
+        "type": "yellow",
+        "team": "Sweden"
+      },
+      {
+        "minute": "56",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "62",
+        "type": "goal",
+        "team": "Sweden"
+      },
+      {
+        "minute": "77",
+        "type": "yellow",
+        "team": "Japan"
+      },
+      {
+        "minute": "85",
+        "type": "yellow",
+        "team": "Sweden"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Tunisia__vs__Netherlands": {
+    "team_a": "Tunisia",
+    "team_b": "Netherlands",
+    "stats": {
+      "a": {
+        "possessionPct": 28.6,
+        "totalShots": 10,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 258,
+        "passPct": 80.0,
+        "accuratePasses": 199,
+        "saves": 4,
+        "effectiveTackles": 9,
+        "foulsCommitted": 11,
+        "offsides": 2,
+        "totalCrosses": 13,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 71.4,
+        "totalShots": 20,
+        "shotsOnTarget": 7,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 647,
+        "passPct": 90.0,
+        "accuratePasses": 602,
+        "saves": 3,
+        "effectiveTackles": 5,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 27,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "3",
+        "type": "own-goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "Tunisia"
+      },
+      {
+        "minute": "62",
+        "type": "goal",
+        "team": "Netherlands"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Turkiye__vs__USA": {
+    "team_a": "Turkiye",
+    "team_b": "USA",
+    "stats": {
+      "a": {
+        "possessionPct": 47.4,
+        "totalShots": 9,
+        "shotsOnTarget": 3,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 434,
+        "passPct": 80.0,
+        "accuratePasses": 335,
+        "saves": 5,
+        "effectiveTackles": 20,
+        "foulsCommitted": 13,
+        "offsides": 2,
+        "totalCrosses": 12,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 52.6,
+        "totalShots": 18,
+        "shotsOnTarget": 7,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 471,
+        "passPct": 80.0,
+        "accuratePasses": 398,
+        "saves": 1,
+        "effectiveTackles": 9,
+        "foulsCommitted": 13,
+        "offsides": 5,
+        "totalCrosses": 19,
+        "wonCorners": 9
+      }
+    },
+    "key_events": [
+      {
+        "minute": "3",
+        "type": "goal",
+        "team": "USA"
+      },
+      {
+        "minute": "10",
+        "type": "goal",
+        "team": "Turkiye"
+      },
+      {
+        "minute": "19",
+        "type": "yellow",
+        "team": "USA"
+      },
+      {
+        "minute": "31",
+        "type": "goal",
+        "team": "Turkiye"
+      },
+      {
+        "minute": "49",
+        "type": "goal",
+        "team": "USA"
+      },
+      {
+        "minute": "90'+8",
+        "type": "goal",
+        "team": "Turkiye"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Paraguay__vs__Australia": {
+    "team_a": "Paraguay",
+    "team_b": "Australia",
+    "stats": {
+      "a": {
+        "possessionPct": 44,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 426,
+        "passPct": 80.0,
+        "accuratePasses": 330,
+        "saves": 5,
+        "effectiveTackles": 17,
+        "foulsCommitted": 9,
+        "offsides": 0,
+        "totalCrosses": 7,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 56,
+        "totalShots": 12,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 537,
+        "passPct": 80.0,
+        "accuratePasses": 438,
+        "saves": 2,
+        "effectiveTackles": 12,
+        "foulsCommitted": 6,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "46",
+        "type": "yellow",
+        "team": "Australia"
+      },
+      {
+        "minute": "77",
+        "type": "yellow",
+        "team": "Paraguay"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Norway__vs__France": {
+    "team_a": "Norway",
+    "team_b": "France",
+    "stats": {
+      "a": {
+        "possessionPct": 43.3,
+        "totalShots": 10,
+        "shotsOnTarget": 4,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 421,
+        "passPct": 80.0,
+        "accuratePasses": 343,
+        "saves": 5,
+        "effectiveTackles": 11,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 9,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 56.7,
+        "totalShots": 18,
+        "shotsOnTarget": 9,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 555,
+        "passPct": 90.0,
+        "accuratePasses": 480,
+        "saves": 3,
+        "effectiveTackles": 12,
+        "foulsCommitted": 11,
+        "offsides": 2,
+        "totalCrosses": 10,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "10",
+        "type": "yellow",
+        "team": "Norway"
+      },
+      {
+        "minute": "20",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "21",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "32",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "74",
+        "type": "yellow",
+        "team": "France"
+      },
+      {
+        "minute": "90'+4",
+        "type": "goal",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Senegal__vs__Iraq": {
+    "team_a": "Senegal",
+    "team_b": "Iraq",
+    "stats": {
+      "a": {
+        "possessionPct": 69.2,
+        "totalShots": 28,
+        "shotsOnTarget": 12,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 590,
+        "passPct": 90.0,
+        "accuratePasses": 517,
+        "saves": 1,
+        "effectiveTackles": 9,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 25,
+        "wonCorners": 12
+      },
+      "b": {
+        "possessionPct": 30.8,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 4,
+        "shotPct": 20.0,
+        "totalPasses": 266,
+        "passPct": 70.0,
+        "accuratePasses": 184,
+        "saves": 7,
+        "effectiveTackles": 13,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 6,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "4",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "13",
+        "type": "red",
+        "team": "Iraq"
+      },
+      {
+        "minute": "18",
+        "type": "yellow",
+        "team": "Senegal"
+      },
+      {
+        "minute": "56",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "59",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "71",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "75",
+        "type": "yellow",
+        "team": "Iraq"
+      },
+      {
+        "minute": "81",
+        "type": "yellow",
+        "team": "Senegal"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "90",
+        "type": "yellow",
+        "team": "Iraq"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Cabo Verde__vs__Saudi Arabia": {
+    "team_a": "Cabo Verde",
+    "team_b": "Saudi Arabia",
+    "stats": {
+      "a": {
+        "possessionPct": 51,
+        "totalShots": 15,
+        "shotsOnTarget": 2,
+        "blockedShots": 5,
+        "shotPct": 10.0,
+        "totalPasses": 451,
+        "passPct": 80.0,
+        "accuratePasses": 381,
+        "saves": 3,
+        "effectiveTackles": 12,
+        "foulsCommitted": 10,
+        "offsides": 2,
+        "totalCrosses": 18,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 49,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 444,
+        "passPct": 80.0,
+        "accuratePasses": 359,
+        "saves": 2,
+        "effectiveTackles": 15,
+        "foulsCommitted": 16,
+        "offsides": 0,
+        "totalCrosses": 11,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "4",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "8",
+        "type": "yellow",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "67",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Saudi Arabia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Uruguay__vs__Spain": {
+    "team_a": "Uruguay",
+    "team_b": "Spain",
+    "stats": {
+      "a": {
+        "possessionPct": 33.1,
+        "totalShots": 5,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 20.0,
+        "totalPasses": 301,
+        "passPct": 80.0,
+        "accuratePasses": 228,
+        "saves": 0,
+        "effectiveTackles": 15,
+        "foulsCommitted": 14,
+        "offsides": 5,
+        "totalCrosses": 16,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 66.9,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 20.0,
+        "totalPasses": 622,
+        "passPct": 90.0,
+        "accuratePasses": 553,
+        "saves": 2,
+        "effectiveTackles": 10,
+        "foulsCommitted": 14,
+        "offsides": 2,
+        "totalCrosses": 12,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "42",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "46",
+        "type": "yellow",
+        "team": "Spain"
+      },
+      {
+        "minute": "54",
+        "type": "yellow",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "58",
+        "type": "yellow",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Uruguay"
+      },
+      {
+        "minute": "90'+5",
+        "type": "red",
+        "team": "Uruguay"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Egypt__vs__Iran": {
+    "team_a": "Egypt",
+    "team_b": "Iran",
+    "stats": {
+      "a": {
+        "possessionPct": 61.4,
+        "totalShots": 15,
+        "shotsOnTarget": 3,
+        "blockedShots": 6,
+        "shotPct": 20.0,
+        "totalPasses": 589,
+        "passPct": 90.0,
+        "accuratePasses": 513,
+        "saves": 2,
+        "effectiveTackles": 10,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 15,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 38.6,
+        "totalShots": 13,
+        "shotsOnTarget": 4,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 367,
+        "passPct": 80.0,
+        "accuratePasses": 281,
+        "saves": 2,
+        "effectiveTackles": 17,
+        "foulsCommitted": 16,
+        "offsides": 3,
+        "totalCrosses": 10,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "5",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "14",
+        "type": "goal",
+        "team": "Iran"
+      },
+      {
+        "minute": "19",
+        "type": "yellow",
+        "team": "Iran"
+      },
+      {
+        "minute": "20",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "42",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Iran"
+      },
+      {
+        "minute": "79",
+        "type": "yellow",
+        "team": "Iran"
+      },
+      {
+        "minute": "90'+2",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Iran"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "New Zealand__vs__Belgium": {
+    "team_a": "New Zealand",
+    "team_b": "Belgium",
+    "stats": {
+      "a": {
+        "possessionPct": 45.5,
+        "totalShots": 6,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 436,
+        "passPct": 80.0,
+        "accuratePasses": 369,
+        "saves": 5,
+        "effectiveTackles": 6,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 17,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 54.5,
+        "totalShots": 35,
+        "shotsOnTarget": 10,
+        "blockedShots": 12,
+        "shotPct": 30.0,
+        "totalPasses": 525,
+        "passPct": 90.0,
+        "accuratePasses": 462,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 16,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "28",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "46",
+        "type": "yellow",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "50",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "56",
+        "type": "yellow",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "66",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "84",
+        "type": "goal",
+        "team": "New Zealand"
+      },
+      {
+        "minute": "86",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "90'+4",
+        "type": "goal",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Panama__vs__England": {
+    "team_a": "Panama",
+    "team_b": "England",
+    "stats": {
+      "a": {
+        "possessionPct": 32.9,
+        "totalShots": 13,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 268,
+        "passPct": 80.0,
+        "accuratePasses": 202,
+        "saves": 4,
+        "effectiveTackles": 11,
+        "foulsCommitted": 16,
+        "offsides": 4,
+        "totalCrosses": 9,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 67.1,
+        "totalShots": 17,
+        "shotsOnTarget": 6,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 558,
+        "passPct": 90.0,
+        "accuratePasses": 490,
+        "saves": 2,
+        "effectiveTackles": 17,
+        "foulsCommitted": 13,
+        "offsides": 4,
+        "totalCrosses": 25,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "53",
+        "type": "yellow",
+        "team": "Panama"
+      },
+      {
+        "minute": "60",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "62",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "84",
+        "type": "yellow",
+        "team": "Panama"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Croatia__vs__Ghana": {
+    "team_a": "Croatia",
+    "team_b": "Ghana",
+    "stats": {
+      "a": {
+        "possessionPct": 53.3,
+        "totalShots": 8,
+        "shotsOnTarget": 4,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 523,
+        "passPct": 90.0,
+        "accuratePasses": 477,
+        "saves": 0,
+        "effectiveTackles": 8,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 15,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 46.7,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 455,
+        "passPct": 90.0,
+        "accuratePasses": 402,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 13,
+        "offsides": 2,
+        "totalCrosses": 12,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "31",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "68",
+        "type": "yellow",
+        "team": "Croatia"
+      },
+      {
+        "minute": "73",
+        "type": "goal",
+        "team": "Ghana"
+      },
+      {
+        "minute": "83",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Ghana"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Colombia__vs__Portugal": {
+    "team_a": "Colombia",
+    "team_b": "Portugal",
+    "stats": {
+      "a": {
+        "possessionPct": 54.6,
+        "totalShots": 24,
+        "shotsOnTarget": 6,
+        "blockedShots": 7,
+        "shotPct": 30.0,
+        "totalPasses": 544,
+        "passPct": 90.0,
+        "accuratePasses": 485,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 12,
+        "offsides": 3,
+        "totalCrosses": 11,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 45.4,
+        "totalShots": 13,
+        "shotsOnTarget": 2,
+        "blockedShots": 4,
+        "shotPct": 20.0,
+        "totalPasses": 446,
+        "passPct": 90.0,
+        "accuratePasses": 405,
+        "saves": 6,
+        "effectiveTackles": 5,
+        "foulsCommitted": 6,
+        "offsides": 2,
+        "totalCrosses": 13,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "86",
+        "type": "yellow",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "DR Congo__vs__Uzbekistan": {
+    "team_a": "DR Congo",
+    "team_b": "Uzbekistan",
+    "stats": {
+      "a": {
+        "possessionPct": 57.6,
+        "totalShots": 19,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 20.0,
+        "totalPasses": 485,
+        "passPct": 80.0,
+        "accuratePasses": 400,
+        "saves": 1,
+        "effectiveTackles": 13,
+        "foulsCommitted": 6,
+        "offsides": 3,
+        "totalCrosses": 22,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 42.4,
+        "totalShots": 3,
+        "shotsOnTarget": 1,
+        "blockedShots": 0,
+        "shotPct": 30.0,
+        "totalPasses": 355,
+        "passPct": 80.0,
+        "accuratePasses": 269,
+        "saves": 1,
+        "effectiveTackles": 18,
+        "foulsCommitted": 16,
+        "offsides": 1,
+        "totalCrosses": 16,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "10",
+        "type": "goal",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "21",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "45'+5",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "48",
+        "type": "yellow",
+        "team": "Uzbekistan"
+      },
+      {
+        "minute": "62",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "68",
+        "type": "pen-goal",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "78",
+        "type": "goal",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "90'+1",
+        "type": "goal",
+        "team": "DR Congo"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Algeria__vs__Austria": {
+    "team_a": "Algeria",
+    "team_b": "Austria",
+    "stats": {
+      "a": {
+        "possessionPct": 65,
+        "totalShots": 12,
+        "shotsOnTarget": 5,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 754,
+        "passPct": 90.0,
+        "accuratePasses": 706,
+        "saves": 1,
+        "effectiveTackles": 5,
+        "foulsCommitted": 3,
+        "offsides": 1,
+        "totalCrosses": 5,
+        "wonCorners": 0
+      },
+      "b": {
+        "possessionPct": 35,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 396,
+        "passPct": 90.0,
+        "accuratePasses": 346,
+        "saves": 2,
+        "effectiveTackles": 4,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "11",
+        "type": "yellow",
+        "team": "Austria"
+      },
+      {
+        "minute": "28",
+        "type": "goal",
+        "team": "Austria"
+      },
+      {
+        "minute": "45",
+        "type": "goal",
+        "team": "Algeria"
+      },
+      {
+        "minute": "55",
+        "type": "goal",
+        "team": "Austria"
+      },
+      {
+        "minute": "60",
+        "type": "goal",
+        "team": "Algeria"
+      },
+      {
+        "minute": "90'+3",
+        "type": "goal",
+        "team": "Algeria"
+      },
+      {
+        "minute": "90'+6",
+        "type": "goal",
+        "team": "Austria"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Jordan__vs__Argentina": {
+    "team_a": "Jordan",
+    "team_b": "Argentina",
+    "stats": {
+      "a": {
+        "possessionPct": 26.7,
+        "totalShots": 5,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 285,
+        "passPct": 80.0,
+        "accuratePasses": 228,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 13,
+        "offsides": 1,
+        "totalCrosses": 7,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 73.3,
+        "totalShots": 12,
+        "shotsOnTarget": 4,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 801,
+        "passPct": 90.0,
+        "accuratePasses": 737,
+        "saves": 0,
+        "effectiveTackles": 5,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 5,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "17",
+        "type": "yellow",
+        "team": "Jordan"
+      },
+      {
+        "minute": "19",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "31",
+        "type": "pen-goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "55",
+        "type": "goal",
+        "team": "Jordan"
+      },
+      {
+        "minute": "64",
+        "type": "yellow",
+        "team": "Jordan"
+      },
+      {
+        "minute": "80",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Jordan"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "South Africa__vs__Canada": {
+    "team_a": "South Africa",
+    "team_b": "Canada",
+    "stats": {
+      "a": {
+        "possessionPct": 58.4,
+        "totalShots": 6,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 20.0,
+        "totalPasses": 554,
+        "passPct": 80.0,
+        "accuratePasses": 466,
+        "saves": 5,
+        "effectiveTackles": 13,
+        "foulsCommitted": 10,
+        "offsides": 1,
+        "totalCrosses": 7,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 41.6,
+        "totalShots": 12,
+        "shotsOnTarget": 7,
+        "blockedShots": 0,
+        "shotPct": 60.0,
+        "totalPasses": 379,
+        "passPct": 80.0,
+        "accuratePasses": 298,
+        "saves": 1,
+        "effectiveTackles": 15,
+        "foulsCommitted": 16,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 4
+      }
+    },
+    "key_events": [
+      {
+        "minute": "54",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "67",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "90'+2",
+        "type": "goal",
+        "team": "Canada"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Brazil__vs__Japan": {
+    "team_a": "Brazil",
+    "team_b": "Japan",
+    "stats": {
+      "a": {
+        "possessionPct": 68.6,
+        "totalShots": 19,
+        "shotsOnTarget": 7,
+        "blockedShots": 6,
+        "shotPct": 40.0,
+        "totalPasses": 682,
+        "passPct": 90.0,
+        "accuratePasses": 625,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 4,
+        "offsides": 1,
+        "totalCrosses": 39,
+        "wonCorners": 6
+      },
+      "b": {
+        "possessionPct": 31.4,
+        "totalShots": 5,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 313,
+        "passPct": 80.0,
+        "accuratePasses": 260,
+        "saves": 4,
+        "effectiveTackles": 4,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 11,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "12",
+        "type": "yellow",
+        "team": "Japan"
+      },
+      {
+        "minute": "14",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "29",
+        "type": "goal",
+        "team": "Japan"
+      },
+      {
+        "minute": "45",
+        "type": "yellow",
+        "team": "Japan"
+      },
+      {
+        "minute": "48",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "56",
+        "type": "goal",
+        "team": "Brazil"
+      },
+      {
+        "minute": "84",
+        "type": "yellow",
+        "team": "Japan"
+      },
+      {
+        "minute": "90'+5",
+        "type": "goal",
+        "team": "Brazil"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Germany__vs__Paraguay": {
+    "team_a": "Germany",
+    "team_b": "Paraguay",
+    "stats": {
+      "a": {
+        "possessionPct": 75.6,
+        "totalShots": 21,
+        "shotsOnTarget": 6,
+        "blockedShots": 8,
+        "shotPct": 30.0,
+        "totalPasses": 805,
+        "passPct": 90.0,
+        "accuratePasses": 725,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 18,
+        "offsides": 4,
+        "totalCrosses": 55,
+        "wonCorners": 16
+      },
+      "b": {
+        "possessionPct": 24.4,
+        "totalShots": 7,
+        "shotsOnTarget": 3,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 255,
+        "passPct": 60.0,
+        "accuratePasses": 160,
+        "saves": 6,
+        "effectiveTackles": 20,
+        "foulsCommitted": 12,
+        "offsides": 1,
+        "totalCrosses": 21,
+        "wonCorners": 6
+      }
+    },
+    "key_events": [
+      {
+        "minute": "42",
+        "type": "goal",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "54",
+        "type": "goal",
+        "team": "Germany"
+      },
+      {
+        "minute": "65",
+        "type": "yellow",
+        "team": "Paraguay"
+      },
+      {
+        "minute": "106",
+        "type": "yellow",
+        "team": "Germany"
+      },
+      {
+        "minute": "115",
+        "type": "yellow",
+        "team": "Germany"
+      },
+      {
+        "minute": "117",
+        "type": "yellow",
+        "team": "Paraguay"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Netherlands__vs__Morocco": {
+    "team_a": "Netherlands",
+    "team_b": "Morocco",
+    "stats": {
+      "a": {
+        "possessionPct": 29.9,
+        "totalShots": 6,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 371,
+        "passPct": 80.0,
+        "accuratePasses": 292,
+        "saves": 5,
+        "effectiveTackles": 10,
+        "foulsCommitted": 18,
+        "offsides": 3,
+        "totalCrosses": 10,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 70.1,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 879,
+        "passPct": 90.0,
+        "accuratePasses": 801,
+        "saves": 1,
+        "effectiveTackles": 14,
+        "foulsCommitted": 15,
+        "offsides": 0,
+        "totalCrosses": 18,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "47",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "72",
+        "type": "goal",
+        "team": "Netherlands"
+      },
+      {
+        "minute": "90'+1",
+        "type": "goal",
+        "team": "Morocco"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "England__vs__DR Congo": {
+    "team_a": "England",
+    "team_b": "DR Congo",
+    "stats": {
+      "a": {
+        "possessionPct": 59.7,
+        "totalShots": 16,
+        "shotsOnTarget": 7,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 517,
+        "passPct": 90.0,
+        "accuratePasses": 468,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 43,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 40.3,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 365,
+        "passPct": 80.0,
+        "accuratePasses": 299,
+        "saves": 5,
+        "effectiveTackles": 8,
+        "foulsCommitted": 12,
+        "offsides": 4,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "7",
+        "type": "goal",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "19",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "28",
+        "type": "yellow",
+        "team": "DR Congo"
+      },
+      {
+        "minute": "75",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "86",
+        "type": "goal",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Belgium__vs__Senegal": {
+    "team_a": "Belgium",
+    "team_b": "Senegal",
+    "stats": {
+      "a": {
+        "possessionPct": 52.3,
+        "totalShots": 19,
+        "shotsOnTarget": 5,
+        "blockedShots": 5,
+        "shotPct": 30.0,
+        "totalPasses": 701,
+        "passPct": 90.0,
+        "accuratePasses": 602,
+        "saves": 3,
+        "effectiveTackles": 5,
+        "foulsCommitted": 22,
+        "offsides": 2,
+        "totalCrosses": 26,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 47.7,
+        "totalShots": 19,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 639,
+        "passPct": 80.0,
+        "accuratePasses": 536,
+        "saves": 3,
+        "effectiveTackles": 4,
+        "foulsCommitted": 12,
+        "offsides": 2,
+        "totalCrosses": 22,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "24",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "51",
+        "type": "goal",
+        "team": "Senegal"
+      },
+      {
+        "minute": "64",
+        "type": "yellow",
+        "team": "Belgium"
+      },
+      {
+        "minute": "67",
+        "type": "yellow",
+        "team": "Senegal"
+      },
+      {
+        "minute": "86",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "89",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "120'+5",
+        "type": "pen-goal",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "USA__vs__Bosnia and Herzegovina": {
+    "team_a": "USA",
+    "team_b": "Bosnia and Herzegovina",
+    "stats": {
+      "a": {
+        "possessionPct": 48.4,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 415,
+        "passPct": 80.0,
+        "accuratePasses": 349,
+        "saves": 3,
+        "effectiveTackles": 8,
+        "foulsCommitted": 7,
+        "offsides": 3,
+        "totalCrosses": 14,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 51.6,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 447,
+        "passPct": 80.0,
+        "accuratePasses": 365,
+        "saves": 0,
+        "effectiveTackles": 12,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      }
+    },
+    "key_events": [
+      {
+        "minute": "45",
+        "type": "goal",
+        "team": "USA"
+      },
+      {
+        "minute": "64",
+        "type": "red",
+        "team": "USA"
+      },
+      {
+        "minute": "80",
+        "type": "yellow",
+        "team": "Bosnia and Herzegovina"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "USA"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Spain__vs__Austria": {
+    "team_a": "Spain",
+    "team_b": "Austria",
+    "stats": {
+      "a": {
+        "possessionPct": 64.4,
+        "totalShots": 23,
+        "shotsOnTarget": 10,
+        "blockedShots": 7,
+        "shotPct": 40.0,
+        "totalPasses": 629,
+        "passPct": 90.0,
+        "accuratePasses": 570,
+        "saves": 0,
+        "effectiveTackles": 12,
+        "foulsCommitted": 8,
+        "offsides": 2,
+        "totalCrosses": 21,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 35.6,
+        "totalShots": 5,
+        "shotsOnTarget": 0,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 347,
+        "passPct": 80.0,
+        "accuratePasses": 285,
+        "saves": 6,
+        "effectiveTackles": 8,
+        "foulsCommitted": 15,
+        "offsides": 5,
+        "totalCrosses": 13,
+        "wonCorners": 0
+      }
+    },
+    "key_events": [
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "66",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "83",
+        "type": "yellow",
+        "team": "Austria"
+      },
+      {
+        "minute": "89",
+        "type": "goal",
+        "team": "Spain"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Switzerland__vs__Algeria": {
+    "team_a": "Switzerland",
+    "team_b": "Algeria",
+    "stats": {
+      "a": {
+        "possessionPct": 44.5,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 438,
+        "passPct": 80.0,
+        "accuratePasses": 355,
+        "saves": 2,
+        "effectiveTackles": 14,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 14,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 55.5,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 563,
+        "passPct": 80.0,
+        "accuratePasses": 478,
+        "saves": 2,
+        "effectiveTackles": 9,
+        "foulsCommitted": 12,
+        "offsides": 2,
+        "totalCrosses": 6,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "10",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "36",
+        "type": "yellow",
+        "team": "Algeria"
+      },
+      {
+        "minute": "46",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "72",
+        "type": "yellow",
+        "team": "Algeria"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Australia__vs__Egypt": {
+    "team_a": "Australia",
+    "team_b": "Egypt",
+    "stats": {
+      "a": {
+        "possessionPct": 41.7,
+        "totalShots": 16,
+        "shotsOnTarget": 1,
+        "blockedShots": 9,
+        "shotPct": 10.0,
+        "totalPasses": 505,
+        "passPct": 80.0,
+        "accuratePasses": 403,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 12,
+        "offsides": 0,
+        "totalCrosses": 25,
+        "wonCorners": 4
+      },
+      "b": {
+        "possessionPct": 58.3,
+        "totalShots": 14,
+        "shotsOnTarget": 3,
+        "blockedShots": 6,
+        "shotPct": 20.0,
+        "totalPasses": 722,
+        "passPct": 80.0,
+        "accuratePasses": 613,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 14,
+        "offsides": 3,
+        "totalCrosses": 24,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "13",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "55",
+        "type": "own-goal",
+        "team": "Australia"
+      },
+      {
+        "minute": "105",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "120",
+        "type": "yellow",
+        "team": "Egypt"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Argentina__vs__Cabo Verde": {
+    "team_a": "Argentina",
+    "team_b": "Cabo Verde",
+    "stats": {
+      "a": {
+        "possessionPct": 63.6,
+        "totalShots": 22,
+        "shotsOnTarget": 10,
+        "blockedShots": 7,
+        "shotPct": 50.0,
+        "totalPasses": 850,
+        "passPct": 90.0,
+        "accuratePasses": 779,
+        "saves": 3,
+        "effectiveTackles": 13,
+        "foulsCommitted": 13,
+        "offsides": 3,
+        "totalCrosses": 15,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 36.4,
+        "totalShots": 16,
+        "shotsOnTarget": 5,
+        "blockedShots": 6,
+        "shotPct": 30.0,
+        "totalPasses": 476,
+        "passPct": 90.0,
+        "accuratePasses": 409,
+        "saves": 8,
+        "effectiveTackles": 7,
+        "foulsCommitted": 12,
+        "offsides": 2,
+        "totalCrosses": 20,
+        "wonCorners": 8
+      }
+    },
+    "key_events": [
+      {
+        "minute": "29",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "59",
+        "type": "goal",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "68",
+        "type": "yellow",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "92",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "103",
+        "type": "goal",
+        "team": "Cabo Verde"
+      },
+      {
+        "minute": "111",
+        "type": "own-goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "115",
+        "type": "yellow",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Colombia__vs__Ghana": {
+    "team_a": "Colombia",
+    "team_b": "Ghana",
+    "stats": {
+      "a": {
+        "possessionPct": 60.7,
+        "totalShots": 20,
+        "shotsOnTarget": 8,
+        "blockedShots": 4,
+        "shotPct": 40.0,
+        "totalPasses": 586,
+        "passPct": 90.0,
+        "accuratePasses": 532,
+        "saves": 0,
+        "effectiveTackles": 8,
+        "foulsCommitted": 14,
+        "offsides": 2,
+        "totalCrosses": 15,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 39.3,
+        "totalShots": 8,
+        "shotsOnTarget": 0,
+        "blockedShots": 5,
+        "shotPct": 0,
+        "totalPasses": 376,
+        "passPct": 80.0,
+        "accuratePasses": 312,
+        "saves": 7,
+        "effectiveTackles": 7,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 15,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "12",
+        "type": "yellow",
+        "team": "Colombia"
+      },
+      {
+        "minute": "14",
+        "type": "goal",
+        "team": "Colombia"
+      },
+      {
+        "minute": "49",
+        "type": "yellow",
+        "team": "Ghana"
+      },
+      {
+        "minute": "66",
+        "type": "yellow",
+        "team": "Ghana"
+      },
+      {
+        "minute": "76",
+        "type": "yellow",
+        "team": "Ghana"
+      },
+      {
+        "minute": "78",
+        "type": "yellow",
+        "team": "Colombia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Canada__vs__Morocco": {
+    "team_a": "Canada",
+    "team_b": "Morocco",
+    "stats": {
+      "a": {
+        "possessionPct": 44.7,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 359,
+        "passPct": 80.0,
+        "accuratePasses": 272,
+        "saves": 1,
+        "effectiveTackles": 9,
+        "foulsCommitted": 24,
+        "offsides": 2,
+        "totalCrosses": 30,
+        "wonCorners": 11
+      },
+      "b": {
+        "possessionPct": 55.3,
+        "totalShots": 5,
+        "shotsOnTarget": 4,
+        "blockedShots": 0,
+        "shotPct": 80.0,
+        "totalPasses": 473,
+        "passPct": 80.0,
+        "accuratePasses": 388,
+        "saves": 3,
+        "effectiveTackles": 9,
+        "foulsCommitted": 14,
+        "offsides": 3,
+        "totalCrosses": 5,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "20",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "40",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "40",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "45",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "45'+6",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "49",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "50",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "67",
+        "type": "yellow",
+        "team": "Canada"
+      },
+      {
+        "minute": "82",
+        "type": "goal",
+        "team": "Morocco"
+      },
+      {
+        "minute": "90'+8",
+        "type": "goal",
+        "team": "Morocco"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Paraguay__vs__France": {
+    "team_a": "Paraguay",
+    "team_b": "France",
+    "stats": {
+      "a": {
+        "possessionPct": 24.1,
+        "totalShots": 5,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 183,
+        "passPct": 50.0,
+        "accuratePasses": 98,
+        "saves": 4,
+        "effectiveTackles": 21,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 5,
+        "wonCorners": 2
+      },
+      "b": {
+        "possessionPct": 75.9,
+        "totalShots": 15,
+        "shotsOnTarget": 5,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 569,
+        "passPct": 90.0,
+        "accuratePasses": 510,
+        "saves": 1,
+        "effectiveTackles": 7,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 22,
+        "wonCorners": 12
+      }
+    },
+    "key_events": [
+      {
+        "minute": "19",
+        "type": "yellow",
+        "team": "France"
+      },
+      {
+        "minute": "70",
+        "type": "pen-goal",
+        "team": "France"
+      },
+      {
+        "minute": "81",
+        "type": "yellow",
+        "team": "France"
+      },
+      {
+        "minute": "90'+7",
+        "type": "yellow",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Brazil__vs__Norway": {
+    "team_a": "Brazil",
+    "team_b": "Norway",
+    "stats": {
+      "a": {
+        "possessionPct": 33.6,
+        "totalShots": 14,
+        "shotsOnTarget": 4,
+        "blockedShots": 4,
+        "shotPct": 30.0,
+        "totalPasses": 331,
+        "passPct": 80.0,
+        "accuratePasses": 279,
+        "saves": 3,
+        "effectiveTackles": 10,
+        "foulsCommitted": 7,
+        "offsides": 1,
+        "totalCrosses": 16,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 66.4,
+        "totalShots": 9,
+        "shotsOnTarget": 5,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 681,
+        "passPct": 90.0,
+        "accuratePasses": 618,
+        "saves": 4,
+        "effectiveTackles": 11,
+        "foulsCommitted": 6,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "79",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "90",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "90'+6",
+        "type": "yellow",
+        "team": "Brazil"
+      },
+      {
+        "minute": "90'+10",
+        "type": "pen-goal",
+        "team": "Brazil"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Mexico__vs__England": {
+    "team_a": "Mexico",
+    "team_b": "England",
+    "stats": {
+      "a": {
+        "possessionPct": 66.9,
+        "totalShots": 20,
+        "shotsOnTarget": 5,
+        "blockedShots": 7,
+        "shotPct": 30.0,
+        "totalPasses": 453,
+        "passPct": 90.0,
+        "accuratePasses": 418,
+        "saves": 2,
+        "effectiveTackles": 7,
+        "foulsCommitted": 14,
+        "offsides": 1,
+        "totalCrosses": 52,
+        "wonCorners": 12
+      },
+      "b": {
+        "possessionPct": 33.1,
+        "totalShots": 6,
+        "shotsOnTarget": 5,
+        "blockedShots": 0,
+        "shotPct": 80.0,
+        "totalPasses": 244,
+        "passPct": 80.0,
+        "accuratePasses": 195,
+        "saves": 3,
+        "effectiveTackles": 9,
+        "foulsCommitted": 7,
+        "offsides": 0,
+        "totalCrosses": 4,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "1",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "38",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "42",
+        "type": "goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "54",
+        "type": "red",
+        "team": "England"
+      },
+      {
+        "minute": "60",
+        "type": "pen-goal",
+        "team": "England"
+      },
+      {
+        "minute": "68",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "69",
+        "type": "pen-goal",
+        "team": "Mexico"
+      },
+      {
+        "minute": "71",
+        "type": "yellow",
+        "team": "Mexico"
+      },
+      {
+        "minute": "72",
+        "type": "yellow",
+        "team": "England"
+      },
+      {
+        "minute": "90'+8",
+        "type": "yellow",
+        "team": "Mexico"
+      },
+      {
+        "minute": "90'+8",
+        "type": "yellow",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Portugal__vs__Spain": {
+    "team_a": "Portugal",
+    "team_b": "Spain",
+    "stats": {
+      "a": {
+        "possessionPct": 44.6,
+        "totalShots": 10,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 20.0,
+        "totalPasses": 427,
+        "passPct": 80.0,
+        "accuratePasses": 357,
+        "saves": 5,
+        "effectiveTackles": 9,
+        "foulsCommitted": 9,
+        "offsides": 2,
+        "totalCrosses": 13,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 55.4,
+        "totalShots": 15,
+        "shotsOnTarget": 6,
+        "blockedShots": 3,
+        "shotPct": 40.0,
+        "totalPasses": 530,
+        "passPct": 90.0,
+        "accuratePasses": 467,
+        "saves": 2,
+        "effectiveTackles": 13,
+        "foulsCommitted": 13,
+        "offsides": 1,
+        "totalCrosses": 16,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "89",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "90'+1",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "90'+8",
+        "type": "yellow",
+        "team": "Spain"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "USA__vs__Belgium": {
+    "team_a": "USA",
+    "team_b": "Belgium",
+    "stats": {
+      "a": {
+        "possessionPct": 55.9,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 0,
+        "shotPct": 30.0,
+        "totalPasses": 527,
+        "passPct": 90.0,
+        "accuratePasses": 459,
+        "saves": 3,
+        "effectiveTackles": 9,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 11,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 44.1,
+        "totalShots": 15,
+        "shotsOnTarget": 7,
+        "blockedShots": 4,
+        "shotPct": 50.0,
+        "totalPasses": 414,
+        "passPct": 80.0,
+        "accuratePasses": 334,
+        "saves": 1,
+        "effectiveTackles": 10,
+        "foulsCommitted": 9,
+        "offsides": 1,
+        "totalCrosses": 15,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "9",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "31",
+        "type": "goal",
+        "team": "USA"
+      },
+      {
+        "minute": "33",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "35",
+        "type": "yellow",
+        "team": "USA"
+      },
+      {
+        "minute": "57",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "69",
+        "type": "yellow",
+        "team": "USA"
+      },
+      {
+        "minute": "90'+3",
+        "type": "goal",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Argentina__vs__Egypt": {
+    "team_a": "Argentina",
+    "team_b": "Egypt",
+    "stats": {
+      "a": {
+        "possessionPct": 63.6,
+        "totalShots": 19,
+        "shotsOnTarget": 7,
+        "blockedShots": 4,
+        "shotPct": 40.0,
+        "totalPasses": 602,
+        "passPct": 90.0,
+        "accuratePasses": 541,
+        "saves": 0,
+        "effectiveTackles": 15,
+        "foulsCommitted": 13,
+        "offsides": 3,
+        "totalCrosses": 26,
+        "wonCorners": 6
+      },
+      "b": {
+        "possessionPct": 36.4,
+        "totalShots": 5,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 40.0,
+        "totalPasses": 349,
+        "passPct": 80.0,
+        "accuratePasses": 287,
+        "saves": 4,
+        "effectiveTackles": 7,
+        "foulsCommitted": 11,
+        "offsides": 0,
+        "totalCrosses": 8,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "15",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "Egypt"
+      },
+      {
+        "minute": "79",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "83",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+2",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+4",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+8",
+        "type": "yellow",
+        "team": "Egypt"
+      },
+      {
+        "minute": "90'+12",
+        "type": "yellow",
+        "team": "Egypt"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Switzerland__vs__Colombia": {
+    "team_a": "Switzerland",
+    "team_b": "Colombia",
+    "stats": {
+      "a": {
+        "possessionPct": 53.4,
+        "totalShots": 7,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 30.0,
+        "totalPasses": 631,
+        "passPct": 90.0,
+        "accuratePasses": 547,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 22,
+        "offsides": 5,
+        "totalCrosses": 15,
+        "wonCorners": 3
+      },
+      "b": {
+        "possessionPct": 46.6,
+        "totalShots": 15,
+        "shotsOnTarget": 3,
+        "blockedShots": 4,
+        "shotPct": 20.0,
+        "totalPasses": 547,
+        "passPct": 80.0,
+        "accuratePasses": 454,
+        "saves": 2,
+        "effectiveTackles": 8,
+        "foulsCommitted": 21,
+        "offsides": 4,
+        "totalCrosses": 19,
+        "wonCorners": 7
+      }
+    },
+    "key_events": [
+      {
+        "minute": "51",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "59",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "60",
+        "type": "yellow",
+        "team": "Colombia"
+      },
+      {
+        "minute": "95",
+        "type": "yellow",
+        "team": "Colombia"
+      },
+      {
+        "minute": "105",
+        "type": "yellow",
+        "team": "Switzerland"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "France__vs__Morocco": {
+    "team_a": "France",
+    "team_b": "Morocco",
+    "stats": {
+      "a": {
+        "possessionPct": 48,
+        "totalShots": 22,
+        "shotsOnTarget": 8,
+        "blockedShots": 5,
+        "shotPct": 40.0,
+        "totalPasses": 486,
+        "passPct": 90.0,
+        "accuratePasses": 432,
+        "saves": 1,
+        "effectiveTackles": 8,
+        "foulsCommitted": 10,
+        "offsides": 0,
+        "totalCrosses": 12,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 52,
+        "totalShots": 5,
+        "shotsOnTarget": 1,
+        "blockedShots": 1,
+        "shotPct": 20.0,
+        "totalPasses": 526,
+        "passPct": 90.0,
+        "accuratePasses": 452,
+        "saves": 6,
+        "effectiveTackles": 5,
+        "foulsCommitted": 13,
+        "offsides": 0,
+        "totalCrosses": 13,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "60",
+        "type": "goal",
+        "team": "France"
+      },
+      {
+        "minute": "63",
+        "type": "yellow",
+        "team": "Morocco"
+      },
+      {
+        "minute": "66",
+        "type": "goal",
+        "team": "France"
+      }
+    ],
+    "updated_at": "2026-07-10T16:40:11+00:00"
+  },
+  "Portugal__vs__Croatia": {
+    "team_a": "Portugal",
+    "team_b": "Croatia",
+    "stats": {
+      "a": {
+        "possessionPct": 60.4,
+        "totalShots": 15,
+        "shotsOnTarget": 3,
+        "blockedShots": 4,
+        "shotPct": 20.0,
+        "totalPasses": 585,
+        "passPct": 90.0,
+        "accuratePasses": 533,
+        "saves": 5,
+        "effectiveTackles": 9,
+        "foulsCommitted": 6,
+        "offsides": 1,
+        "totalCrosses": 20,
+        "wonCorners": 9
+      },
+      "b": {
+        "possessionPct": 39.6,
+        "totalShots": 13,
+        "shotsOnTarget": 6,
+        "blockedShots": 2,
+        "shotPct": 50.0,
+        "totalPasses": 370,
+        "passPct": 80.0,
+        "accuratePasses": 312,
+        "saves": 2,
+        "effectiveTackles": 11,
+        "foulsCommitted": 12,
+        "offsides": 4,
+        "totalCrosses": 22,
+        "wonCorners": 5
+      }
+    },
+    "key_events": [
+      {
+        "minute": "17",
+        "type": "yellow",
+        "team": "Portugal"
+      },
+      {
+        "minute": "53",
+        "type": "goal",
+        "team": "Croatia"
+      },
+      {
+        "minute": "59",
+        "type": "yellow",
+        "team": "Croatia"
+      },
+      {
+        "minute": "68",
+        "type": "pen-goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "90'+4",
+        "type": "goal",
+        "team": "Portugal"
+      },
+      {
+        "minute": "90'+8",
+        "type": "yellow",
+        "team": "Croatia"
+      }
+    ],
+    "updated_at": "2026-07-10T16:43:40+00:00"
   }
 }

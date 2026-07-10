@@ -5060,3 +5060,28 @@ html, body { overflow-x: hidden; }
   .mm-strip { animation: none; }
 }
 .momentum-card[data-reduced-motion='true'] .mm-strip { animation: none; }
+
+/* R18: live Match Momentum — per-minute pressure extremes (10s sampler).
+   Bars grow up (team A pressing, .is-a) or hang down (team B, .is-b) from a
+   center baseline; height ∝ the minute's MAX |pressure|. */
+.mm-live-host { position: relative; }
+.mm-live-bars {
+  display: flex;
+  align-items: center;          /* bars grow from the vertical center */
+  gap: 2px;
+  height: 56px;
+  padding: 2px 0;
+  border-top: 1px solid var(--border, rgba(127,127,127,.25));
+  border-bottom: 1px solid var(--border, rgba(127,127,127,.25));
+  overflow-x: auto;
+}
+.mm-live-bar {
+  flex: 0 0 4px;
+  min-height: 4px;
+  border-radius: 2px;
+  align-self: center;
+}
+.mm-live-bar.is-a { background: var(--accent, #3b82f6); transform: translateY(-50%); }
+.mm-live-bar.is-b { background: var(--danger, #ef4444); transform: translateY(50%); }
+.mm-live-note { font-size: 12px; margin: 0 0 6px; }
+.mm-live-wait { font-size: 12px; }
