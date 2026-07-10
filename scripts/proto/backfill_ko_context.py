@@ -84,6 +84,13 @@ def all_fixtures():
     sched = json.loads((DATA / "schedule_full.json").read_text()) if (DATA / "schedule_full.json").exists() else []
     rows = sched if isinstance(sched, list) else sched.get("matches", [])
 
+    # actual_results records carry no venue — join each played pair back to its
+    # schedule row (which carries venue_id) so the travel chronology has venues.
+    venue_by_pair = {}
+    for m in rows:
+        if m.get("team_a") and m.get("team_b") and m.get("venue_id"):
+            venue_by_pair[frozenset((m["team_a"], m["team_b"]))] = m["venue_id"]
+
     fixtures = []
     # played (all tiers) — for chronology
     for tier in ("group_stage",) + KO_TIERS:
@@ -94,7 +101,8 @@ def all_fixtures():
             if st and st not in FINAL:
                 continue
             a, b = key.split("__vs__", 1)
-            fixtures.append([rec.get("kickoff_utc") or "", tier, a, b, rec.get("venue"), True])
+            venue = rec.get("venue_id") or rec.get("venue") or venue_by_pair.get(frozenset((a, b)))
+            fixtures.append([rec.get("kickoff_utc") or "", tier, a, b, venue, True])
     # upcoming KO from schedule
     for m in rows:
         stage = (m.get("stage") or "").lower()
@@ -103,7 +111,7 @@ def all_fixtures():
         a, b = m.get("team_a"), m.get("team_b")
         if not a or not b or a.startswith(("W", "L", "1", "2", "3")) or b.startswith(("W", "L", "1", "2", "3")):
             continue  # unresolved bracket slot
-        fixtures.append([m.get("kickoff_utc") or "", stage, a, b, m.get("venue"), False])
+        fixtures.append([m.get("kickoff_utc") or "", stage, a, b, m.get("venue_id") or m.get("venue"), False])
     fixtures.sort(key=lambda r: r[0] or "z")
     return fixtures
 

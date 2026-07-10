@@ -1,7 +1,7 @@
 {
   "__meta__": {
     "method": "derived rest/travel for KO fixtures (offline, no paid key)",
-    "n_ko_fixtures": 52
+    "n_ko_fixtures": 53
   },
   "South Africa__vs__Canada": {
     "tier": "round_of_32",
@@ -10,12 +10,12 @@
     "team_a": {
       "team": "South Africa",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Canada",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Brazil__vs__Japan": {
@@ -25,12 +25,12 @@
     "team_a": {
       "team": "Brazil",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Japan",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Germany__vs__Paraguay": {
@@ -40,12 +40,12 @@
     "team_a": {
       "team": "Germany",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Paraguay",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Netherlands__vs__Morocco": {
@@ -55,12 +55,12 @@
     "team_a": {
       "team": "Netherlands",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Morocco",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Cote d'Ivoire__vs__Norway": {
@@ -70,12 +70,12 @@
     "team_a": {
       "team": "Cote d'Ivoire",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Norway",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "France__vs__Sweden": {
@@ -85,12 +85,12 @@
     "team_a": {
       "team": "France",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Sweden",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Mexico__vs__Ecuador": {
@@ -100,12 +100,12 @@
     "team_a": {
       "team": "Mexico",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Ecuador",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "England__vs__DR Congo": {
@@ -115,12 +115,12 @@
     "team_a": {
       "team": "England",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "DR Congo",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Belgium__vs__Senegal": {
@@ -130,12 +130,12 @@
     "team_a": {
       "team": "Belgium",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Senegal",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "USA__vs__Bosnia and Herzegovina": {
@@ -145,12 +145,12 @@
     "team_a": {
       "team": "USA",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Bosnia and Herzegovina",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Spain__vs__Austria": {
@@ -160,12 +160,12 @@
     "team_a": {
       "team": "Spain",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Austria",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Portugal__vs__Croatia": {
@@ -175,12 +175,12 @@
     "team_a": {
       "team": "Portugal",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Croatia",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Switzerland__vs__Algeria": {
@@ -190,12 +190,12 @@
     "team_a": {
       "team": "Switzerland",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Algeria",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Australia__vs__Egypt": {
@@ -205,12 +205,12 @@
     "team_a": {
       "team": "Australia",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Egypt",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Argentina__vs__Cabo Verde": {
@@ -220,12 +220,12 @@
     "team_a": {
       "team": "Argentina",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Cabo Verde",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Colombia__vs__Ghana": {
@@ -235,12 +235,12 @@
     "team_a": {
       "team": "Colombia",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Ghana",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Canada__vs__Morocco": {
@@ -250,12 +250,12 @@
     "team_a": {
       "team": "Canada",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Morocco",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Paraguay__vs__France": {
@@ -265,12 +265,12 @@
     "team_a": {
       "team": "Paraguay",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "France",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Brazil__vs__Norway": {
@@ -280,12 +280,12 @@
     "team_a": {
       "team": "Brazil",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Norway",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Mexico__vs__England": {
@@ -295,12 +295,12 @@
     "team_a": {
       "team": "Mexico",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "England",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Portugal__vs__Spain": {
@@ -310,12 +310,12 @@
     "team_a": {
       "team": "Portugal",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Spain",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "USA__vs__Belgium": {
@@ -325,12 +325,12 @@
     "team_a": {
       "team": "USA",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Belgium",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Argentina__vs__Egypt": {
@@ -340,12 +340,12 @@
     "team_a": {
       "team": "Argentina",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Egypt",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "Switzerland__vs__Colombia": {
@@ -355,27 +355,27 @@
     "team_a": {
       "team": "Switzerland",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Colombia",
       "rest_days": 0,
-      "travel_km": null
+      "travel_km": 0.0
     }
   },
   "France__vs__Morocco": {
     "tier": "quarterfinals",
-    "kickoff_utc": "2026-07-09T20:00:00Z",
-    "played": false,
+    "kickoff_utc": "2026-07-09T20:00Z",
+    "played": true,
     "team_a": {
       "team": "France",
-      "rest_days": 4,
-      "travel_km": null
+      "rest_days": 0,
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Morocco",
-      "rest_days": 5,
-      "travel_km": null
+      "rest_days": 0,
+      "travel_km": 0.0
     }
   },
   "Spain__vs__Belgium": {
@@ -385,12 +385,12 @@
     "team_a": {
       "team": "Spain",
       "rest_days": 4,
-      "travel_km": null
+      "travel_km": 1974.3
     },
     "team_b": {
       "team": "Belgium",
       "rest_days": 3,
-      "travel_km": null
+      "travel_km": 1553.2
     }
   },
   "Norway__vs__England": {
@@ -400,12 +400,12 @@
     "team_a": {
       "team": "Norway",
       "rest_days": 6,
-      "travel_km": null
+      "travel_km": 1747.0
     },
     "team_b": {
       "team": "England",
       "rest_days": 5,
-      "travel_km": null
+      "travel_km": 2074.5
     }
   },
   "Argentina__vs__Switzerland": {
@@ -415,12 +415,12 @@
     "team_a": {
       "team": "Argentina",
       "rest_days": 4,
-      "travel_km": null
+      "travel_km": 1076.4
     },
     "team_b": {
       "team": "Switzerland",
       "rest_days": 4,
-      "travel_km": null
+      "travel_km": 2530.2
     }
   }
 }
