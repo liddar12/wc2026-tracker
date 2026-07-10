@@ -6759,9 +6759,36 @@
           0.1444
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.26158,
+          "logloss": 0.53991
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.07848,
+          "logloss": 0.2558
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.18093,
+          "logloss": 0.42465
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.16414,
+          "logloss": 0.39988
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.17665,
+          "logloss": 0.41825
+        }
+      },
+      "scored": true,
+      "actual_score": "2-1"
     },
     "M099__W91__vs__W92": {
       "match_number": 99,
@@ -6769,7 +6796,7 @@
       "team_a": "Norway",
       "team_b": "England",
       "kickoff_utc": "2026-07-11T21:00:00Z",
-      "captured_at": "2026-07-10T20:46:50+00:00",
+      "captured_at": "2026-07-10T21:32:29+00:00",
       "preds": {
         "model": [
           0.2106,
@@ -6792,9 +6819,9 @@
           0.5497
         ],
         "stack": [
-          0.1978,
-          0.2255,
-          0.5767
+          0.1964,
+          0.2249,
+          0.5787
         ]
       },
       "actual": null,
@@ -6807,7 +6834,7 @@
       "team_a": "Argentina",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-07-12T01:00:00Z",
-      "captured_at": "2026-07-10T20:46:50+00:00",
+      "captured_at": "2026-07-10T21:32:29+00:00",
       "preds": {
         "model": [
           0.5453,
@@ -6830,9 +6857,9 @@
           0.1624
         ],
         "stack": [
-          0.6001,
-          0.2182,
-          0.1817
+          0.606,
+          0.2163,
+          0.1777
         ]
       },
       "actual": null,
@@ -6840,29 +6867,29 @@
       "scored": false
     }
   },
-  "updated_at": "2026-07-10T20:46:50+00:00",
+  "updated_at": "2026-07-10T21:32:29+00:00",
   "summary": {
-    "matches_scored": 93,
+    "matches_scored": 94,
     "model": {
-      "correct": 64,
-      "total": 93,
+      "correct": 65,
+      "total": 94,
       "measured": true,
-      "brier": 0.4861,
-      "logloss": 0.8653
+      "brier": 0.4837,
+      "logloss": 0.8618
     },
     "dt": {
-      "correct": 60,
-      "total": 93,
+      "correct": 61,
+      "total": 94,
       "measured": true,
-      "brier": 0.4867,
-      "logloss": 0.8414
+      "brier": 0.4823,
+      "logloss": 0.8352
     },
     "market": {
-      "correct": 63,
-      "total": 93,
+      "correct": 64,
+      "total": 94,
       "measured": true,
-      "brier": 0.474,
-      "logloss": 0.8146
+      "brier": 0.4708,
+      "logloss": 0.8105
     },
     "polymarket": {
       "correct": 47,
@@ -6872,18 +6899,18 @@
       "logloss": 0.8274
     },
     "hybrid": {
-      "correct": 62,
-      "total": 93,
+      "correct": 63,
+      "total": 94,
       "measured": true,
-      "brier": 0.4721,
-      "logloss": 0.8205
+      "brier": 0.4689,
+      "logloss": 0.816
     },
     "stack": {
-      "correct": 64,
-      "total": 93,
+      "correct": 65,
+      "total": 94,
       "measured": true,
-      "brier": 0.4724,
-      "logloss": 0.8166
+      "brier": 0.4693,
+      "logloss": 0.8124
     }
   }
 }

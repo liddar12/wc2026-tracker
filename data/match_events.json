@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-10T20:46:46+00:00",
+    "updated_at": "2026-07-10T21:32:22+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3715,7 +3715,7 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-10T20:46:46+00:00"
+    "updated_at": "2026-07-10T21:32:22+00:00"
   },
   "Spain__vs__Belgium": {
     "events": [
@@ -3736,8 +3736,32 @@
         "type": "yellow",
         "player": "Pau Cubarsí",
         "team": "Spain"
+      },
+      {
+        "minute": "85'",
+        "type": "yellow",
+        "player": "Kevin De Bruyne",
+        "team": "Belgium"
+      },
+      {
+        "minute": "88'",
+        "type": "goal",
+        "player": "Mikel Merino",
+        "team": "Spain"
+      },
+      {
+        "minute": "90'+3'",
+        "type": "yellow",
+        "player": "Aymeric Laporte",
+        "team": "Spain"
+      },
+      {
+        "minute": "90'+5'",
+        "type": "yellow",
+        "player": "Axel Witsel",
+        "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-10T20:46:46+00:00"
+    "updated_at": "2026-07-10T21:32:22+00:00"
   }
 }
