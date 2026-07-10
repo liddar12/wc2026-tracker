@@ -40,7 +40,8 @@ PM_PREFIX = "fifwc-"
 PM_MONEYLINE = re.compile(r"^fifwc-.+-\d{4}-\d{2}-\d{2}$")
 UA = {"User-Agent": "wc26-tracker/1.0 (live-backtest)", "Accept": "application/json"}
 CAPTURE_LEAD_HRS = 36        # start (and keep refreshing) the snapshot this long before kickoff
-FINAL_STATUS = {"STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME"}
+FINAL_STATUS = {"STATUS_FINAL", "STATUS_FULL_TIME", "STATUS_END_OF_FULL_TIME",
+                "STATUS_FINAL_AET", "STATUS_FINAL_PEN"}
 STAGES = ["group_stage", "round_of_32", "round_of_16", "quarterfinals", "semifinals", "third_place", "final"]
 MODELS = ["model", "dt", "market", "polymarket", "hybrid", "stack"]
 EPS = 1e-6
@@ -190,11 +191,41 @@ def pm_preds(a, b, pm_idx):
 
 
 # ---- scoring ----------------------------------------------------------------
-def find_result(actual, mid):
+def find_result(actual, mid, team_a=None, team_b=None):
+    """Result for a snapshot, oriented to (team_a, team_b).
+
+    Group match_ids ARE "A__vs__B" name keys, so `mid` hits directly. KNOCKOUT
+    match_ids are placeholder-form ("M097__W89__vs__W90") while actual_results
+    keys knockout records by RESOLVED team names — that mismatch left every
+    knockout snapshot unscored. Fall back to the snapshot's captured team names
+    (both orientations; a reversed hit flips the score).
+
+    A match that reached ET/pens ended REGULATION level: score it as a draw
+    (the stored score includes ET goals), per the live2026 note "scored on the
+    regulation result". `display` keeps the raw stored score for the UI.
+    """
+    keys = [(mid, False)]
+    if team_a and team_b:
+        keys += [(f"{team_a}__vs__{team_b}", False), (f"{team_b}__vs__{team_a}", True)]
     for stg in STAGES:
-        rec = (actual.get(stg) or {}).get(mid)
-        if rec and rec.get("status") in FINAL_STATUS and rec.get("score_a") is not None and rec.get("score_b") is not None:
-            return rec
+        tier = actual.get(stg) or {}
+        for key, flipped in keys:
+            rec = tier.get(key)
+            if not (rec and rec.get("status") in FINAL_STATUS
+                    and rec.get("score_a") is not None and rec.get("score_b") is not None):
+                continue
+            sa, sb = rec["score_a"], rec["score_b"]
+            if flipped:
+                sa, sb = sb, sa
+            suffix = ""
+            if rec.get("status") == "STATUS_FINAL_AET":
+                suffix = " (AET)"
+            elif rec.get("status") == "STATUS_FINAL_PEN":
+                suffix = " (pens)"
+            display = f"{sa}-{sb}{suffix}"
+            if suffix:
+                sa = sb = 1   # regulation ended level
+            return {"score_a": sa, "score_b": sb, "status": rec.get("status"), "display": display}
     return None
 
 
@@ -295,11 +326,11 @@ def main():
 
         # SCORE once a final result exists
         if snap and not snap.get("scored"):
-            rec = find_result(actual, mid)
+            rec = find_result(actual, mid, snap.get("team_a"), snap.get("team_b"))
             if rec:
                 oi = outcome_index(rec)
                 snap["actual"] = ["team_a_wins", "draw", "team_b_wins"][oi]
-                snap["actual_score"] = f"{rec['score_a']}-{rec['score_b']}"
+                snap["actual_score"] = rec.get("display") or f"{rec['score_a']}-{rec['score_b']}"
                 snap["score"] = score_preds(snap["preds"], oi)
                 snap["scored"] = True
                 scored += 1

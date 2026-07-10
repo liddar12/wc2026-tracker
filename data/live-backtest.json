@@ -5394,9 +5394,36 @@
           0.5894
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.22806,
+          "logloss": 0.49299
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.32368,
+          "logloss": 0.62455
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.16187,
+          "logloss": 0.39586
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.23299,
+          "logloss": 0.50022
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.25342,
+          "logloss": 0.52865
+        }
+      },
+      "scored": true,
+      "actual_score": "1-2"
     },
     "M077__1I__vs__3_CDFGH": {
       "match_number": 77,
@@ -5432,9 +5459,36 @@
           0.0887
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.09814,
+          "logloss": 0.29182
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.07698,
+          "logloss": 0.25296
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.01082,
+          "logloss": 0.08545
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.05354,
+          "logloss": 0.20604
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.08977,
+          "logloss": 0.27681
+        }
+      },
+      "scored": true,
+      "actual_score": "3-0"
     },
     "M079__1A__vs__3_CEFHI": {
       "match_number": 79,
@@ -5470,9 +5524,36 @@
           0.3335
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.36712,
+          "logloss": 0.6826
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.945,
+          "logloss": 1.48855
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.23317,
+          "logloss": 0.50022
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.46479,
+          "logloss": 0.80788
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.52579,
+          "logloss": 0.89257
+        }
+      },
+      "scored": true,
+      "actual_score": "2-0"
     },
     "M080__1L__vs__3_EHIJK": {
       "match_number": 80,
@@ -5508,9 +5589,36 @@
           0.0368
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.02296,
+          "logloss": 0.12817
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.03082,
+          "logloss": 0.15059
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.19176,
+          "logloss": 0.44068
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.06466,
+          "logloss": 0.23004
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.02463,
+          "logloss": 0.13319
+        }
+      },
+      "scored": true,
+      "actual_score": "2-1"
     },
     "M082__1G__vs__3_AEHIJ": {
       "match_number": 82,
@@ -5546,9 +5654,36 @@
           0.3097
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.84678,
+          "logloss": 1.37279
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.82936,
+          "logloss": 1.35751
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.87173,
+          "logloss": 1.39513
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.8474,
+          "logloss": 1.37516
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 0.84137,
+          "logloss": 1.36806
+        }
+      },
+      "scored": true,
+      "actual_score": "3-2 (AET)"
     },
     "M081__1D__vs__3_BEFIJ": {
       "match_number": 81,
@@ -5584,9 +5719,36 @@
           0.2253
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.2746,
+          "logloss": 0.55792
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.42508,
+          "logloss": 0.75929
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.29561,
+          "logloss": 0.58663
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.32831,
+          "logloss": 0.63074
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.31911,
+          "logloss": 0.61841
+        }
+      },
+      "scored": true,
+      "actual_score": "2-0"
     },
     "M084__1H__vs__2J": {
       "match_number": 84,
@@ -5622,9 +5784,36 @@
           0.1035
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.15878,
+          "logloss": 0.39112
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.0476,
+          "logloss": 0.19201
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.01886,
+          "logloss": 0.11519
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.06294,
+          "logloss": 0.22615
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.1116,
+          "logloss": 0.31512
+        }
+      },
+      "scored": true,
+      "actual_score": "3-0"
     },
     "M083__2K__vs__2L": {
       "match_number": 83,
@@ -5660,9 +5849,36 @@
           0.2109
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.23877,
+          "logloss": 0.50816
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.42805,
+          "logloss": 0.76336
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.06813,
+          "logloss": 0.2356
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.21766,
+          "logloss": 0.47917
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.29285,
+          "logloss": 0.58286
+        }
+      },
+      "scored": true,
+      "actual_score": "2-1"
     },
     "M085__1B__vs__3_EFGIJ": {
       "match_number": 85,
@@ -5698,9 +5914,36 @@
           0.2317
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.36727,
+          "logloss": 0.6828
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.2746,
+          "logloss": 0.55792
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.26903,
+          "logloss": 0.55026
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.30185,
+          "logloss": 0.59511
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.33095,
+          "logloss": 0.63431
+        }
+      },
+      "scored": true,
+      "actual_score": "2-0"
     },
     "M088__2D__vs__2G": {
       "match_number": 88,
@@ -5736,9 +5979,36 @@
           0.4292
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.84675,
+          "logloss": 1.37279
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.82746,
+          "logloss": 1.35596
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.8254,
+          "logloss": 1.35402
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.83137,
+          "logloss": 1.36102
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 0.83833,
+          "logloss": 1.36532
+        }
+      },
+      "scored": true,
+      "actual_score": "1-1 (pens)"
     },
     "M086__1J__vs__2H": {
       "match_number": 86,
@@ -5774,9 +6044,36 @@
           0.0293
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 1.58065,
+          "logloss": 2.38597
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 1.7947,
+          "logloss": 3.09004
+        },
+        "market": {
+          "correct": 0,
+          "brier": 1.76428,
+          "logloss": 2.95459
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 1.71173,
+          "logloss": 2.76145
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 1.65767,
+          "logloss": 2.58628
+        }
+      },
+      "scored": true,
+      "actual_score": "3-2 (AET)"
     },
     "M087__1K__vs__3_DEIJL": {
       "match_number": 87,
@@ -5812,9 +6109,36 @@
           0.2386
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.47019,
+          "logloss": 0.81894
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.15268,
+          "logloss": 0.3817
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.07976,
+          "logloss": 0.25825
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.20341,
+          "logloss": 0.45887
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.34373,
+          "logloss": 0.65143
+        }
+      },
+      "scored": true,
+      "actual_score": "1-0"
     },
     "M090__W73__vs__W75": {
       "match_number": 90,
@@ -5850,9 +6174,36 @@
           0.6073
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.18423,
+          "logloss": 0.42955
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.36494,
+          "logloss": 0.67964
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.08031,
+          "logloss": 0.25929
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.19173,
+          "logloss": 0.44146
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.23208,
+          "logloss": 0.49873
+        }
+      },
+      "scored": true,
+      "actual_score": "0-3"
     },
     "M089__W74__vs__W77": {
       "match_number": 89,
@@ -5888,9 +6239,36 @@
           0.885
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.01846,
+          "logloss": 0.11384
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.02712,
+          "logloss": 0.14041
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.00887,
+          "logloss": 0.07688
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.01731,
+          "logloss": 0.11004
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.02103,
+          "logloss": 0.12217
+        }
+      },
+      "scored": true,
+      "actual_score": "0-1"
     },
     "M091__W76__vs__W78": {
       "match_number": 91,
@@ -5926,9 +6304,36 @@
           0.4003
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.43006,
+          "logloss": 0.76593
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.83992,
+          "logloss": 1.32878
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.98711,
+          "logloss": 1.55542
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.72684,
+          "logloss": 1.15964
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.543,
+          "logloss": 0.91554
+        }
+      },
+      "scored": true,
+      "actual_score": "1-2"
     },
     "M092__W79__vs__W80": {
       "match_number": 92,
@@ -5964,9 +6369,36 @@
           0.7755
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.09277,
+          "logloss": 0.28223
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.05596,
+          "logloss": 0.21047
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.506,
+          "logloss": 0.86631
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.17196,
+          "logloss": 0.41309
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.07764,
+          "logloss": 0.25425
+        }
+      },
+      "scored": true,
+      "actual_score": "2-3"
     },
     "M093__W83__vs__W84": {
       "match_number": 93,
@@ -6002,9 +6434,36 @@
           0.4875
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.49784,
+          "logloss": 0.85543
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.22301,
+          "logloss": 0.48581
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.45624,
+          "logloss": 0.80051
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.38062,
+          "logloss": 0.70037
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.39415,
+          "logloss": 0.71846
+        }
+      },
+      "scored": true,
+      "actual_score": "0-1"
     },
     "M094__W81__vs__W82": {
       "match_number": 94,
@@ -6040,9 +6499,36 @@
           0.4528
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.47019,
+          "logloss": 0.81894
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.42665,
+          "logloss": 0.76143
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.852,
+          "logloss": 1.34669
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.56546,
+          "logloss": 0.94341
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.45002,
+          "logloss": 0.7923
+        }
+      },
+      "scored": true,
+      "actual_score": "1-4"
     },
     "M095__W86__vs__W88": {
       "match_number": 95,
@@ -6078,9 +6564,36 @@
           0.0739
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.105,
+          "logloss": 0.30381
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.02398,
+          "logloss": 0.13125
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.04246,
+          "logloss": 0.18008
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.05205,
+          "logloss": 0.20248
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.06908,
+          "logloss": 0.2375
+        }
+      },
+      "scored": true,
+      "actual_score": "3-2"
     },
     "M096__W85__vs__W87": {
       "match_number": 96,
@@ -6116,9 +6629,36 @@
           0.3338
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.86767,
+          "logloss": 1.39151
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.86623,
+          "logloss": 1.3903
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.92943,
+          "logloss": 1.4486
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.86243,
+          "logloss": 1.40977
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 0.83115,
+          "logloss": 1.35907
+        }
+      },
+      "scored": true,
+      "actual_score": "0-0 (pens)"
     },
     "M097__W89__vs__W90": {
       "match_number": 97,
@@ -6154,9 +6694,36 @@
           0.1849
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_a_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.33631,
+          "logloss": 0.6415
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.10959,
+          "logloss": 0.3117
+        },
+        "market": {
+          "correct": 1,
+          "brier": 0.156,
+          "logloss": 0.38684
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.18884,
+          "logloss": 0.43696
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.24624,
+          "logloss": 0.51869
+        }
+      },
+      "scored": true,
+      "actual_score": "2-0"
     },
     "M098__W93__vs__W94": {
       "match_number": 98,
@@ -6164,7 +6731,7 @@
       "team_a": "Spain",
       "team_b": "Belgium",
       "kickoff_utc": "2026-07-10T19:00:00Z",
-      "captured_at": "2026-07-10T17:26:59+00:00",
+      "captured_at": "2026-07-10T17:44:15+00:00",
       "preds": {
         "model": [
           0.5828,
@@ -6202,7 +6769,7 @@
       "team_a": "Norway",
       "team_b": "England",
       "kickoff_utc": "2026-07-11T21:00:00Z",
-      "captured_at": "2026-07-10T17:26:59+00:00",
+      "captured_at": "2026-07-10T17:44:15+00:00",
       "preds": {
         "model": [
           0.2106,
@@ -6240,7 +6807,7 @@
       "team_a": "Argentina",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-07-12T01:00:00Z",
-      "captured_at": "2026-07-10T17:26:59+00:00",
+      "captured_at": "2026-07-10T17:44:15+00:00",
       "preds": {
         "model": [
           0.5453,
@@ -6273,29 +6840,29 @@
       "scored": false
     }
   },
-  "updated_at": "2026-07-10T17:26:59+00:00",
+  "updated_at": "2026-07-10T17:44:15+00:00",
   "summary": {
-    "matches_scored": 72,
+    "matches_scored": 93,
     "model": {
-      "correct": 47,
-      "total": 72,
+      "correct": 64,
+      "total": 93,
       "measured": true,
-      "brier": 0.5098,
-      "logloss": 0.9053
+      "brier": 0.4861,
+      "logloss": 0.8653
     },
     "dt": {
-      "correct": 45,
-      "total": 72,
+      "correct": 60,
+      "total": 93,
       "measured": true,
-      "brier": 0.5023,
-      "logloss": 0.8589
+      "brier": 0.4867,
+      "logloss": 0.8414
     },
     "market": {
-      "correct": 48,
-      "total": 72,
+      "correct": 63,
+      "total": 93,
       "measured": true,
-      "brier": 0.4898,
-      "logloss": 0.8329
+      "brier": 0.474,
+      "logloss": 0.8146
     },
     "polymarket": {
       "correct": 47,
@@ -6305,18 +6872,18 @@
       "logloss": 0.8274
     },
     "hybrid": {
-      "correct": 46,
-      "total": 72,
+      "correct": 62,
+      "total": 93,
       "measured": true,
-      "brier": 0.4921,
-      "logloss": 0.8453
+      "brier": 0.4721,
+      "logloss": 0.8205
     },
     "stack": {
-      "correct": 47,
-      "total": 72,
+      "correct": 64,
+      "total": 93,
       "measured": true,
-      "brier": 0.4922,
-      "logloss": 0.8414
+      "brier": 0.4724,
+      "logloss": 0.8166
     }
   }
 }
