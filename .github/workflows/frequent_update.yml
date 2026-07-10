@@ -138,6 +138,15 @@ jobs:
       - name: Capture live backtest snapshots (4 models + Kalshi + Polymarket)
         run: python scripts/snapshot_backtest.py
         continue-on-error: true
+      # R18: self-tune the in-play engine's red-card multipliers from played
+      # goal/red timelines (never-regress; writes only on a real change, so
+      # no-op runs commit nothing). Composite-weight re-fitting stays DAILY-ONLY
+      # by design (model-optimizer.test.mjs) — hourly re-fits would churn
+      # meta.json commits and displayed probabilities for fits the never-regress
+      # margin rarely adopts.
+      - name: Self-tune in-play engine params (red multipliers)
+        run: python scripts/tune_inplay.py
+        continue-on-error: true
 
       # RJ30.1-D: AI match previews/recaps. Runs AFTER the model rebuild so the
       # prompt sees fresh probs, BEFORE the version bump/validate so a fresh

@@ -90,6 +90,10 @@ const DEFERRED_FILES = [
   // market bar (see app/markets.js mergedMarkets). In-play, so force-fetched
   // below (never served stale). Empty match_outcomes until the cron runs.
   { file: 'polymarket_odds.json', fallback: {} },
+  // R18: cron-self-tuned in-play engine parameters (scripts/tune_inplay.py);
+  // applied via configureInplay() on the matchup page. Fallback {} keeps the
+  // engine on its cold-start constants.
+  { file: 'inplay_params.json',  fallback: {} },
   // Committed steady-state pipeline health (validate report + feed freshness)
   // surfaced on the Status view.
   { file: 'pipeline_status.json', fallback: {} },
@@ -146,6 +150,7 @@ const OPTIONAL_FILES = [
   { file: 'match_events.json',      fallback: {} },
   { file: 'match_stats.json',       fallback: {} },
   { file: 'polymarket_odds.json',   fallback: {} },
+  { file: 'inplay_params.json',     fallback: {} },
   { file: 'pipeline_status.json',   fallback: {} },
   { file: 'previews.json',          fallback: {} },
 ];
@@ -353,6 +358,7 @@ function fileToKey(file) {
     case 'match_events.json':    return 'matchEvents';
     case 'match_stats.json':     return 'matchStats';
     case 'polymarket_odds.json': return 'polymarketOdds';
+    case 'inplay_params.json':   return 'inplayParams';
     case 'pipeline_status.json': return 'pipelineStatus';
     case 'previews.json':        return 'previews';
     default: return file.replace('.json', '');

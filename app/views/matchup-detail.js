@@ -21,6 +21,7 @@ import { matchEventsSection } from '../components/match-events.js';
 import { suspendedForMatch } from '../lib/availability.js';
 import { actualForCard } from '../components/large-match-card.js';
 import { liveWinProbability } from '../components/win-probability.js';
+import { configureInplay } from '../lib/win-prob.js';
 import { refereeSection } from '../components/referee.js';
 import { h2hSection } from '../components/h2h.js';
 import { formSection } from '../components/form.js';
@@ -47,6 +48,9 @@ export function renderMatchupDetail(root, data, params) {
     root.innerHTML = '<p class="loading">Matchup not found.</p>';
     return;
   }
+  // R18: apply the cron-self-tuned in-play parameters (red-card multipliers,
+  // tilt cap) before any live widget computes — no-op on the {} fallback.
+  configureInplay(data.inplayParams);
   // Knockout fixtures (from scheduleFull) carry no model-prediction fields —
   // gate the model/market grid so we render the team-keyed sections (score,
   // when/where, lineups, refs, H2H, form, weather, xG) without throwing on the

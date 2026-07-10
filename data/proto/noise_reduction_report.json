@@ -1,0 +1,124 @@
+{
+  "n": 97,
+  "baseline_stack": {
+    "n": 97,
+    "acc": 0.701,
+    "brier": 0.4627,
+    "logloss": 0.7987
+  },
+  "A1_framing": {
+    "strict_acc": 0.701,
+    "draw_as_win_acc": 0.9485
+  },
+  "A2_unbeaten": {
+    "derived_from_3way_brier": 0.1006,
+    "direct_binary_brier": 0.0966
+  },
+  "A3_drawprop": {
+    "base_refit": {
+      "n": 97,
+      "acc": 0.6804,
+      "brier": 0.4597,
+      "logloss": 0.7675
+    },
+    "plus_draw_propensity": {
+      "n": 97,
+      "acc": 0.6804,
+      "brier": 0.4644,
+      "logloss": 0.7711
+    }
+  },
+  "B1_group_carry_KO": {
+    "ko_base_refit": {
+      "n": 25,
+      "acc": 0.8,
+      "brier": 0.4029,
+      "logloss": 0.7417
+    },
+    "ko_plus_group_carry": {
+      "n": 25,
+      "acc": 0.76,
+      "brier": 0.4281,
+      "logloss": 0.8321
+    }
+  },
+  "B2_stage_weighted_elo": {
+    "grid": {
+      "0.0": {
+        "logloss": 1.0292,
+        "acc": 0.6598
+      },
+      "0.5": {
+        "logloss": 1.029,
+        "acc": 0.6598
+      },
+      "1.0": {
+        "logloss": 1.0289,
+        "acc": 0.6495
+      },
+      "1.5": {
+        "logloss": 1.0288,
+        "acc": 0.6598
+      },
+      "2.0": {
+        "logloss": 1.0286,
+        "acc": 0.6598
+      },
+      "3.0": {
+        "logloss": 1.0285,
+        "acc": 0.6598
+      }
+    },
+    "best_weight": 3.0
+  },
+  "C_model_sweep": {
+    "logistic": {
+      "n": 97,
+      "acc": 0.6289,
+      "brier": 0.5096,
+      "logloss": 0.8878
+    },
+    "random_forest": {
+      "n": 97,
+      "acc": 0.6392,
+      "brier": 0.5084,
+      "logloss": 0.9022
+    },
+    "hist_gbm": {
+      "n": 97,
+      "acc": 0.6186,
+      "brier": 0.527,
+      "logloss": 0.9507
+    },
+    "xgboost": {
+      "n": 97,
+      "acc": 0.6392,
+      "brier": 0.5195,
+      "logloss": 0.9256
+    },
+    "naive_bayes": {
+      "n": 97,
+      "acc": 0.6701,
+      "brier": 0.5172,
+      "logloss": 2.1774
+    },
+    "knn": {
+      "n": 97,
+      "acc": 0.6701,
+      "brier": 0.4928,
+      "logloss": 1.0606
+    },
+    "svc_rbf": {
+      "n": 97,
+      "acc": 0.6598,
+      "brier": 0.4866,
+      "logloss": 0.8294
+    },
+    "mlp": {
+      "n": 97,
+      "acc": 0.6289,
+      "brier": 0.5168,
+      "logloss": 0.9114
+    }
+  }
+}

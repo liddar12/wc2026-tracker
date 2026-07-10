@@ -33,10 +33,27 @@ const EPS = 0.001;   // floor/ceiling so probabilities never hit 0 or 1
 const MAXG = 10;     // remaining-goal truncation for the Poisson race
 const REG = 90;
 const MU_DEFAULT = 0.30;   // baseline log-rate: exp(0.30)≈1.35 goals/side/90'
-const RED_OWN = 0.65;      // a side down a man scores at ~65% rate…
-const RED_OPP = 1.25;      // …and concedes at ~125%
-const TILT_MAX = 0.25;     // SoT tilt clamps at ±25% of λ
 const PEN_BETA = 0.90;     // advance-edge logistic on the sup gap at a tie
+
+// In-play parameters — SELF-TUNED each cron by scripts/tune_inplay.py from the
+// played matches' goal/red timelines (never-regress), served as
+// data/inplay_params.json and applied via configureInplay(). These literals are
+// only the cold-start fallback.
+const INPLAY = {
+  red_own: 0.65,   // a side down a man scores at ~this rate…
+  red_opp: 1.25,   // …and concedes at ~this rate
+  tilt_max: 0.25,  // SoT tilt clamps at ±this fraction of λ
+};
+
+/** Apply cron-tuned in-play parameters (data/inplay_params.json). Ignores
+ *  malformed values; missing keys keep their current setting. */
+export function configureInplay(params) {
+  if (!params || typeof params !== 'object') return;
+  for (const k of ['red_own', 'red_opp', 'tilt_max']) {
+    const v = Number(params[k]);
+    if (Number.isFinite(v) && v > 0 && v < 3) INPLAY[k] = v;
+  }
+}
 
 function clamp(v, lo, hi) { return Math.max(lo, Math.min(hi, v)); }
 
@@ -110,7 +127,7 @@ export function lambdasFromPrior(pa, pd, pb) {
 }
 
 /** Bounded run-of-play tilt from live SoT counts vs the share the rates imply.
- *  Multipliers within [1−TILT_MAX, 1+TILT_MAX]; saturates around 6 total SoT.
+ *  Multipliers within [1−tilt_max, 1+tilt_max] (cron-tuned); saturates ~6 total SoT.
  *  Exported for tests. */
 export function shotTilt(sotA, sotB, la, lb) {
   const shots = (Number(sotA) || 0) + (Number(sotB) || 0);
@@ -118,7 +135,7 @@ export function shotTilt(sotA, sotB, la, lb) {
   const expShareA = la / (la + lb || 1);
   const obsShareA = (Number(sotA) || 0) / shots;
   const w = Math.min(1, shots / 6);
-  const t = clamp(w * (obsShareA - expShareA), -TILT_MAX, TILT_MAX);
+  const t = clamp(w * (obsShareA - expShareA), -INPLAY.tilt_max, INPLAY.tilt_max);
   return { ta: 1 + t, tb: 1 - t };
 }
 
@@ -166,8 +183,8 @@ export function liveWinProb({ pa, pd, pb, scoreA, scoreB, minute, stage,
   let la = la0 * frac;
   let lb = lb0 * frac;
   const ra = Number(redA) || 0, rb = Number(redB) || 0;
-  if (ra > rb) { la *= RED_OWN; lb *= RED_OPP; }
-  else if (rb > ra) { lb *= RED_OWN; la *= RED_OPP; }
+  if (ra > rb) { la *= INPLAY.red_own; lb *= INPLAY.red_opp; }
+  else if (rb > ra) { lb *= INPLAY.red_own; la *= INPLAY.red_opp; }
   const { ta, tb } = shotTilt(sotA, sotB, la0, lb0);
   la *= ta; lb *= tb;
 

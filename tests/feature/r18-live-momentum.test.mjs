@@ -4,9 +4,10 @@
  * prior→rates inversion, and the bounded SoT/red-card adjustments. */
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { pressureDelta, createTracker } from '../../app/lib/momentum.js';
 import { snapshotFromSummary } from '../../app/live-momentum.js';
-import { liveWinProb, lambdasFromPrior, shotTilt } from '../../app/lib/win-prob.js';
+import { liveWinProb, lambdasFromPrior, shotTilt, configureInplay } from '../../app/lib/win-prob.js';
 
 // ---- momentum tracker ---------------------------------------------------------
 
@@ -110,6 +111,28 @@ test('SoT tilt is bounded: heavy pressure nudges but cannot flip a clear favorit
   assert.ok(bStorm.a > bStorm.b, 'but a 62/16 favorite is not flipped by shots alone');
   const { ta, tb } = shotTilt(0, 10, 1.35, 1.35);
   assert.ok(ta >= 0.75 && tb <= 1.25, 'tilt multipliers clamp at ±25%');
+});
+
+test('configureInplay: cron-tuned red multipliers change the engine; junk ignored', () => {
+  const base = { pa: 0.4, pd: 0.27, pb: 0.33, scoreA: 0, scoreB: 0, minute: 30, stage: 'group', redB: 1 };
+  const before = liveWinProb(base);
+  // milder red effect (what tune_inplay learned on this tournament) shrinks A's gain
+  configureInplay({ red_own: 0.95, red_opp: 1.0 });
+  const milder = liveWinProb(base);
+  assert.ok(milder.a < before.a, 'milder multipliers reduce the red-card swing');
+  // malformed values are ignored, valid keys still apply
+  configureInplay({ red_own: 'NaN', red_opp: -5, tilt_max: 99 });
+  const after = liveWinProb(base);
+  assert.ok(Math.abs(after.a - milder.a) < 1e-12, 'junk config is a no-op');
+  // restore cold-start defaults so later tests see the documented constants
+  configureInplay({ red_own: 0.65, red_opp: 1.25, tilt_max: 0.25 });
+});
+
+test('data/inplay_params.json is produced by the tuner and in sane ranges', () => {
+  const p = JSON.parse(readFileSync('data/inplay_params.json', 'utf8'));
+  assert.ok(p.red_own > 0.3 && p.red_own <= 1.0, `red_own sane (${p.red_own})`);
+  assert.ok(p.red_opp >= 1.0 && p.red_opp < 1.8, `red_opp sane (${p.red_opp})`);
+  assert.ok(typeof p.fit.n_red_matches === 'number', 'fit metadata recorded');
 });
 
 test('late lead is decisive under the Poisson core (validated backbone)', () => {

@@ -127,6 +127,12 @@ jobs:
         if: steps.gate.outputs.go == '1'
         run: python scripts/snapshot_backtest.py
         continue-on-error: true
+      # R18: self-tune the in-play engine's red-card multipliers from played
+      # goal/red timelines (never-regress) so live-match picks keep learning.
+      - name: Self-tune in-play engine params (red multipliers)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/tune_inplay.py
+        continue-on-error: true
 
       - name: Validate refreshed data
         if: steps.gate.outputs.go == '1'
