@@ -202,8 +202,28 @@ def main():
     now = datetime.now(timezone.utc)
     sched = json.loads((DATA / "schedule_full.json").read_text())
     rows = sched if isinstance(sched, list) else sched.get("matches", [])
-    targets = [m for m in rows
-               if m.get("team_a") and m.get("team_b") and in_window(m.get("kickoff_utc"), now)]
+    if "--backfill" in sys.argv:
+        # One-time historical sweep: every already-kicked-off match with real
+        # team names, regardless of the recency window. ESPN keeps serving
+        # boxscores for past matches, so this recovers stats for games played
+        # before this scraper existed. Skips rows already on disk (their stats
+        # are final) unless --force is also given.
+        existing = {} if "--force" in sys.argv else _load_existing()
+
+        def kicked_off(m):
+            try:
+                k = datetime.fromisoformat(str(m.get("kickoff_utc")).replace("Z", "+00:00"))
+            except (ValueError, TypeError):
+                return False
+            return k <= now
+
+        targets = [m for m in rows
+                   if m.get("team_a") and m.get("team_b") and kicked_off(m)
+                   and f"{m['team_a']}__vs__{m['team_b']}" not in existing]
+        log(f"backfill: {len(targets)} played matches missing stats")
+    else:
+        targets = [m for m in rows
+                   if m.get("team_a") and m.get("team_b") and in_window(m.get("kickoff_utc"), now)]
     if not targets:
         log("no matches in window")
         # Still stamp meta so the freshness row is never "never".

@@ -1,0 +1,34 @@
+{
+  "n_matches": 96,
+  "note": "score/time/red backbone; goals from real timelines",
+  "checkpoints": {
+    "0": {
+      "live_brier": 0.4858,
+      "static_brier": 0.4858
+    },
+    "15": {
+      "live_brier": 0.4728,
+      "static_brier": 0.4858
+    },
+    "30": {
+      "live_brier": 0.4843,
+      "static_brier": 0.4858
+    },
+    "45": {
+      "live_brier": 0.4441,
+      "static_brier": 0.4858
+    },
+    "60": {
+      "live_brier": 0.4313,
+      "static_brier": 0.4858
+    },
+    "75": {
+      "live_brier": 0.3769,
+      "static_brier": 0.4858
+    },
+    "85": {
+      "live_brier": 0.249,
+      "static_brier": 0.4858
+    }
+  }
+}

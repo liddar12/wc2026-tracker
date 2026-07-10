@@ -126,10 +126,17 @@ export function liveWinProbability(match, found, opts = {}) {
   const stage = ko ? (match.stage && match.stage !== 'group' ? match.stage : 'round_of_16') : 'group';
   const reduced = prefersReducedMotion();
 
-  // LIVE (blended) probabilities.
+  // LIVE probabilities. R18: fold in the live SoT + red-card counts stashed by
+  // the momentum sampler (window.__wc26LiveStats, same pattern as the series
+  // store) so the prediction carries the bounded shot-pressure tilt. Stale
+  // (>3 min) or absent stash → score/minute only, exactly as before.
+  const stash = (typeof window !== 'undefined' && window.__wc26LiveStats
+    && window.__wc26LiveStats[`${match.team_a}__vs__${match.team_b}`]) || null;
+  const fresh = stash && (Date.now() - (stash.updated || 0) < 3 * 60 * 1000) ? stash : null;
   const live = liveWinProb({
     pa: prior.pa, pd: prior.pd, pb: prior.pb,
     scoreA, scoreB, minute: Number(minuteRaw), stage,
+    sotA: fresh?.sotA, sotB: fresh?.sotB, redA: fresh?.redA, redB: fresh?.redB,
   });
   // PRE-MATCH (static prior) probabilities — the same model at kickoff (minute 0,
   // 0-0), so the two bars share a scale and the shift reads cleanly.
