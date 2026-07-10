@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-10T18:57:58+00:00",
+    "updated_at": "2026-07-10T20:21:21+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3715,6 +3715,29 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-10T18:57:58+00:00"
+    "updated_at": "2026-07-10T20:21:21+00:00"
+  },
+  "Spain__vs__Belgium": {
+    "events": [
+      {
+        "minute": "30'",
+        "type": "goal",
+        "player": "Fabián Ruiz",
+        "team": "Spain"
+      },
+      {
+        "minute": "41'",
+        "type": "goal",
+        "player": "Charles De Ketelaere",
+        "team": "Belgium"
+      },
+      {
+        "minute": "43'",
+        "type": "yellow",
+        "player": "Pau Cubarsí",
+        "team": "Spain"
+      }
+    ],
+    "updated_at": "2026-07-10T20:21:21+00:00"
   }
 }
