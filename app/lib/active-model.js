@@ -48,10 +48,27 @@ export const MODEL_TO_AUTOFILL_SOURCE = {
 
 const LS_ACTIVE = 'wc26.activeModel';
 const LS_DEFAULT = 'wc26.settings.defaultModel';
+// R21: one-time migration marker. Before the "J5L AI Enhanced" rollout the app
+// default was 'hybrid', so devices that ever touched the picker are silently
+// pinned to hybrid via the sticky keys above. On first read after this ships,
+// a stored legacy 'hybrid' is cleared (falling through to the stack default).
+// Any EXPLICIT set — including deliberately re-choosing hybrid — stamps the
+// marker, so post-migration choices stick forever.
+const LS_MIGRATED = 'wc26.modelMigration.stackDefault';
+
+function migrateLegacyHybrid(storage) {
+  try {
+    if (storage.getItem(LS_MIGRATED)) return;
+    if (storage.getItem(LS_ACTIVE) === 'hybrid') storage.removeItem(LS_ACTIVE);
+    if (storage.getItem(LS_DEFAULT) === 'hybrid') storage.removeItem(LS_DEFAULT);
+    storage.setItem(LS_MIGRATED, '1');
+  } catch {}
+}
 
 export function getDefaultModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
   if (!storage) return 'stack';
+  migrateLegacyHybrid(storage);
   try {
     const v = storage.getItem(LS_DEFAULT);
     if (v && MODELS.includes(v)) return v;
@@ -63,6 +80,7 @@ export function setDefaultModel(model, storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
   if (!storage || !MODELS.includes(model)) return;
   try {
+    storage.setItem(LS_MIGRATED, '1');   // explicit choice — never migrate it away
     storage.setItem(LS_DEFAULT, model);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('model:default-change', { detail: { model } }));
@@ -73,6 +91,7 @@ export function setDefaultModel(model, storage) {
 export function getActiveModel(storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
   if (!storage) return 'stack';
+  migrateLegacyHybrid(storage);
   try {
     const v = storage.getItem(LS_ACTIVE);
     if (v && MODELS.includes(v)) return v;
@@ -84,6 +103,7 @@ export function setActiveModel(model, storage) {
   storage = storage || (typeof localStorage !== 'undefined' ? localStorage : null);
   if (!storage || !MODELS.includes(model)) return;
   try {
+    storage.setItem(LS_MIGRATED, '1');   // explicit choice — never migrate it away
     storage.setItem(LS_ACTIVE, model);
     if (typeof window !== 'undefined') {
       window.dispatchEvent(new CustomEvent('model:change', { detail: { model } }));

@@ -54,6 +54,33 @@ test('R12b: setDefaultModel + getActiveModel chain', () => {
   assert.equal(getDefaultModel(s), 'hybrid');
 });
 
+// R21: one-time migration of the PRE-stack sticky selection. Devices that
+// touched the picker before "J5L AI Enhanced" shipped carry a stored 'hybrid'
+// (the old default) and were silently pinned to it forever.
+test('R21: legacy stored hybrid is migrated to the stack default once', () => {
+  const s = mockStorage({ 'wc26.activeModel': 'hybrid' });
+  assert.equal(getActiveModel(s), 'stack', 'stale hybrid unpinned to the app default');
+  assert.equal(s.getItem('wc26.modelMigration.stackDefault'), '1', 'migration stamped');
+});
+
+test('R21: legacy hybrid DEFAULT key is migrated too', () => {
+  const s = mockStorage({ 'wc26.settings.defaultModel': 'hybrid' });
+  assert.equal(getDefaultModel(s), 'stack');
+  assert.equal(getActiveModel(s), 'stack');
+});
+
+test('R21: a deliberate post-migration hybrid choice sticks', () => {
+  const s = mockStorage({ 'wc26.activeModel': 'hybrid' });
+  assert.equal(getActiveModel(s), 'stack');          // migrated once
+  setActiveModel('hybrid', s);                       // user re-picks hybrid on purpose
+  assert.equal(getActiveModel(s), 'hybrid', 'explicit choice never migrated away');
+});
+
+test('R21: non-hybrid stored selections are untouched by the migration', () => {
+  const s = mockStorage({ 'wc26.activeModel': 'kalshi' });
+  assert.equal(getActiveModel(s), 'kalshi');
+});
+
 test('R12b: modelToAutofillSource maps to bracket-autofill ids', () => {
   assert.equal(modelToAutofillSource('j5l'), 'model');
   assert.equal(modelToAutofillSource('dt'), 'dt');

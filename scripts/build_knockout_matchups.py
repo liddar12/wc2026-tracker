@@ -73,7 +73,8 @@ def upset_risk(team_a: str, team_b: str, gap: float) -> dict:
     return risk
 
 
-def build_row(m: dict, teams: dict, mu: float, beta: float) -> dict | None:
+def build_row(m: dict, teams: dict, mu: float, beta: float,
+              stack_strengths: dict | None = None) -> dict | None:
     a = m.get("team_a")
     b = m.get("team_b")
     if is_placeholder(a) or is_placeholder(b):
@@ -86,7 +87,27 @@ def build_row(m: dict, teams: dict, mu: float, beta: float) -> dict | None:
     ca = ta.get("composite") or 0
     cb = tb.get("composite") or 0
     gap = ca - cb
-    pa, pd, pb = win_probs(gap, mu, beta)
+    # J5L composite W/D/L — always computed; persisted under j5l_probabilities
+    # so the model grid + snapshot_backtest keep a faithful J5L record.
+    j5l_pa, j5l_pd, j5l_pb = win_probs(gap, mu, beta)
+
+    # R21: the HEADLINE probabilities follow the app's default model — the
+    # "J5L AI Enhanced" stack (data/stacker.json, learned alpha on z(J5L)+z(DT))
+    # — so the matchup To-advance header, W/D/L bar, knockout cards, AND the
+    # in-play win-probability prior (priorFromMatch prefers advance_pct) all
+    # inherit the self-learning model. bh.wdl is the SAME Poisson the stacker
+    # fit uses (build_hybrid MU/BETA on z-score gaps), keeping the math
+    # identical to the client's stackMatchTriplet. Falls back to the composite
+    # J5L probs when stacker.json is missing or a team is absent.
+    pa, pd, pb = j5l_pa, j5l_pd, j5l_pb
+    prob_source = "j5l_composite"
+    if stack_strengths:
+        sa_ = stack_strengths.get(a)
+        sb_ = stack_strengths.get(b)
+        if isinstance(sa_, (int, float)) and isinstance(sb_, (int, float)):
+            import build_hybrid as bh
+            pa, pd, pb = bh.wdl(float(sa_) - float(sb_))
+            prob_source = "stack"
 
     # advance_pct: split the draw mass (ET/pens) proportionally to win shares.
     denom = pa + pb
@@ -121,10 +142,16 @@ def build_row(m: dict, teams: dict, mu: float, beta: float) -> dict | None:
         row["predicted_winner"] = b
         row["win_confidence_pct"] = round(adv_b * 100, 1)
     row["upset_risk"] = upset_risk(a, b, gap)
-    # J5L composite-model probs (here the base IS the J5L Poisson) — mirrors the
-    # group row's j5l_probabilities field so the UI can show the model split.
-    row["j5l_probabilities"] = dict(row["probabilities"])
+    # The faithful J5L composite probs — mirrors the group row's
+    # j5l_probabilities field so the UI can show the model split (and the
+    # backtest keeps a true-J5L record even now that the headline is the stack).
+    row["j5l_probabilities"] = {
+        "team_a_wins": round(j5l_pa * 100, 1),
+        "draw": round(j5l_pd * 100, 1),
+        "team_b_wins": round(j5l_pb * 100, 1),
+    }
     row["hybrid_gap"] = round(abs(gap), 3)
+    row["prob_source"] = prob_source
     # knockout-only fields
     row["advance_pct_a"] = round(adv_a * 100, 1)
     row["advance_pct_b"] = round(adv_b * 100, 1)
@@ -142,13 +169,15 @@ def main() -> int:
     pg = meta.get("poisson_group") or {}
     mu = pg.get("mu", 0.30)
     beta = pg.get("beta", 0.125)
+    # R21: learned stack strengths drive the headline probs (see build_row).
+    stack_strengths = (load_json("stacker.json") or {}).get("strengths") or None
 
     rows = []
     skipped = 0
     for m in schedule:
         if m.get("stage") not in KNOCKOUT_STAGES:
             continue
-        row = build_row(m, teams, mu, beta)
+        row = build_row(m, teams, mu, beta, stack_strengths)
         if row is None:
             skipped += 1
             continue
