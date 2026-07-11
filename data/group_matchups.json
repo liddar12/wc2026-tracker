@@ -191,7 +191,7 @@
         "composite_b": 70.0,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 15.7,
+          "team_a_wins": 15.8,
           "draw": 20.7,
           "team_b_wins": 63.5
         },
@@ -276,7 +276,7 @@
           "team_b_wins": 63.6
         },
         "expected_points": {
-          "team_a": 0.68,
+          "team_a": 0.69,
           "team_b": 2.11
         },
         "predicted_winner": "Switzerland",
@@ -2176,16 +2176,16 @@
         "composite_b": 82.5,
         "gap": 4.5,
         "probabilities": {
-          "team_a_wins": 56.9,
+          "team_a_wins": 56.8,
           "draw": 22.8,
-          "team_b_wins": 20.3
+          "team_b_wins": 20.4
         },
         "expected_points": {
-          "team_a": 1.94,
+          "team_a": 1.93,
           "team_b": 0.84
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 56.9,
+        "win_confidence_pct": 56.8,
         "upset_risk": {
           "favored": "France",
           "underdog": "Norway",
@@ -2258,16 +2258,16 @@
         "composite_b": 82.5,
         "gap": 5.7,
         "probabilities": {
-          "team_a_wins": 16.6,
+          "team_a_wins": 16.5,
           "draw": 18.4,
-          "team_b_wins": 65.0
+          "team_b_wins": 65.1
         },
         "expected_points": {
           "team_a": 0.68,
-          "team_b": 2.13
+          "team_b": 2.14
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 65.0,
+        "win_confidence_pct": 65.1,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Senegal",
@@ -2333,16 +2333,16 @@
         "composite_b": 58.2,
         "gap": 24.3,
         "probabilities": {
-          "team_a_wins": 78.1,
-          "draw": 13.3,
-          "team_b_wins": 8.6
+          "team_a_wins": 78.3,
+          "draw": 13.2,
+          "team_b_wins": 8.5
         },
         "expected_points": {
           "team_a": 2.48,
           "team_b": 0.39
         },
         "predicted_winner": "Norway",
-        "win_confidence_pct": 78.1,
+        "win_confidence_pct": 78.3,
         "upset_risk": {
           "favored": "Norway",
           "underdog": "Iraq",

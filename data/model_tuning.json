@@ -16,12 +16,12 @@
     "poisson": null
   },
   "blend": {
-    "n_matches": 72,
+    "n_matches": 94,
     "current_equal_thirds": {
-      "logloss": 0.8453
+      "logloss": 0.8161
     },
     "tuned": {
-      "logloss": 0.8443
+      "logloss": 0.8161
     },
     "adopted": false,
     "weights": null
