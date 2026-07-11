@@ -198,6 +198,17 @@ def collect_inputs(match_id, kind, *, feeds):
         out["advance_pct_a"] = row["advance_pct_a"]
         out["advance_pct_b"] = row.get("advance_pct_b")
 
+    # R23: knockout rest/travel context (data/ko_context.json, derived offline by
+    # build_ko_context.py). Typed numeric fields only — rest days since each
+    # side's previous match + km traveled from its previous venue — so a
+    # final-four preview can ground a fatigue/freshness angle in real numbers.
+    # Absent file/entry/fields are simply omitted (never zero-filled): dormant-
+    # safe, $0 when previews are dormant, and the content hash regenerates the
+    # entry when a slot resolves and context appears.
+    if _is_knockout_stage(stage) and kind == "preview":
+        out.update(_ko_context_fields(feeds.get("ko_context", {}),
+                                      match_id, team_a, team_b))
+
     # Knockout fixtures can go beyond 90'. Add a short, TYPED note so an active AI
     # narrative can mention the extra-time / penalties possibility for a knockout.
     # This is a static, deterministic string per knockout row — it flows into the
@@ -339,6 +350,32 @@ def _match_stats_summary(match_stats: dict, match_id: str, team_a, team_b) -> di
     return out
 
 
+def _ko_context_fields(ko_context: dict, match_id: str, team_a, team_b) -> dict:
+    """Flat typed rest/travel fields for a knockout preview, or {} when absent.
+
+    ko_context.json is keyed 'A__vs__B' in schedule orientation; tolerate the
+    flipped key by swapping sides. Missing individual values are omitted (never
+    zero-filled). Purely typed numbers — no free text reaches the model."""
+    if not isinstance(ko_context, dict):
+        return {}
+    rec = ko_context.get(match_id) or ko_context.get(f"{team_a}__vs__{team_b}")
+    flipped = False
+    if not isinstance(rec, dict):
+        rec = ko_context.get(f"{team_b}__vs__{team_a}")
+        flipped = True
+    if not isinstance(rec, dict):
+        return {}
+    out: dict = {}
+    for side, src in (("a", "team_b" if flipped else "team_a"),
+                      ("b", "team_a" if flipped else "team_b")):
+        d = rec.get(src) or {}
+        if isinstance(d.get("rest_days"), (int, float)):
+            out[f"rest_days_{side}"] = d["rest_days"]
+        if isinstance(d.get("travel_km"), (int, float)):
+            out[f"travel_km_{side}"] = d["travel_km"]
+    return out
+
+
 def content_hash(kind: str, inputs: dict) -> str:
     """sha256 over kind + the typed inputs. Includes kind so an upcoming->final
     flip (preview->recap) and any results correction regenerate the entry."""
@@ -380,6 +417,15 @@ def build_prompt(kind: str, inputs: dict):
             " If possession, shots, shots-on-target, or passing stats are "
             "given, ground the recap in what those numbers show (e.g. "
             "dominance, clinical finishing)."
+        )
+    # R23 — previews get a STATIC nudge to use the knockout rest/travel context
+    # when present (rest_days_* / travel_km_* fields). One cacheable system
+    # variant per kind is preserved, exactly like the recap stats nudge.
+    else:
+        system_text += (
+            " If rest-day or travel-km figures are given, note a meaningful "
+            "fatigue or freshness edge (e.g. two extra rest days, a long "
+            "cross-country trip) only when the gap is substantial."
         )
     lines = []
     for k, v in inputs.items():
@@ -436,6 +482,9 @@ def _build_feeds():
         # load() is lenient: a missing file yields {} so this stays fully
         # dormant-safe before that scraper first runs.
         "match_stats": _meta_stripped(load("match_stats.json")),
+        # R23 — knockout rest/travel context (build_ko_context.py). Lenient:
+        # missing file yields {} and previews simply omit the fields.
+        "ko_context": _meta_stripped(load("ko_context.json")),
     }
 
 
@@ -645,6 +694,27 @@ def _self_test() -> int:
     psys, _ = build_prompt("preview", {"team_a": "A", "team_b": "B"})
     assert "passing" in rsys.lower() or "possession" in rsys.lower(), rsys
     assert "possession" not in psys.lower(), "preview system text stays static"
+    # R23 — the preview prompt (only) carries the static rest/travel nudge.
+    assert "rest-day" in psys.lower(), "preview nudges on rest/travel context"
+    assert "rest-day" not in rsys.lower(), "recap system text unchanged"
+
+    # R23 — knockout rest/travel enrichment (pure, no network). Oriented to the
+    # requested team_a/team_b even when the stored key is flipped; missing
+    # values are omitted (never zero-filled); absent file/entry → {}.
+    ko = {"A__vs__B": {"tier": "semifinals",
+                       "team_a": {"team": "A", "rest_days": 5, "travel_km": 3900.5},
+                       "team_b": {"team": "B", "rest_days": 3, "travel_km": None}}}
+    f = _ko_context_fields(ko, "M101__x", "A", "B")
+    assert f == {"rest_days_a": 5, "travel_km_a": 3900.5, "rest_days_b": 3}, f
+    ff = _ko_context_fields(ko, "M101__x", "B", "A")  # flipped request orientation
+    assert ff["rest_days_a"] == 3 and ff["rest_days_b"] == 5 and ff["travel_km_b"] == 3900.5, ff
+    assert _ko_context_fields(ko, "x", "C", "D") == {}, "absent entry → {}"
+    assert _ko_context_fields({}, "x", "A", "B") == {}, "empty file → {}"
+    assert _ko_context_fields(None, "x", "A", "B") == {}, "no file → {}"
+    # rest/travel changes flow into the content hash (regenerates the preview).
+    base_inp = {"team_a": "A", "team_b": "B", "model_team_a_win_pct": 55.0}
+    with_ctx = dict(base_inp, rest_days_a=5, rest_days_b=3)
+    assert content_hash("preview", with_ctx) != content_hash("preview", base_inp)
 
     print("selftest: PASS")
     return 0

@@ -8,12 +8,22 @@
       "accuracy": 0.653
     },
     "tuned": {
-      "logloss": 0.8423,
+      "logloss": 0.8385,
       "accuracy": 0.653
     },
-    "adopted": false,
-    "weights": null,
-    "poisson": null
+    "adopted": true,
+    "weights": {
+      "mine": 0.1331,
+      "elo": 0.007,
+      "tmv": 0.5105,
+      "qual": 0.304,
+      "form": 0.0023,
+      "dominance": 0.0432
+    },
+    "poisson": {
+      "mu": 0.2163,
+      "beta": 0.0859
+    }
   },
   "blend": {
     "n_matches": 94,

@@ -7,11 +7,12 @@ circularity); tunes composite weights + group Poisson calibration + the hybrid
 J5L/DT/Kalshi blend; uses the new in-tournament FORM signal.
 
 Two leak-safe fits:
-  (B) Composite weights {mine,elo,tmv,qual,form} + Poisson (mu,beta) — WALK-FORWARD
-      over played group games: each game is predicted using only prior games
-      (Elo and form recomputed as-of kickoff; static sub-ratings are
-      pre-tournament). Shrinkage toward current weights regularizes the small
-      sample.
+  (B) Composite weights {mine,elo,tmv,qual,form,dominance} + Poisson (mu,beta) —
+      WALK-FORWARD over played group games: each game is predicted using only
+      prior games (Elo, form and dominance-MAX recomputed as-of kickoff; static
+      sub-ratings are pre-tournament). Shrinkage toward current weights
+      regularizes the small sample. Dominance starts at weight 0 (R22,
+      optimizer-gated) — only this fit can raise it, behind the margin.
   (A) Hybrid blend W=[j5l,dt,kalshi] — fit on the LOCKED pre-match per-model
       probabilities captured in live-backtest.json (genuinely as-of, ~36h pre
       kickoff). Compared against the current equal-thirds baseline.
@@ -32,6 +33,7 @@ import numpy as np
 
 import compute_elo as ce
 import compute_form as cf
+import compute_dominance as cd
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -74,9 +76,11 @@ def win_probs(gap, mu, beta):
 
 def build_group_features():
     """Per played group game: as-of feature vectors for both teams + outcome.
-    Feature order: [mine, elo_scaled, tmv, qual, form] (+ per-team boost const)."""
+    Feature order: [mine, elo_scaled, tmv, qual, form, dominance] (+ per-team
+    boost const). Form, Elo AND dominance are recomputed as-of each kickoff."""
     teams = json.loads((DATA / "teams.json").read_text())
     results = json.loads((DATA / "actual_results.json").read_text()) if (DATA / "actual_results.json").exists() else {}
+    match_stats = json.loads((DATA / "match_stats.json").read_text()) if (DATA / "match_stats.json").exists() else {}
     scale = json.loads((DATA / "elo_scale.json").read_text())
     names = list(teams.keys())
     seed = {n: float(teams[n].get("elo_raw") or 1500) for n in names}
@@ -107,20 +111,23 @@ def build_group_features():
     games.sort(key=lambda g: g[0])
 
     all_matches = cf.final_matches(results)  # for as-of form
+    dom_games = cd.played_stat_games(match_stats, results)  # for as-of dominance
     rows = []
     elo = dict(seed)
     seen_keys = set()
     for koff, a, b, sa, sb in games:
-        # Elo + form AS-OF this kickoff (only prior games)
+        # Elo + form + dominance AS-OF this kickoff (only prior games)
         form_raw = cf.form_for_games(all_matches, seed, names, before=koff)
         form_scaled = cf.to_scaled(form_raw, scale)
+        dom_raw = cd.dominance_for_games(dom_games, names, before=koff)
+        dom_scaled = cf.to_scaled(dom_raw, scale)
         # elo as-of = seed replayed over prior group games (already in `elo`)
         fa = [teams[a]["sub_ratings"].get("mine", 0), elo_scaled_of(elo.get(a, 1500)),
               teams[a]["sub_ratings"].get("tmv_scaled", 0), teams[a]["sub_ratings"].get("qual_scaled", 0),
-              form_scaled[a]]
+              form_scaled[a], dom_scaled[a]]
         fb = [teams[b]["sub_ratings"].get("mine", 0), elo_scaled_of(elo.get(b, 1500)),
               teams[b]["sub_ratings"].get("tmv_scaled", 0), teams[b]["sub_ratings"].get("qual_scaled", 0),
-              form_scaled[b]]
+              form_scaled[b], dom_scaled[b]]
         outcome = 0 if sa > sb else 1 if sa == sb else 2
         rows.append((np.array(fa), boost(a), np.array(fb), boost(b), outcome))
         # now advance elo with this game
@@ -170,7 +177,7 @@ def optimize_group(rows, cur_w, cur_mu, cur_beta, iters=6000):
         "current": {"logloss": round(cur_loss, 4), "accuracy": round(cur_acc, 3)},
         "tuned": {"logloss": round(new_loss, 4), "accuracy": round(new_acc, 3)},
         "adopted": bool(adopt),
-        "weights": {k: round(float(v), 4) for k, v in zip(["mine", "elo", "tmv", "qual", "form"], new_w)} if adopt else None,
+        "weights": {k: round(float(v), 4) for k, v in zip(["mine", "elo", "tmv", "qual", "form", "dominance"], new_w)} if adopt else None,
         "poisson": {"mu": round(new_mu, 4), "beta": round(new_beta, 4)} if adopt else None,
     }
 
@@ -230,7 +237,8 @@ def optimize_blend():
 def main():
     meta = json.loads((DATA / "meta.json").read_text())
     mw = meta.get("model_weights", {})
-    cur_w = [mw.get("mine", 0.15), mw.get("elo", 0.10), mw.get("tmv", 0.45), mw.get("qual", 0.30), mw.get("form", 0.0)]
+    cur_w = [mw.get("mine", 0.15), mw.get("elo", 0.10), mw.get("tmv", 0.45), mw.get("qual", 0.30), mw.get("form", 0.0),
+             mw.get("dominance", 0.0)]  # R22: optimizer-gated, starts inert
     cur_mu = (meta.get("poisson_group") or {}).get("mu", 0.30)
     cur_beta = (meta.get("poisson_group") or {}).get("beta", 0.125)
 
@@ -247,8 +255,12 @@ def main():
             mw[k] = v
         meta["model_weights"] = mw
         meta["poisson_group"] = grp["poisson"]
-    elif grp and "form" not in mw:
-        mw["form"] = 0.0  # ensure the key exists even if not adopted
+    elif grp:
+        # ensure the optimizer-gated keys exist even if not adopted
+        if "form" not in mw:
+            mw["form"] = 0.0
+        if "dominance" not in mw:
+            mw["dominance"] = 0.0
         meta["model_weights"] = mw
     if bl and bl["adopted"]:
         meta["hybrid_weights"] = [bl["weights"]["j5l"], bl["weights"]["dt"], bl["weights"]["kalshi"]]

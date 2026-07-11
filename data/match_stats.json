@@ -188,9 +188,9 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-10T16:43:40+00:00",
+    "updated_at": "2026-07-11T17:50:54+00:00",
     "source": "espn-summary",
-    "matches": 96,
+    "matches": 97,
     "last_run_updated": 1
   },
   "Mexico__vs__South Africa": {
@@ -6600,5 +6600,81 @@
       }
     ],
     "updated_at": "2026-07-10T16:43:40+00:00"
+  },
+  "Spain__vs__Belgium": {
+    "team_a": "Spain",
+    "team_b": "Belgium",
+    "stats": {
+      "a": {
+        "possessionPct": 67.9,
+        "totalShots": 17,
+        "shotsOnTarget": 8,
+        "blockedShots": 5,
+        "shotPct": 50.0,
+        "totalPasses": 664,
+        "passPct": 90.0,
+        "accuratePasses": 598,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 13,
+        "offsides": 3,
+        "totalCrosses": 20,
+        "wonCorners": 5
+      },
+      "b": {
+        "possessionPct": 32.1,
+        "totalShots": 5,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 312,
+        "passPct": 80.0,
+        "accuratePasses": 243,
+        "saves": 6,
+        "effectiveTackles": 6,
+        "foulsCommitted": 18,
+        "offsides": 1,
+        "totalCrosses": 11,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "30",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "41",
+        "type": "goal",
+        "team": "Belgium"
+      },
+      {
+        "minute": "43",
+        "type": "yellow",
+        "team": "Spain"
+      },
+      {
+        "minute": "85",
+        "type": "yellow",
+        "team": "Belgium"
+      },
+      {
+        "minute": "88",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "90'+3",
+        "type": "yellow",
+        "team": "Spain"
+      },
+      {
+        "minute": "90'+5",
+        "type": "yellow",
+        "team": "Belgium"
+      }
+    ],
+    "updated_at": "2026-07-11T17:50:54+00:00"
   }
 }
