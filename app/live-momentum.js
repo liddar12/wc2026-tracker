@@ -5,14 +5,25 @@
  * per-minute MAX-extreme pressure, not averages. ESPN's stats refresh slower
  * than 10s; the tracker dedupes identical payloads so extremes stay honest.
  *
+ * R18.1 — the sampler is a per-match SINGLETON detached from DOM lifecycle.
+ * The matchup view re-renders every ~30s on `data:live-refresh`; the original
+ * design tied the sampler to its card (tick() stopped when the card left the
+ * DOM) and kept the tracker in a per-render closure, so every refresh killed
+ * the sampler and wiped the per-minute extremes — the panel never accumulated
+ * more than a couple of bars. Now the tracker/eventId/timer live in a
+ * module-level store keyed by the team pair: a re-render just attaches a fresh
+ * host to the surviving sampler and repaints the FULL accumulated series, and
+ * the ESPN event id is resolved once per match, not once per render. A sampler
+ * that already finished (FINAL) keeps its series so the chart stays up after
+ * full time.
+ *
  * Each fresh sample also stashes the live SoT + red-card counts in a window
  * store (keyed by pair) that the win-probability widget reads on its own 30s
  * re-render — so the live prediction inherits the bounded shot-pressure tilt
  * without coupling the two components.
  *
  * Display-only: never touches actualResults, never advances a bracket. The
- * sampler stops itself at FINAL status, on teardown (container removed from
- * the DOM), or after LIVE_MAX_MS as a failsafe.
+ * sampler stops itself at FINAL status or after LIVE_MAX_MS as a failsafe.
  */
 import { escapeHtml } from './lib/escape.js';
 import { renderMomentum } from './components/momentum-chart.js';
@@ -101,9 +112,14 @@ export function drawExtremes(host, series, teamA, teamB) {
     `Live momentum: per-minute pressure extremes, ${escapeHtml(teamA)} up, ${escapeHtml(teamB)} down`);
   for (const { minute, value } of series) {
     const bar = document.createElement('span');
-    bar.className = `mm-live-bar ${value >= 0 ? 'is-a' : 'is-b'}`;
+    // A no-signal minute (|pressure| ≈ 0 — includes the first sample after a
+    // sampler start, which has no previous snapshot to delta against) renders
+    // as a neutral tick on the axis, not a colored blip.
+    const zero = Math.abs(value) < 0.01;
+    bar.className = `mm-live-bar ${value >= 0 ? 'is-a' : 'is-b'}${zero ? ' is-zero' : ''}`;
     bar.style.height = `${Math.max(6, Math.abs(value) * 100)}%`;
-    bar.title = `${minute}' ${value >= 0 ? teamA : teamB} ${(Math.abs(value) * 100).toFixed(0)}`;
+    bar.title = zero ? `${minute}' —`
+      : `${minute}' ${value >= 0 ? teamA : teamB} ${(Math.abs(value) * 100).toFixed(0)}`;
     row.appendChild(bar);
   }
   host.appendChild(row);
@@ -140,9 +156,78 @@ function withinLiveWindow(match, scheduleFull) {
   return now >= koff - 10 * 60 * 1000 && now <= koff + LIVE_MAX_MS;
 }
 
+// ---- R18.1: per-match singleton samplers (survive the 30s view re-renders) ----
+
+// pairKey -> { tracker, host, timer, startedAt, stopped, ready, teamA, teamB }.
+// Module-level: ES modules are instantiated once per page, so this survives
+// every innerHTML rebuild. Entries are only removed when event-id resolution
+// failed (so the next render retries); finished samplers keep their series.
+const samplers = new Map();
+
+/** Test hook: the live sampler registry. */
+export function _samplers() { return samplers; }
+
+function paint(s) {
+  const host = s.host;
+  if (!host) return;
+  // A detached host (view re-rendered between paints) is skipped, not fatal —
+  // the next momentumSection() call attaches the new host and repaints.
+  if (typeof document !== 'undefined' && document.body
+    && typeof document.body.contains === 'function' && !document.body.contains(host)) return;
+  drawExtremes(host, s.tracker ? s.tracker.series() : [], s.teamA, s.teamB);
+}
+
+function getOrCreateSampler(match) {
+  const key = `${match.team_a}__vs__${match.team_b}`;
+  const existing = samplers.get(key);
+  if (existing) return existing;
+
+  const s = {
+    key, teamA: match.team_a, teamB: match.team_b,
+    tracker: null, host: null, timer: null,
+    startedAt: Date.now(), stopped: false, ready: null,
+  };
+  s.stop = () => { s.stopped = true; if (s.timer) { clearInterval(s.timer); s.timer = null; } };
+  samplers.set(key, s);
+
+  // Lazy import keeps momentum.js out of the critical path for non-live pages.
+  s.ready = (async () => {
+    const { createTracker } = await import('./lib/momentum.js');
+    s.tracker = createTracker();
+    const eventId = await resolveEventId(match);
+    if (s.stopped) return;
+    if (!eventId) {
+      // Not on the scoreboard yet — retire this attempt so the next re-render
+      // (~30s away) creates a fresh sampler and retries.
+      s.stop();
+      samplers.delete(key);
+      paint(s);
+      return;
+    }
+    const tick = async () => {
+      if (s.stopped) return;
+      if (Date.now() - s.startedAt > LIVE_MAX_MS) return s.stop();
+      const summary = await fetchJson(`${SUMMARY}?event=${eventId}`);
+      const snap = summary && snapshotFromSummary(summary, s.teamA, s.teamB);
+      if (!snap) return;
+      liveStatsStore()[key] = {
+        sotA: snap.sotA, sotB: snap.sotB, redA: snap.redA, redB: snap.redB,
+        updated: Date.now(),
+      };
+      if (s.tracker.addSample(snap)) paint(s);
+      if (snap.final) s.stop();
+    };
+    await tick();
+    if (!s.stopped) s.timer = setInterval(tick, SAMPLE_MS);
+  })();
+
+  return s;
+}
+
 /**
  * The momentum section for a matchup: LIVE matches get the 10s extremes panel
- * (self-managing sampler); everything else falls through to the cron-fed strip.
+ * (attached to the surviving per-match sampler); everything else falls through
+ * to the cron-fed strip.
  */
 export function momentumSection(match, data) {
   if (!match || !withinLiveWindow(match, data && data.scheduleFull)) {
@@ -153,40 +238,17 @@ export function momentumSection(match, data) {
   card.className = 'home-card momentum-card mm-live';
   card.setAttribute('data-testid', 'momentum-live');
   card.innerHTML = `<h2 class="mm-title">Match Momentum <small class="live-indicator">LIVE</small></h2>
-    <p class="muted mm-live-note">Per-minute pressure extremes (shots on target, shots, possession swing) — sampled every 10s, the peak of each minute kept.</p>`;
+    <p class="muted mm-live-note">Per-minute pressure extremes (shots on target, shots, possession swing) — sampled every 10s, the peak of each minute kept.</p>
+    <div class="mm-live-legend"><span class="mm-legend is-a">▲ ${escapeHtml(match.team_a)}</span><span class="mm-legend is-b">${escapeHtml(match.team_b)} ▼</span></div>`;
   const host = document.createElement('div');
   host.className = 'mm-live-host';
   card.appendChild(host);
 
-  // Lazy import keeps momentum.js out of the critical path for non-live pages.
-  let stopped = false;
-  let timer = null;
-  const stop = () => { stopped = true; if (timer) clearInterval(timer); };
-
-  (async () => {
-    const { createTracker } = await import('./lib/momentum.js');
-    const tracker = createTracker();
-    const eventId = await resolveEventId(match);
-    if (!eventId || stopped) { drawExtremes(host, [], match.team_a, match.team_b); return; }
-    const key = `${match.team_a}__vs__${match.team_b}`;
-    const startedAt = Date.now();
-
-    const tick = async () => {
-      if (stopped || !document.body.contains(card)) return stop();
-      if (Date.now() - startedAt > LIVE_MAX_MS) return stop();
-      const summary = await fetchJson(`${SUMMARY}?event=${eventId}`);
-      const snap = summary && snapshotFromSummary(summary, match.team_a, match.team_b);
-      if (!snap) return;
-      liveStatsStore()[key] = {
-        sotA: snap.sotA, sotB: snap.sotB, redA: snap.redA, redB: snap.redB,
-        updated: Date.now(),
-      };
-      if (tracker.addSample(snap)) drawExtremes(host, tracker.series(), match.team_a, match.team_b);
-      if (snap.final) stop();
-    };
-    await tick();
-    if (!stopped) timer = setInterval(tick, SAMPLE_MS);
-  })();
+  const s = getOrCreateSampler(match);
+  s.host = host;
+  // Immediate repaint of whatever has accumulated so far (a re-render shows
+  // the full series instantly; a brand-new sampler shows the sampling note).
+  drawExtremes(host, s.tracker ? s.tracker.series() : [], s.teamA, s.teamB);
 
   return card;
 }
