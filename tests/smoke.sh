@@ -181,6 +181,9 @@ py_self_test() {
 }
 py_self_test "scripts/refresh_players.py"
 py_self_test "scripts/scrape_live_results.py"
+py_self_test "scripts/generate_previews.py"
+py_self_test "scripts/compute_dominance.py"
+py_self_test "scripts/build_ko_context.py"
 
 if (( FAILED > 0 )); then
   echo "smoke: FAILED ($FAILED check(s))"

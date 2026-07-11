@@ -85,6 +85,13 @@ jobs:
         run: python scripts/scrape_referees.py
         continue-on-error: true
 
+      # R22: full-time boxscores right after a match goes FINAL, so the
+      # dominance signal + AI recaps see fresh stats within one live cycle.
+      - name: Scrape match boxscores (post-final)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/scrape_match_stats.py
+        continue-on-error: true
+
       # P0-A1: results-driven Elo before composite so predictions move with the
       # live results this cron just scraped.
       - name: Compute results-driven Elo
@@ -94,6 +101,11 @@ jobs:
       - name: Compute in-tournament form signal
         if: steps.gate.outputs.go == '1'
         run: python scripts/compute_form.py
+        continue-on-error: true
+      # R22: dominance-MAX sub-rating refresh (weight optimizer-gated, daily).
+      - name: Compute dominance-MAX signal
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/compute_dominance.py
         continue-on-error: true
       - name: Recompute composite + probabilities
         if: steps.gate.outputs.go == '1'

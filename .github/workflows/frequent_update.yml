@@ -106,6 +106,11 @@ jobs:
       - name: Scrape match events (goals + cards)
         run: python scripts/scrape_match_events.py
         continue-on-error: true
+      # R22: full-time boxscores (possession/shots/SoT) — feeds the dominance-MAX
+      # signal + stats-aware AI recaps. Idempotent; skips matches already stored.
+      - name: Scrape match boxscores (post-final)
+        run: python scripts/scrape_match_stats.py
+        continue-on-error: true
 
       # ---- Recompute composite + power_rank from refreshed inputs ----
       # P0-A1: results-driven Elo first so composite reflects games played.
@@ -114,6 +119,12 @@ jobs:
         continue-on-error: true
       - name: Compute in-tournament form signal
         run: python scripts/compute_form.py
+        continue-on-error: true
+      # R22: dominance-MAX sub-rating (peak boxscore dominance). Weight stays 0
+      # until the DAILY optimizer adopts it (never-regress) — this step only
+      # keeps the signal fresh.
+      - name: Compute dominance-MAX signal
+        run: python scripts/compute_dominance.py
         continue-on-error: true
       - name: Recompute composite + power rankings
         run: python scripts/rebuild_composite.py
@@ -157,6 +168,12 @@ jobs:
       # logs "unset", exits 0, leaves previews.json untouched. The skip-if-
       # unchanged content hash keeps hourly cost near-zero; continue-on-error so
       # an API hiccup never reds the hourly refresh.
+      # R23: derive knockout rest/travel context BEFORE previews so a final-four
+      # preview can ground a fatigue/freshness angle in real numbers. Offline,
+      # pure stdlib, anti-churn (no commit when nothing changed).
+      - name: Build knockout rest/travel context
+        run: python3 scripts/build_ko_context.py
+        continue-on-error: true
       - name: Generate AI match previews/recaps (dormant without key)
         run: python3 scripts/generate_previews.py
         env:

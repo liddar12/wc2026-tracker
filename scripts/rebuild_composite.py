@@ -45,6 +45,11 @@ def composite(team: dict, weights: dict) -> float:
         + weights["qual"] * sub.get("qual_scaled", 0)
         + weights.get("form", 0) * sub.get("form_scaled", 0)
         + form_top_up
+        # R22: dominance-MAX (compute_dominance.py) — OPTIMIZER-GATED, weight
+        # starts at 0 and no floor: the term is inert until the daily
+        # walk-forward fit adopts a positive weight past the never-regress
+        # margin (the 2026 prototype edge was inside noise, so data decides).
+        + weights.get("dominance", 0) * sub.get("dominance_scaled", 0)
     )
     # Equivalent to max(weights.get("form", 0), FORM_WEIGHT_FLOOR) * form_scaled.
     boosts = team.get("boosts", {})

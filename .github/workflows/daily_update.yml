@@ -115,6 +115,14 @@ jobs:
       - name: Compute in-tournament form signal
         run: python scripts/compute_form.py
         continue-on-error: true
+      # R22: boxscores + dominance-MAX BEFORE the optimizer, so the daily
+      # walk-forward fit sees a fresh signal when deciding its (gated) weight.
+      - name: Scrape match boxscores (post-final)
+        run: python scripts/scrape_match_stats.py
+        continue-on-error: true
+      - name: Compute dominance-MAX signal
+        run: python scripts/compute_dominance.py
+        continue-on-error: true
       # Daily-only: re-fit composite weights + Poisson + hybrid blend to minimize
       # walk-forward log-loss on games played (never-regress guarded).
       - name: Optimize model weights (backtest-tuned)
