@@ -80,3 +80,28 @@ test('build_stacker.py + data-loader + bracket-autofill are wired for stack', ()
   const ba = read('app/bracket-autofill.js');
   assert.match(ba, /stacker\?\.strengths/, 'stack source reads stacker strengths');
 });
+
+// R21: the KNOCKOUT pipeline's headline probabilities follow the stack (the
+// app default), not the raw J5L composite — so the To-advance header, the
+// W/D/L bar, knockout cards AND the in-play prior (priorFromMatch prefers
+// advance_pct) all inherit the self-learning model. The faithful composite
+// probs stay under j5l_probabilities for the model grid + backtest.
+test('R21: knockout rows carry stack-driven headline probs + faithful J5L record', () => {
+  const script = read('scripts/build_knockout_matchups.py');
+  assert.match(script, /stacker\.json/, 'build_knockout_matchups reads the learned stack');
+  assert.match(script, /bh\.wdl/, 'same Poisson mapping as the stacker fit');
+
+  const rows = json('data/knockout_matchups.json');
+  assert.ok(rows.length > 0, 'knockout rows exist');
+  const strengths = json('data/stacker.json').strengths || {};
+  for (const r of rows) {
+    assert.ok(['stack', 'j5l_composite'].includes(r.prob_source), `prob_source tagged (${r.prob_source})`);
+    if (strengths[r.team_a] != null && strengths[r.team_b] != null) {
+      assert.equal(r.prob_source, 'stack', `${r.team_a} vs ${r.team_b} uses the stack`);
+    }
+    assert.ok(r.j5l_probabilities && typeof r.j5l_probabilities.team_a_wins === 'number',
+      'composite J5L probs preserved');
+    const adv = r.advance_pct_a + r.advance_pct_b;
+    assert.ok(Math.abs(adv - 100) < 0.5, `advance pcts sum to 100 (${adv})`);
+  }
+});
