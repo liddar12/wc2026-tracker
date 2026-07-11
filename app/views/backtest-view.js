@@ -19,9 +19,15 @@ const LIVE_LABELS = {
 export async function renderBacktestView(root) {
   root.innerHTML = '<p class="loading">Loading backtest…</p>';
   let backtest = null;
+  let conformal = null;
   try {
     const r = await fetch('data/backtest.json', { cache: 'no-store' });
     if (r.ok) backtest = await r.json();
+  } catch {}
+  // R20: conformal safe-set calibration (optional — line renders only if present).
+  try {
+    const rc = await fetch('data/conformal.json', { cache: 'no-store' });
+    if (rc.ok) conformal = await rc.json();
   } catch {}
   root.innerHTML = '';
   if (!backtest) {
@@ -52,7 +58,7 @@ export async function renderBacktestView(root) {
   // Live WC 2026 panel (real, measured) — rendered first once it has data.
   const live = backtest.live2026;
   if (live && (live.matches_scored || live.scored)) {
-    root.appendChild(renderLivePanel(live));
+    root.appendChild(renderLivePanel(live, conformal));
   } else {
     const placeholder = document.createElement('section');
     placeholder.className = 'home-card';
@@ -108,7 +114,7 @@ function renderRow(label, scores) {
   return row + sub;
 }
 
-function renderLivePanel(live) {
+function renderLivePanel(live, conformal) {
   const section = document.createElement('section');
   section.className = 'home-card';
   section.style.marginBottom = '12px';
@@ -119,6 +125,22 @@ function renderLivePanel(live) {
     <h3 style="margin: 0 0 8px;">WC 2026 — live <span class="backtest-badge measured">measured</span></h3>
     <div class="backtest-grid">${rows}</div>
     <p class="muted" style="font-size:11px; margin: 8px 0 0;">${escapeHtml(live.note || `${live.matches_scored || 0} matches scored so far.`)}</p>
+    ${conformalLine(conformal)}
   `;
   return section;
+}
+
+// R20: safe-set coverage line — how often the calibrated conformal set (shown
+// on matchup pages) actually contained the real result. Empty when the
+// calibration file is absent.
+function conformalLine(conformal) {
+  const lv = conformal && conformal.display_level;
+  const d = lv && conformal.levels && conformal.levels[lv];
+  if (!d || typeof d.empirical_coverage !== 'number') return '';
+  const target = Math.round(parseFloat(lv) * 100);
+  const cov = (d.empirical_coverage * 100).toFixed(1);
+  const size = typeof d.avg_set_size === 'number' ? d.avg_set_size.toFixed(2) : '?';
+  return `<p class="muted backtest-conformal" data-testid="conformal-coverage" style="font-size:11px; margin: 4px 0 0;">
+    Safe sets (${target}% target): contained the actual result <strong>${escapeHtml(cov)}%</strong> of the time
+    over ${conformal.n_calibration || 0} matches · avg ${escapeHtml(size)} outcomes per set.</p>`;
 }

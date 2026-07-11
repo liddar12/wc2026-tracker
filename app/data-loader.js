@@ -94,6 +94,8 @@ const DEFERRED_FILES = [
   // applied via configureInplay() on the matchup page. Fallback {} keeps the
   // engine on its cold-start constants.
   { file: 'inplay_params.json',  fallback: {} },
+  // R20: split-conformal calibration for safe-set display (build_conformal.py).
+  { file: 'conformal.json',      fallback: {} },
   // Committed steady-state pipeline health (validate report + feed freshness)
   // surfaced on the Status view.
   { file: 'pipeline_status.json', fallback: {} },
@@ -151,6 +153,7 @@ const OPTIONAL_FILES = [
   { file: 'match_stats.json',       fallback: {} },
   { file: 'polymarket_odds.json',   fallback: {} },
   { file: 'inplay_params.json',     fallback: {} },
+  { file: 'conformal.json',         fallback: {} },
   { file: 'pipeline_status.json',   fallback: {} },
   { file: 'previews.json',          fallback: {} },
 ];
@@ -359,6 +362,7 @@ function fileToKey(file) {
     case 'match_stats.json':     return 'matchStats';
     case 'polymarket_odds.json': return 'polymarketOdds';
     case 'inplay_params.json':   return 'inplayParams';
+    case 'conformal.json':       return 'conformal';
     case 'pipeline_status.json': return 'pipelineStatus';
     case 'previews.json':        return 'previews';
     default: return file.replace('.json', '');

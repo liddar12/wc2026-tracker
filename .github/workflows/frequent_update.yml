@@ -144,6 +144,9 @@ jobs:
       # by design (model-optimizer.test.mjs) — hourly re-fits would churn
       # meta.json commits and displayed probabilities for fits the never-regress
       # margin rarely adopts.
+      - name: Recalibrate conformal safe sets (R20)
+        run: python scripts/build_conformal.py
+        continue-on-error: true
       - name: Self-tune in-play engine params (red multipliers)
         run: python scripts/tune_inplay.py
         continue-on-error: true

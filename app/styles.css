@@ -5085,3 +5085,6 @@ html, body { overflow-x: hidden; }
 .mm-live-bar.is-b { background: var(--danger, #ef4444); transform: translateY(50%); }
 .mm-live-note { font-size: 12px; margin: 0 0 6px; }
 .mm-live-wait { font-size: 12px; }
+
+/* R20: conformal safe-set line under the model pick pill. */
+.safe-set-line { font-size: 12px; margin-top: 4px; width: 100%; }
