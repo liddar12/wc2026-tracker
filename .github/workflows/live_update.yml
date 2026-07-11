@@ -129,6 +129,10 @@ jobs:
         continue-on-error: true
       # R18: self-tune the in-play engine's red-card multipliers from played
       # goal/red timelines (never-regress) so live-match picks keep learning.
+      - name: Recalibrate conformal safe sets (R20)
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/build_conformal.py
+        continue-on-error: true
       - name: Self-tune in-play engine params (red multipliers)
         if: steps.gate.outputs.go == '1'
         run: python scripts/tune_inplay.py

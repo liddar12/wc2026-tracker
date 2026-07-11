@@ -54,6 +54,15 @@ export function stackMatchProb(data, a, b) {
   return { ...fromTriplet(pa, pd, pb), source: 'stack' };
 }
 
+/** Full [pA, pDraw, pB] stack distribution for a pairing (R20: conformal safe
+ *  sets need the whole triplet, not just the top pick). Null if unrated. */
+export function stackMatchTriplet(data, a, b) {
+  const s = data?.stacker?.strengths || {};
+  const sa = s[a]; const sb = s[b];
+  if (typeof sa !== 'number' || typeof sb !== 'number') return null;
+  return wdl(sa - sb);
+}
+
 function dtMatchProb(data, a, b) {
   const byTeam = dtRatingsByTeam(data);
   const ratings = Object.values(byTeam).map((r) => r.rating).filter((v) => typeof v === 'number');

@@ -34,7 +34,8 @@ import { renderMatchStats } from '../components/match-stats.js';
 import { momentumSection } from '../live-momentum.js';
 import { setPick, getPick, clearPick } from '../state.js';
 import { describePrediction, actualChoice } from '../predictions.js';
-import { modelPickForMatch } from '../lib/model-pick.js';
+import { modelPickForMatch, stackMatchTriplet } from '../lib/model-pick.js';
+import { conformalThreshold, predictionSet, safeSetLabel } from '../lib/conformal.js';
 import { getActiveModel, MODEL_LABELS } from '../lib/active-model.js';
 import { mergedMarkets } from '../markets.js';
 import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
@@ -498,5 +499,23 @@ function pickPill(match, data) {
     <span class="hybrid-pill-pct">${hp.prob_pct}%</span>
     <span class="muted hybrid-pill-src">${escapeHtml(srcMap[model] || '')}</span>
   `;
+
+  // R20: conformal "safe set" — the calibrated outcome set that contains the
+  // real result ~85% of the time (data/conformal.json, re-fit each cron). Only
+  // rendered for the stack model (the calibration is over its predictions) and
+  // only when the calibration file + a stack triplet exist.
+  if (model === 'stack') {
+    const thr = conformalThreshold(data?.conformal);
+    const triplet = stackMatchTriplet(data, match.team_a, match.team_b);
+    if (thr != null && triplet) {
+      const set = predictionSet(triplet, thr);
+      const lvl = Math.round(parseFloat(data.conformal.display_level || '0.85') * 100);
+      const line = document.createElement('div');
+      line.className = 'muted safe-set-line';
+      line.setAttribute('data-testid', 'safe-set');
+      line.textContent = `Safe set (${lvl}%): ${safeSetLabel(set, match.team_a, match.team_b)}`;
+      wrap.appendChild(line);
+    }
+  }
   return wrap;
 }
