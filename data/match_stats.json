@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-11T22:08:28+00:00",
+    "updated_at": "2026-07-11T22:11:55+00:00",
     "source": "espn-summary",
     "matches": 98,
     "last_run_updated": 2
@@ -6675,39 +6675,39 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-11T22:08:28+00:00"
+    "updated_at": "2026-07-11T22:11:55+00:00"
   },
   "Norway__vs__England": {
     "team_a": "Norway",
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 32.4,
+        "possessionPct": 33.9,
         "totalShots": 5,
         "shotsOnTarget": 3,
         "blockedShots": 1,
         "shotPct": 60.0,
-        "totalPasses": 175,
+        "totalPasses": 192,
         "passPct": 80.0,
-        "accuratePasses": 146,
+        "accuratePasses": 159,
         "saves": 1,
-        "effectiveTackles": 6,
-        "foulsCommitted": 5,
+        "effectiveTackles": 7,
+        "foulsCommitted": 6,
         "offsides": 0,
         "totalCrosses": 1,
         "wonCorners": 0
       },
       "b": {
-        "possessionPct": 67.6,
-        "totalShots": 4,
+        "possessionPct": 66.1,
+        "totalShots": 5,
         "shotsOnTarget": 2,
-        "blockedShots": 1,
-        "shotPct": 50.0,
-        "totalPasses": 356,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 365,
         "passPct": 90.0,
-        "accuratePasses": 338,
+        "accuratePasses": 346,
         "saves": 2,
-        "effectiveTackles": 2,
+        "effectiveTackles": 3,
         "foulsCommitted": 3,
         "offsides": 3,
         "totalCrosses": 9,
@@ -6726,6 +6726,6 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-11T22:08:28+00:00"
+    "updated_at": "2026-07-11T22:11:55+00:00"
   }
 }
