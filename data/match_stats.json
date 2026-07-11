@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-11T21:14:27+00:00",
+    "updated_at": "2026-07-11T22:08:28+00:00",
     "source": "espn-summary",
     "matches": 98,
     "last_run_updated": 2
@@ -6675,46 +6675,57 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-11T21:14:27+00:00"
+    "updated_at": "2026-07-11T22:08:28+00:00"
   },
   "Norway__vs__England": {
     "team_a": "Norway",
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 26.1,
-        "totalShots": 0,
-        "shotsOnTarget": 0,
-        "blockedShots": 0,
-        "shotPct": 0,
-        "totalPasses": 39,
+        "possessionPct": 32.4,
+        "totalShots": 5,
+        "shotsOnTarget": 3,
+        "blockedShots": 1,
+        "shotPct": 60.0,
+        "totalPasses": 175,
         "passPct": 80.0,
-        "accuratePasses": 31,
-        "saves": 0,
-        "effectiveTackles": 2,
-        "foulsCommitted": 1,
+        "accuratePasses": 146,
+        "saves": 1,
+        "effectiveTackles": 6,
+        "foulsCommitted": 5,
         "offsides": 0,
-        "totalCrosses": 0,
+        "totalCrosses": 1,
         "wonCorners": 0
       },
       "b": {
-        "possessionPct": 73.9,
-        "totalShots": 0,
-        "shotsOnTarget": 0,
-        "blockedShots": 0,
-        "shotPct": 0,
-        "totalPasses": 112,
+        "possessionPct": 67.6,
+        "totalShots": 4,
+        "shotsOnTarget": 2,
+        "blockedShots": 1,
+        "shotPct": 50.0,
+        "totalPasses": 356,
         "passPct": 90.0,
-        "accuratePasses": 103,
-        "saves": 0,
+        "accuratePasses": 338,
+        "saves": 2,
         "effectiveTackles": 2,
-        "foulsCommitted": 1,
-        "offsides": 1,
-        "totalCrosses": 1,
-        "wonCorners": 0
+        "foulsCommitted": 3,
+        "offsides": 3,
+        "totalCrosses": 9,
+        "wonCorners": 2
       }
     },
-    "key_events": [],
-    "updated_at": "2026-07-11T21:14:27+00:00"
+    "key_events": [
+      {
+        "minute": "36",
+        "type": "goal",
+        "team": "Norway"
+      },
+      {
+        "minute": "45'+2",
+        "type": "goal",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-11T22:08:28+00:00"
   }
 }

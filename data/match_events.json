@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-11T21:14:25+00:00",
+    "updated_at": "2026-07-11T22:08:26+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3763,5 +3763,22 @@
       }
     ],
     "updated_at": "2026-07-11T20:32:07+00:00"
+  },
+  "Norway__vs__England": {
+    "events": [
+      {
+        "minute": "36'",
+        "type": "goal",
+        "player": "Andreas Schjelderup",
+        "team": "Norway"
+      },
+      {
+        "minute": "45'+2'",
+        "type": "goal",
+        "player": "Jude Bellingham",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-11T22:08:26+00:00"
   }
 }
