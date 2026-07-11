@@ -5063,27 +5063,52 @@ html, body { overflow-x: hidden; }
 
 /* R18: live Match Momentum — per-minute pressure extremes (10s sampler).
    Bars grow up (team A pressing, .is-a) or hang down (team B, .is-b) from a
-   center baseline; height ∝ the minute's MAX |pressure|. */
+   visible center axis; height ∝ the minute's MAX |pressure|. Side colors
+   follow the app-wide A/B convention (--primary / --accent) so the panel
+   matches the win-probability + xG bars beside it. Bars COMPRESS to fit the
+   card (flex-shrink with a 1px floor) so a full 90'+ match stays visible at a
+   glance on a phone; overflow-x is the fallback past the floor. */
 .mm-live-host { position: relative; }
 .mm-live-bars {
+  position: relative;           /* anchors the ::before center axis */
   display: flex;
   align-items: center;          /* bars grow from the vertical center */
-  gap: 2px;
+  gap: 1px;
   height: 56px;
   padding: 2px 0;
   border-top: 1px solid var(--border, rgba(127,127,127,.25));
   border-bottom: 1px solid var(--border, rgba(127,127,127,.25));
   overflow-x: auto;
 }
+.mm-live-bars::before {         /* the center axis bars grow away from */
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  border-top: 1px dashed var(--border, rgba(127,127,127,.35));
+  pointer-events: none;
+}
 .mm-live-bar {
-  flex: 0 0 4px;
+  flex: 1 1 4px;
+  max-width: 5px;
+  min-width: 1px;
   min-height: 4px;
   border-radius: 2px;
   align-self: center;
 }
-.mm-live-bar.is-a { background: var(--accent, #3b82f6); transform: translateY(-50%); }
-.mm-live-bar.is-b { background: var(--danger, #ef4444); transform: translateY(50%); }
+.mm-live-bar.is-a { background: var(--primary); transform: translateY(-50%); }
+.mm-live-bar.is-b { background: var(--accent); transform: translateY(50%); }
+/* no-signal minute (incl. the first sample after a sampler start): neutral tick */
+.mm-live-bar.is-zero { background: var(--border, rgba(127,127,127,.4)); }
 .mm-live-note { font-size: 12px; margin: 0 0 6px; }
+.mm-live-legend {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+.mm-legend.is-a { color: var(--primary); }
+.mm-legend.is-b { color: var(--accent); }
 .mm-live-wait { font-size: 12px; }
 
 /* R20: conformal safe-set line under the model pick pill. */
