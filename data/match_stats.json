@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-11T22:11:55+00:00",
+    "updated_at": "2026-07-11T23:07:59+00:00",
     "source": "espn-summary",
     "matches": 98,
     "last_run_updated": 2
@@ -6675,43 +6675,43 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-11T22:11:55+00:00"
+    "updated_at": "2026-07-11T23:07:59+00:00"
   },
   "Norway__vs__England": {
     "team_a": "Norway",
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 33.9,
-        "totalShots": 5,
-        "shotsOnTarget": 3,
+        "possessionPct": 42.3,
+        "totalShots": 9,
+        "shotsOnTarget": 4,
         "blockedShots": 1,
-        "shotPct": 60.0,
-        "totalPasses": 192,
+        "shotPct": 40.0,
+        "totalPasses": 386,
         "passPct": 80.0,
-        "accuratePasses": 159,
+        "accuratePasses": 327,
         "saves": 1,
-        "effectiveTackles": 7,
-        "foulsCommitted": 6,
-        "offsides": 0,
-        "totalCrosses": 1,
-        "wonCorners": 0
+        "effectiveTackles": 9,
+        "foulsCommitted": 8,
+        "offsides": 1,
+        "totalCrosses": 13,
+        "wonCorners": 5
       },
       "b": {
-        "possessionPct": 66.1,
-        "totalShots": 5,
+        "possessionPct": 57.7,
+        "totalShots": 7,
         "shotsOnTarget": 2,
-        "blockedShots": 2,
-        "shotPct": 40.0,
-        "totalPasses": 365,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 521,
         "passPct": 90.0,
-        "accuratePasses": 346,
-        "saves": 2,
-        "effectiveTackles": 3,
-        "foulsCommitted": 3,
+        "accuratePasses": 481,
+        "saves": 3,
+        "effectiveTackles": 7,
+        "foulsCommitted": 5,
         "offsides": 3,
-        "totalCrosses": 9,
-        "wonCorners": 2
+        "totalCrosses": 17,
+        "wonCorners": 3
       }
     },
     "key_events": [
@@ -6726,6 +6726,6 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-11T22:11:55+00:00"
+    "updated_at": "2026-07-11T23:07:59+00:00"
   }
 }
