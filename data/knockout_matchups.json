@@ -2,35 +2,35 @@
   {
     "team_a": "South Africa",
     "team_b": "Canada",
-    "composite_a": 61.2,
-    "composite_b": 71.8,
-    "gap": 10.6,
+    "composite_a": 61.7,
+    "composite_b": 72.5,
+    "gap": 10.8,
     "probabilities": {
-      "team_a_wins": 17.7,
-      "draw": 21.6,
-      "team_b_wins": 60.7
+      "team_a_wins": 17.0,
+      "draw": 21.2,
+      "team_b_wins": 61.8
     },
     "expected_points": {
-      "team_a": 0.75,
-      "team_b": 2.04
+      "team_a": 0.72,
+      "team_b": 2.07
     },
     "predicted_winner": "Canada",
-    "win_confidence_pct": 77.4,
+    "win_confidence_pct": 78.5,
     "upset_risk": {
       "favored": "Canada",
       "underdog": "South Africa",
-      "gap": 10.6,
+      "gap": 10.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 14.3,
-      "draw": 20.9,
-      "team_b_wins": 64.9
+      "team_a_wins": 14.4,
+      "draw": 21.2,
+      "team_b_wins": 64.3
     },
-    "hybrid_gap": 10.6,
+    "hybrid_gap": 10.8,
     "prob_source": "stack",
-    "advance_pct_a": 22.6,
-    "advance_pct_b": 77.4,
+    "advance_pct_a": 21.5,
+    "advance_pct_b": 78.5,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M073__2A__vs__2B",
@@ -39,42 +39,42 @@
   {
     "team_a": "Brazil",
     "team_b": "Japan",
-    "composite_a": 79.8,
-    "composite_b": 79.4,
-    "gap": 0.4,
+    "composite_a": 80.5,
+    "composite_b": 79.6,
+    "gap": 0.9,
     "probabilities": {
-      "team_a_wins": 47.4,
-      "draw": 24.9,
-      "team_b_wins": 27.7
+      "team_a_wins": 46.5,
+      "draw": 25.1,
+      "team_b_wins": 28.4
     },
     "expected_points": {
-      "team_a": 1.67,
-      "team_b": 1.08
+      "team_a": 1.65,
+      "team_b": 1.1
     },
     "predicted_winner": "Brazil",
-    "win_confidence_pct": 63.1,
+    "win_confidence_pct": 62.1,
     "upset_risk": {
       "favored": "Brazil",
       "underdog": "Japan",
-      "gap": 0.4,
+      "gap": 0.9,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 0.4 points"
+          "detail": "Composite gap only 0.9 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 37.5,
-      "draw": 27.1,
-      "team_b_wins": 35.4
+      "team_a_wins": 38.5,
+      "draw": 27.3,
+      "team_b_wins": 34.1
     },
-    "hybrid_gap": 0.4,
+    "hybrid_gap": 0.9,
     "prob_source": "stack",
-    "advance_pct_a": 63.1,
-    "advance_pct_b": 36.9,
+    "advance_pct_a": 62.1,
+    "advance_pct_b": 37.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M076__1C__vs__2F",
@@ -83,35 +83,35 @@
   {
     "team_a": "Germany",
     "team_b": "Paraguay",
-    "composite_a": 83.4,
-    "composite_b": 64.5,
-    "gap": 18.9,
+    "composite_a": 83.5,
+    "composite_b": 64.7,
+    "gap": 18.8,
     "probabilities": {
-      "team_a_wins": 77.9,
-      "draw": 14.2,
-      "team_b_wins": 7.8
+      "team_a_wins": 78.8,
+      "draw": 13.8,
+      "team_b_wins": 7.4
     },
     "expected_points": {
-      "team_a": 2.48,
-      "team_b": 0.38
+      "team_a": 2.5,
+      "team_b": 0.36
     },
     "predicted_winner": "Germany",
-    "win_confidence_pct": 90.9,
+    "win_confidence_pct": 91.4,
     "upset_risk": {
       "favored": "Germany",
       "underdog": "Paraguay",
-      "gap": 18.9,
+      "gap": 18.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 83.7,
-      "draw": 11.4,
-      "team_b_wins": 4.9
+      "team_a_wins": 82.2,
+      "draw": 12.4,
+      "team_b_wins": 5.4
     },
-    "hybrid_gap": 18.9,
+    "hybrid_gap": 18.8,
     "prob_source": "stack",
-    "advance_pct_a": 90.9,
-    "advance_pct_b": 9.1,
+    "advance_pct_a": 91.4,
+    "advance_pct_b": 8.6,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M074__1E__vs__3_ABCDF",
@@ -121,41 +121,41 @@
     "team_a": "Netherlands",
     "team_b": "Morocco",
     "composite_a": 83.9,
-    "composite_b": 81.4,
-    "gap": 2.5,
+    "composite_b": 81.6,
+    "gap": 2.3,
     "probabilities": {
-      "team_a_wins": 49.3,
-      "draw": 24.6,
-      "team_b_wins": 26.1
+      "team_a_wins": 47.9,
+      "draw": 24.9,
+      "team_b_wins": 27.3
     },
     "expected_points": {
-      "team_a": 1.72,
-      "team_b": 1.03
+      "team_a": 1.68,
+      "team_b": 1.07
     },
     "predicted_winner": "Netherlands",
-    "win_confidence_pct": 65.4,
+    "win_confidence_pct": 63.7,
     "upset_risk": {
       "favored": "Netherlands",
       "underdog": "Morocco",
-      "gap": 2.5,
+      "gap": 2.3,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.5 points"
+          "detail": "Composite gap only 2.3 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 43.0,
-      "draw": 26.7,
-      "team_b_wins": 30.3
+      "team_a_wins": 42.1,
+      "draw": 27.1,
+      "team_b_wins": 30.8
     },
-    "hybrid_gap": 2.5,
+    "hybrid_gap": 2.3,
     "prob_source": "stack",
-    "advance_pct_a": 65.4,
-    "advance_pct_b": 34.6,
+    "advance_pct_a": 63.7,
+    "advance_pct_b": 36.3,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M075__1F__vs__2C",
@@ -164,9 +164,9 @@
   {
     "team_a": "Cote d'Ivoire",
     "team_b": "Norway",
-    "composite_a": 74.0,
+    "composite_a": 74.3,
     "composite_b": 82.6,
-    "gap": 8.6,
+    "gap": 8.3,
     "probabilities": {
       "team_a_wins": 20.2,
       "draw": 22.7,
@@ -177,22 +177,22 @@
       "team_b": 1.94
     },
     "predicted_winner": "Norway",
-    "win_confidence_pct": 73.9,
+    "win_confidence_pct": 73.8,
     "upset_risk": {
       "favored": "Norway",
       "underdog": "Cote d'Ivoire",
-      "gap": 8.6,
+      "gap": 8.3,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 17.6,
-      "draw": 22.8,
-      "team_b_wins": 59.6
+      "team_a_wins": 18.5,
+      "draw": 23.6,
+      "team_b_wins": 57.9
     },
-    "hybrid_gap": 8.6,
+    "hybrid_gap": 8.3,
     "prob_source": "stack",
-    "advance_pct_a": 26.1,
-    "advance_pct_b": 73.9,
+    "advance_pct_a": 26.2,
+    "advance_pct_b": 73.8,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M078__2E__vs__2I",
@@ -201,35 +201,35 @@
   {
     "team_a": "France",
     "team_b": "Sweden",
-    "composite_a": 87.6,
-    "composite_b": 73.2,
-    "gap": 14.4,
+    "composite_a": 88.0,
+    "composite_b": 73.7,
+    "gap": 14.3,
     "probabilities": {
-      "team_a_wins": 75.7,
-      "draw": 15.4,
-      "team_b_wins": 8.9
+      "team_a_wins": 75.2,
+      "draw": 15.6,
+      "team_b_wins": 9.2
     },
     "expected_points": {
-      "team_a": 2.42,
-      "team_b": 0.42
+      "team_a": 2.41,
+      "team_b": 0.43
     },
     "predicted_winner": "France",
-    "win_confidence_pct": 89.4,
+    "win_confidence_pct": 89.1,
     "upset_risk": {
       "favored": "France",
       "underdog": "Sweden",
-      "gap": 14.4,
+      "gap": 14.3,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 74.3,
-      "draw": 16.6,
-      "team_b_wins": 9.1
+      "team_a_wins": 72.8,
+      "draw": 17.4,
+      "team_b_wins": 9.7
     },
-    "hybrid_gap": 14.4,
+    "hybrid_gap": 14.3,
     "prob_source": "stack",
-    "advance_pct_a": 89.4,
-    "advance_pct_b": 10.6,
+    "advance_pct_a": 89.1,
+    "advance_pct_b": 10.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M077__1I__vs__3_CDFGH",
@@ -238,35 +238,35 @@
   {
     "team_a": "Mexico",
     "team_b": "Ecuador",
-    "composite_a": 75.2,
-    "composite_b": 70.5,
-    "gap": 4.7,
+    "composite_a": 75.6,
+    "composite_b": 71.3,
+    "gap": 4.3,
     "probabilities": {
-      "team_a_wins": 37.0,
+      "team_a_wins": 38.5,
       "draw": 25.8,
-      "team_b_wins": 37.2
+      "team_b_wins": 35.7
     },
     "expected_points": {
-      "team_a": 1.37,
-      "team_b": 1.37
+      "team_a": 1.41,
+      "team_b": 1.33
     },
-    "predicted_winner": "Ecuador",
-    "win_confidence_pct": 50.2,
+    "predicted_winner": "Mexico",
+    "win_confidence_pct": 51.9,
     "upset_risk": {
       "favored": "Mexico",
       "underdog": "Ecuador",
-      "gap": 4.7,
+      "gap": 4.3,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 48.9,
-      "draw": 25.8,
-      "team_b_wins": 25.3
+      "team_a_wins": 47.3,
+      "draw": 26.3,
+      "team_b_wins": 26.4
     },
-    "hybrid_gap": 4.7,
+    "hybrid_gap": 4.3,
     "prob_source": "stack",
-    "advance_pct_a": 49.8,
-    "advance_pct_b": 50.2,
+    "advance_pct_a": 51.9,
+    "advance_pct_b": 48.1,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M079__1A__vs__3_CEFHI",
@@ -275,35 +275,35 @@
   {
     "team_a": "England",
     "team_b": "DR Congo",
-    "composite_a": 90.0,
-    "composite_b": 68.9,
-    "gap": 21.1,
+    "composite_a": 90.3,
+    "composite_b": 69.5,
+    "gap": 20.8,
     "probabilities": {
-      "team_a_wins": 86.6,
-      "draw": 9.4,
-      "team_b_wins": 4.0
+      "team_a_wins": 86.3,
+      "draw": 9.5,
+      "team_b_wins": 4.1
     },
     "expected_points": {
       "team_a": 2.69,
-      "team_b": 0.21
+      "team_b": 0.22
     },
     "predicted_winner": "England",
-    "win_confidence_pct": 95.6,
+    "win_confidence_pct": 95.4,
     "upset_risk": {
       "favored": "England",
       "underdog": "DR Congo",
-      "gap": 21.1,
+      "gap": 20.8,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 87.4,
-      "draw": 9.1,
-      "team_b_wins": 3.5
+      "team_a_wins": 85.7,
+      "draw": 10.2,
+      "team_b_wins": 4.0
     },
-    "hybrid_gap": 21.1,
+    "hybrid_gap": 20.8,
     "prob_source": "stack",
-    "advance_pct_a": 95.6,
-    "advance_pct_b": 4.4,
+    "advance_pct_a": 95.4,
+    "advance_pct_b": 4.6,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M080__1L__vs__3_EHIJK",
@@ -312,42 +312,42 @@
   {
     "team_a": "Belgium",
     "team_b": "Senegal",
-    "composite_a": 80.6,
-    "composite_b": 77.8,
-    "gap": 2.8,
+    "composite_a": 80.9,
+    "composite_b": 78.2,
+    "gap": 2.7,
     "probabilities": {
-      "team_a_wins": 42.6,
-      "draw": 25.6,
-      "team_b_wins": 31.9
+      "team_a_wins": 42.7,
+      "draw": 25.5,
+      "team_b_wins": 31.7
     },
     "expected_points": {
-      "team_a": 1.53,
+      "team_a": 1.54,
       "team_b": 1.21
     },
     "predicted_winner": "Belgium",
-    "win_confidence_pct": 57.2,
+    "win_confidence_pct": 57.4,
     "upset_risk": {
       "favored": "Belgium",
       "underdog": "Senegal",
-      "gap": 2.8,
+      "gap": 2.7,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.8 points"
+          "detail": "Composite gap only 2.7 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 43.8,
-      "draw": 26.6,
-      "team_b_wins": 29.6
+      "team_a_wins": 43.1,
+      "draw": 27.0,
+      "team_b_wins": 29.9
     },
-    "hybrid_gap": 2.8,
+    "hybrid_gap": 2.7,
     "prob_source": "stack",
-    "advance_pct_a": 57.2,
-    "advance_pct_b": 42.8,
+    "advance_pct_a": 57.4,
+    "advance_pct_b": 42.6,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M082__1G__vs__3_AEHIJ",
@@ -356,35 +356,35 @@
   {
     "team_a": "USA",
     "team_b": "Bosnia and Herzegovina",
-    "composite_a": 77.8,
-    "composite_b": 70.0,
-    "gap": 7.8,
+    "composite_a": 77.9,
+    "composite_b": 70.3,
+    "gap": 7.6,
     "probabilities": {
-      "team_a_wins": 53.0,
-      "draw": 23.8,
-      "team_b_wins": 23.2
+      "team_a_wins": 53.5,
+      "draw": 23.7,
+      "team_b_wins": 22.8
     },
     "expected_points": {
-      "team_a": 1.83,
-      "team_b": 0.93
+      "team_a": 1.84,
+      "team_b": 0.92
     },
     "predicted_winner": "USA",
-    "win_confidence_pct": 69.6,
+    "win_confidence_pct": 70.1,
     "upset_risk": {
       "favored": "USA",
       "underdog": "Bosnia and Herzegovina",
-      "gap": 7.8,
+      "gap": 7.6,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 57.4,
-      "draw": 23.6,
-      "team_b_wins": 19.0
+      "team_a_wins": 56.0,
+      "draw": 24.2,
+      "team_b_wins": 19.8
     },
-    "hybrid_gap": 7.8,
+    "hybrid_gap": 7.6,
     "prob_source": "stack",
-    "advance_pct_a": 69.6,
-    "advance_pct_b": 30.4,
+    "advance_pct_a": 70.1,
+    "advance_pct_b": 29.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M081__1D__vs__3_BEFIJ",
@@ -393,35 +393,35 @@
   {
     "team_a": "Spain",
     "team_b": "Austria",
-    "composite_a": 88.5,
+    "composite_a": 89.0,
     "composite_b": 76.4,
-    "gap": 12.1,
+    "gap": 12.6,
     "probabilities": {
-      "team_a_wins": 75.1,
-      "draw": 15.7,
-      "team_b_wins": 9.2
+      "team_a_wins": 74.7,
+      "draw": 15.9,
+      "team_b_wins": 9.5
     },
     "expected_points": {
-      "team_a": 2.41,
-      "team_b": 0.43
+      "team_a": 2.4,
+      "team_b": 0.44
     },
     "predicted_winner": "Spain",
-    "win_confidence_pct": 89.1,
+    "win_confidence_pct": 88.7,
     "upset_risk": {
       "favored": "Spain",
       "underdog": "Austria",
-      "gap": 12.1,
+      "gap": 12.6,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 68.7,
-      "draw": 19.2,
-      "team_b_wins": 12.0
+      "team_a_wins": 68.8,
+      "draw": 19.3,
+      "team_b_wins": 11.9
     },
-    "hybrid_gap": 12.1,
+    "hybrid_gap": 12.6,
     "prob_source": "stack",
-    "advance_pct_a": 89.1,
-    "advance_pct_b": 10.9,
+    "advance_pct_a": 88.7,
+    "advance_pct_b": 11.3,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M084__1H__vs__2J",
@@ -431,34 +431,34 @@
     "team_a": "Portugal",
     "team_b": "Croatia",
     "composite_a": 85.9,
-    "composite_b": 77.6,
-    "gap": 8.3,
+    "composite_b": 77.9,
+    "gap": 8.0,
     "probabilities": {
-      "team_a_wins": 53.7,
-      "draw": 23.6,
-      "team_b_wins": 22.7
+      "team_a_wins": 54.1,
+      "draw": 23.5,
+      "team_b_wins": 22.3
     },
     "expected_points": {
-      "team_a": 1.85,
-      "team_b": 0.92
+      "team_a": 1.86,
+      "team_b": 0.91
     },
     "predicted_winner": "Portugal",
-    "win_confidence_pct": 70.3,
+    "win_confidence_pct": 70.8,
     "upset_risk": {
       "favored": "Portugal",
       "underdog": "Croatia",
-      "gap": 8.3,
+      "gap": 8.0,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 58.8,
-      "draw": 23.1,
-      "team_b_wins": 18.1
+      "team_a_wins": 57.1,
+      "draw": 23.8,
+      "team_b_wins": 19.1
     },
-    "hybrid_gap": 8.3,
+    "hybrid_gap": 8.0,
     "prob_source": "stack",
-    "advance_pct_a": 70.3,
-    "advance_pct_b": 29.7,
+    "advance_pct_a": 70.8,
+    "advance_pct_b": 29.2,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M083__2K__vs__2L",
@@ -467,9 +467,9 @@
   {
     "team_a": "Switzerland",
     "team_b": "Algeria",
-    "composite_a": 77.9,
-    "composite_b": 72.6,
-    "gap": 5.3,
+    "composite_a": 78.3,
+    "composite_b": 72.7,
+    "gap": 5.6,
     "probabilities": {
       "team_a_wins": 53.7,
       "draw": 23.6,
@@ -484,15 +484,15 @@
     "upset_risk": {
       "favored": "Switzerland",
       "underdog": "Algeria",
-      "gap": 5.3,
+      "gap": 5.6,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 50.6,
-      "draw": 25.4,
-      "team_b_wins": 24.0
+      "team_a_wins": 50.8,
+      "draw": 25.6,
+      "team_b_wins": 23.7
     },
-    "hybrid_gap": 5.3,
+    "hybrid_gap": 5.6,
     "prob_source": "stack",
     "advance_pct_a": 70.3,
     "advance_pct_b": 29.7,
@@ -504,42 +504,42 @@
   {
     "team_a": "Australia",
     "team_b": "Egypt",
-    "composite_a": 67.5,
-    "composite_b": 70.1,
-    "gap": 2.6,
+    "composite_a": 67.8,
+    "composite_b": 70.3,
+    "gap": 2.5,
     "probabilities": {
-      "team_a_wins": 32.5,
+      "team_a_wins": 32.3,
       "draw": 25.6,
-      "team_b_wins": 41.9
+      "team_b_wins": 42.1
     },
     "expected_points": {
       "team_a": 1.23,
-      "team_b": 1.51
+      "team_b": 1.52
     },
     "predicted_winner": "Egypt",
-    "win_confidence_pct": 56.3,
+    "win_confidence_pct": 56.5,
     "upset_risk": {
       "favored": "Egypt",
       "underdog": "Australia",
-      "gap": 2.6,
+      "gap": 2.5,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.6 points"
+          "detail": "Composite gap only 2.5 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 30.1,
-      "draw": 26.7,
-      "team_b_wins": 43.3
+      "team_a_wins": 30.4,
+      "draw": 27.0,
+      "team_b_wins": 42.6
     },
-    "hybrid_gap": 2.6,
+    "hybrid_gap": 2.5,
     "prob_source": "stack",
-    "advance_pct_a": 43.7,
-    "advance_pct_b": 56.3,
+    "advance_pct_a": 43.5,
+    "advance_pct_b": 56.5,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M088__2D__vs__2G",
@@ -548,35 +548,35 @@
   {
     "team_a": "Argentina",
     "team_b": "Cabo Verde",
-    "composite_a": 84.7,
-    "composite_b": 63.6,
-    "gap": 21.1,
+    "composite_a": 85.4,
+    "composite_b": 63.9,
+    "gap": 21.5,
     "probabilities": {
-      "team_a_wins": 90.5,
-      "draw": 6.9,
-      "team_b_wins": 2.6
+      "team_a_wins": 90.2,
+      "draw": 7.1,
+      "team_b_wins": 2.7
     },
     "expected_points": {
       "team_a": 2.78,
       "team_b": 0.15
     },
     "predicted_winner": "Argentina",
-    "win_confidence_pct": 97.2,
+    "win_confidence_pct": 97.1,
     "upset_risk": {
       "favored": "Argentina",
       "underdog": "Cabo Verde",
-      "gap": 21.1,
+      "gap": 21.5,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 87.4,
-      "draw": 9.1,
-      "team_b_wins": 3.5
+      "team_a_wins": 86.9,
+      "draw": 9.5,
+      "team_b_wins": 3.6
     },
-    "hybrid_gap": 21.1,
+    "hybrid_gap": 21.5,
     "prob_source": "stack",
-    "advance_pct_a": 97.2,
-    "advance_pct_b": 2.8,
+    "advance_pct_a": 97.1,
+    "advance_pct_b": 2.9,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M086__1J__vs__2H",
@@ -585,35 +585,35 @@
   {
     "team_a": "Colombia",
     "team_b": "Ghana",
-    "composite_a": 74.6,
-    "composite_b": 70.8,
-    "gap": 3.8,
+    "composite_a": 75.6,
+    "composite_b": 70.7,
+    "gap": 4.9,
     "probabilities": {
-      "team_a_wins": 56.3,
+      "team_a_wins": 56.5,
       "draw": 22.9,
-      "team_b_wins": 20.7
+      "team_b_wins": 20.6
     },
     "expected_points": {
       "team_a": 1.92,
       "team_b": 0.85
     },
     "predicted_winner": "Colombia",
-    "win_confidence_pct": 73.1,
+    "win_confidence_pct": 73.2,
     "upset_risk": {
       "favored": "Colombia",
       "underdog": "Ghana",
-      "gap": 3.8,
+      "gap": 4.9,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 46.5,
-      "draw": 26.2,
-      "team_b_wins": 27.3
+      "team_a_wins": 48.9,
+      "draw": 26.0,
+      "team_b_wins": 25.1
     },
-    "hybrid_gap": 3.8,
+    "hybrid_gap": 4.9,
     "prob_source": "stack",
-    "advance_pct_a": 73.1,
-    "advance_pct_b": 26.9,
+    "advance_pct_a": 73.2,
+    "advance_pct_b": 26.8,
     "is_knockout": true,
     "stage": "round_of_32",
     "match_id": "M087__1K__vs__3_DEIJL",
@@ -622,16 +622,16 @@
   {
     "team_a": "Canada",
     "team_b": "Morocco",
-    "composite_a": 71.8,
-    "composite_b": 81.4,
-    "gap": 9.6,
+    "composite_a": 72.5,
+    "composite_b": 81.6,
+    "gap": 9.1,
     "probabilities": {
-      "team_a_wins": 20.0,
+      "team_a_wins": 19.9,
       "draw": 22.6,
       "team_b_wins": 57.4
     },
     "expected_points": {
-      "team_a": 0.83,
+      "team_a": 0.82,
       "team_b": 1.95
     },
     "predicted_winner": "Morocco",
@@ -639,15 +639,15 @@
     "upset_risk": {
       "favored": "Morocco",
       "underdog": "Canada",
-      "gap": 9.6,
+      "gap": 9.1,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 15.9,
-      "draw": 21.9,
-      "team_b_wins": 62.2
+      "team_a_wins": 17.2,
+      "draw": 22.9,
+      "team_b_wins": 60.0
     },
-    "hybrid_gap": 9.6,
+    "hybrid_gap": 9.1,
     "prob_source": "stack",
     "advance_pct_a": 25.8,
     "advance_pct_b": 74.2,
@@ -659,35 +659,35 @@
   {
     "team_a": "Paraguay",
     "team_b": "France",
-    "composite_a": 64.5,
-    "composite_b": 87.6,
-    "gap": 23.1,
+    "composite_a": 64.7,
+    "composite_b": 88.0,
+    "gap": 23.3,
     "probabilities": {
-      "team_a_wins": 3.2,
-      "draw": 8.1,
-      "team_b_wins": 88.7
+      "team_a_wins": 3.1,
+      "draw": 7.8,
+      "team_b_wins": 89.0
     },
     "expected_points": {
-      "team_a": 0.18,
-      "team_b": 2.74
+      "team_a": 0.17,
+      "team_b": 2.75
     },
     "predicted_winner": "France",
-    "win_confidence_pct": 96.5,
+    "win_confidence_pct": 96.6,
     "upset_risk": {
       "favored": "France",
       "underdog": "Paraguay",
-      "gap": 23.1,
+      "gap": 23.3,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 2.5,
-      "draw": 7.2,
-      "team_b_wins": 90.3
+      "team_a_wins": 2.7,
+      "draw": 7.8,
+      "team_b_wins": 89.5
     },
-    "hybrid_gap": 23.1,
+    "hybrid_gap": 23.3,
     "prob_source": "stack",
-    "advance_pct_a": 3.5,
-    "advance_pct_b": 96.5,
+    "advance_pct_a": 3.4,
+    "advance_pct_b": 96.6,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M089__W74__vs__W77",
@@ -696,42 +696,42 @@
   {
     "team_a": "Brazil",
     "team_b": "Norway",
-    "composite_a": 79.8,
+    "composite_a": 80.5,
     "composite_b": 82.6,
-    "gap": 2.8,
+    "gap": 2.1,
     "probabilities": {
-      "team_a_wins": 37.9,
+      "team_a_wins": 37.6,
       "draw": 25.8,
-      "team_b_wins": 36.3
+      "team_b_wins": 36.6
     },
     "expected_points": {
-      "team_a": 1.4,
-      "team_b": 1.35
+      "team_a": 1.39,
+      "team_b": 1.36
     },
     "predicted_winner": "Brazil",
-    "win_confidence_pct": 51.1,
+    "win_confidence_pct": 50.7,
     "upset_risk": {
       "favored": "Norway",
       "underdog": "Brazil",
-      "gap": 2.8,
+      "gap": 2.1,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 2.8 points"
+          "detail": "Composite gap only 2.1 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 29.6,
-      "draw": 26.6,
-      "team_b_wins": 43.8
+      "team_a_wins": 31.3,
+      "draw": 27.1,
+      "team_b_wins": 41.6
     },
-    "hybrid_gap": 2.8,
+    "hybrid_gap": 2.1,
     "prob_source": "stack",
-    "advance_pct_a": 51.1,
-    "advance_pct_b": 48.9,
+    "advance_pct_a": 50.7,
+    "advance_pct_b": 49.3,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M091__W76__vs__W78",
@@ -740,35 +740,35 @@
   {
     "team_a": "Mexico",
     "team_b": "England",
-    "composite_a": 75.2,
-    "composite_b": 90.0,
-    "gap": 14.8,
+    "composite_a": 75.6,
+    "composite_b": 90.3,
+    "gap": 14.7,
     "probabilities": {
-      "team_a_wins": 7.9,
-      "draw": 14.3,
-      "team_b_wins": 77.7
+      "team_a_wins": 8.3,
+      "draw": 14.7,
+      "team_b_wins": 77.0
     },
     "expected_points": {
-      "team_a": 0.38,
-      "team_b": 2.48
+      "team_a": 0.39,
+      "team_b": 2.46
     },
     "predicted_winner": "England",
-    "win_confidence_pct": 90.7,
+    "win_confidence_pct": 90.3,
     "upset_risk": {
       "favored": "England",
       "underdog": "Mexico",
-      "gap": 14.8,
+      "gap": 14.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 8.7,
-      "draw": 16.1,
-      "team_b_wins": 75.2
+      "team_a_wins": 9.3,
+      "draw": 17.0,
+      "team_b_wins": 73.7
     },
-    "hybrid_gap": 14.8,
+    "hybrid_gap": 14.7,
     "prob_source": "stack",
-    "advance_pct_a": 9.3,
-    "advance_pct_b": 90.7,
+    "advance_pct_a": 9.7,
+    "advance_pct_b": 90.3,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M092__W79__vs__W80",
@@ -778,41 +778,34 @@
     "team_a": "Portugal",
     "team_b": "Spain",
     "composite_a": 85.9,
-    "composite_b": 88.5,
-    "gap": 2.6,
+    "composite_b": 89.0,
+    "gap": 3.1,
     "probabilities": {
-      "team_a_wins": 24.4,
-      "draw": 24.2,
-      "team_b_wins": 51.4
+      "team_a_wins": 24.9,
+      "draw": 24.3,
+      "team_b_wins": 50.9
     },
     "expected_points": {
-      "team_a": 0.97,
-      "team_b": 1.78
+      "team_a": 0.99,
+      "team_b": 1.77
     },
     "predicted_winner": "Spain",
-    "win_confidence_pct": 67.8,
+    "win_confidence_pct": 67.2,
     "upset_risk": {
       "favored": "Spain",
       "underdog": "Portugal",
-      "gap": 2.6,
-      "indicators": [
-        {
-          "type": "close_gap",
-          "severity": "high",
-          "label": "Toss-up game",
-          "detail": "Composite gap only 2.6 points"
-        }
-      ]
+      "gap": 3.1,
+      "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 30.1,
-      "draw": 26.7,
-      "team_b_wins": 43.3
+      "team_a_wins": 29.0,
+      "draw": 26.8,
+      "team_b_wins": 44.2
     },
-    "hybrid_gap": 2.6,
+    "hybrid_gap": 3.1,
     "prob_source": "stack",
-    "advance_pct_a": 32.2,
-    "advance_pct_b": 67.8,
+    "advance_pct_a": 32.8,
+    "advance_pct_b": 67.2,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M093__W83__vs__W84",
@@ -821,42 +814,35 @@
   {
     "team_a": "USA",
     "team_b": "Belgium",
-    "composite_a": 77.8,
-    "composite_b": 80.6,
-    "gap": 2.8,
+    "composite_a": 77.9,
+    "composite_b": 80.9,
+    "gap": 3.0,
     "probabilities": {
-      "team_a_wins": 29.4,
+      "team_a_wins": 29.3,
       "draw": 25.2,
-      "team_b_wins": 45.3
+      "team_b_wins": 45.5
     },
     "expected_points": {
       "team_a": 1.13,
-      "team_b": 1.61
+      "team_b": 1.62
     },
     "predicted_winner": "Belgium",
-    "win_confidence_pct": 60.7,
+    "win_confidence_pct": 60.8,
     "upset_risk": {
       "favored": "Belgium",
       "underdog": "USA",
-      "gap": 2.8,
-      "indicators": [
-        {
-          "type": "close_gap",
-          "severity": "high",
-          "label": "Toss-up game",
-          "detail": "Composite gap only 2.8 points"
-        }
-      ]
+      "gap": 3.0,
+      "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 29.6,
-      "draw": 26.6,
-      "team_b_wins": 43.8
+      "team_a_wins": 29.2,
+      "draw": 26.9,
+      "team_b_wins": 43.9
     },
-    "hybrid_gap": 2.8,
+    "hybrid_gap": 3.0,
     "prob_source": "stack",
-    "advance_pct_a": 39.3,
-    "advance_pct_b": 60.7,
+    "advance_pct_a": 39.2,
+    "advance_pct_b": 60.8,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M094__W81__vs__W82",
@@ -865,35 +851,35 @@
   {
     "team_a": "Argentina",
     "team_b": "Egypt",
-    "composite_a": 84.7,
-    "composite_b": 70.1,
-    "gap": 14.6,
+    "composite_a": 85.4,
+    "composite_b": 70.3,
+    "gap": 15.1,
     "probabilities": {
-      "team_a_wins": 80.9,
-      "draw": 12.7,
-      "team_b_wins": 6.5
+      "team_a_wins": 80.4,
+      "draw": 12.9,
+      "team_b_wins": 6.7
     },
     "expected_points": {
-      "team_a": 2.55,
-      "team_b": 0.32
+      "team_a": 2.54,
+      "team_b": 0.33
     },
     "predicted_winner": "Argentina",
-    "win_confidence_pct": 92.6,
+    "win_confidence_pct": 92.3,
     "upset_risk": {
       "favored": "Argentina",
       "underdog": "Egypt",
-      "gap": 14.6,
+      "gap": 15.1,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 74.7,
-      "draw": 16.4,
-      "team_b_wins": 8.9
+      "team_a_wins": 74.6,
+      "draw": 16.5,
+      "team_b_wins": 8.8
     },
-    "hybrid_gap": 14.6,
+    "hybrid_gap": 15.1,
     "prob_source": "stack",
-    "advance_pct_a": 92.6,
-    "advance_pct_b": 7.4,
+    "advance_pct_a": 92.3,
+    "advance_pct_b": 7.7,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M095__W86__vs__W88",
@@ -902,35 +888,42 @@
   {
     "team_a": "Switzerland",
     "team_b": "Colombia",
-    "composite_a": 77.9,
-    "composite_b": 74.6,
-    "gap": 3.3,
+    "composite_a": 78.3,
+    "composite_b": 75.6,
+    "gap": 2.7,
     "probabilities": {
-      "team_a_wins": 37.5,
+      "team_a_wins": 37.9,
       "draw": 25.8,
-      "team_b_wins": 36.7
+      "team_b_wins": 36.2
     },
     "expected_points": {
-      "team_a": 1.38,
-      "team_b": 1.36
+      "team_a": 1.4,
+      "team_b": 1.35
     },
     "predicted_winner": "Switzerland",
-    "win_confidence_pct": 50.5,
+    "win_confidence_pct": 51.1,
     "upset_risk": {
       "favored": "Switzerland",
       "underdog": "Colombia",
-      "gap": 3.3,
-      "indicators": []
+      "gap": 2.7,
+      "indicators": [
+        {
+          "type": "close_gap",
+          "severity": "high",
+          "label": "Toss-up game",
+          "detail": "Composite gap only 2.7 points"
+        }
+      ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 45.1,
-      "draw": 26.4,
-      "team_b_wins": 28.4
+      "team_a_wins": 43.1,
+      "draw": 27.0,
+      "team_b_wins": 29.9
     },
-    "hybrid_gap": 3.3,
+    "hybrid_gap": 2.7,
     "prob_source": "stack",
-    "advance_pct_a": 50.5,
-    "advance_pct_b": 49.5,
+    "advance_pct_a": 51.1,
+    "advance_pct_b": 48.9,
     "is_knockout": true,
     "stage": "round_of_16",
     "match_id": "M096__W85__vs__W87",
@@ -939,35 +932,35 @@
   {
     "team_a": "France",
     "team_b": "Morocco",
-    "composite_a": 87.6,
-    "composite_b": 81.4,
-    "gap": 6.2,
+    "composite_a": 88.0,
+    "composite_b": 81.6,
+    "gap": 6.4,
     "probabilities": {
-      "team_a_wins": 62.3,
-      "draw": 21.1,
-      "team_b_wins": 16.7
+      "team_a_wins": 61.0,
+      "draw": 21.5,
+      "team_b_wins": 17.5
     },
     "expected_points": {
-      "team_a": 2.08,
-      "team_b": 0.71
+      "team_a": 2.04,
+      "team_b": 0.74
     },
     "predicted_winner": "France",
-    "win_confidence_pct": 78.9,
+    "win_confidence_pct": 77.7,
     "upset_risk": {
       "favored": "France",
       "underdog": "Morocco",
-      "gap": 6.2,
+      "gap": 6.4,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 53.0,
-      "draw": 24.8,
+      "team_a_wins": 52.9,
+      "draw": 25.1,
       "team_b_wins": 22.1
     },
-    "hybrid_gap": 6.2,
+    "hybrid_gap": 6.4,
     "prob_source": "stack",
-    "advance_pct_a": 78.9,
-    "advance_pct_b": 21.1,
+    "advance_pct_a": 77.7,
+    "advance_pct_b": 22.3,
     "is_knockout": true,
     "stage": "quarterfinals",
     "match_id": "M097__W89__vs__W90",
@@ -976,35 +969,35 @@
   {
     "team_a": "Spain",
     "team_b": "Belgium",
-    "composite_a": 88.5,
-    "composite_b": 80.6,
-    "gap": 7.9,
+    "composite_a": 89.0,
+    "composite_b": 80.9,
+    "gap": 8.1,
     "probabilities": {
-      "team_a_wins": 66.8,
-      "draw": 19.3,
-      "team_b_wins": 13.8
+      "team_a_wins": 65.5,
+      "draw": 19.9,
+      "team_b_wins": 14.6
     },
     "expected_points": {
-      "team_a": 2.2,
-      "team_b": 0.61
+      "team_a": 2.16,
+      "team_b": 0.64
     },
     "predicted_winner": "Spain",
-    "win_confidence_pct": 82.9,
+    "win_confidence_pct": 81.7,
     "upset_risk": {
       "favored": "Spain",
       "underdog": "Belgium",
-      "gap": 7.9,
+      "gap": 8.1,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 57.7,
-      "draw": 23.5,
+      "team_a_wins": 57.4,
+      "draw": 23.8,
       "team_b_wins": 18.9
     },
-    "hybrid_gap": 7.9,
+    "hybrid_gap": 8.1,
     "prob_source": "stack",
-    "advance_pct_a": 82.9,
-    "advance_pct_b": 17.1,
+    "advance_pct_a": 81.7,
+    "advance_pct_b": 18.3,
     "is_knockout": true,
     "stage": "quarterfinals",
     "match_id": "M098__W93__vs__W94",
@@ -1014,34 +1007,34 @@
     "team_a": "Norway",
     "team_b": "England",
     "composite_a": 82.6,
-    "composite_b": 90.0,
-    "gap": 7.4,
+    "composite_b": 90.3,
+    "gap": 7.7,
     "probabilities": {
-      "team_a_wins": 19.3,
+      "team_a_wins": 19.2,
       "draw": 22.3,
-      "team_b_wins": 58.4
+      "team_b_wins": 58.5
     },
     "expected_points": {
       "team_a": 0.8,
-      "team_b": 1.97
+      "team_b": 1.98
     },
     "predicted_winner": "England",
-    "win_confidence_pct": 75.2,
+    "win_confidence_pct": 75.3,
     "upset_risk": {
       "favored": "England",
       "underdog": "Norway",
-      "gap": 7.4,
+      "gap": 7.7,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 19.8,
-      "draw": 23.9,
+      "team_a_wins": 19.6,
+      "draw": 24.1,
       "team_b_wins": 56.3
     },
-    "hybrid_gap": 7.4,
+    "hybrid_gap": 7.7,
     "prob_source": "stack",
-    "advance_pct_a": 24.8,
-    "advance_pct_b": 75.2,
+    "advance_pct_a": 24.7,
+    "advance_pct_b": 75.3,
     "is_knockout": true,
     "stage": "quarterfinals",
     "match_id": "M099__W91__vs__W92",
@@ -1050,35 +1043,35 @@
   {
     "team_a": "Argentina",
     "team_b": "Switzerland",
-    "composite_a": 84.7,
-    "composite_b": 77.9,
-    "gap": 6.8,
+    "composite_a": 85.4,
+    "composite_b": 78.3,
+    "gap": 7.1,
     "probabilities": {
-      "team_a_wins": 61.2,
-      "draw": 21.4,
-      "team_b_wins": 17.4
+      "team_a_wins": 60.5,
+      "draw": 21.7,
+      "team_b_wins": 17.8
     },
     "expected_points": {
-      "team_a": 2.05,
-      "team_b": 0.74
+      "team_a": 2.03,
+      "team_b": 0.75
     },
     "predicted_winner": "Argentina",
-    "win_confidence_pct": 77.8,
+    "win_confidence_pct": 77.2,
     "upset_risk": {
       "favored": "Argentina",
       "underdog": "Switzerland",
-      "gap": 6.8,
+      "gap": 7.1,
       "indicators": []
     },
     "j5l_probabilities": {
       "team_a_wins": 54.7,
-      "draw": 24.4,
-      "team_b_wins": 20.9
+      "draw": 24.6,
+      "team_b_wins": 20.7
     },
-    "hybrid_gap": 6.8,
+    "hybrid_gap": 7.1,
     "prob_source": "stack",
-    "advance_pct_a": 77.8,
-    "advance_pct_b": 22.2,
+    "advance_pct_a": 77.2,
+    "advance_pct_b": 22.8,
     "is_knockout": true,
     "stage": "quarterfinals",
     "match_id": "M100__W95__vs__W96",
@@ -1087,42 +1080,42 @@
   {
     "team_a": "France",
     "team_b": "Spain",
-    "composite_a": 87.6,
-    "composite_b": 88.5,
-    "gap": 0.9,
+    "composite_a": 88.0,
+    "composite_b": 89.0,
+    "gap": 1.0,
     "probabilities": {
-      "team_a_wins": 32.2,
+      "team_a_wins": 32.5,
       "draw": 25.6,
-      "team_b_wins": 42.2
+      "team_b_wins": 41.9
     },
     "expected_points": {
-      "team_a": 1.22,
-      "team_b": 1.52
+      "team_a": 1.23,
+      "team_b": 1.51
     },
     "predicted_winner": "Spain",
-    "win_confidence_pct": 56.7,
+    "win_confidence_pct": 56.3,
     "upset_risk": {
       "favored": "Spain",
       "underdog": "France",
-      "gap": 0.9,
+      "gap": 1.0,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 0.9 points"
+          "detail": "Composite gap only 1.0 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 34.2,
-      "draw": 27.1,
+      "team_a_wins": 33.9,
+      "draw": 27.3,
       "team_b_wins": 38.8
     },
-    "hybrid_gap": 0.9,
+    "hybrid_gap": 1.0,
     "prob_source": "stack",
-    "advance_pct_a": 43.3,
-    "advance_pct_b": 56.7,
+    "advance_pct_a": 43.7,
+    "advance_pct_b": 56.3,
     "is_knockout": true,
     "stage": "semifinals",
     "match_id": "M101__W97__vs__W98",
@@ -1131,35 +1124,35 @@
   {
     "team_a": "England",
     "team_b": "Argentina",
-    "composite_a": 90.0,
-    "composite_b": 84.7,
-    "gap": 5.3,
+    "composite_a": 90.3,
+    "composite_b": 85.4,
+    "gap": 4.9,
     "probabilities": {
-      "team_a_wins": 43.7,
-      "draw": 25.5,
-      "team_b_wins": 30.9
+      "team_a_wins": 44.3,
+      "draw": 25.4,
+      "team_b_wins": 30.3
     },
     "expected_points": {
-      "team_a": 1.56,
-      "team_b": 1.18
+      "team_a": 1.58,
+      "team_b": 1.16
     },
     "predicted_winner": "England",
-    "win_confidence_pct": 58.6,
+    "win_confidence_pct": 59.4,
     "upset_risk": {
       "favored": "England",
       "underdog": "Argentina",
-      "gap": 5.3,
+      "gap": 4.9,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 50.6,
-      "draw": 25.4,
-      "team_b_wins": 24.0
+      "team_a_wins": 48.9,
+      "draw": 26.0,
+      "team_b_wins": 25.1
     },
-    "hybrid_gap": 5.3,
+    "hybrid_gap": 4.9,
     "prob_source": "stack",
-    "advance_pct_a": 58.6,
-    "advance_pct_b": 41.4,
+    "advance_pct_a": 59.4,
+    "advance_pct_b": 40.6,
     "is_knockout": true,
     "stage": "semifinals",
     "match_id": "M102__W99__vs__W100",
