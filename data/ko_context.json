@@ -395,17 +395,17 @@
   },
   "Norway__vs__England": {
     "tier": "quarterfinals",
-    "kickoff_utc": "2026-07-11T21:00:00Z",
-    "played": false,
+    "kickoff_utc": "2026-07-11T21:00Z",
+    "played": true,
     "team_a": {
       "team": "Norway",
-      "rest_days": 6,
-      "travel_km": 1747.0
+      "rest_days": 0,
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "England",
-      "rest_days": 5,
-      "travel_km": 2074.5
+      "rest_days": 0,
+      "travel_km": 0.0
     }
   },
   "Argentina__vs__Switzerland": {
