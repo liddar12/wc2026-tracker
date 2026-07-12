@@ -2225,7 +2225,7 @@
           "team_b_wins": 2.3
         },
         "expected_points": {
-          "team_a": 2.82,
+          "team_a": 2.81,
           "team_b": 0.13
         },
         "predicted_winner": "France",
@@ -2413,7 +2413,7 @@
         "composite_b": 72.7,
         "gap": 12.7,
         "probabilities": {
-          "team_a_wins": 83.6,
+          "team_a_wins": 83.7,
           "draw": 10.7,
           "team_b_wins": 5.7
         },
@@ -2422,7 +2422,7 @@
           "team_b": 0.28
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 83.6,
+        "win_confidence_pct": 83.7,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Algeria",
@@ -2489,7 +2489,7 @@
         "composite_b": 58.2,
         "gap": 27.2,
         "probabilities": {
-          "team_a_wins": 95.0,
+          "team_a_wins": 95.1,
           "draw": 3.8,
           "team_b_wins": 1.1
         },
@@ -2498,7 +2498,7 @@
           "team_b": 0.07
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 95.0,
+        "win_confidence_pct": 95.1,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Jordan",
