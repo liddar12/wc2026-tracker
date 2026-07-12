@@ -6824,9 +6824,36 @@
           0.5818
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.95779,
+          "logloss": 1.47578
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 1.01459,
+          "logloss": 1.53294
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.87435,
+          "logloss": 1.39756
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.94486,
+          "logloss": 1.46707
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 0.97842,
+          "logloss": 1.49611
+        }
+      },
+      "scored": true,
+      "actual_score": "1-2 (AET)"
     },
     "M100__W95__vs__W96": {
       "match_number": 100,
@@ -6834,7 +6861,7 @@
       "team_a": "Argentina",
       "team_b": "Switzerland",
       "kickoff_utc": "2026-07-12T01:00:00Z",
-      "captured_at": "2026-07-11T23:14:23+00:00",
+      "captured_at": "2026-07-12T00:08:45+00:00",
       "preds": {
         "model": [
           0.5501,
@@ -6857,9 +6884,9 @@
           0.1562
         ],
         "stack": [
-          0.6045,
-          0.2168,
-          0.1787
+          0.6059,
+          0.2163,
+          0.1778
         ]
       },
       "actual": null,
@@ -6867,29 +6894,29 @@
       "scored": false
     }
   },
-  "updated_at": "2026-07-11T23:14:23+00:00",
+  "updated_at": "2026-07-12T00:08:45+00:00",
   "summary": {
-    "matches_scored": 94,
+    "matches_scored": 95,
     "model": {
       "correct": 65,
-      "total": 94,
+      "total": 95,
       "measured": true,
-      "brier": 0.4837,
-      "logloss": 0.8618
+      "brier": 0.4887,
+      "logloss": 0.8683
     },
     "dt": {
       "correct": 61,
-      "total": 94,
+      "total": 95,
       "measured": true,
-      "brier": 0.4823,
-      "logloss": 0.8352
+      "brier": 0.4879,
+      "logloss": 0.8425
     },
     "market": {
       "correct": 64,
-      "total": 94,
+      "total": 95,
       "measured": true,
-      "brier": 0.4708,
-      "logloss": 0.8105
+      "brier": 0.4751,
+      "logloss": 0.8166
     },
     "polymarket": {
       "correct": 47,
@@ -6900,17 +6927,17 @@
     },
     "hybrid": {
       "correct": 63,
-      "total": 94,
+      "total": 95,
       "measured": true,
-      "brier": 0.4689,
-      "logloss": 0.816
+      "brier": 0.4739,
+      "logloss": 0.8229
     },
     "stack": {
       "correct": 65,
-      "total": 94,
+      "total": 95,
       "measured": true,
-      "brier": 0.4693,
-      "logloss": 0.8124
+      "brier": 0.4746,
+      "logloss": 0.8196
     }
   }
 }

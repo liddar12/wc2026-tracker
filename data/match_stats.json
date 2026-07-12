@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-11T23:14:17+00:00",
+    "updated_at": "2026-07-12T00:08:39+00:00",
     "source": "espn-summary",
     "matches": 98,
     "last_run_updated": 2
@@ -6675,41 +6675,41 @@
         "team": "Belgium"
       }
     ],
-    "updated_at": "2026-07-11T23:14:17+00:00"
+    "updated_at": "2026-07-12T00:08:39+00:00"
   },
   "Norway__vs__England": {
     "team_a": "Norway",
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 42.5,
-        "totalShots": 9,
+        "possessionPct": 47.7,
+        "totalShots": 13,
         "shotsOnTarget": 4,
-        "blockedShots": 1,
-        "shotPct": 40.0,
-        "totalPasses": 411,
-        "passPct": 80.0,
-        "accuratePasses": 349,
-        "saves": 3,
-        "effectiveTackles": 10,
-        "foulsCommitted": 8,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 576,
+        "passPct": 90.0,
+        "accuratePasses": 492,
+        "saves": 6,
+        "effectiveTackles": 12,
+        "foulsCommitted": 10,
         "offsides": 1,
-        "totalCrosses": 13,
-        "wonCorners": 5
+        "totalCrosses": 19,
+        "wonCorners": 7
       },
       "b": {
-        "possessionPct": 57.5,
-        "totalShots": 10,
-        "shotsOnTarget": 5,
+        "possessionPct": 52.3,
+        "totalShots": 14,
+        "shotsOnTarget": 8,
         "blockedShots": 3,
-        "shotPct": 50.0,
-        "totalPasses": 546,
+        "shotPct": 60.0,
+        "totalPasses": 626,
         "passPct": 90.0,
-        "accuratePasses": 505,
+        "accuratePasses": 567,
         "saves": 3,
-        "effectiveTackles": 8,
-        "foulsCommitted": 5,
-        "offsides": 3,
+        "effectiveTackles": 11,
+        "foulsCommitted": 8,
+        "offsides": 5,
         "totalCrosses": 21,
         "wonCorners": 4
       }
@@ -6729,8 +6729,13 @@
         "minute": "93",
         "type": "goal",
         "team": "England"
+      },
+      {
+        "minute": "117",
+        "type": "yellow",
+        "team": "Norway"
       }
     ],
-    "updated_at": "2026-07-11T23:14:17+00:00"
+    "updated_at": "2026-07-12T00:08:39+00:00"
   }
 }

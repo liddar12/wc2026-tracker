@@ -642,7 +642,9 @@
       "score_a": 1,
       "score_b": 2,
       "kickoff_utc": "2026-07-11T21:00Z",
-      "status": "STATUS_OVERTIME"
+      "status": "STATUS_FINAL_AET",
+      "winner": "England",
+      "method": "aet"
     },
     "Argentina__vs__Switzerland": {
       "score_a": 0,
@@ -651,8 +653,15 @@
       "status": "STATUS_SCHEDULED"
     }
   },
-  "semifinals": {},
+  "semifinals": {
+    "France__vs__Spain": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-14T19:00Z",
+      "status": "STATUS_SCHEDULED"
+    }
+  },
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-11T23:13:15+00:00"
+  "last_updated": "2026-07-12T00:08:34+00:00"
 }
