@@ -647,10 +647,12 @@
       "method": "aet"
     },
     "Argentina__vs__Switzerland": {
-      "score_a": 0,
-      "score_b": 0,
+      "score_a": 3,
+      "score_b": 1,
       "kickoff_utc": "2026-07-12T01:00Z",
-      "status": "STATUS_SCHEDULED"
+      "status": "STATUS_FINAL_AET",
+      "winner": "Argentina",
+      "method": "aet"
     }
   },
   "semifinals": {
@@ -663,5 +665,5 @@
   },
   "third_place": {},
   "final": {},
-  "last_updated": "2026-07-12T01:01:10+00:00"
+  "last_updated": "2026-07-12T03:53:30+00:00"
 }

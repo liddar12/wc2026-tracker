@@ -188,9 +188,9 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-12T00:14:33+00:00",
+    "updated_at": "2026-07-12T03:53:36+00:00",
     "source": "espn-summary",
-    "matches": 98,
+    "matches": 99,
     "last_run_updated": 2
   },
   "Mexico__vs__South Africa": {
@@ -6682,32 +6682,32 @@
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 47.7,
+        "possessionPct": 47.6,
         "totalShots": 13,
         "shotsOnTarget": 4,
         "blockedShots": 3,
         "shotPct": 30.0,
-        "totalPasses": 576,
+        "totalPasses": 577,
         "passPct": 90.0,
-        "accuratePasses": 492,
+        "accuratePasses": 494,
         "saves": 6,
-        "effectiveTackles": 12,
+        "effectiveTackles": 11,
         "foulsCommitted": 10,
         "offsides": 1,
         "totalCrosses": 19,
         "wonCorners": 7
       },
       "b": {
-        "possessionPct": 52.3,
+        "possessionPct": 52.4,
         "totalShots": 14,
         "shotsOnTarget": 8,
         "blockedShots": 3,
         "shotPct": 60.0,
-        "totalPasses": 626,
+        "totalPasses": 628,
         "passPct": 90.0,
-        "accuratePasses": 567,
+        "accuratePasses": 568,
         "saves": 3,
-        "effectiveTackles": 11,
+        "effectiveTackles": 9,
         "foulsCommitted": 8,
         "offsides": 5,
         "totalCrosses": 21,
@@ -6736,6 +6736,92 @@
         "team": "Norway"
       }
     ],
-    "updated_at": "2026-07-12T00:14:33+00:00"
+    "updated_at": "2026-07-12T03:53:36+00:00"
+  },
+  "Argentina__vs__Switzerland": {
+    "team_a": "Argentina",
+    "team_b": "Switzerland",
+    "stats": {
+      "a": {
+        "possessionPct": 59.1,
+        "totalShots": 22,
+        "shotsOnTarget": 7,
+        "blockedShots": 7,
+        "shotPct": 30.0,
+        "totalPasses": 692,
+        "passPct": 90.0,
+        "accuratePasses": 615,
+        "saves": 4,
+        "effectiveTackles": 8,
+        "foulsCommitted": 14,
+        "offsides": 4,
+        "totalCrosses": 22,
+        "wonCorners": 8
+      },
+      "b": {
+        "possessionPct": 40.9,
+        "totalShots": 11,
+        "shotsOnTarget": 5,
+        "blockedShots": 3,
+        "shotPct": 50.0,
+        "totalPasses": 474,
+        "passPct": 80.0,
+        "accuratePasses": 399,
+        "saves": 4,
+        "effectiveTackles": 5,
+        "foulsCommitted": 18,
+        "offsides": 3,
+        "totalCrosses": 19,
+        "wonCorners": 2
+      }
+    },
+    "key_events": [
+      {
+        "minute": "10",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "44",
+        "type": "yellow",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "67",
+        "type": "goal",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "72",
+        "type": "red",
+        "team": "Switzerland"
+      },
+      {
+        "minute": "97",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "98",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "112",
+        "type": "goal",
+        "team": "Argentina"
+      },
+      {
+        "minute": "114",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "120'+1",
+        "type": "goal",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-07-12T03:53:36+00:00"
   }
 }
