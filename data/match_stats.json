@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-12T06:26:22+00:00",
+    "updated_at": "2026-07-12T06:49:32+00:00",
     "source": "espn-summary",
     "matches": 99,
     "last_run_updated": 2
@@ -6736,21 +6736,21 @@
         "team": "Norway"
       }
     ],
-    "updated_at": "2026-07-12T06:26:22+00:00"
+    "updated_at": "2026-07-12T06:49:32+00:00"
   },
   "Argentina__vs__Switzerland": {
     "team_a": "Argentina",
     "team_b": "Switzerland",
     "stats": {
       "a": {
-        "possessionPct": 59.1,
+        "possessionPct": 59,
         "totalShots": 22,
         "shotsOnTarget": 7,
         "blockedShots": 7,
         "shotPct": 30.0,
-        "totalPasses": 692,
+        "totalPasses": 691,
         "passPct": 90.0,
-        "accuratePasses": 615,
+        "accuratePasses": 614,
         "saves": 4,
         "effectiveTackles": 8,
         "foulsCommitted": 14,
@@ -6759,14 +6759,14 @@
         "wonCorners": 8
       },
       "b": {
-        "possessionPct": 40.9,
+        "possessionPct": 41,
         "totalShots": 11,
         "shotsOnTarget": 5,
         "blockedShots": 3,
         "shotPct": 50.0,
         "totalPasses": 474,
         "passPct": 80.0,
-        "accuratePasses": 399,
+        "accuratePasses": 398,
         "saves": 4,
         "effectiveTackles": 5,
         "foulsCommitted": 18,
@@ -6822,6 +6822,6 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-12T06:26:22+00:00"
+    "updated_at": "2026-07-12T06:49:32+00:00"
   }
 }

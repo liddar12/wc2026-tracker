@@ -2134,7 +2134,7 @@
         "probabilities": {
           "team_a_wins": 79.2,
           "draw": 12.5,
-          "team_b_wins": 8.3
+          "team_b_wins": 8.2
         },
         "expected_points": {
           "team_a": 2.5,
@@ -2220,16 +2220,16 @@
         "composite_b": 58.1,
         "gap": 29.5,
         "probabilities": {
-          "team_a_wins": 92.0,
+          "team_a_wins": 92.1,
           "draw": 5.7,
-          "team_b_wins": 2.3
+          "team_b_wins": 2.2
         },
         "expected_points": {
           "team_a": 2.82,
-          "team_b": 0.13
+          "team_b": 0.12
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 92.0,
+        "win_confidence_pct": 92.1,
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
@@ -2414,11 +2414,11 @@
         "gap": 12.1,
         "probabilities": {
           "team_a_wins": 83.6,
-          "draw": 10.6,
+          "draw": 10.7,
           "team_b_wins": 5.8
         },
         "expected_points": {
-          "team_a": 2.62,
+          "team_a": 2.61,
           "team_b": 0.28
         },
         "predicted_winner": "Argentina",
@@ -2456,8 +2456,8 @@
           "team_b_wins": 8.8
         },
         "expected_points": {
-          "team_a": 2.48,
-          "team_b": 0.39
+          "team_a": 2.47,
+          "team_b": 0.4
         },
         "predicted_winner": "Argentina",
         "win_confidence_pct": 78.1,
@@ -2489,7 +2489,7 @@
         "composite_b": 58.0,
         "gap": 26.7,
         "probabilities": {
-          "team_a_wins": 95.3,
+          "team_a_wins": 95.2,
           "draw": 3.7,
           "team_b_wins": 1.1
         },
@@ -2498,7 +2498,7 @@
           "team_b": 0.07
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 95.3,
+        "win_confidence_pct": 95.2,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Jordan",
@@ -3017,7 +3017,7 @@
         "probabilities": {
           "team_a_wins": 88.7,
           "draw": 8.0,
-          "team_b_wins": 3.4
+          "team_b_wins": 3.3
         },
         "expected_points": {
           "team_a": 2.74,
@@ -3053,7 +3053,7 @@
         "composite_b": 60.9,
         "gap": 29.1,
         "probabilities": {
-          "team_a_wins": 95.3,
+          "team_a_wins": 95.4,
           "draw": 3.6,
           "team_b_wins": 1.1
         },
@@ -3062,7 +3062,7 @@
           "team_b": 0.07
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 95.3,
+        "win_confidence_pct": 95.4,
         "upset_risk": {
           "favored": "England",
           "underdog": "Panama",
