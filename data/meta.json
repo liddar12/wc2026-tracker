@@ -7,17 +7,17 @@
   ],
   "dates": "11 June \u2013 19 July 2026",
   "format": "48 teams \u00b7 12 groups of 4 \u00b7 Top 2 + 8 best 3rd-place to Round of 32",
-  "data_version": "2026-07-13T07:43:51+00:00",
+  "data_version": "2026-07-13T08:58:37+00:00",
   "model_version": "v4-optimized",
   "model_weights": {
-    "mine": 0.1222,
-    "elo": 0.0289,
-    "tmv": 0.5079,
-    "qual": 0.2742,
+    "mine": 0.1122,
+    "elo": 0.0382,
+    "tmv": 0.5056,
+    "qual": 0.2538,
     "cont_mult": 1.5,
     "host_mult": 0.5,
-    "form": 0.0018,
-    "dominance": 0.0652
+    "form": 0.002,
+    "dominance": 0.0882
   },
   "model_accuracy_2022_backtest": {
     "top_4": "1/4 (25%)",
@@ -29,7 +29,7 @@
   },
   "poisson_group": {
     "mu": 0.2,
-    "beta": 0.0837
+    "beta": 0.0896
   },
   "hybrid_weights": [
     0.35,

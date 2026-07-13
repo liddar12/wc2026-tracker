@@ -4,25 +4,25 @@
   "group": {
     "n_games": 72,
     "current": {
-      "logloss": 0.8385,
+      "logloss": 0.8351,
       "accuracy": 0.653
     },
     "tuned": {
-      "logloss": 0.8351,
+      "logloss": 0.8329,
       "accuracy": 0.653
     },
     "adopted": true,
     "weights": {
-      "mine": 0.1222,
-      "elo": 0.0289,
-      "tmv": 0.5079,
-      "qual": 0.2742,
-      "form": 0.0018,
-      "dominance": 0.0652
+      "mine": 0.1122,
+      "elo": 0.0382,
+      "tmv": 0.5056,
+      "qual": 0.2538,
+      "form": 0.002,
+      "dominance": 0.0882
     },
     "poisson": {
       "mu": 0.2,
-      "beta": 0.0837
+      "beta": 0.0896
     }
   },
   "blend": {
