@@ -87,6 +87,7 @@ Scoring (client-computed + netlify/functions/score-brackets.mjs): knockout R32=1
 
 Conventions:
 - Match data/*.json on-disk encoding when writing from scripts (ensure_ascii=True) — keep diffs minimal, no cosmetic churn.
+- ANY manual commit that changes data/*.json MUST also bump meta.json data_version — clients cache every feed in localStorage keyed by it and never refetch while it's unchanged (RCA 2026-07-13: fresh scorers.json was invisible to returning users).
 - sw.js does NOT cache (pure cache-purger); _headers controls app-code freshness (short max-age + stale-while-revalidate).
 - Fix only what's scoped; no opportunistic refactors or new abstractions.
 - Design/architecture notes live in docs/ (see docs/REALTIME_ARCHITECTURE.md). QA login: liddar@gmail.com.

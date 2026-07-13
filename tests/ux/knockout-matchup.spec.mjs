@@ -30,7 +30,10 @@ test('matchup page shows the Luck check (how they got here + disclaimer)', async
   await expect(luck).toBeVisible({ timeout: 10_000 });
   await expect(page.locator('[data-testid="matchup-luck-France"]')).toBeVisible();
   await expect(page.locator('[data-testid="matchup-luck-Spain"]')).toBeVisible();
-  await expect(luck.locator('.eb-luck-note')).toContainText('never adjusts projections');
+  // plain-language contract: a head-to-head sentence + "Nth luckiest of NN teams"
+  await expect(page.locator('[data-testid="matchup-luck-headline"]')).toContainText(/luck|breaks|luckier/);
+  await expect(luck.locator('.eb-luck-score').first()).toContainText(/luckiest of \d+ teams/);
+  await expect(luck.locator('.eb-luck-note')).toContainText('never changes the predictions');
   // A played group fixture has events + stats → the this-match ledger renders.
   await page.goto('/#/matchup/team_a/Mexico/team_b/South%20Africa', { waitUntil: 'domcontentloaded' });
   await expect(page.locator('[data-testid="matchup-luck-ledger"]')).toBeVisible({ timeout: 10_000 });

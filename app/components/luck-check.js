@@ -1,19 +1,24 @@
-/* luck-check.js — matchup-page Luck check section.
+/* luck-check.js — matchup-page Luck check section, in PLAIN LANGUAGE.
  *
- * Two parts, both display-only (never feed the model — see app/lib/luck-index.js
+ * Three parts, all display-only (never feed the model — see app/lib/luck-index.js
  * and docs/LUCK_ANALYSIS.md):
- *   1. "How they got here" — each side's group-stage luck index + top chips,
- *      the same profile the Projected tab's Luck check card shows.
- *   2. "This match" — a live luck ledger for THIS fixture (pens, cards,
- *      own-goal gifts, corner/whistle edges, score vs pre-match xG). It reads
- *      the live-merged in-memory data, so it fills in during the match on
- *      every data:live-refresh re-render — the change-of-luck feed into the
- *      next round. Empty (part hidden) before any signal exists.
+ *   1. A headline sentence comparing the two sides' luck in common terms
+ *      ("England has been noticeably luckier than Argentina this tournament").
+ *   2. "How they got here" — each side's standing ("5th luckiest of 48 teams")
+ *      + word chips (penalty awarded, corner edge, friendly whistle…) — plain
+ *      words only, no statistical notation.
+ *   3. "This match" — a live luck ledger for THIS fixture (pens, cards,
+ *      own-goal gifts, corner and whistle edges, score vs expectation). It
+ *      reads the live-merged in-memory data, so it fills in during the match
+ *      on every data:live-refresh re-render — the change-of-luck feed into
+ *      the next round. Hidden before any signal exists.
  * Returns an empty DocumentFragment when neither team has a luck profile.
  */
 import { escapeHtml } from '../lib/escape.js';
 import { flagFor } from './team-flag.js';
-import { computeLuckIndex, luckChips, matchLuckLedger } from '../lib/luck-index.js';
+import {
+  computeLuckIndex, luckChips, matchLuckLedger, luckStanding, compareLuckPlain,
+} from '../lib/luck-index.js';
 
 function teamRow(team, profile) {
   if (!profile) return '';
@@ -22,8 +27,8 @@ function teamRow(team, profile) {
   return `
     <div class="eb-luck-row" data-testid="matchup-luck-${escapeHtml(team)}">
       <span class="eb-luck-team">${flagFor(team)} ${escapeHtml(team)}</span>
-      <span class="eb-luck-score${tone}">${profile.index >= 0 ? '+' : ''}${profile.index.toFixed(2)}σ</span>
-      <span class="eb-luck-chips">${chips.map((c) => `<span class="eb-luck-chip">${escapeHtml(c.label)} ${c.z >= 0 ? '+' : ''}${c.z.toFixed(1)}σ</span>`).join('')}</span>
+      <span class="eb-luck-score${tone}">${escapeHtml(luckStanding(profile))}</span>
+      <span class="eb-luck-chips">${chips.map((c) => `<span class="eb-luck-chip">${escapeHtml(c.label)}</span>`).join('')}</span>
     </div>`;
 }
 
@@ -46,11 +51,13 @@ export function luckCheckSection(match, data) {
   const pa = profiles[match?.team_a]; const pb = profiles[match?.team_b];
   if (!pa && !pb && !ledger) return document.createDocumentFragment();
 
+  const headline = compareLuckPlain(match.team_a, match.team_b, pa, pb);
   const sec = document.createElement('div');
   sec.className = 'section eb-luck';
   sec.dataset.testid = 'matchup-luck';
   sec.innerHTML = `
     <h2>Luck check <span class="muted home-card-meta">how they got here</span></h2>
+    ${headline ? `<p class="eb-luck-headline" data-testid="matchup-luck-headline">${escapeHtml(headline)}</p>` : ''}
     <div class="eb-luck-rows">
       ${teamRow(match.team_a, pa)}
       ${teamRow(match.team_b, pb)}
@@ -63,7 +70,7 @@ export function luckCheckSection(match, data) {
         ${ledgerCol(match.team_b, ledger[match.team_b] || [])}
       </div>
     </div>` : ''}
-    <p class="muted eb-luck-note">Group-stage pens, corners, whistle, cards &amp; xG luck vs the field. Descriptive only — backtested from the R32 it adds no predictive edge, so it never adjusts projections.</p>
+    <p class="muted eb-luck-note">Counted from group-stage penalties, corners, referee calls, cards and finishing vs expectation. Context only — luck never changes the predictions.</p>
   `;
   return sec;
 }
