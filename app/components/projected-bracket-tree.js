@@ -14,6 +14,7 @@ import { renderModelPicker } from './model-picker.js';
 import { buildAutofill } from '../bracket-autofill.js';
 import { MODELS, modelToAutofillSource, getActiveModel } from '../lib/active-model.js';
 import { computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
+import { computeLuckIndex, remainingKnockoutTeams, luckChips } from '../lib/luck-index.js';
 
 const ROUNDS = [
   { key: 'r32', full: 'Round of 32', lo: 73, hi: 88 },
@@ -70,6 +71,8 @@ function paint() {
 
   root.appendChild(renderModelPicker({ active: model, onChange: (m) => setRoute(routeName, { model: m, stage, zoom }) }));
   root.appendChild(renderStageNav(stage, zoom, routeName, model));
+  const luckCard = renderLuckCard(data);
+  if (luckCard) root.appendChild(luckCard);
 
   if (stage === 'gs') { root.appendChild(renderGroupSeeding(data, routeName, model)); return; }
 
@@ -84,6 +87,38 @@ function paint() {
     root.appendChild(e); return;
   }
   root.appendChild(renderTree(ovRows, modelRows, strengthMap(data, source), zoom, stage, params.team));
+}
+
+/* Luck check card — descriptive only (see app/lib/luck-index.js: backtested
+ * from the R32, luck adds no predictive edge, so it never feeds the model).
+ * Shown while ≥2 named teams have unplayed knockout matches. */
+function renderLuckCard(data) {
+  let alive, teams;
+  try {
+    alive = remainingKnockoutTeams(data);
+    teams = computeLuckIndex(data).teams;
+  } catch { return null; }
+  const rows = alive.filter((t) => teams[t]).sort((x, y) => teams[y].index - teams[x].index);
+  if (rows.length < 2) return null;
+  const wrap = document.createElement('section');
+  wrap.className = 'home-card eb-luck'; wrap.dataset.testid = 'eb-luck-card';
+  wrap.innerHTML = `
+    <h2 class="home-card-title">Luck check <span class="muted home-card-meta">how they got here</span></h2>
+    <div class="eb-luck-rows">
+      ${rows.map((t) => {
+    const p = teams[t]; const chips = luckChips(p);
+    const tone = p.index >= 0.35 ? ' is-lucky' : p.index <= -0.35 ? ' is-unlucky' : '';
+    return `
+        <div class="eb-luck-row" data-testid="eb-luck-${escapeHtml(t)}">
+          <span class="eb-luck-team">${flagFor(t)} ${escapeHtml(t)}</span>
+          <span class="eb-luck-score${tone}">${p.index >= 0 ? '+' : ''}${p.index.toFixed(2)}σ</span>
+          <span class="eb-luck-chips">${chips.map((c) => `<span class="eb-luck-chip">${escapeHtml(c.label)} ${c.z >= 0 ? '+' : ''}${c.z.toFixed(1)}σ</span>`).join('')}</span>
+        </div>`;
+  }).join('')}
+    </div>
+    <p class="muted eb-luck-note">Group-stage pens, corners, whistle, cards &amp; xG luck vs the field. Descriptive only — backtested from the R32 it adds no predictive edge, so it never adjusts projections.</p>
+  `;
+  return wrap;
 }
 
 function renderStageNav(stage, zoom, routeName, model) {

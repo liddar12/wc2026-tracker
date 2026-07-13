@@ -1761,6 +1761,19 @@ body.search-open { overflow: hidden; }
 .eb-yourpick { flex: 0 0 auto; font-size: 10px; font-weight: 800; color: var(--accent, #f59e0b); white-space: nowrap; }
 .eb-hl { background: color-mix(in srgb, var(--picked, #2563eb) 16%, transparent); border-radius: 6px; }
 
+/* Luck check card (Projected tab — descriptive only, never feeds the model) */
+.eb-luck { padding: 10px 12px; }
+.eb-luck-rows { display: flex; flex-direction: column; }
+.eb-luck-row { display: flex; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); font-size: 13px; min-width: 0; }
+.eb-luck-row:first-child { border-top: 0; }
+.eb-luck-team { font-weight: 700; flex: 0 0 auto; white-space: nowrap; }
+.eb-luck-score { flex: 0 0 auto; font-weight: 800; font-variant-numeric: tabular-nums; font-size: 12px; padding: 1px 7px; border-radius: 999px; background: var(--surface-2, rgba(127,127,127,.14)); }
+.eb-luck-score.is-lucky { background: color-mix(in srgb, var(--good, #16a34a) 18%, transparent); }
+.eb-luck-score.is-unlucky { background: color-mix(in srgb, var(--bad, #dc2626) 16%, transparent); }
+.eb-luck-chips { display: flex; gap: 4px; flex-wrap: wrap; min-width: 0; }
+.eb-luck-chip { font-size: 10px; font-weight: 700; color: var(--text-muted); background: var(--surface-2, rgba(127,127,127,.14)); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
+.eb-luck-note { font-size: 11px; margin: 8px 0 0; }
+
 /* BR-8 Parlay of the Day */
 .parlay-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; }
 .parlay { border: 1px solid var(--border); border-radius: 12px; padding: 10px 12px; background: var(--surface); }
