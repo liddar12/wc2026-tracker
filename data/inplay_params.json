@@ -5,10 +5,10 @@
   "fit": {
     "n_red_matches": 11,
     "n_checkpoints": 27,
-    "current_brier": 0.0478,
-    "tuned_brier": 0.0476,
+    "current_brier": 0.0485,
+    "tuned_brier": 0.0483,
     "adopted": false
   },
   "note": "Self-tuned each cron from played goal/red timelines; never-regress (margin 0.002). Tilt cap static pending live SoT history (R18 sampler).",
-  "updated_at": "2026-07-12T08:37:11+00:00"
+  "updated_at": "2026-07-13T10:16:22+00:00"
 }
