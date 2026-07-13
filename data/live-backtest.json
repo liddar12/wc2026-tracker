@@ -6919,9 +6919,47 @@
       },
       "scored": true,
       "actual_score": "3-1 (AET)"
+    },
+    "M101__W97__vs__W98": {
+      "match_number": 101,
+      "stage": "semifinals",
+      "team_a": "France",
+      "team_b": "Spain",
+      "kickoff_utc": "2026-07-14T19:00:00Z",
+      "captured_at": "2026-07-13T07:43:47+00:00",
+      "preds": {
+        "model": [
+          0.3461,
+          0.2576,
+          0.3963
+        ],
+        "dt": [
+          0.2879,
+          0.2515,
+          0.4606
+        ],
+        "market": [
+          0.4609,
+          0.2514,
+          0.2877
+        ],
+        "hybrid": [
+          0.365,
+          0.2535,
+          0.3815
+        ],
+        "stack": [
+          0.3252,
+          0.2562,
+          0.4185
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-13T06:48:47+00:00",
+  "updated_at": "2026-07-13T07:43:47+00:00",
   "summary": {
     "matches_scored": 96,
     "model": {
