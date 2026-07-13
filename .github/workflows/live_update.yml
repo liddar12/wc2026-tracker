@@ -68,13 +68,19 @@ jobs:
       # stage defaulted to group_stage) and ran AFTER scrape_live_results,
       # clobbering its normalized records — which broke status-gated scoring.
       # scrape_live_results.py is the single writer of actual_results.json.
-      - name: Scrape top scorers (live)
-        if: steps.gate.outputs.go == '1'
-        run: python scripts/scrape_scorers.py
-        continue-on-error: true
       - name: Scrape match events (goals + cards)
         if: steps.gate.outputs.go == '1'
         run: python scripts/scrape_match_events.py
+        continue-on-error: true
+      # RCA 2026-07-13: scrape_scorers.py went dark on 2026-06-30 — ESPN's
+      # robots.txt now disallows the site.api team/statistics endpoints, so
+      # every fetch raised ScrapeError and the no-change guard silently froze
+      # scorers.json at the group stage. derive_scorers.py builds the same
+      # contract from match_events.json (scraped in the step above) — zero
+      # network, so it can never go robots-dark again.
+      - name: Derive top scorers from match events
+        if: steps.gate.outputs.go == '1'
+        run: python scripts/derive_scorers.py
         continue-on-error: true
       - name: Scrape lineups (in-game/post-game backfill)
         if: steps.gate.outputs.go == '1'

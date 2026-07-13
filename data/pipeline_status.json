@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T21:00:00+00:00",
+  "generated_at": "2026-07-13T17:45:06+00:00",
   "health": "degraded",
   "feeds": [
     {
@@ -13,29 +13,29 @@
       "name": "players.json",
       "updated_at": null,
       "age_hours": null,
-      "rows": 1197,
+      "rows": 1211,
       "status": "ok"
     },
     {
       "name": "scorers.json",
-      "updated_at": "2026-06-30T21:00:00+00:00",
-      "age_hours": 0.0,
+      "updated_at": "2026-07-13T17:39:36+00:00",
+      "age_hours": 0.1,
       "rows": 47,
       "status": "ok"
     },
     {
       "name": "markets.json",
-      "updated_at": "2026-06-30T19:14:51+00:00",
-      "age_hours": 1.8,
+      "updated_at": "2026-07-13T17:26:23+00:00",
+      "age_hours": 0.3,
       "rows": 48,
       "status": "ok"
     },
     {
       "name": "form.json",
       "updated_at": "2026-06-30T21:00:00+00:00",
-      "age_hours": 0.0,
+      "age_hours": 308.8,
       "rows": 48,
-      "status": "ok"
+      "status": "stale"
     },
     {
       "name": "schedule_full.json",
@@ -54,7 +54,7 @@
     {
       "name": "referees.json",
       "updated_at": "2026-06-30T16:33:05+00:00",
-      "age_hours": 4.4,
+      "age_hours": 313.2,
       "rows": 0,
       "status": "empty"
     }

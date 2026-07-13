@@ -19,6 +19,8 @@
  *   live           scorers.json / actual_results                (during tournament)
  */
 
+import { isFinalStatus } from './match-status.js';
+
 // ---- config (defaults; the backtest harness will tune these) ----------------
 export const GB_CONFIG = {
   baseRate: 0.70,        // goals/match for a 100-scoring FWD vs an average defense
@@ -139,7 +141,25 @@ export function buildContext(data, cfg = GB_CONFIG) {
     xgEnvFactor[n] = clamp(avg / (leagueXg || 2.6), cfg.xgEnvClamp);
   }
 
-  return { teams, leagueDef, expectedMatches, oppDefFactor, xgEnvFactor };
+  // Expected REMAINING matches — the projection multiplies a per-match rate and
+  // ADDS to currentGoals, so mid-tournament it must scale by games still to
+  // play, not the whole-tournament count (RCA 2026-07-13: every contender —
+  // including eliminated ones — was projected a full tournament of extra goals).
+  // played counts FINAL results only (AET/PEN included via isFinalStatus);
+  // eliminated teams clamp to 0 remaining, pre-tournament played=0 is a no-op.
+  const played = {};
+  const ar = data?.actualResults || {};
+  for (const tier of Object.values(ar)) {
+    if (!tier || typeof tier !== 'object') continue;
+    for (const [key, rec] of Object.entries(tier)) {
+      if (!key.includes('__vs__') || !isFinalStatus(rec)) continue;
+      for (const t of key.split('__vs__')) played[t] = (played[t] || 0) + 1;
+    }
+  }
+  const remainingMatches = {};
+  for (const n of names) remainingMatches[n] = Math.max(0, expectedMatches[n] - (played[n] || 0));
+
+  return { teams, leagueDef, expectedMatches, remainingMatches, oppDefFactor, xgEnvFactor };
 }
 
 // ---- live goals lookup -------------------------------------------------------
@@ -213,7 +233,7 @@ export function projectPlayer(player, ctx, live, cfg = GB_CONFIG, topScorerByTea
   const team = player.team;
   const scoring = typeof player.scoring === 'number' ? player.scoring : (player.offense || 0);
   const perMatch = cfg.baseRate * Math.pow(Math.max(scoring, 0) / 100, cfg.scoringExp) * w;
-  const matches = ctx.expectedMatches[team] ?? cfg.minMatches;
+  const matches = ctx.remainingMatches?.[team] ?? ctx.expectedMatches[team] ?? cfg.minMatches;
   const oppDef = ctx.oppDefFactor[team] ?? 1;
   const xgEnv = ctx.xgEnvFactor[team] ?? 1;
   const isTopScorer = topScorerByTeam && topScorerByTeam[team] === player.name;

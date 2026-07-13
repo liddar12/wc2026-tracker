@@ -180,6 +180,14 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         continue-on-error: true
 
+      # RCA 2026-07-13: build_pipeline_status.py was wired into NO workflow, so
+      # data/pipeline_status.json (the Status page's feed-health source) froze at
+      # its last manual run (2026-06-30). Run it last so it sees every feed this
+      # refresh just touched; its own no-op guard keeps quiet runs commit-free.
+      - name: Refresh pipeline status (feed health)
+        run: python3 scripts/build_pipeline_status.py
+        continue-on-error: true
+
       # ---- Bump meta.data_version ONLY when real data changed ----
       # Was unconditional: every hourly run committed + pushed + redeployed even
       # with zero data changes, maximizing the cross-cron push-race window and
