@@ -88,6 +88,41 @@ test('too small a field → no z-scores, empty profile (no noise from tiny sampl
   assert.deepEqual(computeLuckIndex(data).teams, {});
 });
 
+test('matchLuckLedger: live per-match luck events for both sides', async () => {
+  const { matchLuckLedger } = await import('../../app/lib/luck-index.js');
+  const data = {
+    matchEvents: { 'A__vs__B': { events: [
+      { type: 'pen-goal', team: 'A' },
+      { type: 'red', team: 'B' },
+      { type: 'own-goal', team: 'B' },
+    ] } },
+    matchStats: { 'A__vs__B': { team_a: 'A', team_b: 'B', stats_a: { corners: 9, fouls: 3 }, stats_b: { corners: 2, fouls: 9 } } },
+    xg: { 'A__vs__B': { team_a: 'A', team_b: 'B', team_a_xg: 0.5, team_b_xg: 1.5 } },
+    actualResults: { semifinals: { 'A__vs__B': { score_a: 2, score_b: 0, status: 'STATUS_FIRST_HALF' } } },
+  };
+  const led = matchLuckLedger(data, { team_a: 'A', team_b: 'B', stage: 'semifinals' });
+  assert.ok(led, 'ledger present once signals exist');
+  const labels = (t) => led[t].map((r) => r.label);
+  assert.ok(labels('A').includes('pen awarded'));
+  assert.ok(labels('A').includes('own-goal gift'));
+  assert.ok(labels('A').includes('card edge') && labels('B').includes('card burden'));
+  assert.ok(labels('A').includes('corner edge'));
+  assert.ok(labels('A').includes('friendly whistle') && labels('B').includes('harsh whistle'));
+  // live score 2-0 vs xG 0.5/1.5 → A hot (+1.5), B cold (−1.5) — updates in-play
+  assert.ok(labels('A').includes('hot finishing'));
+  assert.ok(labels('B').includes('cold finishing'));
+  assert.ok(led.A.every((r) => r.lucky !== undefined));
+});
+
+test('matchLuckLedger: null before any signal (scheduled stub, no events/stats)', async () => {
+  const { matchLuckLedger } = await import('../../app/lib/luck-index.js');
+  const data = {
+    matchEvents: {}, matchStats: {}, xg: { 'A__vs__B': { team_a: 'A', team_b: 'B', team_a_xg: 1, team_b_xg: 1 } },
+    actualResults: { semifinals: { 'A__vs__B': { score_a: 0, score_b: 0, status: 'STATUS_SCHEDULED' } } },
+  };
+  assert.equal(matchLuckLedger(data, { team_a: 'A', team_b: 'B', stage: 'semifinals' }), null);
+});
+
 // ---- source / wiring --------------------------------------------------------
 test('luck is display-only: no projection path imports luck-index', () => {
   for (const f of ['app/bracket-autofill.js', 'app/lib/model-pick.js', 'app/bracket-resolver.js', 'app/hybrid-model.js', 'app/stack-model.js']) {
@@ -99,4 +134,12 @@ test('the Projected tab renders the luck card from the lib', () => {
   const s = read('app/components/projected-bracket-tree.js');
   assert.match(s, /luck-index\.js/, 'imports the lib');
   assert.match(s, /eb-luck-card/, 'renders the card testid');
+});
+
+test('the matchup page mounts the Luck check after the model grid', () => {
+  const v = read('app/views/matchup-detail.js');
+  assert.match(v, /luckCheckSection/, 'matchup view mounts the section');
+  const c = read('app/components/luck-check.js');
+  assert.match(c, /matchup-luck-ledger/, 'component renders the live this-match ledger');
+  assert.match(c, /never adjusts projections/, 'display-only disclaimer is part of the contract');
 });

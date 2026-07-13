@@ -158,6 +158,68 @@ export function remainingKnockoutTeams(data) {
   return [...out];
 }
 
+/** Live per-match luck ledger for ONE fixture — the "change of luck" panel on
+ *  the matchup page. Reads whatever exists NOW (live-merged score, cron-fed
+ *  events/stats), so it grows during the match and re-renders on live refresh.
+ *  Returns { [team]: [{ label, detail, lucky }] } or null before any signal. */
+export function matchLuckLedger(data, match) {
+  const a = match?.team_a; const b = match?.team_b;
+  if (!a || !b) return null;
+  const k1 = `${a}__vs__${b}`; const k2 = `${b}__vs__${a}`;
+  const out = { [a]: [], [b]: [] };
+  const push = (team, label, detail, lucky) => out[team].push({ label, detail, lucky });
+
+  const ev = (data?.matchEvents?.[k1] || data?.matchEvents?.[k2])?.events || [];
+  const tally = { [a]: { pens: 0, cards: 0, og: 0 }, [b]: { pens: 0, cards: 0, og: 0 } };
+  for (const e of ev) {
+    const t = tally[e?.team]; if (!t) continue;
+    if (e.type === 'pen-goal') t.pens++;
+    else if (e.type === 'yellow') t.cards += 1;
+    else if (e.type === 'red') t.cards += 2;
+    else if (e.type === 'own-goal') t.og++;
+  }
+  for (const [team, other] of [[a, b], [b, a]]) {
+    if (tally[team].pens) push(team, 'pen awarded', `×${tally[team].pens}`, true);
+    if (tally[team].og) push(team, 'own goal', `×${tally[team].og}`, false);
+    if (tally[other].og) push(team, 'own-goal gift', `×${tally[other].og}`, true);
+  }
+  const cardDiff = tally[b].cards - tally[a].cards; // + = A has the edge
+  if (cardDiff > 0) { push(a, 'card edge', `+${cardDiff}`, true); push(b, 'card burden', `−${cardDiff}`, false); }
+  else if (cardDiff < 0) { push(b, 'card edge', `+${-cardDiff}`, true); push(a, 'card burden', `−${-cardDiff}`, false); }
+
+  const st = data?.matchStats?.[k1] || data?.matchStats?.[k2];
+  if (st?.team_a) {
+    const sA = st.team_a === a ? st.stats_a : st.stats_b;
+    const sB = st.team_a === a ? st.stats_b : st.stats_a;
+    const corn = (sA?.corners ?? null) !== null && (sB?.corners ?? null) !== null ? sA.corners - sB.corners : null;
+    if (corn > 2) { push(a, 'corner edge', `+${corn}`, true); }
+    else if (corn < -2) { push(b, 'corner edge', `+${-corn}`, true); }
+    const foul = (sA?.fouls ?? null) !== null && (sB?.fouls ?? null) !== null ? sB.fouls - sA.fouls : null;
+    if (foul > 3) { push(a, 'friendly whistle', `+${foul} fouls drawn`, true); push(b, 'harsh whistle', `−${foul}`, false); }
+    else if (foul < -3) { push(b, 'friendly whistle', `+${-foul} fouls drawn`, true); push(a, 'harsh whistle', `−${-foul}`, false); }
+  }
+
+  // Score vs pre-match model xG — live: updates with every merged score tick.
+  const tier = data?.actualResults?.[match.stage === 'group' || !match.stage ? 'group_stage' : match.stage] || {};
+  const rec = tier[k1] || tier[k2];
+  const x = (data?.xg || {})[k1] || (data?.xg || {})[k2];
+  if (rec && rec.status !== 'STATUS_SCHEDULED' && x?.team_a) {
+    const flip = !tier[k1];
+    const sa = flip ? rec.score_b : rec.score_a; const sb = flip ? rec.score_a : rec.score_b;
+    const xa = x.team_a === a ? x.team_a_xg : x.team_b_xg;
+    const xb = x.team_a === a ? x.team_b_xg : x.team_a_xg;
+    if (typeof sa === 'number' && typeof xa === 'number') {
+      const fa = sa - xa; const fb = sb - xb;
+      if (fa >= 0.75) push(a, 'hot finishing', `+${fa.toFixed(1)} vs xG`, true);
+      else if (fa <= -0.75) push(a, 'cold finishing', `${fa.toFixed(1)} vs xG`, false);
+      if (fb >= 0.75) push(b, 'hot finishing', `+${fb.toFixed(1)} vs xG`, true);
+      else if (fb <= -0.75) push(b, 'cold finishing', `${fb.toFixed(1)} vs xG`, false);
+    }
+  }
+
+  return out[a].length || out[b].length ? out : null;
+}
+
 /** Top |z| component chips for a team's luck row (default: up to 2, |z|≥0.8). */
 export function luckChips(profile, { max = 2, minZ = 0.8 } = {}) {
   if (!profile?.z) return [];
