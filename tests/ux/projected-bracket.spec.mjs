@@ -105,6 +105,38 @@ test.describe('Projected bracket + hidden nav', () => {
     }
   });
 
+  test('Luck check card: descriptive luck rows for the remaining knockout teams', async ({ page }) => {
+    // Expected visibility comes from the same data the dev server serves, so the
+    // assertion stays correct as the tournament advances (card shows while ≥2
+    // named teams still have an unplayed knockout match; hides after the final).
+    const { readFileSync } = await import('node:fs');
+    const J = (p) => JSON.parse(readFileSync(new URL(`../../data/${p}`, import.meta.url), 'utf8'));
+    const sched = J('schedule_full.json');
+    const ar = J('actual_results.json');
+    const FINAL = new Set(['STATUS_FINAL', 'STATUS_FULL_TIME', 'STATUS_END_OF_FULL_TIME', 'STATUS_FINAL_AET', 'STATUS_FINAL_PEN']);
+    const KO = new Set(['round_of_32', 'round_of_16', 'quarterfinals', 'semifinals', 'third_place', 'final']);
+    const placeholder = (s) => typeof s !== 'string' || /^\d[A-L]$|^3 [A-L]+$|^W\d+$|^L\d+$/.test(s);
+    const alive = new Set();
+    for (const m of (sched.matches || sched)) {
+      if (!KO.has(m.stage) || placeholder(m.team_a) || placeholder(m.team_b)) continue;
+      const rec = ar[m.stage]?.[`${m.team_a}__vs__${m.team_b}`] || ar[m.stage]?.[`${m.team_b}__vs__${m.team_a}`];
+      if (rec && (FINAL.has(rec.status) || rec.status === undefined)) continue;
+      alive.add(m.team_a); alive.add(m.team_b);
+    }
+
+    await page.goto('/#/projected', { waitUntil: 'domcontentloaded' });
+    await expect(page.locator('[data-testid="eb-bracket"]')).toBeVisible({ timeout: 15_000 });
+    const card = page.locator('[data-testid="eb-luck-card"]');
+    if (alive.size >= 2) {
+      await expect(card).toBeVisible({ timeout: 10_000 });
+      await expect.poll(() => page.locator('.eb-luck-row').count()).toBeGreaterThanOrEqual(2);
+      // the display-only disclaimer is part of the contract
+      await expect(card.locator('.eb-luck-note')).toContainText('never adjusts projections');
+    } else {
+      await expect(card).toHaveCount(0);
+    }
+  });
+
   test('hidden in-content entry points (Home Play CTA / quick links) are gone', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
     await expect(page.locator('.home-hero')).toBeVisible({ timeout: 10_000 });

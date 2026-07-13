@@ -1,8 +1,8 @@
 /* bracket-view-r6.js — R6 T3: read-only consolidated Bracket section.
    Two sub-modes:
    - Live: resolve the bracket from actualResults + show group info
-   - Projected: same tree but resolve via a chosen FILL_SOURCE (model,
-     hybrid, market, consensus); diff against Live where data overlaps.
+   - Projected: same tree but resolve via a chosen FILL_SOURCE (model, dt,
+     market, hybrid, stack); diff against Live where data overlaps.
 
    No picking happens here — Play is the only write surface. */
 
@@ -22,7 +22,6 @@ const SOURCE_LABELS = {
   kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
   stack: 'J5L AI Enhanced',
-  consensus: 'Public consensus',
 };
 
 export function renderBracketView(root, data, params = {}) {
@@ -93,19 +92,10 @@ function renderLive(data) {
   const ko = sf
     .filter((m) => STAGE_ORDER.includes(m.stage))
     .sort((a, b) => (a.match_number || 0) - (b.match_number || 0));
-  const actuals = data?.actualResults || {};
-  const winnerFor = (match) => {
-    const stageKey = match.stage;
-    const rec = actuals?.[stageKey]?.[`${match.team_a}__vs__${match.team_b}`] || actuals?.[stageKey]?.[`${match.team_b}__vs__${match.team_a}`];
-    if (!rec) return null;
-    const a = rec.score_a ?? rec.team_a_score;
-    const b = rec.score_b ?? rec.team_b_score;
-    if (typeof a !== 'number' || typeof b !== 'number') return null;
-    if (a > b) return match.team_a;
-    if (b > a) return match.team_b;
-    return rec.penalty_winner || null;
-  };
-  resolveSlots(ko, data, { winnerResolver: winnerFor });
+  // No winnerResolver: winners come only from the status-gated lookupActual
+  // inside resolveSlots (FINAL/AET/PEN advance; a live in-progress lead or a
+  // 0-0 STATUS_SCHEDULED stub must never advance a team into the next round).
+  resolveSlots(ko, data);
 
   wrap.innerHTML = `
     <h2 class="home-card-title">Live bracket</h2>

@@ -41,6 +41,7 @@ import { mergedMarkets } from '../markets.js';
 import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-status.js';
 import { t } from '../lib/i18n.js';
 import { previewSection } from '../components/match-preview.js';
+import { luckCheckSection } from '../components/luck-check.js';
 import { buildMatchShareUrl, tryShareViaNavigator } from '../share-match.js';
 
 export function renderMatchupDetail(root, data, params) {
@@ -203,6 +204,12 @@ export function renderMatchupDetail(root, data, params) {
     else grid.append(marketCol);
     root.appendChild(grid);
   }
+
+  // Luck check — right after the model grid (the "To advance" block) per UX
+  // request: how each side got here + a live this-match luck ledger that fills
+  // in on every data:live-refresh re-render. Display-only, never feeds the
+  // model (docs/LUCK_ANALYSIS.md); empty fragment when no team has a profile.
+  root.appendChild(luckCheckSection(match, data));
 
   // RJ30.2 Match Intelligence — REAL ESPN boxscore stats + a momentum strip,
   // mounted next to the model/xG grid (where match analysis belongs). Both

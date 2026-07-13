@@ -22,6 +22,20 @@ test('knockout matchup opens (no "Matchup not found") and shows the round + team
   await expect(page.getByText('Why this prediction')).toHaveCount(0);
 });
 
+test('matchup page shows the Luck check (how they got here + disclaimer)', async ({ page }) => {
+  // France vs Spain (SF) — both teams always have a group-stage luck profile,
+  // so the section renders in every tournament state (pre/live/post match).
+  await page.goto('/#/matchup/team_a/France/team_b/Spain', { waitUntil: 'domcontentloaded' });
+  const luck = page.locator('[data-testid="matchup-luck"]');
+  await expect(luck).toBeVisible({ timeout: 10_000 });
+  await expect(page.locator('[data-testid="matchup-luck-France"]')).toBeVisible();
+  await expect(page.locator('[data-testid="matchup-luck-Spain"]')).toBeVisible();
+  await expect(luck.locator('.eb-luck-note')).toContainText('never adjusts projections');
+  // A played group fixture has events + stats → the this-match ledger renders.
+  await page.goto('/#/matchup/team_a/Mexico/team_b/South%20Africa', { waitUntil: 'domcontentloaded' });
+  await expect(page.locator('[data-testid="matchup-luck-ledger"]')).toBeVisible({ timeout: 10_000 });
+});
+
 test('group matchup still renders its model prediction sections', async ({ page }) => {
   await page.goto('/#/matchup/team_a/Mexico/team_b/South%20Africa', { waitUntil: 'domcontentloaded' });
   await expect(page.getByText('Mexico', { exact: false }).first()).toBeVisible({ timeout: 10_000 });
