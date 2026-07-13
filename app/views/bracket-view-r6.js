@@ -1,8 +1,8 @@
 /* bracket-view-r6.js — R6 T3: read-only consolidated Bracket section.
    Two sub-modes:
    - Live: resolve the bracket from actualResults + show group info
-   - Projected: same tree but resolve via a chosen FILL_SOURCE (model,
-     hybrid, market, consensus); diff against Live where data overlaps.
+   - Projected: same tree but resolve via a chosen FILL_SOURCE (model, dt,
+     market, hybrid, stack); diff against Live where data overlaps.
 
    No picking happens here — Play is the only write surface. */
 
@@ -22,7 +22,6 @@ const SOURCE_LABELS = {
   kalshi: 'Markets',
   hybrid: 'Hybrid (⅓·⅓·⅓)',
   stack: 'J5L AI Enhanced',
-  consensus: 'Public consensus',
 };
 
 export function renderBracketView(root, data, params = {}) {

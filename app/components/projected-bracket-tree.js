@@ -37,6 +37,9 @@ function strengthMap(data, source) {
   if (source === 'dt') { for (const r of data?.dtModel?.team_rankings || []) if (r.country) m[r.country] = r.rating; if (Object.keys(m).length) return m; }
   else if (source === 'kalshi') { for (const r of data?.markets?.tournament_winner || []) if (r.team) m[r.team] = r.prob_pct; if (Object.keys(m).length) return m; }
   else if (source === 'hybrid') { for (const r of data?.forecast?.teams || []) if (r.team) m[r.team] = r.hybrid_strength; if (Object.keys(m).length) return m; }
+  // 'stack' (J5L AI Enhanced — the default model): confidence must come from the
+  // same learned strengths that make the picks, not the composite fallback.
+  else if (source === 'stack') { for (const [t, v] of Object.entries(data?.stacker?.strengths || {})) if (typeof v === 'number') m[t] = v; if (Object.keys(m).length) return m; }
   for (const [n, t] of Object.entries(teams)) m[n] = t.composite || 0;
   return m;
 }
