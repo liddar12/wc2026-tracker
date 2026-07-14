@@ -1869,7 +1869,7 @@
           "team_b_wins": 1.0
         },
         "expected_points": {
-          "team_a": 2.89,
+          "team_a": 2.9,
           "team_b": 0.07
         },
         "predicted_winner": "Spain",
@@ -1895,7 +1895,7 @@
         "composite_b": 73.7,
         "gap": 15.6,
         "probabilities": {
-          "team_a_wins": 85.1,
+          "team_a_wins": 85.2,
           "draw": 10.0,
           "team_b_wins": 4.9
         },
@@ -1904,7 +1904,7 @@
           "team_b": 0.25
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 85.1,
+        "win_confidence_pct": 85.2,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Uruguay",
@@ -1926,7 +1926,7 @@
         "composite_b": 61.6,
         "gap": 27.7,
         "probabilities": {
-          "team_a_wins": 96.3,
+          "team_a_wins": 96.4,
           "draw": 2.9,
           "team_b_wins": 0.8
         },
@@ -1935,7 +1935,7 @@
           "team_b": 0.05
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 96.3,
+        "win_confidence_pct": 96.4,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Saudi Arabia",
@@ -2132,8 +2132,8 @@
         "composite_b": 78.6,
         "gap": 9.7,
         "probabilities": {
-          "team_a_wins": 79.4,
-          "draw": 12.5,
+          "team_a_wins": 79.3,
+          "draw": 12.6,
           "team_b_wins": 8.1
         },
         "expected_points": {
@@ -2141,7 +2141,7 @@
           "team_b": 0.37
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 79.4,
+        "win_confidence_pct": 79.3,
         "upset_risk": {
           "favored": "France",
           "underdog": "Senegal",
@@ -2177,11 +2177,11 @@
         "gap": 5.8,
         "probabilities": {
           "team_a_wins": 72.9,
-          "draw": 14.8,
+          "draw": 14.9,
           "team_b_wins": 12.3
         },
         "expected_points": {
-          "team_a": 2.34,
+          "team_a": 2.33,
           "team_b": 0.52
         },
         "predicted_winner": "France",
@@ -2220,16 +2220,16 @@
         "composite_b": 58.0,
         "gap": 30.3,
         "probabilities": {
-          "team_a_wins": 92.4,
+          "team_a_wins": 92.3,
           "draw": 5.5,
           "team_b_wins": 2.2
         },
         "expected_points": {
-          "team_a": 2.83,
+          "team_a": 2.82,
           "team_b": 0.12
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 92.4,
+        "win_confidence_pct": 92.3,
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
@@ -2495,7 +2495,7 @@
         },
         "expected_points": {
           "team_a": 2.9,
-          "team_b": 0.06
+          "team_b": 0.07
         },
         "predicted_winner": "Argentina",
         "win_confidence_pct": 95.5,
@@ -3021,7 +3021,7 @@
         },
         "expected_points": {
           "team_a": 2.76,
-          "team_b": 0.17
+          "team_b": 0.16
         },
         "predicted_winner": "England",
         "win_confidence_pct": 89.5,
@@ -3059,7 +3059,7 @@
         },
         "expected_points": {
           "team_a": 2.9,
-          "team_b": 0.07
+          "team_b": 0.06
         },
         "predicted_winner": "England",
         "win_confidence_pct": 95.5,
