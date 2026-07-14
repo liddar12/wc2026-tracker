@@ -6926,7 +6926,7 @@
       "team_a": "France",
       "team_b": "Spain",
       "kickoff_utc": "2026-07-14T19:00:00Z",
-      "captured_at": "2026-07-14T06:32:25+00:00",
+      "captured_at": "2026-07-14T08:53:22+00:00",
       "preds": {
         "model": [
           0.3461,
@@ -6939,14 +6939,14 @@
           0.4606
         ],
         "market": [
-          0.4581,
-          0.2518,
-          0.2901
+          0.4596,
+          0.2516,
+          0.2888
         ],
         "hybrid": [
-          0.364,
+          0.3645,
           0.2536,
-          0.3823
+          0.3819
         ],
         "stack": [
           0.3276,
@@ -6957,9 +6957,47 @@
       "actual": null,
       "score": null,
       "scored": false
+    },
+    "M102__W99__vs__W100": {
+      "match_number": 102,
+      "stage": "semifinals",
+      "team_a": "England",
+      "team_b": "Argentina",
+      "kickoff_utc": "2026-07-15T19:00:00Z",
+      "captured_at": "2026-07-14T08:53:22+00:00",
+      "preds": {
+        "model": [
+          0.4934,
+          0.2459,
+          0.2606
+        ],
+        "dt": [
+          0.3434,
+          0.2575,
+          0.3991
+        ],
+        "market": [
+          0.3995,
+          0.2575,
+          0.343
+        ],
+        "hybrid": [
+          0.4121,
+          0.2536,
+          0.3342
+        ],
+        "stack": [
+          0.4456,
+          0.2535,
+          0.3009
+        ]
+      },
+      "actual": null,
+      "score": null,
+      "scored": false
     }
   },
-  "updated_at": "2026-07-14T06:32:25+00:00",
+  "updated_at": "2026-07-14T08:53:22+00:00",
   "summary": {
     "matches_scored": 96,
     "model": {
