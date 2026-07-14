@@ -2220,16 +2220,16 @@
         "composite_b": 58.0,
         "gap": 30.3,
         "probabilities": {
-          "team_a_wins": 92.5,
+          "team_a_wins": 92.4,
           "draw": 5.4,
-          "team_b_wins": 2.1
+          "team_b_wins": 2.2
         },
         "expected_points": {
           "team_a": 2.83,
           "team_b": 0.12
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 92.5,
+        "win_confidence_pct": 92.4,
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
@@ -2302,7 +2302,7 @@
         "composite_b": 58.0,
         "gap": 20.6,
         "probabilities": {
-          "team_a_wins": 55.2,
+          "team_a_wins": 55.3,
           "draw": 13.8,
           "team_b_wins": 30.9
         },
@@ -2311,7 +2311,7 @@
           "team_b": 1.07
         },
         "predicted_winner": "Senegal",
-        "win_confidence_pct": 55.2,
+        "win_confidence_pct": 55.3,
         "upset_risk": {
           "favored": "Senegal",
           "underdog": "Iraq",
@@ -2334,7 +2334,7 @@
         "gap": 24.5,
         "probabilities": {
           "team_a_wins": 59.1,
-          "draw": 11.4,
+          "draw": 11.5,
           "team_b_wins": 29.5
         },
         "expected_points": {
@@ -2452,7 +2452,7 @@
         "gap": 9.4,
         "probabilities": {
           "team_a_wins": 79.2,
-          "draw": 12.9,
+          "draw": 12.8,
           "team_b_wins": 8.0
         },
         "expected_points": {
@@ -2495,7 +2495,7 @@
         },
         "expected_points": {
           "team_a": 2.9,
-          "team_b": 0.07
+          "team_b": 0.06
         },
         "predicted_winner": "Argentina",
         "win_confidence_pct": 95.5,
@@ -2796,7 +2796,7 @@
         "composite_b": 64.4,
         "gap": 5.6,
         "probabilities": {
-          "team_a_wins": 57.3,
+          "team_a_wins": 57.2,
           "draw": 22.4,
           "team_b_wins": 20.3
         },
@@ -2805,7 +2805,7 @@
           "team_b": 0.83
         },
         "predicted_winner": "DR Congo",
-        "win_confidence_pct": 57.3,
+        "win_confidence_pct": 57.2,
         "upset_risk": {
           "favored": "DR Congo",
           "underdog": "Uzbekistan",
@@ -2834,7 +2834,7 @@
         "composite_b": 76.3,
         "gap": 6.3,
         "probabilities": {
-          "team_a_wins": 38.2,
+          "team_a_wins": 38.1,
           "draw": 20.2,
           "team_b_wins": 41.6
         },
@@ -3021,7 +3021,7 @@
         },
         "expected_points": {
           "team_a": 2.76,
-          "team_b": 0.16
+          "team_b": 0.17
         },
         "predicted_winner": "England",
         "win_confidence_pct": 89.5,
