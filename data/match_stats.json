@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-14T19:47:19+00:00",
+    "updated_at": "2026-07-14T20:21:10+00:00",
     "source": "espn-summary",
     "matches": 100,
     "last_run_updated": 1
@@ -6829,35 +6829,35 @@
     "team_b": "Spain",
     "stats": {
       "a": {
-        "possessionPct": 41.8,
+        "possessionPct": 46,
         "totalShots": 2,
         "shotsOnTarget": 0,
         "blockedShots": 0,
         "shotPct": 0,
-        "totalPasses": 160,
+        "totalPasses": 275,
         "passPct": 80.0,
-        "accuratePasses": 131,
+        "accuratePasses": 231,
         "saves": 0,
-        "effectiveTackles": 3,
-        "foulsCommitted": 5,
-        "offsides": 2,
-        "totalCrosses": 9,
+        "effectiveTackles": 4,
+        "foulsCommitted": 6,
+        "offsides": 3,
+        "totalCrosses": 11,
         "wonCorners": 3
       },
       "b": {
-        "possessionPct": 58.2,
-        "totalShots": 5,
-        "shotsOnTarget": 1,
-        "blockedShots": 2,
-        "shotPct": 20.0,
-        "totalPasses": 231,
+        "possessionPct": 54,
+        "totalShots": 8,
+        "shotsOnTarget": 2,
+        "blockedShots": 3,
+        "shotPct": 30.0,
+        "totalPasses": 327,
         "passPct": 90.0,
-        "accuratePasses": 202,
+        "accuratePasses": 280,
         "saves": 0,
-        "effectiveTackles": 5,
-        "foulsCommitted": 4,
-        "offsides": 1,
-        "totalCrosses": 6,
+        "effectiveTackles": 6,
+        "foulsCommitted": 6,
+        "offsides": 3,
+        "totalCrosses": 7,
         "wonCorners": 1
       }
     },
@@ -6876,8 +6876,13 @@
         "minute": "31",
         "type": "yellow",
         "team": "Spain"
+      },
+      {
+        "minute": "58",
+        "type": "goal",
+        "team": "Spain"
       }
     ],
-    "updated_at": "2026-07-14T19:47:19+00:00"
+    "updated_at": "2026-07-14T20:21:10+00:00"
   }
 }
