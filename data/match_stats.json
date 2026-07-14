@@ -188,10 +188,10 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-14T17:45:55+00:00",
+    "updated_at": "2026-07-14T19:03:13+00:00",
     "source": "espn-summary",
-    "matches": 99,
-    "last_run_updated": 0
+    "matches": 100,
+    "last_run_updated": 1
   },
   "Mexico__vs__South Africa": {
     "team_a": "Mexico",
@@ -6823,5 +6823,45 @@
       }
     ],
     "updated_at": "2026-07-13T00:14:34+00:00"
+  },
+  "France__vs__Spain": {
+    "team_a": "France",
+    "team_b": "Spain",
+    "stats": {
+      "a": {
+        "possessionPct": 0,
+        "totalShots": 0,
+        "shotsOnTarget": 0,
+        "blockedShots": 0,
+        "shotPct": 0,
+        "totalPasses": 0,
+        "passPct": 0,
+        "accuratePasses": 0,
+        "saves": 0,
+        "effectiveTackles": 0,
+        "foulsCommitted": 0,
+        "offsides": 0,
+        "totalCrosses": 0,
+        "wonCorners": 0
+      },
+      "b": {
+        "possessionPct": 0,
+        "totalShots": 0,
+        "shotsOnTarget": 0,
+        "blockedShots": 0,
+        "shotPct": 0,
+        "totalPasses": 0,
+        "passPct": 0,
+        "accuratePasses": 0,
+        "saves": 0,
+        "effectiveTackles": 0,
+        "foulsCommitted": 0,
+        "offsides": 0,
+        "totalCrosses": 0,
+        "wonCorners": 0
+      }
+    },
+    "key_events": [],
+    "updated_at": "2026-07-14T19:03:13+00:00"
   }
 }
