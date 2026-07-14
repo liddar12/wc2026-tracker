@@ -436,7 +436,7 @@
         "gap": 8.0,
         "probabilities": {
           "team_a_wins": 40.1,
-          "draw": 20.9,
+          "draw": 21.0,
           "team_b_wins": 38.9
         },
         "expected_points": {
@@ -1864,16 +1864,16 @@
         "composite_b": 64.1,
         "gap": 25.2,
         "probabilities": {
-          "team_a_wins": 95.2,
+          "team_a_wins": 95.3,
           "draw": 3.7,
-          "team_b_wins": 1.1
+          "team_b_wins": 1.0
         },
         "expected_points": {
           "team_a": 2.89,
           "team_b": 0.07
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 95.2,
+        "win_confidence_pct": 95.3,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Cabo Verde",
@@ -1927,7 +1927,7 @@
         "gap": 27.7,
         "probabilities": {
           "team_a_wins": 96.3,
-          "draw": 3.0,
+          "draw": 2.9,
           "team_b_wins": 0.8
         },
         "expected_points": {
@@ -2221,7 +2221,7 @@
         "gap": 30.3,
         "probabilities": {
           "team_a_wins": 92.4,
-          "draw": 5.4,
+          "draw": 5.5,
           "team_b_wins": 2.2
         },
         "expected_points": {
@@ -2452,7 +2452,7 @@
         "gap": 9.4,
         "probabilities": {
           "team_a_wins": 79.2,
-          "draw": 12.8,
+          "draw": 12.9,
           "team_b_wins": 8.0
         },
         "expected_points": {
@@ -3059,7 +3059,7 @@
         },
         "expected_points": {
           "team_a": 2.9,
-          "team_b": 0.06
+          "team_b": 0.07
         },
         "predicted_winner": "England",
         "win_confidence_pct": 95.5,
