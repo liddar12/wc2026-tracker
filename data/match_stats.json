@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-14T19:03:13+00:00",
+    "updated_at": "2026-07-14T19:47:19+00:00",
     "source": "espn-summary",
     "matches": 100,
     "last_run_updated": 1
@@ -6829,39 +6829,55 @@
     "team_b": "Spain",
     "stats": {
       "a": {
-        "possessionPct": 0,
-        "totalShots": 0,
+        "possessionPct": 41.8,
+        "totalShots": 2,
         "shotsOnTarget": 0,
         "blockedShots": 0,
         "shotPct": 0,
-        "totalPasses": 0,
-        "passPct": 0,
-        "accuratePasses": 0,
+        "totalPasses": 160,
+        "passPct": 80.0,
+        "accuratePasses": 131,
         "saves": 0,
-        "effectiveTackles": 0,
-        "foulsCommitted": 0,
-        "offsides": 0,
-        "totalCrosses": 0,
-        "wonCorners": 0
+        "effectiveTackles": 3,
+        "foulsCommitted": 5,
+        "offsides": 2,
+        "totalCrosses": 9,
+        "wonCorners": 3
       },
       "b": {
-        "possessionPct": 0,
-        "totalShots": 0,
-        "shotsOnTarget": 0,
-        "blockedShots": 0,
-        "shotPct": 0,
-        "totalPasses": 0,
-        "passPct": 0,
-        "accuratePasses": 0,
+        "possessionPct": 58.2,
+        "totalShots": 5,
+        "shotsOnTarget": 1,
+        "blockedShots": 2,
+        "shotPct": 20.0,
+        "totalPasses": 231,
+        "passPct": 90.0,
+        "accuratePasses": 202,
         "saves": 0,
-        "effectiveTackles": 0,
-        "foulsCommitted": 0,
-        "offsides": 0,
-        "totalCrosses": 0,
-        "wonCorners": 0
+        "effectiveTackles": 5,
+        "foulsCommitted": 4,
+        "offsides": 1,
+        "totalCrosses": 6,
+        "wonCorners": 1
       }
     },
-    "key_events": [],
-    "updated_at": "2026-07-14T19:03:13+00:00"
+    "key_events": [
+      {
+        "minute": "9",
+        "type": "yellow",
+        "team": "France"
+      },
+      {
+        "minute": "22",
+        "type": "pen-goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "31",
+        "type": "yellow",
+        "team": "Spain"
+      }
+    ],
+    "updated_at": "2026-07-14T19:47:19+00:00"
   }
 }
