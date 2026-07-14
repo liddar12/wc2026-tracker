@@ -4,26 +4,16 @@
   "group": {
     "n_games": 72,
     "current": {
-      "logloss": 0.8351,
-      "accuracy": 0.653
-    },
-    "tuned": {
       "logloss": 0.8329,
       "accuracy": 0.653
     },
-    "adopted": true,
-    "weights": {
-      "mine": 0.1122,
-      "elo": 0.0382,
-      "tmv": 0.5056,
-      "qual": 0.2538,
-      "form": 0.002,
-      "dominance": 0.0882
+    "tuned": {
+      "logloss": 0.8312,
+      "accuracy": 0.653
     },
-    "poisson": {
-      "mu": 0.2,
-      "beta": 0.0896
-    }
+    "adopted": false,
+    "weights": null,
+    "poisson": null
   },
   "blend": {
     "n_matches": 96,
