@@ -425,17 +425,17 @@
   },
   "France__vs__Spain": {
     "tier": "semifinals",
-    "kickoff_utc": "2026-07-14T19:00:00Z",
-    "played": false,
+    "kickoff_utc": "2026-07-14T19:00Z",
+    "played": true,
     "team_a": {
       "team": "France",
-      "rest_days": 4,
-      "travel_km": 2493.6
+      "rest_days": 0,
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Spain",
-      "rest_days": 4,
-      "travel_km": 1974.3
+      "rest_days": 0,
+      "travel_km": 0.0
     }
   },
   "England__vs__Argentina": {

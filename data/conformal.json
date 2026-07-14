@@ -4,18 +4,18 @@
     "0.85": {
       "qhat": 0.7897,
       "threshold": 0.2103,
-      "empirical_coverage": 0.8542,
-      "avg_set_size": 1.781
+      "empirical_coverage": 0.8557,
+      "avg_set_size": 1.794
     },
     "0.7": {
       "qhat": 0.7428,
       "threshold": 0.2572,
-      "empirical_coverage": 0.7188,
-      "avg_set_size": 1.26
+      "empirical_coverage": 0.7216,
+      "avg_set_size": 1.268
     }
   },
   "display_level": "0.85",
-  "n_calibration": 96,
+  "n_calibration": 97,
   "note": "Split-conformal over scored pre-kickoff stack predictions. A match's 'safe set' = outcomes with p >= threshold (top pick always included). Coverage is checked on the calibration set itself (mildly optimistic); the finite-sample (n+1) correction backs the out-of-sample target.",
-  "updated_at": "2026-07-12T03:53:42+00:00"
+  "updated_at": "2026-07-14T21:18:47+00:00"
 }

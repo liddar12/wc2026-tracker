@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-14T20:21:10+00:00",
+    "updated_at": "2026-07-14T21:18:41+00:00",
     "source": "espn-summary",
     "matches": 100,
     "last_run_updated": 1
@@ -6829,35 +6829,35 @@
     "team_b": "Spain",
     "stats": {
       "a": {
-        "possessionPct": 46,
-        "totalShots": 2,
-        "shotsOnTarget": 0,
-        "blockedShots": 0,
-        "shotPct": 0,
-        "totalPasses": 275,
+        "possessionPct": 49.1,
+        "totalShots": 10,
+        "shotsOnTarget": 3,
+        "blockedShots": 2,
+        "shotPct": 30.0,
+        "totalPasses": 472,
         "passPct": 80.0,
-        "accuratePasses": 231,
+        "accuratePasses": 395,
         "saves": 0,
-        "effectiveTackles": 4,
-        "foulsCommitted": 6,
-        "offsides": 3,
-        "totalCrosses": 11,
-        "wonCorners": 3
+        "effectiveTackles": 8,
+        "foulsCommitted": 11,
+        "offsides": 4,
+        "totalCrosses": 20,
+        "wonCorners": 7
       },
       "b": {
-        "possessionPct": 54,
-        "totalShots": 8,
+        "possessionPct": 50.9,
+        "totalShots": 10,
         "shotsOnTarget": 2,
         "blockedShots": 3,
-        "shotPct": 30.0,
-        "totalPasses": 327,
+        "shotPct": 20.0,
+        "totalPasses": 500,
         "passPct": 90.0,
-        "accuratePasses": 280,
-        "saves": 0,
-        "effectiveTackles": 6,
-        "foulsCommitted": 6,
-        "offsides": 3,
-        "totalCrosses": 7,
+        "accuratePasses": 428,
+        "saves": 3,
+        "effectiveTackles": 14,
+        "foulsCommitted": 12,
+        "offsides": 5,
+        "totalCrosses": 8,
         "wonCorners": 1
       }
     },
@@ -6881,8 +6881,13 @@
         "minute": "58",
         "type": "goal",
         "team": "Spain"
+      },
+      {
+        "minute": "86",
+        "type": "yellow",
+        "team": "France"
       }
     ],
-    "updated_at": "2026-07-14T20:21:10+00:00"
+    "updated_at": "2026-07-14T21:18:41+00:00"
   }
 }

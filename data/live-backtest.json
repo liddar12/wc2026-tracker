@@ -6954,9 +6954,36 @@
           0.416
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "team_b_wins",
+      "score": {
+        "model": {
+          "correct": 1,
+          "brier": 0.5506,
+          "logloss": 0.92558
+        },
+        "dt": {
+          "correct": 1,
+          "brier": 0.43709,
+          "logloss": 0.77523
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.74528,
+          "logloss": 1.19204
+        },
+        "hybrid": {
+          "correct": 1,
+          "brier": 0.56949,
+          "logloss": 0.94985
+        },
+        "stack": {
+          "correct": 1,
+          "brier": 0.51412,
+          "logloss": 0.87707
+        }
+      },
+      "scored": true,
+      "actual_score": "0-2"
     },
     "M102__W99__vs__W100": {
       "match_number": 102,
@@ -6964,10 +6991,10 @@
       "team_a": "England",
       "team_b": "Argentina",
       "kickoff_utc": "2026-07-15T19:00:00Z",
-      "captured_at": "2026-07-14T20:21:12+00:00",
+      "captured_at": "2026-07-14T21:18:44+00:00",
       "preds": {
         "model": [
-          0.4934,
+          0.4935,
           0.2459,
           0.2606
         ],
@@ -6977,19 +7004,19 @@
           0.3991
         ],
         "market": [
-          0.3891,
-          0.2579,
-          0.353
+          0.3908,
+          0.2578,
+          0.3514
         ],
         "hybrid": [
-          0.4087,
+          0.4092,
           0.2538,
-          0.3376
+          0.337
         ],
         "stack": [
-          0.4456,
-          0.2535,
-          0.3009
+          0.4411,
+          0.254,
+          0.3049
         ]
       },
       "actual": null,
@@ -6997,29 +7024,29 @@
       "scored": false
     }
   },
-  "updated_at": "2026-07-14T20:21:12+00:00",
+  "updated_at": "2026-07-14T21:18:44+00:00",
   "summary": {
-    "matches_scored": 96,
+    "matches_scored": 97,
     "model": {
-      "correct": 65,
-      "total": 96,
+      "correct": 66,
+      "total": 97,
       "measured": true,
-      "brier": 0.4934,
-      "logloss": 0.8744
+      "brier": 0.4939,
+      "logloss": 0.875
     },
     "dt": {
-      "correct": 61,
-      "total": 96,
+      "correct": 62,
+      "total": 97,
       "measured": true,
-      "brier": 0.4949,
-      "logloss": 0.8514
+      "brier": 0.4943,
+      "logloss": 0.8506
     },
     "market": {
       "correct": 64,
-      "total": 96,
+      "total": 97,
       "measured": true,
-      "brier": 0.4822,
-      "logloss": 0.8258
+      "brier": 0.4849,
+      "logloss": 0.8295
     },
     "polymarket": {
       "correct": 47,
@@ -7029,18 +7056,18 @@
       "logloss": 0.8274
     },
     "hybrid": {
-      "correct": 63,
-      "total": 96,
+      "correct": 64,
+      "total": 97,
       "measured": true,
-      "brier": 0.4802,
-      "logloss": 0.8311
+      "brier": 0.4811,
+      "logloss": 0.8323
     },
     "stack": {
-      "correct": 65,
-      "total": 96,
+      "correct": 66,
+      "total": 97,
       "measured": true,
-      "brier": 0.4802,
-      "logloss": 0.827
+      "brier": 0.4806,
+      "logloss": 0.8275
     }
   }
 }

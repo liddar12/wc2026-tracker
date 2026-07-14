@@ -201,9 +201,9 @@
   {
     "team_a": "France",
     "team_b": "Sweden",
-    "composite_a": 88.3,
+    "composite_a": 88.2,
     "composite_b": 74.0,
-    "gap": 14.3,
+    "gap": 14.2,
     "probabilities": {
       "team_a_wins": 75.0,
       "draw": 15.7,
@@ -218,15 +218,15 @@
     "upset_risk": {
       "favored": "France",
       "underdog": "Sweden",
-      "gap": 14.3,
+      "gap": 14.2,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 75.1,
-      "draw": 16.3,
-      "team_b_wins": 8.6
+      "team_a_wins": 74.8,
+      "draw": 16.4,
+      "team_b_wins": 8.7
     },
-    "hybrid_gap": 14.3,
+    "hybrid_gap": 14.2,
     "prob_source": "stack",
     "advance_pct_a": 89.0,
     "advance_pct_b": 11.0,
@@ -660,8 +660,8 @@
     "team_a": "Paraguay",
     "team_b": "France",
     "composite_a": 64.7,
-    "composite_b": 88.3,
-    "gap": 23.6,
+    "composite_b": 88.2,
+    "gap": 23.5,
     "probabilities": {
       "team_a_wins": 3.0,
       "draw": 7.6,
@@ -676,15 +676,15 @@
     "upset_risk": {
       "favored": "France",
       "underdog": "Paraguay",
-      "gap": 23.6,
+      "gap": 23.5,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 1.9,
-      "draw": 6.1,
-      "team_b_wins": 91.9
+      "team_a_wins": 2.0,
+      "draw": 6.2,
+      "team_b_wins": 91.8
     },
-    "hybrid_gap": 23.6,
+    "hybrid_gap": 23.5,
     "prob_source": "stack",
     "advance_pct_a": 3.2,
     "advance_pct_b": 96.8,
@@ -932,9 +932,9 @@
   {
     "team_a": "France",
     "team_b": "Morocco",
-    "composite_a": 88.3,
+    "composite_a": 88.2,
     "composite_b": 81.8,
-    "gap": 6.5,
+    "gap": 6.4,
     "probabilities": {
       "team_a_wins": 60.3,
       "draw": 21.7,
@@ -949,15 +949,15 @@
     "upset_risk": {
       "favored": "France",
       "underdog": "Morocco",
-      "gap": 6.5,
+      "gap": 6.4,
       "indicators": []
     },
     "j5l_probabilities": {
-      "team_a_wins": 54.3,
+      "team_a_wins": 54.1,
       "draw": 24.7,
-      "team_b_wins": 21.0
+      "team_b_wins": 21.2
     },
-    "hybrid_gap": 6.5,
+    "hybrid_gap": 6.4,
     "prob_source": "stack",
     "advance_pct_a": 77.1,
     "advance_pct_b": 22.9,
@@ -1080,9 +1080,9 @@
   {
     "team_a": "France",
     "team_b": "Spain",
-    "composite_a": 88.3,
+    "composite_a": 88.2,
     "composite_b": 89.3,
-    "gap": 1.0,
+    "gap": 1.1,
     "probabilities": {
       "team_a_wins": 32.8,
       "draw": 25.6,
@@ -1097,22 +1097,22 @@
     "upset_risk": {
       "favored": "Spain",
       "underdog": "France",
-      "gap": 1.0,
+      "gap": 1.1,
       "indicators": [
         {
           "type": "close_gap",
           "severity": "high",
           "label": "Toss-up game",
-          "detail": "Composite gap only 1.0 points"
+          "detail": "Composite gap only 1.1 points"
         }
       ]
     },
     "j5l_probabilities": {
-      "team_a_wins": 33.7,
+      "team_a_wins": 33.5,
       "draw": 27.3,
-      "team_b_wins": 39.0
+      "team_b_wins": 39.2
     },
-    "hybrid_gap": 1.0,
+    "hybrid_gap": 1.1,
     "prob_source": "stack",
     "advance_pct_a": 44.1,
     "advance_pct_b": 55.9,
