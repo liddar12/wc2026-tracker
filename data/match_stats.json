@@ -188,10 +188,10 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-15T18:55:56+00:00",
+    "updated_at": "2026-07-15T19:40:16+00:00",
     "source": "espn-summary",
-    "matches": 100,
-    "last_run_updated": 1
+    "matches": 101,
+    "last_run_updated": 2
   },
   "Mexico__vs__South Africa": {
     "team_a": "Mexico",
@@ -6888,6 +6888,52 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-15T18:55:56+00:00"
+    "updated_at": "2026-07-15T19:40:16+00:00"
+  },
+  "England__vs__Argentina": {
+    "team_a": "England",
+    "team_b": "Argentina",
+    "stats": {
+      "a": {
+        "possessionPct": 41.9,
+        "totalShots": 1,
+        "shotsOnTarget": 0,
+        "blockedShots": 0,
+        "shotPct": 0,
+        "totalPasses": 139,
+        "passPct": 90.0,
+        "accuratePasses": 124,
+        "saves": 0,
+        "effectiveTackles": 4,
+        "foulsCommitted": 7,
+        "offsides": 0,
+        "totalCrosses": 6,
+        "wonCorners": 1
+      },
+      "b": {
+        "possessionPct": 58.1,
+        "totalShots": 2,
+        "shotsOnTarget": 0,
+        "blockedShots": 1,
+        "shotPct": 0,
+        "totalPasses": 196,
+        "passPct": 90.0,
+        "accuratePasses": 173,
+        "saves": 0,
+        "effectiveTackles": 3,
+        "foulsCommitted": 9,
+        "offsides": 2,
+        "totalCrosses": 4,
+        "wonCorners": 1
+      }
+    },
+    "key_events": [
+      {
+        "minute": "37",
+        "type": "yellow",
+        "team": "England"
+      }
+    ],
+    "updated_at": "2026-07-15T19:40:16+00:00"
   }
 }
