@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T03:40:15+00:00",
+  "generated_at": "2026-07-15T06:31:41+00:00",
   "health": "degraded",
   "feeds": [
     {
@@ -19,13 +19,13 @@
     {
       "name": "scorers.json",
       "updated_at": "2026-07-14T20:21:08+00:00",
-      "age_hours": 7.3,
+      "age_hours": 10.2,
       "rows": 47,
       "status": "ok"
     },
     {
       "name": "markets.json",
-      "updated_at": "2026-07-15T03:40:08+00:00",
+      "updated_at": "2026-07-15T06:31:33+00:00",
       "age_hours": 0.0,
       "rows": 48,
       "status": "ok"
@@ -33,7 +33,7 @@
     {
       "name": "form.json",
       "updated_at": "2026-06-30T21:00:00+00:00",
-      "age_hours": 342.7,
+      "age_hours": 345.5,
       "rows": 48,
       "status": "stale"
     },
@@ -54,7 +54,7 @@
     {
       "name": "referees.json",
       "updated_at": "2026-06-30T16:33:05+00:00",
-      "age_hours": 347.1,
+      "age_hours": 350.0,
       "rows": 0,
       "status": "empty"
     }
