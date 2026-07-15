@@ -232,7 +232,7 @@
       "elo_scaled": 77.6,
       "tmv_scaled": 82.0,
       "qual_scaled": 71.0,
-      "form_scaled": 86.5,
+      "form_scaled": 86.6,
       "dominance_scaled": 79.3
     },
     "boosts": {
@@ -364,7 +364,7 @@
       "elo_scaled": 80.7,
       "tmv_scaled": 90.5,
       "qual_scaled": 60.6,
-      "form_scaled": 79.1,
+      "form_scaled": 79.2,
       "dominance_scaled": 81.3
     },
     "boosts": {
@@ -540,7 +540,7 @@
       "elo_scaled": 67.8,
       "tmv_scaled": 81.1,
       "qual_scaled": 65.3,
-      "form_scaled": 84.0,
+      "form_scaled": 84.1,
       "dominance_scaled": 75.7
     },
     "boosts": {
@@ -672,7 +672,7 @@
       "elo_scaled": 71.8,
       "tmv_scaled": 80.4,
       "qual_scaled": 65.3,
-      "form_scaled": 63.5,
+      "form_scaled": 63.6,
       "dominance_scaled": 80.7
     },
     "boosts": {
@@ -848,7 +848,7 @@
       "elo_scaled": 58.0,
       "tmv_scaled": 59.2,
       "qual_scaled": 58.3,
-      "form_scaled": 69.8,
+      "form_scaled": 69.9,
       "dominance_scaled": 64.5
     },
     "boosts": {
@@ -980,7 +980,7 @@
       "elo_scaled": 61.6,
       "tmv_scaled": 68.8,
       "qual_scaled": 64.7,
-      "form_scaled": 58.5,
+      "form_scaled": 58.6,
       "dominance_scaled": 58.3
     },
     "boosts": {
@@ -1156,7 +1156,7 @@
       "elo_scaled": 68.5,
       "tmv_scaled": 70.1,
       "qual_scaled": 70.3,
-      "form_scaled": 78.2,
+      "form_scaled": 78.3,
       "dominance_scaled": 74.4
     },
     "boosts": {
@@ -1332,7 +1332,7 @@
       "elo_scaled": 73.1,
       "tmv_scaled": 80.1,
       "qual_scaled": 57.4,
-      "form_scaled": 62.8,
+      "form_scaled": 62.9,
       "dominance_scaled": 80.9
     },
     "boosts": {
@@ -1464,7 +1464,7 @@
       "elo_scaled": 71.1,
       "tmv_scaled": 79.3,
       "qual_scaled": 68.0,
-      "form_scaled": 71.7,
+      "form_scaled": 71.8,
       "dominance_scaled": 86.2
     },
     "boosts": {
@@ -1552,7 +1552,7 @@
       "elo_scaled": 58.3,
       "tmv_scaled": 55.9,
       "qual_scaled": 59.3,
-      "form_scaled": 63.4,
+      "form_scaled": 63.5,
       "dominance_scaled": 56.3
     },
     "boosts": {
@@ -1590,13 +1590,13 @@
     "espn_rank": 7,
     "elo_raw": 2113,
     "tmv_musd": 950,
-    "composite": 85.7,
+    "composite": 85.8,
     "sub_ratings": {
       "mine": 80.0,
-      "elo_scaled": 92.0,
+      "elo_scaled": 93.1,
       "tmv_scaled": 89.2,
       "qual_scaled": 67.4,
-      "form_scaled": 87.7,
+      "form_scaled": 89.6,
       "dominance_scaled": 81.0
     },
     "boosts": {
@@ -1624,8 +1624,8 @@
     "contender_tier": 1,
     "is_host": false,
     "continental_champion": true,
-    "power_rank": 5,
-    "elo_current": 2155
+    "power_rank": 4,
+    "elo_current": 2172
   },
   "Algeria": {
     "name": "Algeria",
@@ -1640,7 +1640,7 @@
       "elo_scaled": 66.8,
       "tmv_scaled": 73.7,
       "qual_scaled": 70.3,
-      "form_scaled": 73.7,
+      "form_scaled": 73.8,
       "dominance_scaled": 76.5
     },
     "boosts": {
@@ -1772,7 +1772,7 @@
       "elo_scaled": 80.9,
       "tmv_scaled": 88.3,
       "qual_scaled": 82.7,
-      "form_scaled": 77.4,
+      "form_scaled": 77.5,
       "dominance_scaled": 80.9
     },
     "boosts": {
@@ -1800,7 +1800,7 @@
     "contender_tier": 1,
     "is_host": false,
     "continental_champion": false,
-    "power_rank": 4,
+    "power_rank": 5,
     "elo_current": 1988
   },
   "DR Congo": {
@@ -1816,7 +1816,7 @@
       "elo_scaled": 66.6,
       "tmv_scaled": 72.6,
       "qual_scaled": 61.3,
-      "form_scaled": 79.9,
+      "form_scaled": 80.0,
       "dominance_scaled": 82.2
     },
     "boosts": {
@@ -1942,13 +1942,13 @@
     "espn_rank": 3,
     "elo_raw": 2042,
     "tmv_musd": 1870,
-    "composite": 90.4,
+    "composite": 90.3,
     "sub_ratings": {
       "mine": 81.1,
-      "elo_scaled": 87.6,
+      "elo_scaled": 86.5,
       "tmv_scaled": 95.2,
       "qual_scaled": 79.3,
-      "form_scaled": 83.3,
+      "form_scaled": 79.2,
       "dominance_scaled": 83.2
     },
     "boosts": {
@@ -1977,7 +1977,7 @@
     "is_host": false,
     "continental_champion": true,
     "power_rank": 1,
-    "elo_current": 2089
+    "elo_current": 2073
   },
   "Croatia": {
     "name": "Croatia",
@@ -2036,7 +2036,7 @@
       "elo_scaled": 65.8,
       "tmv_scaled": 77.6,
       "qual_scaled": 61.3,
-      "form_scaled": 78.8,
+      "form_scaled": 78.9,
       "dominance_scaled": 59.0
     },
     "boosts": {

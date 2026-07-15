@@ -53,7 +53,7 @@
     "updated_at": "2026-06-12T20:31:50+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-15T20:03:36+00:00",
+    "updated_at": "2026-07-15T21:13:17+00:00",
     "source": "espn-summary"
   },
   "Korea Republic__vs__Czechia": {
@@ -3900,8 +3900,38 @@
         "type": "yellow",
         "player": "Lisandro Martínez",
         "team": "Argentina"
+      },
+      {
+        "minute": "51'",
+        "type": "yellow",
+        "player": "Cristian Romero",
+        "team": "Argentina"
+      },
+      {
+        "minute": "55'",
+        "type": "goal",
+        "player": "Anthony Gordon",
+        "team": "England"
+      },
+      {
+        "minute": "85'",
+        "type": "goal",
+        "player": "Enzo Fernández",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+2'",
+        "type": "goal",
+        "player": "Lautaro Martínez",
+        "team": "Argentina"
+      },
+      {
+        "minute": "90'+4'",
+        "type": "yellow",
+        "player": "Rodrigo De Paul",
+        "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-15T20:03:36+00:00"
+    "updated_at": "2026-07-15T21:13:17+00:00"
   }
 }

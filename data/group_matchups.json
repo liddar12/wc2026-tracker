@@ -2409,16 +2409,16 @@
       {
         "team_a": "Argentina",
         "team_b": "Algeria",
-        "composite_a": 85.7,
+        "composite_a": 85.8,
         "composite_b": 72.8,
-        "gap": 12.9,
+        "gap": 13.0,
         "probabilities": {
           "team_a_wins": 85.2,
           "draw": 9.8,
           "team_b_wins": 5.0
         },
         "expected_points": {
-          "team_a": 2.65,
+          "team_a": 2.66,
           "team_b": 0.25
         },
         "predicted_winner": "Argentina",
@@ -2426,7 +2426,7 @@
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Algeria",
-          "gap": 12.9,
+          "gap": 13.0,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2438,33 +2438,33 @@
         },
         "match_id": "Argentina__vs__Algeria",
         "j5l_probabilities": {
-          "team_a_wins": 71.7,
-          "draw": 18.0,
-          "team_b_wins": 10.3
+          "team_a_wins": 71.9,
+          "draw": 17.9,
+          "team_b_wins": 10.2
         },
         "hybrid_gap": 2.271
       },
       {
         "team_a": "Argentina",
         "team_b": "Austria",
-        "composite_a": 85.7,
+        "composite_a": 85.8,
         "composite_b": 76.3,
-        "gap": 9.4,
+        "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 79.9,
+          "team_a_wins": 80.0,
           "draw": 12.3,
-          "team_b_wins": 7.8
+          "team_b_wins": 7.7
         },
         "expected_points": {
           "team_a": 2.52,
-          "team_b": 0.36
+          "team_b": 0.35
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 79.9,
+        "win_confidence_pct": 80.0,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Austria",
-          "gap": 9.4,
+          "gap": 9.5,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2476,21 +2476,21 @@
         },
         "match_id": "Argentina__vs__Austria",
         "j5l_probabilities": {
-          "team_a_wins": 62.5,
-          "draw": 22.0,
-          "team_b_wins": 15.6
+          "team_a_wins": 62.7,
+          "draw": 21.9,
+          "team_b_wins": 15.4
         },
         "hybrid_gap": 1.609
       },
       {
         "team_a": "Argentina",
         "team_b": "Jordan",
-        "composite_a": 85.7,
+        "composite_a": 85.8,
         "composite_b": 58.4,
-        "gap": 27.3,
+        "gap": 27.4,
         "probabilities": {
           "team_a_wins": 96.3,
-          "draw": 3.0,
+          "draw": 2.9,
           "team_b_wins": 0.8
         },
         "expected_points": {
@@ -2502,7 +2502,7 @@
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Jordan",
-          "gap": 27.3,
+          "gap": 27.4,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2520,8 +2520,8 @@
         },
         "match_id": "Argentina__vs__Jordan",
         "j5l_probabilities": {
-          "team_a_wins": 95.6,
-          "draw": 3.5,
+          "team_a_wins": 95.7,
+          "draw": 3.4,
           "team_b_wins": 0.9
         },
         "hybrid_gap": 3.171
@@ -2973,11 +2973,11 @@
       {
         "team_a": "England",
         "team_b": "Croatia",
-        "composite_a": 90.4,
+        "composite_a": 90.3,
         "composite_b": 78.1,
-        "gap": 12.3,
+        "gap": 12.2,
         "probabilities": {
-          "team_a_wins": 78.8,
+          "team_a_wins": 78.7,
           "draw": 12.7,
           "team_b_wins": 8.5
         },
@@ -2986,11 +2986,11 @@
           "team_b": 0.38
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 78.8,
+        "win_confidence_pct": 78.7,
         "upset_risk": {
           "favored": "England",
           "underdog": "Croatia",
-          "gap": 12.3,
+          "gap": 12.2,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3002,21 +3002,21 @@
         },
         "match_id": "England__vs__Croatia",
         "j5l_probabilities": {
-          "team_a_wins": 70.2,
-          "draw": 18.7,
-          "team_b_wins": 11.1
+          "team_a_wins": 69.9,
+          "draw": 18.8,
+          "team_b_wins": 11.3
         },
         "hybrid_gap": 1.369
       },
       {
         "team_a": "England",
         "team_b": "Ghana",
-        "composite_a": 90.4,
+        "composite_a": 90.3,
         "composite_b": 70.6,
-        "gap": 19.8,
+        "gap": 19.7,
         "probabilities": {
           "team_a_wins": 90.1,
-          "draw": 7.0,
+          "draw": 7.1,
           "team_b_wins": 2.9
         },
         "expected_points": {
@@ -3028,7 +3028,7 @@
         "upset_risk": {
           "favored": "England",
           "underdog": "Ghana",
-          "gap": 19.8,
+          "gap": 19.7,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3040,18 +3040,18 @@
         },
         "match_id": "England__vs__Ghana",
         "j5l_probabilities": {
-          "team_a_wins": 86.4,
-          "draw": 9.8,
-          "team_b_wins": 3.8
+          "team_a_wins": 86.2,
+          "draw": 9.9,
+          "team_b_wins": 3.9
         },
         "hybrid_gap": 2.512
       },
       {
         "team_a": "England",
         "team_b": "Panama",
-        "composite_a": 90.4,
+        "composite_a": 90.3,
         "composite_b": 61.8,
-        "gap": 28.6,
+        "gap": 28.5,
         "probabilities": {
           "team_a_wins": 96.1,
           "draw": 3.0,
@@ -3066,7 +3066,7 @@
         "upset_risk": {
           "favored": "England",
           "underdog": "Panama",
-          "gap": 28.6,
+          "gap": 28.5,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3078,7 +3078,7 @@
         },
         "match_id": "England__vs__Panama",
         "j5l_probabilities": {
-          "team_a_wins": 96.6,
+          "team_a_wins": 96.5,
           "draw": 2.8,
           "team_b_wins": 0.7
         },
