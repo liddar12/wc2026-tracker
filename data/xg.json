@@ -917,6 +917,24 @@
     "used_form_a": true,
     "used_form_b": true
   },
+  "France__vs__England": {
+    "team_a": "France",
+    "team_b": "England",
+    "team_a_xg": 1.42,
+    "team_b_xg": 1.52,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
+  "Spain__vs__Argentina": {
+    "team_a": "Spain",
+    "team_b": "Argentina",
+    "team_a_xg": 1.59,
+    "team_b_xg": 1.35,
+    "formula_version": "v1",
+    "used_form_a": true,
+    "used_form_b": true
+  },
   "__meta__": {
     "formula_version": "v1",
     "base_xg": 1.45,
@@ -927,6 +945,6 @@
       0.2,
       4.5
     ],
-    "computed_at": "2026-07-15T21:13:22+00:00"
+    "computed_at": "2026-07-15T21:18:21+00:00"
   }
 }

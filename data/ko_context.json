@@ -1,7 +1,7 @@
 {
   "__meta__": {
     "method": "derived rest/travel for KO fixtures (offline)",
-    "n_ko_fixtures": 30
+    "n_ko_fixtures": 32
   },
   "South Africa__vs__Canada": {
     "tier": "round_of_32",
@@ -440,17 +440,47 @@
   },
   "England__vs__Argentina": {
     "tier": "semifinals",
-    "kickoff_utc": "2026-07-15T19:00:00Z",
-    "played": false,
+    "kickoff_utc": "2026-07-15T19:00Z",
+    "played": true,
     "team_a": {
       "team": "England",
-      "rest_days": 3,
-      "travel_km": 955.1
+      "rest_days": 0,
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "Argentina",
+      "rest_days": 0,
+      "travel_km": 0.0
+    }
+  },
+  "France__vs__England": {
+    "tier": "third_place",
+    "kickoff_utc": "2026-07-18T21:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "France",
+      "rest_days": 4,
+      "travel_km": 1796.7
+    },
+    "team_b": {
+      "team": "England",
       "rest_days": 3,
-      "travel_km": 1076.4
+      "travel_km": 955.1
+    }
+  },
+  "Spain__vs__Argentina": {
+    "tier": "final",
+    "kickoff_utc": "2026-07-19T19:00:00Z",
+    "played": false,
+    "team_a": {
+      "team": "Spain",
+      "rest_days": 5,
+      "travel_km": 2229.0
+    },
+    "team_b": {
+      "team": "Argentina",
+      "rest_days": 4,
+      "travel_km": 1202.8
     }
   }
 }
