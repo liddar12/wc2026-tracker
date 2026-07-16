@@ -671,7 +671,14 @@
       "winner": "Argentina"
     }
   },
-  "third_place": {},
+  "third_place": {
+    "France__vs__England": {
+      "score_a": 0,
+      "score_b": 0,
+      "kickoff_utc": "2026-07-18T21:00Z",
+      "status": "STATUS_SCHEDULED"
+    }
+  },
   "final": {},
-  "last_updated": "2026-07-15T23:18:14+00:00"
+  "last_updated": "2026-07-16T00:08:31+00:00"
 }
