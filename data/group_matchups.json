@@ -2414,7 +2414,7 @@
         "gap": 13.0,
         "probabilities": {
           "team_a_wins": 86.2,
-          "draw": 9.1,
+          "draw": 9.0,
           "team_b_wins": 4.8
         },
         "expected_points": {
@@ -2696,7 +2696,7 @@
         "composite_b": 70.0,
         "gap": 15.8,
         "probabilities": {
-          "team_a_wins": 50.1,
+          "team_a_wins": 50.2,
           "draw": 15.3,
           "team_b_wins": 34.6
         },
@@ -2705,7 +2705,7 @@
           "team_b": 1.19
         },
         "predicted_winner": "Portugal",
-        "win_confidence_pct": 50.1,
+        "win_confidence_pct": 50.2,
         "upset_risk": {
           "favored": "Portugal",
           "underdog": "DR Congo",
