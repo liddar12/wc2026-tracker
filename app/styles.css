@@ -1773,6 +1773,7 @@ body.search-open { overflow: hidden; }
 .eb-luck-chips { display: flex; gap: 4px; flex-wrap: wrap; min-width: 0; }
 .eb-luck-chip { font-size: 10px; font-weight: 700; color: var(--text-muted); background: var(--surface-2, rgba(127,127,127,.14)); border-radius: 6px; padding: 1px 6px; white-space: nowrap; }
 .eb-luck-note { font-size: 11px; margin: 8px 0 0; }
+.eb-luck-headline { font-size: 13px; font-weight: 700; margin: 0 0 8px; }
 .eb-luck-chip.is-lucky { background: color-mix(in srgb, var(--good, #16a34a) 16%, transparent); color: var(--text); }
 .eb-luck-chip.is-unlucky { background: color-mix(in srgb, var(--bad, #dc2626) 14%, transparent); color: var(--text); }
 .luck-ledger { margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px; }

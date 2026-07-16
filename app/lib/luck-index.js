@@ -30,15 +30,15 @@ export const LUCK_COMPONENTS = {
 };
 
 export const LUCK_LABELS = {
-  pens_for: ['pen awarded', 'no pens won'],
-  pens_against: ['no pens faced', 'pen conceded'],   // sign −1: low value is lucky
+  pens_for: ['penalty awarded', 'no penalties won'],
+  pens_against: ['no penalties faced', 'penalty conceded'],   // sign −1: low value is lucky
   corners_for: ['corner edge', 'few corners won'],
   corners_against: ['few corners faced', 'corner pressure'],
   foul_diff: ['friendly whistle', 'harsh whistle'],
-  card_diff: ['card edge', 'card burden'],
+  card_diff: ['card edge', 'card trouble'],
   own_goal_gifts: ['own-goal gift', ''],
   finish_luck: ['hot finishing', 'cold finishing'],
-  concede_luck: ['soft concessions', 'leaky vs xG'],
+  concede_luck: ['defense over-performing', 'leaking soft goals'],
 };
 
 function stageMap(data) {
@@ -141,7 +141,32 @@ export function computeLuckIndex(data) {
     const index = comps.reduce((s, [c]) => s + zs[c], 0) / comps.length;
     out[t] = { index, z: zs, played: acc[t].played };
   }
+  // Rank (1 = luckiest) so the UI can say "5th luckiest of 48 teams" — plain
+  // language beats a σ score for non-statistical readers.
+  const ordered = Object.keys(out).sort((a, b) => out[b].index - out[a].index);
+  ordered.forEach((t, i) => { out[t].rank = i + 1; out[t].total = ordered.length; });
   return { teams: out };
+}
+
+const ordinal = (n) => { const s = ['th', 'st', 'nd', 'rd']; const v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+
+/** "5th luckiest of 48 teams" — plain-language standing for one profile. */
+export function luckStanding(profile) {
+  if (!profile?.rank) return '';
+  return `${ordinal(profile.rank)} luckiest of ${profile.total} teams`;
+}
+
+/** Plain-language head-to-head: how much luckier one side has been than the
+ *  other, in words a non-statistical reader gets. Null without both profiles. */
+export function compareLuckPlain(teamA, teamB, profA, profB) {
+  if (!profA || !profB) return null;
+  const d = profA.index - profB.index;
+  const [lead, trail] = d >= 0 ? [teamA, teamB] : [teamB, teamA];
+  const gap = Math.abs(d);
+  if (gap < 0.15) return `${teamA} and ${teamB} have had about the same amount of luck so far.`;
+  if (gap < 0.4) return `${lead} has caught slightly more breaks than ${trail} so far.`;
+  if (gap < 0.8) return `${lead} has been noticeably luckier than ${trail} this tournament.`;
+  return `${lead} has been far luckier than ${trail} this tournament.`;
 }
 
 /** Teams still alive: named on both sides of an unplayed knockout match. */

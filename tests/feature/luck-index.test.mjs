@@ -141,5 +141,31 @@ test('the matchup page mounts the Luck check after the model grid', () => {
   assert.match(v, /luckCheckSection/, 'matchup view mounts the section');
   const c = read('app/components/luck-check.js');
   assert.match(c, /matchup-luck-ledger/, 'component renders the live this-match ledger');
-  assert.match(c, /never adjusts projections/, 'display-only disclaimer is part of the contract');
+  assert.match(c, /never changes the predictions/, 'display-only disclaimer is part of the contract');
+});
+
+test('plain language: rank standings + head-to-head sentence (no σ shown to users)', async () => {
+  const { computeLuckIndex, luckStanding, compareLuckPlain } = await import('../../app/lib/luck-index.js');
+  const { teams } = computeLuckIndex(fixture());
+  assert.equal(teams.A.rank, 1, 'luckiest team ranks 1st');
+  assert.equal(teams.A.total, 4);
+  assert.match(luckStanding(teams.A), /^1st luckiest of 4 teams$/);
+  assert.match(luckStanding(teams.B), /luckiest of 4 teams$/);
+  // big gap → strong wording; identical → "about the same"
+  const far = compareLuckPlain('A', 'B', { index: 1.2 }, { index: 0.1 });
+  assert.match(far, /far luckier/);
+  assert.match(far, /^A /, 'luckier side leads the sentence');
+  assert.match(compareLuckPlain('A', 'B', { index: 0.2 }, { index: 0.15 }), /about the same/);
+  assert.match(compareLuckPlain('A', 'B', { index: 0.1 }, { index: 0.6 }), /^B .*(luckier|breaks)/);
+  assert.equal(compareLuckPlain('A', 'B', null, { index: 1 }), null, 'needs both profiles');
+  // user-facing components render words, not sigma
+  for (const f of ['app/components/luck-check.js', 'app/components/projected-bracket-tree.js']) {
+    assert.ok(!read(f).includes('σ'), `${f} shows no σ notation`);
+  }
+});
+
+test('an open app re-checks meta.data_version on return to foreground', () => {
+  const m = read('app/main.js');
+  assert.match(m, /visibilitychange/, 'foreground listener wired');
+  assert.match(m, /data\/meta\.json/, 'compares the served data_version');
 });

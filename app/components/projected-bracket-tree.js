@@ -14,7 +14,7 @@ import { renderModelPicker } from './model-picker.js';
 import { buildAutofill } from '../bracket-autofill.js';
 import { MODELS, modelToAutofillSource, getActiveModel } from '../lib/active-model.js';
 import { computeGroupStandings, computeProjectedGroupOrder } from '../bracket-resolver.js';
-import { computeLuckIndex, remainingKnockoutTeams, luckChips } from '../lib/luck-index.js';
+import { computeLuckIndex, remainingKnockoutTeams, luckChips, luckStanding } from '../lib/luck-index.js';
 
 const ROUNDS = [
   { key: 'r32', full: 'Round of 32', lo: 73, hi: 88 },
@@ -111,12 +111,12 @@ function renderLuckCard(data) {
     return `
         <div class="eb-luck-row" data-testid="eb-luck-${escapeHtml(t)}">
           <span class="eb-luck-team">${flagFor(t)} ${escapeHtml(t)}</span>
-          <span class="eb-luck-score${tone}">${p.index >= 0 ? '+' : ''}${p.index.toFixed(2)}σ</span>
-          <span class="eb-luck-chips">${chips.map((c) => `<span class="eb-luck-chip">${escapeHtml(c.label)} ${c.z >= 0 ? '+' : ''}${c.z.toFixed(1)}σ</span>`).join('')}</span>
+          <span class="eb-luck-score${tone}">${escapeHtml(luckStanding(p))}</span>
+          <span class="eb-luck-chips">${chips.map((c) => `<span class="eb-luck-chip">${escapeHtml(c.label)}</span>`).join('')}</span>
         </div>`;
   }).join('')}
     </div>
-    <p class="muted eb-luck-note">Group-stage pens, corners, whistle, cards &amp; xG luck vs the field. Descriptive only — backtested from the R32 it adds no predictive edge, so it never adjusts projections.</p>
+    <p class="muted eb-luck-note">Counted from group-stage penalties, corners, referee calls, cards and finishing vs expectation. Context only — luck never changes the predictions.</p>
   `;
   return wrap;
 }

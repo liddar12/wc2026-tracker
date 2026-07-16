@@ -131,7 +131,9 @@ test.describe('Projected bracket + hidden nav', () => {
       await expect(card).toBeVisible({ timeout: 10_000 });
       await expect.poll(() => page.locator('.eb-luck-row').count()).toBeGreaterThanOrEqual(2);
       // the display-only disclaimer is part of the contract
-      await expect(card.locator('.eb-luck-note')).toContainText('never adjusts projections');
+      await expect(card.locator('.eb-luck-note')).toContainText('never changes the predictions');
+      // plain language: standings ("Nth luckiest of NN teams"), no σ scores
+      await expect(card.locator('.eb-luck-score').first()).toContainText(/luckiest of \d+ teams/);
     } else {
       await expect(card).toHaveCount(0);
     }

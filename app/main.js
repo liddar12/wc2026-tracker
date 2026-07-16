@@ -419,6 +419,28 @@ window.addEventListener('data:live-refresh', (e) => {
     setData(fresh);
   }
 });
+// RCA 2026-07-13: an app left open across a deploy never re-checked meta.json,
+// and data_version gates every localStorage read — so a long-lived PWA kept
+// serving stale feeds (frozen Golden Boot goals) until a full relaunch. On
+// return-to-foreground (throttled to once a minute) compare the served
+// data_version; when it moved, reload the data set in place, scroll preserved.
+let lastVisibilityCheck = 0;
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState !== 'visible') return;
+  const now = Date.now();
+  if (now - lastVisibilityCheck < 60_000) return;
+  lastVisibilityCheck = now;
+  fetch('data/meta.json', { cache: 'no-cache' })
+    .then((r) => (r.ok ? r.json() : null))
+    .then(async (meta) => {
+      if (!meta?.data_version) return;
+      if (meta.data_version === getState().data?.meta?.data_version) return;
+      const full = await loadDeferred(await loadData());
+      pendingLiveRefresh = true;
+      setData(full);
+    })
+    .catch(() => {});
+});
 initSettingsPrefs();
 // RJ30: re-save the push subscription when the SW reports a
 // pushsubscriptionchange (endpoints rotate). Guarded dynamic import so a
