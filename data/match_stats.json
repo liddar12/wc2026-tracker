@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-16T00:08:33+00:00",
+    "updated_at": "2026-07-16T00:16:15+00:00",
     "source": "espn-summary",
     "matches": 101,
     "last_run_updated": 2
@@ -6888,14 +6888,14 @@
         "team": "France"
       }
     ],
-    "updated_at": "2026-07-16T00:08:33+00:00"
+    "updated_at": "2026-07-16T00:16:15+00:00"
   },
   "England__vs__Argentina": {
     "team_a": "England",
     "team_b": "Argentina",
     "stats": {
       "a": {
-        "possessionPct": 35.7,
+        "possessionPct": 35.8,
         "totalShots": 5,
         "shotsOnTarget": 2,
         "blockedShots": 2,
@@ -6904,26 +6904,26 @@
         "passPct": 80.0,
         "accuratePasses": 273,
         "saves": 3,
-        "effectiveTackles": 8,
+        "effectiveTackles": 9,
         "foulsCommitted": 11,
         "offsides": 1,
-        "totalCrosses": 15,
+        "totalCrosses": 16,
         "wonCorners": 2
       },
       "b": {
-        "possessionPct": 64.3,
+        "possessionPct": 64.2,
         "totalShots": 15,
         "shotsOnTarget": 5,
         "blockedShots": 3,
         "shotPct": 30.0,
-        "totalPasses": 590,
+        "totalPasses": 588,
         "passPct": 90.0,
         "accuratePasses": 537,
         "saves": 1,
-        "effectiveTackles": 10,
+        "effectiveTackles": 9,
         "foulsCommitted": 15,
         "offsides": 3,
-        "totalCrosses": 19,
+        "totalCrosses": 20,
         "wonCorners": 6
       }
     },
@@ -6964,6 +6964,6 @@
         "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-16T00:08:33+00:00"
+    "updated_at": "2026-07-16T00:16:15+00:00"
   }
 }
