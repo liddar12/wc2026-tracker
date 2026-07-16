@@ -473,7 +473,7 @@
         "composite_b": 70.4,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 12.7,
+          "team_a_wins": 12.6,
           "draw": 18.9,
           "team_b_wins": 68.5
         },
@@ -2451,8 +2451,8 @@
         "composite_b": 76.3,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 81.0,
-          "draw": 11.5,
+          "team_a_wins": 80.9,
+          "draw": 11.6,
           "team_b_wins": 7.5
         },
         "expected_points": {
@@ -2460,7 +2460,7 @@
           "team_b": 0.34
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 81.0,
+        "win_confidence_pct": 80.9,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Austria",
