@@ -159,7 +159,7 @@
         },
         "expected_points": {
           "team_a": 1.06,
-          "team_b": 1.72
+          "team_b": 1.71
         },
         "predicted_winner": "Czechia",
         "win_confidence_pct": 49.8,
@@ -435,7 +435,7 @@
         "composite_b": 70.4,
         "gap": 8.0,
         "probabilities": {
-          "team_a_wins": 39.0,
+          "team_a_wins": 39.1,
           "draw": 20.0,
           "team_b_wins": 40.9
         },
@@ -2222,7 +2222,7 @@
         "probabilities": {
           "team_a_wins": 62.0,
           "draw": 7.7,
-          "team_b_wins": 30.3
+          "team_b_wins": 30.2
         },
         "expected_points": {
           "team_a": 1.94,
@@ -2452,7 +2452,7 @@
         "gap": 9.5,
         "probabilities": {
           "team_a_wins": 80.9,
-          "draw": 11.5,
+          "draw": 11.6,
           "team_b_wins": 7.5
         },
         "expected_points": {
