@@ -1,14 +1,14 @@
 {
-  "updated_at": "2026-07-17T09:24:31+00:00",
+  "updated_at": "2026-07-17T11:44:33+00:00",
   "source": "kalshi",
   "tournament_winner": [
     {
       "team": "Spain",
       "ticker": "KXMENWORLDCUP-26-ES",
-      "prob_pct": 58.1,
-      "delta_24h_pp": 0.1,
-      "volume": 55141782,
-      "open_interest": 30212937,
+      "prob_pct": 58.5,
+      "delta_24h_pp": 0.5,
+      "volume": 55196315,
+      "open_interest": 30249044,
       "sparkline": [
         0.131,
         0.134,
@@ -45,10 +45,10 @@
     {
       "team": "Argentina",
       "ticker": "KXMENWORLDCUP-26-AR",
-      "prob_pct": 41.9,
-      "delta_24h_pp": 21.1,
-      "volume": 100484957,
-      "open_interest": 55394549,
+      "prob_pct": 41.5,
+      "delta_24h_pp": 20.8,
+      "volume": 100734227,
+      "open_interest": 55530604,
       "sparkline": [
         0.112,
         0.109,
@@ -851,20 +851,20 @@
     {
       "player": "Lionel Messi",
       "prob_pct": 38.7,
-      "volume": 3737225,
-      "open_interest": 2010950
+      "volume": 3738478,
+      "open_interest": 2011064
     },
     {
       "player": "Kylian Mbappe",
       "prob_pct": 26.8,
-      "volume": 4062091,
-      "open_interest": 1987642
+      "volume": 4062761,
+      "open_interest": 1987350
     },
     {
       "player": "Harry Kane",
       "prob_pct": 0.7,
-      "volume": 2282844,
-      "open_interest": 1384278
+      "volume": 2284714,
+      "open_interest": 1386149
     },
     {
       "player": "Erling Haaland",
@@ -917,8 +917,8 @@
     {
       "player": "Mikel Oyarzabal",
       "prob_pct": 0.7,
-      "volume": 590344,
-      "open_interest": 462127
+      "volume": 590811,
+      "open_interest": 462594
     },
     {
       "player": "Julian Alvarez",
@@ -959,8 +959,8 @@
     {
       "player": "Lamine Yamal",
       "prob_pct": 0.7,
-      "volume": 559983,
-      "open_interest": 462488
+      "volume": 562321,
+      "open_interest": 464826
     },
     {
       "player": "Rodrygo",
@@ -1121,8 +1121,8 @@
     {
       "player": "Jude Bellingham",
       "prob_pct": 0.7,
-      "volume": 1007446,
-      "open_interest": 822017
+      "volume": 1008848,
+      "open_interest": 823420
     },
     {
       "player": "Cyle Larin",
@@ -1177,27 +1177,27 @@
     "golden_ball": [
       {
         "player": "Lionel Messi",
-        "prob_pct": 57.6,
-        "volume": 1050979,
-        "open_interest": 655747
+        "prob_pct": 57.8,
+        "volume": 1051199,
+        "open_interest": 655850
       },
       {
         "player": "Rodri",
-        "prob_pct": 4.1,
-        "volume": 387510,
-        "open_interest": 289404
+        "prob_pct": 4.2,
+        "volume": 388907,
+        "open_interest": 290786
       },
       {
         "player": "Lamine Yamal",
         "prob_pct": 1.3,
-        "volume": 562356,
-        "open_interest": 397491
+        "volume": 562884,
+        "open_interest": 398020
       },
       {
         "player": "Kylian Mbappe",
-        "prob_pct": 1.3,
-        "volume": 884129,
-        "open_interest": 460325
+        "prob_pct": 1.0,
+        "volume": 885949,
+        "open_interest": 462010
       },
       {
         "player": "Harry Kane",
@@ -1244,8 +1244,8 @@
       {
         "player": "Jude Bellingham",
         "prob_pct": 0.6,
-        "volume": 424332,
-        "open_interest": 325456
+        "volume": 424519,
+        "open_interest": 325643
       },
       {
         "player": "Declan Rice",
@@ -1539,21 +1539,21 @@
     "golden_glove": [
       {
         "player": "Unai Simon",
-        "prob_pct": 69.3,
-        "volume": 135398,
-        "open_interest": 91893
+        "prob_pct": 69.0,
+        "volume": 135403,
+        "open_interest": 91899
       },
       {
         "player": "Emiliano Martinez",
         "prob_pct": 10.2,
-        "volume": 83162,
-        "open_interest": 62957
+        "volume": 83189,
+        "open_interest": 62984
       },
       {
         "player": "Vozinha",
         "prob_pct": 2.9,
-        "volume": 275474,
-        "open_interest": 214153
+        "volume": 276164,
+        "open_interest": 214843
       },
       {
         "player": "Mike Maignan",
@@ -1569,8 +1569,8 @@
       },
       {
         "player": "Jordan Pickford",
-        "prob_pct": 1.2,
-        "volume": 71171,
+        "prob_pct": 1.6,
+        "volume": 71196,
         "open_interest": 45933
       },
       {
@@ -1673,15 +1673,15 @@
     "young_player": [
       {
         "player": "Lamine Yamal",
-        "prob_pct": 56.9,
-        "volume": 691752,
-        "open_interest": 477612
+        "prob_pct": 57.0,
+        "volume": 693300,
+        "open_interest": 479070
       },
       {
         "player": "Pau Cubarsi",
-        "prob_pct": 27.2,
-        "volume": 103937,
-        "open_interest": 73007
+        "prob_pct": 27.0,
+        "volume": 104480,
+        "open_interest": 72809
       },
       {
         "player": "Gilberto Mora",
@@ -1752,8 +1752,8 @@
       {
         "player": "Ayyoub Bouaddi",
         "prob_pct": 0.8,
-        "volume": 20448,
-        "open_interest": 15808
+        "volume": 21898,
+        "open_interest": 17258
       },
       {
         "player": "Assan Ouedraogo",
@@ -1836,10 +1836,10 @@
     {
       "team": "Argentina",
       "ticker": "KXMENWORLDCUP-26-AR",
-      "prob_pct": 41.9,
-      "delta_24h_pp": 21.1,
-      "volume": 100484957,
-      "open_interest": 55394549,
+      "prob_pct": 41.5,
+      "delta_24h_pp": 20.8,
+      "volume": 100734227,
+      "open_interest": 55530604,
       "sparkline": [
         0.112,
         0.109,
@@ -1876,10 +1876,10 @@
     {
       "team": "Spain",
       "ticker": "KXMENWORLDCUP-26-ES",
-      "prob_pct": 58.1,
-      "delta_24h_pp": 0.1,
-      "volume": 55141782,
-      "open_interest": 30212937,
+      "prob_pct": 58.5,
+      "delta_24h_pp": 0.5,
+      "volume": 55196315,
+      "open_interest": 30249044,
       "sparkline": [
         0.131,
         0.134,
