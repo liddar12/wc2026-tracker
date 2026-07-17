@@ -154,7 +154,7 @@
         "gap": 3.5,
         "probabilities": {
           "team_a_wins": 28.1,
-          "draw": 22.0,
+          "draw": 22.1,
           "team_b_wins": 49.8
         },
         "expected_points": {
@@ -1895,7 +1895,7 @@
         "composite_b": 73.7,
         "gap": 15.6,
         "probabilities": {
-          "team_a_wins": 86.5,
+          "team_a_wins": 86.6,
           "draw": 8.9,
           "team_b_wins": 4.6
         },
@@ -1904,7 +1904,7 @@
           "team_b": 0.23
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 86.5,
+        "win_confidence_pct": 86.6,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Uruguay",
