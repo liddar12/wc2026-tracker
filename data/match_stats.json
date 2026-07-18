@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-18T23:07:04+00:00",
+    "updated_at": "2026-07-18T23:14:39+00:00",
     "source": "espn-summary",
     "matches": 102,
     "last_run_updated": 1
@@ -6971,7 +6971,7 @@
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 46,
+        "possessionPct": 45.9,
         "totalShots": 19,
         "shotsOnTarget": 9,
         "blockedShots": 4,
@@ -6987,14 +6987,14 @@
         "wonCorners": 3
       },
       "b": {
-        "possessionPct": 54,
+        "possessionPct": 54.1,
         "totalShots": 19,
         "shotsOnTarget": 11,
         "blockedShots": 6,
         "shotPct": 60.0,
-        "totalPasses": 516,
+        "totalPasses": 517,
         "passPct": 90.0,
-        "accuratePasses": 467,
+        "accuratePasses": 468,
         "saves": 5,
         "effectiveTackles": 11,
         "foulsCommitted": 8,
@@ -7055,6 +7055,6 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-18T23:07:04+00:00"
+    "updated_at": "2026-07-18T23:14:39+00:00"
   }
 }

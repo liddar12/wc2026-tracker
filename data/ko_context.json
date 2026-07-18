@@ -455,17 +455,17 @@
   },
   "France__vs__England": {
     "tier": "third_place",
-    "kickoff_utc": "2026-07-18T21:00:00Z",
-    "played": false,
+    "kickoff_utc": "2026-07-18T21:00Z",
+    "played": true,
     "team_a": {
       "team": "France",
-      "rest_days": 4,
-      "travel_km": 1796.7
+      "rest_days": 0,
+      "travel_km": 0.0
     },
     "team_b": {
       "team": "England",
-      "rest_days": 3,
-      "travel_km": 955.1
+      "rest_days": 0,
+      "travel_km": 0.0
     }
   },
   "Spain__vs__Argentina": {
