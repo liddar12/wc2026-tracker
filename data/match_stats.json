@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-18T21:09:31+00:00",
+    "updated_at": "2026-07-18T22:05:12+00:00",
     "source": "espn-summary",
     "matches": 102,
     "last_run_updated": 1
@@ -6971,36 +6971,36 @@
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 49.4,
-        "totalShots": 1,
-        "shotsOnTarget": 0,
-        "blockedShots": 1,
-        "shotPct": 0,
-        "totalPasses": 43,
+        "possessionPct": 44.6,
+        "totalShots": 5,
+        "shotsOnTarget": 2,
+        "blockedShots": 2,
+        "shotPct": 40.0,
+        "totalPasses": 238,
         "passPct": 90.0,
-        "accuratePasses": 38,
-        "saves": 0,
-        "effectiveTackles": 0,
-        "foulsCommitted": 0,
-        "offsides": 0,
-        "totalCrosses": 0,
-        "wonCorners": 0
+        "accuratePasses": 216,
+        "saves": 2,
+        "effectiveTackles": 4,
+        "foulsCommitted": 5,
+        "offsides": 1,
+        "totalCrosses": 2,
+        "wonCorners": 2
       },
       "b": {
-        "possessionPct": 50.6,
-        "totalShots": 2,
-        "shotsOnTarget": 1,
-        "blockedShots": 1,
-        "shotPct": 50.0,
-        "totalPasses": 41,
-        "passPct": 100,
-        "accuratePasses": 39,
-        "saves": 0,
-        "effectiveTackles": 0,
-        "foulsCommitted": 1,
-        "offsides": 0,
-        "totalCrosses": 3,
-        "wonCorners": 1
+        "possessionPct": 55.4,
+        "totalShots": 11,
+        "shotsOnTarget": 7,
+        "blockedShots": 4,
+        "shotPct": 60.0,
+        "totalPasses": 290,
+        "passPct": 90.0,
+        "accuratePasses": 272,
+        "saves": 2,
+        "effectiveTackles": 5,
+        "foulsCommitted": 5,
+        "offsides": 3,
+        "totalCrosses": 9,
+        "wonCorners": 3
       }
     },
     "key_events": [
@@ -7008,8 +7008,23 @@
         "minute": "3",
         "type": "goal",
         "team": "England"
+      },
+      {
+        "minute": "18",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "37",
+        "type": "goal",
+        "team": "England"
+      },
+      {
+        "minute": "45'+1",
+        "type": "goal",
+        "team": "England"
       }
     ],
-    "updated_at": "2026-07-18T21:09:31+00:00"
+    "updated_at": "2026-07-18T22:05:12+00:00"
   }
 }
