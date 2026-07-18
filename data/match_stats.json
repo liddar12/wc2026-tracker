@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-18T21:04:11+00:00",
+    "updated_at": "2026-07-18T21:09:31+00:00",
     "source": "espn-summary",
     "matches": 102,
     "last_run_updated": 1
@@ -6971,14 +6971,14 @@
     "team_b": "England",
     "stats": {
       "a": {
-        "possessionPct": 27.6,
-        "totalShots": 0,
+        "possessionPct": 49.4,
+        "totalShots": 1,
         "shotsOnTarget": 0,
-        "blockedShots": 0,
+        "blockedShots": 1,
         "shotPct": 0,
-        "totalPasses": 8,
-        "passPct": 60.0,
-        "accuratePasses": 5,
+        "totalPasses": 43,
+        "passPct": 90.0,
+        "accuratePasses": 38,
         "saves": 0,
         "effectiveTackles": 0,
         "foulsCommitted": 0,
@@ -6987,20 +6987,20 @@
         "wonCorners": 0
       },
       "b": {
-        "possessionPct": 72.4,
-        "totalShots": 1,
+        "possessionPct": 50.6,
+        "totalShots": 2,
         "shotsOnTarget": 1,
-        "blockedShots": 0,
-        "shotPct": 100,
-        "totalPasses": 20,
+        "blockedShots": 1,
+        "shotPct": 50.0,
+        "totalPasses": 41,
         "passPct": 100,
-        "accuratePasses": 20,
+        "accuratePasses": 39,
         "saves": 0,
         "effectiveTackles": 0,
-        "foulsCommitted": 0,
+        "foulsCommitted": 1,
         "offsides": 0,
-        "totalCrosses": 1,
-        "wonCorners": 0
+        "totalCrosses": 3,
+        "wonCorners": 1
       }
     },
     "key_events": [
@@ -7010,6 +7010,6 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-18T21:04:11+00:00"
+    "updated_at": "2026-07-18T21:09:31+00:00"
   }
 }
