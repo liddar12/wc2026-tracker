@@ -154,7 +154,7 @@
         "gap": 3.5,
         "probabilities": {
           "team_a_wins": 28.1,
-          "draw": 22.1,
+          "draw": 22.0,
           "team_b_wins": 49.8
         },
         "expected_points": {
@@ -435,7 +435,7 @@
         "composite_b": 70.4,
         "gap": 8.0,
         "probabilities": {
-          "team_a_wins": 39.1,
+          "team_a_wins": 39.0,
           "draw": 20.0,
           "team_b_wins": 40.9
         },
@@ -473,7 +473,7 @@
         "composite_b": 70.4,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 12.7,
+          "team_a_wins": 12.6,
           "draw": 18.9,
           "team_b_wins": 68.5
         },
@@ -2798,7 +2798,7 @@
         "probabilities": {
           "team_a_wins": 59.2,
           "draw": 21.5,
-          "team_b_wins": 19.3
+          "team_b_wins": 19.2
         },
         "expected_points": {
           "team_a": 1.99,
