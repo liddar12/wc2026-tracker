@@ -268,23 +268,23 @@
         "team_a": "Canada",
         "team_b": "Switzerland",
         "composite_a": 73.1,
-        "composite_b": 78.4,
-        "gap": 5.3,
+        "composite_b": 78.5,
+        "gap": 5.4,
         "probabilities": {
-          "team_a_wins": 28.1,
+          "team_a_wins": 28.0,
           "draw": 24.9,
-          "team_b_wins": 47.0
+          "team_b_wins": 47.1
         },
         "expected_points": {
           "team_a": 1.09,
           "team_b": 1.66
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 47.0,
+        "win_confidence_pct": 47.1,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Canada",
-          "gap": 5.3,
+          "gap": 5.4,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -302,9 +302,9 @@
         },
         "match_id": "Canada__vs__Switzerland",
         "j5l_probabilities": {
-          "team_a_wins": 23.5,
+          "team_a_wins": 23.3,
           "draw": 25.5,
-          "team_b_wins": 50.9
+          "team_b_wins": 51.2
         },
         "hybrid_gap": -0.773
       },
@@ -393,24 +393,24 @@
       {
         "team_a": "Switzerland",
         "team_b": "Qatar",
-        "composite_a": 78.4,
+        "composite_a": 78.5,
         "composite_b": 60.9,
-        "gap": 17.5,
+        "gap": 17.6,
         "probabilities": {
-          "team_a_wins": 64.7,
+          "team_a_wins": 64.8,
           "draw": 17.3,
-          "team_b_wins": 18.0
+          "team_b_wins": 17.9
         },
         "expected_points": {
-          "team_a": 2.11,
+          "team_a": 2.12,
           "team_b": 0.71
         },
         "predicted_winner": "Switzerland",
-        "win_confidence_pct": 64.7,
+        "win_confidence_pct": 64.8,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Qatar",
-          "gap": 17.5,
+          "gap": 17.6,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -422,33 +422,33 @@
         },
         "match_id": "Switzerland__vs__Qatar",
         "j5l_probabilities": {
-          "team_a_wins": 82.1,
-          "draw": 12.4,
-          "team_b_wins": 5.5
+          "team_a_wins": 82.3,
+          "draw": 12.3,
+          "team_b_wins": 5.4
         },
         "hybrid_gap": 1.966
       },
       {
         "team_a": "Switzerland",
         "team_b": "Bosnia and Herzegovina",
-        "composite_a": 78.4,
+        "composite_a": 78.5,
         "composite_b": 70.4,
-        "gap": 8.0,
+        "gap": 8.1,
         "probabilities": {
-          "team_a_wins": 39.1,
+          "team_a_wins": 39.2,
           "draw": 20.0,
-          "team_b_wins": 40.9
+          "team_b_wins": 40.8
         },
         "expected_points": {
           "team_a": 1.37,
           "team_b": 1.43
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 40.9,
+        "win_confidence_pct": 40.8,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Bosnia and Herzegovina",
-          "gap": 8.0,
+          "gap": 8.1,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -460,9 +460,9 @@
         },
         "match_id": "Switzerland__vs__Bosnia and Herzegovina",
         "j5l_probabilities": {
-          "team_a_wins": 58.6,
-          "draw": 23.4,
-          "team_b_wins": 18.1
+          "team_a_wins": 58.9,
+          "draw": 23.3,
+          "team_b_wins": 17.9
         },
         "hybrid_gap": 0.655
       },
@@ -2128,24 +2128,24 @@
       {
         "team_a": "France",
         "team_b": "Senegal",
-        "composite_a": 88.2,
+        "composite_a": 88.0,
         "composite_b": 78.6,
-        "gap": 9.6,
+        "gap": 9.4,
         "probabilities": {
-          "team_a_wins": 55.0,
+          "team_a_wins": 54.8,
           "draw": 22.2,
-          "team_b_wins": 22.8
+          "team_b_wins": 22.9
         },
         "expected_points": {
           "team_a": 1.87,
           "team_b": 0.91
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 55.0,
+        "win_confidence_pct": 54.8,
         "upset_risk": {
           "favored": "France",
           "underdog": "Senegal",
-          "gap": 9.6,
+          "gap": 9.4,
           "indicators": [
             {
               "type": "continental_momentum",
@@ -2163,33 +2163,33 @@
         },
         "match_id": "France__vs__Senegal",
         "j5l_probabilities": {
-          "team_a_wins": 63.0,
-          "draw": 21.8,
-          "team_b_wins": 15.2
+          "team_a_wins": 62.5,
+          "draw": 22.0,
+          "team_b_wins": 15.6
         },
         "hybrid_gap": 1.588
       },
       {
         "team_a": "France",
         "team_b": "Norway",
-        "composite_a": 88.2,
+        "composite_a": 88.0,
         "composite_b": 82.5,
-        "gap": 5.7,
+        "gap": 5.5,
         "probabilities": {
-          "team_a_wins": 48.5,
+          "team_a_wins": 48.3,
           "draw": 24.5,
-          "team_b_wins": 27.0
+          "team_b_wins": 27.2
         },
         "expected_points": {
-          "team_a": 1.7,
+          "team_a": 1.69,
           "team_b": 1.06
         },
         "predicted_winner": "France",
-        "win_confidence_pct": 48.5,
+        "win_confidence_pct": 48.3,
         "upset_risk": {
           "favored": "France",
           "underdog": "Norway",
-          "gap": 5.7,
+          "gap": 5.5,
           "indicators": [
             {
               "type": "moderate_gap",
@@ -2207,22 +2207,22 @@
         },
         "match_id": "France__vs__Norway",
         "j5l_probabilities": {
-          "team_a_wins": 52.1,
-          "draw": 25.3,
-          "team_b_wins": 22.7
+          "team_a_wins": 51.5,
+          "draw": 25.4,
+          "team_b_wins": 23.1
         },
         "hybrid_gap": 0.974
       },
       {
         "team_a": "France",
         "team_b": "Iraq",
-        "composite_a": 88.2,
+        "composite_a": 88.0,
         "composite_b": 58.0,
-        "gap": 30.2,
+        "gap": 30.0,
         "probabilities": {
           "team_a_wins": 62.0,
           "draw": 7.7,
-          "team_b_wins": 30.2
+          "team_b_wins": 30.3
         },
         "expected_points": {
           "team_a": 1.94,
@@ -2233,7 +2233,7 @@
         "upset_risk": {
           "favored": "France",
           "underdog": "Iraq",
-          "gap": 30.2,
+          "gap": 30.0,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -2245,7 +2245,7 @@
         },
         "match_id": "France__vs__Iraq",
         "j5l_probabilities": {
-          "team_a_wins": 97.5,
+          "team_a_wins": 97.4,
           "draw": 2.1,
           "team_b_wins": 0.5
         },
@@ -2973,24 +2973,24 @@
       {
         "team_a": "England",
         "team_b": "Croatia",
-        "composite_a": 90.3,
+        "composite_a": 90.4,
         "composite_b": 78.1,
-        "gap": 12.2,
+        "gap": 12.3,
         "probabilities": {
-          "team_a_wins": 54.5,
-          "draw": 22.3,
-          "team_b_wins": 23.2
+          "team_a_wins": 54.6,
+          "draw": 22.2,
+          "team_b_wins": 23.1
         },
         "expected_points": {
           "team_a": 1.86,
           "team_b": 0.92
         },
         "predicted_winner": "England",
-        "win_confidence_pct": 54.5,
+        "win_confidence_pct": 54.6,
         "upset_risk": {
           "favored": "England",
           "underdog": "Croatia",
-          "gap": 12.2,
+          "gap": 12.3,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3002,18 +3002,18 @@
         },
         "match_id": "England__vs__Croatia",
         "j5l_probabilities": {
-          "team_a_wins": 69.9,
-          "draw": 18.8,
-          "team_b_wins": 11.3
+          "team_a_wins": 70.2,
+          "draw": 18.7,
+          "team_b_wins": 11.1
         },
         "hybrid_gap": 1.369
       },
       {
         "team_a": "England",
         "team_b": "Ghana",
-        "composite_a": 90.3,
+        "composite_a": 90.4,
         "composite_b": 70.6,
-        "gap": 19.7,
+        "gap": 19.8,
         "probabilities": {
           "team_a_wins": 65.9,
           "draw": 16.6,
@@ -3028,7 +3028,7 @@
         "upset_risk": {
           "favored": "England",
           "underdog": "Ghana",
-          "gap": 19.7,
+          "gap": 19.8,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3040,21 +3040,21 @@
         },
         "match_id": "England__vs__Ghana",
         "j5l_probabilities": {
-          "team_a_wins": 86.2,
-          "draw": 9.9,
-          "team_b_wins": 3.9
+          "team_a_wins": 86.4,
+          "draw": 9.8,
+          "team_b_wins": 3.8
         },
         "hybrid_gap": 2.512
       },
       {
         "team_a": "England",
         "team_b": "Panama",
-        "composite_a": 90.3,
+        "composite_a": 90.4,
         "composite_b": 61.8,
-        "gap": 28.5,
+        "gap": 28.6,
         "probabilities": {
           "team_a_wins": 72.0,
-          "draw": 12.6,
+          "draw": 12.5,
           "team_b_wins": 15.5
         },
         "expected_points": {
@@ -3066,7 +3066,7 @@
         "upset_risk": {
           "favored": "England",
           "underdog": "Panama",
-          "gap": 28.5,
+          "gap": 28.6,
           "indicators": [
             {
               "type": "favorite_talent_form_divergence",
@@ -3078,7 +3078,7 @@
         },
         "match_id": "England__vs__Panama",
         "j5l_probabilities": {
-          "team_a_wins": 96.5,
+          "team_a_wins": 96.6,
           "draw": 2.8,
           "team_b_wins": 0.7
         },
