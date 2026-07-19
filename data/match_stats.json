@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-19T21:32:44+00:00",
+    "updated_at": "2026-07-19T22:12:31+00:00",
     "source": "espn-summary",
     "matches": 103,
     "last_run_updated": 2
@@ -7055,43 +7055,43 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-19T21:32:44+00:00"
+    "updated_at": "2026-07-19T22:12:31+00:00"
   },
   "Spain__vs__Argentina": {
     "team_a": "Spain",
     "team_b": "Argentina",
     "stats": {
       "a": {
-        "possessionPct": 68,
-        "totalShots": 17,
-        "shotsOnTarget": 11,
-        "blockedShots": 2,
+        "possessionPct": 65.1,
+        "totalShots": 20,
+        "shotsOnTarget": 12,
+        "blockedShots": 3,
         "shotPct": 60.0,
-        "totalPasses": 741,
+        "totalPasses": 852,
         "passPct": 90.0,
-        "accuratePasses": 672,
+        "accuratePasses": 762,
         "saves": 0,
-        "effectiveTackles": 9,
-        "foulsCommitted": 16,
-        "offsides": 2,
-        "totalCrosses": 25,
+        "effectiveTackles": 11,
+        "foulsCommitted": 21,
+        "offsides": 4,
+        "totalCrosses": 27,
         "wonCorners": 9
       },
       "b": {
-        "possessionPct": 32,
-        "totalShots": 0,
+        "possessionPct": 34.9,
+        "totalShots": 2,
         "shotsOnTarget": 0,
-        "blockedShots": 0,
+        "blockedShots": 1,
         "shotPct": 0,
-        "totalPasses": 356,
+        "totalPasses": 464,
         "passPct": 80.0,
-        "accuratePasses": 280,
+        "accuratePasses": 358,
         "saves": 11,
-        "effectiveTackles": 11,
-        "foulsCommitted": 21,
+        "effectiveTackles": 14,
+        "foulsCommitted": 25,
         "offsides": 1,
-        "totalCrosses": 2,
-        "wonCorners": 1
+        "totalCrosses": 8,
+        "wonCorners": 4
       }
     },
     "key_events": [
@@ -7119,8 +7119,23 @@
         "minute": "90'+3",
         "type": "red",
         "team": "Argentina"
+      },
+      {
+        "minute": "106",
+        "type": "goal",
+        "team": "Spain"
+      },
+      {
+        "minute": "111",
+        "type": "yellow",
+        "team": "Argentina"
+      },
+      {
+        "minute": "120'+6",
+        "type": "red",
+        "team": "Argentina"
       }
     ],
-    "updated_at": "2026-07-19T21:32:44+00:00"
+    "updated_at": "2026-07-19T22:12:31+00:00"
   }
 }

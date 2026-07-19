@@ -3,12 +3,12 @@
   "red_opp": 1.0,
   "tilt_max": 0.25,
   "fit": {
-    "n_red_matches": 11,
+    "n_red_matches": 12,
     "n_checkpoints": 27,
-    "current_brier": 0.0481,
+    "current_brier": 0.0482,
     "tuned_brier": 0.048,
     "adopted": false
   },
   "note": "Self-tuned each cron from played goal/red timelines; never-regress (margin 0.002). Tilt cap static pending live SoT history (R18 sampler).",
-  "updated_at": "2026-07-18T23:07:08+00:00"
+  "updated_at": "2026-07-19T22:12:36+00:00"
 }

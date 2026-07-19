@@ -7149,34 +7149,61 @@
           0.2936
         ]
       },
-      "actual": null,
-      "score": null,
-      "scored": false
+      "actual": "draw",
+      "score": {
+        "model": {
+          "correct": 0,
+          "brier": 0.85605,
+          "logloss": 1.38111
+        },
+        "dt": {
+          "correct": 0,
+          "brier": 0.84459,
+          "logloss": 1.37081
+        },
+        "market": {
+          "correct": 0,
+          "brier": 0.83591,
+          "logloss": 1.36336
+        },
+        "hybrid": {
+          "correct": 0,
+          "brier": 0.84504,
+          "logloss": 1.3716
+        },
+        "stack": {
+          "correct": 0,
+          "brier": 0.85122,
+          "logloss": 1.37674
+        }
+      },
+      "scored": true,
+      "actual_score": "1-0 (AET)"
     }
   },
-  "updated_at": "2026-07-19T21:32:49+00:00",
+  "updated_at": "2026-07-19T22:12:35+00:00",
   "summary": {
-    "matches_scored": 99,
+    "matches_scored": 100,
     "model": {
       "correct": 67,
-      "total": 99,
+      "total": 100,
       "measured": true,
-      "brier": 0.4976,
-      "logloss": 0.8795
+      "brier": 0.5012,
+      "logloss": 0.8845
     },
     "dt": {
       "correct": 63,
-      "total": 99,
+      "total": 100,
       "measured": true,
-      "brier": 0.4961,
-      "logloss": 0.853
+      "brier": 0.4996,
+      "logloss": 0.8581
     },
     "market": {
       "correct": 64,
-      "total": 99,
+      "total": 100,
       "measured": true,
-      "brier": 0.4876,
-      "logloss": 0.8333
+      "brier": 0.4911,
+      "logloss": 0.8386
     },
     "polymarket": {
       "correct": 47,
@@ -7187,17 +7214,17 @@
     },
     "hybrid": {
       "correct": 65,
-      "total": 99,
+      "total": 100,
       "measured": true,
-      "brier": 0.4839,
-      "logloss": 0.8361
+      "brier": 0.4875,
+      "logloss": 0.8414
     },
     "stack": {
       "correct": 67,
-      "total": 99,
+      "total": 100,
       "measured": true,
-      "brier": 0.4839,
-      "logloss": 0.8321
+      "brier": 0.4876,
+      "logloss": 0.8376
     }
   }
 }
