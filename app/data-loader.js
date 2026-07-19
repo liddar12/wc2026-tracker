@@ -102,7 +102,10 @@ const DEFERRED_FILES = [
   // RJ30.1-D: AI match previews/recaps. Ships DORMANT — the empty stub keeps
   // the loader fetch a 200; entries only appear once the ANTHROPIC_API_KEY repo
   // secret is set and generate_previews.py runs in the cron.
-  { file: 'previews.json',       fallback: {} }
+  { file: 'previews.json',       fallback: {} },
+  // Per-match crowd asymmetry (manual input) for the transparent "crowd factor"
+  // layer on the matchup page. Display-only — never feeds model/scoring/bracket.
+  { file: 'crowd.json',          fallback: {} }
 ];
 
 // ---------------------------------------------------------------------------
@@ -156,6 +159,7 @@ const OPTIONAL_FILES = [
   { file: 'conformal.json',         fallback: {} },
   { file: 'pipeline_status.json',   fallback: {} },
   { file: 'previews.json',          fallback: {} },
+  { file: 'crowd.json',             fallback: {} },
 ];
 // Reference the classification arrays so they're never dead-code-eliminated by a
 // future tidy — they document the throwing/graceful contract the loader honors.

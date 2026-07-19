@@ -42,6 +42,7 @@ import { winnerFromRecord, methodOfVictory, isFinalStatus } from '../lib/match-s
 import { t } from '../lib/i18n.js';
 import { previewSection } from '../components/match-preview.js';
 import { luckCheckSection } from '../components/luck-check.js';
+import { crowdFactorSection } from '../components/crowd-factor.js';
 import { buildMatchShareUrl, tryShareViaNavigator } from '../share-match.js';
 
 export function renderMatchupDetail(root, data, params) {
@@ -204,6 +205,12 @@ export function renderMatchupDetail(root, data, params) {
     else grid.append(marketCol);
     root.appendChild(grid);
   }
+
+  // Crowd factor — a known partisan-crowd asymmetry (data/crowd.json) shown as
+  // a labelled layer on top of the model's advance %: with vs without crowd.
+  // Fixed literature-anchored prior, never feeds the projection (see
+  // app/lib/crowd-adjust.js). Empty fragment when the match has no crowd entry.
+  root.appendChild(crowdFactorSection(match, data));
 
   // Luck check — right after the model grid (the "To advance" block) per UX
   // request: how each side got here + a live this-match luck ledger that fills
