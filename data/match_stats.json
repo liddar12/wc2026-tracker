@@ -188,7 +188,7 @@
     "updated_at": "2026-07-01T04:54:37+00:00"
   },
   "__meta__": {
-    "updated_at": "2026-07-19T19:36:16+00:00",
+    "updated_at": "2026-07-19T19:50:52+00:00",
     "source": "espn-summary",
     "matches": 103,
     "last_run_updated": 2
@@ -7055,46 +7055,52 @@
         "team": "England"
       }
     ],
-    "updated_at": "2026-07-19T19:36:16+00:00"
+    "updated_at": "2026-07-19T19:50:52+00:00"
   },
   "Spain__vs__Argentina": {
     "team_a": "Spain",
     "team_b": "Argentina",
     "stats": {
       "a": {
-        "possessionPct": 63.2,
-        "totalShots": 1,
-        "shotsOnTarget": 1,
+        "possessionPct": 64.7,
+        "totalShots": 3,
+        "shotsOnTarget": 2,
         "blockedShots": 0,
-        "shotPct": 100,
-        "totalPasses": 189,
+        "shotPct": 70.0,
+        "totalPasses": 302,
         "passPct": 90.0,
-        "accuratePasses": 168,
+        "accuratePasses": 272,
         "saves": 0,
-        "effectiveTackles": 3,
-        "foulsCommitted": 5,
-        "offsides": 1,
-        "totalCrosses": 6,
+        "effectiveTackles": 4,
+        "foulsCommitted": 6,
+        "offsides": 2,
+        "totalCrosses": 10,
         "wonCorners": 2
       },
       "b": {
-        "possessionPct": 36.8,
+        "possessionPct": 35.3,
         "totalShots": 0,
         "shotsOnTarget": 0,
         "blockedShots": 0,
         "shotPct": 0,
-        "totalPasses": 113,
+        "totalPasses": 169,
         "passPct": 80.0,
-        "accuratePasses": 92,
-        "saves": 1,
-        "effectiveTackles": 3,
-        "foulsCommitted": 5,
+        "accuratePasses": 135,
+        "saves": 2,
+        "effectiveTackles": 4,
+        "foulsCommitted": 9,
         "offsides": 1,
-        "totalCrosses": 0,
+        "totalCrosses": 1,
         "wonCorners": 0
       }
     },
-    "key_events": [],
-    "updated_at": "2026-07-19T19:36:16+00:00"
+    "key_events": [
+      {
+        "minute": "41",
+        "type": "yellow",
+        "team": "Argentina"
+      }
+    ],
+    "updated_at": "2026-07-19T19:50:52+00:00"
   }
 }
