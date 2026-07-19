@@ -39,6 +39,22 @@ test('matchup page shows the Luck check (how they got here + disclaimer)', async
   await expect(page.locator('[data-testid="matchup-luck-ledger"]')).toBeVisible({ timeout: 10_000 });
 });
 
+test('crowd factor card renders on a match with a known crowd asymmetry', async ({ page }) => {
+  const { readFileSync } = await import('node:fs');
+  const crowd = JSON.parse(readFileSync(new URL('../../data/crowd.json', import.meta.url), 'utf8'));
+  const pair = Object.keys(crowd).find((k) => k !== '__meta__');
+  if (!pair) { test.skip(true, 'no crowd entry configured'); return; }
+  const [a, b] = pair.split('__vs__');
+  await page.goto(`/#/matchup/team_a/${encodeURIComponent(a)}/team_b/${encodeURIComponent(b)}`, { waitUntil: 'domcontentloaded' });
+  const card = page.locator('[data-testid="crowd-factor"]');
+  await expect(card).toBeVisible({ timeout: 10_000 });
+  // both rows present (Model + With crowd) and the transparency disclaimer
+  await expect(card.locator('.crowd-row.is-model')).toBeVisible();
+  await expect(card.locator('.crowd-row.is-adjusted')).toBeVisible();
+  await expect(page.locator('[data-testid="crowd-headline"]')).toContainText(/crowd/i);
+  await expect(card.locator('.crowd-note')).toContainText('never feeds the projection');
+});
+
 test('group matchup still renders its model prediction sections', async ({ page }) => {
   await page.goto('/#/matchup/team_a/Mexico/team_b/South%20Africa', { waitUntil: 'domcontentloaded' });
   await expect(page.getByText('Mexico', { exact: false }).first()).toBeVisible({ timeout: 10_000 });

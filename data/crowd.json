@@ -1,0 +1,13 @@
+{
+  "__meta__": {
+    "updated_at": "2026-07-19T17:15:00+00:00",
+    "method": "Per-match crowd asymmetry (manual input). delta-goals derived via the ghost-game home-advantage anchor (crowd share of home advantage ~1/3-1/2 of ~0.35 goals; 3:1 partisan majority ~ a normal home crowd's tilt). DISPLAY LAYER ONLY - never feeds the model, scoring, or bracket. See docs/CROWD_ANALYSIS.md."
+  },
+  "Spain__vs__Argentina": {
+    "favored": "Argentina",
+    "ratio": 3.0,
+    "calibration": "central",
+    "source": "reported supporter ticket allocation for the final",
+    "note": "Blue-and-white majority expected at MetLife; Spain outside the top travelling supports."
+  }
+}
