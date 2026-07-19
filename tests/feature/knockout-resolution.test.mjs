@@ -47,8 +47,16 @@ test('schedule_full still passes structural invariants (104 matches, unique ids)
   const sched = JSON.parse(rd('data/schedule_full.json'));
   assert.equal(sched.length, 104, '104 matches');
   assert.equal(new Set(sched.map((m) => m.match_id)).size, 104, 'unique match_ids');
-  // later rounds (R16+) legitimately remain placeholders until R32 is played
+  // later rounds (R16+) legitimately remain placeholders until their feeders are
+  // played — EXCEPT once the tournament reaches its end, when the bracket is
+  // fully resolved (finals day: every slot is a real team). Assert the sane
+  // either/or so this passes both mid-tournament AND at the final, while still
+  // catching a bracket that collapses to real teams with no final in place.
   const undetermined = sched.filter((m) => KO_STAGES.has(m.stage) && m.stage !== 'round_of_32'
     && (PLACEHOLDER.test(String(m.team_a)) || PLACEHOLDER.test(String(m.team_b))));
-  assert.ok(undetermined.length > 0, 'R16+ remain placeholders (sanity — not yet determined)');
+  const finalMatch = sched.find((m) => m.stage === 'final');
+  const bracketComplete = !!finalMatch
+    && !PLACEHOLDER.test(String(finalMatch.team_a)) && !PLACEHOLDER.test(String(finalMatch.team_b));
+  assert.ok(undetermined.length > 0 || bracketComplete,
+    'R16+ are placeholders until their feeders are played, OR the bracket is fully resolved (late tournament)');
 });
