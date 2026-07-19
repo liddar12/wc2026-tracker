@@ -154,12 +154,12 @@
         "gap": 3.5,
         "probabilities": {
           "team_a_wins": 28.1,
-          "draw": 22.1,
+          "draw": 22.0,
           "team_b_wins": 49.8
         },
         "expected_points": {
           "team_a": 1.06,
-          "team_b": 1.71
+          "team_b": 1.72
         },
         "predicted_winner": "Czechia",
         "win_confidence_pct": 49.8,
@@ -435,16 +435,16 @@
         "composite_b": 70.4,
         "gap": 8.1,
         "probabilities": {
-          "team_a_wins": 39.2,
+          "team_a_wins": 39.1,
           "draw": 20.0,
-          "team_b_wins": 40.8
+          "team_b_wins": 40.9
         },
         "expected_points": {
           "team_a": 1.37,
           "team_b": 1.43
         },
         "predicted_winner": "draw_likely",
-        "win_confidence_pct": 40.8,
+        "win_confidence_pct": 40.9,
         "upset_risk": {
           "favored": "Switzerland",
           "underdog": "Bosnia and Herzegovina",
@@ -473,7 +473,7 @@
         "composite_b": 70.4,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 12.7,
+          "team_a_wins": 12.6,
           "draw": 18.9,
           "team_b_wins": 68.5
         },
@@ -2697,7 +2697,7 @@
         "gap": 15.8,
         "probabilities": {
           "team_a_wins": 50.1,
-          "draw": 15.3,
+          "draw": 15.2,
           "team_b_wins": 34.6
         },
         "expected_points": {
@@ -2798,7 +2798,7 @@
         "probabilities": {
           "team_a_wins": 59.2,
           "draw": 21.5,
-          "team_b_wins": 19.3
+          "team_b_wins": 19.2
         },
         "expected_points": {
           "team_a": 1.99,
