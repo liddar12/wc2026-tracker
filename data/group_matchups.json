@@ -159,7 +159,7 @@
         },
         "expected_points": {
           "team_a": 1.06,
-          "team_b": 1.72
+          "team_b": 1.71
         },
         "predicted_winner": "Czechia",
         "win_confidence_pct": 49.8,
@@ -473,7 +473,7 @@
         "composite_b": 70.4,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 12.6,
+          "team_a_wins": 12.7,
           "draw": 18.9,
           "team_b_wins": 68.5
         },
@@ -1895,7 +1895,7 @@
         "composite_b": 73.7,
         "gap": 15.6,
         "probabilities": {
-          "team_a_wins": 86.6,
+          "team_a_wins": 86.5,
           "draw": 8.9,
           "team_b_wins": 4.6
         },
@@ -1904,7 +1904,7 @@
           "team_b": 0.23
         },
         "predicted_winner": "Spain",
-        "win_confidence_pct": 86.6,
+        "win_confidence_pct": 86.5,
         "upset_risk": {
           "favored": "Spain",
           "underdog": "Uruguay",
@@ -2451,8 +2451,8 @@
         "composite_b": 76.3,
         "gap": 9.5,
         "probabilities": {
-          "team_a_wins": 80.9,
-          "draw": 11.6,
+          "team_a_wins": 81.0,
+          "draw": 11.5,
           "team_b_wins": 7.5
         },
         "expected_points": {
@@ -2460,7 +2460,7 @@
           "team_b": 0.34
         },
         "predicted_winner": "Argentina",
-        "win_confidence_pct": 80.9,
+        "win_confidence_pct": 81.0,
         "upset_risk": {
           "favored": "Argentina",
           "underdog": "Austria",
