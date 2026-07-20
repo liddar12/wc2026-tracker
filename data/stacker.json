@@ -4,7 +4,7 @@
     "name": "J5L AI Enhanced",
     "method": "alpha*z(J5L composite) + (1-alpha)*z(DT rating); alpha fit to minimise bivariate-Poisson multiclass log-loss over played 2026 matches (refit each cron).",
     "version": "1.0",
-    "generated_at": "2026-07-20T00:16:42.707226+00:00"
+    "generated_at": "2026-07-20T01:12:06.927327+00:00"
   },
   "alpha": 0.62,
   "fit": {
