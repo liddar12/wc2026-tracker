@@ -1,5 +1,42 @@
 [
   {
+    "team_a": "South Africa",
+    "team_b": "Canada",
+    "composite_a": 62.0,
+    "composite_b": 73.1,
+    "gap": 11.1,
+    "probabilities": {
+      "team_a_wins": 16.9,
+      "draw": 21.2,
+      "team_b_wins": 62.0
+    },
+    "expected_points": {
+      "team_a": 0.72,
+      "team_b": 2.07
+    },
+    "predicted_winner": "Canada",
+    "win_confidence_pct": 78.6,
+    "upset_risk": {
+      "favored": "Canada",
+      "underdog": "South Africa",
+      "gap": 11.1,
+      "indicators": []
+    },
+    "j5l_probabilities": {
+      "team_a_wins": 12.8,
+      "draw": 20.1,
+      "team_b_wins": 67.0
+    },
+    "hybrid_gap": 11.1,
+    "prob_source": "stack",
+    "advance_pct_a": 21.4,
+    "advance_pct_b": 78.6,
+    "is_knockout": true,
+    "stage": "round_of_32",
+    "match_id": "M073__2A__vs__2B",
+    "kickoff_utc": "2026-06-28T19:00:00Z"
+  },
+  {
     "team_a": "Brazil",
     "team_b": "Japan",
     "composite_a": 80.9,
